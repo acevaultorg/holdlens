@@ -16,8 +16,14 @@ export const metadata: Metadata = {
     siteName: "HoldLens",
     type: "website",
   },
-  twitter: { card: "summary_large_image", title: "HoldLens" },
+  twitter: {
+    card: "summary_large_image",
+    title: "HoldLens — Smart money, out loud",
+    description: "Track 10+ superinvestors. Conviction scores, backtests, weekly moves. Free.",
+    creator: "@holdlens",
+  },
   robots: { index: true, follow: true },
+  alternates: { types: { "application/rss+xml": "/feed.xml" } },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
