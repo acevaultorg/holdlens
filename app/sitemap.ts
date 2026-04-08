@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticUrls: MetadataRoute.Sitemap = [
     { url: `${base}/`, lastModified: now, changeFrequency: "daily", priority: 1 },
     { url: `${base}/simulate/buffett`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/simulate/ackman`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/learn/what-is-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/investor`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/ticker`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/top-picks`, lastModified: now, changeFrequency: "weekly", priority: 0.95 },
