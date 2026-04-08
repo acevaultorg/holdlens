@@ -35,10 +35,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="/" className="flex items-center gap-2 font-semibold text-lg">
               <span className="text-brand">◉</span> HoldLens
             </a>
-            <nav className="flex gap-6 text-sm text-muted">
+            <nav className="flex gap-5 text-sm text-muted">
+              <a href="/top-picks" className="hover:text-text transition">Top picks</a>
               <a href="/investor" className="hover:text-text transition">Investors</a>
               <a href="/ticker" className="hover:text-text transition">Stocks</a>
-              <a href="/simulate/buffett" className="hover:text-text transition">Backtest</a>
+              <a href="/simulate/buffett" className="hover:text-text transition hidden md:inline">Backtest</a>
               <a href="/about" className="hover:text-text transition hidden md:inline">About</a>
             </nav>
           </div>
