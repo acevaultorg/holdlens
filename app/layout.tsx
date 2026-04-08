@@ -30,9 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="text-brand">◉</span> HoldLens
             </a>
             <nav className="flex gap-6 text-sm text-muted">
+              <a href="/investor" className="hover:text-text transition">Investors</a>
+              <a href="/ticker" className="hover:text-text transition">Stocks</a>
               <a href="/simulate/buffett" className="hover:text-text transition">Backtest</a>
-              <a href="/investor/warren-buffett" className="hover:text-text transition">Investors</a>
-              <a href="#subscribe" className="hover:text-text transition">Get alerts</a>
+              <a href="/about" className="hover:text-text transition hidden md:inline">About</a>
             </nav>
           </div>
         </header>
@@ -40,9 +41,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="border-t border-border mt-24">
           <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
             <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice.</div>
-            <div className="flex gap-5">
-              <a href="/simulate/buffett" className="hover:text-text">Buffett backtest</a>
-              <a href="/investor/warren-buffett" className="hover:text-text">Investors</a>
+            <div className="flex gap-5 flex-wrap">
+              <a href="/investor" className="hover:text-text">Investors</a>
+              <a href="/ticker" className="hover:text-text">Stocks</a>
+              <a href="/simulate/buffett" className="hover:text-text">Backtest</a>
+              <a href="/about" className="hover:text-text">About</a>
             </div>
           </div>
         </footer>
