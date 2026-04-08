@@ -54,6 +54,18 @@ const SECTOR_MAP: Record<string, string> = {
   LBTYK: "Communication",
   WBD: "Communication",
   DNUT: "Consumer Discretionary",
+  BABA: "Technology",
+  JD: "Technology",
+  BIDU: "Technology",
+  SHEL: "Energy",
+  ESTC: "Technology",
+  COHR: "Technology",
+  TSM: "Technology",
+  KMI: "Energy",
+  "BRK.B": "Financials",
+  MU: "Technology",
+  STLA: "Consumer Discretionary",
+  FCAU: "Financials",
 };
 
 export function buildTickerIndex(): Record<string, TickerData> {

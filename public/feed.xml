@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>HoldLens — Smart money, out loud</title>
+  <link>https://holdlens.com</link>
+  <description>Track 10+ superinvestors. Conviction scores, backtests, and weekly moves.</description>
+  <language>en-us</language>
+  <item>
+    <title>Warren Buffett — Berkshire Hathaway</title>
+    <link>https://holdlens.com/investor/warren-buffett</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/warren-buffett</guid>
+    <description>The Oracle of Omaha. Top position: AAPL (22.4%).</description>
+  </item>
+  <item>
+    <title>Bill Ackman — Pershing Square Capital</title>
+    <link>https://holdlens.com/investor/bill-ackman</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/bill-ackman</guid>
+    <description>Activist investor. Top position: CMG (21.4%).</description>
+  </item>
+  <item>
+    <title>Carl Icahn — Icahn Enterprises</title>
+    <link>https://holdlens.com/investor/carl-icahn</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/carl-icahn</guid>
+    <description>Wall Street's most feared activist. Top position: IEP (65%).</description>
+  </item>
+  <item>
+    <title>David Einhorn — Greenlight Capital</title>
+    <link>https://holdlens.com/investor/david-einhorn</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/david-einhorn</guid>
+    <description>Long-short value investor. Top position: GRBK (28.7%).</description>
+  </item>
+  <item>
+    <title>Seth Klarman — Baupost Group</title>
+    <link>https://holdlens.com/investor/seth-klarman</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/seth-klarman</guid>
+    <description>Margin of safety. Cash is a position.</description>
+  </item>
+  <item>
+    <title>Joel Greenblatt — Gotham Asset Management</title>
+    <link>https://holdlens.com/investor/joel-greenblatt</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/joel-greenblatt</guid>
+    <description>Magic Formula investor.</description>
+  </item>
+  <item>
+    <title>Michael Burry — Scion Asset Management</title>
+    <link>https://holdlens.com/investor/michael-burry</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/michael-burry</guid>
+    <description>The Big Short. Contrarian deep-value.</description>
+  </item>
+  <item>
+    <title>Stanley Druckenmiller — Duquesne Family Office</title>
+    <link>https://holdlens.com/investor/stanley-druckenmiller</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/stanley-druckenmiller</guid>
+    <description>Macro top-down. 30+ years without a losing year.</description>
+  </item>
+  <item>
+    <title>Li Lu — Himalaya Capital</title>
+    <link>https://holdlens.com/investor/li-lu</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/li-lu</guid>
+    <description>Charlie Munger's protégé.</description>
+  </item>
+  <item>
+    <title>Mohnish Pabrai — Pabrai Investment Funds</title>
+    <link>https://holdlens.com/investor/monish-pabrai</link>
+    <guid isPermaLink="true">https://holdlens.com/investor/monish-pabrai</guid>
+    <description>Heads I win, tails I don't lose much.</description>
+  </item>
+</channel>
+</rss>

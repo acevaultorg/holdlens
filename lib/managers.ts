@@ -135,6 +135,82 @@ export const MANAGERS: Manager[] = [
   },
 ];
 
+// Additional managers — round 2
+MANAGERS.push(
+  {
+    slug: "michael-burry",
+    name: "Michael Burry",
+    fund: "Scion Asset Management",
+    role: "Founder",
+    netWorth: "~$300M",
+    startedTracking: "2000",
+    philosophy: "Contrarian deep-value with macro overlay. Predicted 2008.",
+    bio: "The Big Short protagonist. Ex-physician turned hedge fund manager famous for shorting subprime in 2007.",
+    longestHolding: "Various deep-value bets",
+    topHoldings: [
+      { ticker: "BABA",  name: "Alibaba",         pct: 21.3, sharesMn: 0.2, thesis: "China big tech contrarian bet." },
+      { ticker: "JD",    name: "JD.com",          pct: 17.6, sharesMn: 0.4, thesis: "Same China thesis, deeper discount." },
+      { ticker: "BIDU",  name: "Baidu",           pct: 14.8, sharesMn: 0.1, thesis: "Search + AI, distressed valuation." },
+      { ticker: "SHEL",  name: "Shell",           pct: 9.2, sharesMn: 0.1, thesis: "Energy + dividend." },
+      { ticker: "ESTC",  name: "Elastic NV",      pct: 8.7, sharesMn: 0.1, thesis: "Search infrastructure for AI era." },
+    ],
+  },
+  {
+    slug: "stanley-druckenmiller",
+    name: "Stanley Druckenmiller",
+    fund: "Duquesne Family Office",
+    role: "Chairman",
+    netWorth: "~$11B",
+    startedTracking: "1981",
+    philosophy: "Macro top-down, concentrated bets, ride trends.",
+    bio: "Soros's right hand on the Black Wednesday Pound trade. 30+ years without a losing year.",
+    longestHolding: "NVIDIA-class compounders",
+    topHoldings: [
+      { ticker: "NVDA",  name: "NVIDIA",          pct: 11.4, sharesMn: 1.7, thesis: "Top AI infrastructure pick. Sized aggressively." },
+      { ticker: "MSFT",  name: "Microsoft",       pct:  9.1, sharesMn: 1.0, thesis: "Other half of the AI infrastructure trade." },
+      { ticker: "COHR",  name: "Coherent",        pct:  6.8, sharesMn: 1.4, thesis: "Optical networking for hyperscalers." },
+      { ticker: "TSM",   name: "Taiwan Semi",     pct:  5.2, sharesMn: 0.4, thesis: "The picks-and-shovels AI play." },
+      { ticker: "KMI",   name: "Kinder Morgan",   pct:  4.8, sharesMn: 5.0, thesis: "Pipelines, energy infrastructure." },
+    ],
+  },
+  {
+    slug: "li-lu",
+    name: "Li Lu",
+    fund: "Himalaya Capital",
+    role: "Founder",
+    netWorth: "~$1B",
+    startedTracking: "1997",
+    philosophy: "Long-term value, China expertise, Charlie Munger's protégé.",
+    bio: "Tiananmen Square protest leader turned fund manager. Charlie Munger called him 'the Asian Warren Buffett.'",
+    longestHolding: "Bank of America (since 2009)",
+    topHoldings: [
+      { ticker: "BAC",   name: "Bank of America",  pct: 27.4, sharesMn: 12, thesis: "15-year holding. Deep conviction in US banking franchise." },
+      { ticker: "GOOG",  name: "Alphabet",         pct: 17.1, sharesMn: 0.5, thesis: "Quality compounder + AI optionality." },
+      { ticker: "BRK.B", name: "Berkshire Hathaway", pct: 16.2, sharesMn: 1.2, thesis: "Following the master." },
+      { ticker: "META",  name: "Meta Platforms",   pct: 11.8, sharesMn: 0.5, thesis: "Cash flow machine." },
+      { ticker: "BABA",  name: "Alibaba",          pct:  9.7, sharesMn: 5.0, thesis: "China expertise advantage." },
+    ],
+  },
+  {
+    slug: "monish-pabrai",
+    name: "Mohnish Pabrai",
+    fund: "Pabrai Investment Funds",
+    role: "Managing Partner",
+    netWorth: "~$200M",
+    startedTracking: "1999",
+    philosophy: "Heads I win, tails I don't lose much. Cloning the best.",
+    bio: "Buffett-style deep value investor. Famous for paying $650k for a charity lunch with Buffett.",
+    longestHolding: "Fiat Chrysler / Stellantis (since 2012)",
+    topHoldings: [
+      { ticker: "MU",    name: "Micron Technology", pct: 24.6, sharesMn: 1.2, thesis: "Cyclical bet on memory recovery." },
+      { ticker: "STLA",  name: "Stellantis",         pct: 21.3, sharesMn: 11, thesis: "Auto deep value, dividend yield play." },
+      { ticker: "BABA",  name: "Alibaba",            pct: 18.4, sharesMn: 1.5, thesis: "China discount opportunity." },
+      { ticker: "GOOG",  name: "Alphabet",           pct:  9.7, sharesMn: 0.3, thesis: "Quality compounder." },
+      { ticker: "FCAU",  name: "Brookfield Reins.",  pct:  6.5, sharesMn: 1.0, thesis: "Insurance float compounder." },
+    ],
+  },
+);
+
 export function getManager(slug: string) {
   return MANAGERS.find((m) => m.slug === slug);
 }
