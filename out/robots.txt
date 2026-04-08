@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://holdlens.com/sitemap.xml
