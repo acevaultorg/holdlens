@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fcompare\u002F[pair]","\u002Finvestor\u002F[slug]","\u002Fsector\u002F[slug]","\u002Fticker\u002F[symbol]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
