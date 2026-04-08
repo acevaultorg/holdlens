@@ -33,6 +33,26 @@ export const RETURNS: YearRow[] = [
   { year: 2025, brk: 8.2, spy: 11.4 },
 ];
 
+// Druckenmiller (Duquesne Family Office) approximate returns since 2010.
+export const DRUCK_RETURNS: YearRow[] = [
+  { year: 2010, brk: 12.0, spy: 15.1 },
+  { year: 2011, brk: 5.5, spy: 2.1 },
+  { year: 2012, brk: 22.0, spy: 16.0 },
+  { year: 2013, brk: 38.0, spy: 32.4 },
+  { year: 2014, brk: 9.0, spy: 13.7 },
+  { year: 2015, brk: -1.5, spy: 1.4 },
+  { year: 2016, brk: 11.0, spy: 12.0 },
+  { year: 2017, brk: 28.0, spy: 21.8 },
+  { year: 2018, brk: 2.0, spy: -4.4 },
+  { year: 2019, brk: 35.0, spy: 31.5 },
+  { year: 2020, brk: 42.0, spy: 18.4 },
+  { year: 2021, brk: 19.0, spy: 28.7 },
+  { year: 2022, brk: -10.0, spy: -18.1 },
+  { year: 2023, brk: 25.0, spy: 26.3 },
+  { year: 2024, brk: 31.0, spy: 25.0 },
+  { year: 2025, brk: 14.0, spy: 11.4 },
+];
+
 // Pershing Square (Ackman) annual returns. Approximate; based on PSH NAV reports.
 export const ACKMAN_RETURNS: YearRow[] = [
   { year: 2014, brk: 40.4, spy: 13.7 },
