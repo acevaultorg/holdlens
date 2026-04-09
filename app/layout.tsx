@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <footer className="border-t border-border mt-24">
           <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
-            <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice.</div>
+            <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice. · <span className="opacity-50 text-xs">Powered by AcePilot</span></div>
             <div className="flex gap-5 flex-wrap">
               <a href="/top-picks" className="hover:text-text">Top picks</a>
               <a href="/investor" className="hover:text-text">Investors</a>
