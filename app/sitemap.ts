@@ -33,6 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/top-picks`, lastModified: now, changeFrequency: "weekly", priority: 0.95 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/methodology`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
+    { url: `${base}/press`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   ];
 
   const sectorUrls: MetadataRoute.Sitemap = SECTORS.map((s) => ({

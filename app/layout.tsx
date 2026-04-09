@@ -49,10 +49,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
             <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice.</div>
             <div className="flex gap-5 flex-wrap">
+              <a href="/top-picks" className="hover:text-text">Top picks</a>
               <a href="/investor" className="hover:text-text">Investors</a>
               <a href="/ticker" className="hover:text-text">Stocks</a>
-              <a href="/simulate/buffett" className="hover:text-text">Backtest</a>
+              <a href="/simulate" className="hover:text-text">Backtest</a>
+              <a href="/learn" className="hover:text-text">Learn</a>
+              <a href="/faq" className="hover:text-text">FAQ</a>
               <a href="/about" className="hover:text-text">About</a>
+              <a href="/press" className="hover:text-text">Press</a>
             </div>
           </div>
         </footer>
