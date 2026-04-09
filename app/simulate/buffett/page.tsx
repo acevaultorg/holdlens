@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Backtest from "@/components/Backtest";
 import EmailCapture from "@/components/EmailCapture";
+import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
   title: "What if you'd copied Warren Buffett?",
@@ -23,6 +24,13 @@ export default function BuffettBacktestPage() {
       </p>
 
       <Backtest />
+
+      <div className="mt-8">
+        <ShareButtons
+          title="What if you'd copied Warren Buffett? Interactive backtest on HoldLens."
+          url="https://holdlens.com/simulate/buffett"
+        />
+      </div>
 
       <section className="mt-20 pt-12 border-t border-border">
         <h2 className="text-2xl font-bold mb-3">Want every future move alert?</h2>

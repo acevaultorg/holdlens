@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: "%s · HoldLens",
   },
   description:
-    "Track the portfolios of 82+ superinvestors. Conviction scores, backtests, and weekly moves — free.",
+    "Track the portfolios of 14+ superinvestors. Conviction scores, backtests, and weekly moves — free.",
   openGraph: {
     title: "HoldLens",
     description: "See what the smartest investors are buying.",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ManagerBacktest from "@/components/ManagerBacktest";
 import EmailCapture from "@/components/EmailCapture";
+import ShareButtons from "@/components/ShareButtons";
 import { BURRY_RETURNS } from "@/lib/returns";
 
 export const metadata: Metadata = {
@@ -22,6 +23,13 @@ export default function BurryPage() {
       </p>
 
       <ManagerBacktest returns={BURRY_RETURNS} name="Burry" />
+
+      <div className="mt-8">
+        <ShareButtons
+          title="What if you'd copied Michael Burry? Interactive backtest on HoldLens."
+          url="https://holdlens.com/simulate/burry"
+        />
+      </div>
 
       <section className="mt-20 pt-12 border-t border-border">
         <h2 className="text-2xl font-bold mb-3">Get Burry move alerts</h2>

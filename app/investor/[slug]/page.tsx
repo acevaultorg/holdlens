@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import EmailCapture from "@/components/EmailCapture";
-import { MANAGERS, getManager } from "@/lib/managers";
+import { MANAGERS, getManager, type Manager } from "@/lib/managers";
+
+// Find managers whose top 10 holdings overlap with this manager's top 10.
+// Scored by count of shared tickers. Returns the top 3 related.
+function relatedManagers(m: Manager): { manager: Manager; shared: number; commonTickers: string[] }[] {
+  const myTickers = new Set(m.topHoldings.map((h) => h.ticker));
+  return MANAGERS
+    .filter((other) => other.slug !== m.slug)
+    .map((other) => {
+      const shared = other.topHoldings.filter((h) => myTickers.has(h.ticker));
+      return { manager: other, shared: shared.length, commonTickers: shared.map((h) => h.ticker) };
+    })
+    .filter((r) => r.shared > 0)
+    .sort((a, b) => b.shared - a.shared)
+    .slice(0, 3);
+}
 
 export async function generateStaticParams() {
   // warren-buffett has its own dedicated static page; exclude here to avoid route conflict.
@@ -103,6 +118,31 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         </p>
         <EmailCapture />
       </section>
+
+      {(() => {
+        const related = relatedManagers(m);
+        if (related.length === 0) return null;
+        return (
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold mb-4">Similar investors</h2>
+            <p className="text-muted text-sm mb-6">
+              Tracked managers whose top positions overlap with {m.name.split(" ")[0]}'s portfolio.
+            </p>
+            <div className="grid md:grid-cols-3 gap-3">
+              {related.map((r) => (
+                <a key={r.manager.slug} href={`/investor/${r.manager.slug}`}
+                   className="rounded-xl border border-border bg-panel p-4 hover:border-brand transition group">
+                  <div className="font-semibold group-hover:text-brand transition">{r.manager.name}</div>
+                  <div className="text-xs text-muted mt-1">{r.manager.fund}</div>
+                  <div className="text-xs text-dim mt-2">
+                    {r.shared} shared position{r.shared > 1 ? "s" : ""}: {r.commonTickers.join(", ")}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        );
+      })()}
 
       {m.slug === "warren-buffett" && (
         <section className="mt-16">

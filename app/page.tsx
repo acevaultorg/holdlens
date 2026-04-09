@@ -18,7 +18,7 @@ export default function HomePage() {
           investors are <span className="text-brand">buying.</span>
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl mx-auto">
-          Track 10 tracked superinvestors — Buffett, Ackman, Icahn, Burry and more — with conviction scores,
+          Track 14 tracked superinvestors — Buffett, Ackman, Icahn, Burry and more — with conviction scores,
           backtests, and move-alerts the moment 13F filings drop. Free.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
@@ -39,9 +39,9 @@ export default function HomePage() {
 
       {/* Stats */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-6 py-10 border-y border-border">
-        <Stat big="10" label="Superinvestors tracked" />
-        <Stat big="$1.4T" label="Assets under watch" />
-        <Stat big="3" label="Interactive backtests" />
+        <Stat big="14" label="Superinvestors tracked" />
+        <Stat big="$1.5T" label="Assets under watch" />
+        <Stat big="5" label="Interactive backtests" />
         <Stat big="Free" label="Forever core tier" />
       </section>
 

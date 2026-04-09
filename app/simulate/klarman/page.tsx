@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ManagerBacktest from "@/components/ManagerBacktest";
 import EmailCapture from "@/components/EmailCapture";
+import ShareButtons from "@/components/ShareButtons";
 import { KLARMAN_RETURNS } from "@/lib/returns";
 
 export const metadata: Metadata = {
@@ -22,6 +23,13 @@ export default function KlarmanPage() {
       </p>
 
       <ManagerBacktest returns={KLARMAN_RETURNS} name="Klarman" />
+
+      <div className="mt-8">
+        <ShareButtons
+          title="What if you'd copied Seth Klarman? Interactive backtest on HoldLens."
+          url="https://holdlens.com/simulate/klarman"
+        />
+      </div>
 
       <section className="mt-20 pt-12 border-t border-border">
         <h2 className="text-2xl font-bold mb-3">Get Klarman move alerts</h2>
