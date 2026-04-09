@@ -36,10 +36,20 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
     worksFor: { "@type": "Organization", name: m.fund },
     description: m.bio,
   };
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Investors", item: "https://holdlens.com/investor" },
+      { "@type": "ListItem", position: 3, name: m.name, item: `https://holdlens.com/investor/${m.slug}` },
+    ],
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Investor profile</div>
       <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-2">{m.name}</h1>

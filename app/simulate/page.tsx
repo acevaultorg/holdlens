@@ -9,6 +9,8 @@ const BACKTESTS = [
   { slug: "buffett", name: "Warren Buffett", fund: "Berkshire Hathaway", years: "1999-2025", desc: "The Oracle of Omaha. Compound interest's loudest fan." },
   { slug: "ackman", name: "Bill Ackman", fund: "Pershing Square", years: "2014-2025", desc: "Concentrated, activist, sometimes brilliant, sometimes humbling." },
   { slug: "druckenmiller", name: "Stanley Druckenmiller", fund: "Duquesne Family Office", years: "2010-2025", desc: "30+ years without a losing year." },
+  { slug: "klarman", name: "Seth Klarman", fund: "Baupost Group", years: "2010-2025", desc: "Margin of safety. 30% cash positions." },
+  { slug: "burry", name: "Michael Burry", fund: "Scion Asset Management", years: "2013-2025", desc: "The Big Short. Volatile contrarian swings." },
 ];
 
 export default function BacktestIndex() {

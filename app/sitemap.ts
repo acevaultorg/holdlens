@@ -19,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/simulate`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/simulate/ackman`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/simulate/druckenmiller`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/simulate/klarman`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/simulate/burry`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/learn`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/learn/what-is-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/learn/copy-trading-myth`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },

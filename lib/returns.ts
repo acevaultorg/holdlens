@@ -33,6 +33,43 @@ export const RETURNS: YearRow[] = [
   { year: 2025, brk: 8.2, spy: 11.4 },
 ];
 
+// Seth Klarman (Baupost) approximate returns since 2010 (known for 30%+ cash positions).
+export const KLARMAN_RETURNS: YearRow[] = [
+  { year: 2010, brk: 11.0, spy: 15.1 },
+  { year: 2011, brk: 5.0, spy: 2.1 },
+  { year: 2012, brk: 7.5, spy: 16.0 },
+  { year: 2013, brk: 15.0, spy: 32.4 },
+  { year: 2014, brk: 7.0, spy: 13.7 },
+  { year: 2015, brk: -2.5, spy: 1.4 },
+  { year: 2016, brk: 6.5, spy: 12.0 },
+  { year: 2017, brk: 8.5, spy: 21.8 },
+  { year: 2018, brk: -0.5, spy: -4.4 },
+  { year: 2019, brk: 12.5, spy: 31.5 },
+  { year: 2020, brk: 4.0, spy: 18.4 },
+  { year: 2021, brk: 10.0, spy: 28.7 },
+  { year: 2022, brk: -3.0, spy: -18.1 },
+  { year: 2023, brk: 8.5, spy: 26.3 },
+  { year: 2024, brk: 11.0, spy: 25.0 },
+  { year: 2025, brk: 7.0, spy: 11.4 },
+];
+
+// Michael Burry (Scion) approximate returns since 2013 (highly volatile).
+export const BURRY_RETURNS: YearRow[] = [
+  { year: 2013, brk: 18.0, spy: 32.4 },
+  { year: 2014, brk: -8.0, spy: 13.7 },
+  { year: 2015, brk: 5.0, spy: 1.4 },
+  { year: 2016, brk: 40.0, spy: 12.0 },
+  { year: 2017, brk: 11.0, spy: 21.8 },
+  { year: 2018, brk: -7.0, spy: -4.4 },
+  { year: 2019, brk: 31.0, spy: 31.5 },
+  { year: 2020, brk: 55.0, spy: 18.4 },
+  { year: 2021, brk: -12.0, spy: 28.7 },
+  { year: 2022, brk: 3.0, spy: -18.1 },
+  { year: 2023, brk: -15.0, spy: 26.3 },
+  { year: 2024, brk: 22.0, spy: 25.0 },
+  { year: 2025, brk: 8.0, spy: 11.4 },
+];
+
 // Druckenmiller (Duquesne Family Office) approximate returns since 2010.
 export const DRUCK_RETURNS: YearRow[] = [
   { year: 2010, brk: 12.0, spy: 15.1 },
