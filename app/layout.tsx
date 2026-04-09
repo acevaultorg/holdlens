@@ -39,8 +39,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/top-picks" className="hover:text-text transition">Top picks</a>
               <a href="/investor" className="hover:text-text transition">Investors</a>
               <a href="/ticker" className="hover:text-text transition">Stocks</a>
-              <a href="/simulate/buffett" className="hover:text-text transition hidden md:inline">Backtest</a>
-              <a href="/about" className="hover:text-text transition hidden md:inline">About</a>
+              <a href="/simulate" className="hover:text-text transition hidden md:inline">Backtest</a>
+              <a href="/learn" className="hover:text-text transition hidden md:inline">Learn</a>
             </nav>
           </div>
         </header>
