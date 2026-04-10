@@ -5,11 +5,12 @@
 //
 // This is the killer hook for the entire site: it makes the recommendation model
 // PERSONAL — not "what should anyone buy" but "what should YOU do with what
-// you already own".
+// you already own". All signals use the unified signed −100..+100 scale.
 
 import { useEffect, useState } from "react";
 import { getProfile, subscribeProfile } from "@/lib/profile";
 import { getNetSignal, type NetSignal } from "@/lib/signals";
+import { formatSignedScore } from "@/lib/conviction";
 
 type RowSignal = {
   ticker: string;
@@ -72,7 +73,7 @@ export default function PortfolioSignals() {
                 className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-400 font-semibold hover:bg-emerald-400/20 transition"
               >
                 {r.ticker}
-                <span className="text-[10px] tabular-nums opacity-80">+{r.signal?.score}</span>
+                <span className="text-[10px] tabular-nums opacity-80">{formatSignedScore(r.signal?.score ?? 0)}</span>
               </a>
             ))}
           </div>
@@ -92,7 +93,7 @@ export default function PortfolioSignals() {
                 className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full border border-rose-400/30 bg-rose-400/10 text-rose-400 font-semibold hover:bg-rose-400/20 transition"
               >
                 {r.ticker}
-                <span className="text-[10px] tabular-nums opacity-80">{r.signal?.score}</span>
+                <span className="text-[10px] tabular-nums opacity-80">{formatSignedScore(r.signal?.score ?? 0)}</span>
               </a>
             ))}
           </div>

@@ -37,21 +37,45 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold mb-3">Conviction Score (coming v0.4)</h2>
+          <h2 className="text-2xl font-bold mb-3">Unified ConvictionScore (v4)</h2>
           <p className="text-muted">
-            A position is high-conviction when it's: (a) large relative to the manager's typical position size,
-            (b) added to over multiple quarters, (c) held even after price drawdowns. Our Conviction Score
-            combines all three signals into a single 0-100 number per position.
+            Every ticker is assigned ONE signed score on a single scale:
+            <span className="text-emerald-400 font-semibold"> +100 is the strongest possible buy</span>,
+            <span className="text-rose-400 font-semibold"> −100 the strongest possible sell</span>,
+            and zero is no signal. A stock can appear on EXACTLY ONE list (buys or sells) — never both —
+            because both lists are filtered views of the same single number.
+          </p>
+          <p className="text-muted mt-3">
+            The score is built from six positive layers minus two penalty layers:
+          </p>
+          <ul className="mt-3 space-y-2 text-muted">
+            <li>• <strong className="text-text">Smart money</strong> — manager-quality × consensus, time-decayed across 8 quarters of 13F data</li>
+            <li>• <strong className="text-text">Insider activity</strong> — CEO/CFO open-market buys (the strongest single equity signal). Routine 10b5-1 sells don't count against</li>
+            <li>• <strong className="text-text">Track record</strong> — buyer 10-year CAGR weighted by their position size in this stock</li>
+            <li>• <strong className="text-text">Trend streak</strong> — multi-quarter compounding (3 quarters in a row ≠ 1 quarter)</li>
+            <li>• <strong className="text-text">Concentration</strong> — a 15% position is weighted heavier than a 1% position</li>
+            <li>• <strong className="text-text">Contrarian bonus</strong> — under-the-radar stocks (small ownership count + tier-1 buyers)</li>
+            <li>• <strong className="text-text">− Dissent penalty</strong> — sellers subtract from the score (×1.2 because exits require more conviction than trims)</li>
+            <li>• <strong className="text-text">− Crowding penalty</strong> — when ownership count is high, the signal is already priced in</li>
+          </ul>
+          <p className="text-muted mt-3">
+            <strong className="text-text">Dead zone:</strong> any score in [−10, +10] is classified NEUTRAL and shown on neither
+            ranking. This filters out tickers where buying and selling roughly cancel (the META problem: 9 buyers vs 5 sellers
+            → small net signal → not on either list), keeping only stocks with unambiguous direction.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold mb-3">Consensus Score (coming v0.4)</h2>
-          <p className="text-muted">
-            When 5+ tracked managers independently buy the same stock in the same quarter, that's a consensus
-            signal. Our Consensus Score weighs the manager's track record + position size to flag emerging themes
-            one quarter early.
-          </p>
+          <h2 className="text-2xl font-bold mb-3">How a label maps to the score</h2>
+          <ul className="text-muted space-y-1 text-sm">
+            <li><span className="text-emerald-400 font-semibold">STRONG BUY</span> — score ≥ +70</li>
+            <li><span className="text-emerald-400 font-semibold">BUY</span> — score ≥ +40</li>
+            <li><span className="text-emerald-400 font-semibold">WEAK BUY</span> — score &gt; +10</li>
+            <li><span className="text-muted">NEUTRAL</span> — score in [−10, +10] · the dead zone</li>
+            <li><span className="text-rose-400 font-semibold">WEAK SELL</span> — score &lt; −10</li>
+            <li><span className="text-rose-400 font-semibold">SELL</span> — score &lt; −40</li>
+            <li><span className="text-rose-400 font-semibold">STRONG SELL</span> — score ≤ −70</li>
+          </ul>
         </section>
 
         <section>
