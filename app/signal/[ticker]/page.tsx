@@ -5,6 +5,7 @@ import LiveChart from "@/components/LiveChart";
 import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
 import StarButton from "@/components/StarButton";
+import SocialShare from "@/components/SocialShare";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
 import { MANAGERS } from "@/lib/managers";
@@ -18,13 +19,40 @@ export async function generateMetadata({ params }: { params: Promise<{ ticker: s
   const { ticker } = await params;
   const t = getTicker(ticker);
   if (!t) return { title: "Signal not found" };
+
+  // Compute a one-line verdict for the meta description
+  const { buy, sell } = getTickerSignals(t.symbol);
+  let verdictLine = `${t.ownerCount} of the best portfolio managers in the world hold ${t.symbol}.`;
+  if (buy && (!sell || buy.score > sell.score + 10)) {
+    verdictLine = `${buy.buyerCount} tracked managers are buying ${t.symbol} this quarter (score ${buy.score}/100).`;
+  } else if (sell && (!buy || sell.score > buy.score + 10)) {
+    verdictLine = `${sell.sellerCount} tracked managers are selling ${t.symbol} this quarter (score ${sell.score}/100).`;
+  }
+
+  const url = `https://holdlens.com/signal/${t.symbol}`;
+  const title = `${t.symbol} signal — what smart money is doing on ${t.name}`;
+  const description = `${verdictLine} Full buy/sell dossier: multi-quarter trend, activity, news, live chart.`;
+
   return {
-    title: `${t.symbol} signal — what the smart money is doing on ${t.name}`,
-    description: `Full buy/sell dossier for ${t.symbol}: recommendation score, trend, activity feed, news, live chart. Powered by ${MANAGERS.length} best portfolio managers in the world.`,
+    title,
+    description,
+    alternates: { canonical: url },
     openGraph: {
       title: `${t.symbol} · HoldLens Signal`,
-      description: `Buy/sell recommendation for ${t.name}.`,
+      description,
+      url,
+      siteName: "HoldLens",
+      type: "article",
+      images: [{ url: "/og-signal.png", width: 1200, height: 630, alt: `${t.symbol} signal` }],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${t.symbol} · HoldLens Signal`,
+      description,
+      creator: "@holdlens",
+      images: ["/og-signal.png"],
+    },
+    robots: { index: true, follow: true },
   };
 }
 
@@ -197,6 +225,21 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
             </tbody>
           </table>
         </div>
+      </section>
+
+      {/* Share */}
+      <section className="mt-12">
+        <SocialShare
+          path={`/signal/${t.symbol}`}
+          tweet={
+            verdict === "BUY"
+              ? `🟢 BUY signal on ${t.symbol} (${verdictScore}/100) — ${buy?.buyerCount || 0} best portfolio managers in the world are buying. Full dossier on HoldLens:`
+              : verdict === "SELL"
+              ? `🔴 SELL signal on ${t.symbol} (${verdictScore}/100) — ${sell?.sellerCount || 0} tracked managers are selling. Full dossier on HoldLens:`
+              : `What ${MANAGERS.length} of the best portfolio managers in the world are doing on ${t.symbol} — full dossier on HoldLens:`
+          }
+          label={`Share the ${t.symbol} signal`}
+        />
       </section>
 
       <p className="text-xs text-dim mt-12">

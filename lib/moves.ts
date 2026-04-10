@@ -334,6 +334,77 @@ export const ALL_MOVES: Move[] = [
   { managerSlug: "lee-ainslie", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "META", action: "new", shareChange: 210000, portfolioImpactPct: 1.6, note: "Maverick first entered META here." },
 
   { managerSlug: "glenn-greenberg", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "SCHW", action: "add", deltaPct: 4, shareChange: 340000, portfolioImpactPct: 16.3, note: "Pre-building Schwab." },
+
+  // ============ New managers (round 4) Q4 2025 ============
+  // David Tepper (Appaloosa)
+  { managerSlug: "david-tepper", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "NVDA", action: "add", deltaPct: 25, shareChange: 180000, portfolioImpactPct: 10.2, note: "Doubling down on AI infrastructure." },
+  { managerSlug: "david-tepper", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "UBER", action: "new", shareChange: 3500000, portfolioImpactPct: 4.1, note: "New Uber position — AV optionality thesis." },
+  { managerSlug: "david-tepper", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "BABA", action: "add", deltaPct: 30, shareChange: 520000, portfolioImpactPct: 5.4, note: "Adding to China contrarian bet." },
+  { managerSlug: "david-tepper", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "META", action: "trim", deltaPct: -8, shareChange: -95000, portfolioImpactPct: 9.1, note: "Small META profit-take." },
+
+  // Chase Coleman (Tiger Global)
+  { managerSlug: "chase-coleman", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "META", action: "add", deltaPct: 18, shareChange: 650000, portfolioImpactPct: 13.4, note: "Adding to top position. Tiger Global conviction." },
+  { managerSlug: "chase-coleman", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "SE", action: "add", deltaPct: 22, shareChange: 1600000, portfolioImpactPct: 5.8, note: "Building Sea Limited — Southeast Asia." },
+  { managerSlug: "chase-coleman", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "NVDA", action: "trim", deltaPct: -10, shareChange: -380000, portfolioImpactPct: 7.1, note: "Taking some NVDA profits." },
+  { managerSlug: "chase-coleman", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "SPOT", action: "new", shareChange: 900000, portfolioImpactPct: 4.1, note: "New Spotify position." },
+
+  // John Armitage (Egerton)
+  { managerSlug: "john-armitage", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "MSFT", action: "add", deltaPct: 12, shareChange: 140000, portfolioImpactPct: 8.9, note: "Quality compounder add." },
+  { managerSlug: "john-armitage", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "META", action: "add", deltaPct: 15, shareChange: 120000, portfolioImpactPct: 7.2, note: "Adding Meta." },
+  { managerSlug: "john-armitage", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "SCHW", action: "new", shareChange: 1400000, portfolioImpactPct: 4.7, note: "New Schwab position." },
+
+  // David Rolfe (Wedgewood)
+  { managerSlug: "david-rolfe", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "TSM", action: "add", deltaPct: 18, shareChange: 50000, portfolioImpactPct: 9.1, note: "Building Taiwan Semi — AI picks and shovels." },
+  { managerSlug: "david-rolfe", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "FICO", action: "add", deltaPct: 8, shareChange: 2000, portfolioImpactPct: 5.9, note: "Adding to credit scoring monopoly." },
+  { managerSlug: "david-rolfe", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "AAPL", action: "trim", deltaPct: -5, shareChange: -30000, portfolioImpactPct: 10.2, note: "Small 19-year Apple trim." },
+
+  // François Rochon (Giverny)
+  { managerSlug: "francois-rochon", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "MA", action: "add", deltaPct: 6, shareChange: 12000, portfolioImpactPct: 11.2, note: "Adding to 17-year Mastercard position." },
+  { managerSlug: "francois-rochon", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "V", action: "add", deltaPct: 5, shareChange: 15000, portfolioImpactPct: 9.8, note: "Small Visa add." },
+  { managerSlug: "francois-rochon", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "META", action: "add", deltaPct: 12, shareChange: 22000, portfolioImpactPct: 6.2, note: "Quality compounder add." },
+
+  // Dev Kantesaria (Valley Forge)
+  { managerSlug: "dev-kantesaria", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "MCO", action: "add", deltaPct: 4, shareChange: 42000, portfolioImpactPct: 22.4, note: "Top conviction — adding to 15+ year Moody's position." },
+  { managerSlug: "dev-kantesaria", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "MSCI", action: "add", deltaPct: 8, shareChange: 15000, portfolioImpactPct: 15.3, note: "Index monopoly add." },
+  { managerSlug: "dev-kantesaria", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "HEI", action: "add", deltaPct: 12, shareChange: 19000, portfolioImpactPct: 8.4, note: "Building HEICO — aerospace aftermarket." },
+
+  // William von Mueffling (Cantillon)
+  { managerSlug: "william-von-mueffling", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "MCO", action: "add", deltaPct: 10, shareChange: 32000, portfolioImpactPct: 6.4, note: "Adding to Moody's." },
+  { managerSlug: "william-von-mueffling", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "ICE", action: "add", deltaPct: 15, shareChange: 52000, portfolioImpactPct: 5.8, note: "Building ICE." },
+  { managerSlug: "william-von-mueffling", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "MSFT", action: "trim", deltaPct: -6, shareChange: -48000, portfolioImpactPct: 7.8, note: "Small Microsoft trim." },
+
+  // Tom Slater (Baillie Gifford LTGG)
+  { managerSlug: "tom-slater", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "NVDA", action: "add", deltaPct: 20, shareChange: 230000, portfolioImpactPct: 9.4, note: "AI infrastructure conviction." },
+  { managerSlug: "tom-slater", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "MELI", action: "add", deltaPct: 12, shareChange: 28000, portfolioImpactPct: 7.2, note: "Building MercadoLibre." },
+  { managerSlug: "tom-slater", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "TSLA", action: "trim", deltaPct: -8, shareChange: -180000, portfolioImpactPct: 6.8, note: "Small Tesla trim — rebalancing." },
+  { managerSlug: "tom-slater", quarter: "2025-Q4", filedAt: "2026-02-14", ticker: "SHOP", action: "add", deltaPct: 15, shareChange: 460000, portfolioImpactPct: 4.7, note: "Adding Shopify." },
+
+  // ============ New managers Q3 2025 ============
+  { managerSlug: "david-tepper", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "NVDA", action: "add", deltaPct: 35, shareChange: 225000, portfolioImpactPct: 8.4, note: "Big NVDA add." },
+  { managerSlug: "david-tepper", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "META", action: "add", deltaPct: 22, shareChange: 195000, portfolioImpactPct: 9.8, note: "Building META conviction." },
+  { managerSlug: "david-tepper", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "BABA", action: "new", shareChange: 1700000, portfolioImpactPct: 4.2, note: "New Alibaba position — China contrarian." },
+
+  { managerSlug: "chase-coleman", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "META", action: "add", deltaPct: 45, shareChange: 1300000, portfolioImpactPct: 11.2, note: "Major META build — the biggest Tiger Global move." },
+  { managerSlug: "chase-coleman", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MSFT", action: "add", deltaPct: 30, shareChange: 700000, portfolioImpactPct: 9.8, note: "Adding Microsoft." },
+  { managerSlug: "chase-coleman", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "NVDA", action: "add", deltaPct: 15, shareChange: 440000, portfolioImpactPct: 7.9, note: "Pre-trim NVDA build." },
+
+  { managerSlug: "john-armitage", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MSFT", action: "add", deltaPct: 8, shareChange: 85000, portfolioImpactPct: 8.0, note: "Steady Microsoft build." },
+  { managerSlug: "john-armitage", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "GOOGL", action: "add", deltaPct: 12, shareChange: 260000, portfolioImpactPct: 6.8, note: "Adding Alphabet." },
+
+  { managerSlug: "david-rolfe", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "TSM", action: "add", deltaPct: 22, shareChange: 55000, portfolioImpactPct: 7.7, note: "Building TSM position." },
+  { managerSlug: "david-rolfe", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "BRK.B", action: "add", deltaPct: 6, shareChange: 38000, portfolioImpactPct: 7.8, note: "Adding Berkshire." },
+
+  { managerSlug: "francois-rochon", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MA", action: "add", deltaPct: 4, shareChange: 8000, portfolioImpactPct: 10.6, note: "Mastercard add." },
+  { managerSlug: "francois-rochon", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "GOOGL", action: "add", deltaPct: 10, shareChange: 38000, portfolioImpactPct: 8.4, note: "Adding Alphabet." },
+
+  { managerSlug: "dev-kantesaria", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "FICO", action: "add", deltaPct: 6, shareChange: 4500, portfolioImpactPct: 18.7, note: "Adding to credit scoring monopoly." },
+  { managerSlug: "dev-kantesaria", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "V", action: "add", deltaPct: 5, shareChange: 24000, portfolioImpactPct: 12.8, note: "Small Visa add." },
+
+  { managerSlug: "william-von-mueffling", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MSFT", action: "add", deltaPct: 8, shareChange: 62000, portfolioImpactPct: 8.3, note: "Microsoft add before Q4 trim." },
+  { managerSlug: "william-von-mueffling", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "SPGI", action: "add", deltaPct: 10, shareChange: 13000, portfolioImpactPct: 5.5, note: "S&P Global add." },
+
+  { managerSlug: "tom-slater", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "NVDA", action: "add", deltaPct: 25, shareChange: 280000, portfolioImpactPct: 7.8, note: "Building NVDA." },
+  { managerSlug: "tom-slater", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MELI", action: "add", deltaPct: 15, shareChange: 33000, portfolioImpactPct: 6.4, note: "Adding MercadoLibre." },
 ];
 
 // ---------- QUERIES ----------

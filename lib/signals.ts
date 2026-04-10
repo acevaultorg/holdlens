@@ -49,6 +49,14 @@ export const MANAGER_QUALITY: Record<string, number> = {
   "jeffrey-ubben":          8, // ValueAct — constructive activism
   "lee-ainslie":            8, // Maverick — 30+ yrs long-short
   "polen-capital":          8, // 25+ yrs concentrated quality growth
+  "david-tepper":           9, // Appaloosa — ~30% annualized net, called 2009 bottom
+  "chase-coleman":          8, // Tiger Global — survived '22, rebuilt strong
+  "john-armitage":          9, // Egerton — 15%+ for three decades, under-the-radar discipline
+  "david-rolfe":            9, // Wedgewood — Berkshire-style concentration at scale
+  "francois-rochon":        9, // Giverny — 14%+ for 25 years, Buffett-disciplined
+  "dev-kantesaria":         9, // Valley Forge — 5-8 positions only, 20%+ since '07
+  "william-von-mueffling":  8, // Cantillon — Lazard pedigree, low drawdowns
+  "tom-slater":             8, // Baillie Gifford LTGG — early Amazon/Tesla conviction
   "prem-watsa":             7, // Fairfax, the Canadian Buffett
   "bill-nygren":            7, // Oakmark Select, disciplined
   "glenn-greenberg":        7, // 8-10 position conviction, 22% 25yr
