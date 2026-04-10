@@ -3,6 +3,7 @@ import EmailCapture from "@/components/EmailCapture";
 import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
 import InvestorMoves from "@/components/InvestorMoves";
+import ManagerROICard from "@/components/ManagerROICard";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
@@ -59,6 +60,10 @@ export default function BuffettPage() {
       </div>
 
       <section className="mt-8">
+        <ManagerROICard slug="warren-buffett" />
+      </section>
+
+      <section className="mt-6">
         <PortfolioValue
           holdings={BUFFETT_TOP.map((h) => ({ ticker: h.ticker, sharesMn: h.sharesMn, pct: h.pctPortfolio }))}
           label="Buffett's portfolio value"

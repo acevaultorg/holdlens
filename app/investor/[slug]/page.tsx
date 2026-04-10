@@ -4,6 +4,7 @@ import EmailCapture from "@/components/EmailCapture";
 import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
 import InvestorMoves from "@/components/InvestorMoves";
+import ManagerROICard from "@/components/ManagerROICard";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -113,7 +114,12 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         <Stat label="Longest holding" value={m.longestHolding} />
       </div>
 
+      {/* Realized 10-year track record */}
       <section className="mt-8">
+        <ManagerROICard slug={m.slug} />
+      </section>
+
+      <section className="mt-6">
         <PortfolioValue holdings={m.topHoldings.map((h) => ({ ticker: h.ticker, sharesMn: h.sharesMn, pct: h.pct }))} label={`${m.name.split(" ")[0]}'s portfolio value`} />
       </section>
 

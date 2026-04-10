@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import LeaderboardTable from "./LeaderboardTable";
 import { getAllManagerROI, SP500_CAGR_10Y } from "@/lib/manager-roi";
 import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
   title: "Leaderboard — best portfolio managers ranked by 10-year ROI",
-  description: `Real ROI rankings for ${MANAGERS.length} of the best portfolio managers in the world. 10-year CAGR, alpha vs S&P 500, win rate, max drawdown.`,
+  description: `Real ROI rankings for ${MANAGERS.length} of the best portfolio managers in the world. 10-year CAGR, alpha vs S&P 500, win rate, max drawdown. Sortable.`,
   openGraph: {
     title: "HoldLens Leaderboard — Manager ROI Rankings",
-    description: "Real returns, real alpha, real ranking. Updated annually.",
+    description: "Real returns, real alpha, real ranking. Click any column to sort.",
   },
 };
-
-type SortKey = "alpha" | "cagr" | "winRate" | "sharpe" | "cumulative";
 
 export default function LeaderboardPage() {
   const allROI = getAllManagerROI()
@@ -22,7 +21,7 @@ export default function LeaderboardPage() {
     })
     .filter((r) => r.cagr10y > 0); // skip managers with no data
 
-  // Default sort: alpha (the truest skill metric)
+  // Default sort: alpha (the truest skill metric) — for the podium only
   const ranked = [...allROI].sort((a, b) => b.alpha10y - a.alpha10y);
 
   return (
@@ -50,58 +49,22 @@ export default function LeaderboardPage() {
         ))}
       </div>
 
-      {/* Full leaderboard */}
-      <div className="rounded-2xl border border-border bg-panel overflow-hidden mb-12">
-        <table className="w-full text-sm">
-          <thead className="text-dim text-[10px] uppercase tracking-wider">
-            <tr className="border-b border-border">
-              <th className="text-left px-5 py-3 w-12">#</th>
-              <th className="text-left px-5 py-3">Manager</th>
-              <th className="text-right px-5 py-3">10y CAGR</th>
-              <th className="text-right px-5 py-3">Alpha</th>
-              <th className="text-right px-5 py-3 hidden md:table-cell">Win rate</th>
-              <th className="text-right px-5 py-3 hidden lg:table-cell">Cumulative</th>
-              <th className="text-right px-5 py-3 hidden md:table-cell">Worst yr</th>
-              <th className="text-right px-5 py-3">Quality</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ranked.map((r, i) => (
-              <tr key={r.slug} className="border-b border-border last:border-0 hover:bg-bg/40 transition">
-                <td className="px-5 py-3 text-dim tabular-nums font-bold">{i + 1}</td>
-                <td className="px-5 py-3">
-                  <a href={`/investor/${r.slug}`} className="font-semibold text-text hover:text-brand transition">
-                    {r.name}
-                  </a>
-                  <div className="text-[11px] text-dim truncate">{r.fund}</div>
-                </td>
-                <td className="px-5 py-3 text-right tabular-nums font-semibold text-text">
-                  {r.cagr10y.toFixed(1)}%
-                </td>
-                <td
-                  className={`px-5 py-3 text-right tabular-nums font-bold ${
-                    r.alpha10y >= 0 ? "text-emerald-400" : "text-rose-400"
-                  }`}
-                >
-                  {r.alpha10y >= 0 ? "+" : ""}
-                  {r.alpha10y.toFixed(1)}%
-                </td>
-                <td className="px-5 py-3 text-right tabular-nums text-muted hidden md:table-cell">
-                  {(r.winRate * 100).toFixed(0)}%
-                </td>
-                <td className="px-5 py-3 text-right tabular-nums text-muted hidden lg:table-cell">
-                  {(r.cumulative10y / 100 + 1).toFixed(1)}×
-                </td>
-                <td className="px-5 py-3 text-right tabular-nums text-rose-400/80 hidden md:table-cell">
-                  {r.worstYear.toFixed(0)}%
-                </td>
-                <td className="px-5 py-3 text-right">
-                  <QualityBadge score={r.quality0to10} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Sortable leaderboard table */}
+      <div className="mb-4 text-xs text-dim">
+        <span className="text-text">Click any column header to sort.</span> Default: alpha (highest first).
+      </div>
+      <div className="mb-12">
+        <LeaderboardTable rows={ranked.map((r) => ({
+          slug: r.slug,
+          name: r.name,
+          fund: r.fund,
+          cagr10y: r.cagr10y,
+          alpha10y: r.alpha10y,
+          winRate: r.winRate,
+          cumulative10y: r.cumulative10y,
+          worstYear: r.worstYear,
+          quality0to10: r.quality0to10,
+        }))} />
       </div>
 
       <AdSlot format="horizontal" />
@@ -176,14 +139,3 @@ function PodiumCard({ rank, roi }: { rank: number; roi: ReturnType<typeof getAll
   );
 }
 
-function QualityBadge({ score }: { score: number }) {
-  let color = "text-muted bg-panel border-border";
-  if (score >= 9) color = "text-brand bg-brand/10 border-brand/40";
-  else if (score >= 7.5) color = "text-emerald-400 bg-emerald-400/10 border-emerald-400/30";
-  else if (score >= 6) color = "text-text bg-bg/40 border-border";
-  return (
-    <span className={`inline-flex items-center text-xs font-bold tabular-nums px-2 py-0.5 rounded border ${color}`}>
-      {score.toFixed(1)}
-    </span>
-  );
-}
