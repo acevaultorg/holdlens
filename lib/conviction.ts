@@ -1,21 +1,31 @@
-// ConvictionScore v3 — the recommendation model that beats consensus.
+// ConvictionScore v4 — THE canonical recommendation model.
 //
-// Six layers the previous NetSignal v2 didn't touch:
-//   1. Insider activity weighting (CEO/CFO open-market buys = strongest equity signal)
-//   2. Per-buyer expected ROI (using each manager's realized 10y CAGR, not just quality)
-//   3. Anti-crowding penalty (signal value diminishes with ownership count)
-//   4. Time decay across quarters (recent moves > old moves)
-//   5. Concentration as conviction proof (15% position weighted heavier than 1%)
-//   6. Trend streak compounding (3Q consecutive buys ≠ 1Q buy)
+// ONE unified signed score per ticker. Range: −100 (strongest sell) to +100
+// (strongest buy). Zero = no signal. Each ticker has exactly ONE score, so
+// the same stock can NEVER appear on both buy and sell rankings (the bug
+// that v3 still allowed via parallel getBuySignals / getSellSignals lists).
 //
-// OUTPUT
-//   - score: 0–100 composite
-//   - direction: BUY / SELL / NEUTRAL
-//   - expectedReturnPct: annualized projection from buyer-CAGR-weighted average
-//   - confidenceInterval: ± stddev of buyer CAGRs (narrow CI = agreement)
-//   - breakdown: every component for the UI to display the math
+// Six signal layers feed the score:
+//   1. Smart money — manager-quality × consensus, time-decayed across quarters
+//   2. Insider activity — CEO/CFO open-market buys (strongest single equity signal)
+//   3. Track record — buyer 10y CAGR weighted by their position size
+//   4. Trend streak — multi-quarter compounding (3Q in a row ≠ 1Q)
+//   5. Concentration — 15% positions weighted heavier than 1%
+//   6. Contrarian bonus — under-the-radar (small ownerCount + tier-1 buyers)
+// Minus:
+//   • Dissent penalty — sellers subtract from the score (×1.2 because exits
+//     require more conviction than trims)
+//   • Crowding penalty — when ownerCount is high, the signal is already
+//     priced in
 //
-// This is the model that answers "what's the highest expected ROI I should buy right now?"
+// CLASSIFICATION (symmetric — single source of truth):
+//   • score >  +DEAD_ZONE → BUY
+//   • score <  −DEAD_ZONE → SELL
+//   • |score| ≤  DEAD_ZONE → NEUTRAL  (the dead zone — too noisy to call)
+//
+// The dead zone is critical: it filters out tickers where buying and selling
+// roughly cancel (META: 9 buyers vs 5 sellers → small net signal → NEUTRAL),
+// keeping only stocks with unambiguous direction in either ranking.
 
 import { ALL_MOVES, getAllMovesEnriched, LATEST_QUARTER, type Quarter } from "./moves";
 import { TICKER_INDEX } from "./tickers";
@@ -41,7 +51,7 @@ export type ConvictionScore = {
   ticker: string;
   name: string;
   sector?: string;
-  score: number;               // 0–100 (or −100 to +100 if direction matters)
+  score: number;               // SIGNED −100..+100 (negative = sell, positive = buy)
   direction: "BUY" | "SELL" | "NEUTRAL";
   expectedReturnPct: number | null;     // annualized %, computed from buyer CAGRs
   confidenceIntervalPct: number | null; // ± standard deviation
@@ -54,6 +64,16 @@ export type ConvictionScore = {
   topBuyers: { slug: string; name: string; cagr: number; positionPct: number }[];
   topSellers: { slug: string; name: string; cagr: number; positionPct: number }[];
 };
+
+// Symmetric classification thresholds — single source of truth.
+// Anything in [−DEAD_ZONE, +DEAD_ZONE] is too noisy to call → NEUTRAL.
+export const DEAD_ZONE = 10;
+
+export function classifyScore(score: number): "BUY" | "SELL" | "NEUTRAL" {
+  if (score > DEAD_ZONE) return "BUY";
+  if (score < -DEAD_ZONE) return "SELL";
+  return "NEUTRAL";
+}
 
 // ---------- HELPERS ----------
 
@@ -227,10 +247,7 @@ export function getConviction(ticker: string, quarter: Quarter = LATEST_QUARTER)
     crowdingPenalty;
 
   const score = Math.round(clamp(raw, -100, 100));
-
-  let direction: "BUY" | "SELL" | "NEUTRAL" = "NEUTRAL";
-  if (score >= 30) direction = "BUY";
-  else if (score <= -10) direction = "SELL";
+  const direction = classifyScore(score);
 
   // ----- EXPECTED RETURN PROJECTION -----
   // Weighted-average buyer CAGR, weighted by (concentration × quality)
@@ -320,24 +337,32 @@ export function getAllConvictionScores(quarter: Quarter = LATEST_QUARTER): Convi
   return out.sort((a, b) => b.score - a.score);
 }
 
-/** Top N highest-ROI buy candidates. */
+/** Top N strongest BUY signals (score > +DEAD_ZONE), highest first. */
 export function getTopBuys(n = 20): ConvictionScore[] {
   return getAllConvictionScores()
-    .filter((c) => c.direction === "BUY")
+    .filter((c) => c.score > DEAD_ZONE)
     .sort((a, b) => {
-      // Sort by score, then by expected return as tiebreaker
       if (b.score !== a.score) return b.score - a.score;
       return (b.expectedReturnPct ?? 0) - (a.expectedReturnPct ?? 0);
     })
     .slice(0, n);
 }
 
-/** Top N strongest sell candidates. */
+/** Top N strongest SELL signals (score < −DEAD_ZONE), most negative first. */
 export function getTopSells(n = 20): ConvictionScore[] {
   return getAllConvictionScores()
-    .filter((c) => c.direction === "SELL")
+    .filter((c) => c.score < -DEAD_ZONE)
     .sort((a, b) => a.score - b.score)
     .slice(0, n);
+}
+
+/**
+ * Single canonical signal lookup. Returns the signed −100..+100 conviction
+ * score for any ticker. Wraps getConviction() for callers that just want
+ * the score without the breakdown.
+ */
+export function getUnifiedScore(ticker: string): number {
+  return getConviction(ticker).score;
 }
 
 // ---------- HISTORICAL CONVICTION (for backtesting) ----------
@@ -510,10 +535,7 @@ export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): Co
     crowdingPenalty;
 
   const score = Math.round(clamp(raw, -100, 100));
-
-  let direction: "BUY" | "SELL" | "NEUTRAL" = "NEUTRAL";
-  if (score >= 30) direction = "BUY";
-  else if (score <= -10) direction = "SELL";
+  const direction = classifyScore(score);
 
   // Expected return
   let expectedReturnPct: number | null = null;
@@ -573,19 +595,29 @@ export function getHistoricalTopBuys(asOfQuarter: Quarter, n = 5): ConvictionSco
   const out: ConvictionScore[] = [];
   for (const t of tickers) {
     const c = getConvictionAtQuarter(t, asOfQuarter);
-    if (c.direction === "BUY") out.push(c);
+    if (c.score > DEAD_ZONE) out.push(c);
   }
   return out.sort((a, b) => b.score - a.score).slice(0, n);
 }
 
-/** Quality label for a conviction score */
+/**
+ * Symmetric label for the unified −100..+100 conviction score.
+ * Mirrors above/below zero so a +45 BUY and a −45 SELL read as equal strength.
+ */
 export function convictionLabel(score: number): { label: string; color: string } {
   if (score >= 70) return { label: "STRONG BUY", color: "emerald" };
-  if (score >= 45) return { label: "BUY", color: "emerald" };
-  if (score >= 30) return { label: "WEAK BUY", color: "emerald" };
-  if (score >= -10) return { label: "HOLD / NEUTRAL", color: "muted" };
-  if (score >= -30) return { label: "WEAK SELL", color: "rose" };
-  if (score >= -60) return { label: "SELL", color: "rose" };
+  if (score >= 40) return { label: "BUY", color: "emerald" };
+  if (score >  DEAD_ZONE) return { label: "WEAK BUY", color: "emerald" };
+  if (score >= -DEAD_ZONE) return { label: "NEUTRAL", color: "muted" };
+  if (score > -40) return { label: "WEAK SELL", color: "rose" };
+  if (score > -70) return { label: "SELL", color: "rose" };
   return { label: "STRONG SELL", color: "rose" };
+}
+
+/** Format a signed score for display: "+42" or "−18" or "0". */
+export function formatSignedScore(score: number): string {
+  if (score > 0) return `+${score}`;
+  if (score < 0) return `−${Math.abs(score)}`;
+  return "0";
 }
 

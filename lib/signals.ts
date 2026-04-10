@@ -1,33 +1,43 @@
-// Buy/Sell Recommendation Engine — multi-factor signal computation.
+// Buy/Sell Recommendation Engine — single-scale unified score.
 //
-// This is the core "what to buy / what to sell" model. A signal fires when
-// tracked managers take the same direction on the same ticker in the same
-// quarter. Strength is a weighted combination of multiple factors, not just
-// a raw count.
+// Every ticker is assigned ONE signed score on a single −100..+100 scale:
+//   • +100 = strongest possible BUY
+//   •  0  = no signal
+//   • −100 = strongest possible SELL
 //
-// FACTORS (buy side):
-//   1. Consensus weight:       sum of action weights across buyers
-//                              new=2, add=1   (new conviction > adding to existing)
-//   2. Manager quality:        sum of (quality × weight) across buyers
-//                              A Buffett buy weighs more than an unknown buy.
-//   3. Concentration:          bonus if any buyer holds >10% in this ticker
-//                              (they put real money behind the conviction)
-//   4. Fresh-money share:      % of buyers who are NEW positions vs adds
-//                              (new positions = higher conviction than adds)
+// The score itself is computed by `getConviction()` in `lib/conviction.ts`
+// (the v4 ConvictionScore model — six signal layers minus dissent and
+// crowding penalties). This file presents that score in two filtered views:
 //
-// FACTORS (sell side):
-//   1. Consensus weight:       sum of action weights across sellers
-//                              exit=2, trim=1   (fully out > trimming)
-//   2. Manager quality:        same as buy
-//   3. Dump severity:          sum of |deltaPct| where present
-//   4. Exit share:             % of sellers who fully exited vs trimmed
+//   getBuySignals()  → tickers where score > +DEAD_ZONE, sorted desc
+//   getSellSignals() → tickers where score < −DEAD_ZONE, sorted asc
 //
-// Score is normalized 0-100 so the badge reads like a rating.
+// A ticker can appear in EXACTLY ONE list (or neither, if its score is in
+// the dead zone). META with 9 buyers + 5 sellers will not show up on both
+// rankings — its dissent-adjusted unified score determines a single home.
+//
+// The legacy per-quarter buyer/seller details (BuyerEntry / SellerEntry,
+// fresh-money share, exit share, dump severity, concentration bonus) are
+// preserved as descriptive metadata for the UI pills and CSV exports — they
+// describe what happened in the latest quarter, while the SCORE itself
+// reflects the full multi-quarter time-decayed conviction model.
 
 import { MANAGERS } from "./managers";
 import { ALL_MOVES, getAllMovesEnriched, LATEST_QUARTER, type Move, type MoveAction, type Quarter } from "./moves";
 import { TICKER_INDEX } from "./tickers";
 import { getQualityScore as getROIQuality, getManagerROI } from "./manager-roi";
+import {
+  getConviction,
+  getAllConvictionScores,
+  convictionLabel,
+  formatSignedScore,
+  classifyScore,
+  DEAD_ZONE,
+} from "./conviction";
+
+// Re-export the canonical helpers so consumers can import everything from
+// `@/lib/signals` without having to know about the conviction module.
+export { convictionLabel, formatSignedScore, classifyScore, DEAD_ZONE };
 
 // ---------- MANAGER QUALITY SCORES ----------
 // Curated 1-10 based on: track record length, known alpha vs S&P, reputation
@@ -103,11 +113,12 @@ export type BuySignal = {
   name: string;
   sector?: string;
   buyerCount: number;
-  rawWeight: number;        // sum of action weights
-  qualityScore: number;     // sum of quality × weight
+  rawWeight: number;        // sum of action weights (descriptive)
+  qualityScore: number;     // sum of quality × weight (descriptive)
   concentrationBonus: number;
   freshMoneyShare: number;  // 0-1
-  score: number;            // 0-100 composite
+  /** SIGNED unified conviction score — always > +DEAD_ZONE for items in this list. */
+  score: number;
   buyers: BuyerEntry[];
 };
 
@@ -120,7 +131,8 @@ export type SellSignal = {
   qualityScore: number;
   dumpSeverity: number;
   exitShare: number;        // 0-1
-  score: number;            // 0-100 composite
+  /** SIGNED unified conviction score — always < −DEAD_ZONE for items in this list. */
+  score: number;
   sellers: SellerEntry[];
 };
 
@@ -150,12 +162,17 @@ function positionPct(managerSlug: string, ticker: string): number | undefined {
   return h?.pct;
 }
 
-// ---------- BUY SIGNALS ----------
-export function getBuySignals(quarter: Quarter = LATEST_QUARTER): BuySignal[] {
+// ---------- BUYER / SELLER METADATA EXTRACTION ----------
+//
+// Walk all moves in the requested quarter and group them by ticker, returning
+// the BuyerEntry / SellerEntry arrays the UI needs for the manager pills.
+// These are PURE descriptive data — no scoring happens here. The scoring
+// happens in lib/conviction.ts and is read back in via getConviction().
+
+function buildBuyerMap(quarter: Quarter): Record<string, BuyerEntry[]> {
   const enriched = getAllMovesEnriched();
   const all = enriched.filter((m) => (m.action === "new" || m.action === "add") && m.quarter === quarter);
   const grouped: Record<string, BuyerEntry[]> = {};
-
   for (const mv of all) {
     const sym = mv.ticker.toUpperCase();
     if (!grouped[sym]) grouped[sym] = [];
@@ -170,52 +187,13 @@ export function getBuySignals(quarter: Quarter = LATEST_QUARTER): BuySignal[] {
       positionPct: mv.portfolioImpactPct ?? positionPct(mv.managerSlug, mv.ticker),
     });
   }
-
-  // First pass: raw factors
-  const pre: Omit<BuySignal, "score">[] = Object.entries(grouped).map(([ticker, buyers]) => {
-    const { name, sector } = resolveName(ticker);
-    const rawWeight = buyers.reduce((s, b) => s + b.weight, 0);
-    const qualityScore = buyers.reduce((s, b) => s + b.quality * b.weight, 0);
-    const concentrationBonus = buyers.some((b) => (b.positionPct ?? 0) >= 10) ? 10 : 0;
-    const newCount = buyers.filter((b) => b.action === "new").length;
-    const freshMoneyShare = newCount / buyers.length;
-    return {
-      ticker,
-      name,
-      sector,
-      buyerCount: buyers.length,
-      rawWeight,
-      qualityScore,
-      concentrationBonus,
-      freshMoneyShare,
-      buyers: buyers.sort((a, b) => b.quality * b.weight - a.quality * a.weight),
-    };
-  });
-
-  // Normalize to 0-100
-  const maxQuality = Math.max(1, ...pre.map((s) => s.qualityScore));
-  const signals: BuySignal[] = pre.map((s) => {
-    const normQuality = (s.qualityScore / maxQuality) * 70; // 70 pts max
-    const consensus = Math.min(20, s.buyerCount * 7);       // 20 pts max, 3+ buyers caps
-    const fresh = s.freshMoneyShare * 10;                   // 10 pts max
-    const conc = s.concentrationBonus;                      // already 0 or 10
-    const score = Math.round(Math.min(100, normQuality + consensus + fresh + conc));
-    return { ...s, score };
-  });
-
-  return signals.sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score;
-    if (b.buyerCount !== a.buyerCount) return b.buyerCount - a.buyerCount;
-    return b.qualityScore - a.qualityScore;
-  });
+  return grouped;
 }
 
-// ---------- SELL SIGNALS ----------
-export function getSellSignals(quarter: Quarter = LATEST_QUARTER): SellSignal[] {
+function buildSellerMap(quarter: Quarter): Record<string, SellerEntry[]> {
   const enriched = getAllMovesEnriched();
   const all = enriched.filter((m) => (m.action === "trim" || m.action === "exit") && m.quarter === quarter);
   const grouped: Record<string, SellerEntry[]> = {};
-
   for (const mv of all) {
     const sym = mv.ticker.toUpperCase();
     if (!grouped[sym]) grouped[sym] = [];
@@ -230,42 +208,88 @@ export function getSellSignals(quarter: Quarter = LATEST_QUARTER): SellSignal[] 
       positionPct: mv.portfolioImpactPct ?? positionPct(mv.managerSlug, mv.ticker),
     });
   }
+  return grouped;
+}
 
-  const pre: Omit<SellSignal, "score">[] = Object.entries(grouped).map(([ticker, sellers]) => {
-    const { name, sector } = resolveName(ticker);
+// ---------- BUY SIGNALS (unified score, score > +DEAD_ZONE only) ----------
+//
+// Returns every ticker whose unified conviction score is positive enough to
+// be a meaningful BUY signal. Score is the SIGNED −100..+100 value from
+// getConviction() — for items in this list it's always > +DEAD_ZONE.
+//
+// Each ticker also carries the latest-quarter buyer pills for the UI. If a
+// ticker has buyers this quarter but its conviction score is in the dead
+// zone (mixed signals — strong dissent cancels the buys), it is NOT shown
+// here. Conversely, a ticker with strong historical buyers + insider buys
+// but no fresh Q4 activity can still appear (with an empty pill list).
+export function getBuySignals(quarter: Quarter = LATEST_QUARTER): BuySignal[] {
+  const buyerMap = buildBuyerMap(quarter);
+  const sigs: BuySignal[] = [];
+
+  for (const c of getAllConvictionScores()) {
+    if (c.score <= DEAD_ZONE) continue;
+    const sym = c.ticker.toUpperCase();
+    const buyers = (buyerMap[sym] ?? []).sort(
+      (a, b) => b.quality * b.weight - a.quality * a.weight
+    );
+    const rawWeight = buyers.reduce((s, b) => s + b.weight, 0);
+    const qualityScore = buyers.reduce((s, b) => s + b.quality * b.weight, 0);
+    const concentrationBonus = buyers.some((b) => (b.positionPct ?? 0) >= 10) ? 10 : 0;
+    const newCount = buyers.filter((b) => b.action === "new").length;
+    const freshMoneyShare = buyers.length > 0 ? newCount / buyers.length : 0;
+
+    sigs.push({
+      ticker: sym,
+      name: c.name,
+      sector: c.sector,
+      buyerCount: buyers.length,
+      rawWeight,
+      qualityScore,
+      concentrationBonus,
+      freshMoneyShare,
+      score: c.score, // SIGNED positive
+      buyers,
+    });
+  }
+
+  return sigs.sort((a, b) => b.score - a.score);
+}
+
+// ---------- SELL SIGNALS (unified score, score < −DEAD_ZONE only) ----------
+//
+// Mirror of getBuySignals for the negative side of the scale. Returns tickers
+// with conviction score < −DEAD_ZONE, sorted ASCENDING (most negative = top).
+export function getSellSignals(quarter: Quarter = LATEST_QUARTER): SellSignal[] {
+  const sellerMap = buildSellerMap(quarter);
+  const sigs: SellSignal[] = [];
+
+  for (const c of getAllConvictionScores()) {
+    if (c.score >= -DEAD_ZONE) continue;
+    const sym = c.ticker.toUpperCase();
+    const sellers = (sellerMap[sym] ?? []).sort(
+      (a, b) => b.quality * b.weight - a.quality * a.weight
+    );
     const rawWeight = sellers.reduce((s, x) => s + x.weight, 0);
     const qualityScore = sellers.reduce((s, x) => s + x.quality * x.weight, 0);
     const dumpSeverity = sellers.reduce((s, x) => s + Math.abs(x.deltaPct ?? 0), 0);
     const exitCount = sellers.filter((x) => x.action === "exit").length;
-    const exitShare = exitCount / sellers.length;
-    return {
-      ticker,
-      name,
-      sector,
+    const exitShare = sellers.length > 0 ? exitCount / sellers.length : 0;
+
+    sigs.push({
+      ticker: sym,
+      name: c.name,
+      sector: c.sector,
       sellerCount: sellers.length,
       rawWeight,
       qualityScore,
       dumpSeverity,
       exitShare,
-      sellers: sellers.sort((a, b) => b.quality * b.weight - a.quality * a.weight),
-    };
-  });
+      score: c.score, // SIGNED negative
+      sellers,
+    });
+  }
 
-  const maxQuality = Math.max(1, ...pre.map((s) => s.qualityScore));
-  const signals: SellSignal[] = pre.map((s) => {
-    const normQuality = (s.qualityScore / maxQuality) * 65;
-    const consensus = Math.min(15, s.sellerCount * 6);
-    const exits = s.exitShare * 10;
-    const severity = Math.min(10, s.dumpSeverity / 10);
-    const score = Math.round(Math.min(100, normQuality + consensus + exits + severity));
-    return { ...s, score };
-  });
-
-  return signals.sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score;
-    if (b.sellerCount !== a.sellerCount) return b.sellerCount - a.sellerCount;
-    return b.qualityScore - a.qualityScore;
-  });
+  return sigs.sort((a, b) => a.score - b.score); // most-negative first
 }
 
 // ---------- CONVENIENCE ----------
@@ -326,147 +350,136 @@ export function getGrandPortfolio(): Array<{
     });
 }
 
-// ---------- NET SIGNAL v2 ----------
+// ---------- NET SIGNAL (unified score wrapper) ----------
 //
-// The Net Signal Score synthesizes buy + sell signals into a single number.
-// Answers the question: "is this stock a better buy than that one?"
-//
-// Formula:
-//   net = BuyScore - (SellScore × 0.6 dissent penalty)
-//       + UnanimityBonus  (+15 if 0 sellers and ≥3 buyers)
-//       + QualityDifferential ((avgBuyerQ − avgSellerQ) × 3)
-//       + InformationDensity  (log2(totalActions+1) × 4)
-//       clamped −100 to +100
-//
-// Why each component:
-//   - BuyScore: existing 4-factor score from getBuySignals (the consensus)
-//   - SellScore × 0.6: dissent partially offsets buys. Not 1:1 because buying
-//     requires more conviction than trimming (sells include rebalances).
-//   - UnanimityBonus: 5/0 unanimous beats 15/10 mixed even at the same net flow.
-//   - QualityDifferential: Tier-1 buyers vs Tier-2 sellers >> opposite.
-//   - InformationDensity: more total actions = more confidence in the signal direction.
-//
-// See getNetSignal(ticker) for the breakdown — every term is exposed for /signal page UI.
+// NetSignal is now a thin wrapper around the canonical ConvictionScore from
+// lib/conviction.ts. The score is the SAME single −100..+100 value used by
+// every other ranking — there is no separate "v2" scoring formula anymore.
+// The breakdown surfaces the underlying conviction layers so the /signal
+// dossier page can show the math behind the score.
 
 export type NetSignal = {
   ticker: string;
   name: string;
   sector?: string;
-  score: number;          // -100 to +100
+  score: number;          // SIGNED −100..+100
   direction: "BUY" | "SELL" | "NEUTRAL";
   buyerCount: number;
   sellerCount: number;
-  netFlow: number;        // raw count delta
+  netFlow: number;        // raw count delta (latest quarter)
   buyers: BuyerEntry[];
   sellers: SellerEntry[];
   breakdown: {
-    buyComponent: number;
-    sellComponent: number;
-    dissentPenalty: number;
-    unanimityBonus: number;
+    buyComponent: number;       // smartMoney + trackRecord + insider + concentration + trend + contrarian
+    sellComponent: number;      // dissent penalty (positive number)
+    dissentPenalty: number;     // alias of sellComponent
+    unanimityBonus: number;     // contrarian / streak bonus from conviction
     qualityDifferential: number;
     informationDensity: number;
   };
-  // The raw component scores for transparency
-  buyScore: number;
-  sellScore: number;
+  buyScore: number;             // positive contributors only
+  sellScore: number;            // negative contributors only (positive number)
 };
 
 export function getNetSignal(ticker: string, quarter: Quarter = LATEST_QUARTER): NetSignal | null {
   const sym = ticker.toUpperCase();
-  const buys = getBuySignals(quarter);
-  const sells = getSellSignals(quarter);
-  const buy = buys.find((s) => s.ticker === sym);
-  const sell = sells.find((s) => s.ticker === sym);
+  const c = getConviction(sym);
 
-  if (!buy && !sell) return null;
+  // Pull the latest-quarter buyer / seller pills (independent of the score
+  // model — they're descriptive metadata for the dossier page).
+  const buyerMap = buildBuyerMap(quarter);
+  const sellerMap = buildSellerMap(quarter);
+  const buyers = (buyerMap[sym] ?? []).sort(
+    (a, b) => b.quality * b.weight - a.quality * a.weight
+  );
+  const sellers = (sellerMap[sym] ?? []).sort(
+    (a, b) => b.quality * b.weight - a.quality * a.weight
+  );
 
-  const buyScore = buy?.score ?? 0;
-  const sellScore = sell?.score ?? 0;
-  const buyerCount = buy?.buyerCount ?? 0;
-  const sellerCount = sell?.sellerCount ?? 0;
-
-  // Average buyer / seller quality
-  const avgBuyerQ =
-    buy && buy.buyers.length > 0
-      ? buy.buyers.reduce((s, b) => s + b.quality, 0) / buy.buyers.length
-      : 0;
-  const avgSellerQ =
-    sell && sell.sellers.length > 0
-      ? sell.sellers.reduce((s, b) => s + b.quality, 0) / sell.sellers.length
-      : 0;
-
-  // Components
-  const buyComponent = buyScore;
-  const sellComponent = sellScore;
-  const dissentPenalty = sellScore * 0.6;
-  const unanimityBonus = sellerCount === 0 && buyerCount >= 3 ? 15 : 0;
-  const qualityDifferential =
-    avgBuyerQ > 0 && avgSellerQ > 0 ? (avgBuyerQ - avgSellerQ) * 3 : 0;
-  const totalActions = buyerCount + sellerCount;
-  const informationDensity = Math.log2(totalActions + 1) * 4;
-
-  let raw = buyComponent - dissentPenalty + unanimityBonus + qualityDifferential + informationDensity;
-  // If purely a sell, the raw is negative — invert for sell direction
-  if (buyerCount === 0 && sellerCount > 0) {
-    raw = -(sellComponent + sellComponent * 0.2 + (sellerCount >= 3 ? 10 : 0) + informationDensity);
+  // Nothing to show: no historical activity AND no fresh activity.
+  if (
+    c.buyerCount === 0 &&
+    c.sellerCount === 0 &&
+    buyers.length === 0 &&
+    sellers.length === 0
+  ) {
+    return null;
   }
-
-  const score = Math.max(-100, Math.min(100, raw));
-
-  let direction: "BUY" | "SELL" | "NEUTRAL" = "NEUTRAL";
-  if (score >= 30) direction = "BUY";
-  else if (score <= -30) direction = "SELL";
 
   const ticker_data = TICKER_INDEX[sym];
 
+  // Decompose the conviction breakdown into buy / sell halves so the
+  // /signal page UI can render "+X buy components" and "−Y sell components".
+  const buyComponent =
+    c.breakdown.smartMoney +
+    c.breakdown.insiderBoost +
+    c.breakdown.trackRecord +
+    c.breakdown.trendStreak +
+    c.breakdown.concentration +
+    c.breakdown.contrarian;
+  const sellComponent = c.breakdown.dissentPenalty + c.breakdown.crowdingPenalty;
+  const avgBuyerQ =
+    buyers.length > 0 ? buyers.reduce((s, b) => s + b.quality, 0) / buyers.length : 0;
+  const avgSellerQ =
+    sellers.length > 0 ? sellers.reduce((s, b) => s + b.quality, 0) / sellers.length : 0;
+
   return {
     ticker: sym,
-    name: buy?.name ?? sell?.name ?? ticker_data?.name ?? sym,
-    sector: buy?.sector ?? sell?.sector ?? ticker_data?.sector,
-    score: Math.round(score),
-    direction,
-    buyerCount,
-    sellerCount,
-    netFlow: buyerCount - sellerCount,
-    buyers: buy?.buyers ?? [],
-    sellers: sell?.sellers ?? [],
+    name: c.name ?? ticker_data?.name ?? sym,
+    sector: c.sector ?? ticker_data?.sector,
+    score: c.score,             // SIGNED −100..+100, the canonical scale
+    direction: c.direction,
+    buyerCount: buyers.length,
+    sellerCount: sellers.length,
+    netFlow: buyers.length - sellers.length,
+    buyers,
+    sellers,
     breakdown: {
       buyComponent: Math.round(buyComponent),
       sellComponent: Math.round(sellComponent),
-      dissentPenalty: Math.round(dissentPenalty),
-      unanimityBonus,
-      qualityDifferential: Math.round(qualityDifferential),
-      informationDensity: Math.round(informationDensity),
+      dissentPenalty: Math.round(c.breakdown.dissentPenalty),
+      unanimityBonus: Math.round(c.breakdown.contrarian + c.breakdown.trendStreak),
+      qualityDifferential: Math.round(
+        avgBuyerQ > 0 && avgSellerQ > 0 ? (avgBuyerQ - avgSellerQ) * 3 : 0
+      ),
+      informationDensity: Math.round(c.breakdown.smartMoney),
     },
-    buyScore: Math.round(buyScore),
-    sellScore: Math.round(sellScore),
+    buyScore: Math.round(buyComponent),
+    sellScore: Math.round(sellComponent),
   };
 }
 
-/** All net signals across the latest quarter, sorted highest score first. */
-export function getAllNetSignals(quarter: Quarter = LATEST_QUARTER): NetSignal[] {
-  // Build a set of every ticker that had any move this quarter
-  const enriched = getAllMovesEnriched();
-  const tickers = new Set<string>();
-  for (const m of enriched) {
-    if (m.quarter === quarter) tickers.add(m.ticker.toUpperCase());
-  }
+/** All net signals across all tracked tickers, sorted highest score first. */
+export function getAllNetSignals(_quarter: Quarter = LATEST_QUARTER): NetSignal[] {
+  void _quarter;
   const out: NetSignal[] = [];
-  for (const t of tickers) {
-    const s = getNetSignal(t, quarter);
+  for (const c of getAllConvictionScores()) {
+    const s = getNetSignal(c.ticker);
     if (s) out.push(s);
   }
   return out.sort((a, b) => b.score - a.score);
 }
 
 // ---------- RATING BADGE ----------
+//
+// Sign-aware rating label. Works with the SIGNED −100..+100 unified score.
+// Buy-side and sell-side strengths mirror each other so a +45 BUY and a
+// −45 SELL read as equal-strength signals.
 export function ratingLabel(score: number): { label: string; color: string } {
-  if (score >= 80) return { label: "STRONG", color: "emerald" };
-  if (score >= 60) return { label: "HIGH", color: "emerald" };
-  if (score >= 40) return { label: "MODERATE", color: "amber" };
-  if (score >= 20) return { label: "LOW", color: "slate" };
-  return { label: "MINIMAL", color: "slate" };
+  const abs = Math.abs(score);
+  if (score > 0) {
+    if (abs >= 70) return { label: "STRONG", color: "emerald" };
+    if (abs >= 40) return { label: "HIGH", color: "emerald" };
+    if (abs > DEAD_ZONE) return { label: "MODERATE", color: "amber" };
+    return { label: "NEUTRAL", color: "muted" };
+  }
+  if (score < 0) {
+    if (abs >= 70) return { label: "STRONG", color: "rose" };
+    if (abs >= 40) return { label: "HIGH", color: "rose" };
+    if (abs > DEAD_ZONE) return { label: "MODERATE", color: "amber" };
+    return { label: "NEUTRAL", color: "muted" };
+  }
+  return { label: "NEUTRAL", color: "muted" };
 }
 
 // ---------- TREND DETECTION ----------
