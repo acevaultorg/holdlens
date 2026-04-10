@@ -52,11 +52,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="flex items-center gap-4 text-sm text-muted">
               <a href="/buys" className="hover:text-emerald-400 transition font-semibold">Buys</a>
               <a href="/sells" className="hover:text-rose-400 transition font-semibold">Sells</a>
-              <a href="/screener" className="hover:text-text transition hidden sm:inline">Screener</a>
+              <a href="/this-week" className="hover:text-text transition hidden sm:inline">This week</a>
+              <a href="/screener" className="hover:text-text transition hidden md:inline">Screener</a>
               <a href="/activity" className="hover:text-text transition hidden md:inline">Activity</a>
-              <a href="/grand" className="hover:text-text transition hidden md:inline">Grand</a>
+              <a href="/grand" className="hover:text-text transition hidden lg:inline">Grand</a>
               <a href="/investor" className="hover:text-text transition hidden lg:inline">Investors</a>
-              <a href="/ticker" className="hover:text-text transition hidden lg:inline">Stocks</a>
               <a href="/watchlist" className="hover:text-text transition hidden lg:inline">Watchlist</a>
               <GlobalSearch />
             </nav>
@@ -69,9 +69,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex gap-5 flex-wrap">
               <a href="/buys" className="hover:text-emerald-400">Buys</a>
               <a href="/sells" className="hover:text-rose-400">Sells</a>
+              <a href="/this-week" className="hover:text-text">This week</a>
               <a href="/screener" className="hover:text-text">Screener</a>
               <a href="/activity" className="hover:text-text">Activity</a>
               <a href="/grand" className="hover:text-text">Grand</a>
+              <a href="/compare/managers" className="hover:text-text">Compare</a>
               <a href="/top-picks" className="hover:text-text">Top picks</a>
               <a href="/investor" className="hover:text-text">Investors</a>
               <a href="/ticker" className="hover:text-text">Stocks</a>

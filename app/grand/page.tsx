@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import SectorHeatmap from "@/components/SectorHeatmap";
 import CsvExportButton from "@/components/CsvExportButton";
+import TrendBadge from "@/components/TrendBadge";
 import { getGrandPortfolio } from "@/lib/signals";
 import { MANAGERS } from "@/lib/managers";
 
@@ -84,9 +85,12 @@ export default function GrandPortfolioPage() {
                   <td className="px-5 py-3">
                     <div className="flex items-start gap-3 min-w-0">
                       <div className="min-w-0">
-                        <a href={`/ticker/${g.ticker}`} className="font-mono font-bold text-brand hover:underline">
-                          {g.ticker}
-                        </a>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <a href={`/signal/${g.ticker}`} className="font-mono font-bold text-brand hover:underline">
+                            {g.ticker}
+                          </a>
+                          <TrendBadge ticker={g.ticker} />
+                        </div>
                         <div className="text-xs text-muted truncate max-w-xs">{g.name}</div>
                       </div>
                     </div>

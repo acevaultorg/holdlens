@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import SectorHeatmap from "@/components/SectorHeatmap";
+import TrendBadge from "@/components/TrendBadge";
 import { topTickers } from "@/lib/tickers";
 
 export const metadata: Metadata = {
@@ -54,9 +55,14 @@ export default function TopPicksPage() {
               <tr key={t.symbol} className="border-b border-border last:border-0 hover:bg-bg/50 transition">
                 <td className="px-5 py-3 text-dim tabular-nums">{i + 1}</td>
                 <td className="px-5 py-3 font-mono font-semibold">
-                  <a href={`/ticker/${t.symbol}`} className="text-brand hover:underline">{t.symbol}</a>
+                  <a href={`/signal/${t.symbol}`} className="text-brand hover:underline">{t.symbol}</a>
                 </td>
-                <td className="px-5 py-3 text-text">{t.name}</td>
+                <td className="px-5 py-3">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-text">{t.name}</span>
+                    <TrendBadge ticker={t.symbol} />
+                  </div>
+                </td>
                 <td className="px-5 py-3 text-dim hidden md:table-cell">{t.sector}</td>
                 <td className="px-5 py-3 text-right hidden md:table-cell">
                   <LiveQuote symbol={t.symbol} size="sm" refreshMs={0} />

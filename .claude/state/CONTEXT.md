@@ -1,62 +1,39 @@
 # HoldLens — CONTEXT
 
 ## Session Handoff
-<!-- handoff: 2026-04-10 (v0.16) -->
+<!-- handoff: 2026-04-10 (v0.17) -->
 
 **Mode:** god
-**Objective:** v0.16 — Growth surface (share buttons, rich OG) + data depth (30 managers) + screener + compare-managers
-**Status:** COMPLETE — 9/9 tasks DONE, 0 blocked, 1 pending human action (deploy).
+**Objective:** v0.17 — Earnings calendar, trend badges, SEO aliases, RSS feeds, retention surface (/this-week)
+**Status:** COMPLETE — 13/13 tasks DONE, 0 blocked, 1 pending human action (deploy).
 
-**What shipped (v0.16):**
-- `lib/managers.ts` — expanded **22 → 30 managers**. New Tier-1/Tier-2: David Tepper
-  (Appaloosa), Chase Coleman (Tiger Global), John Armitage (Egerton), David Rolfe
-  (Wedgewood), François Rochon (Giverny), Dev Kantesaria (Valley Forge), William
-  von Mueffling (Cantillon), Tom Slater (Baillie Gifford LTGG).
-- `lib/moves.ts` — Q3 + Q4 2025 moves for all 8 new managers.
-- `lib/signals.ts` — MANAGER_QUALITY scores for new managers (most 8-9).
-- `components/SocialShare.tsx` — Twitter/LinkedIn/Reddit/Facebook/copy-link, real
-  SVG brand icons (no text-as-icons), preformatted tweet text per signal.
-- `/signal/[ticker]` — rich OG metadata (verdict-aware meta description, canonical
-  URL, twitter:summary_large_image card), SocialShare section at the bottom.
-- **`/compare/managers/[pair]` page (NEW ROUTE)** — 105 top-tier manager pairs,
-  side-by-side manager cards + live portfolio values + shared-holdings table +
-  Q4 moves columns for each.
-- **`/screener` page (NEW ROUTE)** — interactive client-side filter: sector
-  dropdown, min-owners slider, min-score slider, day-change direction toggle,
-  sort by score / owners / day change / ticker. Filters live quotes and renders
-  top 100 matches.
-- Layout nav — added Screener to header (sm+) and footer.
+**What shipped (v0.17):**
+- `lib/earnings.ts` — Yahoo Finance quoteSummary API client (calendarEvents.earnings, defaultKeyStatistics, earnings.earningsChart). corsproxy.io fallback. 1-hour sessionStorage cache.
+- `components/TickerEarnings.tsx` — next earnings date + EPS estimate/actual + beat/miss color coding. Brand-highlighted card when earnings are within 14 days.
+- Wired into `/ticker/[symbol]` and `/signal/[ticker]`.
+- `components/TrendBadge.tsx` — server component (no client JS) showing the strongest multi-quarter streak per ticker. "3Q BUY" / "2Q SELL" badges with title tooltips.
+- Wired TrendBadge into `/top-picks`, `/grand`, `/buys`, `/sells`, `/this-week`.
+- **`/what-to-buy` (NEW)** — SEO-targeted alias for `/buys`, top 10 ranked, canonical → `/buys`.
+- **`/what-to-sell` (NEW)** — same pattern for sells.
+- **`/buys.xml` + `/sells.xml` (NEW)** — RSS 2.0 feeds via Next.js Route Handlers with `dynamic = 'force-static'`. 20 items each with quality-weighted buyer/seller lists in description. Atom self-link.
+- **`/compare/managers` index page (NEW)** — 105 head-to-head pairs grouped by first manager.
+- **`/this-week` page (NEW)** — retention surface. Top 5 buys + top 5 sells side-by-side, current quarter info, quick links to /activity /screener /grand. Built for repeat visitors.
+- Layout nav: added `This week`, `Screener`, `Compare` to header + footer.
 
-**Build state:** clean, 0 errors. Total static pages ~460+ (up from 335 in v0.15).
-New routes: 105 `/compare/managers/[pair]`, 1 `/screener`, +8 `/investor/[slug]`,
-+12 `/ticker/[symbol]`, +12 `/signal/[ticker]`.
+**Build state:** clean. **479 static pages** (up from ~460 in v0.16). RSS files (`out/buys.xml`, `out/sells.xml`) verified — META top buy at 100/100 with 9 tracked managers buying. 0 errors.
 
-**Git state:** branch `acepilot/live-data-v0.13`. v0.16 commit pending in this
-step. v0.13/v0.14/v0.15/v0.16 all on branch, NOT pushed.
+**Git state:** branch `acepilot/live-data-v0.13`. v0.17 commit pending. v0.13–v0.17 all on branch, NOT pushed.
 
-**Next Actions (for next session or continue):**
-1. 👤 Deploy the v0.13+v0.14+v0.15+v0.16 bundle — same guide as before
-2. v0.17: OG image generation (satori/@vercel/og), earnings calendar, insider tx,
-   RSS feeds, trend badges on top-picks
-3. v0.2: Python EDGAR parser (path to 80+ managers)
+**Next Actions:**
+1. 👤 Deploy v0.13+v0.14+v0.15+v0.16+v0.17 — same guide as before
+2. v0.18: pre-generated OG images, insider transactions, /alerts page, screener save filter, /pricing preview
+3. v0.2: Python EDGAR parser (the path to 80+ managers + automated moves)
 
 **Human actions pending:**
-- [👤] DEPLOY combined v0.13+v0.14+v0.15+v0.16 — all in one push
+- [👤] DEPLOY combined v0.13+v0.14+v0.15+v0.16+v0.17
 
-**Open questions:** none — direction is clear.
+**Open questions:** none.
 
-**Momentum:** Extremely strong. HoldLens now has:
-- 30 Tier-1/Tier-2 managers tracked (up from 14 at start of chain)
-- 4 quarters of move history with trend streaks
-- Full /signal/[ticker] dossier with verdict + share cards
-- Interactive screener
-- Compare-managers feature (Dataroma doesn't have this)
-- One-click CSV export on signal pages
-- Sector heatmap
-- Live news per ticker
+**Momentum:** HoldLens is now feature-complete for the "smart 13F tracker" category. Five sessions of compounded work in this chain (v0.13→v0.17): live data → scoring model → signal dossier → 30 managers + screener + compare → earnings + trend + RSS + retention. The biggest blocker to user visibility is the deploy.
 
-This is ~5 v-points of shipped feature work in one session chain
-(v0.13 → v0.14 → v0.15 → v0.16). Time for the operator to deploy.
-
-Stash `acepilot-pre-god-v0.13` still available for rollback if something
-catastrophic surfaces in production.
+Stash `acepilot-pre-god-v0.13` still available for rollback.

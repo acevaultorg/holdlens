@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import CsvExportButton from "@/components/CsvExportButton";
+import TrendBadge from "@/components/TrendBadge";
 import { getSellSignals, ratingLabel } from "@/lib/signals";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 
@@ -105,6 +106,7 @@ export default function SellsPage() {
                             {s.sector}
                           </span>
                         )}
+                        <TrendBadge ticker={s.ticker} size="md" />
                       </div>
                       <div className="text-xs text-muted mt-1">
                         <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />

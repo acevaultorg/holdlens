@@ -6,6 +6,7 @@ import LiveChart from "@/components/LiveChart";
 import StarButton from "@/components/StarButton";
 import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
+import TickerEarnings from "@/components/TickerEarnings";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
@@ -73,6 +74,11 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
       {/* Live price chart */}
       <section className="mt-8">
         <LiveChart symbol={t.symbol} defaultRange="1y" />
+      </section>
+
+      {/* Earnings calendar */}
+      <section className="mt-8">
+        <TickerEarnings symbol={t.symbol} />
       </section>
 
       <div className="mt-12 grid md:grid-cols-3 gap-4">

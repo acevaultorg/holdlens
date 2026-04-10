@@ -4,6 +4,7 @@ import LiveQuote from "@/components/LiveQuote";
 import LiveChart from "@/components/LiveChart";
 import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
+import TickerEarnings from "@/components/TickerEarnings";
 import StarButton from "@/components/StarButton";
 import SocialShare from "@/components/SocialShare";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
@@ -154,6 +155,11 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
 
       <section className="mt-8">
         <LiveChart symbol={t.symbol} defaultRange="1y" />
+      </section>
+
+      {/* Earnings calendar */}
+      <section className="mt-6">
+        <TickerEarnings symbol={t.symbol} />
       </section>
 
       {/* Trend — consecutive-quarter signals */}
