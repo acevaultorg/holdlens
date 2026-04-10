@@ -59,21 +59,31 @@ export default function MethodologyPage() {
             <li>• <strong className="text-text">− Crowding penalty</strong> — when ownership count is high, the signal is already priced in</li>
           </ul>
           <p className="text-muted mt-3">
-            <strong className="text-text">Dead zone:</strong> any score in [−10, +10] is classified NEUTRAL and shown on neither
-            ranking. This filters out tickers where buying and selling roughly cancel (the META problem: 9 buyers vs 5 sellers
-            → small net signal → not on either list), keeping only stocks with unambiguous direction.
+            <strong className="text-text">Pure sign-based:</strong> a ticker's ranking membership is determined entirely
+            by the sign of its single signed score. Positive → buy ranking. Negative → sell ranking. Zero → neither.
+            No dead zone. No third bucket. The same number tells you everything: direction by its sign, strength by
+            its magnitude.
+          </p>
+          <p className="text-muted mt-3">
+            META used to be #1 on both rankings under the old dual-list scheme. Under the unified score, META has
+            ONE conviction value (positive, ~+20) — its 9 buyers slightly outweigh its 5 sellers — so it appears
+            in EXACTLY ONE list (buys), with a moderate score that reflects the contested nature of the stock.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold mb-3">How a label maps to the score</h2>
+          <p className="text-muted text-sm mb-3">
+            Labels are purely cosmetic — they describe how strong a signal is, but don't affect which list a
+            ticker appears in. Only the SIGN of the score does that.
+          </p>
           <ul className="text-muted space-y-1 text-sm">
             <li><span className="text-emerald-400 font-semibold">STRONG BUY</span> — score ≥ +70</li>
             <li><span className="text-emerald-400 font-semibold">BUY</span> — score ≥ +40</li>
             <li><span className="text-emerald-400 font-semibold">WEAK BUY</span> — score &gt; +10</li>
-            <li><span className="text-muted">NEUTRAL</span> — score in [−10, +10] · the dead zone</li>
+            <li><span className="text-muted">NEUTRAL</span> — score in [−10, +10] · still appears on buys or sells based on sign</li>
             <li><span className="text-rose-400 font-semibold">WEAK SELL</span> — score &lt; −10</li>
-            <li><span className="text-rose-400 font-semibold">SELL</span> — score &lt; −40</li>
+            <li><span className="text-rose-400 font-semibold">SELL</span> — score ≤ −40</li>
             <li><span className="text-rose-400 font-semibold">STRONG SELL</span> — score ≤ −70</li>
           </ul>
         </section>

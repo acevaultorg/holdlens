@@ -65,9 +65,17 @@ export type ConvictionScore = {
   topSellers: { slug: string; name: string; cagr: number; positionPct: number }[];
 };
 
-// Symmetric classification thresholds — single source of truth.
-// Anything in [−DEAD_ZONE, +DEAD_ZONE] is too noisy to call → NEUTRAL.
-export const DEAD_ZONE = 10;
+// Pure sign-based classification: positive = BUY, negative = SELL, zero = NEUTRAL.
+// DEAD_ZONE = 0 means a ticker's LIST membership is determined purely by the
+// sign of its single signed score. The convictionLabel() function still uses
+// soft thresholds (±10, ±40, ±70) to assign WEAK / regular / STRONG labels,
+// but those are display-only — they don't affect which ranking a ticker appears in.
+//
+// Why pure sign: the user asked for "one scale: -100 is strongest sell, +100
+// is strongest buy". A non-zero dead zone introduces a third tier (NEUTRAL)
+// that breaks the clean two-sided semantics. With DEAD_ZONE = 0, every ticker
+// appears in exactly one ranking based on which side of zero its score lies.
+export const DEAD_ZONE = 0;
 
 export function classifyScore(score: number): "BUY" | "SELL" | "NEUTRAL" {
   if (score > DEAD_ZONE) return "BUY";
@@ -163,7 +171,11 @@ export function getConviction(ticker: string, quarter: Quarter = LATEST_QUARTER)
       pctImpact,
     });
   }
-  const dissentPenalty = clamp((dissentRaw / 3) * 1.2, 0, 40); // sells weighted 1.2x because exits are conviction-negative
+  // Sells weighted heavier (×1.6) because the tracked managers are mostly
+  // long-only value investors — when one of them actually trims or exits,
+  // it's conviction-negative and rare. Cap raised to 60 so a strong dump
+  // can fully overwhelm a moderate buy signal.
+  const dissentPenalty = clamp((dissentRaw / 3) * 1.6, 0, 60);
 
   // ----- LAYER 2: Insider activity -----
   const insiderTx = getInsiderTx(sym);
@@ -450,7 +462,8 @@ export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): Co
       pctImpact,
     });
   }
-  const dissentPenalty = clamp((dissentRaw / 3) * 1.2, 0, 40);
+  // Symmetric with the live model: 1.6× multiplier, cap 60.
+  const dissentPenalty = clamp((dissentRaw / 3) * 1.6, 0, 60);
 
   // Insider activity (uses current data, not time-locked — small bias but acceptable)
   const insiderTx = getInsiderTx(sym);

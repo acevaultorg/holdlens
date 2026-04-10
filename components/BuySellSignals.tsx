@@ -82,7 +82,7 @@ function SignalColumn({
           <h3 className="text-2xl font-bold mt-1">{title}</h3>
         </div>
         <div className={`text-[10px] uppercase tracking-wider font-bold ${accent} opacity-60`}>
-          {kind === "buy" ? "+1 to +100" : "−1 to −100"}
+          {kind === "buy" ? "0 → +100" : "0 → −100"}
         </div>
       </div>
 
