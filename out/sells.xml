@@ -6,8 +6,87 @@
     <atom:link href="https://holdlens.com/sells.xml" rel="self" type="application/rss+xml" />
     <description>Top sell signals from the best portfolio managers in the world — ranked on a single signed −100..+100 ConvictionScore where −100 is the strongest possible sell. Updated every 13F filing deadline.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2026 16:23:08 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2026 16:30:09 GMT</lastBuildDate>
     <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-
+    <item>
+      <title>AAPL SELL signal · score −11 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/AAPL</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/AAPL?rank=1&sell=1</guid>
+      <description>Warren Buffett, David Rolfe are selling AAPL (Apple Inc.) this quarter. Unified ConvictionScore: −11 (negative = sell, positive = buy). Quality-weighted seller list: Warren Buffett (Q5.9), David Rolfe (Q4.8).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Technology</category>
+    </item>
+    <item>
+      <title>TSLA SELL signal · score −9 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/TSLA</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/TSLA?rank=2&sell=1</guid>
+      <description>Tom Slater is selling TSLA (Tesla) this quarter. Unified ConvictionScore: −9 (negative = sell, positive = buy). Quality-weighted seller list: Tom Slater (Q4.8).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Other</category>
+    </item>
+    <item>
+      <title>SIRI SELL signal · score −4 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/SIRI</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/SIRI?rank=3&sell=1</guid>
+      <description>SIRI (SIRI) carries a strong historical sell signal even without fresh activity this quarter. Unified ConvictionScore: −4 (negative = sell, positive = buy). Score reflects historical dissent, crowding, and trend deterioration.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Stocks</category>
+    </item>
+    <item>
+      <title>FIS SELL signal · score −3 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/FIS</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/FIS?rank=4&sell=1</guid>
+      <description>FIS (Fidelity National Info) carries a strong historical sell signal even without fresh activity this quarter. Unified ConvictionScore: −3 (negative = sell, positive = buy). Score reflects historical dissent, crowding, and trend deterioration.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Technology</category>
+    </item>
+    <item>
+      <title>SHEL SELL signal · score −2 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/SHEL</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/SHEL?rank=5&sell=1</guid>
+      <description>Michael Burry is selling SHEL (Shell) this quarter. Unified ConvictionScore: −2 (negative = sell, positive = buy). Quality-weighted seller list: Michael Burry (Q4.6).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Energy</category>
+    </item>
+    <item>
+      <title>STLA SELL signal · score −2 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/STLA</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/STLA?rank=6&sell=1</guid>
+      <description>STLA (Stellantis) carries a strong historical sell signal even without fresh activity this quarter. Unified ConvictionScore: −2 (negative = sell, positive = buy). Score reflects historical dissent, crowding, and trend deterioration.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Consumer Discretionary</category>
+    </item>
+    <item>
+      <title>BIDU SELL signal · score −1 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/BIDU</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/BIDU?rank=7&sell=1</guid>
+      <description>BIDU (Baidu) carries a strong historical sell signal even without fresh activity this quarter. Unified ConvictionScore: −1 (negative = sell, positive = buy). Score reflects historical dissent, crowding, and trend deterioration.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Technology</category>
+    </item>
+    <item>
+      <title>INTC SELL signal · score −1 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/INTC</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/INTC?rank=8&sell=1</guid>
+      <description>INTC (INTC) carries a strong historical sell signal even without fresh activity this quarter. Unified ConvictionScore: −1 (negative = sell, positive = buy). Score reflects historical dissent, crowding, and trend deterioration.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Stocks</category>
+    </item>
+    <item>
+      <title>CVX SELL signal · score −1 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/CVX</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/CVX?rank=9&sell=1</guid>
+      <description>CVX (Chevron) carries a strong historical sell signal even without fresh activity this quarter. Unified ConvictionScore: −1 (negative = sell, positive = buy). Score reflects historical dissent, crowding, and trend deterioration.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Energy</category>
+    </item>
+    <item>
+      <title>HPQ SELL signal · score −1 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/HPQ</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/HPQ?rank=10&sell=1</guid>
+      <description>HPQ (HPQ) carries a strong historical sell signal even without fresh activity this quarter. Unified ConvictionScore: −1 (negative = sell, positive = buy). Score reflects historical dissent, crowding, and trend deterioration.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Stocks</category>
+    </item>
   </channel>
 </rss>

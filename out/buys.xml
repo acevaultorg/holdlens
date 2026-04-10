@@ -6,7 +6,7 @@
     <atom:link href="https://holdlens.com/buys.xml" rel="self" type="application/rss+xml" />
     <description>Top buy signals from the best portfolio managers in the world — ranked on a single signed −100..+100 ConvictionScore where +100 is the strongest possible buy. Updated every 13F filing deadline.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2026 16:23:08 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2026 16:30:09 GMT</lastBuildDate>
     <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
     <item>
       <title>GE BUY signal · score +42 on a −100..+100 scale</title>
@@ -89,41 +89,17 @@
       <category>Technology</category>
     </item>
     <item>
-      <title>META BUY signal · score +24 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/META</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/META?rank=11</guid>
-      <description>John Armitage, Li Lu, François Rochon, Andreas Halvorsen, Jeffrey Ubben, Chase Coleman, Stephen Mandel, Joel Greenblatt, Lee Ainslie are buying META (Meta Platforms) this quarter. Unified ConvictionScore: +24 (positive = buy, negative = sell). Quality-weighted buyer list: John Armitage (Q4.9), Li Lu (Q4.5), François Rochon (Q4.5), Andreas Halvorsen (Q4.2), Jeffrey Ubben (Q3.4), Chase Coleman (Q3.3), Stephen Mandel (Q2.5), Joel Greenblatt (Q2.2), Lee Ainslie (Q1).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Technology</category>
-    </item>
-    <item>
       <title>TSM BUY signal · score +24 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/TSM</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/TSM?rank=12</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/TSM?rank=11</guid>
       <description>David Rolfe is buying TSM (Taiwan Semi) this quarter. Unified ConvictionScore: +24 (positive = buy, negative = sell). Quality-weighted buyer list: David Rolfe (Q4.8).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Technology</category>
-    </item>
-    <item>
-      <title>BAC BUY signal · score +23 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/BAC</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/BAC?rank=13</guid>
-      <description>Li Lu is buying BAC (Bank of America) this quarter. Unified ConvictionScore: +23 (positive = buy, negative = sell). Quality-weighted buyer list: Li Lu (Q4.5).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Financials</category>
-    </item>
-    <item>
-      <title>NVDA BUY signal · score +23 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/NVDA</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/NVDA?rank=14</guid>
-      <description>David Tepper, Tom Slater, Andreas Halvorsen are buying NVDA (NVIDIA) this quarter. Unified ConvictionScore: +23 (positive = buy, negative = sell). Quality-weighted buyer list: David Tepper (Q7.6), Tom Slater (Q4.8), Andreas Halvorsen (Q4.2).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Technology</category>
     </item>
     <item>
       <title>MU BUY signal · score +23 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/MU</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/MU?rank=15</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/MU?rank=12</guid>
       <description>Mohnish Pabrai is buying MU (Micron Technology) this quarter. Unified ConvictionScore: +23 (positive = buy, negative = sell). Quality-weighted buyer list: Mohnish Pabrai (Q5.4).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Technology</category>
@@ -131,7 +107,7 @@
     <item>
       <title>VST BUY signal · score +22 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/VST</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/VST?rank=16</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/VST?rank=13</guid>
       <description>Howard Marks, Seth Klarman are buying VST (Vistra Corp) this quarter. Unified ConvictionScore: +22 (positive = buy, negative = sell). Quality-weighted buyer list: Howard Marks (Q3.7), Seth Klarman (Q2.2).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Utilities</category>
@@ -139,15 +115,23 @@
     <item>
       <title>MCO BUY signal · score +22 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/MCO</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/MCO?rank=17</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/MCO?rank=14</guid>
       <description>Dev Kantesaria, William von Mueffling are buying MCO (Moody&amp;apos;s Corp) this quarter. Unified ConvictionScore: +22 (positive = buy, negative = sell). Quality-weighted buyer list: Dev Kantesaria (Q8.2), William von Mueffling (Q3.8).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Financials</category>
+    </item>
+    <item>
+      <title>BAC BUY signal · score +21 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/BAC</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/BAC?rank=15</guid>
+      <description>Li Lu is buying BAC (Bank of America) this quarter. Unified ConvictionScore: +21 (positive = buy, negative = sell). Quality-weighted buyer list: Li Lu (Q4.5).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Financials</category>
     </item>
     <item>
       <title>TRMD BUY signal · score +21 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/TRMD</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/TRMD?rank=18</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/TRMD?rank=16</guid>
       <description>Howard Marks is buying TRMD (Torm plc) this quarter. Unified ConvictionScore: +21 (positive = buy, negative = sell). Quality-weighted buyer list: Howard Marks (Q3.7).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Industrials</category>
@@ -155,18 +139,34 @@
     <item>
       <title>BN BUY signal · score +20 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/BN</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/BN?rank=19</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/BN?rank=17</guid>
       <description>Bill Ackman is buying BN (Brookfield Corp) this quarter. Unified ConvictionScore: +20 (positive = buy, negative = sell). Quality-weighted buyer list: Bill Ackman (Q5.1).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Financials</category>
     </item>
     <item>
-      <title>MSFT BUY signal · score +19 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/MSFT</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/MSFT?rank=20</guid>
-      <description>Terry Smith, John Armitage, Andreas Halvorsen are buying MSFT (Microsoft) this quarter. Unified ConvictionScore: +19 (positive = buy, negative = sell). Quality-weighted buyer list: Terry Smith (Q5.8), John Armitage (Q4.9), Andreas Halvorsen (Q4.2).</description>
+      <title>NVDA BUY signal · score +20 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/NVDA</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/NVDA?rank=18</guid>
+      <description>David Tepper, Tom Slater, Andreas Halvorsen are buying NVDA (NVIDIA) this quarter. Unified ConvictionScore: +20 (positive = buy, negative = sell). Quality-weighted buyer list: David Tepper (Q7.6), Tom Slater (Q4.8), Andreas Halvorsen (Q4.2).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Technology</category>
+    </item>
+    <item>
+      <title>META BUY signal · score +20 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/META</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/META?rank=19</guid>
+      <description>John Armitage, Li Lu, François Rochon, Andreas Halvorsen, Jeffrey Ubben, Chase Coleman, Stephen Mandel, Joel Greenblatt, Lee Ainslie are buying META (Meta Platforms) this quarter. Unified ConvictionScore: +20 (positive = buy, negative = sell). Quality-weighted buyer list: John Armitage (Q4.9), Li Lu (Q4.5), François Rochon (Q4.5), Andreas Halvorsen (Q4.2), Jeffrey Ubben (Q3.4), Chase Coleman (Q3.3), Stephen Mandel (Q2.5), Joel Greenblatt (Q2.2), Lee Ainslie (Q1).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Technology</category>
+    </item>
+    <item>
+      <title>NKE BUY signal · score +18 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/NKE</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/NKE?rank=20</guid>
+      <description>Bill Ackman is buying NKE (Nike) this quarter. Unified ConvictionScore: +18 (positive = buy, negative = sell). Quality-weighted buyer list: Bill Ackman (Q5.1).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Consumer Discretionary</category>
     </item>
   </channel>
 </rss>
