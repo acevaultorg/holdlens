@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PortfolioManager from "@/components/PortfolioManager";
 import PortfolioSignals from "@/components/PortfolioSignals";
+import PortfolioShareCard from "@/components/PortfolioShareCard";
 
 export const metadata: Metadata = {
   title: "My portfolio — live valuation + smart money signals on your holdings",
@@ -25,6 +26,7 @@ export default function PortfolioPage() {
       <div className="space-y-6">
         <PortfolioSignals />
         <PortfolioManager />
+        <PortfolioShareCard />
       </div>
 
       <p className="text-xs text-dim mt-12 max-w-2xl">

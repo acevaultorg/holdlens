@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import GlobalSearch from "@/components/GlobalSearch";
 import LiveTicker from "@/components/LiveTicker";
+import MobileNav from "@/components/MobileNav";
 import "./globals.css";
 
 const TICKER_SCROLL = ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "BRK-B", "AMZN", "JPM", "BAC", "KO", "CVX", "OXY", "AXP", "CMG", "V"];
@@ -46,23 +47,43 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LiveTicker symbols={TICKER_SCROLL} />
         <header className="border-b border-border">
           <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-            <a href="/" className="flex items-center gap-2 font-semibold text-lg">
+            <a href="/" className="flex items-center gap-2 font-semibold text-lg shrink-0">
               <span className="text-brand">◉</span> HoldLens
             </a>
-            <nav className="flex items-center gap-4 text-sm text-muted">
-              <a href="/buys" className="hover:text-emerald-400 transition font-semibold">Buys</a>
-              <a href="/sells" className="hover:text-rose-400 transition font-semibold">Sells</a>
-              <a href="/portfolio" className="hover:text-brand transition font-semibold hidden sm:inline">My portfolio</a>
-              <a href="/this-week" className="hover:text-text transition hidden md:inline">This week</a>
-              <a href="/leaderboard" className="hover:text-text transition hidden md:inline">Leaderboard</a>
+            {/* Desktop nav — md and up */}
+            <nav className="hidden md:flex items-center gap-4 text-sm text-muted">
+              <a href="/best-now" className="hover:text-brand transition font-semibold">Best now</a>
+              <a href="/portfolio" className="hover:text-brand transition font-semibold">My portfolio</a>
+              <a href="/this-week" className="hover:text-text transition">This week</a>
+              <a href="/leaderboard" className="hover:text-text transition">Leaderboard</a>
               <a href="/screener" className="hover:text-text transition hidden lg:inline">Screener</a>
-              <a href="/pricing" className="text-brand hover:text-text transition font-semibold hidden md:inline">Pro</a>
+              <a href="/pricing" className="text-brand hover:text-text transition font-semibold">Pro</a>
               <GlobalSearch />
             </nav>
+            {/* Mobile hamburger — below md */}
+            <MobileNav />
           </div>
         </header>
         <main>{children}</main>
         <footer className="border-t border-border mt-24">
+          {/* Data freshness band */}
+          <div className="border-b border-border bg-panel/30">
+            <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between gap-4 flex-wrap text-xs text-dim">
+              <div className="flex items-center gap-2">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>
+                  Data current: <span className="text-text font-semibold">Q4 2025</span> · filed 2026-02-14
+                </span>
+              </div>
+              <div>
+                Next refresh: <span className="text-text font-semibold">Q1 2026 by 2026-05-15</span>
+              </div>
+              <div>
+                Live prices via <a href="https://finance.yahoo.com" className="text-brand hover:underline" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · 60s cache
+              </div>
+            </div>
+          </div>
+
           <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
             <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice. · <span className="opacity-50 text-xs">Powered by AcePilot</span></div>
             <div className="flex gap-5 flex-wrap">
