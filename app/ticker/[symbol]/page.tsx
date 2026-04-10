@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import EmailCapture from "@/components/EmailCapture";
+import LiveQuote from "@/components/LiveQuote";
+import LiveChart from "@/components/LiveChart";
+import StarButton from "@/components/StarButton";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
@@ -48,11 +51,27 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <a href="/ticker" className="text-xs text-muted hover:text-text">← All tickers</a>
-      <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Stock ownership</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-        Who owns <span className="text-brand">{t.symbol}</span>?
-      </h1>
-      <p className="text-muted text-lg mt-3">{t.name} · {t.sector}</p>
+
+      <div className="mt-6 flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Stock ownership · Live</div>
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            <span className="text-brand">{t.symbol}</span>
+          </h1>
+          <p className="text-muted text-lg mt-2">{t.name} · {t.sector}</p>
+        </div>
+        <StarButton symbol={t.symbol} />
+      </div>
+
+      {/* Live quote block */}
+      <section className="mt-8">
+        <LiveQuote symbol={t.symbol} size="xl" />
+      </section>
+
+      {/* Live price chart */}
+      <section className="mt-8">
+        <LiveChart symbol={t.symbol} defaultRange="1y" />
+      </section>
 
       <div className="mt-12 grid md:grid-cols-3 gap-4">
         <Stat label="Tracked owners" value={t.ownerCount.toString()} />

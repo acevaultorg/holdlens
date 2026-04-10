@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import GlobalSearch from "@/components/GlobalSearch";
+import LiveTicker from "@/components/LiveTicker";
 import "./globals.css";
+
+const TICKER_SCROLL = ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "BRK-B", "AMZN", "JPM", "BAC", "KO", "CVX", "OXY", "AXP", "CMG", "V"];
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://holdlens.com"),
@@ -39,17 +43,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen bg-bg text-text font-sans">
+        <LiveTicker symbols={TICKER_SCROLL} />
         <header className="border-b border-border">
-          <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
+          <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
             <a href="/" className="flex items-center gap-2 font-semibold text-lg">
               <span className="text-brand">◉</span> HoldLens
             </a>
-            <nav className="flex gap-5 text-sm text-muted">
+            <nav className="flex items-center gap-5 text-sm text-muted">
               <a href="/top-picks" className="hover:text-text transition">Top picks</a>
               <a href="/investor" className="hover:text-text transition">Investors</a>
               <a href="/ticker" className="hover:text-text transition">Stocks</a>
+              <a href="/watchlist" className="hover:text-text transition hidden sm:inline">Watchlist</a>
               <a href="/simulate" className="hover:text-text transition hidden md:inline">Backtest</a>
               <a href="/learn" className="hover:text-text transition hidden md:inline">Learn</a>
+              <GlobalSearch />
             </nav>
           </div>
         </header>
@@ -61,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/top-picks" className="hover:text-text">Top picks</a>
               <a href="/investor" className="hover:text-text">Investors</a>
               <a href="/ticker" className="hover:text-text">Stocks</a>
+              <a href="/watchlist" className="hover:text-text">Watchlist</a>
               <a href="/simulate" className="hover:text-text">Backtest</a>
               <a href="/learn" className="hover:text-text">Learn</a>
               <a href="/faq" className="hover:text-text">FAQ</a>

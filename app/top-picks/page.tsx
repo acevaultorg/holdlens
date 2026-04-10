@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LiveQuote from "@/components/LiveQuote";
 import { topTickers } from "@/lib/tickers";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function TopPicksPage() {
               <th className="text-left px-5 py-4">Ticker</th>
               <th className="text-left px-5 py-4">Company</th>
               <th className="text-left px-5 py-4 hidden md:table-cell">Sector</th>
+              <th className="text-right px-5 py-4 hidden md:table-cell">Price · Today</th>
               <th className="text-right px-5 py-4">Owners</th>
               <th className="text-right px-5 py-4">Σ %</th>
             </tr>
@@ -41,6 +43,9 @@ export default function TopPicksPage() {
                 </td>
                 <td className="px-5 py-3 text-text">{t.name}</td>
                 <td className="px-5 py-3 text-dim hidden md:table-cell">{t.sector}</td>
+                <td className="px-5 py-3 text-right hidden md:table-cell">
+                  <LiveQuote symbol={t.symbol} size="sm" refreshMs={0} />
+                </td>
                 <td className="px-5 py-3 text-right tabular-nums font-semibold">{t.ownerCount}</td>
                 <td className="px-5 py-3 text-right tabular-nums text-muted">{t.totalConviction.toFixed(0)}%</td>
               </tr>
