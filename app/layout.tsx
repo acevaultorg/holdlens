@@ -54,9 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="hidden md:flex items-center gap-4 text-sm text-muted">
               <a href="/best-now" className="hover:text-brand transition font-semibold">Best now</a>
               <a href="/portfolio" className="hover:text-brand transition font-semibold">My portfolio</a>
-              <a href="/this-week" className="hover:text-text transition">This week</a>
+              <a href="/proof" className="hover:text-emerald-400 transition font-semibold">Proof</a>
               <a href="/leaderboard" className="hover:text-text transition">Leaderboard</a>
-              <a href="/screener" className="hover:text-text transition hidden lg:inline">Screener</a>
+              <a href="/this-week" className="hover:text-text transition hidden lg:inline">This week</a>
               <a href="/pricing" className="text-brand hover:text-text transition font-semibold">Pro</a>
               <GlobalSearch />
             </nav>
@@ -87,6 +87,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
             <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice. · <span className="opacity-50 text-xs">Powered by AcePilot</span></div>
             <div className="flex gap-5 flex-wrap">
+              <a href="/best-now" className="hover:text-brand font-semibold">Best now</a>
+              <a href="/proof" className="hover:text-emerald-400 font-semibold">Proof</a>
               <a href="/buys" className="hover:text-emerald-400">Buys</a>
               <a href="/sells" className="hover:text-rose-400">Sells</a>
               <a href="/portfolio" className="hover:text-brand font-semibold">My portfolio</a>

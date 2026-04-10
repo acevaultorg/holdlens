@@ -334,6 +334,231 @@ export function getTopSells(n = 20): ConvictionScore[] {
     .slice(0, n);
 }
 
+// ---------- HISTORICAL CONVICTION (for backtesting) ----------
+//
+// Computes a ConvictionScore as it would have been at a past quarter,
+// using ONLY the moves that were available up to and including that quarter.
+// Used by /proof to backtest the recommender against realized returns.
+
+const HISTORICAL_QUARTER_ORDER: Record<string, number> = {
+  "2025-Q1": 1,
+  "2025-Q2": 2,
+  "2025-Q3": 3,
+  "2025-Q4": 4,
+};
+
+/**
+ * Compute the conviction score for a ticker AS OF a historical quarter,
+ * using only moves up to and including that quarter. Time decay is re-anchored
+ * so the historical "latest" quarter has weight 1.0.
+ */
+export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): ConvictionScore {
+  const sym = ticker.toUpperCase();
+  const tickerData = TICKER_INDEX[sym];
+  const cutoff = HISTORICAL_QUARTER_ORDER[asOfQuarter] ?? 4;
+
+  // Re-anchored time decay: target quarter = 1.0, each prior = 0.6 of next
+  const reAnchoredDecay: Record<string, number> = {};
+  for (const [q, idx] of Object.entries(HISTORICAL_QUARTER_ORDER)) {
+    if (idx > cutoff) continue;
+    const distance = cutoff - idx;
+    reAnchoredDecay[q] = Math.pow(0.6, distance);
+  }
+
+  const allMoves = getAllMovesEnriched().filter(
+    (m) => m.ticker.toUpperCase() === sym && (HISTORICAL_QUARTER_ORDER[m.quarter] ?? 0) <= cutoff
+  );
+  const buyerMoves = allMoves.filter((m) => m.action === "new" || m.action === "add");
+  const sellerMoves = allMoves.filter((m) => m.action === "trim" || m.action === "exit");
+
+  const ownerCount = tickerData?.ownerCount ?? 0;
+
+  // Smart money signal (re-anchored decay)
+  let smartMoneyRaw = 0;
+  const buyerContribs: Array<{ slug: string; name: string; weight: number; cagr: number; pctImpact: number }> = [];
+  for (const mv of buyerMoves) {
+    const decay = reAnchoredDecay[mv.quarter] ?? 0.1;
+    const roi = getManagerROI(mv.managerSlug);
+    const quality = roi?.quality0to10 ?? 6;
+    const cagr = roi?.cagr10y ?? 13;
+    const actionWeight = mv.action === "new" ? 2 : 1;
+    const pctImpact = mv.portfolioImpactPct ?? 0;
+    const concentrationBoost = pctImpact > 5 ? 1 + Math.log10(pctImpact / 5) * 0.5 : 1;
+    const contribution = actionWeight * quality * decay * concentrationBoost;
+    smartMoneyRaw += contribution;
+    buyerContribs.push({
+      slug: mv.managerSlug,
+      name: mv.managerName,
+      weight: contribution,
+      cagr,
+      pctImpact,
+    });
+  }
+  const smartMoney = clamp(smartMoneyRaw / 3, 0, 30);
+
+  let dissentRaw = 0;
+  const sellerContribs: Array<{ slug: string; name: string; weight: number; cagr: number; pctImpact: number }> = [];
+  for (const mv of sellerMoves) {
+    const decay = reAnchoredDecay[mv.quarter] ?? 0.1;
+    const roi = getManagerROI(mv.managerSlug);
+    const quality = roi?.quality0to10 ?? 6;
+    const cagr = roi?.cagr10y ?? 13;
+    const actionWeight = mv.action === "exit" ? 2 : 1;
+    const pctImpact = mv.portfolioImpactPct ?? 0;
+    const contribution = actionWeight * quality * decay;
+    dissentRaw += contribution;
+    sellerContribs.push({
+      slug: mv.managerSlug,
+      name: mv.managerName,
+      weight: contribution,
+      cagr,
+      pctImpact,
+    });
+  }
+  const dissentPenalty = clamp((dissentRaw / 3) * 1.2, 0, 40);
+
+  // Insider activity (uses current data, not time-locked — small bias but acceptable)
+  const insiderTx = getInsiderTx(sym);
+  const insiderBuys = insiderTx.filter((t) => t.action === "buy");
+  const insiderSells = insiderTx.filter((t) => t.action === "sell");
+  const insiderBuyValue = insiderBuys.reduce((s, t) => s + t.value, 0);
+  const insiderSellValueDiscretionary = insiderSells
+    .filter((t) => !(t.note || "").toLowerCase().includes("10b5-1"))
+    .reduce((s, t) => s + t.value, 0);
+  const netInsider = insiderBuyValue - insiderSellValueDiscretionary;
+  let insiderBoost = 0;
+  if (netInsider > 0) insiderBoost = clamp(Math.log10(netInsider / 1e6 + 1) * 6, 0, 20);
+  else if (netInsider < 0) insiderBoost = -clamp(Math.log10(Math.abs(netInsider) / 1e6 + 1) * 4, 0, 15);
+
+  // Track record
+  let trackRecordRaw = 0;
+  let totalConcWeight = 0;
+  for (const b of buyerContribs) {
+    const w = Math.max(0.5, b.pctImpact);
+    trackRecordRaw += b.cagr * w;
+    totalConcWeight += w;
+  }
+  const trackRecord =
+    totalConcWeight > 0
+      ? clamp(((trackRecordRaw / totalConcWeight - 13) * 1.5), 0, 20)
+      : 0;
+
+  // Trend streak (computed only from quarters ≤ cutoff)
+  const orderedQuarters = ["2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4"].slice(0, cutoff);
+  let maxBuyStreak = 0;
+  for (const b of buyerContribs) {
+    let streak = 0;
+    let lastDir: "buying" | "selling" | null = null;
+    for (const q of orderedQuarters) {
+      const mv = allMoves.find((m) => m.managerSlug === b.slug && m.quarter === q);
+      if (!mv) continue;
+      const dir = mv.action === "new" || mv.action === "add" ? "buying" : "selling";
+      if (lastDir === dir) streak++;
+      else {
+        lastDir = dir;
+        streak = 1;
+      }
+    }
+    if (lastDir === "buying" && streak > maxBuyStreak) maxBuyStreak = streak;
+  }
+  const trendStreak = maxBuyStreak === 0 ? 0 : clamp((maxBuyStreak - 1) * 3.5 + 1, 0, 10);
+
+  // Concentration
+  let maxBuyerConcentration = 0;
+  for (const b of buyerContribs) {
+    if (b.pctImpact > maxBuyerConcentration) maxBuyerConcentration = b.pctImpact;
+  }
+  const concentration = clamp(maxBuyerConcentration * 0.5, 0, 10);
+
+  // Contrarian + crowding (use ownerCount as known today — minor look-ahead bias)
+  const tierOneBuyers = buyerContribs.filter((b) => {
+    const roi = getManagerROI(b.slug);
+    return (roi?.quality0to10 ?? 0) >= 8;
+  });
+  const contrarian =
+    ownerCount <= 5 && tierOneBuyers.length >= 1 ? clamp(10 - ownerCount, 0, 10) : 0;
+  const crowdingPenalty =
+    ownerCount > 8 ? clamp(Math.log2(ownerCount - 7) * 2, 0, 10) : 0;
+
+  const raw =
+    smartMoney +
+    insiderBoost +
+    trackRecord +
+    trendStreak +
+    concentration +
+    contrarian -
+    dissentPenalty -
+    crowdingPenalty;
+
+  const score = Math.round(clamp(raw, -100, 100));
+
+  let direction: "BUY" | "SELL" | "NEUTRAL" = "NEUTRAL";
+  if (score >= 30) direction = "BUY";
+  else if (score <= -10) direction = "SELL";
+
+  // Expected return
+  let expectedReturnPct: number | null = null;
+  if (buyerContribs.length > 0) {
+    let weightedSum = 0;
+    let totalWeight = 0;
+    for (const b of buyerContribs) {
+      const w = Math.max(1, b.pctImpact);
+      weightedSum += b.cagr * w;
+      totalWeight += w;
+    }
+    expectedReturnPct = totalWeight > 0 ? weightedSum / totalWeight : null;
+  }
+
+  return {
+    ticker: sym,
+    name: tickerData?.name ?? sym,
+    sector: tickerData?.sector,
+    score,
+    direction,
+    expectedReturnPct: expectedReturnPct != null ? Math.round(expectedReturnPct * 10) / 10 : null,
+    confidenceIntervalPct: null,
+    expectedFiveYearMultiple: null,
+    buyerCount: buyerContribs.length,
+    sellerCount: sellerContribs.length,
+    ownerCount,
+    breakdown: {
+      smartMoney: Math.round(smartMoney),
+      insiderBoost: Math.round(insiderBoost),
+      trackRecord: Math.round(trackRecord),
+      trendStreak: Math.round(trendStreak),
+      concentration: Math.round(concentration),
+      contrarian: Math.round(contrarian),
+      dissentPenalty: Math.round(dissentPenalty),
+      crowdingPenalty: Math.round(crowdingPenalty),
+      raw: Math.round(raw),
+    },
+    topBuyers: buyerContribs
+      .sort((a, b) => b.weight - a.weight)
+      .slice(0, 3)
+      .map((b) => ({ slug: b.slug, name: b.name, cagr: b.cagr, positionPct: b.pctImpact })),
+    topSellers: sellerContribs
+      .sort((a, b) => b.weight - a.weight)
+      .slice(0, 3)
+      .map((b) => ({ slug: b.slug, name: b.name, cagr: b.cagr, positionPct: b.pctImpact })),
+  };
+}
+
+/** Top N BUY signals as of a historical quarter — used for backtesting. */
+export function getHistoricalTopBuys(asOfQuarter: Quarter, n = 5): ConvictionScore[] {
+  const tickers = new Set<string>();
+  for (const m of ALL_MOVES) {
+    if ((HISTORICAL_QUARTER_ORDER[m.quarter] ?? 0) <= (HISTORICAL_QUARTER_ORDER[asOfQuarter] ?? 0)) {
+      tickers.add(m.ticker.toUpperCase());
+    }
+  }
+  const out: ConvictionScore[] = [];
+  for (const t of tickers) {
+    const c = getConvictionAtQuarter(t, asOfQuarter);
+    if (c.direction === "BUY") out.push(c);
+  }
+  return out.sort((a, b) => b.score - a.score).slice(0, n);
+}
+
 /** Quality label for a conviction score */
 export function convictionLabel(score: number): { label: string; color: string } {
   if (score >= 70) return { label: "STRONG BUY", color: "emerald" };
