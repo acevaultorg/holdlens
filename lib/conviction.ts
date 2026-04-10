@@ -57,11 +57,17 @@ export type ConvictionScore = {
 
 // ---------- HELPERS ----------
 
+// Continuous 0.6^distance decay across all 8 tracked quarters.
+// Q4 2025 = 1.0 (latest), Q1 2024 = 0.6^7 ≈ 0.028.
 const TIME_DECAY: Record<string, number> = {
   "2025-Q4": 1.0,
   "2025-Q3": 0.6,
   "2025-Q2": 0.36,
-  "2025-Q1": 0.22,
+  "2025-Q1": 0.216,
+  "2024-Q4": 0.13,
+  "2024-Q3": 0.078,
+  "2024-Q2": 0.047,
+  "2024-Q1": 0.028,
 };
 
 function decayWeight(quarter: string): number {
@@ -341,10 +347,14 @@ export function getTopSells(n = 20): ConvictionScore[] {
 // Used by /proof to backtest the recommender against realized returns.
 
 const HISTORICAL_QUARTER_ORDER: Record<string, number> = {
-  "2025-Q1": 1,
-  "2025-Q2": 2,
-  "2025-Q3": 3,
-  "2025-Q4": 4,
+  "2024-Q1": 1,
+  "2024-Q2": 2,
+  "2024-Q3": 3,
+  "2024-Q4": 4,
+  "2025-Q1": 5,
+  "2025-Q2": 6,
+  "2025-Q3": 7,
+  "2025-Q4": 8,
 };
 
 /**
@@ -355,7 +365,7 @@ const HISTORICAL_QUARTER_ORDER: Record<string, number> = {
 export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): ConvictionScore {
   const sym = ticker.toUpperCase();
   const tickerData = TICKER_INDEX[sym];
-  const cutoff = HISTORICAL_QUARTER_ORDER[asOfQuarter] ?? 4;
+  const cutoff = HISTORICAL_QUARTER_ORDER[asOfQuarter] ?? 8;
 
   // Re-anchored time decay: target quarter = 1.0, each prior = 0.6 of next
   const reAnchoredDecay: Record<string, number> = {};
@@ -443,8 +453,17 @@ export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): Co
       ? clamp(((trackRecordRaw / totalConcWeight - 13) * 1.5), 0, 20)
       : 0;
 
-  // Trend streak (computed only from quarters ≤ cutoff)
-  const orderedQuarters = ["2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4"].slice(0, cutoff);
+  // Trend streak (computed only from quarters ≤ cutoff, oldest → newest)
+  const orderedQuarters = [
+    "2024-Q1",
+    "2024-Q2",
+    "2024-Q3",
+    "2024-Q4",
+    "2025-Q1",
+    "2025-Q2",
+    "2025-Q3",
+    "2025-Q4",
+  ].slice(0, cutoff);
   let maxBuyStreak = 0;
   for (const b of buyerContribs) {
     let streak = 0;

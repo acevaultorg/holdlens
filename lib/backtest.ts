@@ -25,7 +25,16 @@ export type BacktestQuarter = {
   topBuys: ConvictionScore[];
 };
 
-const HISTORICAL_QUARTERS: Quarter[] = ["2025-Q1", "2025-Q2", "2025-Q3"];
+// v0.23: backtest starts at Q4 2024 because the model needs ≥3 prior quarters
+// of trend data to function. Earlier quarters (Q1-Q3 2024) exist in the dataset
+// but are only used as CONTEXT for the trend engine — we don't backtest them
+// directly because they themselves lack enough prior quarters to score fairly.
+const HISTORICAL_QUARTERS: Quarter[] = [
+  "2024-Q4",
+  "2025-Q1",
+  "2025-Q2",
+  "2025-Q3",
+];
 
 /** All quarters we backtest, with their top picks pre-computed at build time. */
 export function getBacktestQuarters(topN = 5): BacktestQuarter[] {

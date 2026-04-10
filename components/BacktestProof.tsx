@@ -50,7 +50,7 @@ export default function BacktestProof({ quarters }: { quarters: BacktestQuarter[
       const out: QuarterResult[] = [];
       for (const q of quarters) {
         // Fetch SPY chart once per quarter
-        const spyQuote = await getQuote("SPY", "1y");
+        const spyQuote = await getQuote("SPY", "2y");
         const spyReturn =
           spyQuote && spyQuote.chart.length > 0
             ? computeRealizedReturn(spyQuote.chart, q.filedAtEpoch)
@@ -58,7 +58,7 @@ export default function BacktestProof({ quarters }: { quarters: BacktestQuarter[
 
         const rows: TickerResult[] = [];
         for (const c of q.topBuys) {
-          const quote = await getQuote(c.ticker, "1y");
+          const quote = await getQuote(c.ticker, "2y");
           if (cancelled) return;
           if (!quote) {
             rows.push({
@@ -192,8 +192,9 @@ export default function BacktestProof({ quarters }: { quarters: BacktestQuarter[
           the S&P
         </h2>
         <p className="text-muted text-base mb-6 max-w-2xl">
-          If you'd bought every top {results[0]?.rows.length || 5} BUY signal HoldLens recommended at each historical
-          13F filing date in equal weight, here's what your portfolio would look like today.
+          If you'd bought every BUY signal HoldLens recommended at each historical 13F filing date
+          in equal weight (up to 5 per quarter, filtered to only scores ≥30), here's what your
+          portfolio would look like today.
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

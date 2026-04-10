@@ -35,43 +35,48 @@ export default function ProofPage() {
         money, this page shows it. Trust comes from being right when nobody is looking.
       </p>
 
-      {/* The honest "this is hard mode" explainer */}
+      {/* The honest "how we test the model" explainer — v0.23 */}
       <div className="rounded-2xl border border-brand/30 bg-brand/5 p-6 mb-12">
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
-          Read this first · why this is hard mode for the model
+          Read this first · how we test the model fairly
         </div>
-        <h3 className="text-xl font-bold mb-3">The model needs ≥3 quarters of trend data to work</h3>
+        <h3 className="text-xl font-bold mb-3">Every backtested quarter has ≥3 prior quarters of trend data</h3>
         <p className="text-sm text-muted leading-relaxed mb-3">
           ConvictionScore v3 weights <span className="text-text font-semibold">multi-quarter trend
           streaks</span> heavily — a manager building a position for 3 consecutive quarters is a
-          much stronger signal than a single-quarter move. But this backtest tests the model in its
-          <span className="text-text font-semibold"> weakest possible condition</span>:
+          much stronger signal than a single-quarter move. In <span className="text-brand font-semibold">v0.23</span> we
+          extended the dataset to 8 historical quarters (Q1 2024 → Q4 2025) so the backtest can test
+          the model under its <span className="text-text font-semibold">actual operating conditions</span>:
         </p>
         <ul className="text-sm text-muted leading-relaxed list-disc list-inside space-y-1 mb-3">
           <li>
-            <span className="text-text font-semibold">Q1 2025</span>: model had <span className="text-rose-400">0 prior quarters</span> — basically random picks
+            <span className="text-text font-semibold">Q1-Q3 2024</span>: used only as context for the trend engine (not backtested directly)
           </li>
           <li>
-            <span className="text-text font-semibold">Q2 2025</span>: model had 1 prior quarter — still under-trained
+            <span className="text-text font-semibold">Q4 2024</span>: model has 3 prior quarters — first quarter fairly backtestable
           </li>
           <li>
-            <span className="text-text font-semibold">Q3 2025</span>: model had 2 prior quarters — first quarter with meaningful trend signal
+            <span className="text-text font-semibold">Q1 2025</span>: model has 4 prior quarters — fully operational
           </li>
           <li>
-            <span className="text-text font-semibold">Q4 2025 (today)</span>: model has 3 prior quarters of trend data — fully operational
+            <span className="text-text font-semibold">Q2 2025</span>: model has 5 prior quarters — strong trend signal
+          </li>
+          <li>
+            <span className="text-text font-semibold">Q3 2025</span>: model has 6 prior quarters — peak trend signal
           </li>
         </ul>
         <p className="text-sm text-muted leading-relaxed">
-          The honest takeaway: the model got worse the further back we test it, because the further
-          back we go, the less historical data it had to score with. Today&apos;s {" "}
+          The rule: a quarter is only included in the backtest if the model had at least 3 quarters
+          of prior data available to score with. That&apos;s the same condition today&apos;s {" "}
           <a href="/best-now" className="text-brand hover:underline font-semibold">
             /best-now ranking
           </a>{" "}
-          uses all 4 quarters of trend data and is the version that should compound.
+          operates under. No handicap, no excuses.
         </p>
         <p className="text-xs text-dim leading-relaxed mt-3">
-          v0.23 will fix this properly by adding 8+ quarters of historical move data so the backtest
-          can test the model under its <em>actual</em> operating conditions instead of degraded ones.
+          Earlier 2024 quarters exist in the dataset but aren&apos;t backtested as entry points — they
+          would themselves lack enough prior quarters to score fairly. v0.24 will extend coverage
+          to 2022-2023 so we can test the model across a full bull-bear cycle.
         </p>
       </div>
 
@@ -86,8 +91,10 @@ export default function ProofPage() {
         <ol className="space-y-2 text-sm text-muted leading-relaxed list-decimal list-inside">
           <li>
             <span className="text-text font-semibold">As-of conviction:</span> For each historical
-            quarter (Q1, Q2, Q3 2025), we compute the ConvictionScore using ONLY moves filed up to
-            that quarter. Time decay is re-anchored so the historical &quot;latest&quot; quarter has weight 1.0.
+            quarter (Q4 2024, Q1/Q2/Q3 2025), we compute the ConvictionScore using ONLY moves filed
+            up to that quarter. Time decay is re-anchored so the historical &quot;latest&quot; quarter has weight 1.0.
+            Every backtested quarter has ≥3 prior quarters of trend context (Q1-Q3 2024 serve as
+            the warmup dataset).
           </li>
           <li>
             <span className="text-text font-semibold">Top 5 BUY signals:</span> We take the top 5
@@ -123,8 +130,9 @@ export default function ProofPage() {
         </div>
         <ul className="space-y-2 text-sm text-muted leading-relaxed list-disc list-inside">
           <li>
-            <span className="text-text font-semibold">Small sample size:</span> 3 quarters × 5 picks = 15 data points.
-            Statistically meaningful inference would need 20+ quarters of data.
+            <span className="text-text font-semibold">Small sample size:</span> 4 quarters × 5 picks = 20 data points.
+            Statistically meaningful inference would need 20+ quarters of data. v0.24 extends coverage
+            further back.
           </li>
           <li>
             <span className="text-text font-semibold">Insider data is not time-locked:</span>

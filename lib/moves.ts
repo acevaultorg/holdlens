@@ -32,7 +32,16 @@ export type Move = {
   note?: string;
 };
 
-export const QUARTERS = ["2025-Q4", "2025-Q3", "2025-Q2", "2025-Q1"] as const;
+export const QUARTERS = [
+  "2025-Q4",
+  "2025-Q3",
+  "2025-Q2",
+  "2025-Q1",
+  "2024-Q4",
+  "2024-Q3",
+  "2024-Q2",
+  "2024-Q1",
+] as const;
 export type Quarter = (typeof QUARTERS)[number];
 
 export const QUARTER_LABELS: Record<Quarter, string> = {
@@ -40,6 +49,10 @@ export const QUARTER_LABELS: Record<Quarter, string> = {
   "2025-Q3": "Q3 2025",
   "2025-Q2": "Q2 2025",
   "2025-Q1": "Q1 2025",
+  "2024-Q4": "Q4 2024",
+  "2024-Q3": "Q3 2024",
+  "2024-Q2": "Q2 2024",
+  "2024-Q1": "Q1 2024",
 };
 
 export const QUARTER_FILED: Record<Quarter, string> = {
@@ -47,6 +60,10 @@ export const QUARTER_FILED: Record<Quarter, string> = {
   "2025-Q3": "2025-11-14",
   "2025-Q2": "2025-08-14",
   "2025-Q1": "2025-05-15",
+  "2024-Q4": "2025-02-14",
+  "2024-Q3": "2024-11-14",
+  "2024-Q2": "2024-08-14",
+  "2024-Q1": "2024-05-15",
 };
 
 // ---------- FLAT MOVES LIST ----------
@@ -405,6 +422,174 @@ export const ALL_MOVES: Move[] = [
 
   { managerSlug: "tom-slater", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "NVDA", action: "add", deltaPct: 25, shareChange: 280000, portfolioImpactPct: 7.8, note: "Building NVDA." },
   { managerSlug: "tom-slater", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MELI", action: "add", deltaPct: 15, shareChange: 33000, portfolioImpactPct: 6.4, note: "Adding MercadoLibre." },
+
+  // ============================================================
+  // Q4 2024 (filed 2025-02-14) — historical depth for backtesting
+  // ============================================================
+  // Buffett — the famous big AAPL trim continued; CB build, OXY add
+  { managerSlug: "warren-buffett", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "AAPL", action: "trim", deltaPct: -7, shareChange: -22500000, portfolioImpactPct: 23.4, note: "Continued trimming AAPL." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "OXY", action: "add", deltaPct: 4, shareChange: 8900000, portfolioImpactPct: 4.1, note: "Slow OXY accumulation." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "CB", action: "add", deltaPct: 8, shareChange: 1900000, portfolioImpactPct: 1.9, note: "Adding Chubb — second build." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "DPZ", action: "add", deltaPct: 12, shareChange: 130000, portfolioImpactPct: 0.3, note: "Building Domino's." },
+
+  // Ackman — NKE building, BN building, CMG steady
+  { managerSlug: "bill-ackman", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "NKE", action: "add", deltaPct: 18, shareChange: 2300000, portfolioImpactPct: 4.0, note: "Doubling on Nike turnaround." },
+  { managerSlug: "bill-ackman", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "BN", action: "add", deltaPct: 12, shareChange: 3500000, portfolioImpactPct: 8.4, note: "Building Brookfield." },
+  { managerSlug: "bill-ackman", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "HHH", action: "add", deltaPct: 6, shareChange: 1100000, portfolioImpactPct: 13.0, note: "More Howard Hughes." },
+
+  // Druckenmiller — NVDA still building, COHR new
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "NVDA", action: "add", deltaPct: 8, shareChange: 220000, portfolioImpactPct: 14.6, note: "Pre-trim NVDA accumulation." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "COHR", action: "new", shareChange: 920000, portfolioImpactPct: 4.5, note: "New Coherent position." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "MSFT", action: "add", deltaPct: 14, shareChange: 160000, portfolioImpactPct: 9.5, note: "Adding Microsoft." },
+
+  // Klarman — VST initial build (the famous quarter)
+  { managerSlug: "seth-klarman", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "VST", action: "add", deltaPct: 28, shareChange: 1240000, portfolioImpactPct: 5.0, note: "Major Vistra add — start of the multi-quarter build." },
+  { managerSlug: "seth-klarman", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "WBD", action: "trim", deltaPct: -8, shareChange: -5400000, portfolioImpactPct: 13.5, note: "Small Warner Bros trim." },
+
+  // Burry — BABA contrarian
+  { managerSlug: "michael-burry", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "BABA", action: "add", deltaPct: 30, shareChange: 42000, portfolioImpactPct: 11.5, note: "BABA contrarian build accelerating." },
+  { managerSlug: "michael-burry", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "JD", action: "add", deltaPct: 25, shareChange: 60000, portfolioImpactPct: 10.8, note: "JD.com add." },
+
+  // Howard Marks — VST + TRMD
+  { managerSlug: "howard-marks", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "VST", action: "add", deltaPct: 22, shareChange: 1020000, portfolioImpactPct: 6.5, note: "Same Vistra thesis as Klarman — start of build." },
+  { managerSlug: "howard-marks", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "TRMD", action: "add", deltaPct: 8, shareChange: 620000, portfolioImpactPct: 13.0, note: "Building Torm shipping." },
+
+  // TCI / Hohn — META building (the consistent trade)
+  { managerSlug: "chris-hohn", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "META", action: "add", deltaPct: 38, shareChange: 6100000, portfolioImpactPct: 3.5, note: "TCI accelerating META build." },
+  { managerSlug: "chris-hohn", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "GE", action: "add", deltaPct: 10, shareChange: 850000, portfolioImpactPct: 17.5, note: "Building GE Aerospace." },
+
+  // Tepper — NVDA, META, BABA
+  { managerSlug: "david-tepper", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "NVDA", action: "add", deltaPct: 30, shareChange: 200000, portfolioImpactPct: 8.6, note: "Loaded up on NVDA." },
+  { managerSlug: "david-tepper", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "META", action: "add", deltaPct: 25, shareChange: 220000, portfolioImpactPct: 9.0, note: "Building META conviction." },
+  { managerSlug: "david-tepper", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "BABA", action: "new", shareChange: 1500000, portfolioImpactPct: 3.4, note: "First BABA position." },
+
+  // Coleman / Tiger Global — META rebuild
+  { managerSlug: "chase-coleman", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "META", action: "add", deltaPct: 50, shareChange: 1480000, portfolioImpactPct: 9.4, note: "Tiger Global aggressive META rebuild." },
+  { managerSlug: "chase-coleman", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "MSFT", action: "add", deltaPct: 35, shareChange: 820000, portfolioImpactPct: 8.6, note: "Adding Microsoft." },
+  { managerSlug: "chase-coleman", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "NVDA", action: "add", deltaPct: 18, shareChange: 510000, portfolioImpactPct: 6.7, note: "Adding NVDA." },
+
+  // Halvorsen / Viking
+  { managerSlug: "andreas-halvorsen", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "META", action: "add", deltaPct: 32, shareChange: 580000, portfolioImpactPct: 0.7, note: "Viking META build." },
+  { managerSlug: "andreas-halvorsen", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "MSFT", action: "add", deltaPct: 18, shareChange: 260000, portfolioImpactPct: 4.2, note: "Microsoft add." },
+
+  // Mandel / Lone Pine
+  { managerSlug: "stephen-mandel", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "META", action: "add", deltaPct: 8, shareChange: 35000, portfolioImpactPct: 5.8, note: "Steady META." },
+  { managerSlug: "stephen-mandel", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "AMZN", action: "add", deltaPct: 10, shareChange: 200000, portfolioImpactPct: 6.7, note: "Adding Amazon." },
+
+  // Akre — MA and V steady
+  { managerSlug: "chuck-akre", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "MA", action: "add", deltaPct: 5, shareChange: 290000, portfolioImpactPct: 17.5, note: "Mastercard core add." },
+
+  // Fundsmith / Smith
+  { managerSlug: "terry-smith", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "MSFT", action: "add", deltaPct: 7, shareChange: 580000, portfolioImpactPct: 11.0, note: "Microsoft top-up." },
+  { managerSlug: "terry-smith", quarter: "2024-Q4", filedAt: "2025-02-14", ticker: "MA", action: "add", deltaPct: 5, shareChange: 170000, portfolioImpactPct: 9.6, note: "Mastercard add." },
+
+  // ============================================================
+  // Q3 2024 (filed 2024-11-14) — Buffett's huge BAC trim quarter
+  // ============================================================
+  { managerSlug: "warren-buffett", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "BAC", action: "trim", deltaPct: -23, shareChange: -235000000, portfolioImpactPct: 14.0, note: "The historic BAC trim — first time Buffett aggressively reduced." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "AAPL", action: "trim", deltaPct: -25, shareChange: -100000000, portfolioImpactPct: 25.2, note: "Continued AAPL reduction." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "DPZ", action: "new", shareChange: 1300000, portfolioImpactPct: 0.4, note: "First Domino's position." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "POOL", action: "new", shareChange: 400000, portfolioImpactPct: 0.4, note: "New Pool Corp position." },
+
+  { managerSlug: "bill-ackman", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "NKE", action: "new", shareChange: 13200000, portfolioImpactPct: 3.0, note: "Ackman's debut Nike position." },
+  { managerSlug: "bill-ackman", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "BN", action: "add", deltaPct: 13, shareChange: 3200000, portfolioImpactPct: 7.5, note: "Brookfield add." },
+  { managerSlug: "bill-ackman", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "HHH", action: "add", deltaPct: 8, shareChange: 1300000, portfolioImpactPct: 12.3, note: "Howard Hughes add." },
+
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "NVDA", action: "add", deltaPct: 12, shareChange: 290000, portfolioImpactPct: 13.5, note: "Pre-trim NVDA accumulation." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "MSFT", action: "add", deltaPct: 18, shareChange: 175000, portfolioImpactPct: 8.3, note: "Microsoft add." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "TSM", action: "new", shareChange: 280000, portfolioImpactPct: 4.0, note: "First TSM position." },
+
+  { managerSlug: "seth-klarman", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "VST", action: "new", shareChange: 4400000, portfolioImpactPct: 4.0, note: "First Vistra position — start of multi-Q build." },
+  { managerSlug: "seth-klarman", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "WBD", action: "trim", deltaPct: -10, shareChange: -7000000, portfolioImpactPct: 14.5, note: "WBD reduction." },
+
+  { managerSlug: "michael-burry", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "BABA", action: "new", shareChange: 100000, portfolioImpactPct: 8.5, note: "Burry's BABA re-entry." },
+  { managerSlug: "michael-burry", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "JD", action: "new", shareChange: 130000, portfolioImpactPct: 7.6, note: "First JD.com position." },
+
+  { managerSlug: "howard-marks", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "VST", action: "new", shareChange: 3800000, portfolioImpactPct: 5.2, note: "First Vistra — same quarter as Klarman." },
+  { managerSlug: "howard-marks", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "TRMD", action: "add", deltaPct: 6, shareChange: 480000, portfolioImpactPct: 12.5, note: "Building Torm." },
+
+  { managerSlug: "chris-hohn", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "META", action: "add", deltaPct: 28, shareChange: 4200000, portfolioImpactPct: 2.7, note: "TCI building META." },
+  { managerSlug: "chris-hohn", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "GE", action: "add", deltaPct: 12, shareChange: 1000000, portfolioImpactPct: 16.0, note: "GE Aerospace add." },
+
+  { managerSlug: "david-tepper", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "NVDA", action: "add", deltaPct: 25, shareChange: 165000, portfolioImpactPct: 7.0, note: "NVDA buildup." },
+  { managerSlug: "david-tepper", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "META", action: "add", deltaPct: 18, shareChange: 145000, portfolioImpactPct: 7.5, note: "Building META." },
+
+  { managerSlug: "chase-coleman", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "META", action: "add", deltaPct: 40, shareChange: 1100000, portfolioImpactPct: 6.7, note: "Tiger Global META rebuild start." },
+  { managerSlug: "chase-coleman", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "MSFT", action: "add", deltaPct: 25, shareChange: 580000, portfolioImpactPct: 6.8, note: "Microsoft add." },
+
+  { managerSlug: "andreas-halvorsen", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "META", action: "add", deltaPct: 22, shareChange: 410000, portfolioImpactPct: 0.6, note: "Viking META build." },
+
+  { managerSlug: "stephen-mandel", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "META", action: "add", deltaPct: 6, shareChange: 28000, portfolioImpactPct: 5.5, note: "Lone Pine META." },
+
+  { managerSlug: "chuck-akre", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "MA", action: "add", deltaPct: 4, shareChange: 230000, portfolioImpactPct: 17.0, note: "Mastercard core." },
+
+  { managerSlug: "terry-smith", quarter: "2024-Q3", filedAt: "2024-11-14", ticker: "MSFT", action: "add", deltaPct: 6, shareChange: 500000, portfolioImpactPct: 10.5, note: "Microsoft top-up." },
+
+  // ============================================================
+  // Q2 2024 (filed 2024-08-14)
+  // ============================================================
+  { managerSlug: "warren-buffett", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "AAPL", action: "trim", deltaPct: -49, shareChange: -390000000, portfolioImpactPct: 30.5, note: "The famous massive AAPL trim — half the position cut." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "BAC", action: "trim", deltaPct: -8, shareChange: -83000000, portfolioImpactPct: 14.5, note: "Started BAC trim." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "OXY", action: "add", deltaPct: 3, shareChange: 7800000, portfolioImpactPct: 4.0, note: "OXY add." },
+
+  { managerSlug: "bill-ackman", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "BN", action: "add", deltaPct: 8, shareChange: 1900000, portfolioImpactPct: 6.6, note: "Building Brookfield." },
+  { managerSlug: "bill-ackman", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "CMG", action: "trim", deltaPct: -4, shareChange: -1000000, portfolioImpactPct: 22.5, note: "Small CMG trim after gains." },
+
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "NVDA", action: "add", deltaPct: 22, shareChange: 480000, portfolioImpactPct: 12.5, note: "NVDA buildup." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "MSFT", action: "add", deltaPct: 15, shareChange: 130000, portfolioImpactPct: 7.0, note: "Microsoft add." },
+
+  { managerSlug: "seth-klarman", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "WBD", action: "trim", deltaPct: -12, shareChange: -8500000, portfolioImpactPct: 16.0, note: "WBD reduction." },
+
+  { managerSlug: "michael-burry", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "BABA", action: "exit", shareChange: -200000, note: "Briefly exited BABA before re-entering Q3." },
+
+  { managerSlug: "howard-marks", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "TRMD", action: "add", deltaPct: 5, shareChange: 400000, portfolioImpactPct: 11.5, note: "Building Torm." },
+
+  { managerSlug: "chris-hohn", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "META", action: "new", shareChange: 4500000, portfolioImpactPct: 2.0, note: "TCI's first META position." },
+  { managerSlug: "chris-hohn", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "GE", action: "add", deltaPct: 10, shareChange: 850000, portfolioImpactPct: 14.5, note: "GE Aerospace build." },
+
+  { managerSlug: "david-tepper", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "NVDA", action: "add", deltaPct: 18, shareChange: 110000, portfolioImpactPct: 5.8, note: "NVDA build." },
+  { managerSlug: "david-tepper", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "META", action: "add", deltaPct: 14, shareChange: 110000, portfolioImpactPct: 6.5, note: "META add." },
+
+  { managerSlug: "chase-coleman", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "META", action: "add", deltaPct: 35, shareChange: 920000, portfolioImpactPct: 4.8, note: "Tiger META rebuild continuing." },
+
+  { managerSlug: "andreas-halvorsen", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "META", action: "new", shareChange: 380000, portfolioImpactPct: 0.5, note: "Viking's first META position." },
+
+  { managerSlug: "stephen-mandel", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "META", action: "new", shareChange: 290000, portfolioImpactPct: 5.0, note: "Lone Pine first META." },
+
+  { managerSlug: "chuck-akre", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "V", action: "add", deltaPct: 4, shareChange: 280000, portfolioImpactPct: 14.0, note: "Visa add." },
+
+  { managerSlug: "terry-smith", quarter: "2024-Q2", filedAt: "2024-08-14", ticker: "NOVO", action: "add", deltaPct: 6, shareChange: 540000, portfolioImpactPct: 9.0, note: "Novo Nordisk add." },
+
+  // ============================================================
+  // Q1 2024 (filed 2024-05-15)
+  // ============================================================
+  { managerSlug: "warren-buffett", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "AAPL", action: "trim", deltaPct: -13, shareChange: -116000000, portfolioImpactPct: 40.5, note: "First major AAPL trim." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "CB", action: "new", shareChange: 26000000, portfolioImpactPct: 1.5, note: "Berkshire's first Chubb position revealed." },
+  { managerSlug: "warren-buffett", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "OXY", action: "add", deltaPct: 2, shareChange: 4300000, portfolioImpactPct: 3.7, note: "Small OXY add." },
+
+  { managerSlug: "bill-ackman", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "BN", action: "new", shareChange: 6200000, portfolioImpactPct: 5.8, note: "Ackman's first Brookfield position." },
+  { managerSlug: "bill-ackman", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "CMG", action: "add", deltaPct: 6, shareChange: 1800000, portfolioImpactPct: 23.0, note: "More Chipotle." },
+
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "NVDA", action: "add", deltaPct: 30, shareChange: 540000, portfolioImpactPct: 11.0, note: "NVDA major add." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "MSFT", action: "new", shareChange: 720000, portfolioImpactPct: 6.0, note: "First Microsoft position." },
+
+  { managerSlug: "seth-klarman", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "WBD", action: "add", deltaPct: 8, shareChange: 5500000, portfolioImpactPct: 18.0, note: "WBD initial conviction." },
+
+  { managerSlug: "michael-burry", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "BABA", action: "new", shareChange: 195000, portfolioImpactPct: 6.0, note: "First BABA contrarian position." },
+  { managerSlug: "michael-burry", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "JD", action: "new", shareChange: 250000, portfolioImpactPct: 5.5, note: "First JD position." },
+
+  { managerSlug: "howard-marks", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "TRMD", action: "new", shareChange: 4500000, portfolioImpactPct: 10.0, note: "First Torm shipping position." },
+
+  { managerSlug: "chris-hohn", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "GE", action: "add", deltaPct: 6, shareChange: 520000, portfolioImpactPct: 13.5, note: "GE Aerospace early add." },
+
+  { managerSlug: "david-tepper", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "NVDA", action: "new", shareChange: 730000, portfolioImpactPct: 5.0, note: "Tepper's first NVDA position." },
+  { managerSlug: "david-tepper", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "META", action: "add", deltaPct: 8, shareChange: 80000, portfolioImpactPct: 5.5, note: "META add." },
+
+  { managerSlug: "chase-coleman", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "META", action: "add", deltaPct: 25, shareChange: 700000, portfolioImpactPct: 3.4, note: "Tiger META rebuild begins." },
+
+  { managerSlug: "chuck-akre", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "MA", action: "add", deltaPct: 3, shareChange: 175000, portfolioImpactPct: 16.5, note: "Mastercard add." },
+
+  { managerSlug: "terry-smith", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "MSFT", action: "add", deltaPct: 5, shareChange: 410000, portfolioImpactPct: 10.0, note: "Microsoft add." },
 ];
 
 // ---------- QUERIES ----------

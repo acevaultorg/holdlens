@@ -483,7 +483,18 @@ export function getManagerTickerTrend(
   ticker: string
 ): { direction: TrendDirection; streak: number; quarters: string[] } {
   const sym = ticker.toUpperCase();
-  const ordered = (["2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4"] as const);
+  // v0.23: 8 quarters — oldest → newest. A manager with a 6Q buy streak across
+  // the 2024→2025 boundary gets full credit now.
+  const ordered = ([
+    "2024-Q1",
+    "2024-Q2",
+    "2024-Q3",
+    "2024-Q4",
+    "2025-Q1",
+    "2025-Q2",
+    "2025-Q3",
+    "2025-Q4",
+  ] as const);
   const moves = ALL_MOVES.filter(
     (m) => m.managerSlug === managerSlug && m.ticker.toUpperCase() === sym
   );

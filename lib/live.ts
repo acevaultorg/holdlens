@@ -20,14 +20,16 @@ export type LiveQuote = {
 };
 
 const TTL_MS = 60 * 1000;
-const CACHE_KEY = (sym: string) => `hl_quote_${sym.toUpperCase()}`;
+// Cache is keyed by symbol + range so a short-range fetch (e.g. /best-now with
+// 1y) doesn't poison a long-range fetch (e.g. /proof with 2y for Q4 2024).
+const CACHE_KEY = (sym: string, range: string) => `hl_quote_${sym.toUpperCase()}_${range}`;
 
 type CachedQuote = { data: LiveQuote; exp: number };
 
-function cacheGet(symbol: string): LiveQuote | null {
+function cacheGet(symbol: string, range: string): LiveQuote | null {
   if (typeof window === "undefined") return null;
   try {
-    const raw = sessionStorage.getItem(CACHE_KEY(symbol));
+    const raw = sessionStorage.getItem(CACHE_KEY(symbol, range));
     if (!raw) return null;
     const parsed: CachedQuote = JSON.parse(raw);
     if (parsed.exp < Date.now()) return null;
@@ -37,11 +39,11 @@ function cacheGet(symbol: string): LiveQuote | null {
   }
 }
 
-function cacheSet(symbol: string, data: LiveQuote) {
+function cacheSet(symbol: string, range: string, data: LiveQuote) {
   if (typeof window === "undefined") return;
   try {
     const entry: CachedQuote = { data, exp: Date.now() + TTL_MS };
-    sessionStorage.setItem(CACHE_KEY(symbol), JSON.stringify(entry));
+    sessionStorage.setItem(CACHE_KEY(symbol, range), JSON.stringify(entry));
   } catch {
     // quota exceeded or disabled — ignore
   }
@@ -112,13 +114,13 @@ async function fetchFromYahoo(symbol: string, range: string): Promise<LiveQuote>
  * Uses sessionStorage cache with 60s TTL.
  * Returns null on failure (caller decides fallback UI).
  */
-export async function getQuote(symbol: string, range: "1mo" | "3mo" | "6mo" | "1y" = "1y"): Promise<LiveQuote | null> {
+export async function getQuote(symbol: string, range: "1mo" | "3mo" | "6mo" | "1y" | "2y" | "5y" = "1y"): Promise<LiveQuote | null> {
   const sym = symbol.toUpperCase();
-  const cached = cacheGet(sym);
+  const cached = cacheGet(sym, range);
   if (cached) return cached;
   try {
     const q = await fetchFromYahoo(sym, range);
-    cacheSet(sym, q);
+    cacheSet(sym, range, q);
     return q;
   } catch {
     return null;
@@ -128,7 +130,7 @@ export async function getQuote(symbol: string, range: "1mo" | "3mo" | "6mo" | "1
 /**
  * Batch fetch multiple quotes in parallel. Returns a map of symbol → quote (or null).
  */
-export async function getQuotes(symbols: string[], range: "1mo" | "3mo" | "6mo" | "1y" = "1mo"): Promise<Record<string, LiveQuote | null>> {
+export async function getQuotes(symbols: string[], range: "1mo" | "3mo" | "6mo" | "1y" | "2y" | "5y" = "1mo"): Promise<Record<string, LiveQuote | null>> {
   const out: Record<string, LiveQuote | null> = {};
   const results = await Promise.all(symbols.map((s) => getQuote(s, range).then((q) => [s, q] as const)));
   for (const [s, q] of results) out[s.toUpperCase()] = q;
