@@ -27,6 +27,7 @@
 import { MANAGERS } from "./managers";
 import { ALL_MOVES, getAllMovesEnriched, LATEST_QUARTER, type Move, type MoveAction, type Quarter } from "./moves";
 import { TICKER_INDEX } from "./tickers";
+import { getQualityScore as getROIQuality, getManagerROI } from "./manager-roi";
 
 // ---------- MANAGER QUALITY SCORES ----------
 // Curated 1-10 based on: track record length, known alpha vs S&P, reputation
@@ -66,6 +67,10 @@ export const MANAGER_QUALITY: Record<string, number> = {
 };
 
 function mgrQuality(slug: string): number {
+  // Derived ROI-based quality score takes priority over the hand-curated map.
+  // Falls back to the curated number, then to a neutral 6.
+  const roi = getROIQuality(slug);
+  if (roi != null && roi > 0) return roi;
   return MANAGER_QUALITY[slug] ?? 6;
 }
 
@@ -319,6 +324,140 @@ export function getGrandPortfolio(): Array<{
       if (b.weightedScore !== a.weightedScore) return b.weightedScore - a.weightedScore;
       return b.ownerCount - a.ownerCount;
     });
+}
+
+// ---------- NET SIGNAL v2 ----------
+//
+// The Net Signal Score synthesizes buy + sell signals into a single number.
+// Answers the question: "is this stock a better buy than that one?"
+//
+// Formula:
+//   net = BuyScore - (SellScore × 0.6 dissent penalty)
+//       + UnanimityBonus  (+15 if 0 sellers and ≥3 buyers)
+//       + QualityDifferential ((avgBuyerQ − avgSellerQ) × 3)
+//       + InformationDensity  (log2(totalActions+1) × 4)
+//       clamped −100 to +100
+//
+// Why each component:
+//   - BuyScore: existing 4-factor score from getBuySignals (the consensus)
+//   - SellScore × 0.6: dissent partially offsets buys. Not 1:1 because buying
+//     requires more conviction than trimming (sells include rebalances).
+//   - UnanimityBonus: 5/0 unanimous beats 15/10 mixed even at the same net flow.
+//   - QualityDifferential: Tier-1 buyers vs Tier-2 sellers >> opposite.
+//   - InformationDensity: more total actions = more confidence in the signal direction.
+//
+// See getNetSignal(ticker) for the breakdown — every term is exposed for /signal page UI.
+
+export type NetSignal = {
+  ticker: string;
+  name: string;
+  sector?: string;
+  score: number;          // -100 to +100
+  direction: "BUY" | "SELL" | "NEUTRAL";
+  buyerCount: number;
+  sellerCount: number;
+  netFlow: number;        // raw count delta
+  buyers: BuyerEntry[];
+  sellers: SellerEntry[];
+  breakdown: {
+    buyComponent: number;
+    sellComponent: number;
+    dissentPenalty: number;
+    unanimityBonus: number;
+    qualityDifferential: number;
+    informationDensity: number;
+  };
+  // The raw component scores for transparency
+  buyScore: number;
+  sellScore: number;
+};
+
+export function getNetSignal(ticker: string, quarter: Quarter = LATEST_QUARTER): NetSignal | null {
+  const sym = ticker.toUpperCase();
+  const buys = getBuySignals(quarter);
+  const sells = getSellSignals(quarter);
+  const buy = buys.find((s) => s.ticker === sym);
+  const sell = sells.find((s) => s.ticker === sym);
+
+  if (!buy && !sell) return null;
+
+  const buyScore = buy?.score ?? 0;
+  const sellScore = sell?.score ?? 0;
+  const buyerCount = buy?.buyerCount ?? 0;
+  const sellerCount = sell?.sellerCount ?? 0;
+
+  // Average buyer / seller quality
+  const avgBuyerQ =
+    buy && buy.buyers.length > 0
+      ? buy.buyers.reduce((s, b) => s + b.quality, 0) / buy.buyers.length
+      : 0;
+  const avgSellerQ =
+    sell && sell.sellers.length > 0
+      ? sell.sellers.reduce((s, b) => s + b.quality, 0) / sell.sellers.length
+      : 0;
+
+  // Components
+  const buyComponent = buyScore;
+  const sellComponent = sellScore;
+  const dissentPenalty = sellScore * 0.6;
+  const unanimityBonus = sellerCount === 0 && buyerCount >= 3 ? 15 : 0;
+  const qualityDifferential =
+    avgBuyerQ > 0 && avgSellerQ > 0 ? (avgBuyerQ - avgSellerQ) * 3 : 0;
+  const totalActions = buyerCount + sellerCount;
+  const informationDensity = Math.log2(totalActions + 1) * 4;
+
+  let raw = buyComponent - dissentPenalty + unanimityBonus + qualityDifferential + informationDensity;
+  // If purely a sell, the raw is negative — invert for sell direction
+  if (buyerCount === 0 && sellerCount > 0) {
+    raw = -(sellComponent + sellComponent * 0.2 + (sellerCount >= 3 ? 10 : 0) + informationDensity);
+  }
+
+  const score = Math.max(-100, Math.min(100, raw));
+
+  let direction: "BUY" | "SELL" | "NEUTRAL" = "NEUTRAL";
+  if (score >= 30) direction = "BUY";
+  else if (score <= -30) direction = "SELL";
+
+  const ticker_data = TICKER_INDEX[sym];
+
+  return {
+    ticker: sym,
+    name: buy?.name ?? sell?.name ?? ticker_data?.name ?? sym,
+    sector: buy?.sector ?? sell?.sector ?? ticker_data?.sector,
+    score: Math.round(score),
+    direction,
+    buyerCount,
+    sellerCount,
+    netFlow: buyerCount - sellerCount,
+    buyers: buy?.buyers ?? [],
+    sellers: sell?.sellers ?? [],
+    breakdown: {
+      buyComponent: Math.round(buyComponent),
+      sellComponent: Math.round(sellComponent),
+      dissentPenalty: Math.round(dissentPenalty),
+      unanimityBonus,
+      qualityDifferential: Math.round(qualityDifferential),
+      informationDensity: Math.round(informationDensity),
+    },
+    buyScore: Math.round(buyScore),
+    sellScore: Math.round(sellScore),
+  };
+}
+
+/** All net signals across the latest quarter, sorted highest score first. */
+export function getAllNetSignals(quarter: Quarter = LATEST_QUARTER): NetSignal[] {
+  // Build a set of every ticker that had any move this quarter
+  const enriched = getAllMovesEnriched();
+  const tickers = new Set<string>();
+  for (const m of enriched) {
+    if (m.quarter === quarter) tickers.add(m.ticker.toUpperCase());
+  }
+  const out: NetSignal[] = [];
+  for (const t of tickers) {
+    const s = getNetSignal(t, quarter);
+    if (s) out.push(s);
+  }
+  return out.sort((a, b) => b.score - a.score);
 }
 
 // ---------- RATING BADGE ----------

@@ -6,87 +6,87 @@
     <atom:link href="https://holdlens.com/sells.xml" rel="self" type="application/rss+xml" />
     <description>Top sell signals from the best portfolio managers in the world — ranked by HoldLens's exit-share + dump-severity model. Updated every 13F filing deadline.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2026 11:27:53 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2026 11:45:02 GMT</lastBuildDate>
     <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
     <item>
       <title>META sell signal — 85/100 · 5 managers selling</title>
       <link>https://holdlens.com/signal/META</link>
       <guid isPermaLink="true">https://holdlens.com/signal/META?rank=1&sell=1</guid>
-      <description>Chris Hohn, Chuck Akre, Terry Smith, David Tepper, Polen Capital are selling META (Meta Platforms) this quarter. Multi-factor sell-signal score: 85/100. Seller list with quality: Chris Hohn (Q9), Chuck Akre (Q9), Terry Smith (Q9), David Tepper (Q9), Polen Capital (Q8).</description>
+      <description>Chris Hohn, David Tepper, Chuck Akre, Terry Smith, Polen Capital are selling META (Meta Platforms) this quarter. Multi-factor sell-signal score: 85/100. Seller list with quality: Chris Hohn (Q8.2), David Tepper (Q7.6), Chuck Akre (Q7), Terry Smith (Q5.8), Polen Capital (Q5.6).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Technology</category>
     </item>
     <item>
-      <title>AAPL sell signal — 41/100 · 2 managers selling</title>
-      <link>https://holdlens.com/signal/AAPL</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/AAPL?rank=2&sell=1</guid>
-      <description>Warren Buffett, David Rolfe are selling AAPL (Apple Inc.) this quarter. Multi-factor sell-signal score: 41/100. Seller list with quality: Warren Buffett (Q10), David Rolfe (Q9).</description>
+      <title>MSFT sell signal — 35/100 · 2 managers selling</title>
+      <link>https://holdlens.com/signal/MSFT</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/MSFT?rank=2&sell=1</guid>
+      <description>Stanley Druckenmiller, William von Mueffling are selling MSFT (Microsoft) this quarter. Multi-factor sell-signal score: 35/100. Seller list with quality: Stanley Druckenmiller (Q7.2), William von Mueffling (Q3.8).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Technology</category>
     </item>
     <item>
-      <title>NVDA sell signal — 41/100 · 2 managers selling</title>
+      <title>NVDA sell signal — 35/100 · 2 managers selling</title>
       <link>https://holdlens.com/signal/NVDA</link>
       <guid isPermaLink="true">https://holdlens.com/signal/NVDA?rank=3&sell=1</guid>
-      <description>Stanley Druckenmiller, Chase Coleman are selling NVDA (NVIDIA) this quarter. Multi-factor sell-signal score: 41/100. Seller list with quality: Stanley Druckenmiller (Q9), Chase Coleman (Q8).</description>
+      <description>Stanley Druckenmiller, Chase Coleman are selling NVDA (NVIDIA) this quarter. Multi-factor sell-signal score: 35/100. Seller list with quality: Stanley Druckenmiller (Q7.2), Chase Coleman (Q3.3).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Technology</category>
     </item>
     <item>
-      <title>MSFT sell signal — 39/100 · 2 managers selling</title>
-      <link>https://holdlens.com/signal/MSFT</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/MSFT?rank=4&sell=1</guid>
-      <description>Stanley Druckenmiller, William von Mueffling are selling MSFT (Microsoft) this quarter. Multi-factor sell-signal score: 39/100. Seller list with quality: Stanley Druckenmiller (Q9), William von Mueffling (Q8).</description>
+      <title>AAPL sell signal — 33/100 · 2 managers selling</title>
+      <link>https://holdlens.com/signal/AAPL</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/AAPL?rank=4&sell=1</guid>
+      <description>Warren Buffett, David Rolfe are selling AAPL (Apple Inc.) this quarter. Multi-factor sell-signal score: 33/100. Seller list with quality: Warren Buffett (Q5.9), David Rolfe (Q4.8).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Technology</category>
     </item>
     <item>
-      <title>BAC sell signal — 21/100 · 1 managers selling</title>
+      <title>OXY sell signal — 22/100 · 1 managers selling</title>
+      <link>https://holdlens.com/signal/OXY</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/OXY?rank=5&sell=1</guid>
+      <description>Carl Icahn is selling OXY (Occidental Petroleum) this quarter. Multi-factor sell-signal score: 22/100. Seller list with quality: Carl Icahn (Q8).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Energy</category>
+    </item>
+    <item>
+      <title>BAC sell signal — 18/100 · 1 managers selling</title>
       <link>https://holdlens.com/signal/BAC</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/BAC?rank=5&sell=1</guid>
-      <description>Warren Buffett is selling BAC (Bank of America) this quarter. Multi-factor sell-signal score: 21/100. Seller list with quality: Warren Buffett (Q10).</description>
+      <guid isPermaLink="true">https://holdlens.com/signal/BAC?rank=6&sell=1</guid>
+      <description>Warren Buffett is selling BAC (Bank of America) this quarter. Multi-factor sell-signal score: 18/100. Seller list with quality: Warren Buffett (Q5.9).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Financials</category>
     </item>
     <item>
-      <title>WBD sell signal — 20/100 · 1 managers selling</title>
-      <link>https://holdlens.com/signal/WBD</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/WBD?rank=6&sell=1</guid>
-      <description>Seth Klarman is selling WBD (Warner Bros. Discovery) this quarter. Multi-factor sell-signal score: 20/100. Seller list with quality: Seth Klarman (Q9).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Communication</category>
-    </item>
-    <item>
-      <title>OXY sell signal — 19/100 · 1 managers selling</title>
-      <link>https://holdlens.com/signal/OXY</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/OXY?rank=7&sell=1</guid>
-      <description>Carl Icahn is selling OXY (Occidental Petroleum) this quarter. Multi-factor sell-signal score: 19/100. Seller list with quality: Carl Icahn (Q8).</description>
+      <title>SHEL sell signal — 18/100 · 1 managers selling</title>
+      <link>https://holdlens.com/signal/SHEL</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/SHEL?rank=7&sell=1</guid>
+      <description>Michael Burry is selling SHEL (Shell) this quarter. Multi-factor sell-signal score: 18/100. Seller list with quality: Michael Burry (Q4.6).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Energy</category>
     </item>
     <item>
-      <title>TSLA sell signal — 19/100 · 1 managers selling</title>
+      <title>HHH sell signal — 16/100 · 1 managers selling</title>
+      <link>https://holdlens.com/signal/HHH</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/HHH?rank=8&sell=1</guid>
+      <description>Bill Ackman is selling HHH (Howard Hughes Holdings) this quarter. Multi-factor sell-signal score: 16/100. Seller list with quality: Bill Ackman (Q5.1).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Real Estate</category>
+    </item>
+    <item>
+      <title>TSLA sell signal — 16/100 · 1 managers selling</title>
       <link>https://holdlens.com/signal/TSLA</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/TSLA?rank=8&sell=1</guid>
-      <description>Tom Slater is selling TSLA (Tesla) this quarter. Multi-factor sell-signal score: 19/100. Seller list with quality: Tom Slater (Q8).</description>
+      <guid isPermaLink="true">https://holdlens.com/signal/TSLA?rank=9&sell=1</guid>
+      <description>Tom Slater is selling TSLA (Tesla) this quarter. Multi-factor sell-signal score: 16/100. Seller list with quality: Tom Slater (Q4.8).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Other</category>
     </item>
     <item>
-      <title>SHEL sell signal — 19/100 · 1 managers selling</title>
-      <link>https://holdlens.com/signal/SHEL</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/SHEL?rank=9&sell=1</guid>
-      <description>Michael Burry is selling SHEL (Shell) this quarter. Multi-factor sell-signal score: 19/100. Seller list with quality: Michael Burry (Q7).</description>
+      <title>WBD sell signal — 11/100 · 1 managers selling</title>
+      <link>https://holdlens.com/signal/WBD</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/WBD?rank=10&sell=1</guid>
+      <description>Seth Klarman is selling WBD (Warner Bros. Discovery) this quarter. Multi-factor sell-signal score: 11/100. Seller list with quality: Seth Klarman (Q2.2).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Energy</category>
-    </item>
-    <item>
-      <title>HHH sell signal — 18/100 · 1 managers selling</title>
-      <link>https://holdlens.com/signal/HHH</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/HHH?rank=10&sell=1</guid>
-      <description>Bill Ackman is selling HHH (Howard Hughes Holdings) this quarter. Multi-factor sell-signal score: 18/100. Seller list with quality: Bill Ackman (Q8).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Real Estate</category>
+      <category>Communication</category>
     </item>
   </channel>
 </rss>

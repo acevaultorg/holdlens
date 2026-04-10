@@ -53,10 +53,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/buys" className="hover:text-emerald-400 transition font-semibold">Buys</a>
               <a href="/sells" className="hover:text-rose-400 transition font-semibold">Sells</a>
               <a href="/this-week" className="hover:text-text transition hidden sm:inline">This week</a>
-              <a href="/screener" className="hover:text-text transition hidden md:inline">Screener</a>
-              <a href="/alerts" className="hover:text-text transition hidden md:inline">Alerts</a>
-              <a href="/grand" className="hover:text-text transition hidden lg:inline">Grand</a>
-              <a href="/investor" className="hover:text-text transition hidden lg:inline">Investors</a>
+              <a href="/leaderboard" className="hover:text-text transition hidden md:inline">Leaderboard</a>
+              <a href="/screener" className="hover:text-text transition hidden lg:inline">Screener</a>
+              <a href="/alerts" className="hover:text-text transition hidden lg:inline">Alerts</a>
               <a href="/pricing" className="text-brand hover:text-text transition font-semibold hidden md:inline">Pro</a>
               <GlobalSearch />
             </nav>

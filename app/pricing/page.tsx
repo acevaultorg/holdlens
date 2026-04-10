@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EmailCapture from "@/components/EmailCapture";
+import StripeCheckoutButton from "@/components/StripeCheckoutButton";
 import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
@@ -75,13 +76,16 @@ export default function PricingPage() {
 
           <div className="mb-6">
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
-              Get early access
+              Founders rate · 100 spots
             </div>
             <p className="text-xs text-muted mb-3">
-              Pro launches Q2 2026. Drop your email to lock in $14/mo before the price goes up.
-              Founders pay this rate for life.
+              First 100 subscribers lock in <span className="text-text font-semibold">$9/mo for life</span>.
+              After that, the price goes up to $14/mo. Cancel anytime.
             </p>
-            <EmailCapture />
+            <StripeCheckoutButton variant="founders" label="Subscribe — $9/mo founders rate →" />
+            <p className="text-[11px] text-dim mt-3 text-center">
+              or <a href="/alerts" className="underline">join the waitlist</a> if you want to wait
+            </p>
           </div>
 
           <ul className="space-y-3 text-sm">

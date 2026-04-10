@@ -8,8 +8,10 @@ import TickerEarnings from "@/components/TickerEarnings";
 import InsiderActivity from "@/components/InsiderActivity";
 import StarButton from "@/components/StarButton";
 import SocialShare from "@/components/SocialShare";
+import AffiliateCTA from "@/components/AffiliateCTA";
+import AdSlot from "@/components/AdSlot";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
-import { getTickerSignals, getTickerTrend, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
+import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
 import { MANAGERS } from "@/lib/managers";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 
@@ -65,23 +67,20 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
 
   const { buy, sell } = getTickerSignals(t.symbol);
   const trend = getTickerTrend(t.symbol);
+  const net = getNetSignal(t.symbol);
 
   const buyRating = buy ? ratingLabel(buy.score) : null;
   const sellRating = sell ? ratingLabel(sell.score) : null;
 
-  // Verdict: the direction with the higher score wins, but if both are low, NEUTRAL
-  let verdict: "BUY" | "SELL" | "NEUTRAL" = "NEUTRAL";
-  let verdictScore = 0;
-  let verdictColor = "text-muted border-border bg-panel";
-  if (buy && (!sell || buy.score > sell.score + 10)) {
-    verdict = "BUY";
-    verdictScore = buy.score;
-    verdictColor = "text-emerald-400 border-emerald-400/40 bg-emerald-400/5";
-  } else if (sell && (!buy || sell.score > buy.score + 10)) {
-    verdict = "SELL";
-    verdictScore = sell.score;
-    verdictColor = "text-rose-400 border-rose-400/40 bg-rose-400/5";
-  }
+  // Verdict from the v2 NetSignal (synthesizes buys + sells + dissent + unanimity)
+  const verdict: "BUY" | "SELL" | "NEUTRAL" = net?.direction ?? "NEUTRAL";
+  const verdictScore = Math.abs(net?.score ?? 0);
+  const verdictColor =
+    verdict === "BUY"
+      ? "text-emerald-400 border-emerald-400/40 bg-emerald-400/5"
+      : verdict === "SELL"
+      ? "text-rose-400 border-rose-400/40 bg-rose-400/5"
+      : "text-muted border-border bg-panel";
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
@@ -149,6 +148,42 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         </div>
       </div>
 
+      {/* NetSignal breakdown — show the math */}
+      {net && (
+        <section className="mt-6 rounded-2xl border border-border bg-panel p-5">
+          <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+            <div>
+              <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-1">
+                Net signal score · v2
+              </div>
+              <div className="text-xs text-muted">
+                Buys minus dissent + unanimity + quality differential + info density
+              </div>
+            </div>
+            <div className={`text-2xl font-bold tabular-nums ${verdict === "BUY" ? "text-emerald-400" : verdict === "SELL" ? "text-rose-400" : "text-muted"}`}>
+              {net.score >= 0 ? "+" : ""}{net.score}
+            </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
+            <BreakdownStat label="Buy component" value={`+${net.breakdown.buyComponent}`} positive />
+            <BreakdownStat label="Dissent penalty" value={`−${net.breakdown.dissentPenalty}`} negative={net.breakdown.dissentPenalty > 0} />
+            <BreakdownStat
+              label="Unanimity bonus"
+              value={net.breakdown.unanimityBonus > 0 ? `+${net.breakdown.unanimityBonus}` : "0"}
+              positive={net.breakdown.unanimityBonus > 0}
+            />
+            <BreakdownStat
+              label="Quality differential"
+              value={`${net.breakdown.qualityDifferential >= 0 ? "+" : ""}${net.breakdown.qualityDifferential}`}
+              positive={net.breakdown.qualityDifferential > 0}
+              negative={net.breakdown.qualityDifferential < 0}
+            />
+            <BreakdownStat label="Info density" value={`+${net.breakdown.informationDensity}`} positive />
+            <BreakdownStat label="Buyers / Sellers" value={`${net.buyerCount} / ${net.sellerCount}`} />
+          </div>
+        </section>
+      )}
+
       {/* Live price + chart */}
       <section className="mt-8">
         <LiveQuote symbol={t.symbol} size="xl" />
@@ -162,6 +197,9 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
       <section className="mt-6">
         <TickerEarnings symbol={t.symbol} />
       </section>
+
+      {/* Affiliate CTA — primary revenue surface, placed right after the verdict */}
+      <AffiliateCTA symbol={t.symbol} />
 
       {/* Trend — consecutive-quarter signals */}
       {(trend.consistentBuyers.length > 0 || trend.consistentSellers.length > 0) && (
@@ -243,6 +281,9 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         </div>
       </section>
 
+      {/* Mid-page ad slot */}
+      <AdSlot format="in-article" />
+
       {/* Share */}
       <section className="mt-12">
         <SocialShare
@@ -263,6 +304,26 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         and real-time news. Not investment advice.{" "}
         <a href="/methodology" className="underline">Methodology</a>.
       </p>
+    </div>
+  );
+}
+
+function BreakdownStat({
+  label,
+  value,
+  positive,
+  negative,
+}: {
+  label: string;
+  value: string;
+  positive?: boolean;
+  negative?: boolean;
+}) {
+  const color = positive ? "text-emerald-400" : negative ? "text-rose-400" : "text-text";
+  return (
+    <div className="rounded-lg bg-bg/40 border border-border p-2.5">
+      <div className="text-[9px] uppercase tracking-wider text-dim font-semibold mb-1">{label}</div>
+      <div className={`text-base font-bold tabular-nums ${color}`}>{value}</div>
     </div>
   );
 }

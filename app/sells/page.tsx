@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import CsvExportButton from "@/components/CsvExportButton";
 import TrendBadge from "@/components/TrendBadge";
+import AdSlot from "@/components/AdSlot";
 import { getSellSignals, ratingLabel } from "@/lib/signals";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 
@@ -146,7 +147,9 @@ export default function SellsPage() {
         </div>
       )}
 
-      <p className="text-xs text-dim mt-16">
+      <AdSlot format="horizontal" />
+
+      <p className="text-xs text-dim mt-8">
         Sell signals do not imply a stock will decline. Sometimes managers trim profitably. Use these signals as one input,
         not as the whole thesis. <a href="/methodology" className="underline">Methodology</a>. Not investment advice.
       </p>

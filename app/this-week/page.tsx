@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
 import CsvExportButton from "@/components/CsvExportButton";
+import AdSlot from "@/components/AdSlot";
 import { getBuySignals, getSellSignals, ratingLabel } from "@/lib/signals";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
@@ -38,6 +39,8 @@ export default function ThisWeekPage() {
         <SignalColumn kind="buy" title="Top buys" signals={topBuys} quarterLabel={quarterLabel} />
         <SignalColumn kind="sell" title="Top sells" signals={topSells} quarterLabel={quarterLabel} />
       </div>
+
+      <AdSlot format="horizontal" />
 
       {/* CSV export */}
       <div className="mb-12 flex justify-center">
