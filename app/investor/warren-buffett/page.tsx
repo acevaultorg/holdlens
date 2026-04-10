@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import EmailCapture from "@/components/EmailCapture";
 import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
+import InvestorMoves from "@/components/InvestorMoves";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
@@ -62,6 +63,14 @@ export default function BuffettPage() {
           holdings={BUFFETT_TOP.map((h) => ({ ticker: h.ticker, sharesMn: h.sharesMn, pct: h.pctPortfolio }))}
           label="Buffett's portfolio value"
         />
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-3">Recent moves</h2>
+        <p className="text-muted text-sm mb-6 max-w-2xl">
+          Every tracked Berkshire 13F move — buys, adds, trims, and exits — over the last two quarters.
+        </p>
+        <InvestorMoves slug="warren-buffett" />
       </section>
 
       <section className="mt-12">

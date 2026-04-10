@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import EmailCapture from "@/components/EmailCapture";
 import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
+import InvestorMoves from "@/components/InvestorMoves";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
+import { MANAGER_QUALITY } from "@/lib/signals";
 
 // Find managers whose top 10 holdings overlap with this manager's top 10.
 // Scored by count of shared tickers. Returns the top 3 related.
@@ -113,6 +115,20 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
 
       <section className="mt-8">
         <PortfolioValue holdings={m.topHoldings.map((h) => ({ ticker: h.ticker, sharesMn: h.sharesMn, pct: h.pct }))} label={`${m.name.split(" ")[0]}'s portfolio value`} />
+      </section>
+
+      <section className="mt-12">
+        <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
+          <h2 className="text-2xl font-bold">Recent moves</h2>
+          <div className="text-xs text-dim">
+            Manager quality score:{" "}
+            <span className="text-brand font-semibold">{MANAGER_QUALITY[m.slug] ?? 6}/10</span>
+          </div>
+        </div>
+        <p className="text-muted text-sm mb-6 max-w-2xl">
+          Every tracked 13F move — buys, adds, trims, and exits — over the last two quarters.
+        </p>
+        <InvestorMoves slug={m.slug} />
       </section>
 
       <section className="mt-12">

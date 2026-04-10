@@ -4,6 +4,7 @@ import EmailCapture from "@/components/EmailCapture";
 import LiveQuote from "@/components/LiveQuote";
 import LiveChart from "@/components/LiveChart";
 import StarButton from "@/components/StarButton";
+import TickerActivity from "@/components/TickerActivity";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
@@ -78,6 +79,15 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         <Stat label="Sum of conviction" value={`${t.totalConviction.toFixed(0)}%`} />
         <Stat label="Sector" value={t.sector || "Other"} />
       </div>
+
+      {/* Smart-money activity feed — Q3 + Q4 2025 */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-2">Smart money activity</h2>
+        <p className="text-muted text-sm mb-6">
+          Every tracked buy, add, trim, and exit on {t.symbol} by the best portfolio managers in the world. Ranked by manager quality inside each quarter.
+        </p>
+        <TickerActivity symbol={t.symbol} />
+      </section>
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold mb-2">Hedge funds holding {t.symbol}</h2>

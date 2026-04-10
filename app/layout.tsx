@@ -49,13 +49,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="/" className="flex items-center gap-2 font-semibold text-lg">
               <span className="text-brand">◉</span> HoldLens
             </a>
-            <nav className="flex items-center gap-5 text-sm text-muted">
-              <a href="/top-picks" className="hover:text-text transition">Top picks</a>
-              <a href="/investor" className="hover:text-text transition">Investors</a>
-              <a href="/ticker" className="hover:text-text transition">Stocks</a>
-              <a href="/watchlist" className="hover:text-text transition hidden sm:inline">Watchlist</a>
-              <a href="/simulate" className="hover:text-text transition hidden md:inline">Backtest</a>
-              <a href="/learn" className="hover:text-text transition hidden md:inline">Learn</a>
+            <nav className="flex items-center gap-4 text-sm text-muted">
+              <a href="/buys" className="hover:text-emerald-400 transition font-semibold">Buys</a>
+              <a href="/sells" className="hover:text-rose-400 transition font-semibold">Sells</a>
+              <a href="/activity" className="hover:text-text transition hidden sm:inline">Activity</a>
+              <a href="/grand" className="hover:text-text transition hidden md:inline">Grand</a>
+              <a href="/investor" className="hover:text-text transition hidden md:inline">Investors</a>
+              <a href="/ticker" className="hover:text-text transition hidden md:inline">Stocks</a>
+              <a href="/watchlist" className="hover:text-text transition hidden lg:inline">Watchlist</a>
               <GlobalSearch />
             </nav>
           </div>
@@ -65,6 +66,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
             <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice. · <span className="opacity-50 text-xs">Powered by AcePilot</span></div>
             <div className="flex gap-5 flex-wrap">
+              <a href="/buys" className="hover:text-emerald-400">Buys</a>
+              <a href="/sells" className="hover:text-rose-400">Sells</a>
+              <a href="/activity" className="hover:text-text">Activity</a>
+              <a href="/grand" className="hover:text-text">Grand</a>
               <a href="/top-picks" className="hover:text-text">Top picks</a>
               <a href="/investor" className="hover:text-text">Investors</a>
               <a href="/ticker" className="hover:text-text">Stocks</a>
