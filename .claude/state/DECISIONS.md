@@ -126,3 +126,72 @@ Tier-2 quality. New managers and why:
 **Why stop at 22:** Diminishing returns beyond Tier-1. To expand to 80+
 (Dataroma's roster) we need EDGAR automation (v0.2). 22 handpicked Tier-1
 managers produce stronger signals than 80 including mediocrities.
+
+## 2026-04-10 — v0.15 Multi-quarter historical moves
+
+**Decision:** Added Q1 and Q2 2025 moves to lib/moves.ts so every manager now
+has up to 4 quarters of trackable activity. Total movements shipped: ~150
+across 22 managers × 4 quarters.
+
+**Why:** A single-quarter snapshot is noisy — one Buffett trim doesn't tell
+you much. Three consecutive quarters of Klarman + Marks + Druckenmiller
+building VST is a wedge-shaped signal. Dataroma shows Q-over-Q data but
+doesn't surface streaks. HoldLens now does, via
+`getManagerTickerTrend()` and `getTickerTrend()` in `lib/signals.ts`.
+
+The trend helpers return consecutive-quarter streak count per manager per
+ticker, which feeds the `/signal/[ticker]` dossier page's "Multi-quarter
+conviction" column. This is the first visible HoldLens feature that
+Dataroma structurally cannot replicate without rewriting their backend.
+
+## 2026-04-10 — v0.15 Signal dossier is the new conversion surface
+
+**Decision:** `/signal/[ticker]` is a dedicated per-ticker dossier page
+that combines: BUY/SELL/NEUTRAL verdict badge, multi-quarter trend column,
+activity feed, live news, interactive chart, current ownership table. All
+linked from /buys and /sells ranking pages.
+
+**Why:** The v0.14 homepage signals + /buys /sells pages surface WHAT to
+act on but the user still has to open /ticker/[symbol] to see the detail.
+The signal dossier is the single-page "should I or shouldn't I" experience.
+This is the page we'll send traffic to via email alerts in v0.4.
+
+**Verdict logic:** the direction with the higher score wins, unless the
+scores are within 10 points of each other (then NEUTRAL). The 10-point
+buffer prevents flip-flopping between BUY and SELL when the signals are
+nearly balanced.
+
+## 2026-04-10 — v0.15 Yahoo Finance news API chosen for TickerNews
+
+**Decision:** Used Yahoo Finance v1 search API
+(`/v1/finance/search?q=SYMBOL&newsCount=N`) for per-ticker news, falling
+back to corsproxy.io on CORS failure. 15-minute sessionStorage cache.
+
+**Why:**
+- Same origin we already use for quotes (v0.13 decision) — keeps the
+  external-dependency surface minimal
+- No API key needed
+- Returns title + publisher + link + publishedAt in one call
+- News is lower-value than price (15min cache is fine, vs 60s for quotes)
+
+**Fallback behavior:** on complete failure, the component renders "No news
+available" without breaking the page. News is additive, not load-bearing.
+
+## 2026-04-10 — v0.15 Homepage stats are now computed from live data
+
+**Decision:** Replaced the hardcoded "$1.5T assets under watch" homepage
+stat with `<LiveStats>`, a client component that fetches live prices for
+every tracked position and sums `price × sharesMn × 1e6` to produce a real
+"Tracked long positions · live" figure.
+
+**Why:** "$1.5T" was a credibility drag the moment v0.13 added live prices
+everywhere else on the site. Either the stat is live or the "always current"
+tagline is a lie. We chose live.
+
+**Edge case:** on CORS failure or first load, `LiveStats` renders "—" rather
+than a placeholder number. Honest, not misleading.
+
+**Trade-off:** computing the aggregate requires fetching ~80 quotes on home
+page load. Mitigated by the 60s sessionStorage cache in `lib/live.ts` — a
+second homepage view hits the cache. Cold-load adds ~2-3 seconds to stat
+population but the rest of the page renders immediately.

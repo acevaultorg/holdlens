@@ -1,8 +1,8 @@
 import EmailCapture from "@/components/EmailCapture";
 import BuySellSignals from "@/components/BuySellSignals";
+import LiveStats from "@/components/LiveStats";
 import { MANAGERS } from "@/lib/managers";
 import { topTickers } from "@/lib/tickers";
-import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 
 export default function HomePage() {
   const featuredManagers = MANAGERS.slice(0, 6);
@@ -44,13 +44,8 @@ export default function HomePage() {
         <BuySellSignals />
       </section>
 
-      {/* Stats */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-6 py-10 border-b border-border">
-        <Stat big={`${MANAGERS.length}`} label="Tier-1 managers tracked" />
-        <Stat big="2" label="Quarters of move data" />
-        <Stat big="Live" label="Prices & charts" />
-        <Stat big="Free" label="Forever core tier" />
-      </section>
+      {/* Live stats — computed client-side */}
+      <LiveStats />
 
       {/* Backtest gallery — the viral wedge front and center */}
       <section className="py-20">
@@ -171,15 +166,6 @@ export default function HomePage() {
         </div>
         <div className="text-xs text-dim mt-4">Free forever. ~3 emails per week during filing seasons.</div>
       </section>
-    </div>
-  );
-}
-
-function Stat({ big, label }: { big: string; label: string }) {
-  return (
-    <div className="text-center">
-      <div className="text-4xl font-bold text-text tabular-nums">{big}</div>
-      <div className="text-xs uppercase tracking-wider text-dim mt-1">{label}</div>
     </div>
   );
 }

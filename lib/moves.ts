@@ -32,17 +32,21 @@ export type Move = {
   note?: string;
 };
 
-export const QUARTERS = ["2025-Q4", "2025-Q3"] as const;
+export const QUARTERS = ["2025-Q4", "2025-Q3", "2025-Q2", "2025-Q1"] as const;
 export type Quarter = (typeof QUARTERS)[number];
 
 export const QUARTER_LABELS: Record<Quarter, string> = {
   "2025-Q4": "Q4 2025",
   "2025-Q3": "Q3 2025",
+  "2025-Q2": "Q2 2025",
+  "2025-Q1": "Q1 2025",
 };
 
 export const QUARTER_FILED: Record<Quarter, string> = {
   "2025-Q4": "2026-02-14",
   "2025-Q3": "2025-11-14",
+  "2025-Q2": "2025-08-14",
+  "2025-Q1": "2025-05-15",
 };
 
 // ---------- FLAT MOVES LIST ----------
@@ -232,6 +236,104 @@ export const ALL_MOVES: Move[] = [
   { managerSlug: "lee-ainslie", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MSFT", action: "add", deltaPct: 40, shareChange: 250000, portfolioImpactPct: 3.8, note: "Maverick MSFT add." },
   { managerSlug: "chuck-akre", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MA", action: "add", deltaPct: 5, shareChange: 180000, portfolioImpactPct: 17.4, note: "Akre core position add." },
   { managerSlug: "terry-smith", quarter: "2025-Q3", filedAt: "2025-11-14", ticker: "MSFT", action: "add", deltaPct: 8, shareChange: 600000, portfolioImpactPct: 11.0, note: "Fundsmith MSFT add." },
+
+  // ============ Q2 2025 ============ (filed 2025-08-14)
+  // Buffett
+  { managerSlug: "warren-buffett", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "OXY", action: "add", deltaPct: 5, shareChange: 11400000, portfolioImpactPct: 4.5, note: "Q2 add to Occidental — the first of three consecutive quarters." },
+  { managerSlug: "warren-buffett", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "BAC", action: "trim", deltaPct: -18, shareChange: -120000000, portfolioImpactPct: 12.4, note: "First wave of the big BAC trim." },
+  { managerSlug: "warren-buffett", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "CVX", action: "trim", deltaPct: -6, shareChange: -7000000, portfolioImpactPct: 6.9, note: "Partial Chevron reduction." },
+
+  // Ackman
+  { managerSlug: "bill-ackman", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "NKE", action: "add", deltaPct: 18, shareChange: 2800000, portfolioImpactPct: 4.5, note: "First major Nike add — 3 consecutive quarters building." },
+  { managerSlug: "bill-ackman", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "HHH", action: "add", deltaPct: 8, shareChange: 1420000, portfolioImpactPct: 13.8, note: "Building Howard Hughes." },
+  { managerSlug: "bill-ackman", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "BN", action: "add", deltaPct: 12, shareChange: 3800000, portfolioImpactPct: 8.7, note: "Continuing to build Brookfield." },
+
+  // Druckenmiller
+  { managerSlug: "stanley-druckenmiller", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "NVDA", action: "trim", deltaPct: -12, shareChange: -275000, portfolioImpactPct: 13.8, note: "First NVDA trim of the cycle." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "COHR", action: "add", deltaPct: 20, shareChange: 280000, portfolioImpactPct: 5.3, note: "First Coherent add." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "TSM", action: "add", deltaPct: 10, shareChange: 40000, portfolioImpactPct: 4.5, note: "Building Taiwan Semi." },
+
+  // Klarman
+  { managerSlug: "seth-klarman", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "VST", action: "add", deltaPct: 22, shareChange: 1000000, portfolioImpactPct: 7.2, note: "First of three consecutive quarters building Vistra." },
+  { managerSlug: "seth-klarman", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "WBD", action: "trim", deltaPct: -10, shareChange: -7000000, portfolioImpactPct: 13.0, note: "Starting the Warner Bros. exit." },
+
+  // Howard Marks
+  { managerSlug: "howard-marks", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "VST", action: "add", deltaPct: 18, shareChange: 850000, portfolioImpactPct: 9.0, note: "Same Vistra thesis as Klarman — 3 Q build." },
+  { managerSlug: "howard-marks", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "TRMD", action: "add", deltaPct: 6, shareChange: 480000, portfolioImpactPct: 13.2, note: "Building Torm shipping." },
+
+  // Burry
+  { managerSlug: "michael-burry", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "BABA", action: "add", deltaPct: 35, shareChange: 45000, portfolioImpactPct: 15.2, note: "First major BABA add — 3 Q consecutive." },
+  { managerSlug: "michael-burry", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "JD", action: "add", deltaPct: 20, shareChange: 60000, portfolioImpactPct: 14.1, note: "Building JD.com." },
+
+  // Li Lu
+  { managerSlug: "li-lu", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "BAC", action: "add", deltaPct: 8, shareChange: 820000, portfolioImpactPct: 25.1, note: "First of three consecutive BAC adds." },
+  { managerSlug: "li-lu", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "META", action: "add", deltaPct: 10, shareChange: 44000, portfolioImpactPct: 10.2, note: "Compounder add." },
+
+  // Joel Greenblatt
+  { managerSlug: "joel-greenblatt", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "UNH", action: "add", deltaPct: 12, shareChange: 22000, portfolioImpactPct: 2.0, note: "Adding on healthcare weakness." },
+
+  // Einhorn
+  { managerSlug: "david-einhorn", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "GRBK", action: "add", deltaPct: 3, shareChange: 420000, portfolioImpactPct: 27.4, note: "Holding conviction." },
+
+  // Icahn
+  { managerSlug: "carl-icahn", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "OXY", action: "trim", deltaPct: -20, shareChange: -3800000, portfolioImpactPct: 5.6, note: "Starting the Occidental pullback." },
+
+  // Greenberg
+  { managerSlug: "glenn-greenberg", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "SCHW", action: "add", deltaPct: 6, shareChange: 540000, portfolioImpactPct: 16.9, note: "Starting the big Schwab build." },
+  { managerSlug: "glenn-greenberg", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "FIS", action: "trim", deltaPct: -10, shareChange: -290000, portfolioImpactPct: 8.1, note: "First FIS trim." },
+
+  // Nygren
+  { managerSlug: "bill-nygren", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "NFLX", action: "add", deltaPct: 8, shareChange: 22000, portfolioImpactPct: 3.4, note: "Building Netflix." },
+  { managerSlug: "bill-nygren", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "C", action: "add", deltaPct: 10, shareChange: 280000, portfolioImpactPct: 3.7, note: "Building Citigroup." },
+
+  // TCI
+  { managerSlug: "chris-hohn", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "META", action: "add", deltaPct: 30, shareChange: 5100000, portfolioImpactPct: 4.2, note: "First major META add — 3 Q consecutive building." },
+  { managerSlug: "chris-hohn", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "GE", action: "add", deltaPct: 8, shareChange: 700000, portfolioImpactPct: 17.4, note: "Building GE Aerospace." },
+
+  // Viking
+  { managerSlug: "andreas-halvorsen", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "META", action: "add", deltaPct: 25, shareChange: 480000, portfolioImpactPct: 0.8, note: "First of three consecutive META adds." },
+  { managerSlug: "andreas-halvorsen", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "MSFT", action: "add", deltaPct: 15, shareChange: 220000, portfolioImpactPct: 3.8, note: "Building Microsoft." },
+
+  // ValueAct
+  { managerSlug: "jeffrey-ubben", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "META", action: "new", shareChange: 1200000, portfolioImpactPct: 6.2, note: "ValueAct first entered META here." },
+  { managerSlug: "jeffrey-ubben", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "DIS", action: "add", deltaPct: 10, shareChange: 640000, portfolioImpactPct: 11.2, note: "Building Disney." },
+
+  // Lone Pine
+  { managerSlug: "stephen-mandel", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "META", action: "add", deltaPct: 6, shareChange: 28000, portfolioImpactPct: 6.0, note: "Steady META add." },
+  { managerSlug: "stephen-mandel", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "AMZN", action: "add", deltaPct: 8, shareChange: 175000, portfolioImpactPct: 6.5, note: "Building Amazon." },
+
+  // Maverick
+  { managerSlug: "lee-ainslie", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "META", action: "add", deltaPct: 20, shareChange: 290000, portfolioImpactPct: 2.1, note: "Starting to build META conviction — 3 Q chain." },
+
+  // Akre
+  { managerSlug: "chuck-akre", quarter: "2025-Q2", filedAt: "2025-08-14", ticker: "META", action: "add", deltaPct: 8, shareChange: 240000, portfolioImpactPct: 3.3, note: "Small META add — later reversed." },
+
+  // ============ Q1 2025 ============ (filed 2025-05-15)
+  { managerSlug: "warren-buffett", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "OXY", action: "add", deltaPct: 4, shareChange: 8700000, portfolioImpactPct: 4.3, note: "Early OXY build." },
+  { managerSlug: "warren-buffett", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "CB", action: "new", shareChange: 24000000, portfolioImpactPct: 2.1, note: "New Chubb position — surprise quarter entry." },
+  { managerSlug: "warren-buffett", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "HPQ", action: "exit", shareChange: -100000000, note: "Closed HP fully." },
+
+  { managerSlug: "bill-ackman", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "NKE", action: "new", shareChange: 13000000, portfolioImpactPct: 3.1, note: "Ackman's first Nike position." },
+  { managerSlug: "bill-ackman", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "BN", action: "add", deltaPct: 8, shareChange: 2200000, portfolioImpactPct: 7.8, note: "Building Brookfield." },
+
+  { managerSlug: "stanley-druckenmiller", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "NVDA", action: "add", deltaPct: 5, shareChange: 120000, portfolioImpactPct: 15.6, note: "Small NVDA add before the trim cycle began." },
+  { managerSlug: "stanley-druckenmiller", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "TSM", action: "new", shareChange: 310000, portfolioImpactPct: 4.1, note: "New TSM position." },
+
+  { managerSlug: "seth-klarman", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "VST", action: "new", shareChange: 4200000, portfolioImpactPct: 5.9, note: "Klarman's first Vistra position — start of the 3 Q build." },
+
+  { managerSlug: "howard-marks", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "VST", action: "new", shareChange: 3600000, portfolioImpactPct: 7.8, note: "Howard Marks's first Vistra position — same quarter as Klarman." },
+
+  { managerSlug: "michael-burry", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "BABA", action: "new", shareChange: 100000, portfolioImpactPct: 11.2, note: "Burry re-entered BABA here." },
+
+  { managerSlug: "li-lu", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "BAC", action: "add", deltaPct: 6, shareChange: 580000, portfolioImpactPct: 23.2, note: "First of multi-quarter BAC conviction build." },
+
+  { managerSlug: "chris-hohn", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "META", action: "new", shareChange: 3400000, portfolioImpactPct: 3.2, note: "TCI first entered META here." },
+
+  { managerSlug: "andreas-halvorsen", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "META", action: "new", shareChange: 380000, portfolioImpactPct: 0.6, note: "Viking first entered META here." },
+
+  { managerSlug: "lee-ainslie", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "META", action: "new", shareChange: 210000, portfolioImpactPct: 1.6, note: "Maverick first entered META here." },
+
+  { managerSlug: "glenn-greenberg", quarter: "2025-Q1", filedAt: "2025-05-15", ticker: "SCHW", action: "add", deltaPct: 4, shareChange: 340000, portfolioImpactPct: 16.3, note: "Pre-building Schwab." },
 ];
 
 // ---------- QUERIES ----------

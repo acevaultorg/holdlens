@@ -321,3 +321,100 @@ export function ratingLabel(score: number): { label: string; color: string } {
   if (score >= 20) return { label: "LOW", color: "slate" };
   return { label: "MINIMAL", color: "slate" };
 }
+
+// ---------- TREND DETECTION ----------
+/**
+ * Consecutive-quarter conviction trend for a given manager × ticker.
+ * Counts how many of the last N quarters the manager has been buying (new/add)
+ * or selling (trim/exit). A 3+ consecutive streak in the same direction is a
+ * much stronger signal than a single quarter.
+ */
+export type TrendDirection = "buying" | "selling" | "mixed" | "none";
+
+export function getManagerTickerTrend(
+  managerSlug: string,
+  ticker: string
+): { direction: TrendDirection; streak: number; quarters: string[] } {
+  const sym = ticker.toUpperCase();
+  const ordered = (["2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4"] as const);
+  const moves = ALL_MOVES.filter(
+    (m) => m.managerSlug === managerSlug && m.ticker.toUpperCase() === sym
+  );
+
+  let streak = 0;
+  let lastDir: TrendDirection = "none";
+  const hitQuarters: string[] = [];
+
+  // Walk forward through time, counting consecutive same-direction moves
+  for (const q of ordered) {
+    const mv = moves.find((m) => m.quarter === q);
+    if (!mv) {
+      // gap breaks the streak
+      if (streak > 0) {
+        // keep what we have if we already have a streak
+      }
+      continue;
+    }
+    const dir: TrendDirection = mv.action === "new" || mv.action === "add" ? "buying" : "selling";
+    if (lastDir === dir) {
+      streak++;
+      hitQuarters.push(q);
+    } else if (lastDir === "none") {
+      lastDir = dir;
+      streak = 1;
+      hitQuarters.push(q);
+    } else {
+      // direction changed — reset
+      lastDir = dir;
+      streak = 1;
+      hitQuarters.length = 0;
+      hitQuarters.push(q);
+    }
+  }
+
+  return { direction: lastDir, streak, quarters: hitQuarters };
+}
+
+/**
+ * For a ticker, compute aggregate trending signals across all managers:
+ *   - consecutive-quarter buyers count (managers with 3+ buy streak)
+ *   - consecutive-quarter sellers count
+ *   - net-flow (positive = more Q-on-Q buying than selling)
+ */
+export function getTickerTrend(ticker: string): {
+  consistentBuyers: { slug: string; streak: number }[];
+  consistentSellers: { slug: string; streak: number }[];
+  netFlow: number;
+} {
+  const sym = ticker.toUpperCase();
+  const perManagerMoves: Record<string, Move[]> = {};
+  for (const mv of ALL_MOVES) {
+    if (mv.ticker.toUpperCase() !== sym) continue;
+    if (!perManagerMoves[mv.managerSlug]) perManagerMoves[mv.managerSlug] = [];
+    perManagerMoves[mv.managerSlug].push(mv);
+  }
+
+  const consistentBuyers: { slug: string; streak: number }[] = [];
+  const consistentSellers: { slug: string; streak: number }[] = [];
+  let netFlow = 0;
+
+  for (const slug of Object.keys(perManagerMoves)) {
+    const trend = getManagerTickerTrend(slug, sym);
+    if (trend.streak >= 2 && trend.direction === "buying") {
+      consistentBuyers.push({ slug, streak: trend.streak });
+    }
+    if (trend.streak >= 2 && trend.direction === "selling") {
+      consistentSellers.push({ slug, streak: trend.streak });
+    }
+    for (const mv of perManagerMoves[slug]) {
+      if (mv.action === "new") netFlow += 2;
+      else if (mv.action === "add") netFlow += 1;
+      else if (mv.action === "trim") netFlow -= 1;
+      else if (mv.action === "exit") netFlow -= 2;
+    }
+  }
+
+  consistentBuyers.sort((a, b) => b.streak - a.streak);
+  consistentSellers.sort((a, b) => b.streak - a.streak);
+  return { consistentBuyers, consistentSellers, netFlow };
+}

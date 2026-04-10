@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
+import SectorHeatmap from "@/components/SectorHeatmap";
 import { topTickers } from "@/lib/tickers";
 
 export const metadata: Metadata = {
@@ -20,6 +21,20 @@ export default function TopPicksPage() {
       <p className="text-muted text-lg max-w-2xl mb-8">
         The 25 most-owned stocks across {top.length > 0 ? "10" : "0"} tracked superinvestors. Ranked by owner count + total conviction.
       </p>
+
+      {/* Sector heatmap */}
+      <div className="mb-8">
+        <SectorHeatmap
+          tickers={top.map((t) => ({
+            symbol: t.symbol,
+            name: t.name,
+            sector: t.sector,
+            ownerCount: t.ownerCount,
+          }))}
+          title="Day-change heatmap"
+          subtitle="Click any cell to jump to the ticker page"
+        />
+      </div>
 
       <div className="rounded-2xl border border-border bg-panel overflow-hidden">
         <table className="w-full text-sm">

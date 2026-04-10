@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
+import SectorHeatmap from "@/components/SectorHeatmap";
+import CsvExportButton from "@/components/CsvExportButton";
 import { getGrandPortfolio } from "@/lib/signals";
 import { MANAGERS } from "@/lib/managers";
 
@@ -26,10 +28,40 @@ export default function GrandPortfolioPage() {
         If you pooled the portfolios of the {MANAGERS.length} best portfolio managers in the world — and weighted
         by their track record, not their AUM — this is what you'd own.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Weight = sum of (position% × manager quality score) across every tracked manager holding the stock.
         Stocks held by Tier-1 managers count for more.
       </p>
+      <div className="mb-10">
+        <CsvExportButton
+          filename="holdlens-grand-portfolio.csv"
+          label="Download grand portfolio CSV"
+          rows={grand.map((g, i) => ({
+            rank: i + 1,
+            ticker: g.ticker,
+            name: g.name,
+            sector: g.sector || "",
+            owner_count: g.ownerCount,
+            aggregate_pct: g.aggregatePct.toFixed(2),
+            weighted_score: g.weightedScore.toFixed(1),
+            top_owners: g.topOwners.map((o) => `${o.name} (${o.pct.toFixed(1)}%)`).join("; "),
+          }))}
+        />
+      </div>
+
+      {/* Sector heatmap */}
+      <div className="mb-8">
+        <SectorHeatmap
+          tickers={grand.map((g) => ({
+            symbol: g.ticker,
+            name: g.name,
+            sector: g.sector,
+            ownerCount: g.ownerCount,
+          }))}
+          title="Consensus heatmap · day change"
+          subtitle="Top 50 quality-weighted holdings"
+        />
+      </div>
 
       <div className="rounded-2xl border border-border bg-panel overflow-hidden">
         <table className="w-full text-sm">

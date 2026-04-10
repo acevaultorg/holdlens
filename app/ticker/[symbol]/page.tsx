@@ -5,6 +5,7 @@ import LiveQuote from "@/components/LiveQuote";
 import LiveChart from "@/components/LiveChart";
 import StarButton from "@/components/StarButton";
 import TickerActivity from "@/components/TickerActivity";
+import TickerNews from "@/components/TickerNews";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
@@ -80,13 +81,45 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         <Stat label="Sector" value={t.sector || "Other"} />
       </div>
 
-      {/* Smart-money activity feed — Q3 + Q4 2025 */}
+      {/* Signal dossier CTA */}
+      <section className="mt-8">
+        <a
+          href={`/signal/${t.symbol}`}
+          className="block rounded-2xl border border-brand/40 bg-brand/5 p-5 hover:bg-brand/10 transition group"
+        >
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <div className="text-[10px] uppercase tracking-widest font-bold text-brand mb-1">
+                HoldLens Signal
+              </div>
+              <div className="text-lg font-bold group-hover:text-brand transition">
+                Full buy/sell dossier for {t.symbol}
+              </div>
+              <div className="text-xs text-muted mt-1">
+                Verdict · Multi-quarter trend · Activity · News · Ownership
+              </div>
+            </div>
+            <div className="text-brand text-sm font-semibold">Open dossier →</div>
+          </div>
+        </a>
+      </section>
+
+      {/* Smart-money activity feed — all quarters */}
       <section className="mt-12">
         <h2 className="text-2xl font-bold mb-2">Smart money activity</h2>
         <p className="text-muted text-sm mb-6">
           Every tracked buy, add, trim, and exit on {t.symbol} by the best portfolio managers in the world. Ranked by manager quality inside each quarter.
         </p>
         <TickerActivity symbol={t.symbol} />
+      </section>
+
+      {/* Latest news */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-2">Latest news</h2>
+        <p className="text-muted text-sm mb-6">
+          Recent headlines for {t.symbol}.
+        </p>
+        <TickerNews symbol={t.symbol} count={6} />
       </section>
 
       <section className="mt-12">

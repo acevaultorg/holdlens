@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
+import CsvExportButton from "@/components/CsvExportButton";
 import { getBuySignals, ratingLabel } from "@/lib/signals";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 
@@ -43,12 +44,29 @@ export default function BuysPage() {
         Stocks being bought by the best portfolio managers in the world this quarter — ranked by our multi-factor
         recommendation model.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Score combines <span className="text-text font-semibold">manager quality</span> (70%),
         <span className="text-text font-semibold"> consensus</span> across managers (20%),
         <span className="text-text font-semibold"> fresh money</span> (new positions weighted higher, 10%), and
         a <span className="text-text font-semibold">concentration bonus</span> when a buyer commits &gt;10% of their portfolio.
       </p>
+      <div className="mb-10">
+        <CsvExportButton
+          filename={`holdlens-buys-${LATEST_QUARTER}.csv`}
+          label="Download buy signals CSV"
+          rows={signals.map((s, i) => ({
+            rank: i + 1,
+            ticker: s.ticker,
+            name: s.name,
+            sector: s.sector || "",
+            score: s.score,
+            buyer_count: s.buyerCount,
+            buyers: s.buyers.map((b) => b.managerName).join("; "),
+            fresh_money_share: s.freshMoneyShare.toFixed(2),
+            concentration_bonus: s.concentrationBonus,
+          }))}
+        />
+      </div>
 
       {signals.length === 0 ? (
         <div className="rounded-2xl border border-border bg-panel p-10 text-center text-muted">
@@ -68,7 +86,7 @@ export default function BuysPage() {
             return (
               <a
                 key={s.ticker}
-                href={`/ticker/${s.ticker}`}
+                href={`/signal/${s.ticker}`}
                 className="block rounded-2xl border border-border bg-panel p-5 hover:border-brand/40 transition group"
               >
                 <div className="flex items-start justify-between gap-4 flex-wrap">

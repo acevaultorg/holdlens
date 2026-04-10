@@ -1,54 +1,48 @@
 # HoldLens — TASKS
 
-## Queue (v0.1 shipped)
-- [x] `P0` SCAFFOLD · landing · Buffett backtest + profile · sitemap · JSON-LD
+## Queue (v0.1 shipped) · (v0.13 shipped) · (v0.14 shipped)
+- [x] Prior v0.1–v0.14 work — see git log `acepilot: v0.X` commits
 
-## Queue (v0.13 — Live data + watchlist + search) — SHIPPED
-- [x] `P0` lib/live.ts + LiveQuote + LiveChart + StarButton + Watchlist + GlobalSearch
-- [x] `P0` Wiring into ticker/investor/top-picks/layout
-- [x] `P1` lib/filings.ts + "since last filing" badges
+## Queue (v0.15 — Signal dossier + news + trend + heatmap + CSV) — SHIPPED [objective:signal-dossier]
 
-## Queue (v0.14 — Buy/Sell recommendation model + Dataroma beat) — SHIPPED [objective:beat-dataroma]
+- [x] `P0` EXTEND lib/moves.ts — Q1 + Q2 2025 historical moves (4 quarters total) [id:historical-moves] [score:12.0] ⏱ done
+- [x] `P0` EXTEND lib/signals.ts — consecutive-quarter trend detection + getTickerTrend() [id:trend-detection] [score:11.0] ⏱ done
+- [x] `P1` BUILD lib/news.ts — Yahoo Finance search API client with corsproxy fallback + sessionStorage cache [id:news-lib] [score:10.0] ⏱ done
+- [x] `P1` BUILD components/TickerNews.tsx — live news feed, skeleton loading, external link icons [id:ticker-news] [score:9.0] ⏱ done
+- [x] `P0` BUILD /signal/[ticker] dedicated dossier page — BUY/SELL/NEUTRAL verdict, multi-quarter trend column, activity feed, news, chart, ownership [id:signal-dossier] [score:13.0] ⏱ done
+- [x] `P0` WIRE /buys and /sells signal cards to link /signal/[ticker] instead of /ticker/[ticker] [id:wire-signal-links] [score:10.0] ⏱ done
+- [x] `P0` WIRE TickerNews + "Open dossier" CTA into /ticker/[symbol] page [id:wire-news-ticker] [score:11.0] ⏱ done
+- [x] `P1` BUILD components/LiveStats.tsx — real homepage stats (totalValue, positions, Tier-1 count) computed client-side [id:live-stats] [score:9.0] ⏱ done
+- [x] `P1` WIRE LiveStats into homepage (kills the hardcoded $1.5T) [id:wire-live-stats] [score:9.0] ⏱ done
+- [x] `P1` BUILD components/SectorHeatmap.tsx — day-change color grid, grouped by sector [id:sector-heatmap] [score:10.0] ⏱ done
+- [x] `P1` WIRE SectorHeatmap into /top-picks and /grand [id:wire-heatmap] [score:8.0] ⏱ done
+- [x] `P2` BUILD components/CsvExportButton.tsx — generic one-click CSV download [id:csv-export] [score:7.0] ⏱ done
+- [x] `P2` WIRE CSV export into /buys, /sells, /grand [id:wire-csv] [score:7.0] ⏱ done
+- [x] `P0` BUILD + verify static export (335 pages) [id:verify] [score:12.0] ⏱ done
 
-- [x] `P0` BUILD lib/moves.ts — rich schema: action, deltaPct, shareChange, portfolioImpactPct, Q3+Q4 2025 [id:moves-lib] [score:13.0] ⏱ done
-- [x] `P0` EXPAND lib/managers.ts — +8 Tier-1 managers (Viking/Halvorsen, TCI/Hohn, ValueAct/Ubben, Lone Pine/Mandel, Maverick/Ainslie, Akre, Fundsmith/Smith, Polen) [id:managers-expand] [score:12.0] ⏱ done
-- [x] `P0` BUILD lib/signals.ts — multi-factor buy/sell recommendation model (quality × consensus × conviction × freshness) [id:signals-lib] [score:13.0] ⏱ done
-- [x] `P0` BUILD components/TickerActivity.tsx — Dataroma-beat activity feed w/ tabs, quarter groups, manager quality badges [id:ticker-activity] [score:13.0] ⏱ done
-- [x] `P0` WIRE TickerActivity into /ticker/[symbol] page [id:wire-activity] [score:12.0] ⏱ done
-- [x] `P0` BUILD /buys page — ranked buy signals with score, buyer badges, live prices [id:buys-page] [score:13.0] ⏱ done
-- [x] `P0` BUILD /sells page — ranked sell signals with score, seller badges, live prices [id:sells-page] [score:12.0] ⏱ done
-- [x] `P1` BUILD /activity page — global chronological moves feed [id:activity-page] [score:10.0] ⏱ done
-- [x] `P1` BUILD /grand page — quality-weighted consensus portfolio [id:grand-page] [score:9.0] ⏱ done
-- [x] `P0` BUILD InvestorMoves component + wire into /investor/[slug] + warren-buffett [id:investor-moves] [score:11.0] ⏱ done
-- [x] `P0` BUILD BuySellSignals homepage card + wire into homepage with new copy [id:homepage-signals] [score:12.0] ⏱ done
-- [x] `P0` WIRE new pages into header + footer nav [id:wire-nav] [score:10.0] ⏱ done
-- [x] `P0` BUILD + verify static export (253 pages, 0 errors) [id:verify] [score:12.0] ⏱ done
+## Queue (v0.16 — next session)
 
-## Queue (v0.15 — next session)
-
-- [ ] `P1` RECOMPUTE homepage stats from live data (currently hardcoded $1.5T removed, live stats partial) [id:live-stats] [score:7.0]
-- [ ] `P1` ADD sector heatmap on /top-picks and /grand pages (day change color grid) [id:heatmap] [score:6.0]
-- [ ] `P1` ADD /ticker TickerNews via Yahoo Finance search API [id:news] [score:7.0]
-- [ ] `P1` ADD /buys and /sells RSS feed endpoints [id:rss-signals] [score:6.0]
-- [ ] `P1` ADD more managers (target 30+ — need Druckenmiller's Duquesne, TIGER/Coleman, Appaloosa/Tepper, Baupost separate entity, Viking is separate from Coleman) [id:more-managers] [score:7.0]
-- [ ] `P1` ADD Q1 2025 + Q2 2025 historical moves data (multi-quarter trending) [id:historical-moves] [score:8.0]
-- [ ] `P2` ADD "since last filing" price change column to investor holdings (delta % since filing date) [id:since-filing] [score:6.0]
-- [ ] `P2` ADD /signal/[ticker] dedicated page — full buy/sell dossier per stock [id:signal-page] [score:6.0]
-- [ ] `P2` ADD compare-managers page (2 managers side-by-side moves) [id:compare-mgrs] [score:5.0]
-- [ ] `P2` ADD download-CSV button on /grand, /buys, /sells [id:csv-export] [score:5.0]
+- [ ] `P1` ADD more tracked managers (target 30+) — Tepper/Appaloosa, Coleman/Tiger Global, Lampert/ESL, Bailey/Baillie Gifford, Duquesne separation, Rob Arnott/Research Affiliates [id:more-managers] [score:8.0]
+- [ ] `P1` BUILD compare-managers page `/compare/managers/[pair]` — two-manager side-by-side with live portfolio values + moves [id:compare-mgrs] [score:7.0]
+- [ ] `P1` ADD earnings calendar per ticker (Yahoo /calendar endpoint) [id:earnings-cal] [score:7.0]
+- [ ] `P1` ADD insider transactions per ticker (SEC Form 4 approximation) [id:insider-tx] [score:6.0]
+- [ ] `P2` BUILD /screener page — filter grand portfolio by sector + min conviction + live day change [id:screener] [score:7.0]
+- [ ] `P2` ADD social share buttons on /signal/[ticker] with preformatted tweet [id:signal-share] [score:6.0]
+- [ ] `P2` ADD /buys and /sells RSS feed endpoints [id:rss-signals] [score:6.0]
+- [ ] `P2` ADD OpenGraph image per /signal/[ticker] page [id:signal-og] [score:5.0]
 
 ## Queue (v0.2 larger infra)
 
-- [👤] `P0` DEPLOY v0.14 build to Vercel/Cloudflare [id:deploy-v014] [score:13.0] platform:vercel
-- [ ] `P0` BUILD Python EDGAR 13F parser (replaces lib/moves.ts manual curation) [id:edgar] [score:11.0]
+- [👤] `P0` DEPLOY v0.13+v0.14+v0.15 to Vercel/Cloudflare [id:deploy] [score:13.0] platform:vercel
+- [ ] `P0` BUILD Python EDGAR 13F parser (replaces manual moves curation) [id:edgar] [score:11.0]
 - [ ] `P0` ADD Postgres + 82-manager coverage [id:postgres-scale] [score:11.0]
 - [ ] `P1` INTEGRATE Resend for email alerts on buy/sell signals [id:resend] [score:9.0]
-- [ ] `P1` BUILD Claude Haiku thesis generator for each ticker/investor [id:ai-thesis] [score:8.0]
-- [ ] `P2` BUILD Twitter bot posting top buy/sell signals after each filing [id:twitter-bot] [score:7.0]
+- [ ] `P1` BUILD Claude Haiku thesis generator per ticker/manager [id:ai-thesis] [score:8.0]
+- [ ] `P2` BUILD Twitter bot posting top buy/sell signals [id:twitter-bot] [score:7.0]
 - [ ] `P2` BUILD public API + embeds [id:api] [score:7.0]
 
 ## Queue (v0.5 — monetization)
 
-- [ ] `P0` LAUNCH Pro tier ($14/mo) — AB-tested pricing, Stripe wired [id:pro-tier] [score:12.0]
-- [ ] `P0` BUILD Conviction Score — per-ticker per-manager algorithmic score, live-updating [id:conviction-score] [score:12.0]
-- [ ] `P0` BUILD Manager Alpha Attribution — per-manager running alpha vs S&P based on tracked moves + live prices [id:alpha-attribution] [score:11.0]
+- [ ] `P0` LAUNCH Pro tier ($14/mo) — Stripe, pricing AB test [id:pro-tier] [score:12.0]
+- [ ] `P0` BUILD Conviction Score v2 — adds trend history weighting to the current model [id:conviction-v2] [score:11.0]
+- [ ] `P0` BUILD Manager Alpha Attribution — realized alpha vs S&P per manager based on tracked moves [id:alpha-attribution] [score:11.0]

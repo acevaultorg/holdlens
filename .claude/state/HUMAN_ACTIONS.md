@@ -1,6 +1,6 @@
 # HoldLens — Human actions queue
 
-## 👤 DEPLOY v0.13 + v0.14 — buy/sell model + activity feed
+## 👤 DEPLOY v0.13 + v0.14 + v0.15 — buy/sell model + signal dossier + news + heatmap
 
 **What:** Push the `acepilot/live-data-v0.13` branch with the v0.13 and v0.14
 commits. Merge to `main`. Deploy.
