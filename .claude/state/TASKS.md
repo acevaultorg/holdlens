@@ -28,7 +28,8 @@
 
 ## Queue (v0.2 larger infra)
 
-- [👤] `P0` DEPLOY v0.13+v0.14+v0.15+v0.16+v0.17+v0.18 to Vercel/Cloudflare [id:deploy] [score:13.0] platform:vercel
+- [x] `P0` DEPLOY v0.13+v0.14+v0.15+v0.16+v0.17+v0.18 to Cloudflare Pages [id:deploy] [score:13.0] ⏱ done — PR #1 merged, deployed via wrangler pages deploy, hotfix Worker for Yahoo Finance proxy
+- [x] `P0` HOTFIX: Cloudflare Worker yahoo-proxy unblocks live data in production [id:worker-proxy] [score:13.0] ⏱ done — workers/yahoo-proxy/ deployed to holdlens-yahoo-proxy.paulomdevries.workers.dev
 - [ ] `P0` BUILD Python EDGAR 13F parser (path to 80+ managers) [id:edgar] [score:11.0]
 - [ ] `P1` INTEGRATE Resend for email alerts (the /alerts page is waiting on this) [id:resend] [score:9.0]
 - [ ] `P1` BUILD Stripe Pro tier checkout (the /pricing page is waiting on this) [id:stripe] [score:11.0]

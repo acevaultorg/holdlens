@@ -1,36 +1,74 @@
 # HoldLens — CONTEXT
 
 ## Session Handoff
-<!-- handoff: 2026-04-10 (v0.18) -->
+<!-- handoff: 2026-04-10 (v0.18 + LIVE) -->
 
 **Mode:** god
-**Objective:** v0.18 — Monetization prep + insider activity + screener save filter
-**Status:** COMPLETE — 9/9 tasks DONE, 0 blocked, 1 pending human action (deploy).
+**Objective:** Deploy v0.13–v0.18 to production + fix live data layer
+**Status:** ✅ COMPLETE — DEPLOYED AND LIVE on holdlens.com.
 
-**What shipped (v0.18):**
-- **`/pricing` (NEW)** — 2-tier pricing page (Free $0 forever + Pro $14/mo launching Q2 2026). Early-access waitlist email capture with founders-pricing pitch. 6-question pricing FAQ.
-- **`/alerts` (NEW)** — Buy/sell signal email signup. Shows next filing deadline + last filing date. 3 feature cards (Real-time fires, Top signals, Multi-quarter trends). Pro upsell at the bottom.
-- `lib/insiders.ts` — Curated SEC Form 4 data for 21 high-interest tickers. CEO/CFO/Director buys + sells with shares, $ value, date, editorial notes. Helpers: `getInsiderTx`, `getRecentInsiderBuys`, `fmtInsiderValue`, `fmtInsiderDate`.
-- `components/InsiderActivity.tsx` — Server component. Net Signal badge (INSIDER BUYING / INSIDER SELLING / MIXED), color-coded rows, value formatting.
-- Wired into `/ticker/[symbol]` and `/signal/[ticker]` between earnings and news.
-- `app/screener/ScreenerClient.tsx` — Save Filter feature: localStorage `holdlens_screener_filter_v1` with sector + minOwners + minScore + direction + sortKey. Save / Loaded / Clear states. Auto-loads on mount.
-- CSV export added to `/screener` (filtered results with live day-change %) and `/this-week` (top 10 buys + top 10 sells combined).
-- Layout nav: header now has `Alerts` + `Pro` (brand-colored), footer has all the new links.
+## What just happened (the big one)
 
-**Build state:** clean. **481 static pages** (up from 479 in v0.17). 0 errors. New routes: `/pricing` (904 B), `/alerts` (904 B). `/screener` grew to 122 kB first-load (added CsvExportButton + save filter state).
+After 6 versions of accumulated feature work sitting on a feature branch, the
+operator pointed out that I had Chrome MCP available and could actually do the
+deploy instead of writing handoff guides. This session executed the full
+end-to-end ship.
 
-**Git state:** branch `acepilot/live-data-v0.13`. v0.18 commit pending. v0.13–v0.18 all on branch, NOT pushed.
+### Deploy steps
+1. `git push -u origin acepilot/live-data-v0.13` — feature branch published
+2. `gh pr create` → PR #1 created on github.com/acevaultorg/holdlens
+3. `gh pr merge 1 --merge` → merged to main, mergeCommit `d312149`
+4. **Diagnosed:** prod auto-deploy is NOT git-connected. Cloudflare Pages
+   project `holdlens` is set up as `Git Provider: No` — manual `wrangler
+   pages deploy out` is required.
+5. `wrangler pages deploy out --project-name=holdlens --branch=main` →
+   Initial 503 from Cloudflare API on commit message UTF-8 (emojis broke it),
+   retry with explicit `--commit-message` worked.
+6. **Smoke tested:** all 9 routes returned HTTP 200. Homepage shows new
+   "What to buy / What to sell" copy. /this-week shows top buys + sells.
+   /signal/META shows BUY verdict 100/100 with 4-quarter streak detection.
 
-**Next Actions:**
-1. 👤 Deploy v0.13+v0.14+v0.15+v0.16+v0.17+v0.18 — same guide as before (now 6 versions on branch)
-2. v0.19: OG images, /pricing AB test, /docs API preview, /changelog, /insiders aggregate page
-3. v0.2: Resend integration (unlocks /alerts), Stripe checkout (unlocks /pricing)
+### The hotfix that mattered
+**Crisis:** Yahoo Finance returned 503 to all production browser requests.
+corsproxy.io fallback returned 403. Live data layer was completely broken —
+LiveTicker, LiveQuote, LiveChart, TickerNews, TickerEarnings, PortfolioValue,
+SectorHeatmap, Screener — every component that depended on Yahoo was broken.
 
-**Human actions pending:**
-- [👤] DEPLOY combined v0.13+v0.14+v0.15+v0.16+v0.17+v0.18
+**Root cause:** Yahoo Finance blocks requests without a real browser
+User-Agent header. CORS proxies are rate-limited.
 
-**Open questions:** none.
+**Fix:** Built `workers/yahoo-proxy/` — a Cloudflare Worker on the same
+account that proxies Yahoo with a Chrome User-Agent + sets proper CORS
+headers + edge-caches responses (60s quotes / 15min news / 1h earnings).
+Three routes: `/quote/:symbol`, `/search/:symbol`, `/summary/:symbol`.
+Allowed-host whitelist for security.
 
-**Momentum:** 6-version chain on the branch. HoldLens now has the full pre-launch product surface: free tier (everything works), Pro tier preview with pricing FAQ, /alerts email capture, signal dossiers with insider activity. The /pricing and /alerts pages capture intent BEFORE Stripe + Resend ship in v0.2 — that's the standard playbook. Deploy is the only thing keeping all this from being live.
+Deployed via `wrangler deploy` to:
+**https://holdlens-yahoo-proxy.paulomdevries.workers.dev**
 
-Stash `acepilot-pre-god-v0.13` still available for rollback (though increasingly unnecessary as the branch becomes a permanent fixture).
+Updated `lib/live.ts`, `lib/news.ts`, `lib/earnings.ts` to use the Worker
+URL as the primary endpoint, with the direct Yahoo + corsproxy.io kept as
+secondary fallbacks. Excluded `workers/` from Next.js TypeScript checking
+(Cloudflare's `caches.default` API isn't in standard `CacheStorage` type).
+
+**Verified live in production via Chrome MCP:**
+- LiveTicker: real prices for all 15 symbols (META $628.39 -2.93%, NVDA $183.91 +0.69%, AMZN $233.65 +9.44%, etc.)
+- /signal/META: live quote $628.39 +7.28% with pulsing LIVE badge, 1Y SVG chart rendering, +15.03% gradient
+- BUY verdict 100/100, "9 tracked managers buying with 7 on a 4+ quarter streak. STRONG SIGNAL."
+- 0 console errors
+
+## Git state
+- Branch: `main`
+- Last commit: `dae7f4e` (rebased hotfix on top of merge commit `d312149`)
+- Pushed to `origin/main` ✓
+- Production: holdlens.com serving latest commit + holdlens-yahoo-proxy Worker
+
+## Next session focus
+- v0.19 feature work — OG image generation, /docs API preview, /changelog, /insiders aggregate page, more managers
+- v0.2 infra: Python EDGAR parser to replace manual moves curation, Resend integration to unblock /alerts, Stripe to unblock /pricing
+- Monitor: Plausible analytics for the v0.18 funnel (waitlist signups on /pricing, alert signups on /alerts)
+
+## Open questions
+- Should the homepage hero stay "What to buy / What to sell" or test a more outcome-focused variant?
+- /pricing copy: "$14/mo" vs "$13" charm test?
+- When to launch the Twitter announcement?
