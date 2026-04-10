@@ -4,15 +4,16 @@ import CsvExportButton from "@/components/CsvExportButton";
 import TrendBadge from "@/components/TrendBadge";
 import AdSlot from "@/components/AdSlot";
 import { getSellSignals, ratingLabel } from "@/lib/signals";
+import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 
 export const metadata: Metadata = {
   title: "What to sell — smart money exits from the best investors",
   description:
-    "HoldLens sell signals ranked by a multi-factor model: manager quality, exit share, dump severity. Real 13F data from the best portfolio managers in the world.",
+    "HoldLens sell signals on a single signed −100..+100 scale. The same score model that ranks buys, just on the negative side. Real 13F data from the best portfolio managers in the world.",
   openGraph: {
     title: "What to sell — smart money exits",
-    description: "Ranked sell signals from the best portfolio managers in the world.",
+    description: "Ranked sell signals on a single signed −100..+100 scale from the best portfolio managers in the world.",
   },
   twitter: { card: "summary_large_image", title: "What to sell — HoldLens" },
 };
@@ -43,14 +44,17 @@ export default function SellsPage() {
         What to <span className="text-rose-400">sell</span>.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">
-        Stocks being dumped by the best portfolio managers in the world this quarter — ranked by our multi-factor
-        sell-signal model.
+        Stocks being dumped by the best portfolio managers in the world — ranked on a single
+        signed score where <span className="text-rose-400 font-semibold">−100 is the strongest
+        possible sell</span> and <span className="text-emerald-400 font-semibold">+100 the
+        strongest buy</span>. This page shows the negative side of that scale.
       </p>
       <p className="text-dim text-sm max-w-2xl mb-6">
-        Score combines <span className="text-text font-semibold">manager quality</span> (65%),
-        <span className="text-text font-semibold"> consensus</span> (15%),
-        <span className="text-text font-semibold"> exit share</span> (10% — full exits weigh more than trims), and
-        <span className="text-text font-semibold"> dump severity</span> (10% — magnitude of the reduction).
+        The score is the unified ConvictionScore from <a href="/methodology" className="underline">methodology</a>:
+        smart-money consensus, insider activity, manager track record, multi-quarter trend
+        streaks, position concentration, and an under-the-radar bonus — minus dissent from
+        sellers and a crowding penalty when a stock is already widely owned. A ticker can
+        appear on EXACTLY ONE list (buys or sells) — never both.
       </p>
       <div className="mb-10">
         <CsvExportButton
@@ -79,7 +83,7 @@ export default function SellsPage() {
           {signals.map((s, i) => {
             const rating = ratingLabel(s.score);
             const ratingColor =
-              rating.color === "emerald"
+              rating.color === "rose"
                 ? "text-rose-400 bg-rose-400/10 border-rose-400/30"
                 : rating.color === "amber"
                 ? "text-brand bg-brand/10 border-brand/30"
@@ -116,30 +120,37 @@ export default function SellsPage() {
                   </div>
                   <div className="text-right">
                     <div className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border ${ratingColor}`}>
-                      SELL · {s.score}
+                      {rating.label} SELL · {formatSignedScore(s.score)}
                     </div>
                     <div className="text-xs text-dim mt-1.5">
-                      {s.sellerCount} manager{s.sellerCount > 1 ? "s" : ""} selling
+                      Score {formatSignedScore(s.score)} / −100
+                      {s.sellerCount > 0 && ` · ${s.sellerCount} manager${s.sellerCount > 1 ? "s" : ""} selling`}
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-border flex flex-wrap gap-2">
-                  {s.sellers.map((b) => (
-                    <span
-                      key={b.managerSlug}
-                      className={`inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border ${
-                        b.action === "exit"
-                          ? "text-rose-400 bg-rose-400/10 border-rose-400/30"
-                          : "text-muted bg-panel border-border"
-                      }`}
-                    >
-                      {b.action === "exit" ? "✕ EXIT" : "−"} {b.managerName.split(" ").slice(-1)[0]}
-                      {b.deltaPct != null && b.action === "trim" && (
-                        <span className="text-dim">({b.deltaPct}%)</span>
-                      )}
+                  {s.sellers.length === 0 ? (
+                    <span className="text-xs text-dim italic">
+                      No fresh sells this quarter — score reflects historical dissent, crowding, and trend deterioration.
                     </span>
-                  ))}
+                  ) : (
+                    s.sellers.map((b) => (
+                      <span
+                        key={b.managerSlug}
+                        className={`inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border ${
+                          b.action === "exit"
+                            ? "text-rose-400 bg-rose-400/10 border-rose-400/30"
+                            : "text-muted bg-panel border-border"
+                        }`}
+                      >
+                        {b.action === "exit" ? "✕ EXIT" : "−"} {b.managerName.split(" ").slice(-1)[0]}
+                        {b.deltaPct != null && b.action === "trim" && (
+                          <span className="text-dim">({b.deltaPct}%)</span>
+                        )}
+                      </span>
+                    ))
+                  )}
                 </div>
               </a>
             );

@@ -12,6 +12,7 @@ import AffiliateCTA from "@/components/AffiliateCTA";
 import AdSlot from "@/components/AdSlot";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
+import { formatSignedScore, convictionLabel } from "@/lib/conviction";
 import { MANAGERS } from "@/lib/managers";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 
@@ -24,13 +25,15 @@ export async function generateMetadata({ params }: { params: Promise<{ ticker: s
   const t = getTicker(ticker);
   if (!t) return { title: "Signal not found" };
 
-  // Compute a one-line verdict for the meta description
-  const { buy, sell } = getTickerSignals(t.symbol);
+  // Compute a one-line verdict from the unified signed score
+  const net = getNetSignal(t.symbol);
   let verdictLine = `${t.ownerCount} of the best portfolio managers in the world hold ${t.symbol}.`;
-  if (buy && (!sell || buy.score > sell.score + 10)) {
-    verdictLine = `${buy.buyerCount} tracked managers are buying ${t.symbol} this quarter (score ${buy.score}/100).`;
-  } else if (sell && (!buy || sell.score > buy.score + 10)) {
-    verdictLine = `${sell.sellerCount} tracked managers are selling ${t.symbol} this quarter (score ${sell.score}/100).`;
+  if (net) {
+    if (net.direction === "BUY") {
+      verdictLine = `${t.symbol} unified signal: ${formatSignedScore(net.score)} on a −100..+100 scale (${convictionLabel(net.score).label}).`;
+    } else if (net.direction === "SELL") {
+      verdictLine = `${t.symbol} unified signal: ${formatSignedScore(net.score)} on a −100..+100 scale (${convictionLabel(net.score).label}).`;
+    }
   }
 
   const url = `https://holdlens.com/signal/${t.symbol}`;
@@ -72,9 +75,9 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
   const buyRating = buy ? ratingLabel(buy.score) : null;
   const sellRating = sell ? ratingLabel(sell.score) : null;
 
-  // Verdict from the v2 NetSignal (synthesizes buys + sells + dissent + unanimity)
+  // Verdict from the unified ConvictionScore — single signed −100..+100 scale
   const verdict: "BUY" | "SELL" | "NEUTRAL" = net?.direction ?? "NEUTRAL";
-  const verdictScore = Math.abs(net?.score ?? 0);
+  const signedScore = net?.score ?? 0;
   const verdictColor =
     verdict === "BUY"
       ? "text-emerald-400 border-emerald-400/40 bg-emerald-400/5"
@@ -107,14 +110,16 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         <div className="flex items-center justify-between gap-6 flex-wrap">
           <div>
             <div className="text-[11px] uppercase tracking-widest font-bold opacity-80">
-              HoldLens verdict
+              HoldLens verdict · single −100..+100 scale
             </div>
             <div className="text-5xl md:text-6xl font-bold tracking-tight mt-2">{verdict}</div>
-            {verdictScore > 0 && (
-              <div className="text-sm mt-2 opacity-80">
-                Confidence: <span className="font-bold">{verdictScore}/100</span>
-              </div>
-            )}
+            <div className="text-sm mt-2 opacity-80">
+              Score: <span className="font-bold tabular-nums text-2xl">{formatSignedScore(signedScore)}</span>
+              <span className="opacity-60"> / {signedScore >= 0 ? "+100" : "−100"}</span>
+            </div>
+            <div className="text-[11px] mt-1 opacity-70">
+              {convictionLabel(signedScore).label}
+            </div>
           </div>
           <div className="max-w-sm">
             <div className="text-sm leading-relaxed opacity-90">
@@ -148,20 +153,20 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         </div>
       </div>
 
-      {/* NetSignal breakdown — show the math */}
+      {/* Unified score breakdown — show the math */}
       {net && (
         <section className="mt-6 rounded-2xl border border-border bg-panel p-5">
           <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
             <div>
               <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-1">
-                Net signal score · v2
+                Unified ConvictionScore · −100..+100
               </div>
               <div className="text-xs text-muted">
-                Buys minus dissent + unanimity + quality differential + info density
+                Smart money + insider + track record + trend + concentration + contrarian − dissent − crowding
               </div>
             </div>
             <div className={`text-2xl font-bold tabular-nums ${verdict === "BUY" ? "text-emerald-400" : verdict === "SELL" ? "text-rose-400" : "text-muted"}`}>
-              {net.score >= 0 ? "+" : ""}{net.score}
+              {formatSignedScore(net.score)}
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
@@ -290,9 +295,9 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           path={`/signal/${t.symbol}`}
           tweet={
             verdict === "BUY"
-              ? `🟢 BUY signal on ${t.symbol} (${verdictScore}/100) — ${buy?.buyerCount || 0} best portfolio managers in the world are buying. Full dossier on HoldLens:`
+              ? `🟢 BUY signal on ${t.symbol} — score ${formatSignedScore(signedScore)} on a −100..+100 scale. Full dossier on HoldLens:`
               : verdict === "SELL"
-              ? `🔴 SELL signal on ${t.symbol} (${verdictScore}/100) — ${sell?.sellerCount || 0} tracked managers are selling. Full dossier on HoldLens:`
+              ? `🔴 SELL signal on ${t.symbol} — score ${formatSignedScore(signedScore)} on a −100..+100 scale. Full dossier on HoldLens:`
               : `What ${MANAGERS.length} of the best portfolio managers in the world are doing on ${t.symbol} — full dossier on HoldLens:`
           }
           label={`Share the ${t.symbol} signal`}

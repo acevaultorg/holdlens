@@ -4,15 +4,16 @@ import CsvExportButton from "@/components/CsvExportButton";
 import TrendBadge from "@/components/TrendBadge";
 import AdSlot from "@/components/AdSlot";
 import { getBuySignals, ratingLabel } from "@/lib/signals";
+import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 
 export const metadata: Metadata = {
   title: "What to buy — recommendation model from the best investors",
   description:
-    "HoldLens buy signals ranked by a multi-factor recommendation model: manager quality, consensus, conviction, fresh money. Real 13F data from the best portfolio managers in the world.",
+    "HoldLens buy signals on a single signed −100..+100 scale. The same score model that ranks sells, just on the positive side. Real 13F data from the best portfolio managers in the world.",
   openGraph: {
     title: "What to buy — smart money signals",
-    description: "Ranked buy signals from the best portfolio managers in the world.",
+    description: "Ranked buy signals on a single signed −100..+100 scale from the best portfolio managers in the world.",
   },
   twitter: { card: "summary_large_image", title: "What to buy — HoldLens" },
 };
@@ -43,14 +44,17 @@ export default function BuysPage() {
         What to <span className="text-emerald-400">buy</span>.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">
-        Stocks being bought by the best portfolio managers in the world this quarter — ranked by our multi-factor
-        recommendation model.
+        Stocks being bought by the best portfolio managers in the world — ranked on a single
+        signed score where <span className="text-emerald-400 font-semibold">+100 is the
+        strongest possible buy</span> and <span className="text-rose-400 font-semibold">−100
+        the strongest sell</span>. This page shows the positive side of that scale.
       </p>
       <p className="text-dim text-sm max-w-2xl mb-6">
-        Score combines <span className="text-text font-semibold">manager quality</span> (70%),
-        <span className="text-text font-semibold"> consensus</span> across managers (20%),
-        <span className="text-text font-semibold"> fresh money</span> (new positions weighted higher, 10%), and
-        a <span className="text-text font-semibold">concentration bonus</span> when a buyer commits &gt;10% of their portfolio.
+        The score is the unified ConvictionScore from <a href="/methodology" className="underline">methodology</a>:
+        smart-money consensus, insider buys, manager track record, multi-quarter trend streaks,
+        position concentration, and an under-the-radar bonus — minus dissent from sellers and
+        a crowding penalty when a stock is already widely owned. A ticker can appear on EXACTLY
+        ONE list (buys or sells) — never both.
       </p>
       <div className="mb-10">
         <CsvExportButton
@@ -116,31 +120,38 @@ export default function BuysPage() {
                   </div>
                   <div className="text-right">
                     <div className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border ${ratingColor}`}>
-                      {rating.label} · {s.score}
+                      {rating.label} BUY · {formatSignedScore(s.score)}
                     </div>
                     <div className="text-xs text-dim mt-1.5">
-                      {s.buyerCount} manager{s.buyerCount > 1 ? "s" : ""} buying
+                      Score {formatSignedScore(s.score)} / +100
+                      {s.buyerCount > 0 && ` · ${s.buyerCount} manager${s.buyerCount > 1 ? "s" : ""} buying`}
                     </div>
                   </div>
                 </div>
 
                 {/* Buyers list */}
                 <div className="mt-4 pt-4 border-t border-border flex flex-wrap gap-2">
-                  {s.buyers.map((b) => (
-                    <span
-                      key={b.managerSlug}
-                      className={`inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border ${
-                        b.action === "new"
-                          ? "text-emerald-400 bg-emerald-400/10 border-emerald-400/30"
-                          : "text-muted bg-panel border-border"
-                      }`}
-                    >
-                      {b.action === "new" ? "★ NEW" : "+"} {b.managerName.split(" ").slice(-1)[0]}
-                      {b.deltaPct != null && b.action === "add" && (
-                        <span className="text-dim">({b.deltaPct > 0 ? "+" : ""}{b.deltaPct}%)</span>
-                      )}
+                  {s.buyers.length === 0 ? (
+                    <span className="text-xs text-dim italic">
+                      No fresh buys this quarter — score reflects historical conviction, insider activity, and trend streaks.
                     </span>
-                  ))}
+                  ) : (
+                    s.buyers.map((b) => (
+                      <span
+                        key={b.managerSlug}
+                        className={`inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border ${
+                          b.action === "new"
+                            ? "text-emerald-400 bg-emerald-400/10 border-emerald-400/30"
+                            : "text-muted bg-panel border-border"
+                        }`}
+                      >
+                        {b.action === "new" ? "★ NEW" : "+"} {b.managerName.split(" ").slice(-1)[0]}
+                        {b.deltaPct != null && b.action === "add" && (
+                          <span className="text-dim">({b.deltaPct > 0 ? "+" : ""}{b.deltaPct}%)</span>
+                        )}
+                      </span>
+                    ))
+                  )}
                 </div>
               </a>
             );

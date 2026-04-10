@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
 import { getSellSignals, ratingLabel } from "@/lib/signals";
+import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 
@@ -30,8 +31,9 @@ export default function WhatToSellPage() {
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-6">
         The top 10 stocks that {MANAGERS.length} of the best portfolio managers in the world are
-        dumping this quarter. Ranked by HoldLens's sell-signal model: exit share, manager quality, and
-        dump severity.
+        dumping this quarter. Ranked on a single signed score where <span className="text-rose-400 font-semibold">−100
+        is the strongest possible sell</span> and <span className="text-emerald-400 font-semibold">+100
+        the strongest buy</span>.
       </p>
       <div className="mb-10 flex flex-wrap gap-3">
         <a
@@ -51,7 +53,7 @@ export default function WhatToSellPage() {
       <div className="space-y-3">
         {signals.map((s, i) => {
           const rating = ratingLabel(s.score);
-          const color = rating.color === "emerald" ? "text-rose-400" : rating.color === "amber" ? "text-brand" : "text-muted";
+          const color = rating.color === "rose" ? "text-rose-400" : rating.color === "amber" ? "text-brand" : "text-muted";
           return (
             <a
               key={s.ticker}
@@ -67,10 +69,12 @@ export default function WhatToSellPage() {
                     <TrendBadge ticker={s.ticker} />
                   </div>
                   <div className="text-xs text-muted mt-1">
-                    {s.sellerCount} manager{s.sellerCount > 1 ? "s" : ""} selling · <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />
+                    {s.sellerCount > 0
+                      ? `${s.sellerCount} manager${s.sellerCount > 1 ? "s" : ""} selling`
+                      : "Strong historical exit pressure"} · <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />
                   </div>
                 </div>
-                <div className={`text-sm font-bold tabular-nums ${color}`}>{s.score}/100</div>
+                <div className={`text-sm font-bold tabular-nums ${color}`}>{formatSignedScore(s.score)} / −100</div>
               </div>
             </a>
           );

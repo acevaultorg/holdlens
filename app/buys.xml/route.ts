@@ -1,5 +1,6 @@
 // RSS feed for buy signals. Forced static so it works with output: 'export'.
 import { getBuySignals } from "@/lib/signals";
+import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
 export const dynamic = "force-static";
@@ -22,15 +23,18 @@ export async function GET() {
   const items = signals
     .map((s, i) => {
       const url = `https://holdlens.com/signal/${s.ticker}`;
-      const title = `${s.ticker} buy signal — ${s.score}/100 · ${s.buyerCount} managers buying`;
+      const scoreStr = formatSignedScore(s.score);
+      const buyerLine =
+        s.buyers.length > 0
+          ? `${s.buyers.map((b) => b.managerName).join(", ")} ${s.buyers.length === 1 ? "is" : "are"} buying ${s.ticker} (${xmlEscape(s.name)}) this quarter.`
+          : `${s.ticker} (${xmlEscape(s.name)}) carries a strong historical buy signal even without fresh activity this quarter.`;
+      const title = `${s.ticker} BUY signal · score ${scoreStr} on a −100..+100 scale`;
       const desc =
-        `${s.buyers.map((b) => b.managerName).join(", ")} ${s.buyers.length === 1 ? "is" : "are"} buying ${s.ticker} (${xmlEscape(
-          s.name
-        )}) this quarter. ` +
-        `Multi-factor recommendation score: ${s.score}/100. ` +
-        `Quality-weighted buyer list: ${s.buyers
-          .map((b) => `${b.managerName} (Q${b.quality})`)
-          .join(", ")}.`;
+        `${buyerLine} ` +
+        `Unified ConvictionScore: ${scoreStr} (positive = buy, negative = sell). ` +
+        (s.buyers.length > 0
+          ? `Quality-weighted buyer list: ${s.buyers.map((b) => `${b.managerName} (Q${b.quality})`).join(", ")}.`
+          : `Score reflects historical conviction, insider activity, and trend streaks.`);
       return `    <item>
       <title>${xmlEscape(title)}</title>
       <link>${url}</link>
@@ -48,7 +52,7 @@ export async function GET() {
     <title>HoldLens — What to buy (${quarterLabel})</title>
     <link>https://holdlens.com/buys</link>
     <atom:link href="https://holdlens.com/buys.xml" rel="self" type="application/rss+xml" />
-    <description>Top buy signals from the best portfolio managers in the world — ranked by HoldLens's multi-factor recommendation model. Updated every 13F filing deadline.</description>
+    <description>Top buy signals from the best portfolio managers in the world — ranked on a single signed −100..+100 ConvictionScore where +100 is the strongest possible buy. Updated every 13F filing deadline.</description>
     <language>en-us</language>
     <lastBuildDate>${now}</lastBuildDate>
     <pubDate>${filed}</pubDate>

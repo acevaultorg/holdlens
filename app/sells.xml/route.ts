@@ -1,5 +1,6 @@
 // RSS feed for sell signals. Forced static for output: 'export'.
 import { getSellSignals } from "@/lib/signals";
+import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
 export const dynamic = "force-static";
@@ -22,13 +23,18 @@ export async function GET() {
   const items = signals
     .map((s, i) => {
       const url = `https://holdlens.com/signal/${s.ticker}`;
-      const title = `${s.ticker} sell signal — ${s.score}/100 · ${s.sellerCount} managers selling`;
+      const scoreStr = formatSignedScore(s.score);
+      const sellerLine =
+        s.sellers.length > 0
+          ? `${s.sellers.map((b) => b.managerName).join(", ")} ${s.sellers.length === 1 ? "is" : "are"} selling ${s.ticker} (${xmlEscape(s.name)}) this quarter.`
+          : `${s.ticker} (${xmlEscape(s.name)}) carries a strong historical sell signal even without fresh activity this quarter.`;
+      const title = `${s.ticker} SELL signal · score ${scoreStr} on a −100..+100 scale`;
       const desc =
-        `${s.sellers.map((b) => b.managerName).join(", ")} ${s.sellers.length === 1 ? "is" : "are"} selling ${s.ticker} (${xmlEscape(
-          s.name
-        )}) this quarter. ` +
-        `Multi-factor sell-signal score: ${s.score}/100. ` +
-        `Seller list with quality: ${s.sellers.map((b) => `${b.managerName} (Q${b.quality})`).join(", ")}.`;
+        `${sellerLine} ` +
+        `Unified ConvictionScore: ${scoreStr} (negative = sell, positive = buy). ` +
+        (s.sellers.length > 0
+          ? `Quality-weighted seller list: ${s.sellers.map((b) => `${b.managerName} (Q${b.quality})`).join(", ")}.`
+          : `Score reflects historical dissent, crowding, and trend deterioration.`);
       return `    <item>
       <title>${xmlEscape(title)}</title>
       <link>${url}</link>
@@ -46,7 +52,7 @@ export async function GET() {
     <title>HoldLens — What to sell (${quarterLabel})</title>
     <link>https://holdlens.com/sells</link>
     <atom:link href="https://holdlens.com/sells.xml" rel="self" type="application/rss+xml" />
-    <description>Top sell signals from the best portfolio managers in the world — ranked by HoldLens's exit-share + dump-severity model. Updated every 13F filing deadline.</description>
+    <description>Top sell signals from the best portfolio managers in the world — ranked on a single signed −100..+100 ConvictionScore where −100 is the strongest possible sell. Updated every 13F filing deadline.</description>
     <language>en-us</language>
     <lastBuildDate>${now}</lastBuildDate>
     <pubDate>${filed}</pubDate>

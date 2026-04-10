@@ -4,6 +4,7 @@ import TrendBadge from "@/components/TrendBadge";
 import CsvExportButton from "@/components/CsvExportButton";
 import AdSlot from "@/components/AdSlot";
 import { getBuySignals, getSellSignals, ratingLabel } from "@/lib/signals";
+import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 
@@ -122,15 +123,7 @@ function SignalColumn({
         {signals.map((s, i) => {
           const isBuy = "buyerCount" in s;
           const count = isBuy ? s.buyerCount : (s as ReturnType<typeof getSellSignals>[number]).sellerCount;
-          const rating = ratingLabel(s.score);
-          const ratingColor =
-            rating.color === "emerald" && kind === "sell"
-              ? "text-rose-400"
-              : rating.color === "emerald"
-              ? "text-emerald-400"
-              : rating.color === "amber"
-              ? "text-brand"
-              : "text-muted";
+          const ratingColor = kind === "buy" ? "text-emerald-400" : "text-rose-400";
 
           return (
             <li key={s.ticker}>
@@ -145,10 +138,14 @@ function SignalColumn({
                     <TrendBadge ticker={s.ticker} />
                   </div>
                   <div className="text-[11px] text-dim mt-0.5">
-                    {count} manager{count > 1 ? "s" : ""} · <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />
+                    {count > 0
+                      ? `${count} manager${count > 1 ? "s" : ""}`
+                      : kind === "buy"
+                      ? "historical conviction"
+                      : "historical exit pressure"} · <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />
                   </div>
                 </div>
-                <div className={`text-sm font-bold tabular-nums ${ratingColor}`}>{s.score}</div>
+                <div className={`text-sm font-bold tabular-nums ${ratingColor}`}>{formatSignedScore(s.score)}</div>
               </a>
             </li>
           );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
 import { getBuySignals, ratingLabel } from "@/lib/signals";
+import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 
@@ -32,8 +33,10 @@ export default function WhatToBuyPage() {
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-6">
         The top 10 stocks that {MANAGERS.length} of the best portfolio managers in the world — Buffett,
-        Ackman, Druckenmiller, Klarman, Tepper, Coleman and more — are buying this quarter. Ranked
-        by HoldLens's multi-factor recommendation model.
+        Ackman, Druckenmiller, Klarman, Tepper, Coleman and more — are buying this quarter. Ranked on
+        a single signed score where <span className="text-emerald-400 font-semibold">+100 is the
+        strongest possible buy</span> and <span className="text-rose-400 font-semibold">−100
+        the strongest sell</span>.
       </p>
       <div className="mb-10 flex flex-wrap gap-3">
         <a
@@ -69,10 +72,12 @@ export default function WhatToBuyPage() {
                     <TrendBadge ticker={s.ticker} />
                   </div>
                   <div className="text-xs text-muted mt-1">
-                    {s.buyerCount} manager{s.buyerCount > 1 ? "s" : ""} buying · <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />
+                    {s.buyerCount > 0
+                      ? `${s.buyerCount} manager${s.buyerCount > 1 ? "s" : ""} buying`
+                      : "Strong historical conviction"} · <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />
                   </div>
                 </div>
-                <div className={`text-sm font-bold tabular-nums ${color}`}>{s.score}/100</div>
+                <div className={`text-sm font-bold tabular-nums ${color}`}>{formatSignedScore(s.score)} / +100</div>
               </div>
             </a>
           );
@@ -83,11 +88,13 @@ export default function WhatToBuyPage() {
         <h2 className="text-xl font-bold mb-3">How HoldLens decides what to buy</h2>
         <p className="text-muted text-sm leading-relaxed">
           We track every 13F filing from {MANAGERS.length} of the best portfolio managers in the world
-          — the ones with multi-decade track records and measurable alpha. Every buy and sell they report
-          is scored by our multi-factor recommendation model: manager quality (70%), consensus across managers (20%),
-          fresh-money share (10%), and a concentration bonus when a buyer commits over 10% of their portfolio.
-          Multi-quarter trend streaks get additional weight — if three Tier-1 managers have been adding for three
-          consecutive quarters, that's a much stronger signal than any single move.
+          — the ones with multi-decade track records and measurable alpha. Every ticker is assigned ONE
+          unified ConvictionScore on a single signed scale: <span className="text-emerald-400 font-semibold">+100
+          is the strongest possible buy</span>, <span className="text-rose-400 font-semibold">−100 the strongest
+          sell</span>. The score combines smart-money consensus, insider buys, manager track record, multi-quarter
+          trend streaks, position concentration, and an under-the-radar bonus — minus dissent from sellers and
+          a crowding penalty when a stock is already widely owned. A ticker can appear on EXACTLY ONE list
+          (buys or sells) — never both.
         </p>
       </section>
 
