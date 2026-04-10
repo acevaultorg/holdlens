@@ -38,11 +38,17 @@ function cacheSet(symbol: string, data: NewsItem[]) {
   }
 }
 
+const PROXY_BASE = "https://holdlens-yahoo-proxy.paulomdevries.workers.dev";
+
 async function fetchYahooNews(symbol: string, count = 8): Promise<NewsItem[]> {
   const base = `https://query1.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(
     symbol
   )}&quotesCount=0&newsCount=${count}&enableFuzzyQuery=false&lang=en-US&region=US`;
-  const endpoints = [base, `https://corsproxy.io/?url=${encodeURIComponent(base)}`];
+  const endpoints = [
+    `${PROXY_BASE}/search/${encodeURIComponent(symbol)}?count=${count}`,
+    base,
+    `https://corsproxy.io/?url=${encodeURIComponent(base)}`,
+  ];
 
   let lastErr: unknown = null;
   for (const url of endpoints) {

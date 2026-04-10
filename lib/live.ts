@@ -47,8 +47,13 @@ function cacheSet(symbol: string, data: LiveQuote) {
   }
 }
 
+// Cloudflare Worker proxy — adds the User-Agent header that Yahoo requires
+// from non-browser clients. See workers/yahoo-proxy/src/index.ts.
+const PROXY_BASE = "https://holdlens-yahoo-proxy.paulomdevries.workers.dev";
+
 async function fetchFromYahoo(symbol: string, range: string): Promise<LiveQuote> {
   const endpoints = [
+    `${PROXY_BASE}/quote/${encodeURIComponent(symbol)}?range=${range}`,
     `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}`,
     `https://corsproxy.io/?url=${encodeURIComponent(
       `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=${range}`

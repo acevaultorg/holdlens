@@ -1,0 +1,7 @@
+name = "holdlens-yahoo-proxy"
+main = "src/index.ts"
+compatibility_date = "2026-04-01"
+
+# Edge cache for 60 seconds — matches the client TTL.
+# Yahoo Finance returns 503 to many cloud providers' egress IPs without a real
+# browser User-Agent. The Worker adds it on every outbound request.
