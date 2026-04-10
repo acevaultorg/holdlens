@@ -1,4 +1,6 @@
 import EmailCapture from "@/components/EmailCapture";
+import BuySellSignals from "@/components/BuySellSignals";
+import LiveStats from "@/components/LiveStats";
 import { MANAGERS } from "@/lib/managers";
 import { topTickers } from "@/lib/tickers";
 
@@ -9,41 +11,41 @@ export default function HomePage() {
   return (
     <div className="max-w-5xl mx-auto px-6">
       {/* Hero */}
-      <section className="pt-20 pb-16 text-center">
+      <section className="pt-20 pb-12 text-center">
         <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-6">
-          Smart money, out loud
+          Learn from the best portfolio managers in the world
         </div>
         <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
-          See what the smartest<br />
-          investors are <span className="text-brand">buying.</span>
+          What to <span className="text-emerald-400">buy.</span><br />
+          What to <span className="text-rose-400">sell.</span>
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl mx-auto">
-          Track 14 tracked superinvestors — Buffett, Ackman, Icahn, Burry and more — with conviction scores,
-          backtests, and move-alerts the moment 13F filings drop. Free.
+          Every move from {MANAGERS.length} of the world's best portfolio managers — Buffett, Ackman,
+          Druckenmiller, Klarman, TCI, Tiger — ranked by a multi-factor recommendation model. Live prices. Free.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
           <a
-            href="/simulate/buffett"
-            className="bg-brand text-black font-semibold rounded-xl px-6 py-4 hover:opacity-90 transition"
+            href="/buys"
+            className="bg-emerald-400 text-black font-semibold rounded-xl px-6 py-4 hover:opacity-90 transition"
           >
-            Try the Buffett backtest →
+            See what to buy →
           </a>
           <a
-            href="/top-picks"
-            className="border border-border bg-panel rounded-xl px-6 py-4 hover:border-brand transition"
+            href="/sells"
+            className="border border-rose-400/40 bg-panel text-rose-400 rounded-xl px-6 py-4 hover:bg-rose-400/5 transition"
           >
-            See top picks
+            See what to sell →
           </a>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-6 py-10 border-y border-border">
-        <Stat big="14" label="Superinvestors tracked" />
-        <Stat big="$1.5T" label="Assets under watch" />
-        <Stat big="5" label="Interactive backtests" />
-        <Stat big="Free" label="Forever core tier" />
+      {/* Buy/Sell signal card — the headline feature */}
+      <section className="py-10 border-y border-border">
+        <BuySellSignals />
       </section>
+
+      {/* Live stats — computed client-side */}
+      <LiveStats />
 
       {/* Backtest gallery — the viral wedge front and center */}
       <section className="py-20">
@@ -107,9 +109,9 @@ export default function HomePage() {
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
-              Tracked investors
+              The best, out loud
             </div>
-            <h2 className="text-3xl font-bold">The superinvestors we watch</h2>
+            <h2 className="text-3xl font-bold">The portfolio managers we watch</h2>
           </div>
           <a href="/investor" className="text-sm text-muted hover:text-text">All {MANAGERS.length} →</a>
         </div>
@@ -122,6 +124,27 @@ export default function HomePage() {
               <div className="text-xs text-dim mt-2">Top: <span className="font-mono text-brand">{m.topHoldings[0]?.ticker}</span> ({m.topHoldings[0]?.pct.toFixed(1)}%)</div>
             </a>
           ))}
+        </div>
+      </section>
+
+      {/* Activity CTA */}
+      <section className="py-12 border-t border-border">
+        <div className="rounded-2xl border border-border bg-panel p-8 md:p-10 text-center">
+          <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+            Every buy, every sell, every quarter
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            The full activity feed.
+          </h2>
+          <p className="text-muted max-w-xl mx-auto mb-6">
+            Every tracked 13F move in chronological order, grouped by quarter. The fastest way to see what just changed.
+          </p>
+          <a
+            href="/activity"
+            className="inline-block bg-brand text-black font-semibold rounded-xl px-6 py-3 hover:opacity-90 transition"
+          >
+            Open activity feed →
+          </a>
         </div>
       </section>
 
@@ -143,15 +166,6 @@ export default function HomePage() {
         </div>
         <div className="text-xs text-dim mt-4">Free forever. ~3 emails per week during filing seasons.</div>
       </section>
-    </div>
-  );
-}
-
-function Stat({ big, label }: { big: string; label: string }) {
-  return (
-    <div className="text-center">
-      <div className="text-4xl font-bold text-text tabular-nums">{big}</div>
-      <div className="text-xs uppercase tracking-wider text-dim mt-1">{label}</div>
     </div>
   );
 }

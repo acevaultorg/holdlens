@@ -1,0 +1,75 @@
+# HoldLens — ANALYTICS (append-only per section, keep newest at top)
+
+## Behavior Log
+
+```
+2026-04-10 v0.13 | live-lib             | creation | next-static | single | quick | self   | AUTO | ~60s  | success
+2026-04-10 v0.13 | live-quote           | creation | next-static | single | quick | self   | AUTO | ~75s  | success
+2026-04-10 v0.13 | live-chart           | creation | next-static | single | standard | self | AUTO | ~90s  | success
+2026-04-10 v0.13 | watchlist+starbutton | creation | next-static | single | quick | self   | AUTO | ~60s  | success
+2026-04-10 v0.13 | wire-ticker          | modify   | next-static | single | quick | self   | AUTO | ~30s  | success
+2026-04-10 v0.13 | portfolio-value      | creation | next-static | single | quick | self   | AUTO | ~50s  | success
+2026-04-10 v0.13 | wire-investor        | modify   | next-static | single | quick | self   | AUTO | ~45s  | success
+2026-04-10 v0.13 | wire-buffett         | modify   | next-static | single | quick | self   | AUTO | ~30s  | success
+2026-04-10 v0.13 | wire-toppicks        | modify   | next-static | single | micro | self   | AUTO | ~20s  | success
+2026-04-10 v0.13 | live-ticker          | creation | next-static | single | quick | self   | AUTO | ~50s  | success
+2026-04-10 v0.13 | watchlist-page       | creation | next-static | single | quick | self   | AUTO | ~50s  | success
+2026-04-10 v0.13 | global-search        | creation | next-static | single | standard | self | AUTO | ~90s  | success
+2026-04-10 v0.13 | wire-layout          | modify   | next-static | single | micro | self   | AUTO | ~25s  | success
+2026-04-10 v0.13 | filings              | creation | next-static | single | quick | self   | AUTO | ~60s  | success
+2026-04-10 v0.13 | verify-build         | verify   | next-static | single | quick | self   | AUTO | ~45s  | success
+```
+
+## Cycle Times
+
+```
+2026-04-10 | live-lib           | quick    | 60s  | 60s  |   0%
+2026-04-10 | live-quote         | quick    | 60s  | 75s  | +25%
+2026-04-10 | live-chart         | standard | 120s | 90s  | -25%
+2026-04-10 | watchlist          | quick    | 60s  | 60s  |   0%
+2026-04-10 | portfolio-value    | quick    | 60s  | 50s  | -17%
+2026-04-10 | global-search      | standard | 120s | 90s  | -25%
+2026-04-10 | verify-build       | quick    | 60s  | 45s  | -25%
+```
+
+## Gate Log
+
+```
+2026-04-10 | AUTO | create new module       | clean build | clean build | ✓
+2026-04-10 | AUTO | new component           | clean build | clean build | ✓
+2026-04-10 | AUTO | edit existing page      | clean build | clean build | ✓
+2026-04-10 | AUTO | layout modification     | clean build | clean build | ✓
+```
+
+## Specialist Log
+
+```
+2026-04-10 | self-review | ui-changes        | 2 findings | 0 actionable (both 🟡 future) | 100%
+2026-04-10 | self-review | architecture      | 2 findings | 0 actionable (2 🟡 future)    | 100%
+2026-04-10 | self-review | security          | 1 finding  | 1 actionable (rel=noopener)   | 100%
+2026-04-10 | self-review | strategist/growth | 3 findings | 0 actionable (1 next cycle)   | 100%
+```
+
+## Recovery Log
+
+```
+(none)
+```
+
+## Handoff Log
+
+```
+(none in this session — deploy is existing 👤 task from prior cycle)
+```
+
+## Session Rollups
+
+```
+2026-04-10 | v0.13 live-data+features | 15 tasks | avg ~55s | 4 self-reviews | 4 gates AUTO | 0 human | 0 blocked | creation | delta: first-time ship of live data layer
+```
+
+## Evolution Audit
+
+```
+(n/a — evolve not invoked this session)
+```

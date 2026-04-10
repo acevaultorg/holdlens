@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import LiveQuote from "@/components/LiveQuote";
+import SectorHeatmap from "@/components/SectorHeatmap";
+import TrendBadge from "@/components/TrendBadge";
 import { topTickers } from "@/lib/tickers";
 
 export const metadata: Metadata = {
@@ -20,6 +23,20 @@ export default function TopPicksPage() {
         The 25 most-owned stocks across {top.length > 0 ? "10" : "0"} tracked superinvestors. Ranked by owner count + total conviction.
       </p>
 
+      {/* Sector heatmap */}
+      <div className="mb-8">
+        <SectorHeatmap
+          tickers={top.map((t) => ({
+            symbol: t.symbol,
+            name: t.name,
+            sector: t.sector,
+            ownerCount: t.ownerCount,
+          }))}
+          title="Day-change heatmap"
+          subtitle="Click any cell to jump to the ticker page"
+        />
+      </div>
+
       <div className="rounded-2xl border border-border bg-panel overflow-hidden">
         <table className="w-full text-sm">
           <thead className="text-dim text-xs uppercase tracking-wider">
@@ -28,6 +45,7 @@ export default function TopPicksPage() {
               <th className="text-left px-5 py-4">Ticker</th>
               <th className="text-left px-5 py-4">Company</th>
               <th className="text-left px-5 py-4 hidden md:table-cell">Sector</th>
+              <th className="text-right px-5 py-4 hidden md:table-cell">Price · Today</th>
               <th className="text-right px-5 py-4">Owners</th>
               <th className="text-right px-5 py-4">Σ %</th>
             </tr>
@@ -37,10 +55,18 @@ export default function TopPicksPage() {
               <tr key={t.symbol} className="border-b border-border last:border-0 hover:bg-bg/50 transition">
                 <td className="px-5 py-3 text-dim tabular-nums">{i + 1}</td>
                 <td className="px-5 py-3 font-mono font-semibold">
-                  <a href={`/ticker/${t.symbol}`} className="text-brand hover:underline">{t.symbol}</a>
+                  <a href={`/signal/${t.symbol}`} className="text-brand hover:underline">{t.symbol}</a>
                 </td>
-                <td className="px-5 py-3 text-text">{t.name}</td>
+                <td className="px-5 py-3">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-text">{t.name}</span>
+                    <TrendBadge ticker={t.symbol} />
+                  </div>
+                </td>
                 <td className="px-5 py-3 text-dim hidden md:table-cell">{t.sector}</td>
+                <td className="px-5 py-3 text-right hidden md:table-cell">
+                  <LiveQuote symbol={t.symbol} size="sm" refreshMs={0} />
+                </td>
                 <td className="px-5 py-3 text-right tabular-nums font-semibold">{t.ownerCount}</td>
                 <td className="px-5 py-3 text-right tabular-nums text-muted">{t.totalConviction.toFixed(0)}%</td>
               </tr>

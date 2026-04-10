@@ -1,8 +1,8 @@
 name: AcePilot
 
 on:
-  schedule:
-    - cron: '56 */2 * * *'
+  # schedule:  # DISABLED: OAuth token auth issues — re-enable when fixed
+  #   - cron: \'56 */2 * * *\'
   workflow_dispatch:
     inputs:
       focus:
@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
+      id-token: write
       contents: write
       pull-requests: write
       issues: write
@@ -34,17 +35,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci --prefer-offline --no-audit --no-fund 2>/dev/null || npm install --no-audit --no-fund 2>/dev/null || echo "no package.json or install failed"
+        run: |
+          if [ -f package-lock.json ]; then npm ci --prefer-offline --no-audit --no-fund; else npm install --no-audit --no-fund; fi
 
       - name: Run AcePilot
         id: acepilot
-        uses: anthropics/claude-code-base-action@beta
+        uses: anthropics/claude-code-action@v1
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          allowed_tools: "Bash,View,Write,Edit,GlobTool,GrepTool,BatchTool"
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
             You are AcePilot for holdlens.com.
             Stack: Next.js
