@@ -54,10 +54,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/sells" className="hover:text-rose-400 transition font-semibold">Sells</a>
               <a href="/this-week" className="hover:text-text transition hidden sm:inline">This week</a>
               <a href="/screener" className="hover:text-text transition hidden md:inline">Screener</a>
-              <a href="/activity" className="hover:text-text transition hidden md:inline">Activity</a>
+              <a href="/alerts" className="hover:text-text transition hidden md:inline">Alerts</a>
               <a href="/grand" className="hover:text-text transition hidden lg:inline">Grand</a>
               <a href="/investor" className="hover:text-text transition hidden lg:inline">Investors</a>
-              <a href="/watchlist" className="hover:text-text transition hidden lg:inline">Watchlist</a>
+              <a href="/pricing" className="text-brand hover:text-text transition font-semibold hidden md:inline">Pro</a>
               <GlobalSearch />
             </nav>
           </div>
@@ -78,6 +78,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/investor" className="hover:text-text">Investors</a>
               <a href="/ticker" className="hover:text-text">Stocks</a>
               <a href="/watchlist" className="hover:text-text">Watchlist</a>
+              <a href="/alerts" className="hover:text-text">Alerts</a>
+              <a href="/pricing" className="text-brand hover:text-text font-semibold">Pricing</a>
               <a href="/simulate" className="hover:text-text">Backtest</a>
               <a href="/learn" className="hover:text-text">Learn</a>
               <a href="/faq" className="hover:text-text">FAQ</a>

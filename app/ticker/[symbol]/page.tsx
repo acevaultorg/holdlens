@@ -7,6 +7,7 @@ import StarButton from "@/components/StarButton";
 import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
+import InsiderActivity from "@/components/InsiderActivity";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
@@ -117,6 +118,15 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
           Every tracked buy, add, trim, and exit on {t.symbol} by the best portfolio managers in the world. Ranked by manager quality inside each quarter.
         </p>
         <TickerActivity symbol={t.symbol} />
+      </section>
+
+      {/* Insider activity (Form 4) */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-2">Insider activity</h2>
+        <p className="text-muted text-sm mb-6">
+          SEC Form 4 filings — when CEOs, CFOs, and 10%+ owners buy or sell their own stock.
+        </p>
+        <InsiderActivity symbol={t.symbol} />
       </section>
 
       {/* Latest news */}

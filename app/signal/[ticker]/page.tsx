@@ -5,6 +5,7 @@ import LiveChart from "@/components/LiveChart";
 import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
+import InsiderActivity from "@/components/InsiderActivity";
 import StarButton from "@/components/StarButton";
 import SocialShare from "@/components/SocialShare";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
@@ -188,6 +189,15 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           Every tracked 13F move on {t.symbol} — grouped by quarter, ranked by manager quality.
         </p>
         <TickerActivity symbol={t.symbol} />
+      </section>
+
+      {/* Insider activity */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-3">Insider activity</h2>
+        <p className="text-muted text-sm mb-6 max-w-2xl">
+          What the company's own executives and directors are doing — buys are highly bullish.
+        </p>
+        <InsiderActivity symbol={t.symbol} />
       </section>
 
       {/* News */}

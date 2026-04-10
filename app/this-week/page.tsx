@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
+import CsvExportButton from "@/components/CsvExportButton";
 import { getBuySignals, getSellSignals, ratingLabel } from "@/lib/signals";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
@@ -33,9 +34,39 @@ export default function ThisWeekPage() {
       </p>
 
       {/* Top signals grid */}
-      <div className="grid md:grid-cols-2 gap-4 mb-12">
+      <div className="grid md:grid-cols-2 gap-4 mb-6">
         <SignalColumn kind="buy" title="Top buys" signals={topBuys} quarterLabel={quarterLabel} />
         <SignalColumn kind="sell" title="Top sells" signals={topSells} quarterLabel={quarterLabel} />
+      </div>
+
+      {/* CSV export */}
+      <div className="mb-12 flex justify-center">
+        <CsvExportButton
+          filename={`holdlens-this-week-${LATEST_QUARTER}.csv`}
+          label="Download top 10 buys + top 10 sells CSV"
+          rows={[
+            ...topBuys.map((s, i) => ({
+              direction: "BUY",
+              rank: i + 1,
+              ticker: s.ticker,
+              name: s.name,
+              sector: s.sector || "",
+              score: s.score,
+              manager_count: s.buyerCount,
+              managers: s.buyers.map((b) => b.managerName).join("; "),
+            })),
+            ...topSells.map((s, i) => ({
+              direction: "SELL",
+              rank: i + 1,
+              ticker: s.ticker,
+              name: s.name,
+              sector: s.sector || "",
+              score: s.score,
+              manager_count: s.sellerCount,
+              managers: s.sellers.map((b) => b.managerName).join("; "),
+            })),
+          ]}
+        />
       </div>
 
       {/* Quick CTAs */}

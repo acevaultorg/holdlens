@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import LiveQuote from "@/components/LiveQuote";
+import CsvExportButton from "@/components/CsvExportButton";
 import { getQuotes, type LiveQuote as LiveQuoteData } from "@/lib/live";
 import { getGrandPortfolio } from "@/lib/signals";
 
@@ -8,6 +9,16 @@ type Row = ReturnType<typeof getGrandPortfolio>[number];
 
 type SortKey = "score" | "owners" | "dayChange" | "ticker";
 type DirectionFilter = "all" | "up" | "down";
+
+type SavedFilter = {
+  sector: string;
+  minOwners: number;
+  minScore: number;
+  direction: DirectionFilter;
+  sortKey: SortKey;
+};
+
+const SAVE_KEY = "holdlens_screener_filter_v1";
 
 const SECTORS = [
   "All sectors",
@@ -30,6 +41,53 @@ export default function ScreenerClient() {
   const [minScore, setMinScore] = useState<number>(0);
   const [direction, setDirection] = useState<DirectionFilter>("all");
   const [sortKey, setSortKey] = useState<SortKey>("score");
+  const [savedState, setSavedState] = useState<"idle" | "saved" | "loaded">("idle");
+  const [hasSaved, setHasSaved] = useState(false);
+
+  // Load saved filter on mount
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = localStorage.getItem(SAVE_KEY);
+      if (raw) {
+        setHasSaved(true);
+        const f: SavedFilter = JSON.parse(raw);
+        setSector(f.sector);
+        setMinOwners(f.minOwners);
+        setMinScore(f.minScore);
+        setDirection(f.direction);
+        setSortKey(f.sortKey);
+        setSavedState("loaded");
+        setTimeout(() => setSavedState("idle"), 1500);
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  function saveFilter() {
+    if (typeof window === "undefined") return;
+    const f: SavedFilter = { sector, minOwners, minScore, direction, sortKey };
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify(f));
+      setHasSaved(true);
+      setSavedState("saved");
+      setTimeout(() => setSavedState("idle"), 1500);
+    } catch {
+      // quota
+    }
+  }
+
+  function clearSaved() {
+    if (typeof window === "undefined") return;
+    localStorage.removeItem(SAVE_KEY);
+    setHasSaved(false);
+    setSector("All sectors");
+    setMinOwners(1);
+    setMinScore(0);
+    setDirection("all");
+    setSortKey("score");
+  }
 
   // Base dataset from the grand portfolio (deterministic, built at render time)
   const allRows = useMemo(() => getGrandPortfolio(), []);
@@ -160,6 +218,43 @@ export default function ScreenerClient() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Save filter + CSV export actions */}
+      <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={saveFilter}
+            className="inline-flex items-center gap-2 text-xs font-semibold text-text border border-border hover:border-brand/40 rounded-lg px-3 py-2 bg-panel transition"
+          >
+            {savedState === "saved" ? "Saved ✓" : savedState === "loaded" ? "Loaded ✓" : "Save filter"}
+          </button>
+          {hasSaved && (
+            <button
+              onClick={clearSaved}
+              className="inline-flex items-center gap-2 text-xs font-semibold text-muted hover:text-rose-400 border border-border hover:border-rose-400/40 rounded-lg px-3 py-2 bg-panel transition"
+            >
+              Clear saved
+            </button>
+          )}
+          <CsvExportButton
+            filename="holdlens-screener-results.csv"
+            label="Download CSV"
+            rows={filtered.map((r, i) => ({
+              rank: i + 1,
+              ticker: r.ticker,
+              name: r.name,
+              sector: r.sector || "",
+              owner_count: r.ownerCount,
+              weighted_score: r.weightedScore.toFixed(1),
+              day_change_pct: quotes[r.ticker.toUpperCase()]?.dayChangePct.toFixed(2) ?? "",
+              price: quotes[r.ticker.toUpperCase()]?.price.toFixed(2) ?? "",
+            }))}
+          />
+        </div>
+        <span className="text-[10px] text-dim hidden sm:inline">
+          Filter saves on this device — auto-loads next visit
+        </span>
       </div>
 
       {/* Results */}
