@@ -86,3 +86,90 @@ git push origin main
 ```
 Or restore to pre-v0.13 state: `git reset --hard c872d30` (before any of the
 Apr 10 work).
+
+---
+
+## 👤 ACTIVATE Stripe Payment Link — THE revenue unlock (v0.28)
+
+**Why this is the #1 revenue action:** `components/StripeCheckoutButton.tsx`
+is already wired into `/pricing`. The only thing missing is ONE (or two)
+environment variables at the hosting layer. Setting them flips the CTA
+from "Get notified" → live Stripe Checkout. First real subscription dollar
+is one operator session away.
+
+**Estimated time:** 10 minutes end-to-end.
+
+**Why only a human can do this:** Stripe's dashboard requires a logged-in
+account with a verified business entity; product + Payment Link creation
+cannot be automated from this sandbox.
+
+### Steps (copy-paste)
+
+**1. Create the Pro product in Stripe**
+
+1. Open https://dashboard.stripe.com/products/create
+2. Name: `HoldLens Pro`
+3. Description: `Email alerts + EDGAR automation + API access + custom watchlist signals.`
+4. Pricing model: **Standard pricing**
+5. Add TWO prices to the same product (or two products if you prefer cleaner analytics):
+   - **Founders (100 spots · $9/mo)** — Recurring, $9.00 USD / monthly, no free trial
+   - **Standard ($14/mo)** — Recurring, $14.00 USD / monthly, no free trial
+6. Click **Save product**
+
+**2. Generate Payment Links**
+
+For EACH price (founders + standard):
+1. Click the price row → **Create payment link**
+2. Allow promo codes: off (or on, your call)
+3. Collect: email (required — already default)
+4. After payment: redirect to `https://holdlens.com/thank-you`
+5. Confirmation message: `Welcome to HoldLens Pro. You'll get the first alert digest on Monday.`
+6. Click **Create link**
+7. Copy the URL (format: `https://buy.stripe.com/...`)
+
+You now have:
+- `FOUNDERS_LINK` = the $9/mo founders URL
+- `STANDARD_LINK` = the $14/mo standard URL
+
+**3. Paste into Cloudflare Pages env vars**
+
+1. Open https://dash.cloudflare.com/ → Workers & Pages → select the **holdlens** project
+2. **Settings** → **Environment variables** → **Production**
+3. Add two variables (both must be `Plaintext` and `NEXT_PUBLIC_` prefixed so they're exposed at build time):
+   - Name: `NEXT_PUBLIC_STRIPE_PAYMENT_LINK_FOUNDERS` · Value: `FOUNDERS_LINK`
+   - Name: `NEXT_PUBLIC_STRIPE_PAYMENT_LINK` · Value: `STANDARD_LINK`
+4. Click **Save**
+
+**4. Trigger a fresh deploy so the env vars are compiled in**
+
+Option A — push any commit to the connected branch (easiest):
+```bash
+cd "/Users/paulodevries/Library/Mobile Documents/com~apple~CloudDocs/AceVault/ CLUSTER01-AceVault/VAULT01-Paulo Projects/Stocks/holdlens"
+git commit --allow-empty -m "chore: trigger rebuild with Stripe env vars"
+git push
+```
+
+Option B — Cloudflare dashboard → holdlens project → **Deployments** → **Retry deployment** on the most recent build.
+
+**5. Verify live**
+
+- Open https://holdlens.com/pricing in an incognito window
+- The Pro card should show a yellow **"Subscribe — $9/mo founders rate →"** button
+- Click it — you should land on Stripe Checkout, not /alerts
+- (Optional) Start a test purchase with your own card, then refund yourself from the Stripe dashboard
+
+### If you want to stage one link instead of two
+
+Drop only `NEXT_PUBLIC_STRIPE_PAYMENT_LINK_FOUNDERS` first and leave the standard one empty. The component gracefully falls back to founders for both variants when the standard is missing.
+
+### Rollback
+
+If anything looks wrong (wrong price, wrong description), delete the env var in Cloudflare Pages. The button reverts to `/alerts` email capture within one deploy — zero data loss.
+
+### After activation — what Chief will do next session
+
+- Add an `[x]` mark to `TASKS.md#stripe-activate` on the first `[👤] RESUMED` scan
+- Append a `Ship Impact` row to `GROWTH_ANALYTICS.md` recording the hypothesis ("Stripe activation expected to convert N% of /pricing visitors at $9–14 ARPU")
+- Wire a Plausible goal on the `buy.stripe.com` outbound click (already instrumented via `Pro Checkout Click` custom event in the component)
+- Consider adding a Stripe webhook → Resend welcome email once SEND traffic makes it worth the 20 min wire
+

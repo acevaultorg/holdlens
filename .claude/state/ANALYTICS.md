@@ -3,6 +3,11 @@
 ## Behavior Log
 
 ```
+2026-04-11 22:45 | signal-share-card    | creation | next-static | feature | standard | self-review(designer+strategist+security+architect) | AUTO | ~180s | success
+2026-04-11 22:48 | wire-signal-share    | modify   | next-static | single  | micro    | self | AUTO | ~30s  | success
+2026-04-11 22:50 | verify-v28-build     | verify   | next-static | multi   | quick    | self | AUTO | ~45s  | success (after sector?:string fix)
+2026-04-11 22:52 | reconcile-tasks      | modify   | next-static | single  | micro    | self | AUTO | ~20s  | success
+2026-04-11 22:54 | stripe-handoff-guide | creation | next-static | single  | quick    | self | AUTO | ~60s  | success (👤 guide for stripe-activate)
 2026-04-10 v0.13 | live-lib             | creation | next-static | single | quick | self   | AUTO | ~60s  | success
 2026-04-10 v0.13 | live-quote           | creation | next-static | single | quick | self   | AUTO | ~75s  | success
 2026-04-10 v0.13 | live-chart           | creation | next-static | single | standard | self | AUTO | ~90s  | success

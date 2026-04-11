@@ -2,21 +2,50 @@
 
 ## Orient
 **Project:** HoldLens — 13F superinvestor tracker, Next.js 15 static export, Cloudflare Pages + Worker proxy.
-**State:** v0.27 shipped /insiders + /changelog + trend-badge + sitemap backfill on top of v0.25 unified signed score + v0.26 copy parity. 490 static pages live.
-**Goal:** Keep clearing the v0.19 backlog + keep adding unique features Dataroma doesn't have.
+**State:** v0.28 shipped SignalShareCard — per-ticker viral PNG share card on /signal/[ticker], 94 signal dossiers now have one-click download + pre-filled tweet. Built on v0.27 foundation (490 page baseline now 483 HTML + 94 signal + 94 ticker + xml/sitemap/feeds).
+**Goal:** Revenue activation. Stripe handoff is the single biggest unlock — one operator session → live subscription revenue.
 
 ## Session Handoff
 
 **Mode:** god
-**Objective:** finish the drafts sitting on the shelf (insider-page + changelog + verdict-trend)
-**Progress:** 10/10 tasks done, 0 blocked, 0 human handoffs
-**Branch:** `acepilot/v0.25-unified-score` · 7 commits on top of v0.25
-**Deployed:** Cloudflare Pages — https://f419fbb0.holdlens.pages.dev → holdlens.com
-**Next actions:** no blocking work. Merge `acepilot/v0.25-unified-score` → main when ready — it now contains the full v0.25 + v0.26 + v0.27 feature set. The parallel `acepilot/god-loop-changelog` PR #2 is obsoleted by v0.27's fresher /changelog page and can be closed without merging.
-**Human actions pending:** 0
+**Objective:** revenue-first — viral share card on /signal/[ticker] + Stripe activation handoff
+**Progress:** 7/7 tasks done (1 pending commit), 0 blocked, 1 [👤] (stripe-activate)
+**Branch:** `acepilot/v0.25-unified-score` · 8 commits on top of v0.25 (post-commit)
+**Deployed:** Cloudflare Pages — previous deploy https://f419fbb0.holdlens.pages.dev → holdlens.com. v0.28 needs push + CF auto-deploy.
+**Next actions:**
+  1. Operator: run /acepilot guide to see the Stripe activation walk-through (10-min revenue unlock)
+  2. Chief: once deployed, verify /signal/META shows the share card, click Download to confirm PNG renders
+  3. Chief: consider merge `acepilot/v0.25-unified-score` → main (8 versions ahead, safe to merge)
+  4. Next candidate: og-images at build time via satori (pairs with SignalShareCard for SEO amplification)
+**Human actions pending:** 1 — stripe-activate (see HUMAN_ACTIONS.md "ACTIVATE Stripe Payment Link")
 **Open questions:** none
 **Momentum:** high
-<!-- handoff: 2026-04-11 07:55 -->
+<!-- handoff: 2026-04-11 22:55 -->
+
+## What shipped in v0.28
+
+**SignalShareCard** — the missing viral wedge. Every /signal/[ticker] page now has a branded, downloadable 1200x630 PNG card with:
+- Big ticker symbol + company name + sector
+- Verdict word (BUY / SELL / NEUTRAL) in verdict color
+- Signed ConvictionScore +XX / −XX on a −100..+100 scale
+- Bottom row: buyers / sellers / top streak (Q) / held-by
+- HoldLens branding + direct URL back to /signal/[ticker]
+- Pre-composed tweet with the URL inline (copy-safe anywhere)
+- Download PNG / Copy tweet / Share to Twitter / Share to LinkedIn
+- Plausible custom events on every click ("Signal Share Download", etc)
+- SSR-safe skeleton with aspect-ratio placeholder (no layout shift)
+- Pure client-side canvas — zero new deps, zero infra cost, works under `output: 'export'`
+
+Wired into app/signal/[ticker]/page.tsx right after the unified score breakdown, before the live chart — high enough to be seen while the verdict is fresh, low enough not to push the chart below the fold.
+
+**Stripe activation handoff** — copy-paste guide in HUMAN_ACTIONS.md walks the operator through:
+1. Create HoldLens Pro product in Stripe dashboard
+2. Generate Payment Links ($9/mo founders + $14/mo standard)
+3. Paste into Cloudflare Pages env vars (NEXT_PUBLIC_STRIPE_PAYMENT_LINK + NEXT_PUBLIC_STRIPE_PAYMENT_LINK_FOUNDERS)
+4. Trigger rebuild
+5. Verify live
+
+The wire already exists — `components/StripeCheckoutButton.tsx` is on /pricing and gracefully falls back to /alerts if env vars are missing. This is a 10-minute operator task.
 
 ## What shipped in v0.27
 

@@ -8,6 +8,7 @@ import TickerEarnings from "@/components/TickerEarnings";
 import InsiderActivity from "@/components/InsiderActivity";
 import StarButton from "@/components/StarButton";
 import SocialShare from "@/components/SocialShare";
+import SignalShareCard from "@/components/SignalShareCard";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import AdSlot from "@/components/AdSlot";
 import TrendBadge from "@/components/TrendBadge";
@@ -192,6 +193,30 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           </div>
         </section>
       )}
+
+      {/* Viral share card — the single-click "tweet this verdict" unlock.
+          Placed here (after verdict + score breakdown, before the chart) so
+          the user sees the shareable artefact while the verdict is fresh. */}
+      <section className="mt-8">
+        <SignalShareCard
+          ticker={t.symbol}
+          name={t.name}
+          sector={t.sector}
+          verdict={verdict}
+          score={signedScore}
+          convictionLabel={convictionLabel(signedScore).label}
+          buyerCount={net?.buyerCount ?? 0}
+          sellerCount={net?.sellerCount ?? 0}
+          topStreak={
+            verdict === "BUY"
+              ? trend.consistentBuyers.reduce((m, b) => Math.max(m, b.streak), 0)
+              : verdict === "SELL"
+              ? trend.consistentSellers.reduce((m, s) => Math.max(m, s.streak), 0)
+              : 0
+          }
+          ownerCount={t.ownerCount}
+        />
+      </section>
 
       {/* Live price + chart */}
       <section className="mt-8">

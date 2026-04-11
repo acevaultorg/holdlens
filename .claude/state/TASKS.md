@@ -1,21 +1,27 @@
 # HoldLens — TASKS
 
-## Queue (v0.26 — copy parity with the unified score)
+## Queue (v0.28 — viral share cards + revenue activation) [objective:v28-viral-and-revenue]
 
-[objective:v26-copy-parity]
+- [x] `P0` BUILD components/SignalShareCard.tsx — canvas PNG render of ticker + verdict + score + HoldLens branding, download + copy-tweet + share-to-Twitter/LinkedIn. Pattern-matches PortfolioShareCard. Highest-leverage viral unlock per /signal/[ticker] — every share = brand impression × follower count [id:signal-share-card] [score:12.0] ⏱ done — canvas 1200x630, SSR-safe, Plausible events wired
+- [x] `P0` WIRE SignalShareCard into /signal/[ticker]/page.tsx — place after verdict + score breakdown, before LiveQuote [id:wire-signal-share] [score:11.0] ⏱ done — passes ticker/name/sector/verdict/score/convictionLabel/buyerCount/sellerCount/topStreak/ownerCount
+- [x] `P0` BUILD + verify static export — 483 HTML pages, 94 signal dossiers, zero errors [id:verify-v28] [score:13.0] ⏱ done — next build clean after sector?:string fix
+- [ ] `P0` COMMIT + push [id:commit-v28] [score:12.0] [needs:verify-v28]
+- [👤] `P1` ACTIVATE Stripe Payment Link — create HoldLens Pro product ($9/mo founders + $14/mo standard), generate payment link, paste NEXT_PUBLIC_STRIPE_PAYMENT_LINK + NEXT_PUBLIC_STRIPE_PAYMENT_LINK_FOUNDERS into Cloudflare Pages env vars, redeploy. Guide in HUMAN_ACTIONS.md. Wire already exists in components/StripeCheckoutButton.tsx — ONE env var = live revenue [id:stripe-activate] [score:13.0] 👤 guide generated
 
-- [ ] `P0` REWRITE /learn/conviction-score-explained — describe the SHIPPED v4 unified signed −100..+100 score, kill the "coming in v0.4" lie [id:learn-page] [score:13.0]
-- [ ] `P0` REWRITE /pricing Pro tier — stop selling "Conviction Score v2 — 0-100 algorithmic score" because the unified ConvictionScore v4 is in Free. Position Pro as email alerts + EDGAR + API + alpha attribution + custom watchlists [id:pricing-pro] [score:13.0]
-- [ ] `P0` REWRITE /pricing Free tier — list the actual shipped features (unified signed score, dossier pages, screener, portfolio, leaderboard, /best-now, etc) [id:pricing-free] [score:12.0]
-- [ ] `P0` UPDATE homepage hero copy — "ranked by a multi-factor recommendation model" → "ranked on a single signed −100..+100 conviction scale" [id:home-hero] [score:11.0]
-- [ ] `P0` UPDATE homepage "Conviction-scored" feature card — body should describe the unified scale, not vague "filters rebalances" [id:home-feature] [score:9.0]
-- [ ] `P1` UPDATE /best-now meta description — "ConvictionScore v3" → "ConvictionScore v4" [id:bestnow-meta] [score:6.0]
-- [ ] `P1` UPDATE /what-to-sell meta description — drop "exit-share weighting, dump severity" (no longer in the score), describe the unified signed scale [id:wts-meta] [score:6.0]
-- [ ] `P1` UPDATE /press-kit launch posts — Show HN + Reddit + Twitter copy must mention the unified score, not the old multi-factor model [id:press-kit] [score:8.0]
-- [ ] `P1` SCAN /faq + /this-week + /signal/[ticker] for any remaining stale references [id:scan-rest] [score:5.0]
-- [ ] `P0` BUILD + verify static export [id:verify] [score:11.0]
-- [ ] `P0` DEPLOY to Cloudflare Pages + verify live [id:deploy] [score:12.0]
-- [ ] `P0` COMMIT + push [id:commit] [score:11.0]
+## Queue (v0.26 — copy parity with the unified score) — SHIPPED [objective:v26-copy-parity]
+
+- [x] `P0` REWRITE /learn/conviction-score-explained — describe the SHIPPED v4 unified signed −100..+100 score [id:learn-page] [score:13.0] ⏱ done v0.26 71b76788
+- [x] `P0` REWRITE /pricing Pro tier — email alerts + EDGAR + API + custom watchlists [id:pricing-pro] [score:13.0] ⏱ done v0.26 71b76788
+- [x] `P0` REWRITE /pricing Free tier — unified signed score, dossiers, screener, portfolio, leaderboard [id:pricing-free] [score:12.0] ⏱ done v0.26 71b76788
+- [x] `P0` UPDATE homepage hero copy — "single signed −100..+100 conviction scale" [id:home-hero] [score:11.0] ⏱ done v0.26 71b76788
+- [x] `P0` UPDATE homepage "Conviction-scored" feature card [id:home-feature] [score:9.0] ⏱ done v0.26 71b76788
+- [x] `P1` UPDATE /best-now meta description — v3 → v4 [id:bestnow-meta] [score:6.0] ⏱ done v0.26 cc344b70
+- [x] `P1` UPDATE /what-to-sell meta description [id:wts-meta] [score:6.0] ⏱ done v0.26 cc344b70
+- [x] `P1` UPDATE /press-kit launch posts [id:press-kit] [score:8.0] ⏱ done v0.26 cc344b70
+- [x] `P1` SCAN /faq + /this-week + /signal/[ticker] for stale refs [id:scan-rest] [score:5.0] ⏱ done v0.26 cc344b70 + eae87545
+- [x] `P0` BUILD + verify static export (490 pages) [id:verify] [score:11.0] ⏱ done v0.27 fd6e3f61
+- [x] `P0` DEPLOY to Cloudflare Pages + verify live [id:deploy] [score:12.0] ⏱ done v0.27 — f419fbb0.holdlens.pages.dev
+- [x] `P0` COMMIT + push [id:commit] [score:11.0] ⏱ done v0.27 f3ae1d7c
 
 ## Queue (v0.18 — Pricing + alerts + insiders + screener save) — SHIPPED [objective:v18-monetize-prep]
 
