@@ -15,6 +15,7 @@ const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: b
   { href: "/leaderboard", label: "Leaderboard" },
   { href: "/screener", label: "Screener" },
   { href: "/activity", label: "Activity" },
+  { href: "/insiders", label: "Insider activity", emerald: true },
   { href: "/grand", label: "Grand portfolio" },
   { href: "/investor", label: "Investors" },
   { href: "/ticker", label: "Stocks" },
@@ -31,6 +32,7 @@ const SECONDARY_LINKS: { href: string; label: string }[] = [
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
   { href: "/methodology", label: "Methodology" },
+  { href: "/changelog", label: "Changelog" },
 ];
 
 export default function MobileNav() {

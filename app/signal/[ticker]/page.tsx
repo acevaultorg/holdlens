@@ -10,6 +10,7 @@ import StarButton from "@/components/StarButton";
 import SocialShare from "@/components/SocialShare";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import AdSlot from "@/components/AdSlot";
+import TrendBadge from "@/components/TrendBadge";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
 import { formatSignedScore, convictionLabel } from "@/lib/conviction";
@@ -112,7 +113,10 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
             <div className="text-[11px] uppercase tracking-widest font-bold opacity-80">
               HoldLens verdict · single −100..+100 scale
             </div>
-            <div className="text-5xl md:text-6xl font-bold tracking-tight mt-2">{verdict}</div>
+            <div className="flex items-end gap-3 mt-2 flex-wrap">
+              <div className="text-5xl md:text-6xl font-bold tracking-tight">{verdict}</div>
+              <TrendBadge ticker={t.symbol} size="md" />
+            </div>
             <div className="text-sm mt-2 opacity-80">
               Score: <span className="font-bold tabular-nums text-2xl">{formatSignedScore(signedScore)}</span>
               <span className="opacity-60"> / {signedScore >= 0 ? "+100" : "−100"}</span>

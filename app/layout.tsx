@@ -97,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/leaderboard" className="hover:text-text">Leaderboard</a>
               <a href="/screener" className="hover:text-text">Screener</a>
               <a href="/activity" className="hover:text-text">Activity</a>
+              <a href="/insiders" className="hover:text-emerald-400">Insiders</a>
               <a href="/grand" className="hover:text-text">Grand</a>
               <a href="/compare/managers" className="hover:text-text">Compare</a>
               <a href="/top-picks" className="hover:text-text">Top picks</a>
@@ -110,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/faq" className="hover:text-text">FAQ</a>
               <a href="/about" className="hover:text-text">About</a>
               <a href="/press" className="hover:text-text">Press</a>
+              <a href="/changelog" className="hover:text-text">Changelog</a>
             </div>
           </div>
         </footer>
