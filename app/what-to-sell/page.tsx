@@ -8,11 +8,11 @@ import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
   title: "What to sell — stocks the best portfolio managers are dumping",
-  description: `${MANAGERS.length} of the best portfolio managers in the world and what they're selling this quarter. Sell signal score, exit-share weighting, dump severity.`,
+  description: `${MANAGERS.length} of the best portfolio managers in the world and what they're selling. Ranked on a single signed −100..+100 ConvictionScore where −100 is the strongest possible sell.`,
   alternates: { canonical: "https://holdlens.com/sells" },
   openGraph: {
     title: "What to sell — HoldLens",
-    description: "Stocks the best portfolio managers in the world are dumping.",
+    description: "Stocks the best portfolio managers in the world are dumping, ranked on the unified signed ConvictionScore.",
     url: "https://holdlens.com/what-to-sell",
   },
 };

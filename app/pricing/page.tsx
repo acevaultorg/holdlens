@@ -5,10 +5,10 @@ import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
   title: "Pricing — HoldLens Free + Pro",
-  description: `HoldLens is free forever for the core 13F tracker. Pro tier ($14/mo) launches Q2 2026 with email alerts, conviction scores, manager alpha attribution, and more.`,
+  description: `HoldLens is free forever for the full recommendation model, signal dossiers, and live data. Pro tier ($14/mo) launches Q2 2026 with email alerts, EDGAR automation, custom watchlists, and API access.`,
   openGraph: {
     title: "HoldLens Pricing",
-    description: "Free forever core. Pro tier launching Q2 2026.",
+    description: "Free forever core — the unified signed ConvictionScore is in Free, not Pro.",
   },
 };
 
@@ -23,8 +23,9 @@ export default function PricingPage() {
           Free forever. Pro for $14/mo.
         </h1>
         <p className="text-muted text-lg max-w-2xl mx-auto">
-          The core HoldLens product is free for everyone. Pro adds email alerts,
-          a conviction score, manager alpha attribution, and direct API access.
+          The full recommendation engine — unified signed ConvictionScore, signal dossiers,
+          live prices, multi-quarter trend detection — is free for everyone. Pro adds
+          email alerts, EDGAR automation, custom watchlists, and API access.
         </p>
       </div>
 
@@ -47,14 +48,15 @@ export default function PricingPage() {
 
           <ul className="space-y-3 text-sm">
             <Feature text={`${MANAGERS.length} of the best portfolio managers in the world tracked`} />
-            <Feature text="Multi-factor buy/sell recommendation model" />
-            <Feature text="Multi-quarter trend streaks (2Q, 3Q+ conviction)" />
-            <Feature text="Live prices, charts, news per ticker" />
-            <Feature text="Per-ticker signal dossier with verdict" />
-            <Feature text="Activity feed, screener, compare managers" />
-            <Feature text="Watchlist, sector heatmap, CSV export" />
-            <Feature text="cmd+K search, RSS feeds" />
-            <Feature text="Free RSS feed of buy/sell signals" />
+            <Feature text="Unified ConvictionScore on a single −100..+100 scale" />
+            <Feature text="Signal dossier per ticker with BUY / SELL / NEUTRAL verdict" />
+            <Feature text="Multi-quarter trend streaks (2Q, 3Q+, 4Q+)" />
+            <Feature text="Live Yahoo Finance quotes, charts, news per ticker" />
+            <Feature text="Manager leaderboard with realized 10y alpha vs S&P" />
+            <Feature text="Personal portfolio + watchlist (localStorage, no signup)" />
+            <Feature text="Screener, sector heatmap, activity feed, CSV export" />
+            <Feature text="cmd+K search, RSS feeds (/buys.xml, /sells.xml)" />
+            <Feature text="Manager-vs-manager compare pages (all 105 pairs)" />
           </ul>
         </div>
 
@@ -91,12 +93,13 @@ export default function PricingPage() {
           <ul className="space-y-3 text-sm">
             <Feature text="Everything in Free, plus:" emphasis />
             <Feature text="Email alerts the moment any tracked manager files a 13F" />
-            <Feature text="Conviction Score v2 — per-ticker, per-manager 0-100 algorithmic score" />
-            <Feature text="Manager Alpha Attribution — realized alpha vs S&P per manager" />
-            <Feature text="Custom watchlists with email triggers" />
-            <Feature text="Pre-generated weekly digest of the top 10 buy + sell signals" />
+            <Feature text="Custom watchlist alerts — email when YOUR holdings get a signal change" />
+            <Feature text="Weekly digest — top 10 buys + top 10 sells delivered every Monday" />
+            <Feature text="EDGAR automation — the full 80+ manager universe (not just 30)" />
+            <Feature text="Per-ticker thesis generator — AI-drafted buy/sell rationale" />
+            <Feature text="Historical score time series — see how a stock's signal evolved" />
             <Feature text="API access (1000 calls/mo) for embeds, bots, scripts" />
-            <Feature text="Priority feature requests" />
+            <Feature text="Priority feature requests + direct line to the builder" />
             <Feature text="No ads, ever" />
           </ul>
         </div>
@@ -108,7 +111,7 @@ export default function PricingPage() {
         <div className="space-y-6">
           <FAQ
             q="Is the free tier really free forever?"
-            a="Yes. The core 13F tracker — recommendation model, multi-quarter trends, live prices, signal dossiers, activity feed, screener, compare, watchlist — stays free for everyone. Pro adds email alerts, conviction scoring, alpha attribution, and API access."
+            a="Yes. The unified ConvictionScore is not a Pro upsell — it's the core product, free for everyone. That includes the recommendation model, multi-quarter trends, live prices, signal dossiers, activity feed, screener, compare pages, watchlist, portfolio, and the manager leaderboard with 10y realized alpha. Pro adds email alerts, EDGAR coverage expansion, custom watchlist triggers, thesis generation, and API access."
           />
           <FAQ
             q="What's the founders price?"

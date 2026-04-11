@@ -21,7 +21,9 @@ export default function HomePage() {
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl mx-auto">
           Every move from {MANAGERS.length} of the world's best portfolio managers — Buffett, Ackman,
-          Druckenmiller, Klarman, TCI, Tiger — ranked by a multi-factor recommendation model. Live prices. Free.
+          Druckenmiller, Klarman, TCI, Tiger — scored on a single signed scale where{" "}
+          <span className="text-emerald-400 font-semibold">+100 is the strongest possible buy</span> and{" "}
+          <span className="text-rose-400 font-semibold">−100 the strongest possible sell</span>. Live prices. Free.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
           <a
@@ -150,7 +152,7 @@ export default function HomePage() {
 
       {/* Why different */}
       <section className="py-16 border-t border-border grid md:grid-cols-3 gap-8">
-        <Feature title="Conviction-scored" body="Not every position is a real bet. HoldLens filters rebalances from conviction, so you see what the pros actually care about." />
+        <Feature title="One signed score" body="Every stock gets one number on a −100..+100 scale. A ticker shows up on exactly one list — never both sides at once. The META problem is solved." />
         <Feature title="Always current" body="SEC filings parsed within hours. Email alerts fire the moment Buffett, Ackman, or Icahn file a new 13F." />
         <Feature title="Backtest anything" body="Interactive simulators: 'If you had copied Buffett starting in 2010, you'd have…' — share-ready charts for every manager." />
       </section>

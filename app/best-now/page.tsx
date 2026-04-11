@@ -8,11 +8,11 @@ import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
   title: "Highest expected ROI right now — what to buy and sell",
-  description: `ConvictionScore v3 — multi-factor recommendation model with expected return projection. Built on real 10-year ROI from ${MANAGERS.length} of the best portfolio managers in the world.`,
+  description: `The unified ConvictionScore ranks every stock on a single signed −100..+100 scale with expected annual return projection. Built on real 10-year ROI from ${MANAGERS.length} of the best portfolio managers in the world.`,
   alternates: { canonical: "https://holdlens.com/best-now" },
   openGraph: {
     title: "HoldLens — Best stocks right now",
-    description: "ConvictionScore v3 with expected ROI projection. The highest-conviction buy and sell signals from the best portfolio managers in the world.",
+    description: "The unified −100..+100 ConvictionScore with expected annualized return projection, for the highest-conviction buy and sell signals from the best portfolio managers in the world.",
   },
 };
 
