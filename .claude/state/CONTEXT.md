@@ -2,52 +2,58 @@
 
 ## Orient
 **Project:** HoldLens — 13F superinvestor tracker, Next.js 15 static export, Cloudflare Pages + Worker proxy.
-**State:** v0.26 copy parity shipped on top of v0.25 unified signed score. 488 static pages live.
-**Goal:** Keep the site honest — no stale claims, no "coming soon" lies about already-shipped features.
+**State:** v0.27 shipped /insiders + /changelog + trend-badge + sitemap backfill on top of v0.25 unified signed score + v0.26 copy parity. 490 static pages live.
+**Goal:** Keep clearing the v0.19 backlog + keep adding unique features Dataroma doesn't have.
 
 ## Session Handoff
 
 **Mode:** god
-**Objective:** copy parity after the v0.25 unified signed score ship
-**Progress:** 12/12 tasks done, 0 blocked, 0 human handoffs
-**Branch:** `acepilot/v0.25-unified-score` · 4 commits on top of v0.25 (71b7678, cc344b7, ffdc6f4, 4a8d596, eae8754)
-**Deployed:** Cloudflare Pages — https://70250990.holdlens.pages.dev → holdlens.com
-**Next actions:** none blocking. Merge `acepilot/v0.25-unified-score` to main when ready. The insiders-page-draft in `.claude/state/insiders-page-draft/` can now be promoted since v0.25 work is live.
-**Human actions pending:** 0 (deploy is automated via wrangler; branch is pushed)
+**Objective:** finish the drafts sitting on the shelf (insider-page + changelog + verdict-trend)
+**Progress:** 10/10 tasks done, 0 blocked, 0 human handoffs
+**Branch:** `acepilot/v0.25-unified-score` · 7 commits on top of v0.25
+**Deployed:** Cloudflare Pages — https://f419fbb0.holdlens.pages.dev → holdlens.com
+**Next actions:** no blocking work. Merge `acepilot/v0.25-unified-score` → main when ready — it now contains the full v0.25 + v0.26 + v0.27 feature set. The parallel `acepilot/god-loop-changelog` PR #2 is obsoleted by v0.27's fresher /changelog page and can be closed without merging.
+**Human actions pending:** 0
 **Open questions:** none
-**Momentum:** high — copy is now truthful across every surface
-<!-- handoff: 2026-04-11 07:45 -->
+**Momentum:** high
+<!-- handoff: 2026-04-11 07:55 -->
 
-## What shipped in v0.26
+## What shipped in v0.27
 
-Copy parity after v0.25 unified scale. Nine files rewritten so nothing on the site still describes the old multi-factor 0-100 model:
+Three drafts that had been sitting on the shelf for v0.25 to land:
 
-1. `/learn/conviction-score-explained` — was telling users the model is "coming in v0.4" (it's been live for hours). Now fully describes the shipped unified signed −100..+100 model with all eight signal layers + label mapping table.
-2. `/pricing` — was selling "Conviction Score v2 — 0-100 algorithmic score" as a Pro feature. Both tiers rewritten: Free lists the actual shipped product (unified score, dossier pages, leaderboard, portfolio, screener, etc), Pro is repositioned around email alerts, EDGAR expansion, custom watchlist triggers, thesis generation, and API.
-3. Homepage hero copy — "ranked by a multi-factor recommendation model" → signed-scale framing with +100/−100 anchors.
-4. Homepage "Conviction-scored" feature card → "One signed score" with the META-problem framing.
-5. `/best-now` meta description — updated from "ConvictionScore v3" to the unified signed scale copy.
-6. `/what-to-sell` meta description — dropped "exit-share weighting, dump severity" (these are no longer in the score).
-7. `/what-to-buy` meta description — updated.
-8. `/signal/[ticker]` footer — no longer says "multi-factor recommendation scoring".
-9. `/thank-you` + `/alerts` Pro upsell copy — stopped pretending the ConvictionScore is a future Pro feature.
-10. `/press-kit` launch posts (Show HN, r/SecurityAnalysis, r/investing, Twitter thread, ProductHunt) — rewritten with the much sharper "Dataroma has META #1 on both buy AND sell lists simultaneously because they rank by raw ownership count — HoldLens fixes that with one signed score" hook.
-11. Root `app/layout.tsx` meta — "Track 10+ superinvestors. Conviction scores, backtests, weekly moves" → "Track 30 of the world's best portfolio managers on a single signed −100..+100 ConvictionScore". Every page that didn't override inherits the new copy now.
+1. **`/insiders`** — promoted from `.claude/state/insiders-page-draft/page.tsx` (now deleted). Theme-ported (`text-green`/`border-subtle`/`bg-card` → current palette). Added a 4-card summary row: buy count / sell count / NET insider flow (buys − discretionary sells, signed and colored) / unique tickers with buys. Sells table distinguishes 10b5-1 scheduled sells (dim) from discretionary sells (rose + bold). All ticker links go to `/signal/[ticker]` so visitors land on the full dossier. Dataset JSON-LD for search indexing. Live stats: 6 buys, 16 sells, 6 unique tickers, 58 deep links to signal dossiers.
 
-## Verified on production
+2. **`/changelog`** — brand-new page on this branch. Full 26-release history from v0.1 through v0.26 with Article JSON-LD, timeline layout, brand-color milestone dots, RSS link. The top two entries (v0.26 "Copy parity" and v0.25 "Unified signed score") are the key SEO landing content for anyone searching "HoldLens update". Obsoletes the parallel `acepilot/god-loop-changelog` PR #2.
 
-- `/buys` — 58 tickers, GE +42 → POOL +2
-- `/sells` — 10 tickers, AAPL −11 → HPQ −1
-- `/signal/META` — BUY verdict, score +20, appears ONLY on buys
-- Zero overlap between the two rankings
-- `/learn/conviction-score-explained` — 8/8 signal layers described
-- `/pricing` — unified scale copy live, no "Conviction Score v2" language
-- Homepage hero — "strongest possible buy" copy live
-- Root meta tags — 30 managers, signed scale
+3. **TrendBadge in the signal verdict box** — last open v0.19 backlog item. The big BUY/SELL/NEUTRAL verdict on `/signal/[ticker]` now has a "3Q BUY" / "2Q SELL" streak badge next to it. Closes the visual loop between the verdict and the multi-quarter streak section below.
+
+Plus a significant **sitemap backfill** — 18 already-live routes that had never been in `sitemap.ts` are now indexed, including all the conversion surfaces (`/best-now`, `/buys`, `/sells`, `/this-week`, `/what-to-buy`, `/what-to-sell`) at priority 0.95-0.98 so Google crawls them harder. Previously only `/top-picks` from the conversion surfaces was in the sitemap.
+
+## Verified live on production
+
+- `/insiders` — 6 buys, 16 sells, 6 unique tickers, net flow signed and colored, Dataset JSON-LD present, 58 deep links to `/signal/[ticker]`
+- `/changelog` — 26 versions rendered, v0.25 + v0.26 entries visible, Article JSON-LD
+- `/sitemap.xml` — /insiders, /changelog, /best-now, /buys, /sells, /this-week all indexed
+- `/signal/META` — verdict box now shows BUY +20 with trend badge inline
+- Nav — /insiders + /changelog present in footer + MobileNav
+
+## What shipped in v0.26 (for history)
+
+Copy parity after v0.25. Every surface that still described the pre-v0.25 multi-factor 0-100 model was rewritten:
+- `/learn/conviction-score-explained` (was "coming in v0.4")
+- `/pricing` both tiers (was selling the score as a Pro feature — it's Free)
+- Homepage hero + feature card
+- Meta descriptions on /best-now, /what-to-buy, /what-to-sell
+- /signal dossier footer
+- /thank-you + /alerts Pro upsell copy
+- /press-kit launch posts
+- Root `layout.tsx` meta tags (was "Track 10+ superinvestors")
 
 ## Next session suggestions
 
-- v0.27: promote `.claude/state/insiders-page-draft/page.tsx` to `app/insiders/page.tsx` + add to nav + sitemap. The parallel agent that built it correctly aborted ship because v0.25 was active on the branch.
-- v0.27: merge `acepilot/god-loop-changelog` PR #2 (23-version changelog with Article JSON-LD + footer link + sitemap entry).
-- v0.28: add v0.25 + v0.26 entries to `app/changelog/page.tsx` once that branch merges.
-- v0.28: pre-generated OG images per `/signal/[ticker]` via `@vercel/og` or satori at build time.
+- **v0.28 og-images** — pre-generated OG images per `/signal/[ticker]` via `@vercel/og` or `satori`. Single highest-impact viral unlock. Every social share of a signal page renders the ticker + score + verdict + top buyers in a branded card.
+- **v0.28 backtest-share** — shareable backtest result cards (canvas/svg → image download). Pairs with the existing `PortfolioShareCard` viral wedge.
+- **v0.28 pricing A/B** — charm pricing test variants ($13 / $14 / $15). Cookie-based segmentation works fine for a static export.
+- **Merge branch to main** — `acepilot/v0.25-unified-score` has now been the live branch for 8 versions (v0.25 → v0.27). Consider merging to main and starting a fresh feature branch for v0.28.
+- **Close PR #2** — the `acepilot/god-loop-changelog` branch is obsoleted by v0.27's fresher `/changelog` page. Close it without merging.

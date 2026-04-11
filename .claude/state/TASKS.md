@@ -35,10 +35,10 @@
 - [ ] `P1` ADD homepage testimonials/social-proof block (placeholder until first real users) [id:testimonials] [score:5.0]
 - [ ] `P1` ADD /pricing AB test variants (charm pricing $13, $14, $15) [id:price-ab] [score:6.0]
 - [ ] `P2` BUILD /docs API documentation page (Pro feature preview) [id:docs] [score:5.0]
-- [~] `P2` BUILD /changelog page from git log [id:changelog] [score:5.0] ⚠ PR #2 OPEN on `acepilot/god-loop-changelog` — awaiting merge. 23 versions, Article JSON-LD, footer link, sitemap entry.
+- [x] `P2` BUILD /changelog page from git log [id:changelog] [score:5.0] ⏱ done — v0.27, 26 releases, Article JSON-LD, footer + MobileNav + sitemap wired
 - [ ] `P2` ADD shareable backtest result cards (canvas/svg → image download) [id:backtest-share] [score:6.0]
-- [~] `P2` BUILD insider activity page /insiders showing all recent buys [id:insider-page] [score:6.0] ⚠ DRAFT at `.claude/state/insiders-page-draft/page.tsx` (2026-04-10 18:30). Full `/insiders` page written (buys + sells tables, Dataset JSON-LD, explainer, 3 related cards). **Ship aborted: detected active parallel branch `acepilot/v0.25-unified-score` with 7 modified lib/app files.** Rule: never ship over operator WIP. When v0.25-unified-score merges, move draft back to `app/insiders/page.tsx`, add `/insiders` link to layout.tsx footer + sitemap.ts entry (priority 0.85, weekly), re-build, ship as its own PR.
-- [ ] `P2` ADD trend badge to /signal verdict box [id:verdict-trend] [score:5.0]
+- [x] `P2` BUILD insider activity page /insiders showing all recent buys [id:insider-page] [score:6.0] ⏱ done — v0.27, promoted from draft, ported theme, added net-flow summary card, deep-linked to /signal dossiers, Dataset JSON-LD
+- [x] `P2` ADD trend badge to /signal verdict box [id:verdict-trend] [score:5.0] ⏱ done — v0.27, TrendBadge now inline with the big BUY/SELL/NEUTRAL verdict
 
 ## Queue (v0.2 larger infra)
 
