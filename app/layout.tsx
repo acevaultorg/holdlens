@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     template: "%s · HoldLens",
   },
   description:
-    "Track the portfolios of 14+ superinvestors. Conviction scores, backtests, and weekly moves — free.",
+    "Track 30 of the world's best portfolio managers on a single signed −100..+100 ConvictionScore. +100 is the strongest possible buy. Live prices. Free.",
   openGraph: {
     title: "HoldLens",
-    description: "See what the smartest investors are buying.",
+    description: "30 of the world's best portfolio managers, one signed −100..+100 conviction scale.",
     url: "https://holdlens.com",
     siteName: "HoldLens",
     type: "website",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "HoldLens — Smart money, out loud",
-    description: "Track 10+ superinvestors. Conviction scores, backtests, weekly moves. Free.",
+    description: "Track 30 of the world's best portfolio managers on one signed −100..+100 ConvictionScore. Free.",
     creator: "@holdlens",
   },
   robots: { index: true, follow: true },
