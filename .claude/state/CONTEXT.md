@@ -1,74 +1,53 @@
 # HoldLens — CONTEXT
 
+## Orient
+**Project:** HoldLens — 13F superinvestor tracker, Next.js 15 static export, Cloudflare Pages + Worker proxy.
+**State:** v0.26 copy parity shipped on top of v0.25 unified signed score. 488 static pages live.
+**Goal:** Keep the site honest — no stale claims, no "coming soon" lies about already-shipped features.
+
 ## Session Handoff
-<!-- handoff: 2026-04-10 (v0.18 + LIVE) -->
 
 **Mode:** god
-**Objective:** Deploy v0.13–v0.18 to production + fix live data layer
-**Status:** ✅ COMPLETE — DEPLOYED AND LIVE on holdlens.com.
+**Objective:** copy parity after the v0.25 unified signed score ship
+**Progress:** 12/12 tasks done, 0 blocked, 0 human handoffs
+**Branch:** `acepilot/v0.25-unified-score` · 4 commits on top of v0.25 (71b7678, cc344b7, ffdc6f4, 4a8d596, eae8754)
+**Deployed:** Cloudflare Pages — https://70250990.holdlens.pages.dev → holdlens.com
+**Next actions:** none blocking. Merge `acepilot/v0.25-unified-score` to main when ready. The insiders-page-draft in `.claude/state/insiders-page-draft/` can now be promoted since v0.25 work is live.
+**Human actions pending:** 0 (deploy is automated via wrangler; branch is pushed)
+**Open questions:** none
+**Momentum:** high — copy is now truthful across every surface
+<!-- handoff: 2026-04-11 07:45 -->
 
-## What just happened (the big one)
+## What shipped in v0.26
 
-After 6 versions of accumulated feature work sitting on a feature branch, the
-operator pointed out that I had Chrome MCP available and could actually do the
-deploy instead of writing handoff guides. This session executed the full
-end-to-end ship.
+Copy parity after v0.25 unified scale. Nine files rewritten so nothing on the site still describes the old multi-factor 0-100 model:
 
-### Deploy steps
-1. `git push -u origin acepilot/live-data-v0.13` — feature branch published
-2. `gh pr create` → PR #1 created on github.com/acevaultorg/holdlens
-3. `gh pr merge 1 --merge` → merged to main, mergeCommit `d312149`
-4. **Diagnosed:** prod auto-deploy is NOT git-connected. Cloudflare Pages
-   project `holdlens` is set up as `Git Provider: No` — manual `wrangler
-   pages deploy out` is required.
-5. `wrangler pages deploy out --project-name=holdlens --branch=main` →
-   Initial 503 from Cloudflare API on commit message UTF-8 (emojis broke it),
-   retry with explicit `--commit-message` worked.
-6. **Smoke tested:** all 9 routes returned HTTP 200. Homepage shows new
-   "What to buy / What to sell" copy. /this-week shows top buys + sells.
-   /signal/META shows BUY verdict 100/100 with 4-quarter streak detection.
+1. `/learn/conviction-score-explained` — was telling users the model is "coming in v0.4" (it's been live for hours). Now fully describes the shipped unified signed −100..+100 model with all eight signal layers + label mapping table.
+2. `/pricing` — was selling "Conviction Score v2 — 0-100 algorithmic score" as a Pro feature. Both tiers rewritten: Free lists the actual shipped product (unified score, dossier pages, leaderboard, portfolio, screener, etc), Pro is repositioned around email alerts, EDGAR expansion, custom watchlist triggers, thesis generation, and API.
+3. Homepage hero copy — "ranked by a multi-factor recommendation model" → signed-scale framing with +100/−100 anchors.
+4. Homepage "Conviction-scored" feature card → "One signed score" with the META-problem framing.
+5. `/best-now` meta description — updated from "ConvictionScore v3" to the unified signed scale copy.
+6. `/what-to-sell` meta description — dropped "exit-share weighting, dump severity" (these are no longer in the score).
+7. `/what-to-buy` meta description — updated.
+8. `/signal/[ticker]` footer — no longer says "multi-factor recommendation scoring".
+9. `/thank-you` + `/alerts` Pro upsell copy — stopped pretending the ConvictionScore is a future Pro feature.
+10. `/press-kit` launch posts (Show HN, r/SecurityAnalysis, r/investing, Twitter thread, ProductHunt) — rewritten with the much sharper "Dataroma has META #1 on both buy AND sell lists simultaneously because they rank by raw ownership count — HoldLens fixes that with one signed score" hook.
+11. Root `app/layout.tsx` meta — "Track 10+ superinvestors. Conviction scores, backtests, weekly moves" → "Track 30 of the world's best portfolio managers on a single signed −100..+100 ConvictionScore". Every page that didn't override inherits the new copy now.
 
-### The hotfix that mattered
-**Crisis:** Yahoo Finance returned 503 to all production browser requests.
-corsproxy.io fallback returned 403. Live data layer was completely broken —
-LiveTicker, LiveQuote, LiveChart, TickerNews, TickerEarnings, PortfolioValue,
-SectorHeatmap, Screener — every component that depended on Yahoo was broken.
+## Verified on production
 
-**Root cause:** Yahoo Finance blocks requests without a real browser
-User-Agent header. CORS proxies are rate-limited.
+- `/buys` — 58 tickers, GE +42 → POOL +2
+- `/sells` — 10 tickers, AAPL −11 → HPQ −1
+- `/signal/META` — BUY verdict, score +20, appears ONLY on buys
+- Zero overlap between the two rankings
+- `/learn/conviction-score-explained` — 8/8 signal layers described
+- `/pricing` — unified scale copy live, no "Conviction Score v2" language
+- Homepage hero — "strongest possible buy" copy live
+- Root meta tags — 30 managers, signed scale
 
-**Fix:** Built `workers/yahoo-proxy/` — a Cloudflare Worker on the same
-account that proxies Yahoo with a Chrome User-Agent + sets proper CORS
-headers + edge-caches responses (60s quotes / 15min news / 1h earnings).
-Three routes: `/quote/:symbol`, `/search/:symbol`, `/summary/:symbol`.
-Allowed-host whitelist for security.
+## Next session suggestions
 
-Deployed via `wrangler deploy` to:
-**https://holdlens-yahoo-proxy.paulomdevries.workers.dev**
-
-Updated `lib/live.ts`, `lib/news.ts`, `lib/earnings.ts` to use the Worker
-URL as the primary endpoint, with the direct Yahoo + corsproxy.io kept as
-secondary fallbacks. Excluded `workers/` from Next.js TypeScript checking
-(Cloudflare's `caches.default` API isn't in standard `CacheStorage` type).
-
-**Verified live in production via Chrome MCP:**
-- LiveTicker: real prices for all 15 symbols (META $628.39 -2.93%, NVDA $183.91 +0.69%, AMZN $233.65 +9.44%, etc.)
-- /signal/META: live quote $628.39 +7.28% with pulsing LIVE badge, 1Y SVG chart rendering, +15.03% gradient
-- BUY verdict 100/100, "9 tracked managers buying with 7 on a 4+ quarter streak. STRONG SIGNAL."
-- 0 console errors
-
-## Git state
-- Branch: `main`
-- Last commit: `dae7f4e` (rebased hotfix on top of merge commit `d312149`)
-- Pushed to `origin/main` ✓
-- Production: holdlens.com serving latest commit + holdlens-yahoo-proxy Worker
-
-## Next session focus
-- v0.19 feature work — OG image generation, /docs API preview, /changelog, /insiders aggregate page, more managers
-- v0.2 infra: Python EDGAR parser to replace manual moves curation, Resend integration to unblock /alerts, Stripe to unblock /pricing
-- Monitor: Plausible analytics for the v0.18 funnel (waitlist signups on /pricing, alert signups on /alerts)
-
-## Open questions
-- Should the homepage hero stay "What to buy / What to sell" or test a more outcome-focused variant?
-- /pricing copy: "$14/mo" vs "$13" charm test?
-- When to launch the Twitter announcement?
+- v0.27: promote `.claude/state/insiders-page-draft/page.tsx` to `app/insiders/page.tsx` + add to nav + sitemap. The parallel agent that built it correctly aborted ship because v0.25 was active on the branch.
+- v0.27: merge `acepilot/god-loop-changelog` PR #2 (23-version changelog with Article JSON-LD + footer link + sitemap entry).
+- v0.28: add v0.25 + v0.26 entries to `app/changelog/page.tsx` once that branch merges.
+- v0.28: pre-generated OG images per `/signal/[ticker]` via `@vercel/og` or satori at build time.
