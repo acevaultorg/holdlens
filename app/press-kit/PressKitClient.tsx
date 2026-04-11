@@ -17,75 +17,90 @@ const POSTS: LaunchPost[] = [
   {
     id: "show-hn",
     channel: "Hacker News (Show HN)",
-    title: "Show HN: HoldLens — A 13F tracker that beats Dataroma with multi-factor scoring (free)",
+    title: "Show HN: HoldLens — A 13F tracker where every stock gets one signed score (free)",
     subtitle: "The biggest single source of traffic. Post on Tuesday/Wednesday morning Pacific time.",
     expectedTraffic: "10k–100k visitors over 24h if it hits the front page",
     bestDay: "Tue/Wed 9am Pacific",
     postUrl: "https://news.ycombinator.com/submit",
     postUrlLabel: "Open HN submit page",
-    body: `Title: Show HN: HoldLens — A 13F tracker that beats Dataroma with multi-factor scoring (free)
+    body: `Title: Show HN: HoldLens — A 13F tracker where every stock gets one signed score (free)
 
 URL: https://holdlens.com
 
 Body:
-Hi HN — I built HoldLens because Dataroma is the canonical 13F aggregator but its model is "rank by ownership count" which conflates information density with signal strength. A stock owned by 25 mid-tier managers and a stock owned by 5 Tier-1 managers (Buffett, Druckenmiller, Klarman) score the same in Dataroma. They shouldn't.
+I started this because I opened Dataroma (the canonical 13F aggregator) and noticed META was #1 on both the "what to buy" list AND the "what to sell" list — because their model ranks by raw ownership count and the same contested stock shows up on both sides. That's not a signal, that's trading volume.
 
-HoldLens computes a multi-factor ConvictionScore for every tracked stock:
-- Smart money signal (consensus × manager quality, time-decayed across 4 quarters)
-- Insider activity boost (CEO/CFO open-market buys — the strongest single equity signal)
-- Track record weighting (each buyer's realized 10y CAGR × position size)
-- Multi-quarter trend streaks (compounding bonus for 3Q+ consecutive buying)
-- Position concentration (a 15% position weighted heavier than 1%)
-- Anti-crowding penalty (signal value diminishes with ownership count → surfaces under-the-radar gems)
-- Dissent penalty (when smart money is split, the score reflects that)
+HoldLens fixes it by collapsing every stock to ONE signed score on a single −100..+100 scale. +100 is the strongest possible buy. −100 is the strongest possible sell. Zero is no signal. A ticker appears on exactly one list — never both — because both lists are filtered views of the same single number.
 
-Manager quality is itself derived from real 10-year ROI data, not curation. Buffett's BRK-A 10y CAGR is actually 11.7% — alpha −1.4% vs S&P 13.1%. The hand-curated reputation tier system every other tracker uses gives Buffett a 10/10 forever; HoldLens gives him a 5.9/10 because the data says so. The model tells the truth instead of flattering reputation.
+The score (ConvictionScore v4) is built from six positive layers minus two penalty layers:
+
+- Smart money: manager quality × consensus, time-decayed across 8 quarters of 13F data
+- Insider activity: CEO/CFO open-market buys (the strongest single equity signal)
+- Track record: buyer 10y CAGR × position size — each buyer's real alpha, not reputation
+- Trend streak: multi-quarter compounding (3 quarters in a row ≠ single quarter)
+- Concentration: a 15% position is a real bet, a 1% position is filler — weighted accordingly
+- Contrarian bonus: under-the-radar stocks with tier-1 buyers get extra credit
+- − Dissent penalty: every seller subtracts (×1.6 because exits require more conviction than trims)
+- − Crowding penalty: when 15+ managers already own it, the signal is already priced in
+
+Manager quality is itself derived from real 10-year ROI data, not curation. Buffett's BRK-A 10y CAGR is 11.7%, alpha −1.4% vs S&P 13.1%, so his computed quality score is 5.9/10. The hand-curated reputation system every other tracker uses gives him 10/10 forever. HoldLens tells the truth.
 
 Architecture:
-- Next.js 15 static export (479 pre-built pages)
-- Cloudflare Pages + Cloudflare Worker proxy for Yahoo Finance (Yahoo blocks egress IPs without a real browser User-Agent — Worker fixes that)
+- Next.js 15 static export (488 pre-built pages)
+- Cloudflare Pages + Cloudflare Worker proxy for Yahoo Finance (Yahoo blocks egress IPs without a real browser User-Agent — the Worker fixes that)
 - localStorage for user portfolio + watchlist + saved screener filters
 - Zero database, zero auth backend
 - Free forever — Pro tier launches Q2 2026 for email alerts + API access
 
-The recommendation page is at https://holdlens.com/best-now — it shows the highest-conviction buys with expected ROI projections (e.g. "META · score 100/100 · expected return +18%/yr · 9 buyers averaging 17% CAGR").
+The top buys live at https://holdlens.com/buys (e.g. GE +42, BABA +40, OXY +32, SCHW +32). Top sells at https://holdlens.com/sells (AAPL −11, TSLA −9, SIRI −4). META is in the buy list at +20 — its 9 buyers slightly outweigh its 5 sellers. It is NOT in the sell list.
 
 Try /portfolio if you want to add your own holdings — it cross-references them against the model and tells you which of your stocks the world's best PMs are buying or selling.
 
-Feedback wanted on the model. Specifically: should the time-decay be exponential or linear? Should the per-manager-per-sector skill matrix be the next addition? Is the anti-crowding penalty too aggressive?`,
+Feedback wanted on the model. Specifically: is the dead zone too tight at zero? Should the crowding penalty ramp harder above 20 owners? Is the 1.6× dissent multiplier correct for a long-only manager set?`,
   },
   {
     id: "reddit-value",
     channel: "Reddit · r/SecurityAnalysis",
-    title: "I built a free alternative to Dataroma with multi-factor scoring + live data",
+    title: "I fixed the Dataroma META problem — every stock gets one signed score (free)",
     subtitle: "Best for serious value investors who already know Dataroma. Don't post in r/wallstreetbets — wrong audience.",
     expectedTraffic: "2k–20k visitors if upvoted",
     bestDay: "Mon/Tue 8am ET",
     postUrl: "https://www.reddit.com/r/SecurityAnalysis/submit",
     postUrlLabel: "Open r/SecurityAnalysis submit",
-    body: `Title: I built a free alternative to Dataroma with multi-factor scoring + live data
+    body: `Title: I fixed the Dataroma META problem — every stock gets one signed score (free)
 
 Body:
-Long-time Dataroma user here. The thing that bothered me is that Dataroma ranks stocks by ownership count — but a stock owned by 25 average funds and a stock owned by 5 Tier-1 funds (Buffett, Druckenmiller, Klarman, TCI, Tepper) scores the same. That's wrong. The Tier-1 stock has way more signal.
+Long-time Dataroma user. The thing that finally broke for me: META was #1 on both the "top buys" list AND the "top sells" list simultaneously. Same ticker, both sides. Because Dataroma ranks by raw ownership count, contested stocks dominate both lists at once. That's not a signal — that's trading volume dressed up as one.
 
-So I built HoldLens (https://holdlens.com) — a free 13F tracker with:
+So I built HoldLens (https://holdlens.com) — a free 13F tracker where every stock gets ONE signed score on a single −100..+100 scale. +100 = strongest possible buy. −100 = strongest possible sell. A ticker appears in exactly one list based on the sign of its score.
 
-1. **Multi-factor ConvictionScore** instead of raw ownership count
-2. **Manager quality derived from real 10y ROI** (not hand-curated tiers — Buffett's BRK-A only returned 11.7% over the last decade, alpha -1.4%, so his quality score is 5.9/10 in our model. The data tells the truth.)
-3. **Live prices on every page** via Cloudflare Worker proxy (Yahoo Finance blocks direct calls from servers, so I built a proxy)
-4. **Multi-quarter trend streaks** — when Klarman + Marks both build the same position for 3 consecutive quarters, that's a much stronger signal than a single Q
-5. **Insider activity** (SEC Form 4 — CEO/CFO open-market buys) folded into the score
-6. **Anti-crowding penalty** — surfaces under-the-radar gems instead of just confirming what everyone already owns
-7. **Free forever** for the core product. Pro tier launches Q2 2026 for email alerts + API access.
+The score combines:
 
-The page that's the most useful is https://holdlens.com/best-now — top 10 buys + sells with expected ROI projection (computed from each buyer's realized 10y CAGR × their position weight).
+1. **Smart money signal** — manager quality × consensus, time-decayed across 8 quarters
+2. **Insider activity** — CEO/CFO open-market buys folded directly into the score
+3. **Track record weighting** — each buyer's realized 10y CAGR × their position size (not reputation)
+4. **Multi-quarter trend streaks** — 3Q+ of consecutive buying = compounding bonus
+5. **Concentration** — a 15% position counts much more than a 1% position
+6. **Contrarian bonus** — under-the-radar stocks with tier-1 buyers get extra credit
+7. **Dissent penalty** — sellers subtract from the score at 1.6× weight (exits > trims)
+8. **Crowding penalty** — already-owned-by-everyone stocks get discounted
 
-The /leaderboard ranks all 30 tracked managers by their actual alpha vs S&P 500, not reputation. Some of the surprises:
-- Dev Kantesaria / Valley Forge: +5.6% alpha, the highest in the dataset
-- Buffett: -1.4% alpha (the AAPL run lifted S&P harder than BRK-A)
-- David Tepper: +14% alpha (the highest of the well-known names)
+Manager quality is derived from REAL 10-year ROI data, not hand-curation:
+- Dev Kantesaria (Valley Forge): +5.6% alpha, the highest in the dataset
+- Chris Hohn (TCI Fund): +5.5% alpha
+- David Tepper (Appaloosa): +14% CAGR, highest of the household names
+- Warren Buffett: −1.4% alpha (BRK-A trailed S&P over the last decade — the AAPL run did it). Quality score: 5.9/10.
 
-Feedback welcome. The model is open in source: signal weights, time decay, crowding penalty are all on the methodology page.`,
+The data tells the truth instead of flattering reputation.
+
+Key pages:
+- /buys — top buy signals (GE +42, BABA +40, OXY +32, SCHW +32, MSCI +30)
+- /sells — top sell signals (AAPL −11, TSLA −9, SIRI −4)
+- /signal/META — dossier for any ticker with the score breakdown
+- /leaderboard — 30 managers ranked by real alpha
+- /portfolio — localStorage-only personal portfolio cross-checked against the model
+
+Free forever for the core product. Pro tier (Q2 2026) adds email alerts + EDGAR automation. Feedback welcome on the model itself — weights, time decay, crowding penalty all on /methodology.`,
   },
   {
     id: "reddit-investing",
@@ -96,10 +111,12 @@ Feedback welcome. The model is open in source: signal weights, time decay, crowd
     bestDay: "Sat/Sun 10am ET",
     postUrl: "https://www.reddit.com/r/investing/submit",
     postUrlLabel: "Open r/investing submit",
-    body: `Title: Free site that tracks what 30 of the world's best portfolio managers are buying — with expected ROI projection
+    body: `Title: Free site that tracks what 30 of the world's best portfolio managers are buying — on one signed score
 
 Body:
-I built HoldLens (https://holdlens.com) because I wanted a faster way to check if the stocks I own are also being bought by the smartest investors in the world.
+I built HoldLens (https://holdlens.com) because I wanted a faster way to check if the stocks I own are also being bought by the smartest investors in the world — AND because every other 13F tracker has a bug where the same stock appears on both the "top buys" and "top sells" lists at the same time (Dataroma does this with META right now).
+
+HoldLens collapses every stock to ONE signed score on a single −100..+100 scale. +100 is the strongest possible buy. −100 is the strongest possible sell. A ticker appears in exactly one list. No more "is this a buy or a sell?" confusion.
 
 The killer feature is /portfolio — you add your stocks (stays on your device, never sent to a server), and it tells you:
 - "3 of your 5 stocks have BUY signals from Tier-1 managers (Druckenmiller, Klarman, TCI)"
@@ -109,14 +126,15 @@ The killer feature is /portfolio — you add your stocks (stays on your device, 
 It tracks 30 portfolio managers including Buffett, Ackman, Druckenmiller, Klarman, Burry, Howard Marks, Tepper, Coleman (Tiger), Halvorsen (Viking), Hohn (TCI), Mandel (Lone Pine), Akre, Smith (Fundsmith), Pabrai, Greenblatt, and more.
 
 Other pages worth checking:
-- https://holdlens.com/best-now — top buy/sell signals with expected annualized return
-- https://holdlens.com/leaderboard — all 30 managers ranked by real 10-year alpha vs S&P (Buffett's only 5.9/10 in this model — alpha is actually NEGATIVE over the last decade)
+- https://holdlens.com/buys — top buys (currently GE +42, BABA +40, OXY +32, SCHW +32)
+- https://holdlens.com/sells — top sells (currently AAPL −11, TSLA −9, SIRI −4)
+- https://holdlens.com/leaderboard — all 30 managers ranked by real 10-year alpha vs S&P (Buffett's only 5.9/10 — his actual alpha is NEGATIVE over the last decade. The data tells the truth.)
 - https://holdlens.com/this-week — the one-page weekly check
 - https://holdlens.com/signal/META — example signal dossier with verdict + multi-quarter trend streaks
 
 Free forever for the core product. No signup, no tracking, localStorage only.
 
-Feedback wanted especially on the model. Is the recommendation score useful? What's missing?`,
+Feedback wanted especially on the model. Is the signed-score framing useful? What's missing?`,
   },
   {
     id: "twitter-thread",
@@ -166,22 +184,20 @@ I built a recommendation model that does this. It also adds:
 - Anti-crowding penalty
 
 Tweet 5:
-Today's #1 BUY signal from the model: $META
+Today's #1 BUY signal from the model: $GE (+42)
 
-9 of the world's best PMs are buying. 7 of them are on a 4+ consecutive quarter streak. Average buyer CAGR: ~17%.
+Unified ConvictionScore on a single −100..+100 scale. Multi-quarter trend support, tier-1 buyers, no crowding penalty triggered.
 
-Conviction score: 100/100. Expected return: +14%/yr.
-
-Full dossier: holdlens.com/signal/META
+Full dossier: holdlens.com/signal/GE
 
 Tweet 6:
-Today's strongest SELL: $NVDA
+Today's #1 SELL signal: $AAPL (−11)
 
-Druckenmiller has been trimming for 3 consecutive quarters. Coleman trimmed in Q4. The Tier-1 macro managers are taking profits as the position grew.
+2 tier-1 managers trimming, Buffett's BRK took profits on the AAPL position, and the stock is already in 15+ tracked portfolios (crowding penalty fires).
 
-Doesn't mean NVDA goes down — but the smart money is rebalancing.
+Doesn't mean AAPL goes down — but the smart money is rebalancing.
 
-holdlens.com/signal/NVDA
+holdlens.com/signal/AAPL
 
 Tweet 7:
 Built it free. No signup. No tracking. localStorage only.
@@ -197,23 +213,25 @@ holdlens.com`,
   {
     id: "product-hunt",
     channel: "Product Hunt",
-    title: "HoldLens — Track 30 of the world's best portfolio managers with multi-factor scoring",
+    title: "HoldLens — 13F tracker where every stock gets one signed −100..+100 score",
     subtitle: "Post on a Tuesday for max exposure. Coordinate with finance Twitter for upvotes in the first hour.",
     expectedTraffic: "10k–50k visitors if top 5 of the day",
     bestDay: "Tue 12:01am Pacific",
     postUrl: "https://www.producthunt.com/posts/new",
     postUrlLabel: "Open PH new post",
-    body: `Tagline: Track 30 of the world's best portfolio managers with multi-factor scoring
+    body: `Tagline: 13F tracker where every stock gets one signed −100..+100 ConvictionScore
 
 Description (240 char):
-Free 13F tracker with ConvictionScore v3. Multi-factor recommendation model with expected ROI projection. Live prices, multi-quarter trend streaks, insider activity, anti-crowding penalty. The recommendation engine that beats Dataroma.
+Free 13F tracker. One signed ConvictionScore per stock on a −100..+100 scale where +100 is the strongest possible buy. Fixes the Dataroma bug where the same stock appears on both buy AND sell lists. Live prices, multi-quarter trend detection, insider activity.
 
 First Comment (post immediately after going live):
 Hey Hunters 👋
 
-I built HoldLens because Dataroma — the canonical 13F aggregator — ranks stocks by raw ownership count. A stock owned by 25 average funds and a stock owned by 5 Tier-1 funds (Buffett, Druckenmiller, Klarman) score the same. That's wrong.
+I built HoldLens because I opened Dataroma and noticed META was #1 on both the "what to buy" list AND the "what to sell" list — because Dataroma ranks by raw ownership count and contested stocks dominate both sides. That's not a signal, that's trading volume.
 
-HoldLens computes a multi-factor ConvictionScore for every tracked stock:
+HoldLens collapses every stock to ONE signed score on a single −100..+100 scale. A ticker appears in exactly one list. Every 13F aggregator I've seen has this bug. HoldLens doesn't.
+
+The ConvictionScore combines:
 
 🎯 Smart money signal weighted by manager quality + consensus + time decay
 👔 Insider activity boost (CEO/CFO open-market buys)

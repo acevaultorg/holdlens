@@ -8,7 +8,7 @@ import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
   title: "What to buy — stocks the best portfolio managers are buying",
-  description: `${MANAGERS.length} of the best portfolio managers in the world and what they're buying this quarter. Multi-factor recommendation score, live prices, multi-quarter trend streaks.`,
+  description: `${MANAGERS.length} of the best portfolio managers in the world and what they're buying. Ranked on a single signed −100..+100 ConvictionScore where +100 is the strongest possible buy. Live prices, multi-quarter trend streaks.`,
   alternates: { canonical: "https://holdlens.com/buys" },
   openGraph: {
     title: "What to buy — HoldLens",

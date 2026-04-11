@@ -80,7 +80,8 @@ export default function AlertsPage() {
         <h3 className="text-xl font-bold mb-3">Pro tier — custom watchlist alerts + API</h3>
         <p className="text-muted text-sm mb-5 max-w-xl">
           For $14/mo, Pro adds custom-watchlist email triggers (alert me only when X manager moves on
-          MY tickers), the Conviction Score v2, Manager Alpha Attribution, and API access.
+          MY tickers), the full weekly digest, EDGAR automation (80+ managers instead of 30), and API access.
+          The unified ConvictionScore itself stays in Free forever.
         </p>
         <a
           href="/pricing"

@@ -14,8 +14,8 @@ export default function ThankYouPage() {
         Welcome to HoldLens Pro.
       </h1>
       <p className="text-muted text-lg mb-10">
-        You're locked in at the founders rate for life. Email alerts on the next 13F filing.
-        Conviction Score v2 access. No ads, ever.
+        You&apos;re locked in at the founders rate for life. Email alerts on the next 13F filing.
+        Custom watchlist triggers, weekly digest, API access, no ads ever.
       </p>
 
       <div className="rounded-2xl border border-brand/40 bg-brand/5 p-8 text-left mb-10">

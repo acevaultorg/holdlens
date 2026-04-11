@@ -305,8 +305,8 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
       </section>
 
       <p className="text-xs text-dim mt-12">
-        HoldLens Signal combines multi-factor recommendation scoring with live prices, multi-quarter trend detection,
-        and real-time news. Not investment advice.{" "}
+        The HoldLens signal dossier shows the unified −100..+100 ConvictionScore alongside live prices, multi-quarter
+        trend detection, insider activity, and real-time news. Not investment advice.{" "}
         <a href="/methodology" className="underline">Methodology</a>.
       </p>
     </div>
