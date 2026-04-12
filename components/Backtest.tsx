@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import { RETURNS, simulate } from "@/lib/returns";
+import BacktestShareCard from "@/components/BacktestShareCard";
 
 const YEARS = RETURNS.map((r) => r.year);
 const MIN = YEARS[0];
@@ -125,6 +126,18 @@ export default function Backtest() {
           </div>
         </div>
       </div>
+
+      <BacktestShareCard
+        managerName="Warren Buffett"
+        startYear={startYear}
+        amount={amount}
+        finalValue={result.brkFinal}
+        multiple={result.brkMultiple}
+        cagr={result.brkCagr}
+        spyFinal={result.spyFinal}
+        spyMultiple={result.spyMultiple}
+        years={result.years}
+      />
 
       <div className="text-xs text-dim leading-relaxed">
         Historical returns. Past performance does not predict future results. BRK-A annual price returns and S&P 500 total returns based on public reports.

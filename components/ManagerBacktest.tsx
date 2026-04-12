@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import { type YearRow, simulateManager } from "@/lib/returns";
+import BacktestShareCard from "@/components/BacktestShareCard";
 
 function fmt(n: number) {
   return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -77,6 +78,18 @@ export default function ManagerBacktest({ returns, name }: { returns: YearRow[];
           <div className="flex items-center gap-2"><span className="w-4 h-0.5 bg-blue-400 inline-block" /> S&P 500</div>
         </div>
       </div>
+
+      <BacktestShareCard
+        managerName={name}
+        startYear={startYear}
+        amount={amount}
+        finalValue={r.brkFinal}
+        multiple={r.brkMultiple}
+        cagr={r.brkCagr}
+        spyFinal={r.spyFinal}
+        spyMultiple={r.spyMultiple}
+        years={r.years}
+      />
 
       <div className="text-xs text-dim leading-relaxed">
         Historical returns. Past performance does not predict future results. Returns sourced from public reports.

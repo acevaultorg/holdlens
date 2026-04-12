@@ -52,14 +52,14 @@ export async function generateMetadata({ params }: { params: Promise<{ ticker: s
       url,
       siteName: "HoldLens",
       type: "article",
-      images: [{ url: "/og-signal.png", width: 1200, height: 630, alt: `${t.symbol} signal` }],
+      images: [{ url: `/og/signal/${t.symbol}.png`, width: 1200, height: 630, alt: `${t.symbol} signal — ${verdictLine}` }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${t.symbol} · HoldLens Signal`,
       description,
       creator: "@holdlens",
-      images: ["/og-signal.png"],
+      images: [`/og/signal/${t.symbol}.png`],
     },
     robots: { index: true, follow: true },
   };

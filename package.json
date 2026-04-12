@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "generate-og": "npx tsx scripts/generate-og-images.ts",
+    "prebuild": "npx tsx scripts/generate-og-images.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,6 +21,7 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "satori": "^0.26.0",
     "tailwindcss": "^3.4.15",
     "typescript": "^5.6.3"
   }

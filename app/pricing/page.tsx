@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import EmailCapture from "@/components/EmailCapture";
 import StripeCheckoutButton from "@/components/StripeCheckoutButton";
+import { ProPriceDisplay, HeroPriceTag } from "@/components/PricingAB";
 import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function PricingPage() {
           Pricing
         </div>
         <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-          Free forever. Pro for $14/mo.
+          Free forever. Pro for <HeroPriceTag />.
         </h1>
         <p className="text-muted text-lg max-w-2xl mx-auto">
           The full recommendation engine — unified signed ConvictionScore, signal dossiers,
@@ -68,13 +69,7 @@ export default function PricingPage() {
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
             Pro
           </div>
-          <div className="flex items-baseline gap-2 mb-1">
-            <div className="text-5xl font-bold tabular-nums">$14</div>
-            <div className="text-sm text-muted">/month</div>
-          </div>
-          <div className="text-sm text-muted mb-6">
-            $140/year (save $28) · cancel anytime
-          </div>
+          <ProPriceDisplay />
 
           <div className="mb-6">
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
