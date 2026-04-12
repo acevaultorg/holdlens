@@ -109,6 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/simulate" className="hover:text-text">Backtest</a>
               <a href="/learn" className="hover:text-text">Learn</a>
               <a href="/faq" className="hover:text-text">FAQ</a>
+              <a href="/docs" className="hover:text-text">API docs</a>
               <a href="/about" className="hover:text-text">About</a>
               <a href="/press" className="hover:text-text">Press</a>
               <a href="/changelog" className="hover:text-text">Changelog</a>

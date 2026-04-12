@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/profile`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/alerts`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/pricing`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/docs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/press-kit`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     // Backtests
     { url: `${base}/simulate`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },

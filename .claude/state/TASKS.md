@@ -1,6 +1,15 @@
 # HoldLens — TASKS
 
-## Queue (v0.28 — viral share cards + revenue activation) [objective:v28-viral-and-revenue]
+## Queue (v0.29 — OG images + pricing AB + backtest share) [objective:v29-viral-seo-conversion]
+
+- [x] `P0` BUILD per-ticker OG images for 94 /signal pages via satori+sharp prebuild script [id:og-images] [score:12.0] ⏱ done — scripts/generate-og-images.ts, 94 PNGs in public/og/signal/
+- [x] `P0` WIRE OG images into signal page metadata (openGraph + twitter) [id:wire-og] [score:11.0] ⏱ done — per-ticker /og/signal/TICKER.png references
+- [x] `P1` ADD pricing AB test variants ($13/$14/$15) with cookie segmentation + Plausible tracking [id:price-ab] [score:10.0] ⏱ done — PricingAB.tsx, 90-day cookie, 3 variants
+- [x] `P1` BUILD BacktestShareCard — canvas PNG download + tweet for every backtest result [id:backtest-share] [score:9.0] ⏱ done — wired into Backtest + ManagerBacktest
+- [x] `P0` BUILD + verify static export (490 pages) [id:verify-v29] [score:11.0] ⏱ done
+- [x] `P0` COMMIT + push [id:commit-v29] [score:10.0] ⏱ done — 2 commits (8ad99a9b + 094df7c5), pushed
+
+## Queue (v0.28 — viral share cards + revenue activation) — SHIPPED [objective:v28-viral-and-revenue]
 
 - [x] `P0` BUILD components/SignalShareCard.tsx — canvas PNG render of ticker + verdict + score + HoldLens branding, download + copy-tweet + share-to-Twitter/LinkedIn. Pattern-matches PortfolioShareCard. Highest-leverage viral unlock per /signal/[ticker] — every share = brand impression × follower count [id:signal-share-card] [score:12.0] ⏱ done — canvas 1200x630, SSR-safe, Plausible events wired
 - [x] `P0` WIRE SignalShareCard into /signal/[ticker]/page.tsx — place after verdict + score breakdown, before LiveQuote [id:wire-signal-share] [score:11.0] ⏱ done — passes ticker/name/sector/verdict/score/convictionLabel/buyerCount/sellerCount/topStreak/ownerCount
@@ -37,14 +46,14 @@
 
 ## Queue (v0.19 — next session)
 
-- [ ] `P1` ADD pre-generated OG images per /signal/[ticker] via @vercel/og or satori at build time [id:og-images] [score:8.0]
+- [x] `P1` ADD pre-generated OG images per /signal/[ticker] via satori at build time [id:og-images] [score:8.0] ⏱ done v0.29
+- [x] `P1` ADD /pricing AB test variants (charm pricing $13, $14, $15) [id:price-ab] [score:6.0] ⏱ done v0.29
+- [x] `P2` ADD shareable backtest result cards (canvas → image download) [id:backtest-share] [score:6.0] ⏱ done v0.29
+- [x] `P2` BUILD /changelog page from git log [id:changelog] [score:5.0] ⏱ done v0.27
+- [x] `P2` BUILD insider activity page /insiders [id:insider-page] [score:6.0] ⏱ done v0.27
+- [x] `P2` ADD trend badge to /signal verdict box [id:verdict-trend] [score:5.0] ⏱ done v0.27
 - [ ] `P1` ADD homepage testimonials/social-proof block (placeholder until first real users) [id:testimonials] [score:5.0]
-- [ ] `P1` ADD /pricing AB test variants (charm pricing $13, $14, $15) [id:price-ab] [score:6.0]
 - [ ] `P2` BUILD /docs API documentation page (Pro feature preview) [id:docs] [score:5.0]
-- [x] `P2` BUILD /changelog page from git log [id:changelog] [score:5.0] ⏱ done — v0.27, 26 releases, Article JSON-LD, footer + MobileNav + sitemap wired
-- [ ] `P2` ADD shareable backtest result cards (canvas/svg → image download) [id:backtest-share] [score:6.0]
-- [x] `P2` BUILD insider activity page /insiders showing all recent buys [id:insider-page] [score:6.0] ⏱ done — v0.27, promoted from draft, ported theme, added net-flow summary card, deep-linked to /signal dossiers, Dataset JSON-LD
-- [x] `P2` ADD trend badge to /signal verdict box [id:verdict-trend] [score:5.0] ⏱ done — v0.27, TrendBadge now inline with the big BUY/SELL/NEUTRAL verdict
 
 ## Queue (v0.2 larger infra)
 

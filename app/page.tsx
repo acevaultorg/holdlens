@@ -2,11 +2,16 @@ import EmailCapture from "@/components/EmailCapture";
 import BuySellSignals from "@/components/BuySellSignals";
 import LiveStats from "@/components/LiveStats";
 import { MANAGERS } from "@/lib/managers";
-import { topTickers } from "@/lib/tickers";
+import { topTickers, TICKER_INDEX } from "@/lib/tickers";
+import { getAllConvictionScores } from "@/lib/conviction";
 
 export default function HomePage() {
   const featuredManagers = MANAGERS.slice(0, 6);
   const top = topTickers(6);
+  const allScores = getAllConvictionScores();
+  const buySignals = allScores.filter((s) => s.score > 0).length;
+  const sellSignals = allScores.filter((s) => s.score < 0).length;
+  const tickerCount = Object.keys(TICKER_INDEX).length;
 
   return (
     <div className="max-w-5xl mx-auto px-6">
@@ -157,6 +162,25 @@ export default function HomePage() {
         <Feature title="Backtest anything" body="Interactive simulators: 'If you had copied Buffett starting in 2010, you'd have…' — share-ready charts for every manager." />
       </section>
 
+      {/* Social proof — real numbers */}
+      <section className="py-16 border-t border-border">
+        <div className="text-center mb-10">
+          <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+            By the numbers
+          </div>
+          <h2 className="text-3xl font-bold">Built on real SEC filings, not vibes</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <StatCard value={MANAGERS.length} label="Portfolio managers tracked" />
+          <StatCard value={tickerCount} label="Stocks scored" />
+          <StatCard value={buySignals} label="Active buy signals" />
+          <StatCard value={sellSignals} label="Active sell signals" />
+        </div>
+        <p className="text-xs text-dim text-center mt-6">
+          Every number is derived from SEC 13F filings. No paid placements. No sponsored signals.
+        </p>
+      </section>
+
       {/* Email capture */}
       <section className="py-20 border-t border-border text-center">
         <h2 className="text-3xl md:text-4xl font-bold">Get alerts the moment they move.</h2>
@@ -177,6 +201,15 @@ function Feature({ title, body }: { title: string; body: string }) {
     <div>
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
       <p className="text-muted leading-relaxed">{body}</p>
+    </div>
+  );
+}
+
+function StatCard({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="rounded-2xl border border-border bg-panel p-6 text-center">
+      <div className="text-4xl md:text-5xl font-bold text-brand tabular-nums">{value}</div>
+      <div className="text-sm text-muted mt-2">{label}</div>
     </div>
   );
 }

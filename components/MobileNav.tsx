@@ -30,6 +30,7 @@ const SECONDARY_LINKS: { href: string; label: string }[] = [
   { href: "/simulate", label: "Backtest" },
   { href: "/learn", label: "Learn" },
   { href: "/faq", label: "FAQ" },
+  { href: "/docs", label: "API docs" },
   { href: "/about", label: "About" },
   { href: "/methodology", label: "Methodology" },
   { href: "/changelog", label: "Changelog" },

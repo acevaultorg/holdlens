@@ -3,6 +3,12 @@
 ## Behavior Log
 
 ```
+2026-04-12 10:10 | og-images            | creation | next-static | feature | standard | self | AUTO | ~120s | success
+2026-04-12 10:15 | wire-og-metadata     | modify   | next-static | single  | micro    | self | AUTO | ~20s  | success
+2026-04-12 10:18 | pricing-ab           | creation | next-static | feature | quick    | self | AUTO | ~60s  | success
+2026-04-12 10:22 | backtest-share-card  | creation | next-static | feature | quick    | self | AUTO | ~90s  | success
+2026-04-12 10:25 | verify-v29-build     | verify   | next-static | multi   | quick    | self | AUTO | ~45s  | success
+2026-04-12 10:28 | commit-push-v29      | deploy   | next-static | single  | micro    | self | AUTO | ~30s  | success
 2026-04-11 22:45 | signal-share-card    | creation | next-static | feature | standard | self-review(designer+strategist+security+architect) | AUTO | ~180s | success
 2026-04-11 22:48 | wire-signal-share    | modify   | next-static | single  | micro    | self | AUTO | ~30s  | success
 2026-04-11 22:50 | verify-v28-build     | verify   | next-static | multi   | quick    | self | AUTO | ~45s  | success (after sector?:string fix)
@@ -70,6 +76,7 @@
 ## Session Rollups
 
 ```
+2026-04-12 | v0.29 og+ab+backtest-share | 6 tasks | avg ~60s | 0 specialist calls (micro/quick self-qualify) | 6 gates AUTO | 0 human | 0 blocked | creation | delta: 94 OG images, pricing AB, backtest share cards
 2026-04-10 | v0.13 live-data+features | 15 tasks | avg ~55s | 4 self-reviews | 4 gates AUTO | 0 human | 0 blocked | creation | delta: first-time ship of live data layer
 ```
 
