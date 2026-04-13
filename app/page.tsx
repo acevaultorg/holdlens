@@ -181,6 +181,61 @@ export default function HomePage() {
         </p>
       </section>
 
+      {/* Social proof — trust + founders urgency */}
+      <section className="py-16 border-t border-border">
+        <div className="grid md:grid-cols-2 gap-8 items-start">
+          {/* Data source trust */}
+          <div>
+            <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
+              Where the data comes from
+            </div>
+            <div className="space-y-4">
+              <TrustRow
+                icon="SEC"
+                title="SEC EDGAR 13F filings"
+                desc="Every data point traces back to a regulatory filing. No rumors, no tips."
+              />
+              <TrustRow
+                icon="$"
+                title="Live market prices"
+                desc="Real-time quotes via Yahoo Finance. ConvictionScores update every session."
+              />
+              <TrustRow
+                icon="10y"
+                title="10-year backtests"
+                desc="Simulated returns from 2010-2025. No cherry-picked windows."
+              />
+            </div>
+          </div>
+
+          {/* Founders rate urgency */}
+          <div className="rounded-2xl border border-brand/30 bg-brand/5 p-8">
+            <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
+              Early access
+            </div>
+            <h3 className="text-2xl font-bold mb-2">
+              Founders rate: $9/mo for life
+            </h3>
+            <p className="text-muted text-sm leading-relaxed mb-6">
+              The first 100 Pro members lock in $9/mo permanently. Standard price
+              goes to $14/mo after that. You keep the rate as long as you stay subscribed.
+            </p>
+            <ul className="text-sm text-muted space-y-2 mb-6">
+              <li className="flex gap-2"><span className="text-emerald-400">+</span> Email alerts on every 13F filing</li>
+              <li className="flex gap-2"><span className="text-emerald-400">+</span> EDGAR automation — 80+ managers</li>
+              <li className="flex gap-2"><span className="text-emerald-400">+</span> AI-generated thesis per ticker</li>
+              <li className="flex gap-2"><span className="text-emerald-400">+</span> API access (1,000 calls/mo)</li>
+            </ul>
+            <a
+              href="/pricing"
+              className="inline-block bg-brand text-black font-semibold rounded-xl px-6 py-3 hover:opacity-90 transition text-sm"
+            >
+              See pricing →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Email capture */}
       <section className="py-20 border-t border-border text-center">
         <h2 className="text-3xl md:text-4xl font-bold">Get alerts the moment they move.</h2>
@@ -224,5 +279,19 @@ function BacktestCard({ slug, name, fund, desc }: { slug: string; name: string; 
       <div className="text-xs text-dim mt-3">{desc}</div>
       <div className="text-brand text-sm mt-4">Run →</div>
     </a>
+  );
+}
+
+function TrustRow({ icon, title, desc }: { icon: string; title: string; desc: string }) {
+  return (
+    <div className="flex gap-4 items-start">
+      <div className="w-10 h-10 rounded-lg bg-panel border border-border flex items-center justify-center text-xs font-bold text-brand shrink-0">
+        {icon}
+      </div>
+      <div>
+        <div className="font-semibold text-sm">{title}</div>
+        <div className="text-sm text-muted mt-0.5">{desc}</div>
+      </div>
+    </div>
   );
 }
