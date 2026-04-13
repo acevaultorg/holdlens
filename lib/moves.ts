@@ -592,22 +592,44 @@ export const ALL_MOVES: Move[] = [
   { managerSlug: "terry-smith", quarter: "2024-Q1", filedAt: "2024-05-15", ticker: "MSFT", action: "add", deltaPct: 5, shareChange: 410000, portfolioImpactPct: 10.0, note: "Microsoft add." },
 ];
 
+// ---------- EDGAR DATA MERGE ----------
+// EDGAR moves supplement the curated moves above. Curated moves have editorial
+// notes; EDGAR moves are raw data from SEC filings. When both exist for the
+// same manager+quarter+ticker, the curated version wins (it has better context).
+
+import { EDGAR_MOVES } from "./edgar-data";
+
+function mergeMoveSets(curated: Move[], edgar: Move[]): Move[] {
+  // Build a dedup key for curated moves
+  const curatedKeys = new Set(
+    curated.map((m) => `${m.managerSlug}|${m.quarter}|${m.ticker}`)
+  );
+  // Add EDGAR moves that aren't already in curated set
+  const edgarNew = edgar.filter(
+    (m) => !curatedKeys.has(`${m.managerSlug}|${m.quarter}|${m.ticker}`)
+  );
+  return [...curated, ...edgarNew];
+}
+
+/** All moves — curated + EDGAR merged. Curated takes priority on conflicts. */
+export const MERGED_MOVES: Move[] = mergeMoveSets(ALL_MOVES, EDGAR_MOVES);
+
 // ---------- QUERIES ----------
 export function getMovesByManager(slug: string, quarter?: Quarter): Move[] {
-  return ALL_MOVES.filter((m) => m.managerSlug === slug && (!quarter || m.quarter === quarter));
+  return MERGED_MOVES.filter((m) => m.managerSlug === slug && (!quarter || m.quarter === quarter));
 }
 
 export function getMovesByTicker(ticker: string, quarter?: Quarter): Move[] {
   const sym = ticker.toUpperCase();
-  return ALL_MOVES.filter((m) => m.ticker.toUpperCase() === sym && (!quarter || m.quarter === quarter));
+  return MERGED_MOVES.filter((m) => m.ticker.toUpperCase() === sym && (!quarter || m.quarter === quarter));
 }
 
 export function getMovesByQuarter(quarter: Quarter): Move[] {
-  return ALL_MOVES.filter((m) => m.quarter === quarter);
+  return MERGED_MOVES.filter((m) => m.quarter === quarter);
 }
 
 export function getMovesByAction(action: MoveAction, quarter?: Quarter): Move[] {
-  return ALL_MOVES.filter((m) => m.action === action && (!quarter || m.quarter === quarter));
+  return MERGED_MOVES.filter((m) => m.action === action && (!quarter || m.quarter === quarter));
 }
 
 /** Latest quarter with data. */
@@ -615,7 +637,7 @@ export const LATEST_QUARTER: Quarter = "2025-Q4";
 
 /** All moves with manager display name + fund joined in. */
 export function getAllMovesEnriched(): Array<Move & { managerName: string; managerFund: string }> {
-  return ALL_MOVES.map((mv) => {
+  return MERGED_MOVES.map((mv) => {
     const mgr = MANAGERS.find((m) => m.slug === mv.managerSlug);
     return {
       ...mv,
