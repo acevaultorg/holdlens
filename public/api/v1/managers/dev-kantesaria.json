@@ -1,0 +1,144 @@
+{
+  "data": {
+    "slug": "dev-kantesaria",
+    "name": "Dev Kantesaria",
+    "fund": "Valley Forge Capital",
+    "role": "Founder & Managing Partner",
+    "philosophy": "Extreme concentration — 5 to 8 positions. Quality compounders only.",
+    "bio": "Founded Valley Forge in 2007. Runs one of the most concentrated portfolios on Wall Street — typically 5-8 positions. Target holding period: forever. 20%+ annualized since inception.",
+    "longest_holding": "Moody's (since 2009)",
+    "quality_score": 9,
+    "cagr_10y": 18.7,
+    "holdings": [
+      {
+        "ticker": "MCO",
+        "name": "Moody's",
+        "pct": 22.4,
+        "shares_mn": 1.1,
+        "thesis": "Top position. 15+ year hold. Credit rating duopoly."
+      },
+      {
+        "ticker": "FICO",
+        "name": "Fair Isaac",
+        "pct": 18.7,
+        "shares_mn": 0.08,
+        "thesis": "Credit scoring monopoly."
+      },
+      {
+        "ticker": "MSCI",
+        "name": "MSCI Inc",
+        "pct": 15.3,
+        "shares_mn": 0.2,
+        "thesis": "Index monopoly — fee compounder."
+      },
+      {
+        "ticker": "V",
+        "name": "Visa",
+        "pct": 12.8,
+        "shares_mn": 0.5,
+        "thesis": "Payment network toll booth."
+      },
+      {
+        "ticker": "MA",
+        "name": "Mastercard",
+        "pct": 11.2,
+        "shares_mn": 0.3,
+        "thesis": "Other payment network."
+      },
+      {
+        "ticker": "HEI",
+        "name": "HEICO Corp",
+        "pct": 8.4,
+        "shares_mn": 0.18,
+        "thesis": "Aerospace aftermarket monopoly."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MCO",
+        "action": "add",
+        "delta_pct": 4,
+        "portfolio_impact_pct": 22.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MSCI",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 15.3
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "HEI",
+        "action": "add",
+        "delta_pct": 12,
+        "portfolio_impact_pct": 8.4
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "FICO",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 18.7
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "V",
+        "action": "add",
+        "delta_pct": 5,
+        "portfolio_impact_pct": 12.8
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "INTU",
+        "action": "trim",
+        "delta_pct": -15,
+        "portfolio_impact_pct": 4.2
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "INTU",
+        "action": "trim",
+        "delta_pct": -11,
+        "portfolio_impact_pct": 5.8
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "INTU",
+        "action": "trim",
+        "delta_pct": -26,
+        "portfolio_impact_pct": 5.2
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "INTU",
+        "action": "trim",
+        "delta_pct": -10,
+        "portfolio_impact_pct": 6.9
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "MSCI",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 1
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "MCO",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 16.9
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

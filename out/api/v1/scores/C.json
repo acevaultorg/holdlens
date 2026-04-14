@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "C",
+    "name": "Citigroup",
+    "sector": "Financials",
+    "score": -2,
+    "formatted_score": "−2",
+    "direction": "SELL",
+    "label": "WEAK SELL",
+    "buyer_count": 7,
+    "seller_count": 11,
+    "owner_count": 1,
+    "breakdown": {
+      "smartMoney": 4,
+      "insiderBoost": 0,
+      "trackRecord": 0,
+      "trendStreak": 5,
+      "concentration": 4,
+      "contrarian": 0,
+      "dissentPenalty": 15,
+      "crowdingPenalty": 0,
+      "raw": -2
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

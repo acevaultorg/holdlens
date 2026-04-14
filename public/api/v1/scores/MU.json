@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "MU",
+    "name": "Micron Technology",
+    "sector": "Technology",
+    "score": 19,
+    "formatted_score": "+19",
+    "direction": "BUY",
+    "label": "WEAK BUY",
+    "buyer_count": 10,
+    "seller_count": 6,
+    "owner_count": 2,
+    "breakdown": {
+      "smartMoney": 7,
+      "insiderBoost": 0,
+      "trackRecord": 3,
+      "trendStreak": 5,
+      "concentration": 10,
+      "contrarian": 0,
+      "dissentPenalty": 5,
+      "crowdingPenalty": 0,
+      "raw": 19
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

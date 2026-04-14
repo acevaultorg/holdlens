@@ -1,0 +1,123 @@
+{
+  "data": {
+    "slug": "glenn-greenberg",
+    "name": "Glenn Greenberg",
+    "fund": "Brave Warrior Advisors",
+    "role": "Managing Director",
+    "philosophy": "Extreme concentration. 8-10 positions only. High conviction or nothing.",
+    "bio": "Co-founded Chieftain Capital in 1984, ran a 22% compound return over 25 years. Famous for holding only 8-10 stocks at any time — one of the most concentrated portfolios on Wall Street.",
+    "longest_holding": "Schwab (since 2013)",
+    "quality_score": 7,
+    "cagr_10y": 12.7,
+    "holdings": [
+      {
+        "ticker": "SCHW",
+        "name": "Charles Schwab",
+        "pct": 17.8,
+        "shares_mn": 9.5,
+        "thesis": "Top conviction. Fee compression priced in."
+      },
+      {
+        "ticker": "MCO",
+        "name": "Moody's",
+        "pct": 14.2,
+        "shares_mn": 0.9,
+        "thesis": "Credit rating duopoly. Held since 2012."
+      },
+      {
+        "ticker": "PM",
+        "name": "Philip Morris",
+        "pct": 12.6,
+        "shares_mn": 3.1,
+        "thesis": "Smoke-free transition thesis, dividend compounder."
+      },
+      {
+        "ticker": "BRO",
+        "name": "Brown & Brown",
+        "pct": 10.9,
+        "shares_mn": 2.4,
+        "thesis": "Insurance brokerage, 30-year compounder."
+      },
+      {
+        "ticker": "V",
+        "name": "Visa",
+        "pct": 9.4,
+        "shares_mn": 1.2,
+        "thesis": "Payment network toll booth."
+      },
+      {
+        "ticker": "FIS",
+        "name": "Fidelity National Info",
+        "pct": 7.3,
+        "shares_mn": 2.8,
+        "thesis": "Banking software consolidator."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "SCHW",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 19.6
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "V",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 10.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "SCHW",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 17.8
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "V",
+        "action": "add",
+        "delta_pct": 12,
+        "portfolio_impact_pct": 9.4
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "FIS",
+        "action": "trim",
+        "delta_pct": -15,
+        "portfolio_impact_pct": 7.3
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "SCHW",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 16.9
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "FIS",
+        "action": "trim",
+        "delta_pct": -10,
+        "portfolio_impact_pct": 8.1
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "SCHW",
+        "action": "add",
+        "delta_pct": 4,
+        "portfolio_impact_pct": 16.3
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

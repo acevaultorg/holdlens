@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "FICO",
+    "name": "Fair Isaac",
+    "sector": "Other",
+    "score": 28,
+    "formatted_score": "+28",
+    "direction": "BUY",
+    "label": "WEAK BUY",
+    "buyer_count": 2,
+    "seller_count": 0,
+    "owner_count": 2,
+    "breakdown": {
+      "smartMoney": 4,
+      "insiderBoost": 0,
+      "trackRecord": 6,
+      "trendStreak": 1,
+      "concentration": 9,
+      "contrarian": 8,
+      "dissentPenalty": 0,
+      "crowdingPenalty": 0,
+      "raw": 28
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "data": {
+    "slug": "david-rolfe",
+    "name": "David Rolfe",
+    "fund": "Wedgewood Partners",
+    "role": "Chief Investment Officer",
+    "philosophy": "Concentrated quality. 20 businesses maximum. Buffett-disciplined.",
+    "bio": "CIO of Wedgewood since 1992. Runs one of the most concentrated US-based quality-growth strategies — 20 positions maximum, average holding period 5+ years. Cited by Buffett observers as a model of Berkshire-style discipline at smaller scale.",
+    "longest_holding": "Apple (since 2005)",
+    "quality_score": 9,
+    "cagr_10y": 12.5,
+    "holdings": [
+      {
+        "ticker": "AAPL",
+        "name": "Apple Inc.",
+        "pct": 10.2,
+        "shares_mn": 0.5,
+        "thesis": "Top position — 19-year hold."
+      },
+      {
+        "ticker": "TSM",
+        "name": "Taiwan Semiconductor",
+        "pct": 9.1,
+        "shares_mn": 0.3,
+        "thesis": "AI picks and shovels."
+      },
+      {
+        "ticker": "V",
+        "name": "Visa",
+        "pct": 8.4,
+        "shares_mn": 0.4,
+        "thesis": "Payment network compounder."
+      },
+      {
+        "ticker": "BRK.B",
+        "name": "Berkshire Hathaway",
+        "pct": 7.8,
+        "shares_mn": 0.7,
+        "thesis": "Buffett, at the source."
+      },
+      {
+        "ticker": "GOOG",
+        "name": "Alphabet Class C",
+        "pct": 6.5,
+        "shares_mn": 0.5,
+        "thesis": "Quality compounder."
+      },
+      {
+        "ticker": "FICO",
+        "name": "Fair Isaac",
+        "pct": 5.9,
+        "shares_mn": 0.02,
+        "thesis": "Credit scoring monopoly."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "TSM",
+        "action": "add",
+        "delta_pct": 18,
+        "portfolio_impact_pct": 9.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "FICO",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 5.9
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "AAPL",
+        "action": "trim",
+        "delta_pct": -5,
+        "portfolio_impact_pct": 10.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "TSM",
+        "action": "add",
+        "delta_pct": 22,
+        "portfolio_impact_pct": 7.7
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "BRK.B",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 7.8
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

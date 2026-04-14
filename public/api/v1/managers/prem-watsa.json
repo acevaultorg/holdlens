@@ -1,0 +1,249 @@
+{
+  "data": {
+    "slug": "prem-watsa",
+    "name": "Prem Watsa",
+    "fund": "Fairfax Financial",
+    "role": "Chairman & CEO",
+    "philosophy": "Value investing with insurance float. The Canadian Buffett.",
+    "bio": "Built Fairfax from a $30M shell in 1985 into one of Canada's largest insurance holding companies using the Berkshire float model.",
+    "longest_holding": "Blackberry (contentious, since 2010)",
+    "quality_score": 7,
+    "cagr_10y": 18,
+    "holdings": [
+      {
+        "ticker": "BB",
+        "name": "BlackBerry",
+        "pct": 18.2,
+        "shares_mn": 46.7,
+        "thesis": "Software turnaround play, held for 15+ years."
+      },
+      {
+        "ticker": "OXY",
+        "name": "Occidental Petroleum",
+        "pct": 13.5,
+        "shares_mn": 3.4,
+        "thesis": "Energy float compounder, aligned with Buffett."
+      },
+      {
+        "ticker": "KW",
+        "name": "Kennedy-Wilson Holdings",
+        "pct": 9.8,
+        "shares_mn": 12,
+        "thesis": "Real estate asset manager, book value discount."
+      },
+      {
+        "ticker": "MU",
+        "name": "Micron Technology",
+        "pct": 7.4,
+        "shares_mn": 0.8,
+        "thesis": "Semi cycle bet."
+      },
+      {
+        "ticker": "CVS",
+        "name": "CVS Health",
+        "pct": 5.9,
+        "shares_mn": 1.1,
+        "thesis": "Healthcare at reasonable P/E."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "OXY",
+        "action": "add",
+        "delta_pct": 15,
+        "portfolio_impact_pct": 15.5
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "OXY",
+        "action": "add",
+        "delta_pct": 20,
+        "portfolio_impact_pct": 13.5
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "MU",
+        "action": "add",
+        "delta_pct": 15,
+        "portfolio_impact_pct": 7.4
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "PFE",
+        "action": "add",
+        "delta_pct": 37,
+        "portfolio_impact_pct": 1.1
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "KHC",
+        "action": "add",
+        "delta_pct": 45,
+        "portfolio_impact_pct": 6.9
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "TSM",
+        "action": "trim",
+        "delta_pct": -34,
+        "portfolio_impact_pct": 1.2
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "MU",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "MKTX",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "CVS",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 7.8
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "KHC",
+        "action": "add",
+        "delta_pct": 342,
+        "portfolio_impact_pct": 6.5
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "ATS",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 4.7
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "PFE",
+        "action": "add",
+        "delta_pct": 41,
+        "portfolio_impact_pct": 1.1
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "CAPRI",
+        "action": "trim",
+        "delta_pct": -61,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "GOOGL",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "INTC",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "QSR",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "TEGNA",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "KHC",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 2.4
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "MU",
+        "action": "add",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.8
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "META",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "BRP",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "TSM",
+        "action": "add",
+        "delta_pct": 51,
+        "portfolio_impact_pct": 2.2
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "CAPRI",
+        "action": "add",
+        "delta_pct": 7,
+        "portfolio_impact_pct": 0.6
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "META",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.6
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "MU",
+        "action": "trim",
+        "delta_pct": -94,
+        "portfolio_impact_pct": 0.5
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "GE",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "CVS",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

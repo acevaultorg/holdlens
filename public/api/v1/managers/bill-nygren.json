@@ -1,0 +1,116 @@
+{
+  "data": {
+    "slug": "bill-nygren",
+    "name": "Bill Nygren",
+    "fund": "Oakmark Funds",
+    "role": "Portfolio Manager",
+    "philosophy": "Concentrated value. Buy good businesses at a discount to intrinsic value.",
+    "bio": "Manager of the Oakmark Select Fund for 25+ years. Quiet, disciplined, famously patient. One of the most respected value managers who isn't a household name.",
+    "longest_holding": "Capital One (since 2007)",
+    "quality_score": 7,
+    "cagr_10y": 10.9,
+    "holdings": [
+      {
+        "ticker": "COF",
+        "name": "Capital One Financial",
+        "pct": 5.2,
+        "shares_mn": 2.3,
+        "thesis": "17-year holding. Best-in-class credit underwriting."
+      },
+      {
+        "ticker": "GOOGL",
+        "name": "Alphabet Class A",
+        "pct": 4.9,
+        "shares_mn": 0.5,
+        "thesis": "Search franchise at reasonable multiple."
+      },
+      {
+        "ticker": "BAC",
+        "name": "Bank of America",
+        "pct": 4.3,
+        "shares_mn": 4.8,
+        "thesis": "Major US bank at book value."
+      },
+      {
+        "ticker": "C",
+        "name": "Citigroup",
+        "pct": 4,
+        "shares_mn": 3.1,
+        "thesis": "Deep value, management turnaround."
+      },
+      {
+        "ticker": "CMCSA",
+        "name": "Comcast",
+        "pct": 3.8,
+        "shares_mn": 4.2,
+        "thesis": "Cable + content, dividend payer."
+      },
+      {
+        "ticker": "NFLX",
+        "name": "Netflix",
+        "pct": 3.6,
+        "shares_mn": 0.3,
+        "thesis": "Streaming pivot to profitability."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "NFLX",
+        "action": "add",
+        "delta_pct": 12,
+        "portfolio_impact_pct": 4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "KKR",
+        "action": "add",
+        "delta_pct": 20,
+        "portfolio_impact_pct": 2.7
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "NFLX",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 3.6
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "C",
+        "action": "add",
+        "delta_pct": 15,
+        "portfolio_impact_pct": 4
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "KKR",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 2.2
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "NFLX",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 3.4
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "C",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 3.7
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

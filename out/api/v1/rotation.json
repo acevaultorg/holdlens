@@ -1,0 +1,563 @@
+{
+  "data": [
+    {
+      "sector": "Communication",
+      "quarters": {
+        "2025-Q4": {
+          "net": 1.2,
+          "buys": 5,
+          "sells": 3
+        },
+        "2025-Q3": {
+          "net": -0.3,
+          "buys": 4,
+          "sells": 2
+        },
+        "2025-Q2": {
+          "net": -4,
+          "buys": 1,
+          "sells": 4
+        },
+        "2025-Q1": {
+          "net": 0.3,
+          "buys": 3,
+          "sells": 2
+        },
+        "2024-Q4": {
+          "net": -2.2,
+          "buys": 4,
+          "sells": 2
+        },
+        "2024-Q3": {
+          "net": -4.2,
+          "buys": 2,
+          "sells": 3
+        },
+        "2024-Q2": {
+          "net": -3.6,
+          "buys": 2,
+          "sells": 3
+        },
+        "2024-Q1": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        }
+      }
+    },
+    {
+      "sector": "Consumer Discretionary",
+      "quarters": {
+        "2025-Q4": {
+          "net": 9.5,
+          "buys": 11,
+          "sells": 5
+        },
+        "2025-Q3": {
+          "net": -0.5,
+          "buys": 8,
+          "sells": 5
+        },
+        "2025-Q2": {
+          "net": 4.1,
+          "buys": 5,
+          "sells": 1
+        },
+        "2025-Q1": {
+          "net": -0.2,
+          "buys": 6,
+          "sells": 4
+        },
+        "2024-Q4": {
+          "net": -0.7,
+          "buys": 5,
+          "sells": 4
+        },
+        "2024-Q3": {
+          "net": -1,
+          "buys": 4,
+          "sells": 3
+        },
+        "2024-Q2": {
+          "net": -1.4,
+          "buys": 3,
+          "sells": 2
+        },
+        "2024-Q1": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        }
+      }
+    },
+    {
+      "sector": "Consumer Staples",
+      "quarters": {
+        "2025-Q4": {
+          "net": -0.5,
+          "buys": 1,
+          "sells": 2
+        },
+        "2025-Q3": {
+          "net": 0.5,
+          "buys": 1,
+          "sells": 0
+        },
+        "2025-Q2": {
+          "net": 2.5,
+          "buys": 1,
+          "sells": 1
+        },
+        "2025-Q1": {
+          "net": -1,
+          "buys": 0,
+          "sells": 2
+        },
+        "2024-Q4": {
+          "net": 2,
+          "buys": 1,
+          "sells": 2
+        },
+        "2024-Q3": {
+          "net": 1.2,
+          "buys": 2,
+          "sells": 1
+        },
+        "2024-Q2": {
+          "net": 0,
+          "buys": 1,
+          "sells": 1
+        },
+        "2024-Q1": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        }
+      }
+    },
+    {
+      "sector": "Energy",
+      "quarters": {
+        "2025-Q4": {
+          "net": 7.1,
+          "buys": 6,
+          "sells": 3
+        },
+        "2025-Q3": {
+          "net": 6,
+          "buys": 5,
+          "sells": 2
+        },
+        "2025-Q2": {
+          "net": -3,
+          "buys": 2,
+          "sells": 2
+        },
+        "2025-Q1": {
+          "net": 3.7,
+          "buys": 4,
+          "sells": 0
+        },
+        "2024-Q4": {
+          "net": 1.5,
+          "buys": 2,
+          "sells": 2
+        },
+        "2024-Q3": {
+          "net": -1,
+          "buys": 0,
+          "sells": 2
+        },
+        "2024-Q2": {
+          "net": 4.3,
+          "buys": 5,
+          "sells": 2
+        },
+        "2024-Q1": {
+          "net": 4.9,
+          "buys": 2,
+          "sells": 0
+        }
+      }
+    },
+    {
+      "sector": "Financials",
+      "quarters": {
+        "2025-Q4": {
+          "net": 13.4,
+          "buys": 24,
+          "sells": 20
+        },
+        "2025-Q3": {
+          "net": 24.6,
+          "buys": 26,
+          "sells": 11
+        },
+        "2025-Q2": {
+          "net": 16.3,
+          "buys": 21,
+          "sells": 12
+        },
+        "2025-Q1": {
+          "net": 10.7,
+          "buys": 24,
+          "sells": 11
+        },
+        "2024-Q4": {
+          "net": 3.7,
+          "buys": 15,
+          "sells": 11
+        },
+        "2024-Q3": {
+          "net": 6,
+          "buys": 18,
+          "sells": 10
+        },
+        "2024-Q2": {
+          "net": 3.6,
+          "buys": 11,
+          "sells": 11
+        },
+        "2024-Q1": {
+          "net": 6.7,
+          "buys": 3,
+          "sells": 0
+        }
+      }
+    },
+    {
+      "sector": "Healthcare",
+      "quarters": {
+        "2025-Q4": {
+          "net": 1.5,
+          "buys": 3,
+          "sells": 2
+        },
+        "2025-Q3": {
+          "net": -0.2,
+          "buys": 2,
+          "sells": 4
+        },
+        "2025-Q2": {
+          "net": 5.4,
+          "buys": 5,
+          "sells": 3
+        },
+        "2025-Q1": {
+          "net": 1.4,
+          "buys": 3,
+          "sells": 2
+        },
+        "2024-Q4": {
+          "net": 0.8,
+          "buys": 2,
+          "sells": 7
+        },
+        "2024-Q3": {
+          "net": -3.6,
+          "buys": 2,
+          "sells": 5
+        },
+        "2024-Q2": {
+          "net": 1.8,
+          "buys": 3,
+          "sells": 5
+        },
+        "2024-Q1": {
+          "net": -0.5,
+          "buys": 0,
+          "sells": 1
+        }
+      }
+    },
+    {
+      "sector": "Industrials",
+      "quarters": {
+        "2025-Q4": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        },
+        "2025-Q3": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        },
+        "2025-Q2": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        },
+        "2025-Q1": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        },
+        "2024-Q4": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        },
+        "2024-Q3": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        },
+        "2024-Q2": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        },
+        "2024-Q1": {
+          "net": 3,
+          "buys": 1,
+          "sells": 0
+        }
+      }
+    },
+    {
+      "sector": "Materials",
+      "quarters": {
+        "2025-Q4": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        },
+        "2025-Q3": {
+          "net": -3,
+          "buys": 0,
+          "sells": 1
+        },
+        "2025-Q2": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        },
+        "2025-Q1": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        },
+        "2024-Q4": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        },
+        "2024-Q3": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        },
+        "2024-Q2": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        },
+        "2024-Q1": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        }
+      }
+    },
+    {
+      "sector": "Other",
+      "quarters": {
+        "2025-Q4": {
+          "net": 39,
+          "buys": 259,
+          "sells": 209
+        },
+        "2025-Q3": {
+          "net": 58.7,
+          "buys": 284,
+          "sells": 192
+        },
+        "2025-Q2": {
+          "net": 67.8,
+          "buys": 298,
+          "sells": 181
+        },
+        "2025-Q1": {
+          "net": 46.1,
+          "buys": 276,
+          "sells": 180
+        },
+        "2024-Q4": {
+          "net": 23.4,
+          "buys": 233,
+          "sells": 189
+        },
+        "2024-Q3": {
+          "net": 1.5,
+          "buys": 210,
+          "sells": 202
+        },
+        "2024-Q2": {
+          "net": 57.1,
+          "buys": 245,
+          "sells": 160
+        },
+        "2024-Q1": {
+          "net": 18,
+          "buys": 7,
+          "sells": 4
+        }
+      }
+    },
+    {
+      "sector": "Real Estate",
+      "quarters": {
+        "2025-Q4": {
+          "net": 0.5,
+          "buys": 3,
+          "sells": 2
+        },
+        "2025-Q3": {
+          "net": 4.5,
+          "buys": 4,
+          "sells": 0
+        },
+        "2025-Q2": {
+          "net": 6,
+          "buys": 3,
+          "sells": 1
+        },
+        "2025-Q1": {
+          "net": 1,
+          "buys": 2,
+          "sells": 0
+        },
+        "2024-Q4": {
+          "net": 3,
+          "buys": 2,
+          "sells": 1
+        },
+        "2024-Q3": {
+          "net": 2,
+          "buys": 1,
+          "sells": 2
+        },
+        "2024-Q2": {
+          "net": -0.5,
+          "buys": 1,
+          "sells": 2
+        },
+        "2024-Q1": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        }
+      }
+    },
+    {
+      "sector": "Technology",
+      "quarters": {
+        "2025-Q4": {
+          "net": 13.9,
+          "buys": 36,
+          "sells": 30
+        },
+        "2025-Q3": {
+          "net": 31.5,
+          "buys": 44,
+          "sells": 27
+        },
+        "2025-Q2": {
+          "net": 21.8,
+          "buys": 27,
+          "sells": 24
+        },
+        "2025-Q1": {
+          "net": 8.1,
+          "buys": 25,
+          "sells": 21
+        },
+        "2024-Q4": {
+          "net": 28.3,
+          "buys": 28,
+          "sells": 18
+        },
+        "2024-Q3": {
+          "net": 13.1,
+          "buys": 24,
+          "sells": 23
+        },
+        "2024-Q2": {
+          "net": 3.8,
+          "buys": 24,
+          "sells": 18
+        },
+        "2024-Q1": {
+          "net": 17.7,
+          "buys": 8,
+          "sells": 3
+        }
+      }
+    },
+    {
+      "sector": "Utilities",
+      "quarters": {
+        "2025-Q4": {
+          "net": 7.4,
+          "buys": 3,
+          "sells": 0
+        },
+        "2025-Q3": {
+          "net": 6,
+          "buys": 3,
+          "sells": 1
+        },
+        "2025-Q2": {
+          "net": 7.9,
+          "buys": 3,
+          "sells": 0
+        },
+        "2025-Q1": {
+          "net": 6.5,
+          "buys": 3,
+          "sells": 0
+        },
+        "2024-Q4": {
+          "net": 5,
+          "buys": 2,
+          "sells": 1
+        },
+        "2024-Q3": {
+          "net": 4.1,
+          "buys": 2,
+          "sells": 1
+        },
+        "2024-Q2": {
+          "net": -0.5,
+          "buys": 0,
+          "sells": 1
+        },
+        "2024-Q1": {
+          "net": 0,
+          "buys": 0,
+          "sells": 0
+        }
+      }
+    }
+  ],
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs",
+    "quarters": [
+      "2025-Q4",
+      "2025-Q3",
+      "2025-Q2",
+      "2025-Q1",
+      "2024-Q4",
+      "2024-Q3",
+      "2024-Q2",
+      "2024-Q1"
+    ],
+    "sectors": 12
+  }
+}

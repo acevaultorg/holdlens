@@ -1,0 +1,417 @@
+{
+  "data": {
+    "slug": "terry-smith",
+    "name": "Terry Smith",
+    "fund": "Fundsmith",
+    "role": "Founder & CEO",
+    "philosophy": "Buy good companies. Don't overpay. Do nothing.",
+    "bio": "Founded Fundsmith in 2010 after a career as a top-rated banking analyst. His three-rule philosophy has made Fundsmith Equity Fund one of the most popular funds in the UK, compounding at ~14% annually.",
+    "longest_holding": "Microsoft (since 2011)",
+    "quality_score": 9,
+    "cagr_10y": 13.5,
+    "holdings": [
+      {
+        "ticker": "MSFT",
+        "name": "Microsoft",
+        "pct": 11.2,
+        "shares_mn": 12,
+        "thesis": "Top position. Held since 2011."
+      },
+      {
+        "ticker": "MA",
+        "name": "Mastercard",
+        "pct": 9.8,
+        "shares_mn": 3.5,
+        "thesis": "Payment network compounder."
+      },
+      {
+        "ticker": "NOVO",
+        "name": "Novo Nordisk",
+        "pct": 8.4,
+        "shares_mn": 9,
+        "thesis": "GLP-1 leader (ADR)."
+      },
+      {
+        "ticker": "META",
+        "name": "Meta Platforms",
+        "pct": 6.5,
+        "shares_mn": 4,
+        "thesis": "Quality compounder — trimmed Q4."
+      },
+      {
+        "ticker": "LLY",
+        "name": "Eli Lilly",
+        "pct": 5.9,
+        "shares_mn": 0.8,
+        "thesis": "Weight loss leader + immunology pipeline."
+      },
+      {
+        "ticker": "V",
+        "name": "Visa",
+        "pct": 5.4,
+        "shares_mn": 2.2,
+        "thesis": "Payment network."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MSFT",
+        "action": "add",
+        "delta_pct": 5,
+        "portfolio_impact_pct": 11.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "META",
+        "action": "trim",
+        "delta_pct": -8,
+        "portfolio_impact_pct": 6.5
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "MSFT",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 11
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "MSFT",
+        "action": "add",
+        "delta_pct": 7,
+        "portfolio_impact_pct": 11
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "MA",
+        "action": "add",
+        "delta_pct": 5,
+        "portfolio_impact_pct": 9.6
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "MSFT",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 10.5
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "NOVO",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 9
+      },
+      {
+        "quarter": "2024-Q1",
+        "ticker": "MSFT",
+        "action": "add",
+        "delta_pct": 5,
+        "portfolio_impact_pct": 10
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "IBKR",
+        "action": "trim",
+        "delta_pct": -28,
+        "portfolio_impact_pct": 7.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "V",
+        "action": "trim",
+        "delta_pct": -8,
+        "portfolio_impact_pct": 7.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "GOOGL",
+        "action": "trim",
+        "delta_pct": -44,
+        "portfolio_impact_pct": 6.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "PFE",
+        "action": "trim",
+        "delta_pct": -15,
+        "portfolio_impact_pct": 5.7
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "PG",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 3.6
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "NKE",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 2.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "GRACO",
+        "action": "trim",
+        "delta_pct": -36,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "GOOGL",
+        "action": "trim",
+        "delta_pct": -8,
+        "portfolio_impact_pct": 7.7
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "PFE",
+        "action": "trim",
+        "delta_pct": -21,
+        "portfolio_impact_pct": 5.9
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "META",
+        "action": "trim",
+        "delta_pct": -56,
+        "portfolio_impact_pct": 5.8
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "INTU",
+        "action": "add",
+        "delta_pct": 64,
+        "portfolio_impact_pct": 2.1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "VRSK",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "MA",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "META",
+        "action": "trim",
+        "delta_pct": -8,
+        "portfolio_impact_pct": 11.4
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "MSFT",
+        "action": "trim",
+        "delta_pct": -8,
+        "portfolio_impact_pct": 10.7
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "PFE",
+        "action": "trim",
+        "delta_pct": -16,
+        "portfolio_impact_pct": 7.2
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "V",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 5.9
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "INTU",
+        "action": "add",
+        "delta_pct": 103,
+        "portfolio_impact_pct": 1.3
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "GRACO",
+        "action": "trim",
+        "delta_pct": -21,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "VRSN",
+        "action": "trim",
+        "delta_pct": -53,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "VRSK",
+        "action": "trim",
+        "delta_pct": -47,
+        "portfolio_impact_pct": 0.2
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "MA",
+        "action": "trim",
+        "delta_pct": -44,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "META",
+        "action": "trim",
+        "delta_pct": -15,
+        "portfolio_impact_pct": 10.2
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "MSFT",
+        "action": "trim",
+        "delta_pct": -13,
+        "portfolio_impact_pct": 9.2
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "V",
+        "action": "trim",
+        "delta_pct": -11,
+        "portfolio_impact_pct": 6.6
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "TXN",
+        "action": "add",
+        "delta_pct": 60,
+        "portfolio_impact_pct": 2.2
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "VRSN",
+        "action": "trim",
+        "delta_pct": -9,
+        "portfolio_impact_pct": 0.7
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "INTU",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.5
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "VRSK",
+        "action": "trim",
+        "delta_pct": -21,
+        "portfolio_impact_pct": 0.4
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "MA",
+        "action": "trim",
+        "delta_pct": -23,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "PEP",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "IDEX",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "META",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 11.4
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "V",
+        "action": "trim",
+        "delta_pct": -17,
+        "portfolio_impact_pct": 6.2
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "PFE",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 5.8
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "GRACO",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.4
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "IDEX",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "AAPL",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "PFE",
+        "action": "trim",
+        "delta_pct": -17,
+        "portfolio_impact_pct": 5.8
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "TXN",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 1.4
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "VRSK",
+        "action": "trim",
+        "delta_pct": -10,
+        "portfolio_impact_pct": 0.4
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "MSFT",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 13
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

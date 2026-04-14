@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "KO",
+    "name": "Coca-Cola",
+    "sector": "Consumer Staples",
+    "score": -3,
+    "formatted_score": "−3",
+    "direction": "SELL",
+    "label": "WEAK SELL",
+    "buyer_count": 2,
+    "seller_count": 6,
+    "owner_count": 1,
+    "breakdown": {
+      "smartMoney": 2,
+      "insiderBoost": 3,
+      "trackRecord": 0,
+      "trendStreak": 0,
+      "concentration": 0,
+      "contrarian": 0,
+      "dissentPenalty": 8,
+      "crowdingPenalty": 0,
+      "raw": -3
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

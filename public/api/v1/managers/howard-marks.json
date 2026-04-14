@@ -1,0 +1,417 @@
+{
+  "data": {
+    "slug": "howard-marks",
+    "name": "Howard Marks",
+    "fund": "Oaktree Capital",
+    "role": "Co-Founder & Co-Chairman",
+    "philosophy": "You can't predict, you can prepare. Second-level thinking.",
+    "bio": "The king of distressed debt investing. His memos to Oaktree clients are required reading on Wall Street — Buffett himself admits he drops everything to read them.",
+    "longest_holding": "Torm plc (shipping)",
+    "quality_score": 9,
+    "cagr_10y": 9,
+    "holdings": [
+      {
+        "ticker": "TRMD",
+        "name": "Torm plc",
+        "pct": 14.8,
+        "shares_mn": 8.5,
+        "thesis": "Product tanker shipping — cyclical deep value."
+      },
+      {
+        "ticker": "VST",
+        "name": "Vistra Corp",
+        "pct": 11.2,
+        "shares_mn": 5.2,
+        "thesis": "Independent power producer, AI data center demand."
+      },
+      {
+        "ticker": "GRBK",
+        "name": "Green Brick Partners",
+        "pct": 9.4,
+        "shares_mn": 4.8,
+        "thesis": "Homebuilder with strong land bank."
+      },
+      {
+        "ticker": "PR",
+        "name": "Permian Resources",
+        "pct": 7.6,
+        "shares_mn": 6.2,
+        "thesis": "Permian Basin oil & gas."
+      },
+      {
+        "ticker": "WMB",
+        "name": "Williams Companies",
+        "pct": 6.3,
+        "shares_mn": 2.1,
+        "thesis": "Natural gas pipelines, stable cash flow."
+      },
+      {
+        "ticker": "STR",
+        "name": "Sitio Royalties",
+        "pct": 5.1,
+        "shares_mn": 5.4,
+        "thesis": "Mineral rights, passive royalty stream."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "VST",
+        "action": "add",
+        "delta_pct": 18,
+        "portfolio_impact_pct": 12.8
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "TRMD",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 15.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "PR",
+        "action": "add",
+        "delta_pct": 15,
+        "portfolio_impact_pct": 8.1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "VST",
+        "action": "add",
+        "delta_pct": 25,
+        "portfolio_impact_pct": 11.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "STR",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 5.1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "TRMD",
+        "action": "add",
+        "delta_pct": 12,
+        "portfolio_impact_pct": 14.8
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "VST",
+        "action": "add",
+        "delta_pct": 18,
+        "portfolio_impact_pct": 9
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "TRMD",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 13.2
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "VST",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 7.8
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "VST",
+        "action": "add",
+        "delta_pct": 22,
+        "portfolio_impact_pct": 6.5
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "TRMD",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 13
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "VST",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 5.2
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "TRMD",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 12.5
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "TRMD",
+        "action": "add",
+        "delta_pct": 5,
+        "portfolio_impact_pct": 11.5
+      },
+      {
+        "quarter": "2024-Q1",
+        "ticker": "TRMD",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 10
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "TORM",
+        "action": "trim",
+        "delta_pct": -35,
+        "portfolio_impact_pct": 7.5
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "SPG",
+        "action": "add",
+        "delta_pct": 17,
+        "portfolio_impact_pct": 3.7
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "GRAB",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 0.8
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "XP",
+        "action": "add",
+        "delta_pct": 63,
+        "portfolio_impact_pct": 0.8
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "ABNB",
+        "action": "add",
+        "delta_pct": 29,
+        "portfolio_impact_pct": 0.7
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "LILAK",
+        "action": "trim",
+        "delta_pct": -12,
+        "portfolio_impact_pct": 0.7
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "EQIX",
+        "action": "add",
+        "delta_pct": 28,
+        "portfolio_impact_pct": 0.6
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "SNAP",
+        "action": "add",
+        "delta_pct": 21,
+        "portfolio_impact_pct": 0.5
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "BLOCK",
+        "action": "add",
+        "delta_pct": 96,
+        "portfolio_impact_pct": 0.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "FIVE9",
+        "action": "add",
+        "delta_pct": 290,
+        "portfolio_impact_pct": 0.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "OKTA",
+        "action": "add",
+        "delta_pct": 67,
+        "portfolio_impact_pct": 0.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "ONITY",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "FLUOR",
+        "action": "trim",
+        "delta_pct": -11,
+        "portfolio_impact_pct": 0.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "ITRON",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MKS",
+        "action": "trim",
+        "delta_pct": -63,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "POST",
+        "action": "add",
+        "delta_pct": 104,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "IVV",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "JBS",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "GUESS",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "UBER",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "Q2",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "SPG",
+        "action": "trim",
+        "delta_pct": -68,
+        "portfolio_impact_pct": 3.4
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "ORCL",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 2.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "SEA",
+        "action": "add",
+        "delta_pct": 17,
+        "portfolio_impact_pct": 1.5
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "LILAK",
+        "action": "add",
+        "delta_pct": 223,
+        "portfolio_impact_pct": 1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "IVV",
+        "action": "trim",
+        "delta_pct": -8,
+        "portfolio_impact_pct": 0.8
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "XP",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.6
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "ABNB",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 0.6
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "EQIX",
+        "action": "add",
+        "delta_pct": 24,
+        "portfolio_impact_pct": 0.5
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "JBS",
+        "action": "add",
+        "delta_pct": 562,
+        "portfolio_impact_pct": 0.4
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "OKTA",
+        "action": "trim",
+        "delta_pct": -32,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "PPL",
+        "action": "add",
+        "delta_pct": 38,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "MKS",
+        "action": "add",
+        "delta_pct": 39,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "BLOCK",
+        "action": "add",
+        "delta_pct": 349,
+        "portfolio_impact_pct": 0.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "FLUOR",
+        "action": "add",
+        "delta_pct": 109,
+        "portfolio_impact_pct": 0.2
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

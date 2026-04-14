@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "GOOG",
+    "name": "Alphabet Class C",
+    "sector": "Technology",
+    "score": 0,
+    "formatted_score": "0",
+    "direction": "NEUTRAL",
+    "label": "NEUTRAL",
+    "buyer_count": 8,
+    "seller_count": 15,
+    "owner_count": 4,
+    "breakdown": {
+      "smartMoney": 4,
+      "insiderBoost": 0,
+      "trackRecord": 0,
+      "trendStreak": 5,
+      "concentration": 6,
+      "contrarian": 0,
+      "dissentPenalty": 14,
+      "crowdingPenalty": 0,
+      "raw": 0
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

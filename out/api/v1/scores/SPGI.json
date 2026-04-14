@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "SPGI",
+    "name": "S&P Global",
+    "sector": "Other",
+    "score": -2,
+    "formatted_score": "−2",
+    "direction": "SELL",
+    "label": "WEAK SELL",
+    "buyer_count": 11,
+    "seller_count": 5,
+    "owner_count": 1,
+    "breakdown": {
+      "smartMoney": 7,
+      "insiderBoost": 0,
+      "trackRecord": 0,
+      "trendStreak": 1,
+      "concentration": 3,
+      "contrarian": 0,
+      "dissentPenalty": 13,
+      "crowdingPenalty": 0,
+      "raw": -2
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "FNF",
+    "name": "Fidelity National Financial",
+    "sector": "Financials",
+    "score": 6,
+    "formatted_score": "+6",
+    "direction": "BUY",
+    "label": "WEAK BUY",
+    "buyer_count": 10,
+    "seller_count": 4,
+    "owner_count": 1,
+    "breakdown": {
+      "smartMoney": 4,
+      "insiderBoost": 0,
+      "trackRecord": 0,
+      "trendStreak": 0,
+      "concentration": 4,
+      "contrarian": 0,
+      "dissentPenalty": 2,
+      "crowdingPenalty": 0,
+      "raw": 6
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

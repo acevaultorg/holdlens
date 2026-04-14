@@ -6,7 +6,8 @@
     "dev": "next dev",
     "generate-og": "npx tsx scripts/generate-og-images.ts",
     "fetch-edgar": "npx tsx scripts/fetch-edgar-13f.ts",
-    "prebuild": "npx tsx scripts/generate-og-images.ts",
+    "generate-api": "npx tsx scripts/generate-api-json.ts",
+    "prebuild": "npx tsx scripts/generate-og-images.ts && npx tsx scripts/generate-api-json.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

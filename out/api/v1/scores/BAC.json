@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "BAC",
+    "name": "Bank of America",
+    "sector": "Financials",
+    "score": 14,
+    "formatted_score": "+14",
+    "direction": "BUY",
+    "label": "WEAK BUY",
+    "buyer_count": 12,
+    "seller_count": 13,
+    "owner_count": 3,
+    "breakdown": {
+      "smartMoney": 10,
+      "insiderBoost": 4,
+      "trackRecord": 0,
+      "trendStreak": 10,
+      "concentration": 10,
+      "contrarian": 0,
+      "dissentPenalty": 19,
+      "crowdingPenalty": 0,
+      "raw": 14
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

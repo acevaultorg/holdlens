@@ -1,0 +1,145 @@
+{
+  "data": [
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "score": -20,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 9,
+      "seller_count": 21,
+      "owner_count": 3
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet",
+      "sector": "Technology",
+      "score": -9,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 15,
+      "seller_count": 21,
+      "owner_count": 9
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly",
+      "sector": "Other",
+      "score": -9,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 14,
+      "seller_count": 13,
+      "owner_count": 1
+    },
+    {
+      "ticker": "COF",
+      "name": "Capital One Financial",
+      "sector": "Financials",
+      "score": -6,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 16,
+      "seller_count": 11,
+      "owner_count": 1
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla",
+      "sector": "Other",
+      "score": -4,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 15,
+      "seller_count": 6,
+      "owner_count": 1
+    },
+    {
+      "ticker": "KO",
+      "name": "Coca-Cola",
+      "sector": "Consumer Staples",
+      "score": -3,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 2,
+      "seller_count": 6,
+      "owner_count": 1
+    },
+    {
+      "ticker": "FIS",
+      "name": "Fidelity National Info",
+      "sector": "Technology",
+      "score": -3,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 0,
+      "seller_count": 2,
+      "owner_count": 1
+    },
+    {
+      "ticker": "SHEL",
+      "name": "Shell",
+      "sector": "Energy",
+      "score": -2,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 0,
+      "seller_count": 1,
+      "owner_count": 1
+    },
+    {
+      "ticker": "STLA",
+      "name": "Stellantis",
+      "sector": "Consumer Discretionary",
+      "score": -2,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 0,
+      "seller_count": 1,
+      "owner_count": 1
+    },
+    {
+      "ticker": "C",
+      "name": "Citigroup",
+      "sector": "Financials",
+      "score": -2,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 7,
+      "seller_count": 11,
+      "owner_count": 1
+    },
+    {
+      "ticker": "SPGI",
+      "name": "S&P Global",
+      "sector": "Other",
+      "score": -2,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 11,
+      "seller_count": 5,
+      "owner_count": 1
+    },
+    {
+      "ticker": "BIDU",
+      "name": "Baidu",
+      "sector": "Technology",
+      "score": -1,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 0,
+      "seller_count": 1,
+      "owner_count": 1
+    }
+  ],
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs",
+    "count": 12
+  }
+}

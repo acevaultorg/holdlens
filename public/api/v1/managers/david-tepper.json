@@ -1,0 +1,186 @@
+{
+  "data": {
+    "slug": "david-tepper",
+    "name": "David Tepper",
+    "fund": "Appaloosa Management",
+    "role": "Founder",
+    "philosophy": "Distressed + macro. Go big when the setup is right.",
+    "bio": "Founded Appaloosa in 1993 after Goldman Sachs. Generated ~30% annualized net for decades via distressed debt and macro-driven equity bets. Famously called the 2009 bottom and loaded up on banks.",
+    "longest_holding": "Alphabet (since 2016)",
+    "quality_score": 9,
+    "cagr_10y": 16.2,
+    "holdings": [
+      {
+        "ticker": "NVDA",
+        "name": "NVIDIA",
+        "pct": 10.2,
+        "shares_mn": 0.9,
+        "thesis": "Top position — AI infrastructure."
+      },
+      {
+        "ticker": "META",
+        "name": "Meta Platforms",
+        "pct": 9.1,
+        "shares_mn": 1.1,
+        "thesis": "Quality compounder at reasonable multiple."
+      },
+      {
+        "ticker": "GOOGL",
+        "name": "Alphabet Class A",
+        "pct": 7.8,
+        "shares_mn": 2.2,
+        "thesis": "Search + AI optionality."
+      },
+      {
+        "ticker": "AMZN",
+        "name": "Amazon",
+        "pct": 6.4,
+        "shares_mn": 2.5,
+        "thesis": "Cloud + retail dual engine."
+      },
+      {
+        "ticker": "MSFT",
+        "name": "Microsoft",
+        "pct": 5.9,
+        "shares_mn": 0.7,
+        "thesis": "Core AI infrastructure holding."
+      },
+      {
+        "ticker": "BABA",
+        "name": "Alibaba",
+        "pct": 5.4,
+        "shares_mn": 2.1,
+        "thesis": "China tech contrarian bet."
+      },
+      {
+        "ticker": "UBER",
+        "name": "Uber",
+        "pct": 4.1,
+        "shares_mn": 3.5,
+        "thesis": "Autonomous vehicle optionality."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "NVDA",
+        "action": "add",
+        "delta_pct": 25,
+        "portfolio_impact_pct": 10.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "UBER",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 4.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "BABA",
+        "action": "add",
+        "delta_pct": 30,
+        "portfolio_impact_pct": 5.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "META",
+        "action": "trim",
+        "delta_pct": -8,
+        "portfolio_impact_pct": 9.1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "NVDA",
+        "action": "add",
+        "delta_pct": 35,
+        "portfolio_impact_pct": 8.4
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 22,
+        "portfolio_impact_pct": 9.8
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "BABA",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 4.2
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "NVDA",
+        "action": "add",
+        "delta_pct": 30,
+        "portfolio_impact_pct": 8.6
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 25,
+        "portfolio_impact_pct": 9
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "BABA",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 3.4
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "NVDA",
+        "action": "add",
+        "delta_pct": 25,
+        "portfolio_impact_pct": 7
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 18,
+        "portfolio_impact_pct": 7.5
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "NVDA",
+        "action": "add",
+        "delta_pct": 18,
+        "portfolio_impact_pct": 5.8
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 14,
+        "portfolio_impact_pct": 6.5
+      },
+      {
+        "quarter": "2024-Q1",
+        "ticker": "NVDA",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 5
+      },
+      {
+        "quarter": "2024-Q1",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 5.5
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

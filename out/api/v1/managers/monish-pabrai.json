@@ -1,0 +1,81 @@
+{
+  "data": {
+    "slug": "monish-pabrai",
+    "name": "Mohnish Pabrai",
+    "fund": "Pabrai Investment Funds",
+    "role": "Managing Partner",
+    "philosophy": "Heads I win, tails I don't lose much. Cloning the best.",
+    "bio": "Buffett-style deep value investor. Famous for paying $650k for a charity lunch with Buffett.",
+    "longest_holding": "Fiat Chrysler / Stellantis (since 2012)",
+    "quality_score": 6,
+    "cagr_10y": 14.6,
+    "holdings": [
+      {
+        "ticker": "MU",
+        "name": "Micron Technology",
+        "pct": 24.6,
+        "shares_mn": 1.2,
+        "thesis": "Cyclical bet on memory recovery."
+      },
+      {
+        "ticker": "STLA",
+        "name": "Stellantis",
+        "pct": 21.3,
+        "shares_mn": 11,
+        "thesis": "Auto deep value, dividend yield play."
+      },
+      {
+        "ticker": "BABA",
+        "name": "Alibaba",
+        "pct": 18.4,
+        "shares_mn": 1.5,
+        "thesis": "China discount opportunity."
+      },
+      {
+        "ticker": "GOOG",
+        "name": "Alphabet",
+        "pct": 9.7,
+        "shares_mn": 0.3,
+        "thesis": "Quality compounder."
+      },
+      {
+        "ticker": "FCAU",
+        "name": "Brookfield Reins.",
+        "pct": 6.5,
+        "shares_mn": 1,
+        "thesis": "Insurance float compounder."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MU",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 27.1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "MU",
+        "action": "add",
+        "delta_pct": 15,
+        "portfolio_impact_pct": 24.6
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "STLA",
+        "action": "trim",
+        "delta_pct": -25,
+        "portfolio_impact_pct": 21.3
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "data": {
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "sector": "Technology",
+    "score": -20,
+    "formatted_score": "−20",
+    "direction": "SELL",
+    "label": "WEAK SELL",
+    "buyer_count": 9,
+    "seller_count": 21,
+    "owner_count": 3,
+    "breakdown": {
+      "smartMoney": 3,
+      "insiderBoost": -3,
+      "trackRecord": 0,
+      "trendStreak": 0,
+      "concentration": 2,
+      "contrarian": 0,
+      "dissentPenalty": 23,
+      "crowdingPenalty": 0,
+      "raw": -20
+    }
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

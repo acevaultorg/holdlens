@@ -1,32 +1,46 @@
 import type { Metadata } from "next";
-import EmailCapture from "@/components/EmailCapture";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
-  title: "API Documentation — HoldLens Pro",
+  title: "Public JSON API — HoldLens",
   description:
-    "HoldLens API: conviction scores, signals, manager holdings, and live quotes. 1,000 calls/month with Pro. Launching Q2 2026.",
+    "Free public JSON API: ConvictionScore, buy/sell signals, 30 superinvestor holdings, 8-quarter sector rotation. No auth. CDN-cached. Dataroma has no API — HoldLens does.",
+  alternates: { canonical: "https://holdlens.com/docs" },
   openGraph: {
-    title: "HoldLens API Docs",
-    description: "REST API for conviction scores, signals, and manager data.",
+    title: "HoldLens Public JSON API",
+    description: "Free conviction scores, signals, and manager data. No auth. JSON.",
   },
 };
 
-const ENDPOINTS = [
+const ENDPOINTS: { method: "GET"; path: string; desc: string; example: string }[] = [
   {
     method: "GET",
-    path: "/api/v1/scores",
-    desc: "All conviction scores, ranked by strength",
+    path: "/api/v1/index.json",
+    desc: "Catalog of every endpoint exposed by the API.",
+    example: `{
+  "name": "HoldLens Public JSON API",
+  "version": "v1",
+  "base_url": "https://holdlens.com/api/v1",
+  "quarter": "2025-Q4",
+  "endpoints": [ /* ... */ ]
+}`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/scores.json",
+    desc: "Every tracked ticker ranked by the unified signed −100..+100 ConvictionScore.",
     example: `{
   "data": [
     {
       "ticker": "NVDA",
+      "name": "NVIDIA Corp",
+      "sector": "Technology",
       "score": 68,
       "direction": "BUY",
-      "label": "BUY",
-      "buyerCount": 8,
-      "sellerCount": 1,
-      "ownerCount": 12
+      "label": "High conviction BUY",
+      "buyer_count": 8,
+      "seller_count": 1,
+      "owner_count": 12
     }
   ],
   "meta": { "count": 94, "quarter": "2025-Q4" }
@@ -34,79 +48,117 @@ const ENDPOINTS = [
   },
   {
     method: "GET",
-    path: "/api/v1/scores/:ticker",
-    desc: "Single ticker conviction score with full breakdown",
+    path: "/api/v1/scores/{ticker}.json",
+    desc: "Full breakdown for a single ticker — every layer of the conviction model.",
     example: `{
-  "ticker": "NVDA",
-  "score": 68,
-  "direction": "BUY",
-  "breakdown": {
-    "smartMoney": 22,
-    "insiderBoost": 8,
-    "trackRecord": 14,
-    "trendStreak": 10,
-    "concentration": 7,
-    "contrarian": 0,
-    "dissentPenalty": 3,
-    "crowdingPenalty": 4
-  },
-  "topBuyers": [
-    { "name": "Stanley Druckenmiller", "cagr": 18.2, "positionPct": 8.4 }
-  ]
+  "data": {
+    "ticker": "NVDA",
+    "score": 68,
+    "direction": "BUY",
+    "breakdown": {
+      "smartMoney": 22, "insiderBoost": 8, "trackRecord": 14,
+      "trendStreak": 10, "concentration": 7, "contrarian": 0,
+      "dissentPenalty": 3, "crowdingPenalty": 4
+    }
+  }
 }`,
   },
   {
     method: "GET",
-    path: "/api/v1/signals/buys",
-    desc: "Top buy signals, sorted by score descending",
-    example: `{
-  "data": [
-    { "ticker": "NVDA", "score": 68, "buyerCount": 8 },
-    { "ticker": "GOOGL", "score": 52, "buyerCount": 6 }
-  ]
-}`,
+    path: "/api/v1/signals/buys.json",
+    desc: "Top 100 buy signals sorted by score descending.",
+    example: `{ "data": [ { "ticker": "NVDA", "score": 68, "buyer_count": 8 } ] }`,
   },
   {
     method: "GET",
-    path: "/api/v1/signals/sells",
-    desc: "Top sell signals, sorted by score ascending",
-    example: `{
-  "data": [
-    { "ticker": "DIS", "score": -34, "sellerCount": 4 },
-    { "ticker": "BABA", "score": -22, "sellerCount": 3 }
-  ]
-}`,
+    path: "/api/v1/signals/sells.json",
+    desc: "Top 100 sell signals sorted by score ascending.",
+    example: `{ "data": [ { "ticker": "BABA", "score": -22, "seller_count": 3 } ] }`,
   },
   {
     method: "GET",
-    path: "/api/v1/managers",
-    desc: "All tracked portfolio managers with holdings summary",
+    path: "/api/v1/managers.json",
+    desc: "All 30 tracked superinvestors with quality score and 10y CAGR.",
     example: `{
   "data": [
     {
       "slug": "warren-buffett",
       "name": "Warren Buffett",
       "fund": "Berkshire Hathaway",
-      "topHolding": "AAPL",
-      "holdingCount": 12
+      "quality_score": 10,
+      "cagr_10y": 13.2,
+      "top_holding": "AAPL",
+      "top_holding_pct": 22.4
     }
   ]
 }`,
   },
   {
     method: "GET",
-    path: "/api/v1/managers/:slug",
-    desc: "Manager detail: holdings, moves, performance",
+    path: "/api/v1/managers/{slug}.json",
+    desc: "Manager detail: holdings, recent quarterly moves, bio, philosophy.",
     example: `{
-  "slug": "warren-buffett",
-  "name": "Warren Buffett",
-  "fund": "Berkshire Hathaway",
-  "cagr10y": 13.2,
-  "holdings": [
-    { "ticker": "AAPL", "pct": 43.2 },
-    { "ticker": "BAC", "pct": 10.1 }
+  "data": {
+    "slug": "warren-buffett",
+    "name": "Warren Buffett",
+    "cagr_10y": 13.2,
+    "holdings": [ { "ticker": "AAPL", "pct": 22.4 } ],
+    "recent_moves": [
+      { "quarter": "2025-Q4", "ticker": "BAC", "action": "trim" }
+    ]
+  }
+}`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/big-bets.json",
+    desc: "Top 100 conviction × position-size ranked bets across all managers.",
+    example: `{
+  "data": [
+    {
+      "rank": 1,
+      "manager": "Bill Ackman",
+      "fund": "Pershing Square Capital",
+      "ticker": "CMG",
+      "position_pct": 21.4,
+      "conviction_score": 34,
+      "combined_score": 727.6
+    }
   ]
 }`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/rotation.json",
+    desc: "12-sector × 8-quarter signed net-flow heatmap. Green = buying, red = selling.",
+    example: `{
+  "data": [
+    {
+      "sector": "Technology",
+      "quarters": {
+        "2025-Q4": { "net": 8.4, "buys": 12, "sells": 3 }
+      }
+    }
+  ]
+}`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/best-now.json",
+    desc: "Top 50 buy candidates — what the smartest investors are buying right now.",
+    example: `{ "data": [ { "ticker": "NVDA", "score": 68, "direction": "BUY" } ] }`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/value.json",
+    desc: "Top 50 smart-money buys for value overlay with your own 52w-range feed.",
+    example: `{ "data": [ { "ticker": "BABA", "score": 42 } ] }`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/quarters.json",
+    desc: "List of available 13F quarters with labels.",
+    example: `{ "data": [ { "quarter": "2025-Q4", "label": "Q4 2025" } ] }`,
   },
 ];
 
@@ -115,51 +167,60 @@ export default function DocsPage() {
     <div className="max-w-5xl mx-auto px-6 py-16">
       <div className="mb-12">
         <div className="inline-block text-[10px] font-bold uppercase tracking-widest text-black bg-brand rounded-full px-3 py-1 mb-4">
-          Pro · Launching Q2 2026
+          Shipped · Free · No auth
         </div>
         <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-          API Documentation
+          Public JSON API
         </h1>
         <p className="text-muted text-lg max-w-2xl">
-          RESTful JSON API for conviction scores, buy/sell signals, manager
-          holdings, and live quotes. 1,000 calls/month included with Pro.
-          Rate-limited, API-key authenticated.
+          Every ranked list, every ConvictionScore, every tracked manager — as
+          static JSON under <code className="text-brand bg-panel px-1.5 py-0.5 rounded text-base">holdlens.com/api/v1/</code>.
+          No API key. No rate limit beyond CDN edge caching. Attribution appreciated, not required.
+        </p>
+        <p className="text-dim text-sm max-w-2xl mt-3">
+          Dataroma has no API at all — HoldLens has {ENDPOINTS.length} free endpoints powering everything
+          on the site.
         </p>
       </div>
 
-      {/* Auth section */}
+      {/* Quick start */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Authentication</h2>
+        <h2 className="text-2xl font-bold mb-4">Quick start</h2>
         <div className="rounded-2xl border border-border bg-panel p-6">
           <p className="text-muted text-sm mb-4">
-            Include your API key in the <code className="text-brand bg-bg px-1.5 py-0.5 rounded text-xs">Authorization</code> header:
+            Every endpoint is a static JSON file. Call it from anything — curl, Python, a React component, a Google Sheet:
           </p>
           <pre className="bg-bg rounded-xl p-4 text-sm overflow-x-auto">
             <code className="text-text">
-{`curl -H "Authorization: Bearer hl_pro_YOUR_KEY" \\
-  https://api.holdlens.com/v1/scores`}
+{`curl https://holdlens.com/api/v1/big-bets.json | jq '.data[0]'
+
+# or in Python
+import requests
+r = requests.get("https://holdlens.com/api/v1/scores/NVDA.json")
+print(r.json()["data"]["score"])`}
             </code>
           </pre>
           <p className="text-xs text-dim mt-3">
-            API keys are generated in your Pro dashboard after subscribing.
+            Responses are a thin envelope: <code className="text-brand bg-bg px-1 rounded">{"{ data, meta }"}</code>.
+            All prices derived from SEC 13F filings. Last refreshed every quarter within 45 days of period end.
           </p>
         </div>
       </section>
 
       {/* Endpoints */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Endpoints</h2>
+        <h2 className="text-2xl font-bold mb-6">Endpoints ({ENDPOINTS.length})</h2>
         <div className="space-y-6">
           {ENDPOINTS.map((ep) => (
             <div
               key={ep.path}
               className="rounded-2xl border border-border bg-panel overflow-hidden"
             >
-              <div className="px-6 py-4 border-b border-border flex items-center gap-3">
+              <div className="px-6 py-4 border-b border-border flex items-center gap-3 flex-wrap">
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-400/10 border border-emerald-400/30 rounded px-2 py-0.5">
                   {ep.method}
                 </span>
-                <code className="text-sm font-mono text-brand">{ep.path}</code>
+                <code className="text-sm font-mono text-brand break-all">{ep.path}</code>
               </div>
               <div className="px-6 py-3 border-b border-border">
                 <p className="text-sm text-muted">{ep.desc}</p>
@@ -179,50 +240,42 @@ export default function DocsPage() {
 
       <AdSlot format="in-article" className="mb-12" />
 
-      {/* Rate limits */}
+      {/* Data freshness */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Rate limits</h2>
-        <div className="rounded-2xl border border-border bg-panel p-6">
-          <div className="grid md:grid-cols-3 gap-6 text-sm">
-            <div>
-              <div className="text-dim text-xs uppercase tracking-wider font-semibold mb-1">
-                Pro tier
-              </div>
-              <div className="text-2xl font-bold text-brand tabular-nums">1,000</div>
-              <div className="text-muted">calls/month</div>
-            </div>
-            <div>
-              <div className="text-dim text-xs uppercase tracking-wider font-semibold mb-1">
-                Burst limit
-              </div>
-              <div className="text-2xl font-bold tabular-nums">10</div>
-              <div className="text-muted">calls/second</div>
-            </div>
-            <div>
-              <div className="text-dim text-xs uppercase tracking-wider font-semibold mb-1">
-                Response format
-              </div>
-              <div className="text-2xl font-bold">JSON</div>
-              <div className="text-muted">UTF-8, gzip</div>
-            </div>
-          </div>
+        <h2 className="text-2xl font-bold mb-4">Data freshness + licensing</h2>
+        <div className="rounded-2xl border border-border bg-panel p-6 space-y-3 text-sm text-muted">
+          <p>
+            <span className="text-text font-semibold">Source:</span> SEC 13F filings (every tracked manager).
+            Quarterly refresh cadence — typically within 45 days of quarter end.
+          </p>
+          <p>
+            <span className="text-text font-semibold">License:</span> Free for personal and commercial use.
+            Attribution appreciated but not required. Do not redistribute as your own API.
+          </p>
+          <p>
+            <span className="text-text font-semibold">Caching:</span> All JSON is statically exported and served
+            from Cloudflare&rsquo;s edge — effectively unlimited throughput for normal usage.
+          </p>
+          <p className="text-xs text-dim pt-2 border-t border-border">
+            Not investment advice. Backtest yourself. See <a href="/methodology" className="underline text-brand">methodology</a>.
+          </p>
         </div>
       </section>
 
       {/* CTA */}
       <section className="rounded-2xl border border-brand bg-brand/5 p-8 md:p-10 text-center">
-        <h2 className="text-2xl font-bold mb-3">Get early API access</h2>
+        <h2 className="text-2xl font-bold mb-3">Want the data on HoldLens.com too?</h2>
         <p className="text-muted text-sm max-w-lg mx-auto mb-6">
-          Sign up now to be first in line when the API launches. Pro subscribers
-          get immediate access on launch day.
+          Every endpoint above powers a page on the site. Start with the {" "}
+          <a href="/big-bets" className="text-brand hover:underline">Big Bets</a> screen or the {" "}
+          <a href="/rotation" className="text-brand hover:underline">Sector Rotation</a> heatmap.
         </p>
-        <div className="max-w-md mx-auto">
-          <EmailCapture size="lg" />
-        </div>
-        <div className="mt-4 flex justify-center gap-6 text-xs text-dim">
-          <a href="/pricing" className="text-brand hover:underline">
-            View Pro pricing →
-          </a>
+        <div className="flex flex-wrap gap-3 justify-center text-xs">
+          <a href="/best-now" className="px-3 py-2 rounded-lg border border-border bg-panel hover:border-brand/40 text-brand font-semibold">/best-now</a>
+          <a href="/big-bets" className="px-3 py-2 rounded-lg border border-border bg-panel hover:border-brand/40 text-brand font-semibold">/big-bets</a>
+          <a href="/value" className="px-3 py-2 rounded-lg border border-border bg-panel hover:border-brand/40 text-emerald-400 font-semibold">/value</a>
+          <a href="/rotation" className="px-3 py-2 rounded-lg border border-border bg-panel hover:border-brand/40 text-brand font-semibold">/rotation</a>
+          <a href="/compare/managers" className="px-3 py-2 rounded-lg border border-border bg-panel hover:border-brand/40 text-text font-semibold">/compare/managers</a>
         </div>
       </section>
     </div>

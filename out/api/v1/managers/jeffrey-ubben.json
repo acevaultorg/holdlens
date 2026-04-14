@@ -1,0 +1,95 @@
+{
+  "data": {
+    "slug": "jeffrey-ubben",
+    "name": "Jeffrey Ubben",
+    "fund": "ValueAct Capital",
+    "role": "Founder",
+    "philosophy": "Constructive activism. Partner with management, not fight them.",
+    "bio": "Founded ValueAct in 2000 after leaving Richard Blum's firm. Pioneered a gentler style of activism — joining boards, partnering with CEOs, and holding for 3-5 years. ValueAct famously helped turn around Microsoft and Adobe.",
+    "longest_holding": "Seagate Technology (since 2018)",
+    "quality_score": 8,
+    "cagr_10y": 8.7,
+    "holdings": [
+      {
+        "ticker": "META",
+        "name": "Meta Platforms",
+        "pct": 8.1,
+        "shares_mn": 1.6,
+        "thesis": "Activist position — pushing capital efficiency."
+      },
+      {
+        "ticker": "DIS",
+        "name": "The Walt Disney Company",
+        "pct": 12.4,
+        "shares_mn": 6.5,
+        "thesis": "Largest position. Turnaround thesis."
+      },
+      {
+        "ticker": "SEAL",
+        "name": "SEA Limited",
+        "pct": 7.2,
+        "shares_mn": 2.1,
+        "thesis": "Southeast Asia consumer tech."
+      },
+      {
+        "ticker": "ENPH",
+        "name": "Enphase Energy",
+        "pct": 4.2,
+        "shares_mn": 2.1,
+        "thesis": "Solar inverter comeback play (new Q4)."
+      },
+      {
+        "ticker": "STX",
+        "name": "Seagate Technology",
+        "pct": 6.3,
+        "shares_mn": 4,
+        "thesis": "Storage — multi-year hold."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 8.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "ENPH",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 4.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 26,
+        "portfolio_impact_pct": 1.85
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "META",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 6.2
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "DIS",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 11.2
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}

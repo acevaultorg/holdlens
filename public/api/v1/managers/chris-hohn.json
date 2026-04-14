@@ -1,0 +1,263 @@
+{
+  "data": {
+    "slug": "chris-hohn",
+    "name": "Chris Hohn",
+    "fund": "TCI Fund Management",
+    "role": "Founder",
+    "philosophy": "Concentrated activism. Quality at scale. Climate-aware capital.",
+    "bio": "Founded The Children's Investment Fund in 2003. Runs one of the most concentrated activist hedge funds in the world — often with fewer than 15 positions. Known for delivering Buffett-class returns with a social edge.",
+    "longest_holding": "Canadian National Railway (since 2018)",
+    "quality_score": 9,
+    "cagr_10y": 18.6,
+    "holdings": [
+      {
+        "ticker": "GE",
+        "name": "GE Aerospace",
+        "pct": 18.2,
+        "shares_mn": 16,
+        "thesis": "Top TCI position. Aerospace/defense demand + capital discipline."
+      },
+      {
+        "ticker": "META",
+        "name": "Meta Platforms",
+        "pct": 8.2,
+        "shares_mn": 5.5,
+        "thesis": "Quality cash-flow machine. Huge Q3 add."
+      },
+      {
+        "ticker": "GOOGL",
+        "name": "Alphabet Class A",
+        "pct": 14.6,
+        "shares_mn": 9,
+        "thesis": "Second-largest position. AI optionality."
+      },
+      {
+        "ticker": "MSFT",
+        "name": "Microsoft",
+        "pct": 13.1,
+        "shares_mn": 3.2,
+        "thesis": "Core AI infrastructure holding."
+      },
+      {
+        "ticker": "V",
+        "name": "Visa",
+        "pct": 11.8,
+        "shares_mn": 11,
+        "thesis": "Payment network toll booth."
+      },
+      {
+        "ticker": "MCO",
+        "name": "Moody's",
+        "pct": 9.4,
+        "shares_mn": 1.8,
+        "thesis": "Credit rating duopoly."
+      },
+      {
+        "ticker": "CP",
+        "name": "Canadian Pacific Kansas City",
+        "pct": 8.6,
+        "shares_mn": 20,
+        "thesis": "Rail + freight moat."
+      }
+    ],
+    "recent_moves": [
+      {
+        "quarter": "2025-Q4",
+        "ticker": "GE",
+        "action": "add",
+        "delta_pct": 12,
+        "portfolio_impact_pct": 18.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "META",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 8.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 47,
+        "portfolio_impact_pct": 5.83
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 30,
+        "portfolio_impact_pct": 4.2
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "GE",
+        "action": "add",
+        "delta_pct": 8,
+        "portfolio_impact_pct": 17.4
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "META",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 3.2
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 38,
+        "portfolio_impact_pct": 3.5
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "GE",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 17.5
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "META",
+        "action": "add",
+        "delta_pct": 28,
+        "portfolio_impact_pct": 2.7
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "GE",
+        "action": "add",
+        "delta_pct": 12,
+        "portfolio_impact_pct": 16
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "META",
+        "action": "new",
+        "delta_pct": null,
+        "portfolio_impact_pct": 2
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "GE",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 14.5
+      },
+      {
+        "quarter": "2024-Q1",
+        "ticker": "GE",
+        "action": "add",
+        "delta_pct": 6,
+        "portfolio_impact_pct": 13.5
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "V",
+        "action": "add",
+        "delta_pct": 47,
+        "portfolio_impact_pct": 20.3
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "MSFT",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 18.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "GOOG",
+        "action": "trim",
+        "delta_pct": -41,
+        "portfolio_impact_pct": 3.9
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "GOOGL",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "V",
+        "action": "add",
+        "delta_pct": 15,
+        "portfolio_impact_pct": 15.1
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "GOOG",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 5.1
+      },
+      {
+        "quarter": "2025-Q2",
+        "ticker": "GOOGL",
+        "action": "trim",
+        "delta_pct": -23,
+        "portfolio_impact_pct": 1.2
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "MSFT",
+        "action": "add",
+        "delta_pct": 24,
+        "portfolio_impact_pct": 17
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "GOOG",
+        "action": "trim",
+        "delta_pct": -16,
+        "portfolio_impact_pct": 5.7
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "GOOGL",
+        "action": "trim",
+        "delta_pct": -32,
+        "portfolio_impact_pct": 1.7
+      },
+      {
+        "quarter": "2024-Q4",
+        "ticker": "MSFT",
+        "action": "add",
+        "delta_pct": 17,
+        "portfolio_impact_pct": 15.8
+      },
+      {
+        "quarter": "2024-Q3",
+        "ticker": "MSFT",
+        "action": "add",
+        "delta_pct": 14,
+        "portfolio_impact_pct": 13.4
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "MCO",
+        "action": "add",
+        "delta_pct": 9,
+        "portfolio_impact_pct": 15.4
+      },
+      {
+        "quarter": "2024-Q2",
+        "ticker": "GOOGL",
+        "action": "add",
+        "delta_pct": 398,
+        "portfolio_impact_pct": 3
+      }
+    ]
+  },
+  "meta": {
+    "generated_at": "2026-04-14T20:44:14.141Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs"
+  }
+}
