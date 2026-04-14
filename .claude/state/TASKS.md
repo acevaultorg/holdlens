@@ -1,5 +1,14 @@
 # HoldLens — TASKS
 
+## Queue (v0.40 — /big-bets size × conviction screen) — SHIPPED [objective:v40-big-bets]
+
+- [x] `P1` BUILD app/big-bets/page.tsx server component — iterates all 30 managers × topHoldings, computes conviction score per ticker, combined bet score = positionPct × max(0, score), sorts top 50 [id:big-bets-server] [score:12.0] ⏱ done v0.40
+- [x] `P1` ADD "Lone-wolf big bets" secondary ranking — concentrated positions (≥8%) in low-ownership names (≤3 owners) with positive conviction [id:lone-wolf] [score:9.0] ⏱ done v0.40
+- [x] `P1` ADD CSV export + "Why this beats Dataroma" explainer section [id:big-bets-csv] [score:7.0] ⏱ done v0.40
+- [x] `P0` WIRE /big-bets into header nav (lg+), mobile nav PRIMARY_LINKS, footer [id:wire-big-bets-nav] [score:8.0] ⏱ done v0.40
+- [x] `P0` BUILD + verify static export — /big-bets 4.26 kB, clean compile [id:verify-v40] [score:10.0] ⏱ done
+- [x] `P0` COMMIT + push [id:commit-v40] [score:10.0]
+
 ## Queue (v0.39 — per-manager RSS feeds) — SHIPPED [objective:v39-per-manager-rss]
 
 - [x] `P1` BUILD app/investor/[slug]/feed.xml/route.ts dynamic RSS generator — 30 managers, last 40 moves each, sorted newest first, full action/delta/impact metadata [id:per-manager-feed] [score:10.0] ⏱ done v0.39

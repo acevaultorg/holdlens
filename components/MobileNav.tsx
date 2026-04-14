@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: boolean; rose?: boolean }[] = [
   { href: "/best-now", label: "Best stocks now", brand: true },
   { href: "/value", label: "Smart money × 52w low", emerald: true },
+  { href: "/big-bets", label: "Big bets · size × conviction", brand: true },
   { href: "/proof", label: "Proof — does it work?", emerald: true },
   { href: "/portfolio", label: "My portfolio", brand: true },
   { href: "/buys", label: "Buys", emerald: true },
