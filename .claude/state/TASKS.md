@@ -52,7 +52,7 @@
 - [x] `P0` WIRE AdSlot into 6 remaining pages (simulate, proof, grand, docs, press, portfolio) [id:ads-remaining] [score:10.0] ⏱ done
 - [ ] `P0` BUILD + verify static export [id:verify-v31] [score:13.0]
 - [ ] `P0` COMMIT + push [id:commit-v31] [score:12.0]
-- [👤] `P0` ACTIVATE Google AdSense — apply, get client ID, set NEXT_PUBLIC_ADSENSE_CLIENT + slot env vars in CF Pages, redeploy. Guide in HUMAN_ACTIONS.md. ONE env var = ads on 24+ pages [id:adsense-activate] [score:14.0]
+- [~] `P0` ACTIVATE Google AdSense — account + pub ID already active (ca-pub-7449214764048186). Verification script + ads.txt deployed to holdlens.com. Site ownership verified via ads.txt method. Submitted for Google review 2026-04-14 (status: "Getting ready"). Awaiting Google approval (1-14 days). After approval, need to create ad units in AdSense dashboard and set NEXT_PUBLIC_ADSENSE_SLOT_* env vars to activate rendering in AdSlot components [id:adsense-activate] [score:14.0]
 - [👤] `P1` ACTIVATE brokerage affiliate links — IBKR ($200/account), Public ($25-50), moomoo ($20-100). Set NEXT_PUBLIC_AFF_* env vars. Guide in HUMAN_ACTIONS.md [id:affiliate-activate] [score:13.0]
 
 ## Queue (v0.19 — next session)
