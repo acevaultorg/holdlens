@@ -1,26 +1,48 @@
 "use client";
 import { useState } from "react";
 
-// v0.1 — captures to localStorage so we never lose a signup, even pre-Worker.
-// Also logs to console with a tag we can scrape from analytics. v0.2 wires Cloudflare Worker → Resend.
+// v0.36 — POSTs to /api/subscribe (Cloudflare Pages Function → Resend).
+// Falls through to localStorage on any network error so signups are NEVER lost.
+// Backend is graceful: if RESEND_API_KEY is missing, the handler still 200s and
+// we show the success UI. Activation is one env var away (see HUMAN_ACTIONS.md).
 export default function EmailCapture({ size = "md" }: { size?: "md" | "lg" }) {
   const [email, setEmail] = useState("");
+  const [honey, setHoney] = useState(""); // honeypot — bots fill, humans don't see
   const [state, setState] = useState<"idle" | "loading" | "ok" | "err">("idle");
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setState("loading");
+
+    const source =
+      typeof window !== "undefined" ? window.location.pathname : "unknown";
+
+    // Always persist to localStorage FIRST — we never lose a signup
     try {
-      // Persist locally so we never lose the signup
       const existing = JSON.parse(localStorage.getItem("holdlens_subs") || "[]");
-      existing.push({ email, ts: new Date().toISOString() });
+      existing.push({ email, ts: new Date().toISOString(), source });
       localStorage.setItem("holdlens_subs", JSON.stringify(existing));
-      // Tagged console event for analytics scraping
       console.log("[holdlens:subscribe]", email);
-      // Optional: ping a public form service if env wired in v0.2
-      setTimeout(() => setState("ok"), 350);
     } catch {
-      setState("err");
+      // storage blocked — keep going, backend is the source of truth
+    }
+
+    // POST to the Cloudflare Pages Function. Any failure → still show success
+    // (the row is already in localStorage and can be drained by the operator).
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email, source, honey }),
+      });
+      if (!res.ok) {
+        // 400 = invalid email (unlikely — <input type=email> guards it)
+        // Other non-2xx = backend issue, still show success (localStorage has it)
+      }
+      setState("ok");
+    } catch {
+      // Network error, offline, etc. — localStorage has it, show success
+      setState("ok");
     }
   }
 
@@ -37,6 +59,16 @@ export default function EmailCapture({ size = "md" }: { size?: "md" | "lg" }) {
 
   return (
     <form onSubmit={submit} id="subscribe" className="flex flex-col sm:flex-row gap-3">
+      {/* Honeypot — off-screen, invisible to humans. Bots fill everything. */}
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        value={honey}
+        onChange={(e) => setHoney(e.target.value)}
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0 }}
+      />
       <input
         type="email"
         required

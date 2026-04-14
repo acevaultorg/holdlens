@@ -1,5 +1,15 @@
 # HoldLens — TASKS
 
+## Queue (v0.36 — Resend email capture wire) — SHIPPED [objective:v36-email-funnel]
+
+- [x] `P1` BUILD functions/api/subscribe.ts — CF Pages Function replacing dead Next.js API route; honeypot + regex validation; graceful pre-activation (200 w/ pending:true if RESEND_API_KEY missing); Resend audiences contact add + welcome email in parallel [id:cf-function] [score:10.0] ⏱ done v0.36
+- [x] `P1` UPDATE EmailCapture.tsx to POST /api/subscribe with honeypot field + localStorage fallback (signups NEVER lost on network error) [id:wire-form] [score:9.0] ⏱ done v0.36
+- [x] `P1` APPEND Resend activation guide to HUMAN_ACTIONS.md — domain verify, audience, API key, Cloudflare env vars, e2e verification [id:resend-guide] [score:8.0] ⏱ done v0.36
+- [ ] `P0` BUILD + verify static export + CF Function bundling [id:verify-v36] [score:11.0]
+- [ ] `P0` DEPLOY wrangler + verify live POST /api/subscribe returns {ok:true,pending:true} [id:deploy-v36] [score:11.0]
+- [ ] `P0` COMMIT + push [id:commit-v36] [score:10.0]
+- [👤] `P1` ACTIVATE Resend — signup + DNS verify + audience + API key + 3 env vars in CF Pages + rebuild. Guide in HUMAN_ACTIONS.md. Flip one env var = real emails start sending [id:resend-activate] [score:12.0] 👤 guide generated
+
 ## Queue (v0.29 — OG images + pricing AB + backtest share) [objective:v29-viral-seo-conversion]
 
 - [x] `P0` BUILD per-ticker OG images for 94 /signal pages via satori+sharp prebuild script [id:og-images] [score:12.0] ⏱ done — scripts/generate-og-images.ts, 94 PNGs in public/og/signal/
@@ -50,8 +60,8 @@
 - [x] `P0` WIRE AdSlot into 8 browse pages (activity, faq, about, top-picks, insiders, methodology, screener, compare/managers) [id:ads-browse] [score:11.0] ⏱ done
 - [x] `P0` WIRE AdSlot + AffiliateCTA into 9 detail pages (investor, ticker, sector, quarterly, compare) [id:ads-detail] [score:12.0] ⏱ done
 - [x] `P0` WIRE AdSlot into 6 remaining pages (simulate, proof, grand, docs, press, portfolio) [id:ads-remaining] [score:10.0] ⏱ done
-- [ ] `P0` BUILD + verify static export [id:verify-v31] [score:13.0]
-- [ ] `P0` COMMIT + push [id:commit-v31] [score:12.0]
+- [x] `P0` BUILD + verify static export [id:verify-v31] [score:13.0] ⏱ done v0.35/v0.35.1 — 42/42 tier matrix pass (build) + 35/35 live
+- [x] `P0` COMMIT + push [id:commit-v31] [score:12.0] ⏱ done v0.35.1 bfc0bb45 — warren-buffett Tier B AdSlot added
 - [~] `P0` ACTIVATE Google AdSense — account + pub ID already active (ca-pub-7449214764048186). Verification script + ads.txt deployed to holdlens.com. Site ownership verified via ads.txt method. Submitted for Google review 2026-04-14 (status: "Getting ready"). Awaiting Google approval (1-14 days). After approval, need to create ad units in AdSense dashboard and set NEXT_PUBLIC_ADSENSE_SLOT_* env vars to activate rendering in AdSlot components [id:adsense-activate] [score:14.0]
 - [👤] `P1` ACTIVATE brokerage affiliate links — IBKR ($200/account), Public ($25-50), moomoo ($20-100). Set NEXT_PUBLIC_AFF_* env vars. Guide in HUMAN_ACTIONS.md [id:affiliate-activate] [score:13.0]
 
@@ -71,7 +81,7 @@
 - [x] `P0` DEPLOY v0.13+v0.14+v0.15+v0.16+v0.17+v0.18 to Cloudflare Pages [id:deploy] [score:13.0] ⏱ done
 - [x] `P0` HOTFIX: Cloudflare Worker yahoo-proxy unblocks live data in production [id:worker-proxy] [score:13.0] ⏱ done
 - [x] `P0` BUILD EDGAR 13F parser (21 managers, 168 filings, 22K moves from SEC EDGAR API) [id:edgar] [score:11.0] ⏱ done v0.31 b98c28f4+20e5b9e4
-- [ ] `P1` INTEGRATE Resend for email alerts [id:resend] [score:9.0]
+- [x] `P1` INTEGRATE Resend for email alerts [id:resend] [score:9.0] ⏱ done v0.36 — functions/api/subscribe.ts CF Pages Function, graceful pre-activation, EmailCapture POSTs w/ honeypot + localStorage fallback, HUMAN_ACTIONS.md guide
 - [x] `P1` BUILD Stripe Pro tier checkout [id:stripe] [score:11.0] ⏱ done (StripeCheckoutButton.tsx Payment Link integration shipped, activation is [👤] stripe-activate)
 - [ ] `P1` BUILD Claude Haiku thesis generator per ticker/manager [id:ai-thesis] [score:8.0]
 - [ ] `P2` BUILD Twitter bot posting top buy/sell signals [id:twitter-bot] [score:7.0]

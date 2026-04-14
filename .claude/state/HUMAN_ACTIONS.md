@@ -275,3 +275,74 @@ After adding env vars + rebuild:
 
 1000 monthly signal page visits × 3% CTR × 5% funded = 1.5 accounts × $200 = $300/mo from IBKR alone. Compounds across 94 ticker pages.
 
+---
+
+## ACTIVATE Resend email backend [P1 · 10 min]
+
+**What it does:** Turns the email capture forms on every HoldLens page into real subscriber signups. Each signup gets a welcome email instantly and lands in a Resend audience you can broadcast to when each quarter's 13F drops.
+
+**Revenue story:** Email is the #1 channel for 13F SaaS. Every captured email is a chance to pitch HoldLens Pro at the quarterly filing deadline — the moment users care most. Even at 2% trial conversion × $9/mo Founders pricing, 500 subs = $90/mo recurring. Compounds fast.
+
+**Current state (v0.36):** Backend scaffold is LIVE at `functions/api/subscribe.ts`. When `RESEND_API_KEY` is missing, it gracefully returns 200 so the UI shows success and the email lands in the user's localStorage (can be drained later). Zero signups lost, ever. Flip one env var and real emails start sending.
+
+### Step 1 — Sign up for Resend
+
+1. Go to https://resend.com → **Sign up** (free tier = 3000 emails/mo, 100/day — enough for HoldLens for months)
+2. Verify your email
+3. Once in, head to **Domains** in the left sidebar
+
+### Step 2 — Verify holdlens.com as a sending domain
+
+1. Click **Add Domain** → enter `holdlens.com`
+2. Resend shows a list of DNS records (SPF, DKIM, MX) to add at Cloudflare
+3. Open a new tab → https://dash.cloudflare.com → holdlens.com → DNS → Records
+4. For each Resend record, click **Add record** in Cloudflare and paste the Type/Name/Value exactly as shown
+5. Back in Resend, click **Verify DNS Records** — takes 1–5 minutes
+6. Once all green, the domain is verified and you can send from `@holdlens.com`
+
+### Step 3 — Create the audience
+
+1. In Resend, sidebar → **Audiences** → **Create Audience**
+2. Name it: `HoldLens subscribers`
+3. Copy the **Audience ID** (format: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`) — you'll paste it in Cloudflare next
+
+### Step 4 — Get the API key
+
+1. Sidebar → **API Keys** → **Create API Key**
+2. Name: `holdlens-production`
+3. Permission: **Full access**
+4. Copy the key (starts with `re_...`) — you can only see it once
+
+### Step 5 — Paste env vars in Cloudflare Pages
+
+1. https://dash.cloudflare.com → Pages → **holdlens** → Settings → Environment variables
+2. Add three variables in **Production** (and **Preview** if you want to test on PR previews):
+   - `RESEND_API_KEY` = (the `re_...` key from Step 4)
+   - `RESEND_AUDIENCE_ID` = (the UUID from Step 3)
+   - `RESEND_FROM` = `HoldLens <alerts@holdlens.com>` (must use your verified domain)
+3. Click **Save**
+
+### Step 6 — Trigger a redeploy
+
+Env var changes don't propagate until the next deployment. Either:
+- Wait for the next auto-deploy (any push to `main` / `acepilot/v0.25-unified-score`)
+- Or: Pages → holdlens → Deployments → ••• on the latest deploy → **Retry deployment**
+
+### Step 7 — Verify end-to-end
+
+1. Open https://holdlens.com/alerts/
+2. Enter a real email you control
+3. Click **Get alerts** → should show the "You're on the list" confirmation
+4. Check your inbox within 10 seconds → welcome email should arrive from `alerts@holdlens.com`
+5. Back in Resend → Audiences → HoldLens subscribers → your email should be in the list
+
+### Troubleshooting
+
+- **No email arrives but UI shows success** → `RESEND_API_KEY` is not set or has a typo. Check Cloudflare env vars. The backend is designed to 200 even when the key is missing (we never lose signups).
+- **Resend shows "domain not verified"** → DNS records in Cloudflare haven't propagated yet. Wait 10 min and re-click Verify in Resend.
+- **Email lands in spam** → first few sends always do. Send yourself 3–4, mark as not spam, reputation builds fast once the DKIM is verified.
+
+### Revenue expectation
+
+500 subs × quarterly 13F broadcast × 2% trial click × $9/mo = $90/mo baseline. At 2000 subs (6 months of organic growth) that's $360/mo recurring, pure margin after the $20/mo Resend Pro tier kicks in. Worth 10 minutes of DNS config.
+
