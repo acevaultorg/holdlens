@@ -258,7 +258,7 @@ const RELEASES: Release[] = [
     title: "Ticker comparison pages",
     highlights: [
       "105 ticker-vs-ticker comparison pages",
-      "Twitter cards",
+      "Social share cards (X + OpenGraph)",
       "RSS alternate link",
     ],
   },

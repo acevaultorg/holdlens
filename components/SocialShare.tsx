@@ -4,7 +4,7 @@ import { useState } from "react";
 type Props = {
   /** Page path, e.g. "/signal/AAPL" */
   path: string;
-  /** Preformatted tweet text — keep ≤200 chars leaving room for URL */
+  /** Preformatted post text — keep ≤200 chars leaving room for URL */
   tweet: string;
   /** Optional label override for the heading */
   label?: string;
@@ -14,7 +14,7 @@ export default function SocialShare({ path, tweet, label = "Share this signal" }
   const [copied, setCopied] = useState(false);
 
   const fullUrl = `https://holdlens.com${path}`;
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}&url=${encodeURIComponent(fullUrl)}`;
+  const xUrl = `https://x.com/intent/post?text=${encodeURIComponent(tweet)}&url=${encodeURIComponent(fullUrl)}`;
   const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fullUrl)}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`;
   const redditUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(fullUrl)}&title=${encodeURIComponent(tweet)}`;
@@ -48,13 +48,13 @@ export default function SocialShare({ path, tweet, label = "Share this signal" }
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">{label}</div>
       <div className="flex flex-wrap gap-2">
         <a
-          href={twitterUrl}
+          href={xUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-xs font-semibold text-text border border-border hover:border-brand/40 rounded-lg px-3 py-2 bg-bg/40 transition"
-          aria-label="Share on Twitter"
+          aria-label="Share on X"
         >
-          <TwitterIcon /> Tweet
+          <XIcon /> Post
         </a>
         <a
           href={linkedinUrl}
@@ -96,7 +96,7 @@ export default function SocialShare({ path, tweet, label = "Share this signal" }
   );
 }
 
-function TwitterIcon() {
+function XIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />

@@ -226,7 +226,7 @@ export default function SignalShareCard({
     topStreak,
   });
 
-  function copyTweet() {
+  function copyPost() {
     navigator.clipboard.writeText(tweetText).then(
       () => {
         setCopyState("done");
@@ -236,14 +236,14 @@ export default function SignalShareCard({
     );
   }
 
-  function shareTwitter() {
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+  function shareToX() {
+    const url = `https://x.com/intent/post?text=${encodeURIComponent(tweetText)}`;
     window.open(url, "_blank", "noopener,noreferrer");
     try {
       const w = window as Window & {
         plausible?: (name: string, opts?: object) => void;
       };
-      w.plausible?.("Signal Share Twitter", { props: { ticker, verdict } });
+      w.plausible?.("Signal Share X", { props: { ticker, verdict } });
     } catch {
       // ignore
     }
@@ -286,10 +286,10 @@ export default function SignalShareCard({
         Share this signal
       </div>
       <h3 className="text-xl font-bold mb-1">
-        {ticker} · {verdict} · a card worth tweeting
+        {ticker} · {verdict} · a card worth sharing
       </h3>
       <p className="text-sm text-muted mb-5">
-        One-click PNG of the {ticker} verdict + score, a pre-filled tweet, and a direct link
+        One-click PNG of the {ticker} verdict + score, a pre-filled post, and a direct link
         back to this dossier. Share it — every click is a new visitor.
       </p>
 
@@ -304,10 +304,10 @@ export default function SignalShareCard({
         />
       </div>
 
-      {/* Pre-filled tweet */}
+      {/* Pre-filled post */}
       <div className="mb-5">
         <div className="text-[10px] uppercase tracking-wider text-dim font-semibold mb-2">
-          Tweet preview (editable when posting)
+          Post preview (editable when posting)
         </div>
         <div className="rounded-lg border border-border bg-bg/60 p-4 text-sm text-text font-sans whitespace-pre-line">
           {composeTweet({ ticker, verdict, score, convictionLabel, buyerCount, sellerCount, topStreak })}
@@ -323,16 +323,16 @@ export default function SignalShareCard({
           {downloadState === "done" ? "Downloaded ✓" : "Download PNG"}
         </button>
         <button
-          onClick={copyTweet}
+          onClick={copyPost}
           className="inline-flex items-center justify-center gap-2 text-xs font-semibold text-text border border-border hover:border-brand/40 rounded-lg px-3 py-2.5 bg-panel transition"
         >
-          {copyState === "done" ? "Copied ✓" : "Copy tweet"}
+          {copyState === "done" ? "Copied ✓" : "Copy post"}
         </button>
         <button
-          onClick={shareTwitter}
+          onClick={shareToX}
           className="inline-flex items-center justify-center gap-2 text-xs font-semibold text-text border border-border hover:border-brand/40 rounded-lg px-3 py-2.5 bg-panel transition"
         >
-          Share to Twitter
+          Share to X
         </button>
         <button
           onClick={shareLinkedIn}

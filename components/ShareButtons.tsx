@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // v0.1 — share buttons for backtest pages. Encourages viral distribution.
-// Twitter, Reddit, LinkedIn, and copy-link. No tracking, no external scripts.
+// X (formerly Twitter), Reddit, LinkedIn, and copy-link. No tracking, no external scripts.
 export default function ShareButtons({ title, url }: { title: string; url: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -19,8 +19,8 @@ export default function ShareButtons({ title, url }: { title: string; url: strin
 
   const buttons = [
     {
-      label: "Twitter",
-      href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+      label: "X",
+      href: `https://x.com/intent/post?text=${encodedTitle}&url=${encodedUrl}`,
     },
     {
       label: "Reddit",

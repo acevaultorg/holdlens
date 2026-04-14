@@ -137,15 +137,15 @@ Free forever for the core product. No signup, no tracking, localStorage only.
 Feedback wanted especially on the model. Is the signed-score framing useful? What's missing?`,
   },
   {
-    id: "twitter-thread",
-    channel: "Twitter · 7-tweet thread",
+    id: "x-thread",
+    channel: "X · 7-post thread",
     title: "Counterintuitive thread — \"Buffett's REAL 10y alpha is -1.4%. The leaderboard isn't who you think.\"",
     subtitle: "Counterintuitive truths get the most engagement. Pin to profile after posting.",
-    expectedTraffic: "Variable, can compound. Each follower mentioned in the thread tends to RT.",
+    expectedTraffic: "Variable, can compound. Each follower mentioned in the thread tends to RP.",
     bestDay: "Tue/Wed 11am ET",
-    postUrl: "https://twitter.com/intent/tweet",
-    postUrlLabel: "Open tweet composer",
-    body: `Tweet 1:
+    postUrl: "https://x.com/intent/post",
+    postUrlLabel: "Open X post composer",
+    body: `Post 1:
 Counterintuitive truth from real 13F data:
 
 Warren Buffett's 10-year CAGR (BRK-A): 11.7%
@@ -155,7 +155,7 @@ His alpha is -1.4%/year. The Oracle has been LAGGING the market for a decade.
 
 Who's actually beating it? 🧵
 
-Tweet 2:
+Post 2:
 Built a model that ranks 30 of the best portfolio managers by REAL 10-year alpha (not reputation):
 
 🥇 Dev Kantesaria (Valley Forge): +5.6%
@@ -164,7 +164,7 @@ Built a model that ranks 30 of the best portfolio managers by REAL 10-year alpha
 
 David Tepper (Appaloosa): +14%/yr CAGR — the highest of the household names.
 
-Tweet 3:
+Post 3:
 The reason Buffett looks worse than he is: AAPL ran the S&P harder than BRK-A's diversified mix could keep up with.
 
 Other surprise rankings (alpha vs S&P, last 10y):
@@ -173,7 +173,7 @@ Other surprise rankings (alpha vs S&P, last 10y):
 - Burry: -3% (highly volatile)
 - Bill Ackman: +1.5%
 
-Tweet 4:
+Post 4:
 What this means for stock-picking:
 
 When a manager with strong real alpha buys, it should weigh more in your decision than when a manager with weak alpha buys.
@@ -183,14 +183,14 @@ I built a recommendation model that does this. It also adds:
 - Insider activity (CEO buys)
 - Anti-crowding penalty
 
-Tweet 5:
+Post 5:
 Today's #1 BUY signal from the model: $GE (+42)
 
 Unified ConvictionScore on a single −100..+100 scale. Multi-quarter trend support, tier-1 buyers, no crowding penalty triggered.
 
 Full dossier: holdlens.com/signal/GE
 
-Tweet 6:
+Post 6:
 Today's #1 SELL signal: $AAPL (−11)
 
 2 tier-1 managers trimming, Buffett's BRK took profits on the AAPL position, and the stock is already in 15+ tracked portfolios (crowding penalty fires).
@@ -199,7 +199,7 @@ Doesn't mean AAPL goes down — but the smart money is rebalancing.
 
 holdlens.com/signal/AAPL
 
-Tweet 7:
+Post 7:
 Built it free. No signup. No tracking. localStorage only.
 
 Cross-check your own portfolio: holdlens.com/portfolio
@@ -214,7 +214,7 @@ holdlens.com`,
     id: "product-hunt",
     channel: "Product Hunt",
     title: "HoldLens — 13F tracker where every stock gets one signed −100..+100 score",
-    subtitle: "Post on a Tuesday for max exposure. Coordinate with finance Twitter for upvotes in the first hour.",
+    subtitle: "Post on a Tuesday for max exposure. Coordinate with finance X accounts for upvotes in the first hour.",
     expectedTraffic: "10k–50k visitors if top 5 of the day",
     bestDay: "Tue 12:01am Pacific",
     postUrl: "https://www.producthunt.com/posts/new",
@@ -318,13 +318,13 @@ export default function PressKitClient() {
         </div>
         <h3 className="text-xl font-bold mb-3">The 7-day launch plan</h3>
         <ol className="space-y-2 text-sm text-text">
-          <li><span className="text-brand font-bold">Day 1 (Tue):</span> Show HN + Twitter thread same morning. HN drives the spike, Twitter compounds.</li>
-          <li><span className="text-brand font-bold">Day 2 (Wed):</span> r/SecurityAnalysis (small but high-quality audience). Quote tweets from finance follows.</li>
-          <li><span className="text-brand font-bold">Day 3 (Thu):</span> Reply to finance Twitter discussing any of the top 10 buy signals — drop the HoldLens dossier link.</li>
+          <li><span className="text-brand font-bold">Day 1 (Tue):</span> Show HN + X thread same morning. HN drives the spike, X compounds.</li>
+          <li><span className="text-brand font-bold">Day 2 (Wed):</span> r/SecurityAnalysis (small but high-quality audience). Quote posts from finance follows.</li>
+          <li><span className="text-brand font-bold">Day 3 (Thu):</span> Reply to finance X accounts discussing any of the top 10 buy signals — drop the HoldLens dossier link.</li>
           <li><span className="text-brand font-bold">Day 4 (Fri):</span> ProductHunt at 12:01am Pacific. Coordinate upvote support.</li>
           <li><span className="text-brand font-bold">Day 5 (Sat):</span> r/investing post (larger audience, weekend traffic).</li>
           <li><span className="text-brand font-bold">Day 6 (Sun):</span> Email outreach to 3 finance YouTubers (Joseph Carlson, Patrick Boyle, Plain Bagel) with custom data.</li>
-          <li><span className="text-brand font-bold">Day 7 (Mon):</span> Recap thread of week 1 metrics on Twitter. Build in public.</li>
+          <li><span className="text-brand font-bold">Day 7 (Mon):</span> Recap thread of week 1 metrics on X. Build in public.</li>
         </ol>
       </div>
 

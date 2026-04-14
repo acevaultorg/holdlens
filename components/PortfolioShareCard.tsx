@@ -184,7 +184,7 @@ export default function PortfolioShareCard() {
     }, "image/png");
   }
 
-  function copyTweet() {
+  function copyPost() {
     const text = composeTweet(totals);
     navigator.clipboard.writeText(text).then(
       () => {
@@ -195,9 +195,9 @@ export default function PortfolioShareCard() {
     );
   }
 
-  function shareTwitter() {
+  function shareToX() {
     const text = composeTweet(totals);
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    const url = `https://x.com/intent/post?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
@@ -214,9 +214,9 @@ export default function PortfolioShareCard() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
         Share your portfolio
       </div>
-      <h3 className="text-xl font-bold mb-1">A flex-worthy card · ready to tweet</h3>
+      <h3 className="text-xl font-bold mb-1">A flex-worthy card · ready to share</h3>
       <p className="text-sm text-muted mb-5">
-        We rendered a branded PNG of your portfolio + a pre-formatted tweet. Download it, share it,
+        We rendered a branded PNG of your portfolio + a pre-formatted post. Download it, share it,
         every click drives a new visitor.
       </p>
 
@@ -229,10 +229,10 @@ export default function PortfolioShareCard() {
         />
       </div>
 
-      {/* Pre-filled tweet */}
+      {/* Pre-filled post */}
       <div className="mb-5">
         <div className="text-[10px] uppercase tracking-wider text-dim font-semibold mb-2">
-          Tweet preview (editable when posting)
+          Post preview (editable when posting)
         </div>
         <div className="rounded-lg border border-border bg-bg/60 p-4 text-sm text-text font-sans whitespace-pre-line">
           {composeTweet(totals)}
@@ -248,16 +248,16 @@ export default function PortfolioShareCard() {
           {downloadState === "done" ? "Downloaded ✓" : "Download PNG"}
         </button>
         <button
-          onClick={copyTweet}
+          onClick={copyPost}
           className="inline-flex items-center justify-center gap-2 text-xs font-semibold text-text border border-border hover:border-brand/40 rounded-lg px-3 py-2.5 bg-panel transition"
         >
-          {copyState === "done" ? "Copied ✓" : "Copy tweet"}
+          {copyState === "done" ? "Copied ✓" : "Copy post"}
         </button>
         <button
-          onClick={shareTwitter}
+          onClick={shareToX}
           className="inline-flex items-center justify-center gap-2 text-xs font-semibold text-text border border-border hover:border-brand/40 rounded-lg px-3 py-2.5 bg-panel transition"
         >
-          Share to Twitter
+          Share to X
         </button>
         <button
           onClick={shareLinkedIn}

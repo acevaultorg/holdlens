@@ -138,7 +138,7 @@ export default function BacktestShareCard({
     }
   }
 
-  function copyTweet() {
+  function copyPost() {
     const text = beat
       ? `If you'd copied ${managerName} in ${startYear}, ${fmt(amount)} → ${fmt(finalValue)} (${multiple.toFixed(1)}x). Beat the S&P by ${fmt(beatAmount)}.\n\nBacktest it yourself on HoldLens:`
       : `${managerName} backtest: ${fmt(amount)} in ${startYear} → ${fmt(finalValue)} (${multiple.toFixed(1)}x).\n\nRun your own on HoldLens:`;
@@ -150,16 +150,16 @@ export default function BacktestShareCard({
     }
   }
 
-  function shareTweet() {
+  function shareToX() {
     const text = beat
       ? `If you'd copied ${managerName} in ${startYear}, ${fmt(amount)} → ${fmt(finalValue)} (${multiple.toFixed(1)}x). Beat the S&P 500 by ${fmt(beatAmount)}.`
       : `${managerName} backtest: ${fmt(amount)} in ${startYear} → ${fmt(finalValue)} (${multiple.toFixed(1)}x).`;
     window.open(
-      `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent("https://holdlens.com/simulate")}`,
+      `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent("https://holdlens.com/simulate")}`,
       "_blank"
     );
     if ((window as any).plausible) {
-      (window as any).plausible("Backtest Share Tweet", {
+      (window as any).plausible("Backtest Share X", {
         props: { manager: managerName, startYear: String(startYear) },
       });
     }
@@ -192,16 +192,16 @@ export default function BacktestShareCard({
             Download PNG
           </button>
           <button
-            onClick={copyTweet}
+            onClick={copyPost}
             className="border border-border bg-panel text-text font-semibold rounded-lg px-4 py-2 text-sm hover:border-brand transition"
           >
-            Copy tweet
+            Copy post
           </button>
           <button
-            onClick={shareTweet}
+            onClick={shareToX}
             className="border border-border bg-panel text-text font-semibold rounded-lg px-4 py-2 text-sm hover:border-brand transition"
           >
-            Share to Twitter
+            Share to X
           </button>
         </div>
       </div>

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import PressKitClient from "./PressKitClient";
 
 export const metadata: Metadata = {
-  title: "Launch kit — ready-to-paste Show HN, Reddit, and Twitter copy",
-  description: "Pre-written launch posts for HoldLens. One-click copy for Show HN, r/investing, r/SecurityAnalysis, r/ValueInvesting, Twitter threads, ProductHunt.",
+  title: "Launch kit — ready-to-paste Show HN, Reddit, and X copy",
+  description: "Pre-written launch posts for HoldLens. One-click copy for Show HN, r/investing, r/SecurityAnalysis, r/ValueInvesting, X threads, ProductHunt.",
   robots: { index: false, follow: false },
 };
 

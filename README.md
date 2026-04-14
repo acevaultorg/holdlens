@@ -31,7 +31,7 @@ vercel --prod
 - v0.3 — AI thesis layer (Claude Haiku) on every ticker/manager page
 - v0.4 — Email alerts (Resend), weekly newsletter
 - v0.5 — Pro tier ($14/mo), Conviction Score, Manager Alpha Attribution
-- v0.6 — Public API, embeds, Twitter bot
+- v0.6 — Public API, embeds, X bot
 - v1.0 — Full Morningstar-of-copy-investing product
 
 ## Not investment advice

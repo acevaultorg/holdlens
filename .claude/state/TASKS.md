@@ -5,9 +5,9 @@
 - [x] `P1` BUILD functions/api/subscribe.ts — CF Pages Function replacing dead Next.js API route; honeypot + regex validation; graceful pre-activation (200 w/ pending:true if RESEND_API_KEY missing); Resend audiences contact add + welcome email in parallel [id:cf-function] [score:10.0] ⏱ done v0.36
 - [x] `P1` UPDATE EmailCapture.tsx to POST /api/subscribe with honeypot field + localStorage fallback (signups NEVER lost on network error) [id:wire-form] [score:9.0] ⏱ done v0.36
 - [x] `P1` APPEND Resend activation guide to HUMAN_ACTIONS.md — domain verify, audience, API key, Cloudflare env vars, e2e verification [id:resend-guide] [score:8.0] ⏱ done v0.36
-- [ ] `P0` BUILD + verify static export + CF Function bundling [id:verify-v36] [score:11.0]
-- [ ] `P0` DEPLOY wrangler + verify live POST /api/subscribe returns {ok:true,pending:true} [id:deploy-v36] [score:11.0]
-- [ ] `P0` COMMIT + push [id:commit-v36] [score:10.0]
+- [x] `P0` BUILD + verify static export + CF Function bundling [id:verify-v36] [score:11.0] ⏱ done — 491 pages, zero errors
+- [x] `P0` COMMIT + push [id:commit-v36] [score:10.0] ⏱ done — 32e14c6b on acepilot/v0.25-unified-score
+- [👤] `P0` DEPLOY wrangler + verify live POST /api/subscribe — Cloudflare Pages auto-deploys from git; verify at https://holdlens.com/api/subscribe after CF build completes [id:deploy-v36] [score:11.0]
 - [👤] `P1` ACTIVATE Resend — signup + DNS verify + audience + API key + 3 env vars in CF Pages + rebuild. Guide in HUMAN_ACTIONS.md. Flip one env var = real emails start sending [id:resend-activate] [score:12.0] 👤 guide generated
 
 ## Queue (v0.29 — OG images + pricing AB + backtest share) [objective:v29-viral-seo-conversion]
@@ -84,5 +84,5 @@
 - [x] `P1` INTEGRATE Resend for email alerts [id:resend] [score:9.0] ⏱ done v0.36 — functions/api/subscribe.ts CF Pages Function, graceful pre-activation, EmailCapture POSTs w/ honeypot + localStorage fallback, HUMAN_ACTIONS.md guide
 - [x] `P1` BUILD Stripe Pro tier checkout [id:stripe] [score:11.0] ⏱ done (StripeCheckoutButton.tsx Payment Link integration shipped, activation is [👤] stripe-activate)
 - [ ] `P1` BUILD Claude Haiku thesis generator per ticker/manager [id:ai-thesis] [score:8.0]
-- [ ] `P2` BUILD Twitter bot posting top buy/sell signals [id:twitter-bot] [score:7.0]
+- [ ] `P2` BUILD X (formerly Twitter) bot posting top buy/sell signals [id:x-bot] [score:7.0]
 - [ ] `P2` BUILD public API + embeds [id:api] [score:7.0]
