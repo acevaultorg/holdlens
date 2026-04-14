@@ -1,5 +1,14 @@
 # HoldLens — TASKS
 
+## Queue (v0.42 — /rotation sector-rotation heatmap) — SHIPPED [objective:v42-sector-rotation]
+
+- [x] `P1` BUILD app/rotation/page.tsx server component — 12 sectors × 8 quarters heatmap, size-weighted net flow, 5-tier color scale per side, cell hover tooltip with buy/sell counts [id:rotation-heatmap] [score:12.0] ⏱ done v0.42
+- [x] `P1` ADD "Hottest sector, quarter by quarter" summary — per-quarter hot (green) and cold (red) sector ranking [id:hot-cold-strip] [score:8.0] ⏱ done v0.42
+- [x] `P1` ADD "Most bought / most sold sector (8Q total)" summary cards [id:sector-totals] [score:6.0] ⏱ done v0.42
+- [x] `P0` WIRE /rotation into header nav (lg+), mobile nav PRIMARY_LINKS, footer [id:wire-rotation-nav] [score:8.0] ⏱ done v0.42
+- [x] `P0` BUILD + verify static export — /rotation 1.75 kB, clean compile [id:verify-v42] [score:10.0] ⏱ done
+- [x] `P0` COMMIT + push [id:commit-v42] [score:10.0]
+
 ## Queue (v0.41 — manager overlap matrix) — SHIPPED [objective:v41-overlap-matrix]
 
 - [x] `P1` BUILD overlap matrix heatmap on /compare/managers — 15×15 grid, shared ticker count per cell, 5-tier opacity scale, clickable to pair comparison [id:overlap-matrix] [score:11.0] ⏱ done v0.41
