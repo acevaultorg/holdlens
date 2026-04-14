@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mohnish Pabrai — 13F moves · HoldLens</title>
+    <link>https://holdlens.com/investor/monish-pabrai</link>
+    <atom:link href="https://holdlens.com/investor/monish-pabrai/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move by Mohnish Pabrai (Pabrai Investment Funds) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2026 18:57:36 GMT</lastBuildDate>
+    <item>
+      <title>Mohnish Pabrai: ADDED MU (+10%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MU</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q4-MU-add-0</guid>
+      <description>Mohnish Pabrai (Pabrai Investment Funds) added MU in Q4 2025 · 27.1% of portfolio. More Micron on the memory cycle.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Mohnish Pabrai: ADDED MU (+15%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/MU</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q3-MU-add-1</guid>
+      <description>Mohnish Pabrai (Pabrai Investment Funds) added MU in Q3 2025 · 24.6% of portfolio. Micron cycle bet.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Mohnish Pabrai: TRIMMED STLA (-25%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/STLA</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q3-STLA-trim-2</guid>
+      <description>Mohnish Pabrai (Pabrai Investment Funds) trimmed STLA in Q3 2025 · 21.3% of portfolio. Material Stellantis reduction.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+  </channel>
+</rss>

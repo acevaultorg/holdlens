@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>William von Mueffling — 13F moves · HoldLens</title>
+    <link>https://holdlens.com/investor/william-von-mueffling</link>
+    <atom:link href="https://holdlens.com/investor/william-von-mueffling/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move by William von Mueffling (Cantillon Capital Management) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2026 18:57:36 GMT</lastBuildDate>
+    <item>
+      <title>William von Mueffling: ADDED MCO (+10%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MCO</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/william-von-mueffling#2025-Q4-MCO-add-0</guid>
+      <description>William von Mueffling (Cantillon Capital Management) added MCO in Q4 2025 · 6.4% of portfolio. Adding to Moody&amp;apos;s.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>William von Mueffling: ADDED ICE (+15%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/ICE</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/william-von-mueffling#2025-Q4-ICE-add-1</guid>
+      <description>William von Mueffling (Cantillon Capital Management) added ICE in Q4 2025 · 5.8% of portfolio. Building ICE.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>William von Mueffling: TRIMMED MSFT (-6%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MSFT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/william-von-mueffling#2025-Q4-MSFT-trim-2</guid>
+      <description>William von Mueffling (Cantillon Capital Management) trimmed MSFT in Q4 2025 · 7.8% of portfolio. Small Microsoft trim.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>William von Mueffling: ADDED MSFT (+8%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/MSFT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/william-von-mueffling#2025-Q3-MSFT-add-3</guid>
+      <description>William von Mueffling (Cantillon Capital Management) added MSFT in Q3 2025 · 8.3% of portfolio. Microsoft add before Q4 trim.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>William von Mueffling: ADDED SPGI (+10%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/SPGI</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/william-von-mueffling#2025-Q3-SPGI-add-4</guid>
+      <description>William von Mueffling (Cantillon Capital Management) added SPGI in Q3 2025 · 5.5% of portfolio. S&amp;amp;P Global add.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+  </channel>
+</rss>

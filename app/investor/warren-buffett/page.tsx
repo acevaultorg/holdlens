@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   title: "Warren Buffett portfolio — what Berkshire Hathaway holds",
   description:
     "Live tracker of Warren Buffett's Berkshire Hathaway portfolio. Top holdings, conviction analysis, and quarterly moves.",
+  alternates: {
+    canonical: "https://holdlens.com/investor/warren-buffett",
+    types: {
+      "application/rss+xml": "https://holdlens.com/investor/warren-buffett/feed.xml",
+    },
+  },
 };
 
 export default function BuffettPage() {
@@ -51,6 +57,13 @@ export default function BuffettPage() {
                 View on SEC EDGAR →
               </a>
             )}
+            <a
+              href="/investor/warren-buffett/feed.xml"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-border bg-panel text-muted hover:text-emerald-400 hover:border-emerald-400/40 transition"
+              title="Subscribe to Warren Buffett 13F moves via RSS"
+            >
+              <span className="text-emerald-400">●</span> RSS — Buffett move alerts
+            </a>
           </div>
         );
       })()}

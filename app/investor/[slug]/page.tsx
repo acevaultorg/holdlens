@@ -42,6 +42,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: `${m.name} · ${m.fund}`,
       description: `${m.name}'s top holdings, updated each quarter.`,
     },
+    alternates: {
+      canonical: `https://holdlens.com/investor/${m.slug}`,
+      types: {
+        "application/rss+xml": `https://holdlens.com/investor/${m.slug}/feed.xml`,
+      },
+    },
   };
 }
 
@@ -106,6 +112,13 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
                 View on SEC EDGAR →
               </a>
             )}
+            <a
+              href={`/investor/${m.slug}/feed.xml`}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-border bg-panel text-muted hover:text-emerald-400 hover:border-emerald-400/40 transition"
+              title={`Subscribe to ${m.name} 13F moves via RSS`}
+            >
+              <span className="text-emerald-400">●</span> RSS — move alerts
+            </a>
           </div>
         );
       })()}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>David Rolfe — 13F moves · HoldLens</title>
+    <link>https://holdlens.com/investor/david-rolfe</link>
+    <atom:link href="https://holdlens.com/investor/david-rolfe/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move by David Rolfe (Wedgewood Partners) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2026 18:57:36 GMT</lastBuildDate>
+    <item>
+      <title>David Rolfe: ADDED TSM (+18%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/TSM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-TSM-add-0</guid>
+      <description>David Rolfe (Wedgewood Partners) added TSM in Q4 2025 · 9.1% of portfolio. Building Taiwan Semi — AI picks and shovels.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Rolfe: ADDED FICO (+8%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/FICO</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-FICO-add-1</guid>
+      <description>David Rolfe (Wedgewood Partners) added FICO in Q4 2025 · 5.9% of portfolio. Adding to credit scoring monopoly.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED AAPL (-5%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/AAPL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-AAPL-trim-2</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed AAPL in Q4 2025 · 10.2% of portfolio. Small 19-year Apple trim.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: ADDED TSM (+22%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/TSM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q3-TSM-add-3</guid>
+      <description>David Rolfe (Wedgewood Partners) added TSM in Q3 2025 · 7.7% of portfolio. Building TSM position.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Rolfe: ADDED BRK.B (+6%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/BRK.B</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q3-BRK.B-add-4</guid>
+      <description>David Rolfe (Wedgewood Partners) added BRK.B in Q3 2025 · 7.8% of portfolio. Adding Berkshire.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+  </channel>
+</rss>

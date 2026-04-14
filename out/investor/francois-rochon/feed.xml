@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>François Rochon — 13F moves · HoldLens</title>
+    <link>https://holdlens.com/investor/francois-rochon</link>
+    <atom:link href="https://holdlens.com/investor/francois-rochon/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move by François Rochon (Giverny Capital) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2026 18:57:36 GMT</lastBuildDate>
+    <item>
+      <title>François Rochon: ADDED MA (+6%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MA</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/francois-rochon#2025-Q4-MA-add-0</guid>
+      <description>François Rochon (Giverny Capital) added MA in Q4 2025 · 11.2% of portfolio. Adding to 17-year Mastercard position.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>François Rochon: ADDED V (+5%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/V</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/francois-rochon#2025-Q4-V-add-1</guid>
+      <description>François Rochon (Giverny Capital) added V in Q4 2025 · 9.8% of portfolio. Small Visa add.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>François Rochon: ADDED META (+12%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/META</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/francois-rochon#2025-Q4-META-add-2</guid>
+      <description>François Rochon (Giverny Capital) added META in Q4 2025 · 6.2% of portfolio. Quality compounder add.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>François Rochon: ADDED MA (+4%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/MA</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/francois-rochon#2025-Q3-MA-add-3</guid>
+      <description>François Rochon (Giverny Capital) added MA in Q3 2025 · 10.6% of portfolio. Mastercard add.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>François Rochon: ADDED GOOGL (+10%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/GOOGL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/francois-rochon#2025-Q3-GOOGL-add-4</guid>
+      <description>François Rochon (Giverny Capital) added GOOGL in Q3 2025 · 8.4% of portfolio. Adding Alphabet.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+  </channel>
+</rss>

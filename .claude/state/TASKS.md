@@ -1,5 +1,12 @@
 # HoldLens — TASKS
 
+## Queue (v0.39 — per-manager RSS feeds) — SHIPPED [objective:v39-per-manager-rss]
+
+- [x] `P1` BUILD app/investor/[slug]/feed.xml/route.ts dynamic RSS generator — 30 managers, last 40 moves each, sorted newest first, full action/delta/impact metadata [id:per-manager-feed] [score:10.0] ⏱ done v0.39
+- [x] `P1` ADD RSS alternate metadata + visible chip to investor profile pages (generic + warren-buffett dedicated) so feed readers auto-discover [id:feed-discovery] [score:8.0] ⏱ done v0.39
+- [x] `P0` BUILD + verify static export — all 30 per-manager feed.xml files generated [id:verify-v39] [score:10.0] ⏱ done
+- [x] `P0` COMMIT + push [id:commit-v39] [score:10.0]
+
 ## Queue (v0.38 — /value killer combo page) — SHIPPED [objective:v38-smart-money-value]
 
 - [x] `P0` BUILD app/value/page.tsx server component — top-50 buy candidates server-rendered, hero + explainer + cross-links [id:value-server] [score:13.0] ⏱ done v0.38
