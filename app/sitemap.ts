@@ -62,6 +62,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/methodology`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/press`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    // Legal + contact (required for AdSense + GDPR compliance)
+    { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   ];
 
   const sectorUrls: MetadataRoute.Sitemap = SECTORS.map((s) => ({
