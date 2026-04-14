@@ -1,5 +1,58 @@
 # HoldLens — TASKS
 
+## Queue (v0.45+ backlog — Dataroma parity sweep continues)
+
+Priority = (revenue impact × reversibility) / effort. Top of list executed first.
+
+- [ ] `P0` BUILD /signal/[ticker] inline 52w range visualizer — server-rendered placeholder, client hydrates from finance API; mirrors /value approach [id:signal-52w] [score:13.0]
+- [ ] `P0` BUILD /signal/[ticker] 8-quarter ownership-count sparkline — "owner_count over time" mini-chart using QUARTERS + movesAll [id:signal-owner-spark] [score:12.0]
+- [ ] `P0` BUILD /manager-rankings page — 30 managers ranked by MANAGER_QUALITY × CAGR × activity, big names vs. quiet alpha side-by-side [id:manager-rankings] [score:12.0]
+- [ ] `P0` BUILD /conviction-leaders page — top 20 managers by average conviction score across their top 10 holdings, sortable [id:conviction-leaders] [score:11.0]
+- [ ] `P0` BUILD /sector/[slug] mini-rotation pages — 12 sector landing pages, each with net-flow trend + top 10 names in sector, hot-linked from /rotation [id:sector-mini-pages] [score:11.0]
+- [ ] `P0` BUILD /crowded-trades page — highest owner_count tickers with conviction signal split (shows consensus crowding risk) [id:crowded-trades] [score:11.0]
+- [ ] `P0` BUILD /contrarian-bets page — tickers where ≥2 tier-1 managers are buying AND ≥2 tier-1 managers are selling (smart money disagreement) [id:contrarian-bets] [score:11.0]
+- [ ] `P0` BUILD /new-positions page — "fresh money" feed showing all "new" action moves across 30 managers in LATEST_QUARTER, ranked by combined score [id:new-positions] [score:10.0]
+- [ ] `P0` BUILD /exits page — all "exit" action moves, with prior position pct + combined "how big was the bet that just ended" score [id:exits] [score:10.0]
+- [ ] `P0` BUILD /concentration page — manager portfolio concentration rankings (top-5 pct, top-10 pct), highlights low-diversification high-quality investors [id:concentration] [score:10.0]
+- [ ] `P0` BUILD /consensus page — tickers owned by ≥5 tier-1 managers with positive conviction and net buying last quarter [id:consensus] [score:10.0]
+- [ ] `P1` CROSS-LINK every /signal/[ticker] to filtered /big-bets (only this ticker) + /sector/[slug] of the ticker [id:signal-crosslink] [score:9.0]
+- [ ] `P1` BUILD /alerts page — "what changed this quarter" rollup showing all >5% portfolio-impact moves across all 30 managers, sorted by impact [id:alerts] [score:9.0]
+- [ ] `P1` BUILD /investor/[slug] portfolio concentration pie + YoY holdings-count trend [id:investor-viz] [score:9.0]
+- [ ] `P1` BUILD /stock/[ticker] redirect alias for /signal/[ticker] — SEO + human-memorable URL [id:stock-alias] [score:8.0]
+- [ ] `P1` ADD JSON-LD structured data to /signal/[ticker] (Financial Product schema) for Google rich results [id:signal-schema] [score:8.0]
+- [ ] `P1` BUILD /api/v1/sector/{slug}.json endpoint — per-sector tickers + top owners, completes the API rotation story [id:api-sector] [score:8.0]
+- [ ] `P1` BUILD /api/v1/alerts.json — real-time "what changed >5% impact" endpoint [id:api-alerts] [score:8.0]
+- [ ] `P1` BUILD /compare/[pair] visual diff showing overlap Venn + unique-only lists + shared-name convergence chart [id:compare-visual] [score:8.0]
+- [ ] `P1` BUILD /vs/dataroma page — feature-by-feature comparison table, directly targets "Dataroma alternatives" SEO query [id:vs-dataroma] [score:10.0]
+- [ ] `P1` BUILD /learn/superinvestor-handbook page — 10-section guide on reading 13F filings, conviction signals, copy-trading myth; 3000+ word SEO content [id:learn-handbook] [score:8.0]
+- [ ] `P1` BUILD /quarterly/[period] full quarter summary — top buys, top sells, biggest new positions, biggest exits for each historical quarter (8 pages) [id:quarterly-pages] [score:8.0]
+- [ ] `P2` ADD Plausible custom event firing on /signal ticker searches, /value filter changes, /big-bets row clicks [id:plausible-events] [score:7.0]
+- [ ] `P2` ADD CSV export to /best-now, /value, /rotation, /compare/managers, /consensus, /contrarian [id:csv-exports] [score:6.0]
+- [ ] `P2` BUILD twitter.com/holdlens_bot daily auto-post of "biggest conviction change today" — requires operator OAuth [id:twitter-bot] [score:7.0] [👤]
+- [ ] `P2` ADD email digest signup form on /alerts — weekly "biggest moves" email via Resend [id:email-digest] [score:7.0]
+- [ ] `P2` BUILD /api/v1/consensus.json + /api/v1/crowded.json + /api/v1/contrarian.json endpoints [id:api-v2-endpoints] [score:6.0]
+- [ ] `P2` BUILD /api/v1/changelog.json — "what changed this quarter" feed for API consumers [id:api-changelog] [score:6.0]
+- [ ] `P2` ADD dark-pattern-free paywall for /premium features (e.g., custom alerts, unlimited CSV exports) via Stripe — revenue unlock [id:stripe-premium] [score:15.0] [👤-after-build]
+- [ ] `P2` BUILD /og dynamic OG image generator per route — Satori already installed, extend generate-og-images.ts [id:og-dynamic] [score:6.0]
+- [ ] `P2` ADD Google Search Console property + submit sitemap — unblocks organic traffic [id:gsc-setup] [score:12.0] [👤]
+- [ ] `P2` ADD Bing Webmaster Tools property [id:bing-setup] [score:8.0] [👤]
+
+## Queue (v0.44 — Public JSON API + /docs rewrite) — SHIPPED [objective:v44-public-api]
+
+- [x] `P0` CREATE scripts/generate-api-json.ts — 134-file static JSON generator, 12 endpoint categories, thin { data, meta } envelope [id:api-generator] [score:15.0] ⏱ done v0.44
+- [x] `P0` WIRE prebuild hook — "generate-og-images.ts && generate-api-json.ts" chained [id:api-prebuild] [score:10.0] ⏱ done v0.44
+- [x] `P0` REWRITE app/docs/page.tsx — removed vaporware waitlist, shipped reality with 12 endpoints + quick-start curl/Python [id:docs-rewrite] [score:12.0] ⏱ done v0.44
+- [x] `P0` BUILD + verify 134 JSON files in out/api/v1/ [id:verify-v44] [score:10.0] ⏱ done
+- [x] `P0` COMMIT + push main 2fd38fbd [id:commit-v44] [score:10.0] ⏱ done
+
+## Queue (v0.43 — signal bet-size view + big-bets cross-link) — SHIPPED [objective:v43-signal-betsize]
+
+- [x] `P0` ADD module-level getBigBetsRankInfo cache to /signal/[ticker] — O(1) per-page rank lookup instead of O(n²) [id:signal-rank-cache] [score:11.0] ⏱ done v0.43
+- [x] `P0` REPLACE current-ownership table with "Who's betting biggest on X" bar chart — horizontal bars by position %, tier-1 badges, thesis quotes [id:signal-barchart] [score:13.0] ⏱ done v0.43
+- [x] `P0` ADD "Ranks #N of M tracked bets → /big-bets" cross-link [id:signal-ranks-link] [score:8.0] ⏱ done v0.43
+- [x] `P0` BUILD + verify — /signal/[ticker] 4.26 kB → 4.38 kB, clean compile [id:verify-v43] [score:10.0] ⏱ done
+- [x] `P0` COMMIT + push + FAST-FORWARD MERGE feature branch → main (main was 44 commits behind, P0 REVENUE BLOCKER found via Chrome MCP deploy-truth check) [id:commit-v43-merge-main] [score:15.0] ⏱ done v0.43
+
 ## Queue (v0.42 — /rotation sector-rotation heatmap) — SHIPPED [objective:v42-sector-rotation]
 
 - [x] `P1` BUILD app/rotation/page.tsx server component — 12 sectors × 8 quarters heatmap, size-weighted net flow, 5-tier color scale per side, cell hover tooltip with buy/sell counts [id:rotation-heatmap] [score:12.0] ⏱ done v0.42

@@ -10,6 +10,7 @@ const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: b
   { href: "/value", label: "Smart money × 52w low", emerald: true },
   { href: "/big-bets", label: "Big bets · size × conviction", brand: true },
   { href: "/rotation", label: "Sector rotation heatmap", brand: true },
+  { href: "/new-positions", label: "New positions — fresh money", emerald: true },
   { href: "/proof", label: "Proof — does it work?", emerald: true },
   { href: "/portfolio", label: "My portfolio", brand: true },
   { href: "/buys", label: "Buys", emerald: true },
