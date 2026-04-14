@@ -7,8 +7,9 @@ import { getGrandPortfolio } from "@/lib/signals";
 
 type Row = ReturnType<typeof getGrandPortfolio>[number];
 
-type SortKey = "score" | "owners" | "dayChange" | "ticker";
+type SortKey = "score" | "owners" | "dayChange" | "ticker" | "above52wLow";
 type DirectionFilter = "all" | "up" | "down";
+type ValueFilter = "any" | "near_low" | "near_high";
 
 type SavedFilter = {
   sector: string;
@@ -16,6 +17,7 @@ type SavedFilter = {
   minScore: number;
   direction: DirectionFilter;
   sortKey: SortKey;
+  valueFilter?: ValueFilter;
 };
 
 const SAVE_KEY = "holdlens_screener_filter_v1";
@@ -41,6 +43,7 @@ export default function ScreenerClient() {
   const [minScore, setMinScore] = useState<number>(0);
   const [direction, setDirection] = useState<DirectionFilter>("all");
   const [sortKey, setSortKey] = useState<SortKey>("score");
+  const [valueFilter, setValueFilter] = useState<ValueFilter>("any");
   const [savedState, setSavedState] = useState<"idle" | "saved" | "loaded">("idle");
   const [hasSaved, setHasSaved] = useState(false);
 
@@ -57,6 +60,7 @@ export default function ScreenerClient() {
         setMinScore(f.minScore);
         setDirection(f.direction);
         setSortKey(f.sortKey);
+        if (f.valueFilter) setValueFilter(f.valueFilter);
         setSavedState("loaded");
         setTimeout(() => setSavedState("idle"), 1500);
       }
@@ -67,7 +71,7 @@ export default function ScreenerClient() {
 
   function saveFilter() {
     if (typeof window === "undefined") return;
-    const f: SavedFilter = { sector, minOwners, minScore, direction, sortKey };
+    const f: SavedFilter = { sector, minOwners, minScore, direction, sortKey, valueFilter };
     try {
       localStorage.setItem(SAVE_KEY, JSON.stringify(f));
       setHasSaved(true);
@@ -87,6 +91,13 @@ export default function ScreenerClient() {
     setMinScore(0);
     setDirection("all");
     setSortKey("score");
+    setValueFilter("any");
+  }
+
+  // % above 52-week low — lower = closer to the bottom = better value hunting.
+  function pctAbove52wLow(q: LiveQuoteData | null | undefined): number | null {
+    if (!q || !q.weekLow52 || q.weekLow52 <= 0) return null;
+    return ((q.price - q.weekLow52) / q.weekLow52) * 100;
   }
 
   // Base dataset from the grand portfolio (deterministic, built at render time)
@@ -120,6 +131,13 @@ export default function ScreenerClient() {
         if (direction === "up" && q.dayChangePct < 0) return false;
         if (direction === "down" && q.dayChangePct >= 0) return false;
       }
+      if (valueFilter !== "any") {
+        const q = quotes[r.ticker.toUpperCase()];
+        const pct = pctAbove52wLow(q);
+        if (pct == null) return false;
+        if (valueFilter === "near_low" && pct > 25) return false;
+        if (valueFilter === "near_high" && pct < 75) return false;
+      }
       return true;
     });
 
@@ -132,11 +150,17 @@ export default function ScreenerClient() {
         const qb = quotes[b.ticker.toUpperCase()]?.dayChangePct ?? -Infinity;
         return qb - qa;
       }
+      if (sortKey === "above52wLow") {
+        // ascending: closest to 52w low first (best value)
+        const pa = pctAbove52wLow(quotes[a.ticker.toUpperCase()]) ?? Infinity;
+        const pb = pctAbove52wLow(quotes[b.ticker.toUpperCase()]) ?? Infinity;
+        return pa - pb;
+      }
       return a.ticker.localeCompare(b.ticker);
     });
 
     return out;
-  }, [allRows, sector, minOwners, minScore, direction, quotes, sortKey]);
+  }, [allRows, sector, minOwners, minScore, direction, quotes, sortKey, valueFilter]);
 
   const maxOwners = Math.max(...allRows.map((r) => r.ownerCount));
   const maxScore = Math.ceil(Math.max(...allRows.map((r) => r.weightedScore)) / 100) * 100;
@@ -144,7 +168,8 @@ export default function ScreenerClient() {
   return (
     <>
       {/* Filters */}
-      <div className="rounded-2xl border border-border bg-panel p-5 mb-6 grid md:grid-cols-4 gap-5">
+      <div className="rounded-2xl border border-border bg-panel p-5 mb-6 space-y-5">
+      <div className="grid md:grid-cols-4 gap-5">
         <div>
           <label className="block text-[10px] uppercase tracking-wider text-dim font-semibold mb-1.5">
             Sector
@@ -220,6 +245,37 @@ export default function ScreenerClient() {
         </div>
       </div>
 
+      {/* Value filter — % above 52-week low. The Dataroma power feature. */}
+      <div>
+        <label className="block text-[10px] uppercase tracking-wider text-dim font-semibold mb-1.5">
+          52-week range position
+        </label>
+        <div className="flex gap-1 flex-wrap">
+          {(
+            [
+              { v: "any" as ValueFilter, label: "Any", hint: "" },
+              { v: "near_low" as ValueFilter, label: "Near 52w low", hint: "≤25% above low — value hunting" },
+              { v: "near_high" as ValueFilter, label: "Near 52w high", hint: "≥75% above low — momentum" },
+            ]
+          ).map((opt) => (
+            <button
+              key={opt.v}
+              onClick={() => setValueFilter(opt.v)}
+              title={opt.hint}
+              className={`text-xs font-semibold px-3 py-2 rounded-md transition ${
+                opt.v === valueFilter
+                  ? "bg-brand text-black"
+                  : "text-muted border border-border hover:border-brand/40"
+              }`}
+              aria-pressed={opt.v === valueFilter}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      </div>
+
       {/* Save filter + CSV export actions */}
       <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
         <div className="flex items-center gap-2 flex-wrap">
@@ -240,16 +296,23 @@ export default function ScreenerClient() {
           <CsvExportButton
             filename="holdlens-screener-results.csv"
             label="Download CSV"
-            rows={filtered.map((r, i) => ({
-              rank: i + 1,
-              ticker: r.ticker,
-              name: r.name,
-              sector: r.sector || "",
-              owner_count: r.ownerCount,
-              weighted_score: r.weightedScore.toFixed(1),
-              day_change_pct: quotes[r.ticker.toUpperCase()]?.dayChangePct.toFixed(2) ?? "",
-              price: quotes[r.ticker.toUpperCase()]?.price.toFixed(2) ?? "",
-            }))}
+            rows={filtered.map((r, i) => {
+              const q = quotes[r.ticker.toUpperCase()];
+              const pct52wLow = pctAbove52wLow(q);
+              return {
+                rank: i + 1,
+                ticker: r.ticker,
+                name: r.name,
+                sector: r.sector || "",
+                owner_count: r.ownerCount,
+                weighted_score: r.weightedScore.toFixed(1),
+                day_change_pct: q?.dayChangePct.toFixed(2) ?? "",
+                price: q?.price.toFixed(2) ?? "",
+                pct_above_52w_low: pct52wLow != null ? pct52wLow.toFixed(1) : "",
+                week_52_low: q?.weekLow52.toFixed(2) ?? "",
+                week_52_high: q?.weekHigh52.toFixed(2) ?? "",
+              };
+            })}
           />
         </div>
         <span className="text-[10px] text-dim hidden sm:inline">
@@ -272,6 +335,7 @@ export default function ScreenerClient() {
             <option value="score">Weighted score</option>
             <option value="owners">Owner count</option>
             <option value="dayChange">Day change %</option>
+            <option value="above52wLow">Closest to 52w low</option>
             <option value="ticker">Ticker A-Z</option>
           </select>
         </div>
@@ -288,27 +352,45 @@ export default function ScreenerClient() {
               <tr className="border-b border-border">
                 <th className="text-left px-5 py-3">Ticker</th>
                 <th className="text-left px-5 py-3 hidden md:table-cell">Company</th>
-                <th className="text-left px-5 py-3 hidden md:table-cell">Sector</th>
+                <th className="text-left px-5 py-3 hidden lg:table-cell">Sector</th>
                 <th className="text-right px-5 py-3">Price · Today</th>
+                <th className="text-right px-5 py-3 hidden sm:table-cell" title="% above 52-week low — lower = closer to bottom">52w low</th>
                 <th className="text-right px-5 py-3">Owners</th>
-                <th className="text-right px-5 py-3">Score</th>
+                <th className="text-right px-5 py-3 hidden md:table-cell">Score</th>
               </tr>
             </thead>
             <tbody>
-              {filtered.slice(0, 100).map((r: Row) => (
-                <tr key={r.ticker} className="border-b border-border last:border-0 hover:bg-bg/40 transition">
-                  <td className="px-5 py-3 font-mono font-semibold">
-                    <a href={`/signal/${r.ticker}`} className="text-brand hover:underline">{r.ticker}</a>
-                  </td>
-                  <td className="px-5 py-3 text-text hidden md:table-cell truncate max-w-xs">{r.name}</td>
-                  <td className="px-5 py-3 text-dim hidden md:table-cell">{r.sector}</td>
-                  <td className="px-5 py-3 text-right">
-                    <LiveQuote symbol={r.ticker} size="sm" refreshMs={0} />
-                  </td>
-                  <td className="px-5 py-3 text-right tabular-nums font-semibold">{r.ownerCount}</td>
-                  <td className="px-5 py-3 text-right tabular-nums text-muted">{r.weightedScore.toFixed(0)}</td>
-                </tr>
-              ))}
+              {filtered.slice(0, 100).map((r: Row) => {
+                const q = quotes[r.ticker.toUpperCase()];
+                const pct52 = pctAbove52wLow(q);
+                const pctColor =
+                  pct52 == null
+                    ? "text-dim"
+                    : pct52 <= 15
+                    ? "text-emerald-400"
+                    : pct52 <= 40
+                    ? "text-text"
+                    : pct52 >= 85
+                    ? "text-rose-400"
+                    : "text-muted";
+                return (
+                  <tr key={r.ticker} className="border-b border-border last:border-0 hover:bg-bg/40 transition">
+                    <td className="px-5 py-3 font-mono font-semibold">
+                      <a href={`/signal/${r.ticker}`} className="text-brand hover:underline">{r.ticker}</a>
+                    </td>
+                    <td className="px-5 py-3 text-text hidden md:table-cell truncate max-w-xs">{r.name}</td>
+                    <td className="px-5 py-3 text-dim hidden lg:table-cell">{r.sector}</td>
+                    <td className="px-5 py-3 text-right">
+                      <LiveQuote symbol={r.ticker} size="sm" refreshMs={0} />
+                    </td>
+                    <td className={`px-5 py-3 text-right tabular-nums hidden sm:table-cell ${pctColor}`}>
+                      {pct52 != null ? `+${pct52.toFixed(0)}%` : "—"}
+                    </td>
+                    <td className="px-5 py-3 text-right tabular-nums font-semibold">{r.ownerCount}</td>
+                    <td className="px-5 py-3 text-right tabular-nums text-muted hidden md:table-cell">{r.weightedScore.toFixed(0)}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}
