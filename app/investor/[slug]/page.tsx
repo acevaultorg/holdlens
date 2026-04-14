@@ -5,6 +5,7 @@ import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
 import InvestorMoves from "@/components/InvestorMoves";
 import ManagerROICard from "@/components/ManagerROICard";
+import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
@@ -137,6 +138,11 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         </p>
         <InvestorMoves slug={m.slug} />
       </section>
+
+      <SectorBreakdown
+        holdings={m.topHoldings.map((h) => ({ ticker: h.ticker, pct: h.pct }))}
+        label={`${m.name.split(" ")[0]}'s sector breakdown`}
+      />
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold mb-6">Top holdings</h2>

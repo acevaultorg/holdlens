@@ -4,6 +4,7 @@ import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
 import InvestorMoves from "@/components/InvestorMoves";
 import ManagerROICard from "@/components/ManagerROICard";
+import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
@@ -78,6 +79,11 @@ export default function BuffettPage() {
         </p>
         <InvestorMoves slug="warren-buffett" />
       </section>
+
+      <SectorBreakdown
+        holdings={BUFFETT_TOP.map((h) => ({ ticker: h.ticker, pct: h.pctPortfolio }))}
+        label="Buffett's sector breakdown"
+      />
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold mb-6">Top holdings</h2>

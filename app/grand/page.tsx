@@ -15,8 +15,16 @@ export const metadata: Metadata = {
 };
 
 export default function GrandPortfolioPage() {
-  const grand = getGrandPortfolio().slice(0, 50);
+  const all = getGrandPortfolio();
+  const grand = all.slice(0, 50);
   const maxScore = Math.max(1, ...grand.map((g) => g.weightedScore));
+  // Secondary ranking: most-owned stocks by raw number of superinvestor holders.
+  // Beats Dataroma's "Ownership count" column by also showing aggregate AUM %.
+  const mostOwned = all
+    .slice()
+    .sort((a, b) => b.ownerCount - a.ownerCount || b.aggregatePct - a.aggregatePct)
+    .slice(0, 25);
+  const maxOwners = Math.max(1, ...mostOwned.map((g) => g.ownerCount));
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
@@ -127,6 +135,62 @@ export default function GrandPortfolioPage() {
         Weighted by manager-quality score so that signal beats noise. A Buffett or Druckenmiller stake counts for more
         than one from a less-proven manager. See <a href="/methodology" className="underline">methodology</a>.
       </p>
+
+      {/* Most-owned ranking — alternative view by raw ownership count */}
+      <section className="mt-16">
+        <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+          <h2 className="text-2xl font-bold">Most-owned by superinvestors</h2>
+          <div className="text-xs text-dim">Sorted by raw ownership count</div>
+        </div>
+        <p className="text-muted text-sm mb-6 max-w-2xl">
+          The same universe, ranked instead by how many of the {MANAGERS.length} tracked managers hold each position.
+          Raw consensus — no quality weighting — to surface broad conviction.
+        </p>
+        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="text-dim text-xs uppercase tracking-wider">
+              <tr className="border-b border-border">
+                <th className="text-left px-5 py-4 w-12">#</th>
+                <th className="text-left px-5 py-4">Ticker</th>
+                <th className="text-left px-5 py-4 hidden md:table-cell">Sector</th>
+                <th className="text-right px-5 py-4">Owners</th>
+                <th className="text-right px-5 py-4 hidden sm:table-cell">% AUM</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mostOwned.map((g, i) => {
+                const barPct = (g.ownerCount / maxOwners) * 100;
+                return (
+                  <tr key={g.ticker} className="border-b border-border last:border-0 hover:bg-bg/40 transition">
+                    <td className="px-5 py-3 text-dim tabular-nums">{i + 1}</td>
+                    <td className="px-5 py-3">
+                      <a href={`/signal/${g.ticker}`} className="font-mono font-bold text-brand hover:underline">
+                        {g.ticker}
+                      </a>
+                      <div className="text-xs text-muted truncate max-w-xs">{g.name}</div>
+                    </td>
+                    <td className="px-5 py-3 text-dim hidden md:table-cell">{g.sector}</td>
+                    <td className="px-5 py-3 text-right w-40">
+                      <div className="flex items-center justify-end gap-2">
+                        <div className="h-1.5 w-24 rounded-full bg-bg overflow-hidden hidden sm:block">
+                          <div
+                            className="h-full bg-brand"
+                            style={{ width: `${Math.max(4, barPct)}%` }}
+                          />
+                        </div>
+                        <span className="tabular-nums font-semibold w-8 text-right">{g.ownerCount}</span>
+                      </div>
+                    </td>
+                    <td className="px-5 py-3 text-right tabular-nums text-muted hidden sm:table-cell">
+                      {g.aggregatePct.toFixed(1)}%
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
 }

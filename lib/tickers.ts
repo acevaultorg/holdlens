@@ -11,7 +11,7 @@ export type TickerData = {
   sector?: string;
 };
 
-const SECTOR_MAP: Record<string, string> = {
+export const SECTOR_MAP: Record<string, string> = {
   AAPL: "Technology",
   MSFT: "Technology",
   GOOGL: "Technology",
