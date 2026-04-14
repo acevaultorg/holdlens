@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 import ScreenerClient from "./ScreenerClient";
 
 export const metadata: Metadata = {
@@ -22,6 +23,8 @@ export default function ScreenerPage() {
         sector, conviction, ownership, and live day change.
       </p>
       <ScreenerClient />
+
+      <AdSlot format="horizontal" />
     </div>
   );
 }

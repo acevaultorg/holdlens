@@ -173,3 +173,105 @@ If anything looks wrong (wrong price, wrong description), delete the env var in 
 - Wire a Plausible goal on the `buy.stripe.com` outbound click (already instrumented via `Pro Checkout Click` custom event in the component)
 - Consider adding a Stripe webhook → Resend welcome email once SEND traffic makes it worth the 20 min wire
 
+---
+
+## 👤 ACTIVATE Google AdSense — ad revenue on all content pages (v0.31)
+
+**Why this is a P0 revenue action:** AdSlot components are now wired into 24+ pages across the entire site. The component reads `NEXT_PUBLIC_ADSENSE_CLIENT` from env — one env var = ads serving everywhere. Without it, the slots render a tasteful Pro upsell banner (not wasted space, but not ad revenue either).
+
+**Estimated time:** 15 minutes for signup, 1-3 days for Google approval.
+
+**Why only a human can do this:** AdSense signup requires a Google account, site ownership verification, and tax/payment details.
+
+### Steps
+
+**1. Apply for Google AdSense**
+
+1. Go to https://adsense.google.com/start/
+2. Sign in with your Google account
+3. Enter site URL: `https://holdlens.com`
+4. Country: Netherlands (or wherever your tax entity is)
+5. Submit application — Google reviews the site (typically 1-3 days for a content site with 490 pages)
+
+**2. Get your client ID + create ad units**
+
+Once approved:
+1. Copy your **Publisher ID** (format: `ca-pub-1234567890123456`) from AdSense → Account → Account information
+2. Create 3 ad units in AdSense → Ads → By ad unit:
+   - **Horizontal** (Leaderboard 728x90 or Responsive) — note the slot ID
+   - **Rectangle** (Medium Rectangle 300x250 or Responsive) — note the slot ID
+   - **In-article** (In-article native) — note the slot ID
+
+**3. Set env vars in Cloudflare Pages**
+
+1. Open https://dash.cloudflare.com/ → Workers & Pages → **holdlens**
+2. Settings → Environment variables → Production
+3. Add these variables:
+   - `NEXT_PUBLIC_ADSENSE_CLIENT` = `ca-pub-XXXXXXXXXXXXXXXX`
+   - `NEXT_PUBLIC_ADSENSE_SLOT_HORIZONTAL` = `XXXXXXXXXX` (horizontal slot ID)
+   - `NEXT_PUBLIC_ADSENSE_SLOT_RECTANGLE` = `XXXXXXXXXX` (rectangle slot ID)
+   - `NEXT_PUBLIC_ADSENSE_SLOT_INARTICLE` = `XXXXXXXXXX` (in-article slot ID)
+4. Click **Save**
+
+**4. Trigger rebuild**
+
+```bash
+cd "/Users/paulodevries/Library/Mobile Documents/com~apple~CloudDocs/AceVault/ CLUSTER01-AceVault/VAULT01-Paulo Projects/Stocks/holdlens"
+git commit --allow-empty -m "chore: trigger rebuild with AdSense env vars"
+git push
+```
+
+**5. Verify**
+
+- Open https://holdlens.com/learn/what-is-a-13f in incognito
+- You should see an ad between sections (may take a few hours for first fill)
+- Check https://holdlens.com/buys — horizontal ad between content
+- If ads show "Advertisement" label but empty box → AdSense is still warming up, give it 24h
+
+### Revenue expectation
+
+Finance sites get $8-25 CPM. At 10k pageviews/mo × $15 avg CPM = ~$150/mo. Scales linearly with traffic.
+
+### Rollback
+
+Delete `NEXT_PUBLIC_ADSENSE_CLIENT` from CF env vars → rebuild. All slots revert to Pro upsell banners.
+
+---
+
+## 👤 ACTIVATE Brokerage Affiliate Links — highest RPU channel (v0.31)
+
+**Why this matters:** AffiliateCTA is wired into every `/signal/[ticker]` and `/ticker/[symbol]` page (94+ ticker pages). Interactive Brokers pays **$200 per funded account**. At even modest conversion, this is the highest-RPU revenue channel.
+
+**Estimated time:** 30-60 minutes (signup for each program).
+
+### Recommended affiliate programs (in priority order)
+
+| Broker | Payout | Signup | Env var |
+|---|---|---|---|
+| Interactive Brokers | $200/funded account | https://www.interactivebrokers.com/en/index.php?f=ibgPartners | `NEXT_PUBLIC_AFF_IBKR` |
+| Public.com | $25-50/funded account | https://public.com/partners | `NEXT_PUBLIC_AFF_PUBLIC` |
+| moomoo | $20-100/funded account | https://www.moomoo.com/us/affiliate | `NEXT_PUBLIC_AFF_MOOMOO` |
+
+### Steps (per broker)
+
+1. Sign up for their affiliate/partner program
+2. Get your referral link (most support `{SYMBOL}` deep links)
+3. Add the env var to Cloudflare Pages (same process as above)
+4. Rebuild
+
+### URL format
+
+The AffiliateCTA component replaces `{SYMBOL}` in the URL with the ticker symbol. Example:
+- IBKR: `https://www.interactivebrokers.com/mkt/?src=YOUR_ID&url=%2Fen%2Findex.php%3Ff%3D46115%26t%3D{SYMBOL}`
+
+### Verify
+
+After adding env vars + rebuild:
+- Open https://holdlens.com/signal/AAPL
+- You should see a "Ready to act on AAPL?" card with broker buttons
+- Click → should open the broker's signup page with your referral tracking
+
+### Revenue expectation
+
+1000 monthly signal page visits × 3% CTR × 5% funded = 1.5 accounts × $200 = $300/mo from IBKR alone. Compounds across 94 ticker pages.
+

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 import LiveQuote from "@/components/LiveQuote";
 import SectorHeatmap from "@/components/SectorHeatmap";
 import CsvExportButton from "@/components/CsvExportButton";
@@ -49,6 +50,8 @@ export default function GrandPortfolioPage() {
           }))}
         />
       </div>
+
+      <AdSlot format="horizontal" className="mb-10" />
 
       {/* Sector heatmap */}
       <div className="mb-8">

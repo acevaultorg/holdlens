@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getAllMovesEnriched, QUARTER_LABELS, QUARTERS, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Activity feed — every 13F move by the best investors",
@@ -41,6 +42,8 @@ export default function ActivityPage() {
         Every tracked buy, add, trim, and exit by the best portfolio managers in the world. Ranked within each quarter
         by manager quality — so you see the highest-conviction moves first.
       </p>
+
+      <AdSlot format="horizontal" />
 
       <div className="space-y-12">
         {orderedQuarters.map((q) => (

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AdSlot from "@/components/AdSlot";
 import { TICKER_INDEX } from "@/lib/tickers";
 
 const SECTORS = [
@@ -44,6 +45,8 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
       <p className="text-muted text-lg max-w-2xl mb-12">
         {tickers.length} {sector.toLowerCase()} stocks held by tracked superinvestors.
       </p>
+
+      <AdSlot format="horizontal" />
 
       <div className="rounded-2xl border border-border bg-panel overflow-hidden">
         <table className="w-full text-sm">

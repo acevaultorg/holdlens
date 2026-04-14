@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Methodology — How HoldLens scores conviction",
@@ -87,6 +88,8 @@ export default function MethodologyPage() {
             <li><span className="text-rose-400 font-semibold">STRONG SELL</span> — score ≤ −70</li>
           </ul>
         </section>
+
+        <AdSlot format="in-article" />
 
         <section>
           <h2 className="text-2xl font-bold mb-3">What we don't show</h2>

@@ -8,6 +8,8 @@ import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
 import InsiderActivity from "@/components/InsiderActivity";
+import AdSlot from "@/components/AdSlot";
+import AffiliateCTA from "@/components/AffiliateCTA";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
@@ -111,6 +113,8 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         </a>
       </section>
 
+      <AdSlot format="horizontal" />
+
       {/* Smart-money activity feed — all quarters */}
       <section className="mt-12">
         <h2 className="text-2xl font-bold mb-2">Smart money activity</h2>
@@ -175,6 +179,8 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         </p>
         <EmailCapture />
       </section>
+
+      <AffiliateCTA symbol={t.symbol} />
 
       <p className="text-xs text-dim mt-16">
         Data sourced from SEC 13F filings. {t.symbol} ownership reflects publicly disclosed long positions only.

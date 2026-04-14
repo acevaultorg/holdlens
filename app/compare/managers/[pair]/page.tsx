@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AdSlot from "@/components/AdSlot";
 import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
 import { MANAGERS, type Manager } from "@/lib/managers";
@@ -132,6 +133,8 @@ export default async function ComparePage({ params }: { params: Promise<{ pair: 
           </div>
         </section>
       )}
+
+      <AdSlot format="horizontal" />
 
       {/* Side-by-side recent moves */}
       <section className="mt-12">

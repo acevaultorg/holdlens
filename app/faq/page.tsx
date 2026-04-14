@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "FAQ — HoldLens hedge fund tracking",
@@ -72,8 +73,19 @@ export default function FAQPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">FAQ</div>
       <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-12">Frequently asked questions</h1>
       <div className="space-y-8">
-        {FAQS.map((f, i) => (
+        {FAQS.slice(0, Math.ceil(FAQS.length / 2)).map((f, i) => (
           <div key={i} className="border-b border-border pb-8 last:border-0">
+            <h2 className="text-xl font-bold mb-3 text-text">{f.q}</h2>
+            <p className="text-muted leading-relaxed">{f.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <AdSlot format="in-article" />
+
+      <div className="space-y-8">
+        {FAQS.slice(Math.ceil(FAQS.length / 2)).map((f, i) => (
+          <div key={i + Math.ceil(FAQS.length / 2)} className="border-b border-border pb-8 last:border-0">
             <h2 className="text-xl font-bold mb-3 text-text">{f.q}</h2>
             <p className="text-muted leading-relaxed">{f.a}</p>
           </div>

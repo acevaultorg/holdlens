@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Quarterly recaps — Hedge fund holdings by quarter",
@@ -18,6 +19,8 @@ export default function QuarterlyIndex() {
       <p className="text-muted text-lg max-w-2xl mb-12">
         What tracked superinvestors bought, sold, and held. One recap per quarter, updated as filings drop.
       </p>
+
+      <AdSlot format="horizontal" />
 
       <div className="space-y-3">
         {PERIODS.map((p) => (

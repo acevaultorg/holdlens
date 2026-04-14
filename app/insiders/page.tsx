@@ -6,6 +6,7 @@ import {
   fmtInsiderDate,
   type InsiderTx,
 } from "@/lib/insiders";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Insider Activity — Recent CEO/CFO Buys & Sells",
@@ -235,6 +236,8 @@ export default function InsidersPage() {
           </div>
         )}
       </section>
+
+      <AdSlot format="horizontal" />
 
       {/* Sells table */}
       <section className="mb-16">

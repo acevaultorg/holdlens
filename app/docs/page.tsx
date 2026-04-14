@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EmailCapture from "@/components/EmailCapture";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "API Documentation — HoldLens Pro",
@@ -175,6 +176,8 @@ export default function DocsPage() {
           ))}
         </div>
       </section>
+
+      <AdSlot format="in-article" className="mb-12" />
 
       {/* Rate limits */}
       <section className="mb-12">

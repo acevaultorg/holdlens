@@ -5,6 +5,7 @@ import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
 import InvestorMoves from "@/components/InvestorMoves";
 import ManagerROICard from "@/components/ManagerROICard";
+import AdSlot from "@/components/AdSlot";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -173,6 +174,8 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           </table>
         </div>
       </section>
+
+      <AdSlot format="horizontal" />
 
       <section className="mt-16 rounded-2xl border border-border bg-panel p-8">
         <h2 className="text-2xl font-bold mb-3">Want {m.name.split(" ")[0]} move-alerts?</h2>

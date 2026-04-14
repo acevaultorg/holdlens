@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 import { MANAGERS } from "@/lib/managers";
 import { MANAGER_QUALITY } from "@/lib/signals";
 
@@ -80,6 +81,8 @@ export default function CompareManagersIndex() {
           );
         })}
       </div>
+
+      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-16">
         All comparisons include live portfolio values computed from current market prices. Not investment advice.

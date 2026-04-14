@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 import PortfolioManager from "@/components/PortfolioManager";
 import PortfolioSignals from "@/components/PortfolioSignals";
 import PortfolioShareCard from "@/components/PortfolioShareCard";
@@ -28,6 +29,8 @@ export default function PortfolioPage() {
         <PortfolioManager />
         <PortfolioShareCard />
       </div>
+
+      <AdSlot format="horizontal" className="mt-10" />
 
       <p className="text-xs text-dim mt-12 max-w-2xl">
         Privacy: HoldLens stores your holdings in localStorage on this device only. Nothing is sent

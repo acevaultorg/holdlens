@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MANAGERS } from "@/lib/managers";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Investors — All tracked superinvestors",
@@ -15,6 +16,8 @@ export default function InvestorsIndex() {
         Curated list of the most important investors to follow. Click any name for their full portfolio,
         conviction analysis, and quarterly moves.
       </p>
+
+      <AdSlot format="horizontal" />
 
       <div className="grid md:grid-cols-2 gap-4">
         {MANAGERS.map((m) => (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "What is a 13F filing? — Plain English guide for retail investors",
@@ -58,6 +59,8 @@ export default function What13FPage() {
           <li><strong className="text-text">Bonds, crypto, real estate, private equity</strong> — none of it</li>
           <li><strong className="text-text">Cash position</strong> — not disclosed</li>
         </ul>
+
+        <AdSlot format="in-article" />
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Should I copy 13F trades?</h2>
         <p className="text-muted">

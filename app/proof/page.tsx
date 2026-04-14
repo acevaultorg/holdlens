@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BacktestProof from "@/components/BacktestProof";
+import AdSlot from "@/components/AdSlot";
 import { getBacktestQuarters } from "@/lib/backtest";
 
 export const metadata: Metadata = {
@@ -81,6 +82,8 @@ export default function ProofPage() {
       </div>
 
       <BacktestProof quarters={quarters} />
+
+      <AdSlot format="horizontal" className="my-10" />
 
       {/* Methodology callout */}
       <section className="mt-16 rounded-2xl border border-border bg-panel p-6">

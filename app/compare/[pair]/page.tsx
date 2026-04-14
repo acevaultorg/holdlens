@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AdSlot from "@/components/AdSlot";
 import { TICKER_INDEX, getTicker, topTickers } from "@/lib/tickers";
 
 // Generate top-N × top-N comparisons. Limit to 15 × 15 = 225 pages to keep build sane.
@@ -64,6 +65,8 @@ export default async function ComparePage({ params }: { params: Promise<{ pair: 
         <CompareCard t={ta} />
         <CompareCard t={tb} />
       </div>
+
+      <AdSlot format="horizontal" />
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold mb-4">Managers holding BOTH</h2>

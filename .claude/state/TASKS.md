@@ -44,6 +44,17 @@
 - [x] `P0` ADD /pricing + /alerts to layout nav (header w/ 'Pro' brand-colored, footer) [id:nav-v18] [score:9.0] ⏱ done
 - [x] `P0` BUILD + verify static export — 481 pages [id:verify] [score:12.0] ⏱ done
 
+## Queue (v0.31 — AdSense + affiliate ad placements) [objective:v31-ad-revenue]
+
+- [x] `P0` WIRE AdSlot into 3 learn pages (what-is-a-13f, copy-trading-myth, conviction-score-explained) [id:ads-learn] [score:11.0] ⏱ done
+- [x] `P0` WIRE AdSlot into 8 browse pages (activity, faq, about, top-picks, insiders, methodology, screener, compare/managers) [id:ads-browse] [score:11.0] ⏱ done
+- [x] `P0` WIRE AdSlot + AffiliateCTA into 9 detail pages (investor, ticker, sector, quarterly, compare) [id:ads-detail] [score:12.0] ⏱ done
+- [x] `P0` WIRE AdSlot into 6 remaining pages (simulate, proof, grand, docs, press, portfolio) [id:ads-remaining] [score:10.0] ⏱ done
+- [ ] `P0` BUILD + verify static export [id:verify-v31] [score:13.0]
+- [ ] `P0` COMMIT + push [id:commit-v31] [score:12.0]
+- [👤] `P0` ACTIVATE Google AdSense — apply, get client ID, set NEXT_PUBLIC_ADSENSE_CLIENT + slot env vars in CF Pages, redeploy. Guide in HUMAN_ACTIONS.md. ONE env var = ads on 24+ pages [id:adsense-activate] [score:14.0]
+- [👤] `P1` ACTIVATE brokerage affiliate links — IBKR ($200/account), Public ($25-50), moomoo ($20-100). Set NEXT_PUBLIC_AFF_* env vars. Guide in HUMAN_ACTIONS.md [id:affiliate-activate] [score:13.0]
+
 ## Queue (v0.19 — next session)
 
 - [x] `P1` ADD pre-generated OG images per /signal/[ticker] via satori at build time [id:og-images] [score:8.0] ⏱ done v0.29
@@ -52,16 +63,16 @@
 - [x] `P2` BUILD /changelog page from git log [id:changelog] [score:5.0] ⏱ done v0.27
 - [x] `P2` BUILD insider activity page /insiders [id:insider-page] [score:6.0] ⏱ done v0.27
 - [x] `P2` ADD trend badge to /signal verdict box [id:verdict-trend] [score:5.0] ⏱ done v0.27
-- [ ] `P1` ADD homepage testimonials/social-proof block (placeholder until first real users) [id:testimonials] [score:5.0]
-- [ ] `P2` BUILD /docs API documentation page (Pro feature preview) [id:docs] [score:5.0]
+- [x] `P1` ADD homepage testimonials/social-proof block (placeholder until first real users) [id:testimonials] [score:5.0] ⏱ done v0.30 aa50f2d5
+- [x] `P2` BUILD /docs API documentation page (Pro feature preview) [id:docs] [score:5.0] ⏱ done v0.30 aa50f2d5
 
 ## Queue (v0.2 larger infra)
 
 - [x] `P0` DEPLOY v0.13+v0.14+v0.15+v0.16+v0.17+v0.18 to Cloudflare Pages [id:deploy] [score:13.0] ⏱ done
 - [x] `P0` HOTFIX: Cloudflare Worker yahoo-proxy unblocks live data in production [id:worker-proxy] [score:13.0] ⏱ done
-- [ ] `P0` BUILD Python EDGAR 13F parser (path to 80+ managers) [id:edgar] [score:11.0]
+- [x] `P0` BUILD EDGAR 13F parser (21 managers, 168 filings, 22K moves from SEC EDGAR API) [id:edgar] [score:11.0] ⏱ done v0.31 b98c28f4+20e5b9e4
 - [ ] `P1` INTEGRATE Resend for email alerts [id:resend] [score:9.0]
-- [ ] `P1` BUILD Stripe Pro tier checkout [id:stripe] [score:11.0]
+- [x] `P1` BUILD Stripe Pro tier checkout [id:stripe] [score:11.0] ⏱ done (StripeCheckoutButton.tsx Payment Link integration shipped, activation is [👤] stripe-activate)
 - [ ] `P1` BUILD Claude Haiku thesis generator per ticker/manager [id:ai-thesis] [score:8.0]
 - [ ] `P2` BUILD Twitter bot posting top buy/sell signals [id:twitter-bot] [score:7.0]
 - [ ] `P2` BUILD public API + embeds [id:api] [score:7.0]

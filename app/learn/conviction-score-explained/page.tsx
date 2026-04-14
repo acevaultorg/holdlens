@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "What is the HoldLens ConvictionScore? — The single signed −100..+100 scale",
@@ -72,6 +73,8 @@ export default function ConvictionPage() {
             signal is already priced in. The model discounts it.
           </li>
         </ul>
+
+        <AdSlot format="in-article" />
 
         <h2 className="text-2xl font-bold mt-8 mb-3">Reading the number</h2>
         <p className="text-muted">

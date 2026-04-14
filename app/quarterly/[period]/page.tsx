@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AdSlot from "@/components/AdSlot";
 import { MANAGERS } from "@/lib/managers";
 import { topTickers } from "@/lib/tickers";
 
@@ -80,6 +81,8 @@ export default async function QuarterlyPage({ params }: { params: Promise<{ peri
           </table>
         </div>
       </section>
+
+      <AdSlot format="horizontal" />
 
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-4">All tracked managers this period</h2>

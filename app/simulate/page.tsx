@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Backtests — What if you'd copied a superinvestor?",
@@ -33,6 +34,8 @@ export default function BacktestIndex() {
           </a>
         ))}
       </div>
+
+      <AdSlot format="horizontal" className="mt-12" />
     </div>
   );
 }

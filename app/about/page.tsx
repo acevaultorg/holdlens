@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "About HoldLens",
@@ -35,6 +36,8 @@ export default function AboutPage() {
           research and consult a licensed financial advisor before making investment decisions.
         </p>
       </div>
+
+      <AdSlot format="in-article" />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Press kit — HoldLens",
@@ -34,6 +35,8 @@ export default function PressPage() {
             <li><strong className="text-text">Built with:</strong> Next.js, Cloudflare Pages, AcePilot</li>
           </ul>
         </section>
+
+        <AdSlot format="in-article" className="my-4" />
 
         <section>
           <h2 className="text-2xl font-bold mb-3">Story angles</h2>

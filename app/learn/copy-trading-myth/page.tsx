@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Can you actually copy Warren Buffett? — The honest answer",
@@ -37,6 +38,8 @@ export default function CopyMythPage() {
           He has $300B+ in cash and other assets. You don't. <strong className="text-text">A position that's "safe" for him can be
           career-ending for you.</strong>
         </p>
+
+        <AdSlot format="in-article" />
 
         <h2 className="text-2xl font-bold mt-8 mb-3">So what IS HoldLens for?</h2>
         <ul className="text-muted space-y-3 list-disc list-inside">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
 import LiveQuote from "@/components/LiveQuote";
 import SectorHeatmap from "@/components/SectorHeatmap";
 import TrendBadge from "@/components/TrendBadge";
@@ -74,6 +75,8 @@ export default function TopPicksPage() {
           </tbody>
         </table>
       </div>
+
+      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-12">
         Ranking based on ownership across tracked superinvestors. Updated each quarter after 13F filings.

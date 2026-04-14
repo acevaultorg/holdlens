@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
+import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Most-owned stocks across superinvestors",
@@ -17,6 +18,8 @@ export default function TickerIndex() {
       <p className="text-muted text-lg max-w-2xl mb-12">
         {Object.keys(TICKER_INDEX).length} stocks ranked by how many tracked superinvestors hold them.
       </p>
+
+      <AdSlot format="horizontal" />
 
       <div className="rounded-2xl border border-border bg-panel overflow-hidden">
         <table className="w-full text-sm">
