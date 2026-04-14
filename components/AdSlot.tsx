@@ -1,26 +1,33 @@
 "use client";
-// Universal ad slot. Reads env vars to decide which network to render.
+// Universal ad slot — HoldLens v0.35 tiered strategy.
 //
-// Operator activation:
-//   1. Get a Google AdSense client ID (e.g. ca-pub-1234567890123456) — apply at adsense.google.com
-//      Set NEXT_PUBLIC_ADSENSE_CLIENT in Cloudflare Pages env vars + redeploy → ads serve.
-//   2. OR get a Carbon Ads serve code (carbonads.net, designer-friendly, fast approval)
-//      Set NEXT_PUBLIC_CARBON_SERVE + NEXT_PUBLIC_CARBON_PLACEMENT → Carbon serves.
-//   3. If neither is set, the component renders an unobtrusive placeholder linking to /pricing
-//      so the slot still drives some revenue (subscription upsell instead of zero revenue).
+// Rev-max without hurting UX / retention / SEO:
+//   1. CLS protection — every slot reserves min-height before load
+//   2. Lazy hydration — adsbygoogle.push() only when slot enters 200px of viewport
+//   3. Returning-visitor lite mode — `priority="secondary"` ads hide on 2nd+ visits
+//      (first-visit flag in localStorage, written on pagehide so all ads serve
+//      on the current page)
+//   4. "Remove ads with Pro" micro-CTA — ad fatigue → subscription revenue
+//   5. Plausible events — `ad_viewport`, `ad_removed_pro_click` for per-slot RPM audit
 //
-// All slot positions use this same component. Operator gets to flip a switch and ads start
-// rendering everywhere at once.
+// Priority tiers:
+//   - "primary"   → always render (first ad on any page; only ad on detail pages)
+//   - "secondary" → only render for first-visit users (extra ads on learn/info pages)
+//
+// Activation still just needs the 4 env vars on Cloudflare Pages:
+//   NEXT_PUBLIC_ADSENSE_CLIENT, _SLOT_HORIZONTAL, _SLOT_RECTANGLE, _SLOT_INARTICLE
 
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 declare global {
   interface Window {
     adsbygoogle?: object[];
+    plausible?: (event: string, opts?: { props?: Record<string, string | number> }) => void;
   }
 }
 
 type Format = "horizontal" | "rectangle" | "square" | "in-article";
+type Priority = "primary" | "secondary";
 
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "";
 const ADSENSE_SLOT_HORIZONTAL = process.env.NEXT_PUBLIC_ADSENSE_SLOT_HORIZONTAL || "";
@@ -29,47 +36,110 @@ const ADSENSE_SLOT_INARTICLE = process.env.NEXT_PUBLIC_ADSENSE_SLOT_INARTICLE ||
 const CARBON_SERVE = process.env.NEXT_PUBLIC_CARBON_SERVE || "";
 const CARBON_PLACEMENT = process.env.NEXT_PUBLIC_CARBON_PLACEMENT || "";
 
+const VISITED_KEY = "holdlens_visited_v1";
+
+// Module-level cache so every AdSlot on the same page gets the same verdict
+// and the flag is only written once (on pagehide, not on mount) — this way
+// ALL ads on the first-visit page serve, and only on the SECOND page load
+// do "secondary" ads start hiding.
+let returnFlagCache: boolean | null = null;
+
+function computeReturnFlag(): boolean {
+  if (returnFlagCache !== null) return returnFlagCache;
+  if (typeof window === "undefined") return false;
+  try {
+    const v = window.localStorage.getItem(VISITED_KEY);
+    returnFlagCache = !!v;
+  } catch {
+    returnFlagCache = false;
+  }
+  if (!returnFlagCache) {
+    const writeFlag = () => {
+      try {
+        window.localStorage.setItem(VISITED_KEY, String(Date.now()));
+      } catch {
+        // storage blocked — keep showing full ads next session too
+      }
+    };
+    window.addEventListener("pagehide", writeFlag, { once: true });
+  }
+  return returnFlagCache;
+}
+
 function pickAdsenseSlot(format: Format): string {
   if (format === "horizontal") return ADSENSE_SLOT_HORIZONTAL;
   if (format === "in-article") return ADSENSE_SLOT_INARTICLE;
   return ADSENSE_SLOT_RECTANGLE;
 }
 
+function minHeightClass(format: Format): string {
+  // Reserve space BEFORE the ad loads → prevents CLS → protects Core Web Vitals → protects SEO
+  if (format === "rectangle" || format === "square") return "min-h-[280px]";
+  if (format === "in-article") return "min-h-[300px]";
+  return "min-h-[120px] md:min-h-[110px]"; // horizontal: responsive banner
+}
+
 export default function AdSlot({
   format = "horizontal",
+  priority = "primary",
   className = "",
 }: {
   format?: Format;
+  priority?: Priority;
   className?: string;
 }) {
   const id = useId();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  const [hide, setHide] = useState(false);
+  const pushedRef = useRef(false);
 
-  // AdSense activation: load script + push ad on mount
+  // Returning-visitor lite mode — only hide SECONDARY ads for returning users
   useEffect(() => {
+    if (priority !== "secondary") return;
+    if (computeReturnFlag()) setHide(true);
+  }, [priority]);
+
+  // Lazy hydration — don't load the ad until it's near the viewport
+  useEffect(() => {
+    if (hide) return;
+    if (!containerRef.current) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const el = containerRef.current;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setInView(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px 200px 0px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [hide]);
+
+  // AdSense push — once inView, push the slot + fire Plausible viewport event
+  useEffect(() => {
+    if (!inView || hide) return;
+    if (pushedRef.current) return;
     if (!ADSENSE_CLIENT) return;
     try {
-      // Load the AdSense loader once
-      const existing = document.querySelector(
-        `script[src*="adsbygoogle.js?client=${ADSENSE_CLIENT}"]`
-      );
-      if (!existing) {
-        const s = document.createElement("script");
-        s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`;
-        s.async = true;
-        s.crossOrigin = "anonymous";
-        document.head.appendChild(s);
-      }
-      // Push the slot
       (window.adsbygoogle = window.adsbygoogle || []).push({});
+      pushedRef.current = true;
+      window.plausible?.("ad_viewport", { props: { format, priority } });
     } catch {
-      // Silent — don't break the page if AdSense errors
+      // silent — never break the page if AdSense errors
     }
-  }, []);
+  }, [inView, hide, format, priority]);
 
-  // Carbon Ads activation: inject the serve script into our container
+  // Carbon Ads — lazy-inject serve script once inView
   useEffect(() => {
     if (ADSENSE_CLIENT) return; // AdSense takes priority
+    if (!inView || hide) return;
     if (!CARBON_SERVE || !CARBON_PLACEMENT) return;
     if (!containerRef.current) return;
     if (containerRef.current.querySelector("script")) return;
@@ -78,24 +148,49 @@ export default function AdSlot({
     s.id = `_carbonads_js_${id}`;
     s.async = true;
     containerRef.current.appendChild(s);
-  }, [id]);
+  }, [inView, hide, id]);
 
-  // ----- Render branches -----
+  function handleProClick() {
+    try {
+      window.plausible?.("ad_removed_pro_click");
+    } catch {
+      // no-op
+    }
+  }
+
+  if (hide) return null;
+
+  const mh = minHeightClass(format);
 
   // 1. Google AdSense
   if (ADSENSE_CLIENT) {
     const slot = pickAdsenseSlot(format);
     return (
-      <div className={`my-8 ${className}`} aria-label="Advertisement">
-        <div className="text-[10px] uppercase tracking-widest text-dim mb-1">Advertisement</div>
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client={ADSENSE_CLIENT}
-          data-ad-slot={slot}
-          data-ad-format={format === "rectangle" ? "rectangle" : "auto"}
-          data-full-width-responsive="true"
-        />
+      <div
+        ref={containerRef}
+        className={`my-8 ${mh} ${className}`}
+        aria-label="Advertisement"
+      >
+        <div className="flex items-center justify-between mb-1">
+          <div className="text-[10px] uppercase tracking-widest text-dim">Advertisement</div>
+          <a
+            href="/pricing"
+            className="text-[10px] text-dim hover:text-brand transition"
+            onClick={handleProClick}
+          >
+            Remove with Pro →
+          </a>
+        </div>
+        {inView ? (
+          <ins
+            className="adsbygoogle"
+            style={{ display: "block" }}
+            data-ad-client={ADSENSE_CLIENT}
+            data-ad-slot={slot}
+            data-ad-format={format === "rectangle" ? "rectangle" : "auto"}
+            data-full-width-responsive="true"
+          />
+        ) : null}
       </div>
     );
   }
@@ -106,14 +201,13 @@ export default function AdSlot({
       <div
         ref={containerRef}
         id={`carbon-slot-${id}`}
-        className={`my-8 ${className}`}
+        className={`my-8 ${mh} ${className}`}
         aria-label="Sponsored"
       />
     );
   }
 
-  // 3. Fallback: subscription upsell
-  // Better than empty space — drives Pro tier signups instead of nothing.
+  // 3. Fallback — subscription upsell (better than empty space)
   return (
     <a
       href="/pricing"

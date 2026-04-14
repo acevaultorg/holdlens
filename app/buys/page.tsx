@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import CsvExportButton from "@/components/CsvExportButton";
 import TrendBadge from "@/components/TrendBadge";
-import AdSlot from "@/components/AdSlot";
 import { getBuySignals, ratingLabel } from "@/lib/signals";
 import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
@@ -165,8 +164,6 @@ export default function BuysPage() {
           One email per 13F filing season. Top 10 buy signals ranked by the recommendation model.
         </p>
       </div>
-
-      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-8">
         Recommendation scores are derived from publicly disclosed 13F filings. Past positioning by these managers

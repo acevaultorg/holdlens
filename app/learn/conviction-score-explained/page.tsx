@@ -74,7 +74,7 @@ export default function ConvictionPage() {
           </li>
         </ul>
 
-        <AdSlot format="in-article" />
+        <AdSlot format="in-article" priority="primary" />
 
         <h2 className="text-2xl font-bold mt-8 mb-3">Reading the number</h2>
         <p className="text-muted">
@@ -147,6 +147,8 @@ export default function ConvictionPage() {
           The full six-layer formula lives in the project repo and is described in detail on the{" "}
           <a href="/methodology" className="underline">methodology page</a>. Not investment advice.
         </p>
+
+        <AdSlot format="horizontal" priority="secondary" />
       </div>
     </div>
   );

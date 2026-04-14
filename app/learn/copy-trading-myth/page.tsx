@@ -39,7 +39,7 @@ export default function CopyMythPage() {
           career-ending for you.</strong>
         </p>
 
-        <AdSlot format="in-article" />
+        <AdSlot format="in-article" priority="primary" />
 
         <h2 className="text-2xl font-bold mt-8 mb-3">So what IS HoldLens for?</h2>
         <ul className="text-muted space-y-3 list-disc list-inside">
@@ -68,6 +68,8 @@ export default function CopyMythPage() {
         <p className="text-xs text-dim pt-8 border-t border-border mt-12">
           Not investment advice. See <a href="/methodology" className="underline">methodology</a>.
         </p>
+
+        <AdSlot format="horizontal" priority="secondary" />
       </div>
     </div>
   );

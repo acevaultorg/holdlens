@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
-import AdSlot from "@/components/AdSlot";
 import { getTopBuys, getTopSells, convictionLabel } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
@@ -59,8 +58,6 @@ export default function BestNowPage() {
           </div>
         )}
       </section>
-
-      <AdSlot format="horizontal" />
 
       {/* TOP SELLS */}
       <section className="mt-16 mb-16">

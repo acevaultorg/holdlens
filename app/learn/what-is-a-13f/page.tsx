@@ -60,7 +60,7 @@ export default function What13FPage() {
           <li><strong className="text-text">Cash position</strong> — not disclosed</li>
         </ul>
 
-        <AdSlot format="in-article" />
+        <AdSlot format="in-article" priority="primary" />
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Should I copy 13F trades?</h2>
         <p className="text-muted">
@@ -79,6 +79,8 @@ export default function What13FPage() {
           Not investment advice. See <a href="/methodology" className="underline">methodology</a> for how we parse
           and score every filing.
         </p>
+
+        <AdSlot format="horizontal" priority="secondary" />
       </div>
     </div>
   );
