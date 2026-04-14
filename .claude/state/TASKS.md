@@ -1,5 +1,24 @@
 # HoldLens — TASKS
 
+## Queue (v0.38 — /value killer combo page) — SHIPPED [objective:v38-smart-money-value]
+
+- [x] `P0` BUILD app/value/page.tsx server component — top-50 buy candidates server-rendered, hero + explainer + cross-links [id:value-server] [score:13.0] ⏱ done v0.38
+- [x] `P0` BUILD app/value/ValueClient.tsx client island — live quotes, threshold control (≤15/25/40/all), 52w range visualizer, blended value score sort [id:value-client] [score:13.0] ⏱ done v0.38
+- [x] `P0` WIRE /value into header nav, mobile nav, footer [id:wire-value-nav] [score:10.0] ⏱ done v0.38
+- [x] `P0` BUILD + verify static export — 488 HTML pages, /value 6.29 kB, zero errors [id:verify-v38] [score:11.0] ⏱ done
+- [x] `P0` COMMIT + push [id:commit-v38] [score:10.0]
+
+## Queue (v0.37 — Dataroma parity sweep) — SHIPPED [objective:v37-dataroma-parity]
+
+- [x] `P1` BUILD components/SectorBreakdown.tsx server component — stacked bar + color-coded legend, groups holdings by sector [id:sector-component] [score:10.0] ⏱ done v0.37 ced5fe47
+- [x] `P1` WIRE SectorBreakdown into /investor/[slug] + /investor/warren-buffett above Top holdings [id:wire-sector] [score:9.0] ⏱ done v0.37 ced5fe47
+- [x] `P1` ADD "Most-owned by superinvestors" secondary ranking to /grand — raw ownership-count sort alternative to quality-weighted view [id:most-owned] [score:9.0] ⏱ done v0.37 ced5fe47
+- [x] `P2` EXPORT SECTOR_MAP from lib/tickers.ts for reuse across components [id:export-sectormap] [score:5.0] ⏱ done v0.37
+- [x] `P2` DELETE app/api/subscribe/route.ts dead placeholder (conflicted with CF Pages Function) [id:cleanup-api-route] [score:4.0] ⏱ done v0.37 ced5fe47
+- [x] `P1` ADD %-above-52w-low column + "Near 52w low" filter + "Closest to 52w low" sort to /screener — Dataroma's power-user value-hunting view [id:screener-52w] [score:11.0] ⏱ done v0.37.1 bde924f0
+- [x] `P0` BUILD + verify static export — 493 pages, zero errors [id:verify-v37] [score:11.0] ⏱ done
+- [x] `P0` COMMIT + push [id:commit-v37] [score:10.0] ⏱ done — bde924f0 on acepilot/v0.25-unified-score
+
 ## Queue (v0.36 — Resend email capture wire) — SHIPPED [objective:v36-email-funnel]
 
 - [x] `P1` BUILD functions/api/subscribe.ts — CF Pages Function replacing dead Next.js API route; honeypot + regex validation; graceful pre-activation (200 w/ pending:true if RESEND_API_KEY missing); Resend audiences contact add + welcome email in parallel [id:cf-function] [score:10.0] ⏱ done v0.36

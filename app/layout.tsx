@@ -79,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* Desktop nav — md and up */}
             <nav className="hidden md:flex items-center gap-4 text-sm text-muted">
               <a href="/best-now" className="hover:text-brand transition font-semibold">Best now</a>
+              <a href="/value" className="hover:text-emerald-400 transition font-semibold">Value</a>
               <a href="/portfolio" className="hover:text-brand transition font-semibold">My portfolio</a>
               <a href="/proof" className="hover:text-emerald-400 transition font-semibold">Proof</a>
               <a href="/leaderboard" className="hover:text-text transition">Leaderboard</a>
@@ -115,6 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice. · <span className="opacity-50 text-xs">Powered by AcePilot</span></div>
             <div className="flex gap-5 flex-wrap">
               <a href="/best-now" className="hover:text-brand font-semibold">Best now</a>
+              <a href="/value" className="hover:text-emerald-400 font-semibold">Value</a>
               <a href="/proof" className="hover:text-emerald-400 font-semibold">Proof</a>
               <a href="/buys" className="hover:text-emerald-400">Buys</a>
               <a href="/sells" className="hover:text-rose-400">Sells</a>
