@@ -42,6 +42,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://plausible.io/js/script.js"
           strategy="afterInteractive"
         />
+        {/* AdSense site verification — loads the loader script on every page so Google
+            can verify ownership during onboarding and auto-ads can serve after approval. */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7449214764048186"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+        <meta name="google-adsense-account" content="ca-pub-7449214764048186" />
       </head>
       <body className="min-h-screen bg-bg text-text font-sans">
         <LiveTicker symbols={TICKER_SCROLL} />
