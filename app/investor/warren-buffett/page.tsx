@@ -4,6 +4,7 @@ import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
 import InvestorMoves from "@/components/InvestorMoves";
 import ManagerROICard from "@/components/ManagerROICard";
+import AdSlot from "@/components/AdSlot";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
@@ -114,6 +115,8 @@ export default function BuffettPage() {
           </table>
         </div>
       </section>
+
+      <AdSlot format="horizontal" priority="primary" />
 
       <section className="mt-16 rounded-2xl border border-border bg-panel p-8">
         <h2 className="text-2xl font-bold mb-3">Want Buffett move-alerts?</h2>
