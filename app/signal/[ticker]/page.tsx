@@ -14,9 +14,41 @@ import AdSlot from "@/components/AdSlot";
 import TrendBadge from "@/components/TrendBadge";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
-import { formatSignedScore, convictionLabel } from "@/lib/conviction";
+import { formatSignedScore, convictionLabel, getConviction } from "@/lib/conviction";
 import { MANAGERS } from "@/lib/managers";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
+
+// ---------- GLOBAL BIG-BETS RANK CACHE ----------
+// Same formula as /big-bets page: for every (manager, holding) excluding
+// managers' own companies, combined score = positionPct × max(0, conviction).
+// Ranks all bets globally; exposes per-ticker rank for the highest-scoring
+// bet on that ticker. Module-level cached so all 94 signal pages share
+// one computation during static export.
+type TickerRankInfo = { rank: number; total: number; topOwner: string; topOwnerSlug: string };
+let _rankCache: Map<string, TickerRankInfo> | null = null;
+function getBigBetsRankInfo(ticker: string): TickerRankInfo | null {
+  if (!_rankCache) {
+    type Row = { mgrSlug: string; mgrName: string; ticker: string; combined: number };
+    const rows: Row[] = [];
+    for (const m of MANAGERS) {
+      for (const h of m.topHoldings) {
+        if (h.name.toLowerCase().includes("(own)")) continue;
+        const conv = getConviction(h.ticker);
+        const combined = h.pct * Math.max(0, conv.score);
+        if (combined > 0) rows.push({ mgrSlug: m.slug, mgrName: m.name, ticker: h.ticker, combined });
+      }
+    }
+    rows.sort((a, b) => b.combined - a.combined);
+    const cache = new Map<string, TickerRankInfo>();
+    rows.forEach((r, idx) => {
+      if (!cache.has(r.ticker)) {
+        cache.set(r.ticker, { rank: idx + 1, total: rows.length, topOwner: r.mgrName, topOwnerSlug: r.mgrSlug });
+      }
+    });
+    _rankCache = cache;
+  }
+  return _rankCache.get(ticker.toUpperCase()) ?? null;
+}
 
 export async function generateStaticParams() {
   return Object.keys(TICKER_INDEX).map((ticker) => ({ ticker }));
@@ -281,38 +313,76 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         <TickerNews symbol={t.symbol} count={8} />
       </section>
 
-      {/* Ownership */}
+      {/* Bet-size view — who's betting biggest, visualized. Replaces the
+          plain ownership table with a horizontal bar chart so the reader
+          immediately sees conviction differentials. Also surfaces this
+          ticker's global rank in /big-bets (size × conviction screen). */}
       <section className="mt-12">
-        <h2 className="text-2xl font-bold mb-3">Current ownership</h2>
-        <p className="text-muted text-sm mb-6 max-w-2xl">
-          {t.ownerCount} tracked superinvestor{t.ownerCount > 1 ? "s" : ""} currently hold {t.symbol} as a top
-          position.
-        </p>
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="text-dim text-xs uppercase tracking-wider">
-              <tr className="border-b border-border">
-                <th className="text-left px-5 py-3">Manager</th>
-                <th className="text-right px-5 py-3">% Portfolio</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...t.owners].sort((a, b) => b.pct - a.pct).map((o) => (
-                <tr key={o.slug} className="border-b border-border last:border-0">
-                  <td className="px-5 py-3">
-                    <a href={`/investor/${o.slug}`} className="text-text hover:text-brand transition font-semibold">
-                      {o.manager}
-                    </a>
-                    <div className="text-xs text-dim mt-0.5 max-w-md">{o.thesis}</div>
-                  </td>
-                  <td className="px-5 py-3 text-right tabular-nums text-brand font-semibold">
-                    {o.pct.toFixed(1)}%
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="flex items-baseline justify-between mb-3 gap-3 flex-wrap">
+          <h2 className="text-2xl font-bold">Who&rsquo;s betting biggest on {t.symbol}</h2>
+          {(() => {
+            const rankInfo = getBigBetsRankInfo(t.symbol);
+            if (!rankInfo) return null;
+            return (
+              <a
+                href="/big-bets"
+                className="text-xs font-semibold text-brand hover:underline whitespace-nowrap"
+              >
+                → Ranks #{rankInfo.rank} of {rankInfo.total} tracked bets
+              </a>
+            );
+          })()}
         </div>
+        <p className="text-muted text-sm mb-6 max-w-2xl">
+          Each bar is one manager&rsquo;s position size in {t.symbol} as a % of their portfolio. Longer bar
+          = bigger conviction bet. T1 badge marks the highest-quality track records.
+        </p>
+        {(() => {
+          const sortedOwners = [...t.owners].sort((a, b) => b.pct - a.pct);
+          const maxPct = sortedOwners[0]?.pct ?? 1;
+          return (
+            <div className="rounded-2xl border border-border bg-panel p-5">
+              <div className="space-y-4">
+                {sortedOwners.map((o) => {
+                  const widthPct = maxPct > 0 ? Math.max(2, (o.pct / maxPct) * 100) : 0;
+                  const quality = MANAGER_QUALITY[o.slug] ?? 6;
+                  const tier1 = quality >= 9;
+                  return (
+                    <div key={o.slug}>
+                      <div className="flex items-baseline justify-between gap-3 mb-1.5">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <a
+                            href={`/investor/${o.slug}`}
+                            className="text-sm font-semibold text-text hover:text-brand transition truncate"
+                          >
+                            {o.manager}
+                          </a>
+                          {tier1 && (
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-brand bg-brand/10 border border-brand/30 rounded px-1.5 py-0.5 shrink-0">
+                              T1
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-sm font-bold tabular-nums text-brand">
+                          {o.pct.toFixed(1)}%
+                        </span>
+                      </div>
+                      <div className="h-2 bg-bg/60 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full ${tier1 ? "bg-brand" : "bg-emerald-400/70"}`}
+                          style={{ width: `${widthPct}%` }}
+                        />
+                      </div>
+                      {o.thesis && (
+                        <div className="text-xs text-dim mt-1.5 max-w-2xl italic">&ldquo;{o.thesis}&rdquo;</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
       </section>
 
       {/* Mid-page ad slot */}
