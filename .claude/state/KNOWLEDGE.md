@@ -7,11 +7,27 @@
 - Tailwind custom palette: `bg #0a0a0a`, `panel #141414`, `border #262626`,
   `text #e5e5e5`, `muted #9ca3af`, `dim #6b7280`, `brand #fbbf24` (amber/yellow)
 
-## Deploy target <!-- verified: 2026-04-10 -->
-- Primary: Cloudflare Pages (current production at holdlens.com)
-- Also: Vercel (secondary, from git log). Static export works on either.
-- Deploy is currently a `[👤]` task — no CI auto-push yet. Use:
-  `cd holdlens && vercel --prod` or push to the CF-connected branch.
+## Deploy target <!-- verified: 2026-04-14 -->
+- Primary: Cloudflare Pages at holdlens.com (project name: `holdlens`).
+- **CRITICAL**: The CF Pages project is **NOT git-integrated**. Git push to
+  main does NOT deploy. Every ship MUST end with a manual wrangler upload:
+  ```
+  cd holdlens && npm run build && \
+    npx wrangler pages deploy out --project-name=holdlens --branch=main --commit-dirty=true
+  ```
+  Wrangler auth lives at `~/Library/Preferences/.wrangler/config/default.toml`
+  (OAuth; refreshes automatically). Account ID `72bfd26c5f3c935393a25e5c0dea6039`.
+- **Failure mode seen 2026-04-14**: 4-day deploy gap — v0.36–v0.44 (9 versions)
+  were all sat in main + out/ but never pushed to CF because git-push-only was
+  assumed to be enough. Curl to holdlens.com returned stale JS chunks from an
+  old branch (`acepilot/insiders-page`). Fix: ran the wrangler command above;
+  1191 files uploaded in 34.94s; all new routes immediately live.
+- **Deploy Truth check**: after every `wrangler pages deploy`, curl the new
+  route path and grep for an element that only exists in the new code (e.g.
+  the new page's h1). HTTP 200 alone is NOT proof — parking pages and old
+  deploys return 200.
+- Vercel CLI is also configured as a secondary target, but holdlens.com DNS
+  points to Cloudflare — do not use `vercel --prod` as the shipping step.
 
 ## Live data architecture <!-- verified: 2026-04-10 -->
 - **Primary endpoint:** `https://query1.finance.yahoo.com/v8/finance/chart/{SYMBOL}?interval=1d&range={range}`

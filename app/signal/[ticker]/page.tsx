@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LiveQuote from "@/components/LiveQuote";
 import LiveChart from "@/components/LiveChart";
+import Signal52wRange from "@/components/Signal52wRange";
 import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
@@ -253,6 +254,11 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
       {/* Live price + chart */}
       <section className="mt-8">
         <LiveQuote symbol={t.symbol} size="xl" />
+      </section>
+
+      {/* 52-week range visualizer — value context for the live price */}
+      <section className="mt-6">
+        <Signal52wRange symbol={t.symbol} />
       </section>
 
       <section className="mt-8">

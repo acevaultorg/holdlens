@@ -1,6 +1,15 @@
 # HoldLens — TASKS
 
-## Queue (v0.45+ backlog — Dataroma parity sweep continues)
+## Queue (v0.45 — /new-positions fresh-money feed) — SHIPPED [objective:v45-new-positions]
+
+- [x] `P0` BUILD app/new-positions/page.tsx — filter "new" action moves in LATEST_QUARTER, rank by positionPct × managerQuality × (1 + max(0,convScore)/100); top 3 hero cards + top 50 table + sector breakdown + busiest-managers panel + why-this-beats-dataroma + CTA [id:new-positions] [score:10.0] ⏱ done v0.45 c996e5d9
+- [x] `P0` WIRE /new-positions into layout.tsx desktop nav (lg+) + footer + MobileNav PRIMARY_LINKS [id:wire-new-positions] [score:8.0] ⏱ done v0.45
+- [x] `P0` BUILD + verify static export (1.76 kB route, 102 kB First Load JS), fix convictionDirection literal type (NEUTRAL not HOLD) [id:verify-v45] [score:10.0] ⏱ done
+- [x] `P0` COMMIT main c996e5d9 + push 2fd38fbd..c996e5d9 [id:commit-v45] [score:10.0] ⏱ done
+- [x] `P0` DEPLOY via wrangler pages deploy out — RESCUED 4-DAY DEPLOY GAP, v0.36–v0.44 (9 versions) were stale on CF; 1191 files uploaded in 34.94s; knowledge of manual-deploy requirement now in KNOWLEDGE.md [id:deploy-v45-rescue] [score:15.0] ⏱ done
+- [x] `P0` VERIFY live via Chrome MCP — /big-bets/ h1 "Where the best investors bet biggest." + 70 rows, /new-positions/ h1 "New positions from the best investors" + 50 rows + 3 hero cards [id:verify-v45-live] [score:10.0] ⏱ done
+
+## Queue (v0.46+ backlog — Dataroma parity sweep continues)
 
 Priority = (revenue impact × reversibility) / effort. Top of list executed first.
 
@@ -11,7 +20,6 @@ Priority = (revenue impact × reversibility) / effort. Top of list executed firs
 - [ ] `P0` BUILD /sector/[slug] mini-rotation pages — 12 sector landing pages, each with net-flow trend + top 10 names in sector, hot-linked from /rotation [id:sector-mini-pages] [score:11.0]
 - [ ] `P0` BUILD /crowded-trades page — highest owner_count tickers with conviction signal split (shows consensus crowding risk) [id:crowded-trades] [score:11.0]
 - [ ] `P0` BUILD /contrarian-bets page — tickers where ≥2 tier-1 managers are buying AND ≥2 tier-1 managers are selling (smart money disagreement) [id:contrarian-bets] [score:11.0]
-- [ ] `P0` BUILD /new-positions page — "fresh money" feed showing all "new" action moves across 30 managers in LATEST_QUARTER, ranked by combined score [id:new-positions] [score:10.0]
 - [ ] `P0` BUILD /exits page — all "exit" action moves, with prior position pct + combined "how big was the bet that just ended" score [id:exits] [score:10.0]
 - [ ] `P0` BUILD /concentration page — manager portfolio concentration rankings (top-5 pct, top-10 pct), highlights low-diversification high-quality investors [id:concentration] [score:10.0]
 - [ ] `P0` BUILD /consensus page — tickers owned by ≥5 tier-1 managers with positive conviction and net buying last quarter [id:consensus] [score:10.0]
