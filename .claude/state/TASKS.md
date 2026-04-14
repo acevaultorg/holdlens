@@ -1,5 +1,13 @@
 # HoldLens — TASKS
 
+## Queue (v0.41 — manager overlap matrix) — SHIPPED [objective:v41-overlap-matrix]
+
+- [x] `P1` BUILD overlap matrix heatmap on /compare/managers — 15×15 grid, shared ticker count per cell, 5-tier opacity scale, clickable to pair comparison [id:overlap-matrix] [score:11.0] ⏱ done v0.41
+- [x] `P1` ADD "Most similar pairs" derived ranking — top 8 pairs by shared count, ticker chips inline [id:most-similar] [score:8.0] ⏱ done v0.41
+- [x] `P1` ADD diagonal labels rotated 60° for compact header row [id:matrix-header] [score:5.0] ⏱ done v0.41
+- [x] `P0` BUILD + verify static export [id:verify-v41] [score:10.0] ⏱ done
+- [x] `P0` COMMIT + push [id:commit-v41] [score:10.0]
+
 ## Queue (v0.40 — /big-bets size × conviction screen) — SHIPPED [objective:v40-big-bets]
 
 - [x] `P1` BUILD app/big-bets/page.tsx server component — iterates all 30 managers × topHoldings, computes conviction score per ticker, combined bet score = positionPct × max(0, score), sorts top 50 [id:big-bets-server] [score:12.0] ⏱ done v0.40
