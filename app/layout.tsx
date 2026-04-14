@@ -3,6 +3,7 @@ import Script from "next/script";
 import GlobalSearch from "@/components/GlobalSearch";
 import LiveTicker from "@/components/LiveTicker";
 import MobileNav from "@/components/MobileNav";
+import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
 
 const TICKER_SCROLL = ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "BRK-B", "AMZN", "JPM", "BAC", "KO", "CVX", "OXY", "AXP", "CMG", "V"];
@@ -36,6 +37,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <head>
+        {/* Google Consent Mode v2 — default "denied" until CookieConsent banner grants.
+            Required by Google for EU traffic serving ads via AdSense. Must run before
+            any Google scripts load, so strategy is beforeInteractive. */}
+        <Script id="gtag-consent-default" strategy="beforeInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+            gtag('consent','default',{
+              ad_storage:'denied',
+              ad_user_data:'denied',
+              ad_personalization:'denied',
+              analytics_storage:'denied',
+              wait_for_update:500
+            });
+            try{var c=localStorage.getItem('holdlens_cookie_consent_v1');
+              if(c==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
+            }catch(e){}`}
+        </Script>
         <Script
           defer
           data-domain="holdlens.com"
@@ -74,6 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
         <main>{children}</main>
+        <CookieConsent />
         <footer className="border-t border-border mt-24">
           {/* Data freshness band */}
           <div className="border-b border-border bg-panel/30">
@@ -120,8 +138,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/faq" className="hover:text-text">FAQ</a>
               <a href="/docs" className="hover:text-text">API docs</a>
               <a href="/about" className="hover:text-text">About</a>
+              <a href="/contact" className="hover:text-text">Contact</a>
               <a href="/press" className="hover:text-text">Press</a>
               <a href="/changelog" className="hover:text-text">Changelog</a>
+              <a href="/privacy" className="hover:text-text">Privacy</a>
+              <a href="/terms" className="hover:text-text">Terms</a>
             </div>
           </div>
         </footer>
