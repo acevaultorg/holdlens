@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import CsvExportButton from "@/components/CsvExportButton";
 import { MANAGERS } from "@/lib/managers";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
 
@@ -89,12 +90,20 @@ export default function ConcentrationPage() {
         position size</span>. A 25% top-1 is screaming conviction. A 4% top-1 is
         professional diversification.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Fleet averages: top-1{" "}
         <span className="text-text font-semibold tabular-nums">{avgTop1.toFixed(1)}%</span> ·{" "}
         top-3 <span className="text-text font-semibold tabular-nums">{avgTop3.toFixed(1)}%</span> ·{" "}
         top-5 <span className="text-text font-semibold tabular-nums">{avgTop5.toFixed(1)}%</span>.
       </p>
+      <div className="mb-10 flex items-center gap-2 flex-wrap">
+        <CsvExportButton
+          endpoint="/api/v1/concentration.json"
+          filename="holdlens-concentration"
+          label="Export concentration CSV"
+        />
+        <span className="text-xs text-dim">Free download — no signup.</span>
+      </div>
 
       {/* Two hero blocks */}
       <div className="grid md:grid-cols-2 gap-6 mb-12">

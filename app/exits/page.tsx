@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import CsvExportButton from "@/components/CsvExportButton";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX } from "@/lib/tickers";
@@ -105,10 +106,18 @@ export default function ExitsPage() {
         superinvestor who <span className="text-rose-400 font-semibold">sold every share</span>{" "}
         of a position — zero remaining, no cost averaging back in, fully gone.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Exits are the rawest capitulation signal. An &ldquo;add&rdquo; or &ldquo;trim&rdquo;
         is ambiguous. An exit means the thesis broke.
       </p>
+      <div className="mb-10 flex items-center gap-2 flex-wrap">
+        <CsvExportButton
+          endpoint="/api/v1/exits.json"
+          filename="holdlens-exits"
+          label="Export exits CSV"
+        />
+        <span className="text-xs text-dim">Free download — no signup.</span>
+      </div>
 
       {/* Stats strip */}
       <div className="grid grid-cols-3 gap-4 mb-12">

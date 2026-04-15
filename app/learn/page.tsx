@@ -5,10 +5,13 @@ export const metadata: Metadata = {
   description: "Free guides to 13F filings, copy-trading, hedge fund tracking, and how superinvestors think.",
 };
 
-const ARTICLES = [
+type Article = { slug: string; title: string; desc: string; coming?: boolean };
+
+const ARTICLES: Article[] = [
+  { slug: "superinvestor-handbook", title: "The Superinvestor Handbook", desc: "The full 10-section guide — 13F filings, conviction signals, copy-trading myths, and the honest limits of smart-money data. ~15 min read." },
   { slug: "what-is-a-13f", title: "What is a 13F filing?", desc: "Plain English guide to SEC Form 13F. What's in it, when it drops, what it does and doesn't show." },
-  { slug: "how-to-copy-buffett", title: "Can you actually copy Warren Buffett?", desc: "The honest answer about copy-trading 13F filings. (Hint: not the way you think.)", coming: true },
-  { slug: "conviction-score-explained", title: "What is a Conviction Score?", desc: "How to tell a real bet from index padding.", coming: true },
+  { slug: "copy-trading-myth", title: "The copy-trading myth", desc: "Why mechanically copying Buffett's 13F underperforms the underlying portfolio." },
+  { slug: "conviction-score-explained", title: "What is a Conviction Score?", desc: "How to tell a real bet from index padding. The −100..+100 scale explained." },
 ];
 
 export default function LearnIndex() {

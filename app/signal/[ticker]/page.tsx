@@ -15,6 +15,7 @@ import SignalShareCard from "@/components/SignalShareCard";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import AdSlot from "@/components/AdSlot";
 import TrendBadge from "@/components/TrendBadge";
+import FoundersNudge from "@/components/FoundersNudge";
 import RelatedSignals from "@/components/RelatedSignals";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
@@ -477,6 +478,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
       <RelatedSignals symbol={t.symbol} />
 
       {/* Mid-page ad slot */}
+      <FoundersNudge context={`You're reading the full smart-money dossier on ${t.symbol}.`} />
       <AdSlot format="in-article" />
 
       {/* Share */}

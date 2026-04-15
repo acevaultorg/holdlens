@@ -7,6 +7,7 @@ import InvestorMoves from "@/components/InvestorMoves";
 import ManagerROICard from "@/components/ManagerROICard";
 import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -195,6 +196,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
+      <FoundersNudge context={`You're reading ${m.name}'s full 13F portfolio and conviction signals.`} />
       <AdSlot format="horizontal" />
 
       <section className="mt-16 rounded-2xl border border-border bg-panel p-8">

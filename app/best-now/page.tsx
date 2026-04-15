@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
 import CsvExportButton from "@/components/CsvExportButton";
+import FoundersNudge from "@/components/FoundersNudge";
 import { getTopBuys, getTopSells, convictionLabel } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
@@ -89,6 +90,8 @@ export default function BestNowPage() {
           </div>
         )}
       </section>
+
+      <FoundersNudge tone="emerald" context="You're reading the top smart-money buy signals right now." />
 
       {/* Methodology callout */}
       <section className="rounded-2xl border border-border bg-panel p-6">

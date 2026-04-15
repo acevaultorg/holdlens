@@ -29,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/changelog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     // Already-live routes that were never in the sitemap
     { url: `${base}/activity`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    // Learn hub — evergreen SEO content, high long-term value
+    { url: `${base}/learn`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}/learn/superinvestor-handbook`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/learn/what-is-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/learn/copy-trading-myth`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/learn/conviction-score-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/grand`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/screener`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/leaderboard`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },

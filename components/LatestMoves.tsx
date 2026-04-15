@@ -1,6 +1,8 @@
 import { MANAGERS } from "@/lib/managers";
 import { getAllMovesEnriched, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { getConviction } from "@/lib/conviction";
+import { TICKER_INDEX } from "@/lib/tickers";
+import SectorBadge from "@/components/SectorBadge";
 
 // <LatestMoves /> — homepage engagement lever, ported from Dataroma's biggest
 // time-on-site pattern. Reads enriched MERGED_MOVES at build time, takes the
@@ -15,6 +17,7 @@ import { getConviction } from "@/lib/conviction";
 type Row = {
   quarter: Quarter;
   ticker: string;
+  sector: string | null;
   managerName: string;
   managerSlug: string;
   fund: string;
@@ -45,9 +48,11 @@ function computeRows(): Row[] {
     if (impact <= 5) continue;
     const mgr = MANAGERS.find((m) => m.slug === mv.managerSlug);
     if (!mgr) continue;
+    const td = TICKER_INDEX[mv.ticker];
     out.push({
       quarter: mv.quarter as Quarter,
       ticker: mv.ticker,
+      sector: td?.sector ?? null,
       managerName: mgr.name,
       managerSlug: mgr.slug,
       fund: mgr.fund,
@@ -119,6 +124,11 @@ export default function LatestMoves() {
                   >
                     {r.ticker}
                   </a>
+                  {r.sector && (
+                    <div className="mt-1 hidden sm:block">
+                      <SectorBadge sector={r.sector} />
+                    </div>
+                  )}
                 </td>
                 <td className="px-4 py-3">
                   <a

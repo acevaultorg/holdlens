@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import CsvExportButton from "@/components/CsvExportButton";
 import { MANAGERS } from "@/lib/managers";
 import { MANAGER_QUALITY } from "@/lib/signals";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
@@ -150,11 +151,19 @@ export default function OverlapPage() {
         at least one top holding. Ranked by shared-holding count, then by joint weight in
         both portfolios.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Dataroma lets you browse one manager at a time. HoldLens overlap surfaces the
         consensus lattice — if two independent managers with different philosophies both
         pile into the same name, that's a stronger signal than either holding alone.
       </p>
+      <div className="mb-10 flex items-center gap-2 flex-wrap">
+        <CsvExportButton
+          endpoint="/api/v1/overlap.json"
+          filename="holdlens-overlap"
+          label="Export overlap matrix CSV"
+        />
+        <span className="text-xs text-dim">Free download — no signup.</span>
+      </div>
 
       {/* Stats strip */}
       <div className="grid grid-cols-3 gap-4 mb-12">

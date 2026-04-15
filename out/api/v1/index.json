@@ -62,6 +62,18 @@
       "desc": "Tickers where ≥2 managers buying AND ≥2 selling, last 4Q — the debate signal"
     },
     {
+      "path": "/concentration.json",
+      "desc": "Managers ranked by top-1 / top-3 / top-5 position concentration"
+    },
+    {
+      "path": "/exits.json",
+      "desc": "Top 300 full-exit 13F moves ranked by size of the bet that just ended"
+    },
+    {
+      "path": "/overlap.json",
+      "desc": "All manager pairs with shared topHoldings — Jaccard similarity matrix"
+    },
+    {
       "path": "/best-now.json",
       "desc": "Top 50 buy candidates"
     },
@@ -75,7 +87,7 @@
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T11:34:40.459Z",
+    "generated_at": "2026-04-15T11:55:36.998Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

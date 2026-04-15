@@ -23,6 +23,9 @@
  *   /api/v1/consensus.json                — widely-held + bullish + net-buying tickers
  *   /api/v1/crowded.json                  — highest-ownership tickers with unwind signal
  *   /api/v1/contrarian.json               — tickers where ≥2 buy AND ≥2 sell, last 4Q
+ *   /api/v1/concentration.json            — managers ranked by top-1/3/5 position weight
+ *   /api/v1/exits.json                    — every "exit" action move, ranked by prior bet size
+ *   /api/v1/overlap.json                  — manager pair overlap (shared holdings counts)
  *   /api/v1/best-now.json                 — top 50 buy candidates
  *   /api/v1/value.json                    — smart money × 52w low combo
  *   /api/v1/quarters.json                 — available 13F quarters
@@ -605,6 +608,136 @@ async function main(): Promise<void> {
     }),
   });
 
+  // ---------- /concentration.json — managers by top-1/3/5 position weight ----------
+  // Mirrors /concentration page. Sorted by top1_pct desc (most concentrated first).
+  type ConcentrationRow = {
+    rank: number;
+    slug: string;
+    name: string;
+    fund: string;
+    top1_ticker: string;
+    top1_pct: number;
+    top1_conviction: number;
+    top3_pct: number;
+    top5_pct: number;
+    holdings_count: number;
+  };
+  const concAccum: Omit<ConcentrationRow, "rank">[] = [];
+  for (const m of MANAGERS) {
+    const sortedHoldings = [...m.topHoldings].sort((a, b) => b.pct - a.pct);
+    if (sortedHoldings.length === 0) continue;
+    const top1 = sortedHoldings[0];
+    const top3 = sortedHoldings.slice(0, 3).reduce((s, h) => s + h.pct, 0);
+    const top5 = sortedHoldings.slice(0, 5).reduce((s, h) => s + h.pct, 0);
+    const top1Conv = convBySym.get(top1.ticker) ?? getConviction(top1.ticker);
+    concAccum.push({
+      slug: m.slug,
+      name: m.name,
+      fund: m.fund,
+      top1_ticker: top1.ticker,
+      top1_pct: Math.round(top1.pct * 10) / 10,
+      top1_conviction: top1Conv.score,
+      top3_pct: Math.round(top3 * 10) / 10,
+      top5_pct: Math.round(top5 * 10) / 10,
+      holdings_count: sortedHoldings.length,
+    });
+  }
+  concAccum.sort((a, b) => b.top1_pct - a.top1_pct);
+  const concentration: ConcentrationRow[] = concAccum.map((r, i) => ({ rank: i + 1, ...r }));
+  await writeJson("concentration.json", {
+    data: concentration,
+    meta: meta({
+      count: concentration.length,
+      sort: "top1_pct desc",
+      note: "Higher top1_pct = more concentrated; lower = more diversified.",
+    }),
+  });
+
+  // ---------- /exits.json — full-exit moves ranked by prior bet size ----------
+  type ExitRow = {
+    rank: number;
+    ticker: string;
+    manager: string;
+    manager_slug: string;
+    fund: string;
+    quarter: string;
+    quarter_label: string;
+    portfolio_impact_pct: number | null;
+    delta_pct: number | null;
+  };
+  const exitsAccum: Omit<ExitRow, "rank">[] = [];
+  for (const mv of enrichedMoves) {
+    if (mv.action !== "exit") continue;
+    const mgr = MANAGERS.find((m) => m.slug === mv.managerSlug);
+    if (!mgr) continue;
+    exitsAccum.push({
+      ticker: mv.ticker,
+      manager: mv.managerName,
+      manager_slug: mv.managerSlug,
+      fund: mgr.fund,
+      quarter: mv.quarter,
+      quarter_label: QUARTER_LABELS[mv.quarter as keyof typeof QUARTER_LABELS] ?? mv.quarter,
+      portfolio_impact_pct: mv.portfolioImpactPct != null ? Math.round(mv.portfolioImpactPct * 10) / 10 : null,
+      delta_pct: mv.deltaPct ?? null,
+    });
+  }
+  exitsAccum.sort((a, b) => (b.portfolio_impact_pct ?? 0) - (a.portfolio_impact_pct ?? 0));
+  const exits: ExitRow[] = exitsAccum.slice(0, 300).map((r, i) => ({ rank: i + 1, ...r }));
+  await writeJson("exits.json", {
+    data: exits,
+    meta: meta({
+      count: exits.length,
+      total_matches: exitsAccum.length,
+      sort: "portfolio_impact_pct desc",
+      note: "Top 300 outright exits (trims excluded) ranked by size of the bet that just ended.",
+    }),
+  });
+
+  // ---------- /overlap.json — manager-pair shared-holdings matrix ----------
+  // Mirrors /overlap page. For every unordered manager pair, count shared
+  // topHoldings tickers and compute Jaccard similarity.
+  type OverlapRow = {
+    rank: number;
+    manager_a: { slug: string; name: string };
+    manager_b: { slug: string; name: string };
+    shared_count: number;
+    union_count: number;
+    jaccard: number;
+    shared_tickers: string[];
+  };
+  const overlapAccum: Omit<OverlapRow, "rank">[] = [];
+  for (let i = 0; i < MANAGERS.length; i++) {
+    for (let j = i + 1; j < MANAGERS.length; j++) {
+      const a = MANAGERS[i];
+      const b = MANAGERS[j];
+      const aSet = new Set(a.topHoldings.map((h) => h.ticker));
+      const bSet = new Set(b.topHoldings.map((h) => h.ticker));
+      const shared: string[] = [];
+      for (const t of aSet) if (bSet.has(t)) shared.push(t);
+      if (shared.length === 0) continue;
+      const union = new Set([...aSet, ...bSet]);
+      const jaccard = shared.length / union.size;
+      overlapAccum.push({
+        manager_a: { slug: a.slug, name: a.name },
+        manager_b: { slug: b.slug, name: b.name },
+        shared_count: shared.length,
+        union_count: union.size,
+        jaccard: Math.round(jaccard * 1000) / 1000,
+        shared_tickers: shared,
+      });
+    }
+  }
+  overlapAccum.sort((a, b) => b.shared_count - a.shared_count || b.jaccard - a.jaccard);
+  const overlap: OverlapRow[] = overlapAccum.map((r, i) => ({ rank: i + 1, ...r }));
+  await writeJson("overlap.json", {
+    data: overlap,
+    meta: meta({
+      count: overlap.length,
+      sort: "shared_count desc, jaccard desc",
+      note: "Manager pairs with ≥1 shared topHolding ticker. Jaccard = intersect / union.",
+    }),
+  });
+
   // ---------- /best-now.json ----------
   const bestNow = [...scores].filter((s) => s.direction === "BUY").slice(0, 50);
   await writeJson("best-now.json", { data: bestNow, meta: meta({ count: bestNow.length }) });
@@ -644,6 +777,9 @@ async function main(): Promise<void> {
       { path: "/consensus.json", desc: "Widely-held + bullish + net-buying tickers — what smart money agrees on" },
       { path: "/crowded.json", desc: "Top 30 by ownership with loading/unwinding/stable flow tag" },
       { path: "/contrarian.json", desc: "Tickers where ≥2 managers buying AND ≥2 selling, last 4Q — the debate signal" },
+      { path: "/concentration.json", desc: "Managers ranked by top-1 / top-3 / top-5 position concentration" },
+      { path: "/exits.json", desc: "Top 300 full-exit 13F moves ranked by size of the bet that just ended" },
+      { path: "/overlap.json", desc: "All manager pairs with shared topHoldings — Jaccard similarity matrix" },
       { path: "/best-now.json", desc: "Top 50 buy candidates" },
       { path: "/value.json", desc: "Top 50 smart-money buy signals for value overlays" },
       { path: "/quarters.json", desc: "Available 13F quarters" },
@@ -657,6 +793,7 @@ async function main(): Promise<void> {
   fileCount += 2 /* buys/sells */ + 1 /* managers */ + MANAGERS.length;
   fileCount += 1 /* big-bets */ + 1 /* rotation */ + sectorOrder.length /* sector/[slug] */;
   fileCount += 1 /* alerts */ + 1 /* consensus */ + 1 /* crowded */ + 1 /* contrarian */;
+  fileCount += 1 /* concentration */ + 1 /* exits */ + 1 /* overlap */;
   fileCount += 1 /* best-now */ + 1 /* value */ + 1 /* quarters */;
   console.log(`  Wrote ${fileCount} JSON files under public/api/v1/`);
 }
