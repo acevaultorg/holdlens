@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
 import { getAllMovesEnriched, LATEST_QUARTER, QUARTER_LABELS } from "@/lib/moves";
 import { TICKER_INDEX, SECTOR_MAP } from "@/lib/tickers";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -236,6 +237,7 @@ export default function NewPositionsPage() {
         </div>
       </div>
 
+      <FoundersNudge tone="emerald" context="You're reading every fresh position the best portfolio managers opened last quarter." />
       <AdSlot format="in-article" className="mb-10" />
 
       {/* Split panel: sector breakdown + busiest managers */}

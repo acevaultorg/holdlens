@@ -164,7 +164,7 @@ function ConvictionRow({
             <span className="mx-2 text-dim">·</span>
             {c.buyerCount} buying
             {c.sellerCount > 0 && <span className="text-rose-400/80"> · {c.sellerCount} selling</span>}
-            {c.ownerCount > 0 && <span className="text-dim"> · {c.ownerCount} total owners</span>}
+            {c.ownerCount > 0 && <span className="text-dim"> · {c.ownerCount} total {c.ownerCount === 1 ? "owner" : "owners"}</span>}
           </div>
         </div>
 

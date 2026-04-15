@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -248,6 +249,7 @@ export default function BiggestSellsPage() {
         </section>
       )}
 
+      <FoundersNudge tone="rose" context="You're seeing the single biggest conviction collapses — every trim and exit ranked by size." />
       <AdSlot format="horizontal" />
 
       {/* Full table */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import InvestingBooks from "@/components/InvestingBooks";
+import ShareStrip from "@/components/ShareStrip";
 
 // /learn/superinvestor-handbook — 3000+ word evergreen SEO piece targeting
 // "how to read 13F filings", "how to track superinvestors", "13F explained",
@@ -605,7 +606,13 @@ export default function SuperinvestorHandbookPage() {
         </div>
       </section>
 
-      <p className="text-xs text-dim mt-16">
+      <ShareStrip
+        title="The Superinvestor Handbook — how to read 13F filings and track smart money"
+        url="https://holdlens.com/learn/superinvestor-handbook"
+        via="holdlens"
+      />
+
+      <p className="text-xs text-dim mt-8">
         Not investment advice. All data sourced from SEC 13F-HR filings. HoldLens is a free research tool,
         not a broker. Every trade carries risk of total loss of capital. Always do your own research.
       </p>

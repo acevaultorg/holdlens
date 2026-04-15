@@ -6,6 +6,7 @@ import DesktopNav from "@/components/DesktopNav";
 import DataFreshness from "@/components/DataFreshness";
 import SupportBar from "@/components/SupportBar";
 import CookieConsent from "@/components/CookieConsent";
+import BackToTop from "@/components/BackToTop";
 import "./globals.css";
 
 const TICKER_SCROLL = ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "BRK-B", "AMZN", "JPM", "BAC", "KO", "CVX", "OXY", "AXP", "CMG", "V"];
@@ -150,6 +151,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
         <main id="main">{children}</main>
+        <BackToTop />
         <CookieConsent />
         <footer className="border-t border-border mt-24">
           {/* Data freshness band */}

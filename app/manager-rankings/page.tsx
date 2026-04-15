@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
 import { MANAGERS } from "@/lib/managers";
 import { getAllManagerROI, SP500_CAGR_10Y } from "@/lib/manager-roi";
 import { ALL_MOVES, QUARTERS } from "@/lib/moves";
@@ -207,6 +208,7 @@ export default function ManagerRankingsPage() {
         />
       </div>
 
+      <FoundersNudge tone="brand" context="You're reading the composite ranking of the best active portfolio managers in the world." />
       <AdSlot format="horizontal" />
 
       {/* Full unified ranking */}
