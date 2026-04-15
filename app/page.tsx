@@ -63,7 +63,7 @@ export default function HomePage() {
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
               Signal explorer
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Sixteen ways to read smart money</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Nineteen ways to read smart money</h2>
             <p className="text-muted mt-2 max-w-xl">
               Every card below answers a different question Dataroma can&rsquo;t.
               Pick the angle, not the ticker.
@@ -185,6 +185,27 @@ export default function HomePage() {
             label="Baskets"
             title="Themes"
             body="AI, Mag 7, Energy, Banks, China, Healthcare. Smart money by sector bet."
+          />
+          <SignalCard
+            href="/biggest-sells"
+            tone="rose"
+            label="Exits"
+            title="Biggest sells"
+            body="Conviction collapses. 1,300+ exits and trims ranked by magnitude."
+          />
+          <SignalCard
+            href="/fresh-conviction"
+            tone="brand"
+            label="Rarest"
+            title="Fresh conviction"
+            body="New positions in tickers nobody else in the fleet holds. Contrarian by construction."
+          />
+          <SignalCard
+            href="/investor/bill-ackman/q/2025-q4"
+            tone="brand"
+            label="Quarter"
+            title="Per-manager quarter digest"
+            body="What did your favorite manager do in Q4? Every buy, sell, new, exit — scored."
           />
         </div>
       </section>
