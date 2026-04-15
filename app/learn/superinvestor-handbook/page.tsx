@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import InvestingBooks from "@/components/InvestingBooks";
 
 // /learn/superinvestor-handbook — 3000+ word evergreen SEO piece targeting
 // "how to read 13F filings", "how to track superinvestors", "13F explained",
@@ -343,6 +344,11 @@ export default function SuperinvestorHandbookPage() {
           longest compounding positions at <SubLink href="/trend-streak" label="/trend-streak" />.
         </p>
       </Section>
+
+      <InvestingBooks
+        heading="Books that teach the mental model"
+        sub="If you made it to section 6, you're past the basics. The six books below are the foundational reading behind every 13F on this site — ordered from foundational to advanced."
+      />
 
       <Section id="copy-myth" n="6" title="The copy-trading myth">
         <p>
