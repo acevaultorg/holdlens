@@ -33,6 +33,7 @@ const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: b
   { href: "/by-philosophy", label: "By philosophy · school-level conviction", emerald: true },
   { href: "/first-movers", label: "First movers · before the crowd", brand: true },
   { href: "/biggest-buys", label: "Biggest buys · all-in trades", emerald: true },
+  { href: "/biggest-sells", label: "Biggest sells · conviction collapses", rose: true },
   { href: "/themes", label: "Themes · AI, Energy, Banks, Mag 7", brand: true },
   { href: "/reversals", label: "Reversals · when smart money changes its mind", emerald: true },
   { href: "/screener", label: "Screener" },

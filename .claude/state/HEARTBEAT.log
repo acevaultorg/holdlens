@@ -8,3 +8,26 @@
 2026-04-15 09:46 | session-start | mode:god --loop | L1:ok | L2:ok | L3:ok | L4:closed | L5:active | resume:post-compaction
 2026-04-15 09:46 | deploy | CF Pages holdlens | 1147+179 files uploaded | https://7d4bec5f.holdlens.pages.dev | v0.46+v0.47+v0.48 (Signal52wRange + SignalQuarterlyActivity + OwnerCountSparkline)
 2026-04-15 09:46 | verify | /signal/AAPL | 52w:Near high | 8q:net selling | breadth:falling -3 owners 8Q | 4 components live
+2026-04-15 10:02 | ship | v0.49 /manager-rankings | commit:6c4992ab | deploy:5a61f94e | verify:29 rows + hero callout + big-vs-quiet split LIVE on holdlens.com
+2026-04-15 10:18 | ship | v0.50 /conviction-leaders | commit:e7aa2000 | deploy:e0e09830 | verify: h1+3 podium+20 rows LIVE; #1 Dev Kantesaria +18.6 weighted (FICO +28); formula & methodology rendering
+2026-04-15 10:28 | ship | v0.51 /crowded-trades | commit:fdaeef33 | deploy:f88e6d74 | verify: #1 META 15 owners/+5 conv/20 buyers vs 9 sellers LIVE; 2 heroes + 20 rows + flow badges
+2026-04-15 10:40 | ship | v0.52 /contrarian-bets | commit:c6f9462d | deploy:8e55199f | verify: #1 META 16 buyers vs 9 sellers/+5 conv LIVE; 3 cards + 20 detailed rows w/ manager names
+2026-04-15 10:52 | ship | v0.53 /consensus | commit:700db7f1 | deploy:54656d6c | verify: 5 consensus picks, #1 META 15 owners/+5 conv/+11 flow/score 177 LIVE; 3 podium + table
+2026-04-15 11:08 | ship | v0.54+fix /exits | commit:e1c73dbb | deploy:b2a7d4d0 | verify: 351 exits 8Q + 50 latest + 7 contrarian LIVE; grouped-by-quarter feed + contrarian callout
+2026-04-15 11:20 | ship | v0.55 /concentration | commit:49190a16 | deploy:d771aa92 | verify: #1 Carl Icahn 65% IEP (max conc); #1 diversified Greenblatt 4.1% MSFT; 30 rows + 2 heroes LIVE
+2026-04-15 11:36 | ship | v0.56 /vs/dataroma | commit:321e3031 | deploy:78b3a593 | verify: h1 + score 14-4-2 + 6 categories + 20 feature rows + 14 HoldLens-wins badges + bottom line LIVE
+2026-04-15 11:52 | ship | v0.57 /sector/[slug] rich-dashboard | commit:06007ca1 | deploy:e4543a83 | verify: Tech top3 BABA+39/COHR+26/JD+24 netflow+30 LIVE; Financials top3 SCHW+29/BN+23/CB+19 netflow+41; 5 h2s + 3 tables + stats strip + top-managers table; bodyLen 3964 (was 1884)
+2026-04-15 12:10 | ship | v0.58 /hidden-gems | commit:d7cfba4a | deploy:84504433 | verify: 14 gems / 8 solo / avg +25; top3 GE+41(Hohn 18.2%)/OXY+33(Buffett 4.9%)/SCHW+29(Armitage 4.7%); 4 h2s; full table + thesis cards LIVE on prod after CDN catch-up
+2026-04-15 12:26 | ship | v0.59 homepage signal-explorer | commit:3745cbcd | deploy:b51e309a | verify: h2 "Eight ways to read smart money" LIVE on prod; 8 cards: Best now / Conviction leaders / Consensus / Hidden gems / Contrarian / Crowded / Exits / Concentration; all hrefs correct
+2026-04-15 11:00 | ship | v0.60 /quarter/[slug] 8 pages | commit:a7dafcde | deploy:bcbb430e | verify Q4 2025 + Q3 2024 h1 ok 3 tables 15/10/11 rows LIVE
+2026-04-15 11:04 | ship | v0.61 /trend-streak | commit:f2d9869d | deploy:8d5be6d4 | verify: 30 3Q+ buys / 5 3Q+ sells; longest 8Q Ackman BN; Buffett 7Q OXY +33; Marks 7Q TRMD +21; 48 buy rows + 7 sell rows LIVE prod after CDN catch-up
+2026-04-15 11:09 | ship | v0.62 /accelerators | commit:8d029455 | deploy:41c48344 | verify: 148 3Q+ / 148 2Q / 8Q longest; top META net +31 / BN +21 / SCHD +7; 296-row table + top9 cards + sparkline detail LIVE prod after CDN catch-up
+2026-04-15 11:13 | ship | v0.63 /overlap | commit:abb9d4461 | deploy:25558400 | verify: 192 overlapping pairs / 435 possible / max 5 shared; top Ainslie×Armitage 5 shared 83%% Jaccard 17.4%% joint (NVDA/NFLX/MSFT/META/GOOGL); 192-row table LIVE direct-deploy (prod CDN still catching up)
+2026-04-15 11:17 | ship | v0.64 /by-philosophy | commit:ec15dc0ac | deploy:c3d57ebf | verify: 5 schools (Compounders 8mgrs / Deep Value 7 / Activists 4 / Macro 4 / Long-Short 7); 5 tables x 10 rows; Compounders top V 58.4% 6/8 (Akre 14.2%) MA 55.6% 5/8 LIVE direct-deploy
+2026-04-15 09:24 | ship | v0.65 homepage signal-explorer → 13 cards | commit:e7ead8f34 | deploy:75cc1059 | verify: h2='Thirteen ways' 13 SignalCards all 5 new hrefs present LIVE
+2026-04-15 09:34 | ship | v0.66 /first-movers | commit:c5a070e8a | deploy:29c77527 | verify: 257 tickers / 97 crowd-followed / 3Q max lead; #1 META first-movers Hohn(q9)+Halvorsen(q8)+Mandel(q9); table 257 rows LIVE prod+direct
+2026-04-15 09:41 | ship | v0.67 /biggest-buys | commit:1738a7a85 | deploy:383aa9ba | verify: 306 buys / 55 brand-new / 100 >10%% book; #1 Michael Burry NEW NVDA 49%% Q1 2025; 306-row table LIVE direct-deploy
+2026-04-15 09:48 | ship | v0.68 /themes | commit:70708f0ec | deploy:b6047a0b | verify: 8 theme sections; AI 23mgrs 452.8%% (META #1 102.5%% 15owners); Energy 7mgrs OXY 23.2%% +33; Banks 18mgrs 393.3%%; LIVE direct-deploy
+2026-04-15 09:53 | ship | v0.69 homepage → 16 cards | commit:299d28c28 | deploy:93708615 | verify: h2='Sixteen ways' 16/16 SignalCard hrefs present (adds first-movers/biggest-buys/themes) LIVE direct-deploy
+2026-04-15 09:59 | ship | v0.70 /reversals | commit:691dbead1 | deploy:43864e51 | verify: 48 comebacks / 147 whipsaws / 195 total; #1 comeback Druckenmiller META; 48 comeback cards + 147 whipsaw rows LIVE direct-deploy
+2026-04-15 11:49 | ship | v0.71 /investor/[slug]/q/[quarter] — 232 SEO pages | commit:7d597082c | deploy:52416d47 | verify: Ackman Q4 2025 h1+5sec+9cards, Burry Q1 2025 NVDA NEW 49% LIVE
