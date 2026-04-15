@@ -54,6 +54,85 @@ export default function HomePage() {
       {/* Live stats — computed client-side */}
       <LiveStats />
 
+      {/* Signal explorer — discovery grid for the forward-looking pages.
+          This is what Dataroma does not have: eight distinct views on smart
+          money, each answering a different question. */}
+      <section className="py-16 border-t border-border">
+        <div className="flex items-end justify-between mb-8 flex-wrap gap-3">
+          <div>
+            <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+              Signal explorer
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold">Eight ways to read smart money</h2>
+            <p className="text-muted mt-2 max-w-xl">
+              Every card below answers a different question Dataroma can&rsquo;t.
+              Pick the angle, not the ticker.
+            </p>
+          </div>
+          <a href="/vs/dataroma" className="text-sm text-brand hover:text-text font-semibold">
+            vs Dataroma →
+          </a>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <SignalCard
+            href="/best-now"
+            tone="brand"
+            label="Buy now"
+            title="Best stocks now"
+            body="Top positive ConvictionScores across every tracked manager."
+          />
+          <SignalCard
+            href="/conviction-leaders"
+            tone="emerald"
+            label="Leaders"
+            title="Conviction leaders"
+            body="Managers ranked by weighted conviction of their top picks."
+          />
+          <SignalCard
+            href="/consensus"
+            tone="emerald"
+            label="Consensus"
+            title="Consensus picks"
+            body="≥5 owners, positive conviction, net-buying flow."
+          />
+          <SignalCard
+            href="/hidden-gems"
+            tone="emerald"
+            label="Quiet"
+            title="Hidden gems"
+            body="High conviction, 1–3 owners, top-tier manager."
+          />
+          <SignalCard
+            href="/contrarian-bets"
+            tone="brand"
+            label="Split"
+            title="Contrarian bets"
+            body="Managers buying while others sell. The disagreement signal."
+          />
+          <SignalCard
+            href="/crowded-trades"
+            tone="rose"
+            label="Crowded"
+            title="Crowded trades"
+            body="Most-owned tickers, with unwind warning when the crowd exits."
+          />
+          <SignalCard
+            href="/exits"
+            tone="rose"
+            label="Capitulation"
+            title="Full exits"
+            body="Every position that went to zero, newest quarter first."
+          />
+          <SignalCard
+            href="/concentration"
+            tone="brand"
+            label="Conviction"
+            title="Concentration"
+            body="Who's all-in vs diversified — top-1, top-3, top-5 weights."
+          />
+        </div>
+      </section>
+
       {/* Backtest gallery — the viral wedge front and center */}
       <section className="py-20">
         <div className="flex items-end justify-between mb-8">
@@ -278,6 +357,45 @@ function BacktestCard({ slug, name, fund, desc }: { slug: string; name: string; 
       <div className="text-sm text-muted mt-1">{fund}</div>
       <div className="text-xs text-dim mt-3">{desc}</div>
       <div className="text-brand text-sm mt-4">Run →</div>
+    </a>
+  );
+}
+
+function SignalCard({
+  href,
+  tone,
+  label,
+  title,
+  body,
+}: {
+  href: string;
+  tone: "brand" | "emerald" | "rose";
+  label: string;
+  title: string;
+  body: string;
+}) {
+  const toneClass =
+    tone === "emerald"
+      ? "border-emerald-400/25 hover:border-emerald-400/60 hover:bg-emerald-400/5"
+      : tone === "rose"
+      ? "border-rose-400/25 hover:border-rose-400/60 hover:bg-rose-400/5"
+      : "border-brand/25 hover:border-brand hover:bg-brand/5";
+  const labelClass =
+    tone === "emerald"
+      ? "text-emerald-400"
+      : tone === "rose"
+      ? "text-rose-400"
+      : "text-brand";
+  return (
+    <a
+      href={href}
+      className={`rounded-2xl border bg-panel p-5 transition block h-full ${toneClass}`}
+    >
+      <div className={`text-[10px] uppercase tracking-widest font-bold mb-2 ${labelClass}`}>
+        {label}
+      </div>
+      <div className="text-base font-bold text-text mb-2">{title}</div>
+      <div className="text-xs text-muted leading-relaxed">{body}</div>
     </a>
   );
 }
