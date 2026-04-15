@@ -5,3 +5,6 @@
 2026-04-12 18:50 | session-start | mode:god | L1:ok | L2:ok | L3:ok | L4:closed | L5:active
 2026-04-12 19:00 | deploy | CF Pages holdlens | 1390 files uploaded | https://2a484021.holdlens.pages.dev
 2026-04-12 19:05 | session-end | mode:god | tasks:6(verify) | handoff:written | next-heartbeat:19:18
+2026-04-15 09:46 | session-start | mode:god --loop | L1:ok | L2:ok | L3:ok | L4:closed | L5:active | resume:post-compaction
+2026-04-15 09:46 | deploy | CF Pages holdlens | 1147+179 files uploaded | https://7d4bec5f.holdlens.pages.dev | v0.46+v0.47+v0.48 (Signal52wRange + SignalQuarterlyActivity + OwnerCountSparkline)
+2026-04-15 09:46 | verify | /signal/AAPL | 52w:Near high | 8q:net selling | breadth:falling -3 owners 8Q | 4 components live

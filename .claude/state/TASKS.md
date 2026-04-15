@@ -1,5 +1,14 @@
 # HoldLens — TASKS
 
+## Queue (v0.47 + v0.48 — /signal flow + breadth sparklines) — SHIPPED [objective:v47-v48-signal-history]
+
+- [x] `P0` BUILD components/SignalQuarterlyActivity.tsx — server component, 8-quarter buy/sell flow chart, distinct managers via "new"+"add" above zero (emerald) and "trim"+"exit" below zero (rose), totals + net direction badge, module-level cache so all 94 signal pages share one ALL_MOVES walk during static export [id:signal-quarterly-activity] [score:12.0] ⏱ done v0.47 314b93e4
+- [x] `P0` BUILD components/OwnerCountSparkline.tsx — server component, true cumulative owner_count over 8 quarters, reconstructed by seeding from TICKER_INDEX[symbol].owners (current owner set at LATEST_QUARTER) and walking MERGED_MOVES backwards: "new" at q removes from prior set, "exit" at q adds to prior set, "add"/"trim" leave unchanged. Yields rising/falling/flat verdict + delta over 8Q + per-quarter bars + cross-link to /top-picks. Pure server, zero client JS. [id:owner-count-sparkline] [score:12.0] ⏱ done v0.48 d678bb19
+- [x] `P0` WIRE both components into app/signal/[ticker]/page.tsx between Signal52wRange and LiveChart — flow first (activity), state second (breadth), so reader sees who's moving then how many hold [id:wire-v47-v48] [score:9.0] ⏱ done
+- [x] `P0` BUILD + verify static export — /signal/[ticker] holds at 5.51 kB (server components add 0 client JS), all 94 pages render both [id:verify-v47-v48] [score:10.0] ⏱ done
+- [x] `P0` DEPLOY via wrangler pages deploy out — 1147 files uploaded after 2 EPIPE retries, https://7d4bec5f.holdlens.pages.dev [id:deploy-v47-v48] [score:10.0] ⏱ done
+- [x] `P0` VERIFY live via Chrome MCP — /signal/AAPL on holdlens.com renders all 4 dossier components in order: 52-week range "Near high" + 8-quarter activity "net selling" + Ownership breadth "Breadth falling -3 owners over 8Q" with 6→8→7→4→4→4→4→3 owner-count series. AAPL clearly losing smart money breadth over 2 years — exactly the signal Dataroma cannot show. [id:verify-v47-v48-live] [score:12.0] ⏱ done
+
 ## Queue (v0.46 — /signal 52w range visualizer) — SHIPPED [objective:v46-signal-52w]
 
 - [x] `P0` BUILD components/Signal52wRange.tsx — client-hydrated 52w range gradient bar + value-tier label (Deep value/Near low/Discounted/Mid-range/Near high/At highs) + cross-link to /value [id:signal-52w-component] [score:13.0] ⏱ done v0.46 dea92ce4
