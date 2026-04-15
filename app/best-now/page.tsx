@@ -3,8 +3,9 @@ import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
 import CsvExportButton from "@/components/CsvExportButton";
 import FoundersNudge from "@/components/FoundersNudge";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 import { getTopBuys, getTopSells, convictionLabel } from "@/lib/conviction";
-import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
+import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
@@ -161,6 +162,12 @@ function ConvictionRow({
           </div>
           <div className="text-xs text-muted">
             <LiveQuote symbol={c.ticker} size="sm" refreshMs={0} />
+            <SinceFilingDelta
+              ticker={c.ticker}
+              filedAt={QUARTER_FILED[LATEST_QUARTER]}
+              label="since filing"
+              leadingSeparator
+            />
             <span className="mx-2 text-dim">·</span>
             {c.buyerCount} buying
             {c.sellerCount > 0 && <span className="text-rose-400/80"> · {c.sellerCount} selling</span>}
