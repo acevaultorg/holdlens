@@ -10,6 +10,7 @@ import AdSlot from "@/components/AdSlot";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 import { MANAGER_QUALITY } from "@/lib/signals";
+import { QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 
 // Find managers whose top 10 holdings overlap with this manager's top 10.
 // Scored by count of shared tickers. Returns the top 3 related.
@@ -241,6 +242,32 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           </a>
         </section>
       )}
+
+      {/* Per-quarter digest cross-links — SEO crawlability + discovery.
+          Without this section these 232 pages were orphaned from the main investor
+          page even though they exist in the sitemap. */}
+      <section className="mt-16 rounded-2xl border border-border bg-panel p-6">
+        <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+          Per-quarter digests
+        </div>
+        <h2 className="text-xl font-bold mb-1">
+          What {m.name} did, quarter by quarter
+        </h2>
+        <p className="text-sm text-muted mb-4">
+          Full move-by-move breakdown for each of the last 8 filed quarters.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {(QUARTERS as readonly Quarter[]).map((q) => (
+            <a
+              key={q}
+              href={`/investor/${m.slug}/q/${q.toLowerCase()}`}
+              className="rounded-lg border border-border bg-bg/50 px-3 py-2 text-center text-sm font-semibold text-text hover:border-brand/40 hover:text-brand transition"
+            >
+              {QUARTER_LABELS[q]}
+            </a>
+          ))}
+        </div>
+      </section>
 
       <p className="text-xs text-dim mt-16">
         Data sourced from {m.fund} 13F filings with the SEC. Approximate snapshot. Not investment advice.

@@ -267,7 +267,8 @@ export default function FreshConvictionPage() {
               </tr>
             </thead>
             <tbody>
-              {all.map((t, i) => (
+              {/* Capped at 200 rows — full HTML was ~1.2 MB. */}
+              {all.slice(0, 200).map((t, i) => (
                 <tr
                   key={`${t.slug}-${t.ticker}-${t.quarter}-${i}`}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition"

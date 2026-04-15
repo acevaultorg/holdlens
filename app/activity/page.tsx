@@ -30,6 +30,11 @@ export default function ActivityPage() {
   }
   const orderedQuarters = (QUARTERS as readonly string[]).filter((q) => byQuarter[q]?.length);
 
+  // Cap each quarter at the top 40 highest-conviction moves. Previously rendered
+  // ~3000 cards = 10 MB of HTML, killing mobile TTFB. Users who want the long
+  // tail can drill into /quarter/[slug] or /biggest-buys / /biggest-sells.
+  const PER_QUARTER_CAP = 40;
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
@@ -39,22 +44,33 @@ export default function ActivityPage() {
         Every move, every quarter.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-10">
-        Every tracked buy, add, trim, and exit by the best portfolio managers in the world. Ranked within each quarter
-        by manager quality — so you see the highest-conviction moves first.
+        The top {PER_QUARTER_CAP} highest-conviction buys, adds, trims, and exits by the best portfolio managers in
+        the world — ranked within each quarter by manager quality. For the full move list per quarter, drill into the
+        quarter header or see{" "}
+        <a href="/biggest-buys" className="text-brand hover:underline">biggest buys</a> /{" "}
+        <a href="/biggest-sells" className="text-brand hover:underline">biggest sells</a>.
       </p>
 
       <AdSlot format="horizontal" />
 
       <div className="space-y-12">
-        {orderedQuarters.map((q) => (
+        {orderedQuarters.map((q) => {
+          const total = byQuarter[q].length;
+          const shown = byQuarter[q].slice(0, PER_QUARTER_CAP);
+          const hasMore = total > shown.length;
+          return (
           <section key={q}>
-            <div className="flex items-baseline justify-between mb-4 border-b border-border pb-3">
+            <div className="flex items-baseline justify-between mb-4 border-b border-border pb-3 gap-3 flex-wrap">
               <h2 className="text-xl font-bold">{QUARTER_LABELS[q as Quarter]}</h2>
-              <div className="text-xs text-dim">{byQuarter[q].length} moves tracked</div>
+              <div className="text-xs text-dim">
+                Showing top <span className="text-text font-semibold">{shown.length}</span> of{" "}
+                <span className="text-text font-semibold">{total}</span> moves ·{" "}
+                <a href={`/quarter/${q.toLowerCase()}`} className="text-brand hover:underline">full digest →</a>
+              </div>
             </div>
 
             <div className="space-y-2">
-              {byQuarter[q].map((mv, i) => {
+              {shown.map((mv, i) => {
                 const isBuy = mv.action === "new" || mv.action === "add";
                 const color = isBuy ? "text-emerald-400" : "text-rose-400";
                 const accent = isBuy ? "border-l-emerald-400/50" : "border-l-rose-400/50";
@@ -123,9 +139,18 @@ export default function ActivityPage() {
                   </div>
                 );
               })}
+              {hasMore && (
+                <a
+                  href={`/quarter/${q.toLowerCase()}`}
+                  className="block rounded-xl border border-dashed border-border bg-panel/40 p-4 text-center text-sm text-muted hover:text-brand hover:border-brand/40 transition"
+                >
+                  + {total - shown.length} more moves this quarter → full digest
+                </a>
+              )}
             </div>
           </section>
-        ))}
+        );
+        })}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
+import { QUARTERS } from "@/lib/moves";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -104,5 +105,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticUrls, ...sectorUrls, ...compareUrls, ...managerUrls, ...tickerUrls];
+  // /signal/[ticker] — per-ticker smart-money signal pages.
+  const signalUrls: MetadataRoute.Sitemap = Object.keys(TICKER_INDEX).map((sym) => ({
+    url: `${base}/signal/${sym}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
+  // /investor/[slug]/q/[quarter] — 29 dynamic managers × 8 quarters = 232 pages.
+  // Warren Buffett is excluded (hand-crafted /investor/warren-buffett page).
+  const investorQuarterUrls: MetadataRoute.Sitemap = [];
+  for (const m of MANAGERS) {
+    if (m.slug === "warren-buffett") continue;
+    for (const q of QUARTERS) {
+      investorQuarterUrls.push({
+        url: `${base}/investor/${m.slug}/q/${q.toLowerCase()}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.75,
+      });
+    }
+  }
+
+  // /quarter/[slug] — per-quarter full digests.
+  const quarterUrls: MetadataRoute.Sitemap = QUARTERS.map((q) => ({
+    url: `${base}/quarter/${q.toLowerCase()}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticUrls,
+    ...sectorUrls,
+    ...compareUrls,
+    ...managerUrls,
+    ...tickerUrls,
+    ...signalUrls,
+    ...investorQuarterUrls,
+    ...quarterUrls,
+  ];
 }

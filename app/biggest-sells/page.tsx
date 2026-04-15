@@ -251,11 +251,20 @@ export default function BiggestSellsPage() {
       <AdSlot format="horizontal" />
 
       {/* Full table */}
+      {/* Full table — capped at top 200 to keep the HTML page under ~500 KB.
+          Previously rendered all 1300+ rows = 3.5 MB of HTML. The long tail is
+          still accessible per-quarter via /quarter/[slug] and per-manager via
+          /investor/[slug]/q/[quarter]. */}
       <section className="mt-12">
         <div className="text-xs uppercase tracking-widest text-rose-400 font-semibold mb-3">
-          Full list · every meaningful sell
+          Full list · top 200 meaningful sells
         </div>
-        <h2 className="text-2xl font-bold mb-4">Every big sell, sorted by magnitude</h2>
+        <h2 className="text-2xl font-bold mb-1">Top 200 big sells, sorted by magnitude</h2>
+        <p className="text-xs text-dim mb-4">
+          Showing the 200 most significant cuts out of {all.length.toLocaleString("en-US")} total. For the complete
+          long tail, drill into <a href="/quarter/2025-q4" className="text-brand hover:underline">/quarter/2025-q4</a> or
+          a specific manager's <a href="/investor" className="text-brand hover:underline">investor page</a>.
+        </p>
         <div className="rounded-2xl border border-border bg-panel overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-bg/40 border-b border-border">
@@ -270,7 +279,7 @@ export default function BiggestSellsPage() {
               </tr>
             </thead>
             <tbody>
-              {all.map((b, i) => (
+              {all.slice(0, 200).map((b, i) => (
                 <tr
                   key={`${b.slug}-${b.ticker}-${b.quarter}-${i}`}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition"
