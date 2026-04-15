@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import LiveQuote from "@/components/LiveQuote";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 import StarButton from "@/components/StarButton";
 import { getWatchlist, subscribeWatchlist } from "@/lib/watchlist";
 import { TICKER_INDEX } from "@/lib/tickers";
+import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
 export default function WatchlistClient() {
   const [list, setList] = useState<string[]>([]);
@@ -61,8 +63,15 @@ export default function WatchlistClient() {
                 <td className="px-5 py-4 text-text hidden md:table-cell">
                   {meta?.name || <span className="text-dim">Not in coverage</span>}
                 </td>
-                <td className="px-5 py-4 text-right">
+                <td className="px-5 py-4 text-right whitespace-nowrap">
                   <LiveQuote symbol={sym} size="md" />
+                  <div className="text-[10.5px] mt-0.5">
+                    <SinceFilingDelta
+                      ticker={sym}
+                      filedAt={QUARTER_FILED[LATEST_QUARTER]}
+                      label="since filing"
+                    />
+                  </div>
                 </td>
                 <td className="px-5 py-4 text-right tabular-nums hidden md:table-cell text-muted">
                   {meta?.ownerCount ?? "—"}
