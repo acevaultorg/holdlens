@@ -19,6 +19,8 @@ import { getQuote } from "@/lib/live";
 // Silent failure on any error (missing data, API unreachable, future
 // filing date): render nothing. Never breaks the page.
 
+type Range = "1mo" | "3mo" | "6mo" | "1y" | "2y" | "5y";
+
 type Props = {
   ticker: string;
   /** ISO date string (YYYY-MM-DD) — the 13F filing date to compare against. */
@@ -34,6 +36,14 @@ type Props = {
    * separators when the fetch hasn't resolved yet or fails silently.
    */
   leadingSeparator?: boolean;
+  /**
+   * Yahoo chart range to fetch. Must cover filedAt — e.g. a filing from
+   * Q1 2024 needs range="2y" or wider. Default "1y" matches LiveQuote's
+   * default, sharing the sessionStorage cache when both components render
+   * for the same ticker. Callers rendering for older filings MUST pass a
+   * wider range or the delta resolves to null silently.
+   */
+  range?: Range;
 };
 
 export default function SinceFilingDelta({
@@ -42,6 +52,7 @@ export default function SinceFilingDelta({
   label = "since filing",
   compact = false,
   leadingSeparator = false,
+  range = "1y",
 }: Props) {
   const [deltaPct, setDeltaPct] = useState<number | null>(null);
 
@@ -52,10 +63,11 @@ export default function SinceFilingDelta({
         const filedMs = new Date(filedAt).getTime();
         if (!Number.isFinite(filedMs) || filedMs > Date.now()) return;
 
-        // 1y range matches the default LiveQuote fetch — same cache entry.
-        // If filedAt is >9 months ago, LiveQuote's 1y range may just barely
-        // reach it; the fallback below handles the boundary gracefully.
-        const q = await getQuote(ticker);
+        // Default range "1y" matches LiveQuote's default — same cache entry.
+        // Callers rendering older filings should pass a wider range so the
+        // chart includes filedAt. Yahoo returns the close on or before
+        // filedAt; silent null if data doesn't reach back that far.
+        const q = await getQuote(ticker, range);
         if (cancelled || !q || !q.chart?.length) return;
 
         // Find the most-recent close on or BEFORE filedAt.

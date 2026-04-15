@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { getMovesByTicker, QUARTER_LABELS, QUARTERS, type Move, type Quarter, type MoveAction } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 import { MANAGER_QUALITY } from "@/lib/signals";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 
 type Tab = "activity" | "buys" | "sells";
 
@@ -183,7 +184,18 @@ function MoveRow({ mv }: { mv: Move }) {
         )}
       </td>
       <td className={`px-5 py-3 font-semibold whitespace-nowrap hidden md:table-cell ${color}`}>
-        {actionLabel}
+        <div>{actionLabel}</div>
+        {/* Live P&L context — how the ticker has moved since this specific
+            filing landed. Range=2y covers Q1 2024 back. Shares ticker-level
+            cache for this page: one getQuote call serves all N move rows. */}
+        <div className="text-[10.5px] font-normal opacity-80 mt-0.5">
+          <SinceFilingDelta
+            ticker={mv.ticker}
+            filedAt={mv.filedAt}
+            compact
+            range="2y"
+          />
+        </div>
       </td>
       <td className={`px-5 py-3 text-right tabular-nums hidden md:table-cell ${color}`}>
         {shareChangeDisplay}
