@@ -95,6 +95,8 @@ export default function BigBetsPage() {
     .map((r, i) => ({ ...r, rank: i + 1 }));
 
   const maxCombined = Math.max(1, ...primary.map((r) => r.combinedScore));
+  // Tracks first-occurrence tickers so we can anchor to them from /signal/[ticker]
+  const seenTickers = new Set<string>();
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
@@ -168,9 +170,14 @@ export default function BigBetsPage() {
                   : r.convictionColor === "rose"
                   ? "text-rose-400"
                   : "text-muted";
+              // First occurrence of this ticker gets a hash anchor so
+              // /signal/[ticker] can deep-link here via /big-bets#AAPL
+              const isFirstOccurrence = !seenTickers.has(r.ticker);
+              if (isFirstOccurrence) seenTickers.add(r.ticker);
               return (
                 <tr
                   key={`${r.managerSlug}-${r.ticker}`}
+                  id={isFirstOccurrence ? r.ticker.toLowerCase() : undefined}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition align-top"
                 >
                   <td className="px-5 py-3 text-dim tabular-nums">{r.rank}</td>

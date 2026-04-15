@@ -410,18 +410,28 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
       <section className="mt-12">
         <div className="flex items-baseline justify-between mb-3 gap-3 flex-wrap">
           <h2 className="text-2xl font-bold">Who&rsquo;s betting biggest on {t.symbol}</h2>
-          {(() => {
-            const rankInfo = getBigBetsRankInfo(t.symbol);
-            if (!rankInfo) return null;
-            return (
+          <div className="flex items-center gap-3 flex-wrap">
+            {t.sector && (
               <a
-                href="/big-bets"
-                className="text-xs font-semibold text-brand hover:underline whitespace-nowrap"
+                href={`/sector/${t.sector.toLowerCase().replace(/\s+/g, "-")}`}
+                className="text-xs font-semibold text-dim hover:text-brand hover:underline whitespace-nowrap transition"
               >
-                → Ranks #{rankInfo.rank} of {rankInfo.total} tracked bets
+                {t.sector} sector →
               </a>
-            );
-          })()}
+            )}
+            {(() => {
+              const rankInfo = getBigBetsRankInfo(t.symbol);
+              if (!rankInfo) return null;
+              return (
+                <a
+                  href={`/big-bets#${t.symbol.toLowerCase()}`}
+                  className="text-xs font-semibold text-brand hover:underline whitespace-nowrap"
+                >
+                  → Ranks #{rankInfo.rank} of {rankInfo.total} tracked bets
+                </a>
+              );
+            })()}
+          </div>
         </div>
         <p className="text-muted text-sm mb-6 max-w-2xl">
           Each bar is one manager&rsquo;s position size in {t.symbol} as a % of their portfolio. Longer bar
