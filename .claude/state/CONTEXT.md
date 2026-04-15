@@ -8,21 +8,20 @@
 ## Session Handoff
 
 **Mode:** god --loop
-**Objective:** v0.77 public API completion — alerts/consensus/crowded/contrarian
-**Progress:** COMPLETE — 4 JSON endpoints live, /docs updated with 4 example payloads, 2 stale tasks reconciled, committed 2f18df098, deployed bd71a312, verified prod + direct after 30s CDN catchup
-**Branch:** `main` · 3 commits on top of v0.75 (v0.76 + state + v0.77)
+**Objective:** UX retention pass — operator directive "don't make bad UX choices; top priority growth + returning users + satisfaction"
+**Progress:** SHIPPED TO GIT, DEPLOY PENDING — v0.80 (footer 51→25 grouped in 5 columns, desktop nav a11y, mobile nav 49→33 grouped) + v0.81 parallel session (sticky header, skip-to-main-content link, outcome-first hero "Spot smart money moves before the market does", pricing competitor anchor, FoundersNudge rose-tone + fan-out). Build clean, 484 static routes, pushed to origin/main. Cloudflare deploy BLOCKED by CF API socket instability — 4× wrangler retries all failed with UND_ERR_SOCKET at 159-1671/2293 files. Operator must retry wrangler when CF recovers.
+**Branch:** `main` · 5 commits on top of v0.79 (1bc34adb4, 2bcacaeae, f3763d263, 58d458fc1, 818092a06)
 **Next actions:**
-  1. Chief: P1 /compare/[pair] visual diff — overlap Venn diagram + shared-name convergence chart for pair comparisons
-  2. Chief: P1 /stock/[ticker] redirect alias — SEO + human-memorable URL (maps to /signal/[ticker])
-  3. Chief: P2 /api/v1/changelog.json — "what changed this quarter" feed (sibling to alerts.json but grouped by quarter)
-  4. Chief: P2 /learn/superinvestor-handbook — 3000+ word SEO content piece
-  5. Operator: apply for AdSense, set NEXT_PUBLIC_ADSENSE_CLIENT (HUMAN_ACTIONS.md)
-  6. Operator: IBKR affiliate, set NEXT_PUBLIC_AFF_IBKR
-  7. Operator: activate Stripe payment links
-**Human actions pending:** 3 — adsense-activate, affiliate-activate, stripe-activate
+  1. Operator 👤: retry wrangler deploy (see TASKS.md id:deploy-v80-v81). First action on next operator session.
+  2. After deploy: Chrome MCP deploy-truth verify — `curl -sL https://holdlens.com | grep -c "Spot smart money moves"` returns 1
+  3. After deploy: log v0.80+v0.81 Ship Impact row to GROWTH_ANALYTICS.md (hypothesis: footer simplification + outcome-voice hero + sticky nav → lower bounce rate + higher returning-user rate)
+  4. Chief: P1 /compare/[pair] visual diff (still open)
+  5. Chief: P1 /stock/[ticker] redirect alias (still open)
+  6. Operator: AdSense + IBKR affiliate + Stripe activation (HUMAN_ACTIONS.md, unchanged from prior session)
+**Human actions pending:** 4 — deploy-v80-v81 (NEW, P0), adsense-activate, affiliate-activate, stripe-activate
 **Open questions:** none
-**Momentum:** high — 2 cycles this session, 16 JSON endpoints added across v0.76+v0.77
-<!-- handoff: 2026-04-15 12:59 -->
+**Momentum:** high — UX retention pass shipped to git in one cycle; operator's directive fully addressed on source; deploy is the only remaining step
+<!-- handoff: 2026-04-15 14:19 -->
 
 ## Ad placement map (v0.31)
 

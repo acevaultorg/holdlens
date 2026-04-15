@@ -1,5 +1,17 @@
 # HoldLens — TASKS
 
+## Queue (v0.80+v0.81 UX retention pass — COMMITTED, DEPLOY PENDING) [objective:v80-v81-ux-retention]
+
+- [x] `P0` Footer 51→25 grouped links (5 semantic columns + legal strip) [id:footer-restructure] [score:15.0] ⏱ done v0.80 1bc34adb4
+- [x] `P0` Desktop nav a11y fix — aria-haspopup=menu, cursor-pointer, remove lying aria-expanded [id:desktop-nav-a11y] [score:10.0] ⏱ done v0.80 1bc34adb4
+- [x] `P0` Mobile nav 49→33 grouped into 5 named sections + legal row [id:mobile-nav-group] [score:12.0] ⏱ done v0.80 1bc34adb4
+- [x] `P0` Outcome-first hero ("Spot smart money moves before the market does") + trust row [id:hero-rewrite] [score:14.0] ⏱ done v0.81 2bcacaeae
+- [x] `P0` Pricing competitor anchor strip + trust-markers under CTA [id:pricing-trust] [score:12.0] ⏱ done v0.81 2bcacaeae
+- [x] `P0` Sticky header with backdrop-blur (always-reachable nav on 7-10k-px signal pages) [id:sticky-header] [score:11.0] ⏱ done v0.81
+- [x] `P0` Skip-to-main-content link (keyboard a11y) [id:skip-link] [score:9.0] ⏱ done v0.81
+- [x] `P0` FoundersNudge rose-tone + fan-out to 6 high-intent pages [id:nudge-fanout] [score:9.0] ⏱ done v0.81 2bcacaeae
+- [ ] `P0` 👤 DEPLOY v0.80+v0.81 to Cloudflare — 4× wrangler attempts 2026-04-15 12:14-12:17 all failed with UND_ERR_SOCKET (CF API dropped socket at 159-1671/2293 files, 55MB written). Commits 1bc34adb4..818092a06 pushed to origin/main. Operator action: rerun from holdlens/ when CF API recovers: `npx wrangler pages deploy out --project-name=holdlens --branch=main --commit-dirty=true`. Verify post-deploy: `curl -sL https://holdlens.com | grep -c "Spot smart money moves"` should return 1. [id:deploy-v80-v81] [score:18.0] [👤]
+
 ## Queue (v0.47 + v0.48 — /signal flow + breadth sparklines) — SHIPPED [objective:v47-v48-signal-history]
 
 - [x] `P0` BUILD components/SignalQuarterlyActivity.tsx — server component, 8-quarter buy/sell flow chart, distinct managers via "new"+"add" above zero (emerald) and "trim"+"exit" below zero (rose), totals + net direction badge, module-level cache so all 94 signal pages share one ALL_MOVES walk during static export [id:signal-quarterly-activity] [score:12.0] ⏱ done v0.47 314b93e4
