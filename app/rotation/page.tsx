@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import CsvExportButton from "@/components/CsvExportButton";
 import { getAllMovesEnriched, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { SECTOR_MAP } from "@/lib/tickers";
 import { MANAGERS } from "@/lib/managers";
@@ -145,6 +146,14 @@ export default function SectorRotationPage() {
         flow — so you can see the <em>direction</em> of smart money, not just the current snapshot. Every
         cell is derived from {moves.length.toLocaleString()} moves across {MANAGERS.length} tracked superinvestors.
       </p>
+
+      <div className="mb-8 flex justify-end">
+        <CsvExportButton
+          endpoint="/api/v1/rotation.json"
+          filename="holdlens-rotation"
+          label="Export rotation flow CSV"
+        />
+      </div>
 
       {/* Summary: biggest net buyer / net seller sector */}
       <div className="grid sm:grid-cols-2 gap-3 mb-10">

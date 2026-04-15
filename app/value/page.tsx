@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import CsvExportButton from "@/components/CsvExportButton";
 import ValueClient, { type ValueCandidate } from "./ValueClient";
 import { getTopBuys } from "@/lib/conviction";
 import { MANAGERS } from "@/lib/managers";
@@ -50,7 +51,14 @@ export default function ValuePage() {
         high-conviction and close to the bottom.
       </p>
 
-      <AdSlot format="horizontal" className="mb-8" />
+      <div className="mb-8 flex items-start justify-between gap-4 flex-wrap">
+        <AdSlot format="horizontal" className="flex-1 min-w-0" />
+        <CsvExportButton
+          endpoint="/api/v1/value.json"
+          filename="holdlens-value"
+          label="Export value picks CSV"
+        />
+      </div>
 
       <ValueClient candidates={candidates} />
 
