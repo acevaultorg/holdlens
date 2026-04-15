@@ -38,7 +38,7 @@ export default function StripeCheckoutButton({
   const link = variant === "founders" ? STRIPE_LINK_FOUNDERS || STRIPE_LINK : STRIPE_LINK;
   const buttonLabel =
     label ||
-    (variant === "founders" ? "Lock in $9/mo founders rate →" : "Subscribe to Pro →");
+    (variant === "founders" ? "Lock in €9/mo founders rate →" : "Subscribe to Pro →");
 
   // Not configured yet — render the same button but link to /alerts so the click captures
   // an email instead of bouncing the user. Operator drops in the link, user gets the real

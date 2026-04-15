@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import EmailCapture from "@/components/EmailCapture";
 import StripeCheckoutButton from "@/components/StripeCheckoutButton";
-import { ProPriceDisplay, HeroPriceTag } from "@/components/PricingAB";
 import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
   title: "Pricing — HoldLens Free + Pro",
-  description: `HoldLens is free forever for the full recommendation model, signal dossiers, and live data. Pro tier ($14/mo) launches Q2 2026 with email alerts, EDGAR automation, custom watchlists, and API access.`,
+  description: `HoldLens is free forever for the full recommendation model, signal dossiers, and live data. Pro tier is €14/mo (€9/mo founders rate for the first 100 subscribers) with email alerts, EDGAR automation, custom watchlists, and API access. Live now.`,
   openGraph: {
     title: "HoldLens Pricing",
-    description: "Free forever core — the unified signed ConvictionScore is in Free, not Pro.",
+    description: "Free forever core — the unified signed ConvictionScore is in Free, not Pro. Pro €9/mo founders.",
   },
 };
 
@@ -21,7 +20,7 @@ export default function PricingPage() {
           Pricing
         </div>
         <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-          Free forever. Pro for <HeroPriceTag />.
+          Free forever. Pro for €9/mo.
         </h1>
         <p className="text-muted text-lg max-w-2xl mx-auto">
           The full recommendation engine — unified signed ConvictionScore, signal dossiers,
@@ -37,7 +36,7 @@ export default function PricingPage() {
           <div className="text-xs uppercase tracking-widest text-dim font-semibold mb-2">
             Free
           </div>
-          <div className="text-5xl font-bold mb-1 tabular-nums">$0</div>
+          <div className="text-5xl font-bold mb-1 tabular-nums">€0</div>
           <div className="text-sm text-muted mb-6">forever, no card</div>
 
           <a
@@ -64,24 +63,31 @@ export default function PricingPage() {
         {/* Pro */}
         <div className="rounded-2xl border border-brand bg-brand/5 p-8 relative">
           <div className="absolute -top-3 left-8 text-[10px] uppercase tracking-widest font-bold text-black bg-brand rounded-full px-3 py-1">
-            Launching Q2 2026
+            Live now
           </div>
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
             Pro
           </div>
-          <ProPriceDisplay />
+          <div className="flex items-baseline gap-2 mb-1">
+            <div className="text-5xl font-bold tabular-nums">€9</div>
+            <div className="text-sm text-muted">/month</div>
+            <div className="text-sm text-muted line-through tabular-nums ml-2">€14</div>
+          </div>
+          <div className="text-sm text-muted mb-6">
+            Founders rate · first 100 subscribers · cancel anytime
+          </div>
 
           <div className="mb-6">
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
               Founders rate · 100 spots
             </div>
             <p className="text-xs text-muted mb-3">
-              First 100 subscribers lock in <span className="text-text font-semibold">$9/mo for life</span>.
-              After that, the price goes up to $14/mo. Cancel anytime.
+              First 100 subscribers lock in <span className="text-text font-semibold">€9/mo for life</span>.
+              After that, the price goes up to €14/mo. Cancel anytime.
             </p>
-            <StripeCheckoutButton variant="founders" label="Subscribe — $9/mo founders rate →" />
+            <StripeCheckoutButton variant="founders" label="Subscribe — €9/mo founders rate →" />
             <p className="text-[11px] text-dim mt-3 text-center">
-              or <a href="/alerts" className="underline">join the waitlist</a> if you want to wait
+              or <a href="/alerts" className="underline">join the weekly digest</a> first
             </p>
           </div>
 
@@ -110,15 +116,15 @@ export default function PricingPage() {
           />
           <FAQ
             q="What's the founders price?"
-            a="Sign up for early access today and you lock in $14/mo for life. After Q2 2026 launch, the price goes up to $19/mo for new subscribers. Annual ($140/yr) saves you another $28."
+            a="The first 100 Pro subscribers lock in €9/mo for life — even when the standard price goes up. After the first 100 spots are gone, new subscribers pay €14/mo. Cancel anytime; your founders rate is kept as long as the subscription stays active."
           />
           <FAQ
-            q="When does Pro launch?"
-            a="Q2 2026 — once we ship the EDGAR parser, Resend integration, and Stripe. Email signups today get notified the day Pro goes live."
+            q="Is Pro actually live now?"
+            a="Yes. Pro checkout runs through Stripe and activates the moment your payment goes through. Email alerts, EDGAR coverage expansion, custom watchlist triggers, and API access all ship incrementally; founders get every feature as it lands at no extra cost."
           />
           <FAQ
-            q="Why $14/mo and not $9 or $29?"
-            a="Below $10 it feels disposable, above $20 it requires justification. $14 is the sweet spot for an individual investor tool: about half a coffee per week. You'll save that on your first informed move."
+            q="Why €14/mo and not €9 or €29?"
+            a="Below €10 it feels disposable, above €20 it requires justification. €14 is the sweet spot for an individual investor tool: about half a coffee per week. You'll save that on your first informed move. Founders pay €9/mo to reward early support."
           />
           <FAQ
             q="Do you offer a team or family plan?"
