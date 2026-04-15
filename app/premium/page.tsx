@@ -266,6 +266,60 @@ export default function PremiumPage() {
           }),
         }}
       />
+
+      {/* Product + Offer JSON-LD (v0.95) — Google "Pricing" rich result:
+          surface price + currency + availability directly in SERP. No
+          aggregateRating claimed — honesty first; adding fabricated ratings
+          violates Google's guidelines AND the anti-dark-pattern floor. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: "HoldLens Pro",
+            description:
+              "Custom alerts, unlimited CSV exports, priority API access, ad-free reading, early access, and priority support for the HoldLens 13F superinvestor tracker.",
+            brand: {
+              "@type": "Brand",
+              name: "HoldLens",
+            },
+            url: "https://holdlens.com/premium",
+            offers: [
+              {
+                "@type": "Offer",
+                name: "Founders tier (first 100 subscribers)",
+                price: "9",
+                priceCurrency: "EUR",
+                availability: "https://schema.org/InStock",
+                url: "https://holdlens.com/pricing",
+                priceSpecification: {
+                  "@type": "UnitPriceSpecification",
+                  price: "9",
+                  priceCurrency: "EUR",
+                  billingIncrement: 1,
+                  unitText: "month",
+                },
+              },
+              {
+                "@type": "Offer",
+                name: "Standard tier",
+                price: "14",
+                priceCurrency: "EUR",
+                availability: "https://schema.org/InStock",
+                url: "https://holdlens.com/pricing",
+                priceSpecification: {
+                  "@type": "UnitPriceSpecification",
+                  price: "14",
+                  priceCurrency: "EUR",
+                  billingIncrement: 1,
+                  unitText: "month",
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </div>
   );
 }
