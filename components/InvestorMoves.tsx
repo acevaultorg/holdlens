@@ -1,4 +1,5 @@
 import { getMovesByManager, QUARTER_LABELS, QUARTERS, type Quarter, type Move } from "@/lib/moves";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 
 export default function InvestorMoves({ slug }: { slug: string }) {
   const all = getMovesByManager(slug);
@@ -78,6 +79,16 @@ export default function InvestorMoves({ slug }: { slug: string }) {
                         </td>
                         <td className={`px-5 py-3 font-semibold ${color}`}>
                           {label}
+                          {/* Live P&L context since this specific filing —
+                              range=2y covers all tracked quarters (Q1 2024 back). */}
+                          <div className="text-[10.5px] font-normal opacity-80 mt-0.5">
+                            <SinceFilingDelta
+                              ticker={mv.ticker}
+                              filedAt={mv.filedAt}
+                              compact
+                              range="2y"
+                            />
+                          </div>
                           {mv.note && (
                             <div className="text-[11px] text-muted font-normal mt-0.5 italic max-w-md">
                               {mv.note}
