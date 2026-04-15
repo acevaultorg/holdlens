@@ -5,6 +5,7 @@ import { TICKER_INDEX } from "@/lib/tickers";
 import SectorBadge from "@/components/SectorBadge";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 
 // <LatestMoves /> — homepage engagement lever, ported from Dataroma's biggest
 // time-on-site pattern. Reads enriched MERGED_MOVES at build time, takes the
@@ -18,6 +19,8 @@ import FundLogo from "@/components/FundLogo";
 
 type Row = {
   quarter: Quarter;
+  /** ISO filing date (YYYY-MM-DD) — used by SinceFilingDelta for per-move P&L. */
+  filedAt: string;
   ticker: string;
   sector: string | null;
   managerName: string;
@@ -53,6 +56,7 @@ function computeRows(): Row[] {
     const td = TICKER_INDEX[mv.ticker];
     out.push({
       quarter: mv.quarter as Quarter,
+      filedAt: mv.filedAt,
       ticker: mv.ticker,
       sector: td?.sector ?? null,
       managerName: mgr.name,
@@ -127,8 +131,16 @@ export default function LatestMoves() {
                     <TickerLogo symbol={r.ticker} size={24} />
                     {r.ticker}
                   </a>
+                  <div className="text-[10.5px] mt-0.5 ml-8">
+                    <SinceFilingDelta
+                      ticker={r.ticker}
+                      filedAt={r.filedAt}
+                      compact
+                      range="2y"
+                    />
+                  </div>
                   {r.sector && (
-                    <div className="mt-1 hidden sm:block">
+                    <div className="mt-1 hidden sm:block ml-8">
                       <SectorBadge sector={r.sector} />
                     </div>
                   )}
