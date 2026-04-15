@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import CsvExportButton from "@/components/CsvExportButton";
 import TrendBadge from "@/components/TrendBadge";
+import TickerLogo from "@/components/TickerLogo";
 import { getSellSignals, ratingLabel } from "@/lib/signals";
 import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
@@ -99,6 +100,7 @@ export default function SellsPage() {
                     <div className="text-2xl font-bold text-dim tabular-nums w-10 shrink-0">
                       {i + 1}
                     </div>
+                    <TickerLogo symbol={s.ticker} size={40} className="mt-1" />
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
                         <div className="font-mono text-xl font-bold text-brand group-hover:underline">

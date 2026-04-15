@@ -4,6 +4,8 @@ import EmailCapture from "@/components/EmailCapture";
 import LiveQuote from "@/components/LiveQuote";
 import LiveChart from "@/components/LiveChart";
 import StarButton from "@/components/StarButton";
+import TickerLogo from "@/components/TickerLogo";
+import FundLogo from "@/components/FundLogo";
 import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
@@ -61,7 +63,8 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
       <div className="mt-6 flex items-start justify-between gap-4 flex-wrap">
         <div>
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Stock ownership · Live</div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight flex items-center gap-3 flex-wrap">
+            <TickerLogo symbol={t.symbol} size={48} />
             <span className="text-brand">{t.symbol}</span>
           </h1>
           <p className="text-muted text-lg mt-2">{t.name} · {t.sector}</p>
@@ -159,10 +162,11 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
               {[...t.owners].sort((a, b) => b.pct - a.pct).map((o) => (
                 <tr key={o.slug} className="border-b border-border last:border-0 align-top">
                   <td className="px-5 py-4">
-                    <a href={`/investor/${o.slug}`} className="text-text hover:text-brand transition font-semibold">
+                    <a href={`/investor/${o.slug}`} className="inline-flex items-center gap-2 text-text hover:text-brand transition font-semibold">
+                      <FundLogo slug={o.slug} name={o.manager} size={22} />
                       {o.manager}
                     </a>
-                    <div className="text-dim text-xs mt-1 max-w-md">{o.thesis}</div>
+                    <div className="text-dim text-xs mt-1 max-w-md ml-8">{o.thesis}</div>
                   </td>
                   <td className="px-5 py-4 text-right tabular-nums text-brand font-semibold">{o.pct.toFixed(1)}%</td>
                 </tr>

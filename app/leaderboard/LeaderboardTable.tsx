@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import FundLogo from "@/components/FundLogo";
 
 type Row = {
   slug: string;
@@ -75,10 +76,11 @@ export default function LeaderboardTable({ rows: initialRows }: { rows: Row[] })
             <tr key={r.slug} className="border-b border-border last:border-0 hover:bg-bg/40 transition">
               <td className="px-5 py-3 text-dim tabular-nums font-bold">{i + 1}</td>
               <td className="px-5 py-3">
-                <a href={`/investor/${r.slug}`} className="font-semibold text-text hover:text-brand transition">
+                <a href={`/investor/${r.slug}`} className="inline-flex items-center gap-2 font-semibold text-text hover:text-brand transition">
+                  <FundLogo slug={r.slug} name={r.name} size={24} />
                   {r.name}
                 </a>
-                <div className="text-[11px] text-dim truncate">{r.fund}</div>
+                <div className="text-[11px] text-dim truncate ml-8">{r.fund}</div>
               </td>
               <td className="px-5 py-3 text-right tabular-nums font-semibold text-text">
                 {r.cagr10y.toFixed(1)}%

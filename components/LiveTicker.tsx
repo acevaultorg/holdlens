@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { getQuotes, fmtPrice, fmtPct, type LiveQuote } from "@/lib/live";
+import TickerLogo from "@/components/TickerLogo";
 
 type Props = {
   symbols: string[];
@@ -86,6 +87,7 @@ export default function LiveTicker({ symbols }: Props) {
                 tabIndex={i >= symbols.length ? -1 : 0}
                 className="inline-flex items-center gap-2 text-xs hover:opacity-80 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-brand/40 rounded px-1 transition"
               >
+                <TickerLogo symbol={sym} size={16} />
                 <span className="font-mono font-semibold text-text">{sym}</span>
                 <span className="tabular-nums text-muted">{fmtPrice(q.price, q.currency)}</span>
                 <span className={`tabular-nums font-semibold ${color}`}>

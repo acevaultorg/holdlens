@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import FundLogo from "@/components/FundLogo";
 import { MANAGERS } from "@/lib/managers";
 import { getAllManagerROI, SP500_CAGR_10Y } from "@/lib/manager-roi";
 import { ALL_MOVES, QUARTERS } from "@/lib/moves";
@@ -247,8 +248,9 @@ export default function ManagerRankingsPage() {
                   <td className="px-4 py-3">
                     <a
                       href={`/investor/${r.slug}`}
-                      className="font-semibold text-text hover:text-brand transition"
+                      className="inline-flex items-center gap-2 font-semibold text-text hover:text-brand transition"
                     >
+                      <FundLogo slug={r.slug} name={r.name} size={24} />
                       {r.name}
                     </a>
                     {r.household && (
@@ -349,18 +351,19 @@ function RankColumn({
           <li key={r.slug}>
             <a
               href={`/investor/${r.slug}`}
-              className="flex items-baseline justify-between gap-3 rounded-lg px-3 py-2 hover:bg-bg/40 transition"
+              className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-bg/40 transition"
             >
-              <div className="min-w-0 flex-1">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-xs text-dim tabular-nums w-5 shrink-0">
-                    {i + 1}.
-                  </span>
-                  <span className="font-semibold text-text text-sm truncate">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <span className="text-xs text-dim tabular-nums w-5 shrink-0">
+                  {i + 1}.
+                </span>
+                <FundLogo slug={r.slug} name={r.name} size={24} />
+                <div className="min-w-0">
+                  <div className="font-semibold text-text text-sm truncate">
                     {r.name}
-                  </span>
+                  </div>
+                  <div className="text-[11px] text-dim truncate">{r.fund}</div>
                 </div>
-                <div className="text-[11px] text-dim truncate ml-7">{r.fund}</div>
               </div>
               <div className="text-right shrink-0">
                 <div className={`text-sm font-bold tabular-nums ${accent}`}>
