@@ -73,10 +73,10 @@ export default function HomePage() {
             See the top buy signals →
           </a>
           <a
-            href="/vs/dataroma"
-            className="border border-border bg-panel text-text rounded-xl px-6 py-4 hover:border-brand/40 transition"
+            href="/biggest-sells"
+            className="border border-rose-400/40 bg-rose-400/5 text-rose-400 font-semibold rounded-xl px-6 py-4 hover:bg-rose-400/10 transition"
           >
-            vs Dataroma
+            See the top sell signals →
           </a>
         </div>
         <div className="mt-6 text-xs text-dim">

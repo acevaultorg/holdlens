@@ -6,6 +6,7 @@
 // per-list rating.
 import { getAllConvictionScores, convictionLabel, formatSignedScore, DEAD_ZONE } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
+import TickerLogo from "@/components/TickerLogo";
 
 // Server component — renders at build time. The data is static per build.
 export default function BuySellSignals() {
@@ -101,6 +102,7 @@ function SignalColumn({
                   className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-bg/40 transition"
                 >
                   <div className="text-xs text-dim tabular-nums w-5">{i + 1}</div>
+                  <TickerLogo symbol={it.ticker} size={32} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <div className="font-mono font-bold text-brand">{it.ticker}</div>
