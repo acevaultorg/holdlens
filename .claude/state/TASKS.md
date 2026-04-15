@@ -1,5 +1,14 @@
 # HoldLens — TASKS
 
+## Queue (v0.46 — /signal 52w range visualizer) — SHIPPED [objective:v46-signal-52w]
+
+- [x] `P0` BUILD components/Signal52wRange.tsx — client-hydrated 52w range gradient bar + value-tier label (Deep value/Near low/Discounted/Mid-range/Near high/At highs) + cross-link to /value [id:signal-52w-component] [score:13.0] ⏱ done v0.46 dea92ce4
+- [x] `P0` WIRE Signal52wRange into app/signal/[ticker]/page.tsx between LiveQuote and LiveChart [id:wire-signal-52w] [score:10.0] ⏱ done v0.46
+- [x] `P0` BUILD + verify static export (/signal/[ticker] 4.38 kB → 5.51 kB) [id:verify-v46] [score:10.0] ⏱ done
+- [x] `P0` COMMIT dea92ce4 + push c996e5d9..dea92ce4 [id:commit-v46] [score:10.0] ⏱ done
+- [x] `P0` DEPLOY via wrangler pages deploy out (1149 files uploaded, https://b17d05bb.holdlens.pages.dev) [id:deploy-v46] [score:10.0] ⏱ done
+- [x] `P0` VERIFY live — /signal/AAPL has "52-week range" heading, "Near high" tier verdict, /value cross-link, live hydration working [id:verify-v46-live] [score:10.0] ⏱ done
+
 ## Queue (v0.45 — /new-positions fresh-money feed) — SHIPPED [objective:v45-new-positions]
 
 - [x] `P0` BUILD app/new-positions/page.tsx — filter "new" action moves in LATEST_QUARTER, rank by positionPct × managerQuality × (1 + max(0,convScore)/100); top 3 hero cards + top 50 table + sector breakdown + busiest-managers panel + why-this-beats-dataroma + CTA [id:new-positions] [score:10.0] ⏱ done v0.45 c996e5d9
@@ -13,8 +22,7 @@
 
 Priority = (revenue impact × reversibility) / effort. Top of list executed first.
 
-- [ ] `P0` BUILD /signal/[ticker] inline 52w range visualizer — server-rendered placeholder, client hydrates from finance API; mirrors /value approach [id:signal-52w] [score:13.0]
-- [ ] `P0` BUILD /signal/[ticker] 8-quarter ownership-count sparkline — "owner_count over time" mini-chart using QUARTERS + movesAll [id:signal-owner-spark] [score:12.0]
+- [~] `P0` BUILD /signal/[ticker] 8-quarter ownership-count sparkline — "owner_count over time" mini-chart using QUARTERS + movesAll [id:signal-owner-spark] [score:12.0] ⏱ shipped as **8-quarter activity** sparkline — distinct buyers (new+add) above zero, distinct sellers (trim+exit) below zero, totals + net direction, server-rendered. Reframed from raw ownership-count because deltas-only moves data doesn't support cumulative owner state without default-ownership inference. New: components/SignalQuarterlyActivity.tsx wired between Signal52wRange and LiveChart on /signal/[ticker].
 - [ ] `P0` BUILD /manager-rankings page — 30 managers ranked by MANAGER_QUALITY × CAGR × activity, big names vs. quiet alpha side-by-side [id:manager-rankings] [score:12.0]
 - [ ] `P0` BUILD /conviction-leaders page — top 20 managers by average conviction score across their top 10 holdings, sortable [id:conviction-leaders] [score:11.0]
 - [ ] `P0` BUILD /sector/[slug] mini-rotation pages — 12 sector landing pages, each with net-flow trend + top 10 names in sector, hot-linked from /rotation [id:sector-mini-pages] [score:11.0]
