@@ -72,6 +72,30 @@ export default function AlertsPage() {
         />
       </section>
 
+      {/* Weekly digest signup */}
+      <div className="rounded-2xl border border-border bg-panel p-8 mb-8">
+        <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+          Weekly digest
+        </div>
+        <h3 className="text-xl font-bold mb-2">
+          The 10 biggest moves of the week. Every Monday.
+        </h3>
+        <p className="text-muted text-sm mb-6 max-w-xl">
+          One email every Monday morning: top 5 buys, top 5 sells across {MANAGERS.length} tracked
+          superinvestors, sorted by portfolio-impact % and conviction score. No filing required — just
+          the week's most important repositioning.
+        </p>
+        <div className="max-w-md mb-4">
+          <EmailCapture
+            size="lg"
+            sourceOverride="weekly-digest"
+            buttonLabel="Subscribe to digest →"
+            successMessage="You're on the weekly digest list. First issue lands next Monday."
+          />
+        </div>
+        <p className="text-xs text-dim">Free forever. No spam. Unsubscribe anytime.</p>
+      </div>
+
       {/* Pro upsell */}
       <div className="rounded-2xl border border-border bg-panel p-8">
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">

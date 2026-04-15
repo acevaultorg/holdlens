@@ -5,7 +5,18 @@ import { useState } from "react";
 // Falls through to localStorage on any network error so signups are NEVER lost.
 // Backend is graceful: if RESEND_API_KEY is missing, the handler still 200s and
 // we show the success UI. Activation is one env var away (see HUMAN_ACTIONS.md).
-export default function EmailCapture({ size = "md" }: { size?: "md" | "lg" }) {
+export default function EmailCapture({
+  size = "md",
+  sourceOverride,
+  buttonLabel,
+  successMessage,
+}: {
+  size?: "md" | "lg";
+  /** Pass a fixed source tag (e.g. "weekly-digest") instead of the default pathname */
+  sourceOverride?: string;
+  buttonLabel?: string;
+  successMessage?: string;
+}) {
   const [email, setEmail] = useState("");
   const [honey, setHoney] = useState(""); // honeypot — bots fill, humans don't see
   const [state, setState] = useState<"idle" | "loading" | "ok" | "err">("idle");
@@ -14,8 +25,8 @@ export default function EmailCapture({ size = "md" }: { size?: "md" | "lg" }) {
     e.preventDefault();
     setState("loading");
 
-    const source =
-      typeof window !== "undefined" ? window.location.pathname : "unknown";
+    const source = sourceOverride
+      ?? (typeof window !== "undefined" ? window.location.pathname : "unknown");
 
     // Always persist to localStorage FIRST — we never lose a signup
     try {
@@ -52,7 +63,7 @@ export default function EmailCapture({ size = "md" }: { size?: "md" | "lg" }) {
   if (state === "ok") {
     return (
       <div className={`rounded-xl border border-border bg-panel px-5 ${padY} ${textSize}`}>
-        ✓ You're on the list. First move-alert hits your inbox within hours of the next 13F drop.
+        ✓ {successMessage ?? "You're on the list. First move-alert hits your inbox within hours of the next 13F drop."}
       </div>
     );
   }
@@ -82,7 +93,7 @@ export default function EmailCapture({ size = "md" }: { size?: "md" | "lg" }) {
         disabled={state === "loading"}
         className={`bg-brand text-black font-semibold rounded-xl px-6 ${padY} ${textSize} hover:opacity-90 transition disabled:opacity-50`}
       >
-        {state === "loading" ? "…" : "Get alerts →"}
+        {state === "loading" ? "…" : (buttonLabel ?? "Get alerts →")}
       </button>
     </form>
   );
