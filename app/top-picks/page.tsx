@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import LiveQuote from "@/components/LiveQuote";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 import SectorHeatmap from "@/components/SectorHeatmap";
 import TrendBadge from "@/components/TrendBadge";
 import TickerLogo from "@/components/TickerLogo";
 import { topTickers } from "@/lib/tickers";
+import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
 export const metadata: Metadata = {
   title: "Top hedge fund stock picks 2026 — most-owned by superinvestors",
@@ -69,8 +71,15 @@ export default function TopPicksPage() {
                   </div>
                 </td>
                 <td className="px-5 py-3 text-dim hidden md:table-cell">{t.sector}</td>
-                <td className="px-5 py-3 text-right hidden md:table-cell">
+                <td className="px-5 py-3 text-right hidden md:table-cell whitespace-nowrap">
                   <LiveQuote symbol={t.symbol} size="sm" refreshMs={0} />
+                  <div className="text-[10px] mt-0.5">
+                    <SinceFilingDelta
+                      ticker={t.symbol}
+                      filedAt={QUARTER_FILED[LATEST_QUARTER]}
+                      compact
+                    />
+                  </div>
                 </td>
                 <td className="px-5 py-3 text-right tabular-nums font-semibold">{t.ownerCount}</td>
                 <td className="px-5 py-3 text-right tabular-nums text-muted">{t.totalConviction.toFixed(0)}%</td>

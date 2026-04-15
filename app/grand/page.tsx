@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import LiveQuote from "@/components/LiveQuote";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 import SectorHeatmap from "@/components/SectorHeatmap";
 import CsvExportButton from "@/components/CsvExportButton";
 import TrendBadge from "@/components/TrendBadge";
 import { getGrandPortfolio } from "@/lib/signals";
 import { MANAGERS } from "@/lib/managers";
+import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
 export const metadata: Metadata = {
   title: "Grand Portfolio — consensus holdings weighted by manager quality",
@@ -107,8 +109,15 @@ export default function GrandPortfolioPage() {
                     </div>
                   </td>
                   <td className="px-5 py-3 text-dim hidden md:table-cell">{g.sector}</td>
-                  <td className="px-5 py-3 text-right hidden md:table-cell">
+                  <td className="px-5 py-3 text-right hidden md:table-cell whitespace-nowrap">
                     <LiveQuote symbol={g.ticker} size="sm" refreshMs={0} />
+                    <div className="text-[10px] mt-0.5">
+                      <SinceFilingDelta
+                        ticker={g.ticker}
+                        filedAt={QUARTER_FILED[LATEST_QUARTER]}
+                        compact
+                      />
+                    </div>
                   </td>
                   <td className="px-5 py-3 text-right tabular-nums font-semibold">{g.ownerCount}</td>
                   <td className="px-5 py-3 text-right w-40">
