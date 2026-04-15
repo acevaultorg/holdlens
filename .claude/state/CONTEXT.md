@@ -7,21 +7,23 @@
 
 ## Session Handoff
 
-**Mode:** god --loop
-**Objective:** UX retention pass — operator directive "don't make bad UX choices; top priority growth + returning users + satisfaction"
-**Progress:** SHIPPED TO GIT, DEPLOY PENDING — v0.80 (footer 51→25 grouped in 5 columns, desktop nav a11y, mobile nav 49→33 grouped) + v0.81 parallel session (sticky header, skip-to-main-content link, outcome-first hero "Spot smart money moves before the market does", pricing competitor anchor, FoundersNudge rose-tone + fan-out). Build clean, 484 static routes, pushed to origin/main. Cloudflare deploy BLOCKED by CF API socket instability — 4× wrangler retries all failed with UND_ERR_SOCKET at 159-1671/2293 files. Operator must retry wrangler when CF recovers.
-**Branch:** `main` · 5 commits on top of v0.79 (1bc34adb4, 2bcacaeae, f3763d263, 58d458fc1, 818092a06)
+**Mode:** sovereign
+**Objective:** sovereign auto — Cloudflare deploy unblock + revenue-path continuity
+**Progress:** DEPLOY UNBLOCKED ✓ v0.80+v0.81+v0.82+v0.83 all LIVE on prod. Wrangler succeeded on retry (2134 files / 70.58s) → a9069bf8.holdlens.pages.dev. Deploy-truth verified: (a) prod holdlens.com hero "Spot smart money moves" ✓, (b) direct pricing 14-day-refund trust strip ✓, (c) /learn/superinvestor-handbook Amazon widget ("Intelligent Investor", "Poor Charlie") ✓. Earlier CF API socket flake cleared. v0.82 InvestingBooks + v0.83 ShareStrip shipped by parallel session; v0.82 (my branch) folded contrast-fix (#6b7280→#858d9c WCAG AA) + FoundersNudge wire-ins into parallel commit. BackToTop component wired in layout.tsx. /learn/superinvestor-handbook now has ShareStrip viral-loop + Amazon affiliate funnel.
+**Branch:** `main` · HEAD=f6d8e9b1e (pushed to origin). Clean tree except stale local out/ vs HEAD build hashes (cosmetic, next build normalizes).
 **Next actions:**
-  1. Operator 👤: retry wrangler deploy (see TASKS.md id:deploy-v80-v81). First action on next operator session.
-  2. After deploy: Chrome MCP deploy-truth verify — `curl -sL https://holdlens.com | grep -c "Spot smart money moves"` returns 1
-  3. After deploy: log v0.80+v0.81 Ship Impact row to GROWTH_ANALYTICS.md (hypothesis: footer simplification + outcome-voice hero + sticky nav → lower bounce rate + higher returning-user rate)
-  4. Chief: P1 /compare/[pair] visual diff (still open)
-  5. Chief: P1 /stock/[ticker] redirect alias (still open)
-  6. Operator: AdSense + IBKR affiliate + Stripe activation (HUMAN_ACTIONS.md, unchanged from prior session)
-**Human actions pending:** 4 — deploy-v80-v81 (NEW, P0), adsense-activate, affiliate-activate, stripe-activate
+  1. Operator 👤: sign up for Amazon Associates (24h review), then `NEXT_PUBLIC_AMZN_TAG=holdlens-20` in CF Pages env, redeploy — activates the book widget revenue stream (#3 after AdSense + Ko-fi).
+  2. Operator: Stripe activation (paywall on /premium) — highest $ unlock, still P0 [👤].
+  3. Operator: AdSense apply + NEXT_PUBLIC_ADSENSE_CLIENT env.
+  4. Operator: IBKR affiliate signup + NEXT_PUBLIC_AFF_IBKR env.
+  5. Chief: P1 /compare/[pair] visual diff (Venn + convergence chart, id:compare-visual, score 8.0)
+  6. Chief: P1 /stock/[ticker] redirect alias (id:stock-alias, score 8.0)
+  7. Chief: P1 /investor/[slug] concentration pie + YoY holdings trend (id:investor-viz, score 9.0)
+  8. Chief: P2 /api/v1/changelog.json (id:api-changelog, score 6.0)
+**Human actions pending:** 4 — amazon-associates-signup (NEW), adsense-activate, affiliate-activate, stripe-activate. Deploy-v80-v81 CLEARED.
 **Open questions:** none
-**Momentum:** high — UX retention pass shipped to git in one cycle; operator's directive fully addressed on source; deploy is the only remaining step
-<!-- handoff: 2026-04-15 14:19 -->
+**Momentum:** high — deploy blocker cleared in one cycle; 4 versions (v0.80→v0.83) now LIVE; Amazon affiliate revenue path armed pending operator signup.
+<!-- handoff: 2026-04-15 14:45 -->
 
 ## Ad placement map (v0.31)
 
