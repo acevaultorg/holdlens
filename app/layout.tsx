@@ -20,17 +20,23 @@ export const metadata: Metadata = {
   description:
     "Track 30 of the world's best portfolio managers on a single signed −100..+100 ConvictionScore. +100 is the strongest possible buy. Live prices. Free.",
   openGraph: {
-    title: "HoldLens",
-    description: "30 of the world's best portfolio managers, one signed −100..+100 conviction scale.",
+    title: "HoldLens — Spot smart money moves before the market does",
+    description: "30 of the world's best portfolio managers, one signed −100..+100 conviction scale. Live prices. Free.",
     url: "https://holdlens.com",
     siteName: "HoldLens",
     type: "website",
+    // v0.94 homepage OG fallback — every route that doesn't override this in
+    // its own generateMetadata will inherit /og/home.png. Prior to this, the
+    // root domain shared as a blank text-only card on every social platform,
+    // which is a silent distribution leak for organic referrals.
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — smart money signal" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "HoldLens — Smart money, out loud",
     description: "Track 30 of the world's best portfolio managers on one signed −100..+100 ConvictionScore. Free.",
     creator: "@holdlens",
+    images: ["/og/home.png"],
   },
   robots: { index: true, follow: true },
   alternates: { types: { "application/rss+xml": "/feed.xml" } },

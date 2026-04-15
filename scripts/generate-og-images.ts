@@ -734,6 +734,132 @@ async function main() {
     sectorCount++;
   }
   console.log(`Generated ${sectorCount} sector OG images in ${sectorDir}`);
+
+  // ── Homepage OG (v0.94) ────────────────────────────────────────────────────
+  // Prior to this, holdlens.com had NO og:image, so every share on Twitter /
+  // Slack / LinkedIn / WhatsApp / iMessage rendered as a text-only card. Now
+  // the root `/` gets a branded 1200×630 hero matching the in-site palette
+  // and lifts the exact value-prop copy off the homepage.
+  console.log("Generating homepage OG image...");
+  const homeDir = join(process.cwd(), "public", "og");
+  await mkdir(homeDir, { recursive: true });
+
+  const managerCount = MANAGERS.length;
+  const tickerCount = Object.keys(TICKER_INDEX).length;
+
+  const homeSvg = await satori(
+    {
+      type: "div",
+      props: {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          width: WIDTH,
+          height: HEIGHT,
+          backgroundColor: "#0a0a0a",
+          padding: "56px 64px",
+          fontFamily: "Inter",
+          color: "#e5e5e5",
+        },
+        children: [
+          // Brand row
+          {
+            type: "div",
+            props: {
+              style: { display: "flex", alignItems: "center", gap: "12px", marginBottom: "36px" },
+              children: [
+                { type: "div", props: { style: { color: "#fbbf24", fontSize: "36px" }, children: "◉" } },
+                { type: "div", props: { style: { fontSize: "28px", fontWeight: 700 }, children: "HoldLens" } },
+              ],
+            },
+          },
+          // Kicker
+          {
+            type: "div",
+            props: {
+              style: {
+                fontSize: "18px",
+                color: "#fbbf24",
+                textTransform: "uppercase" as const,
+                letterSpacing: "0.12em",
+                marginBottom: "18px",
+                fontWeight: 700,
+              },
+              children: `SEC-FILED · ${managerCount} SUPERINVESTORS TRACKED`,
+            },
+          },
+          // Hero
+          {
+            type: "div",
+            props: {
+              style: {
+                display: "flex",
+                flexDirection: "column",
+                fontSize: "64px",
+                fontWeight: 700,
+                lineHeight: 1.1,
+                marginBottom: "28px",
+              },
+              children: [
+                { type: "div", props: { style: { color: "#e5e5e5" }, children: "Spot smart money moves" } },
+                { type: "div", props: { style: { color: "#fbbf24" }, children: "before the market does." } },
+              ],
+            },
+          },
+          // Sub
+          {
+            type: "div",
+            props: {
+              style: { fontSize: "22px", color: "#9ca3af", lineHeight: 1.4, marginBottom: "auto" },
+              children: `Every 13F move scored on one signed −100..+100 ConvictionScore. Live prices. Free forever.`,
+            },
+          },
+          // Footer strip: stats + domain
+          {
+            type: "div",
+            props: {
+              style: {
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                borderTop: "1px solid #262626",
+                paddingTop: "22px",
+                fontSize: "16px",
+                color: "#858d9c",
+              },
+              children: [
+                {
+                  type: "div",
+                  props: {
+                    style: { display: "flex", gap: "20px" },
+                    children: [
+                      { type: "div", props: { children: `${managerCount} managers` } },
+                      { type: "div", props: { children: "·" } },
+                      { type: "div", props: { children: `${tickerCount} tickers` } },
+                      { type: "div", props: { children: "·" } },
+                      { type: "div", props: { children: "150+ JSON endpoints" } },
+                    ],
+                  },
+                },
+                {
+                  type: "div",
+                  props: { style: { color: "#fbbf24", fontWeight: 700 }, children: "holdlens.com" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      width: WIDTH,
+      height: HEIGHT,
+      fonts: [{ name: "Inter", data: fontData, weight: 700, style: "normal" }],
+    },
+  );
+  const homePng = await sharp(Buffer.from(homeSvg)).png({ quality: 92 }).toBuffer();
+  await writeFile(join(homeDir, "home.png"), homePng);
+  console.log(`Generated homepage OG image at ${homeDir}/home.png`);
 }
 
 main().catch((err) => {
