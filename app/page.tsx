@@ -63,7 +63,7 @@ export default function HomePage() {
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
               Signal explorer
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Eight ways to read smart money</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Thirteen ways to read smart money</h2>
             <p className="text-muted mt-2 max-w-xl">
               Every card below answers a different question Dataroma can&rsquo;t.
               Pick the angle, not the ticker.
@@ -129,6 +129,41 @@ export default function HomePage() {
             label="Conviction"
             title="Concentration"
             body="Who's all-in vs diversified — top-1, top-3, top-5 weights."
+          />
+          <SignalCard
+            href="/trend-streak"
+            tone="emerald"
+            label="Compounding"
+            title="Trend streaks"
+            body="Managers who keep buying the same name quarter after quarter."
+          />
+          <SignalCard
+            href="/accelerators"
+            tone="brand"
+            label="Crowd forming"
+            title="Accelerators"
+            body="Tickers where aggregate ownership has grown 3+ quarters in a row."
+          />
+          <SignalCard
+            href="/overlap"
+            tone="brand"
+            label="Consensus"
+            title="Manager overlap"
+            body="Which pairs of superinvestors own the same stocks."
+          />
+          <SignalCard
+            href="/by-philosophy"
+            tone="emerald"
+            label="Schools"
+            title="By philosophy"
+            body="What value, growth, activist, and macro investors each hold."
+          />
+          <SignalCard
+            href="/quarter/2025-q4"
+            tone="brand"
+            label="Archive"
+            title="Quarter digest"
+            body="Historical 13F recap — 8 quarters deep, like Dataroma archive."
           />
         </div>
       </section>
