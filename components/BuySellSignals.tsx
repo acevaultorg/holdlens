@@ -17,13 +17,18 @@ export default function BuySellSignals() {
     .sort((a, b) => a.score - b.score)
     .slice(0, 5);
   const quarter = QUARTER_LABELS[LATEST_QUARTER];
+  // URL slug for the per-quarter digest page. LATEST_QUARTER is `2025-Q4`;
+  // route param is lowercase (/quarter/2025-q4).
+  const quarterSlug = LATEST_QUARTER.toLowerCase();
 
   return (
     <div className="grid md:grid-cols-2 gap-4">
       <SignalColumn
         kind="buy"
         title="What to buy"
-        subtitle={`Top signals · ${quarter}`}
+        subtitle={`Top signals · ${quarter} filings`}
+        quarterHref={`/quarter/${quarterSlug}`}
+        quarterLabel={quarter}
         items={buys.map((c) => ({
           ticker: c.ticker,
           name: c.name,
@@ -39,7 +44,9 @@ export default function BuySellSignals() {
       <SignalColumn
         kind="sell"
         title="What to sell"
-        subtitle={`Top signals · ${quarter}`}
+        subtitle={`Top signals · ${quarter} filings`}
+        quarterHref={`/quarter/${quarterSlug}`}
+        quarterLabel={quarter}
         items={sells.map((c) => ({
           ticker: c.ticker,
           name: c.name,
@@ -63,6 +70,8 @@ function SignalColumn({
   items,
   linkHref,
   linkLabel,
+  quarterHref,
+  quarterLabel,
 }: {
   kind: "buy" | "sell";
   title: string;
@@ -70,6 +79,8 @@ function SignalColumn({
   items: { ticker: string; name: string; score: number; detail: string }[];
   linkHref: string;
   linkLabel: string;
+  quarterHref?: string;
+  quarterLabel?: string;
 }) {
   const accent = kind === "buy" ? "text-emerald-400" : "text-rose-400";
   const accentBg = kind === "buy" ? "bg-emerald-400/5" : "bg-rose-400/5";
@@ -126,12 +137,23 @@ function SignalColumn({
         </ul>
       )}
 
-      <a
-        href={linkHref}
-        className={`inline-block mt-4 text-sm ${accent} font-semibold hover:underline`}
-      >
-        {linkLabel}
-      </a>
+      <div className="mt-4 flex items-center justify-between gap-3 flex-wrap">
+        <a
+          href={linkHref}
+          className={`text-sm ${accent} font-semibold hover:underline`}
+        >
+          {linkLabel}
+        </a>
+        {quarterHref && quarterLabel && (
+          <a
+            href={quarterHref}
+            className="text-[11px] text-dim hover:text-text transition"
+            title={`${quarterLabel} full quarter digest — filings summary, newly filed positions, and exits for this quarter`}
+          >
+            {quarterLabel} digest →
+          </a>
+        )}
+      </div>
     </div>
   );
 }
