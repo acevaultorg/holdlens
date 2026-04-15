@@ -6,6 +6,8 @@ import InvestorMoves from "@/components/InvestorMoves";
 import ManagerROICard from "@/components/ManagerROICard";
 import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
+import FundLogo from "@/components/FundLogo";
+import TickerLogo from "@/components/TickerLogo";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
@@ -28,7 +30,10 @@ export default function BuffettPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Investor profile
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-2">Warren Buffett</h1>
+      <div className="flex items-center gap-4 mb-2">
+        <FundLogo slug="warren-buffett" name="Warren Buffett" size={56} />
+        <h1 className="text-4xl md:text-5xl font-bold leading-tight">Warren Buffett</h1>
+      </div>
       <p className="text-muted text-lg">Berkshire Hathaway · CEO since 1970 · Net worth: ~$140B</p>
 
       {(() => {
@@ -115,7 +120,10 @@ export default function BuffettPage() {
               {BUFFETT_TOP.map((h) => (
                 <tr key={h.ticker} className="border-b border-border last:border-0 align-top">
                   <td className="px-5 py-4 font-mono font-semibold">
-                    <a href={`/ticker/${h.ticker}`} className="text-brand hover:underline">{h.ticker}</a>
+                    <a href={`/ticker/${h.ticker}`} className="inline-flex items-center gap-2 text-brand hover:underline">
+                      <TickerLogo symbol={h.ticker} size={22} />
+                      {h.ticker}
+                    </a>
                   </td>
                   <td className="px-5 py-4">
                     <div className="text-text">{h.name}</div>
