@@ -7,6 +7,7 @@ import DataFreshness from "@/components/DataFreshness";
 import SupportBar from "@/components/SupportBar";
 import CookieConsent from "@/components/CookieConsent";
 import BackToTop from "@/components/BackToTop";
+import FilingWaveBanner from "@/components/FilingWaveBanner";
 import "./globals.css";
 
 const TICKER_SCROLL = ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "BRK-B", "AMZN", "JPM", "BAC", "KO", "CVX", "OXY", "AXP", "CMG", "V"];
@@ -166,6 +167,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <MobileNav />
           </div>
         </header>
+        {/* v0.99 — Filing-wave countdown band. Non-intrusive, one row high,
+            dismissible for 14 days. Reframes the 45-day 13F lag as an
+            anticipation lever instead of a "why is data old?" confusion.
+            Auto-hides after the next filing deadline passes. */}
+        <FilingWaveBanner />
         <main id="main">{children}</main>
         <BackToTop />
         <CookieConsent />
