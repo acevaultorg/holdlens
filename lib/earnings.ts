@@ -41,12 +41,23 @@ function cacheSet(symbol: string, data: EarningsInfo) {
 
 const PROXY_BASE = "https://holdlens-yahoo-proxy.paulomdevries.workers.dev";
 
+/**
+ * Convert a HoldLens ticker to Yahoo's URL-path form. Mirrors the
+ * toYahooSymbol() helper in lib/live.ts — "BRK.B" must hit Yahoo as
+ * "BRK-B" or the quoteSummary endpoint returns 503. Kept local so this
+ * file has no cross-import dependency on the live module.
+ */
+function toYahooSymbol(s: string): string {
+  return s.toUpperCase().trim().replace(/[./]/g, "-");
+}
+
 async function fetchFromYahoo(symbol: string): Promise<EarningsInfo> {
+  const yahooSym = toYahooSymbol(symbol);
   const base = `https://query2.finance.yahoo.com/v10/finance/quoteSummary/${encodeURIComponent(
-    symbol
+    yahooSym
   )}?modules=calendarEvents,earnings,defaultKeyStatistics`;
   const endpoints = [
-    `${PROXY_BASE}/summary/${encodeURIComponent(symbol)}`,
+    `${PROXY_BASE}/summary/${encodeURIComponent(yahooSym)}`,
     base,
     `https://corsproxy.io/?url=${encodeURIComponent(base)}`,
   ];
