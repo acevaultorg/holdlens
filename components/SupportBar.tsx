@@ -88,6 +88,12 @@ export default function SupportBar() {
               {p.label}
             </a>
           ))}
+          <a
+            href="/support"
+            className="inline-flex items-center rounded-md border border-brand/30 bg-brand/10 px-3 py-1.5 text-[11px] font-semibold text-brand hover:bg-brand/20 transition"
+          >
+            All options →
+          </a>
         </div>
       </div>
     </div>
