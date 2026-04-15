@@ -130,7 +130,7 @@ Unsubscribe anytime \u2014 just reply "stop".
 }
 __name(welcomeText, "welcomeText");
 
-// ../.wrangler/tmp/pages-xbiYxR/functionsRoutes-0.26784188139520904.mjs
+// ../.wrangler/tmp/pages-15Ybwr/functionsRoutes-0.8395596167291022.mjs
 var routes = [
   {
     routePath: "/api/subscribe",
