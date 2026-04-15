@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import GlobalSearch from "@/components/GlobalSearch";
 import LiveTicker from "@/components/LiveTicker";
 import MobileNav from "@/components/MobileNav";
+import DesktopNav from "@/components/DesktopNav";
+import DataFreshness from "@/components/DataFreshness";
 import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
 
@@ -37,6 +38,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <head>
+        {/* Perf: preconnect to the origins we WILL hit, so the DNS + TLS
+            handshake overlaps with critical rendering instead of blocking it. */}
+        <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://query1.finance.yahoo.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://plausible.io" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://query1.finance.yahoo.com" />
         {/* Google Consent Mode v2 — default "denied" until CookieConsent banner grants.
             Required by Google for EU traffic serving ads via AdSense. Must run before
             any Google scripts load, so strategy is beforeInteractive. */}
@@ -60,12 +69,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy="afterInteractive"
         />
         {/* AdSense site verification — loads the loader script on every page so Google
-            can verify ownership during onboarding and auto-ads can serve after approval. */}
+            can verify ownership during onboarding and auto-ads can serve after approval.
+            lazyOnload defers until the page is idle, protecting LCP + INP. */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7449214764048186"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <meta name="google-adsense-account" content="ca-pub-7449214764048186" />
       </head>
@@ -76,38 +86,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="/" className="flex items-center gap-2 font-semibold text-lg shrink-0">
               <span className="text-brand">◉</span> HoldLens
             </a>
-            {/* Desktop nav — md and up */}
-            <nav className="hidden md:flex items-center gap-4 text-sm text-muted">
-              <a href="/best-now" className="hover:text-brand transition font-semibold">Best now</a>
-              <a href="/value" className="hover:text-emerald-400 transition font-semibold">Value</a>
-              <a href="/big-bets" className="hover:text-brand transition font-semibold hidden lg:inline">Big bets</a>
-              <a href="/rotation" className="hover:text-brand transition font-semibold hidden lg:inline">Rotation</a>
-              <a href="/new-positions" className="hover:text-emerald-400 transition font-semibold hidden lg:inline">New</a>
-              <a href="/portfolio" className="hover:text-brand transition font-semibold">My portfolio</a>
-              <a href="/proof" className="hover:text-emerald-400 transition font-semibold">Proof</a>
-              <a href="/leaderboard" className="hover:text-text transition">Leaderboard</a>
-              <a href="/manager-rankings" className="hover:text-text transition hidden lg:inline">Rankings</a>
-              <a href="/conviction-leaders" className="hover:text-text transition hidden lg:inline">Conviction</a>
-              <a href="/crowded-trades" className="hover:text-rose-400 transition hidden lg:inline font-semibold">Crowded</a>
-              <a href="/contrarian-bets" className="hover:text-text transition hidden lg:inline font-semibold">Contrarian</a>
-              <a href="/consensus" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Consensus</a>
-              <a href="/hidden-gems" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Hidden gems</a>
-              <a href="/vs/dataroma" className="hover:text-brand transition hidden lg:inline font-semibold">vs Dataroma</a>
-              <a href="/quarter/2025-q4" className="hover:text-text transition hidden lg:inline">Quarters</a>
-              <a href="/trend-streak" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Streaks</a>
-              <a href="/accelerators" className="hover:text-brand transition hidden lg:inline font-semibold">Accelerators</a>
-              <a href="/overlap" className="hover:text-brand transition hidden lg:inline font-semibold">Overlap</a>
-              <a href="/by-philosophy" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Schools</a>
-              <a href="/first-movers" className="hover:text-brand transition hidden lg:inline font-semibold">First movers</a>
-              <a href="/biggest-buys" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Biggest buys</a>
-              <a href="/biggest-sells" className="hover:text-rose-400 transition hidden lg:inline font-semibold">Biggest sells</a>
-              <a href="/fresh-conviction" className="hover:text-brand transition hidden lg:inline font-semibold">Fresh</a>
-              <a href="/themes" className="hover:text-brand transition hidden lg:inline font-semibold">Themes</a>
-              <a href="/reversals" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Reversals</a>
-              <a href="/this-week" className="hover:text-text transition hidden lg:inline">This week</a>
-              <a href="/pricing" className="text-brand hover:text-text transition font-semibold">Pro</a>
-              <GlobalSearch />
-            </nav>
+            {/* Desktop nav — grouped dropdowns at md and up */}
+            <DesktopNav />
             {/* Mobile hamburger — below md */}
             <MobileNav />
           </div>
@@ -118,15 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Data freshness band */}
           <div className="border-b border-border bg-panel/30">
             <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between gap-4 flex-wrap text-xs text-dim">
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>
-                  Data current: <span className="text-text font-semibold">Q4 2025</span> · filed 2026-02-14
-                </span>
-              </div>
-              <div>
-                Next refresh: <span className="text-text font-semibold">Q1 2026 by 2026-05-15</span>
-              </div>
+              <DataFreshness />
               <div>
                 Live prices via <a href="https://finance.yahoo.com" className="text-brand hover:underline" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · 60s cache
               </div>

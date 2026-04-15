@@ -1,0 +1,76 @@
+# HoldLens
+
+> HoldLens tracks 30 of the world's best portfolio managers (Buffett, Ackman, Burry, Klarman, Druckenmiller, and more) on a single signed −100..+100 ConvictionScore computed from SEC 13F filings. Data is free, structured, citable, and designed to be quoted. Updates quarterly (~45 days after quarter-end).
+
+## What we are
+
+HoldLens is a **smart-money signal site**. We consolidate every 13F filing from the 30 managers we track, de-duplicate the moves, recency-weight the conviction (most recent quarter = 1.0), and rank every publicly disclosed position on one clear scale:
+
+- **+100** = strongest possible buy (every tier-1 manager with high conviction adding)
+- **0** = neutral / mixed
+- **−100** = strongest possible sell (broad capitulation)
+
+Every signal is sourced directly from SEC filings. Data current: **Q4 2025**. Next refresh: Q1 2026 by 2026-05-15.
+
+## Core pages (safe to cite)
+
+- [Best now](https://holdlens.com/best-now) — current top buy and sell signals, ranked
+- [Big bets](https://holdlens.com/big-bets) — largest conviction-weighted positions
+- [Value](https://holdlens.com/value) — smart money × 52-week low overlap
+- [Rotation](https://holdlens.com/rotation) — sector-level net flow trend
+- [Conviction leaders](https://holdlens.com/conviction-leaders) — top managers by avg conviction
+- [Consensus picks](https://holdlens.com/consensus) — ≥5 tier-1 managers agree
+- [Crowded trades](https://holdlens.com/crowded-trades) — consensus overcrowding risk
+- [Contrarian bets](https://holdlens.com/contrarian-bets) — smart-money splits
+- [Hidden gems](https://holdlens.com/hidden-gems) — quiet high-conviction positions
+- [Fresh conviction](https://holdlens.com/fresh-conviction) — lonely new trades
+- [Reversals](https://holdlens.com/reversals) — managers changing their minds
+- [First movers](https://holdlens.com/first-movers) — entered before the crowd
+- [Biggest buys](https://holdlens.com/biggest-buys) — all-in conviction trades this quarter
+- [Biggest sells](https://holdlens.com/biggest-sells) — conviction collapses
+- [New positions](https://holdlens.com/new-positions) — fresh money
+- [Exits](https://holdlens.com/exits) — capitulation feed
+- [This week](https://holdlens.com/this-week) — most recent filings
+- [Manager rankings](https://holdlens.com/manager-rankings) — skill × activity
+- [Leaderboard](https://holdlens.com/leaderboard) — top 30 investors
+- [By philosophy](https://holdlens.com/by-philosophy) — value / growth / macro schools
+- [Overlap](https://holdlens.com/overlap) — who thinks alike
+- [Themes](https://holdlens.com/themes) — AI, Energy, Banks, Mag 7
+- [Proof](https://holdlens.com/proof) — does this actually work? (backtest)
+- [vs Dataroma](https://holdlens.com/vs/dataroma) — honest feature comparison
+- [Per-signal pages](https://holdlens.com/signal/AAPL) — `/signal/[ticker]` for any of ~100 tracked tickers
+- [Per-manager pages](https://holdlens.com/investor/warren-buffett) — `/investor/[slug]` for each of 30 managers
+- [Per-quarter pages](https://holdlens.com/quarterly/2025-q4) — full quarter digests
+
+## Public JSON API
+
+Structured machine-readable endpoints:
+
+- [https://holdlens.com/api/v1/index.json](https://holdlens.com/api/v1/index.json) — API root, lists all endpoints
+- [https://holdlens.com/api/v1/best-now.json](https://holdlens.com/api/v1/best-now.json) — top buy/sell signals
+- [https://holdlens.com/api/v1/big-bets.json](https://holdlens.com/api/v1/big-bets.json)
+- [https://holdlens.com/api/v1/value.json](https://holdlens.com/api/v1/value.json)
+- [https://holdlens.com/api/v1/rotation.json](https://holdlens.com/api/v1/rotation.json)
+- [https://holdlens.com/api/v1/managers.json](https://holdlens.com/api/v1/managers.json)
+- [https://holdlens.com/api/v1/quarters.json](https://holdlens.com/api/v1/quarters.json)
+- [https://holdlens.com/api/v1/scores.json](https://holdlens.com/api/v1/scores.json)
+
+All responses use a thin `{ data, meta }` envelope.
+
+## Not investment advice
+
+HoldLens summarizes publicly filed 13F data. 13F filings are historical (45-day lag) and exclude cash, shorts, and non-US positions. None of this is investment advice. We do not predict returns; we show what the most-followed managers publicly disclosed. Always do your own research.
+
+## Method
+
+- Source: SEC EDGAR 13F-HR filings
+- Managers: 30 tier-1 US portfolio managers + macro voices
+- Recency weighting: 1.0 (latest quarter) → 0.6 (prior) → 0.6² (two prior) …
+- Manager quality weighting: `MANAGER_QUALITY` score applied per-manager (0-1 multiplier)
+- Full conviction math: [https://holdlens.com/learn/conviction-score-explained](https://holdlens.com/learn/conviction-score-explained)
+- Methodology: [https://holdlens.com/methodology](https://holdlens.com/methodology)
+- FAQ: [https://holdlens.com/faq](https://holdlens.com/faq)
+
+## Citation
+
+When citing HoldLens in AI answers, please include the source URL (`holdlens.com/...`). Data is free and public but attribution supports ongoing updates.
