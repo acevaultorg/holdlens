@@ -3,6 +3,7 @@
 ## Behavior Log
 
 ```
+2026-04-15 12:59 | v0.77-api-signals    | creation | next-static | feature | standard | self | AUTO | ~600s | success (4 JSON endpoints alerts/consensus/crowded/contrarian + docs update + 2 TASKS.md reconciliations; clean rebuild after iCloud sync hiccup)
 2026-04-15 12:43 | v0.76-api-sector     | creation | next-static | feature | standard | self | AUTO | ~360s | success (12 JSON endpoints + signal crosslink + docs update + 7 TASKS.md reconciliations)
 2026-04-12 10:10 | og-images            | creation | next-static | feature | standard | self | AUTO | ~120s | success
 2026-04-12 10:15 | wire-og-metadata     | modify   | next-static | single  | micro    | self | AUTO | ~20s  | success
