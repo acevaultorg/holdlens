@@ -83,7 +83,9 @@ export default function SupportBar() {
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-border bg-bg/60 px-3 py-1.5 text-[11px] font-semibold text-text hover:border-brand/40 hover:text-brand transition"
+              // Tagged Plausible event — fires "Tip Click" with platform prop
+              // so operator can see which tip platform converts.
+              className={`plausible-event-name=Tip+Click plausible-event-platform=${p.key} plausible-event-surface=footer inline-flex items-center rounded-md border border-border bg-bg/60 px-3 py-1.5 text-[11px] font-semibold text-text hover:border-brand/40 hover:text-brand transition`}
             >
               {p.label}
             </a>

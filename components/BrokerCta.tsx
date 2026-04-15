@@ -101,7 +101,10 @@ export default function BrokerCta({
             href={b.href}
             target="_blank"
             rel="noopener sponsored nofollow"
-            className="block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand transition"
+            // Tagged Plausible events — matches the pattern established in
+            // InvestingBooks so every affiliate click lands in one Events view.
+            // Fires "Broker Click" with broker + optional ticker props.
+            className={`plausible-event-name=Broker+Click plausible-event-broker=${b.key}${ticker ? ` plausible-event-ticker=${ticker}` : ""} block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand transition`}
           >
             <div className="flex items-baseline justify-between gap-2 mb-1">
               <div className="font-semibold text-text">{b.label}</div>

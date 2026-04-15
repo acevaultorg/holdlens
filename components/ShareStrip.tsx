@@ -46,7 +46,9 @@ export default function ShareStrip({ title, url, via = "holdlens" }: Props) {
           href={b.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`text-muted transition ${b.hoverColor}`}
+          // Tagged Plausible event — fires "Share Click" with platform prop.
+          // Which surfaces actually drive viral loop becomes measurable.
+          className={`plausible-event-name=Share+Click plausible-event-platform=${b.label.replace(/\s+/g, "+")} text-muted transition ${b.hoverColor}`}
         >
           {b.label}
         </a>

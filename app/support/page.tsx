@@ -180,7 +180,9 @@ export default function SupportPage() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cardClasses}
+                // Tagged Plausible event — matches SupportBar so operator can
+                // compare tip-platform conversion between footer chip and /support card.
+                className={`plausible-event-name=Tip+Click plausible-event-platform=${p.key} plausible-event-surface=support-page ${cardClasses}`}
               >
                 {inner}
               </a>
