@@ -44,7 +44,7 @@ Priority = (revenue impact × reversibility) / effort. Top of list executed firs
 - [ ] `P1` BUILD /alerts page — "what changed this quarter" rollup showing all >5% portfolio-impact moves across all 30 managers, sorted by impact [id:alerts] [score:9.0]
 - [ ] `P1` BUILD /investor/[slug] portfolio concentration pie + YoY holdings-count trend [id:investor-viz] [score:9.0]
 - [ ] `P1` BUILD /stock/[ticker] redirect alias for /signal/[ticker] — SEO + human-memorable URL [id:stock-alias] [score:8.0]
-- [ ] `P1` ADD JSON-LD structured data to /signal/[ticker] (Financial Product schema) for Google rich results [id:signal-schema] [score:8.0]
+- [x] `P1` ADD JSON-LD structured data to /signal/[ticker] (Financial Product schema) for Google rich results [id:signal-schema] [score:8.0] ⏱ shipped v0.49 — two inline `<script type="application/ld+json">` tags per page: (1) Article schema with verdict-driven headline (e.g., `AAPL SELL signal — smart money conviction −20`) + about.Corporation with tickerSymbol + industry + OG image, unlocks Google Article rich results; (2) BreadcrumbList (Home → Signals → TICKER) for breadcrumb rich results. Zero page-weight increase, ticker-specific headlines confirmed for all 94 pages.
 - [ ] `P1` BUILD /api/v1/sector/{slug}.json endpoint — per-sector tickers + top owners, completes the API rotation story [id:api-sector] [score:8.0]
 - [ ] `P1` BUILD /api/v1/alerts.json — real-time "what changed >5% impact" endpoint [id:api-alerts] [score:8.0]
 - [ ] `P1` BUILD /compare/[pair] visual diff showing overlap Venn + unique-only lists + shared-name convergence chart [id:compare-visual] [score:8.0]
