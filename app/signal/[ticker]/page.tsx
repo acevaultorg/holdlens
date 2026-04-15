@@ -4,6 +4,7 @@ import LiveQuote from "@/components/LiveQuote";
 import LiveChart from "@/components/LiveChart";
 import Signal52wRange from "@/components/Signal52wRange";
 import SignalQuarterlyActivity from "@/components/SignalQuarterlyActivity";
+import OwnerCountSparkline from "@/components/OwnerCountSparkline";
 import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
@@ -265,6 +266,13 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
       {/* 8-quarter buy/sell activity sparkline — historical context for the verdict */}
       <section className="mt-6">
         <SignalQuarterlyActivity symbol={t.symbol} />
+      </section>
+
+      {/* Ownership breadth — 8Q owner_count over time, rebuilt from
+          MERGED_MOVES. Complements the activity chart above: activity =
+          flow (who's moving), breadth = state (how many hold). */}
+      <section className="mt-6">
+        <OwnerCountSparkline symbol={t.symbol} />
       </section>
 
       <section className="mt-8">
