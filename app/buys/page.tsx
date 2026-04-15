@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 import CsvExportButton from "@/components/CsvExportButton";
 import TrendBadge from "@/components/TrendBadge";
 import TickerLogo from "@/components/TickerLogo";
 import { getBuySignals, ratingLabel } from "@/lib/signals";
 import { formatSignedScore } from "@/lib/conviction";
-import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
+import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
 export const metadata: Metadata = {
   title: "What to buy — recommendation model from the best investors",
@@ -116,6 +117,11 @@ export default function BuysPage() {
                       </div>
                       <div className="text-xs text-muted mt-1">
                         <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />
+                        <SinceFilingDelta
+                          ticker={s.ticker}
+                          filedAt={QUARTER_FILED[LATEST_QUARTER]}
+                          leadingSeparator
+                        />
                       </div>
                     </div>
                   </div>

@@ -9,8 +9,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import LiveQuote from "@/components/LiveQuote";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 import CsvExportButton from "@/components/CsvExportButton";
 import { getQuotes, type LiveQuote as LiveQuoteData } from "@/lib/live";
+import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
 export type ValueCandidate = {
   ticker: string;
@@ -220,6 +222,11 @@ export default function ValueClient({ candidates }: { candidates: ValueCandidate
                     </div>
                     <div className="text-xs text-muted">
                       <LiveQuote symbol={r.c.ticker} size="sm" refreshMs={0} />
+                      <SinceFilingDelta
+                        ticker={r.c.ticker}
+                        filedAt={QUARTER_FILED[LATEST_QUARTER]}
+                        leadingSeparator
+                      />
                       <span className="mx-2 text-dim">·</span>
                       {r.c.buyerCount} buying
                       {r.c.sellerCount > 0 && (
