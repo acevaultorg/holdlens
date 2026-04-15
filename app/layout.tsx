@@ -64,10 +64,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               if(c==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
             }catch(e){}`}
         </Script>
+        {/* Plausible — tagged-events + outbound-links variant (v0.86).
+            - Outbound links auto-track: clicks on external hrefs post an
+              "Outbound Link: Click" event with the URL as prop. Amazon
+              book clicks, affiliate CTAs, and any external reference get
+              measurement for free.
+            - Tagged events: any element with
+              `className="plausible-event-name=MyEvent"` + optional
+              `plausible-event-{prop}=value` fires that event on click.
+              Used on high-intent surfaces (InvestingBooks book cards,
+              AffiliateCTA brokerage cards, Stripe checkout button). */}
         <Script
           defer
           data-domain="holdlens.com"
-          src="https://plausible.io/js/script.js"
+          src="https://plausible.io/js/script.outbound-links.tagged-events.js"
           strategy="afterInteractive"
         />
         {/* Google Analytics 4 — conversion funnel + audience building. Fires

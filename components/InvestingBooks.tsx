@@ -91,7 +91,11 @@ export default function InvestingBooks({
             href={amznUrl(b.asin)}
             target="_blank"
             rel="noopener sponsored nofollow"
-            className="block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand/40 transition group"
+            // Tagged-events: fires "Book Click" with asin + title props on
+            // every Plausible session. Outbound-links script ALSO fires
+            // an "Outbound Link: Click" automatically for the same click.
+            // Operator sees book-level conversion in Plausible Events.
+            className={`plausible-event-name=Book+Click plausible-event-asin=${b.asin} plausible-event-title=${encodeURIComponent(b.title)} block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand/40 transition group`}
           >
             <div className="text-[10px] uppercase tracking-widest text-dim font-semibold mb-1">
               {b.author}

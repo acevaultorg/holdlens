@@ -120,7 +120,10 @@ export default function AffiliateCTA({
             href={b.url}
             target="_blank"
             rel="sponsored noopener noreferrer"
-            className="rounded-xl border border-border bg-bg/40 hover:border-brand/40 hover:bg-bg/60 p-3 transition group"
+            // v0.86 Plausible tagged-events — fires "Broker Click" with
+            // broker name + ticker context on every click. Lets operator
+            // measure per-broker CTR once affiliates go live.
+            className={`plausible-event-name=Broker+Click plausible-event-broker=${encodeURIComponent(b.name)} plausible-event-symbol=${symbol.toUpperCase()} rounded-xl border border-border bg-bg/40 hover:border-brand/40 hover:bg-bg/60 p-3 transition group`}
           >
             <div className="font-bold text-sm text-text group-hover:text-brand transition">
               {b.name}
