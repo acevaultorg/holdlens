@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
+import SinceFilingDelta from "@/components/SinceFilingDelta";
 import TrendBadge from "@/components/TrendBadge";
 import CsvExportButton from "@/components/CsvExportButton";
 import { getBuySignals, getSellSignals, ratingLabel } from "@/lib/signals";
 import { formatSignedScore } from "@/lib/conviction";
-import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
+import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
@@ -140,6 +141,11 @@ function SignalColumn({
                       : kind === "buy"
                       ? "historical conviction"
                       : "historical exit pressure"} · <LiveQuote symbol={s.ticker} size="sm" refreshMs={0} />
+                    <SinceFilingDelta
+                      ticker={s.ticker}
+                      filedAt={QUARTER_FILED[LATEST_QUARTER]}
+                      leadingSeparator
+                    />
                   </div>
                 </div>
                 <div className={`text-sm font-bold tabular-nums ${ratingColor}`}>{formatSignedScore(s.score)}</div>
