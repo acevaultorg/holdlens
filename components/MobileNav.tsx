@@ -24,6 +24,7 @@ const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: b
   { href: "/consensus", label: "Consensus picks — collective buy signal", emerald: true },
   { href: "/exits", label: "Exits — capitulation feed", rose: true },
   { href: "/concentration", label: "Concentration — who's all-in vs diversified", brand: true },
+  { href: "/vs/dataroma", label: "vs Dataroma — honest feature comparison", brand: true },
   { href: "/screener", label: "Screener" },
   { href: "/activity", label: "Activity" },
   { href: "/insiders", label: "Insider activity", emerald: true },
