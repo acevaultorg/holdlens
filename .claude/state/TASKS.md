@@ -10,7 +10,7 @@
 - [x] `P0` Sticky header with backdrop-blur (always-reachable nav on 7-10k-px signal pages) [id:sticky-header] [score:11.0] ⏱ done v0.81
 - [x] `P0` Skip-to-main-content link (keyboard a11y) [id:skip-link] [score:9.0] ⏱ done v0.81
 - [x] `P0` FoundersNudge rose-tone + fan-out to 6 high-intent pages [id:nudge-fanout] [score:9.0] ⏱ done v0.81 2bcacaeae
-- [ ] `P0` 👤 DEPLOY v0.80+v0.81 to Cloudflare — 4× wrangler attempts 2026-04-15 12:14-12:17 all failed with UND_ERR_SOCKET (CF API dropped socket at 159-1671/2293 files, 55MB written). Commits 1bc34adb4..818092a06 pushed to origin/main. Operator action: rerun from holdlens/ when CF API recovers: `npx wrangler pages deploy out --project-name=holdlens --branch=main --commit-dirty=true`. Verify post-deploy: `curl -sL https://holdlens.com | grep -c "Spot smart money moves"` should return 1. [id:deploy-v80-v81] [score:18.0] [👤]
+- [x] `P0` DEPLOY v0.80+v0.81+v0.82+v0.83 to Cloudflare [id:deploy-v80-v81] [score:18.0] ⏱ SHIPPED via parallel session (a9069bf8.holdlens.pages.dev, 2134 files / 70.58s). Deploy-truth verified 2026-04-15 16:49: hero "Spot smart money moves" ✓, footer aria-label="Site map" ✓, skip-to-main-content ✓, pricing 13F-tracker-market anchor ✓, handbook Amazon widget ✓. Note: later wrangler retries from this session hit EPIPE because bundle was already shipped (chunk-hash drift between parallel sessions).
 
 ## Queue (v0.47 + v0.48 — /signal flow + breadth sparklines) — SHIPPED [objective:v47-v48-signal-history]
 
