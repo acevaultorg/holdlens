@@ -268,7 +268,8 @@ export default function FirstMoversPage() {
           </div>
           <h2 className="text-2xl font-bold mb-4">First movers, crowd followed</h2>
           <div className="space-y-4">
-            {topCrowd.map((r, i) => (
+            {/* Capped at top 50 first-mover cards — prior render was 665 KB. */}
+            {topCrowd.slice(0, 50).map((r, i) => (
               <div
                 key={r.ticker}
                 className="rounded-2xl border border-brand/30 bg-brand/5 p-5"
@@ -386,7 +387,8 @@ export default function FirstMoversPage() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((r, i) => (
+              {/* Capped at top 200 rows — prior full-table render was the bulk of 665 KB. */}
+              {rows.slice(0, 200).map((r, i) => (
                 <tr
                   key={r.ticker}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition"

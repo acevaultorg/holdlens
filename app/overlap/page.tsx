@@ -230,7 +230,9 @@ export default function OverlapPage() {
                   {p.fundB} · q{p.qualityB}
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {p.shared.map((h) => (
+                  {/* Nested per-pair shared-ticker list — cap at 30 per pair to prevent
+                      the top-6 panel from exploding when a pair shares 50+ tickers. */}
+                  {p.shared.slice(0, 30).map((h) => (
                     <a
                       key={h.ticker}
                       href={`/signal/${h.ticker}`}
@@ -279,7 +281,8 @@ export default function OverlapPage() {
                 </tr>
               </thead>
               <tbody>
-                {pairs.map((p, i) => (
+                {/* Capped at top 200 pairs — ~870 manager pair combinations total. */}
+                {pairs.slice(0, 200).map((p, i) => (
                   <tr
                     key={`${p.slugA}-${p.slugB}`}
                     className="border-b border-border last:border-0 hover:bg-bg/40 transition"

@@ -198,7 +198,8 @@ export default function ReversalsPage() {
             setup that matured. Either way, it&rsquo;s a conviction signal.
           </p>
           <div className="space-y-4">
-            {comebacks.map((r, i) => (
+            {/* Capped at top 50 comebacks — keeps HTML under ~300 KB. */}
+            {comebacks.slice(0, 50).map((r, i) => (
               <div
                 key={`${r.slug}-${r.ticker}-cb`}
                 className="rounded-2xl border border-emerald-400/30 bg-emerald-400/5 p-5"
@@ -300,7 +301,8 @@ export default function ReversalsPage() {
                 </tr>
               </thead>
               <tbody>
-                {whipsaws.map((r, i) => (
+                {/* Capped at top 150 whipsaws — the unbounded map was the main bloat source. */}
+                {whipsaws.slice(0, 150).map((r, i) => (
                   <tr
                     key={`${r.slug}-${r.ticker}-w`}
                     className="border-b border-border last:border-0 hover:bg-bg/40 transition"
