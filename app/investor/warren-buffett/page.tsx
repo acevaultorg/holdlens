@@ -17,6 +17,20 @@ export const metadata: Metadata = {
   title: "Warren Buffett portfolio — what Berkshire Hathaway holds",
   description:
     "Live tracker of Warren Buffett's Berkshire Hathaway portfolio. Top holdings, conviction analysis, and quarterly moves.",
+  openGraph: {
+    title: "Warren Buffett · Berkshire Hathaway",
+    description: "Live tracker of Warren Buffett's Berkshire Hathaway portfolio. Top holdings, conviction analysis, and quarterly moves.",
+    url: "https://holdlens.com/investor/warren-buffett",
+    siteName: "HoldLens",
+    type: "article",
+    images: [{ url: "/og/investor/warren-buffett.png", width: 1200, height: 630, alt: "Warren Buffett portfolio card" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Warren Buffett · Berkshire Hathaway",
+    description: "Live tracker of Warren Buffett's Berkshire Hathaway portfolio.",
+    images: ["/og/investor/warren-buffett.png"],
+  },
   alternates: {
     canonical: "https://holdlens.com/investor/warren-buffett",
     types: {

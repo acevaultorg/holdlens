@@ -37,15 +37,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const sector = unslug(slug);
   if (!sector) return { title: "Sector not found" };
+  const ogImage = `/og/sector/${slug}.png`;
+  const desc = `${sector} sector smart-money dashboard: which tickers have the strongest ConvictionScore, recent 4Q buyer vs seller flow, and which superinvestors are overweight.`;
   return {
     title: `${sector} stocks held by superinvestors · conviction, flow & best picks`,
-    description: `${sector} sector smart-money dashboard: which tickers have the strongest ConvictionScore, recent 4Q buyer vs seller flow, and which superinvestors are overweight.`,
+    description: desc,
     alternates: { canonical: `https://holdlens.com/sector/${slug}` },
     openGraph: {
       title: `${sector} · smart-money signal`,
-      description: `Best superinvestor picks in ${sector}, ranked by ConvictionScore and recent flow.`,
+      description: desc,
       url: `https://holdlens.com/sector/${slug}`,
+      siteName: "HoldLens",
       type: "article",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${sector} smart-money signal` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${sector} · smart-money signal`,
+      description: desc,
+      images: [ogImage],
     },
     robots: { index: true, follow: true },
   };

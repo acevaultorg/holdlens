@@ -40,12 +40,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const m = getManager(slug);
   if (!m) return { title: "Investor not found" };
+  const ogImage = `/og/investor/${m.slug}.png`;
+  const desc = `Track ${m.name}'s ${m.fund} portfolio. Top holdings, conviction analysis, and quarterly moves.`;
   return {
     title: `${m.name} portfolio — ${m.fund} holdings`,
-    description: `Track ${m.name}'s ${m.fund} portfolio. Top holdings, conviction analysis, and quarterly moves.`,
+    description: desc,
     openGraph: {
       title: `${m.name} · ${m.fund}`,
-      description: `${m.name}'s top holdings, updated each quarter.`,
+      description: desc,
+      url: `https://holdlens.com/investor/${m.slug}`,
+      siteName: "HoldLens",
+      type: "article",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${m.name} portfolio card` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${m.name} · ${m.fund}`,
+      description: desc,
+      images: [ogImage],
     },
     alternates: {
       canonical: `https://holdlens.com/investor/${m.slug}`,
