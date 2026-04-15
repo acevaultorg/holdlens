@@ -115,6 +115,52 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
   // Verdict from the unified ConvictionScore — single signed −100..+100 scale
   const verdict: "BUY" | "SELL" | "NEUTRAL" = net?.direction ?? "NEUTRAL";
   const signedScore = net?.score ?? 0;
+
+  // JSON-LD structured data — one Article schema for the dossier itself
+  // (unlocks Google Article rich results) plus a BreadcrumbList (unlocks
+  // breadcrumb rich results). The Article uses the unified ConvictionScore
+  // verdict as the headline so search snippets surface the actual BUY/SELL
+  // signal rather than a generic title. Zero page-weight cost — one inline
+  // <script type="application/ld+json"> tag per page.
+  const signalUrl = `https://holdlens.com/signal/${t.symbol}`;
+  const headline =
+    verdict === "BUY"
+      ? `${t.symbol} BUY signal — smart money conviction ${formatSignedScore(signedScore)}`
+      : verdict === "SELL"
+      ? `${t.symbol} SELL signal — smart money conviction ${formatSignedScore(signedScore)}`
+      : `${t.symbol} signal — what ${t.ownerCount} tracked superinvestors are doing on ${t.name}`;
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    description: `${t.name} (${t.symbol}) 13F signal dossier · Unified −100..+100 ConvictionScore · ${QUARTER_LABELS[LATEST_QUARTER]}`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": signalUrl },
+    url: signalUrl,
+    image: [`https://holdlens.com/og/signal/${t.symbol}.png`],
+    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com" },
+    publisher: {
+      "@type": "Organization",
+      name: "HoldLens",
+      url: "https://holdlens.com",
+      logo: { "@type": "ImageObject", url: "https://holdlens.com/logo.png" },
+    },
+    about: {
+      "@type": "Corporation",
+      name: t.name,
+      tickerSymbol: t.symbol,
+      ...(t.sector ? { industry: t.sector } : {}),
+    },
+    keywords: [t.symbol, t.name, "13F", "superinvestors", "smart money", "stock signal", verdict].join(", "),
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Signals", item: "https://holdlens.com/signal" },
+      { "@type": "ListItem", position: 3, name: t.symbol, item: signalUrl },
+    ],
+  };
   const verdictColor =
     verdict === "BUY"
       ? "text-emerald-400 border-emerald-400/40 bg-emerald-400/5"
@@ -124,6 +170,16 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      {/* JSON-LD — Article + BreadcrumbList for Google rich results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       <a href={`/ticker/${t.symbol}`} className="text-xs text-muted hover:text-text">
         ← Full ticker page
       </a>

@@ -18,6 +18,7 @@ const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: b
   { href: "/this-week", label: "This week" },
   { href: "/leaderboard", label: "Leaderboard" },
   { href: "/manager-rankings", label: "Manager rankings · skill × activity", brand: true },
+  { href: "/conviction-leaders", label: "Conviction leaders · weighted picks", emerald: true },
   { href: "/screener", label: "Screener" },
   { href: "/activity", label: "Activity" },
   { href: "/insiders", label: "Insider activity", emerald: true },

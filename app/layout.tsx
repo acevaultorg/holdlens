@@ -87,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/proof" className="hover:text-emerald-400 transition font-semibold">Proof</a>
               <a href="/leaderboard" className="hover:text-text transition">Leaderboard</a>
               <a href="/manager-rankings" className="hover:text-text transition hidden lg:inline">Rankings</a>
+              <a href="/conviction-leaders" className="hover:text-text transition hidden lg:inline">Conviction</a>
               <a href="/this-week" className="hover:text-text transition hidden lg:inline">This week</a>
               <a href="/pricing" className="text-brand hover:text-text transition font-semibold">Pro</a>
               <GlobalSearch />
@@ -132,6 +133,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/this-week" className="hover:text-text">This week</a>
               <a href="/leaderboard" className="hover:text-text">Leaderboard</a>
               <a href="/manager-rankings" className="hover:text-text">Manager rankings</a>
+              <a href="/conviction-leaders" className="hover:text-text">Conviction leaders</a>
               <a href="/screener" className="hover:text-text">Screener</a>
               <a href="/activity" className="hover:text-text">Activity</a>
               <a href="/insiders" className="hover:text-emerald-400">Insiders</a>
