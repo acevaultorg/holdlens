@@ -122,8 +122,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="google-adsense-account" content="ca-pub-7449214764048186" />
       </head>
       <body className="min-h-screen bg-bg text-text font-sans">
+        {/* Skip to main content — keyboard-only users land here on Tab.
+            Shows only when focused; invisible otherwise. Critical for a11y
+            on pages this dense (50+ nav links otherwise sit between the
+            keyboard user and the page content). */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-brand focus:text-black focus:px-3 focus:py-2 focus:rounded-lg focus:font-semibold focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <LiveTicker symbols={TICKER_SCROLL} />
-        <header className="border-b border-border">
+        {/* Sticky header (v0.81) — prior versions left users scrolled deep
+            inside a 7-10k-px signal dossier with no way back to nav except a
+            long scroll up. Sticky with backdrop-blur keeps the primary nav
+            always reachable. z-40 sits above page content but below the
+            MobileNav overlay (z-50). */}
+        <header className="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur-md supports-[backdrop-filter]:bg-bg/75">
           <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
             <a href="/" className="flex items-center gap-2 font-semibold text-lg shrink-0">
               <span className="text-brand">◉</span> HoldLens
@@ -134,7 +149,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <MobileNav />
           </div>
         </header>
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <CookieConsent />
         <footer className="border-t border-border mt-24">
           {/* Data freshness band */}
