@@ -18,6 +18,7 @@
  *   /api/v1/managers/[slug].json          — per-manager holdings + moves
  *   /api/v1/big-bets.json                 — conviction × size top 100
  *   /api/v1/rotation.json                 — 8Q × 12 sector heatmap
+ *   /api/v1/sector/[slug].json            — per-sector tickers + top owners + 4Q flow
  *   /api/v1/best-now.json                 — top 50 buy candidates
  *   /api/v1/value.json                    — smart money × 52w low combo
  *   /api/v1/quarters.json                 — available 13F quarters
@@ -237,6 +238,145 @@ async function main(): Promise<void> {
     meta: meta({ quarters: QUARTERS, sectors: sectorOrder.length }),
   });
 
+  // ---------- /sector/[slug].json — per-sector drilldown ----------
+  // One file per sector. Each contains:
+  //   - sector name + slug
+  //   - aggregate stats (ticker count, total owners, avg conviction, recent net flow)
+  //   - top tickers in sector ranked by ConvictionScore
+  //   - top managers overweight in the sector (sum of their positionPct in this sector)
+  //   - per-quarter flow (same shape as /rotation.json row, for deep-link consumers)
+  //
+  // Why this matters: /rotation.json gives you the heatmap view. /sector/[slug].json
+  // gives the one-click drilldown — which tickers drive the sector signal and who's
+  // the biggest holder. Completes the API rotation story Dataroma has no answer to.
+  function slugifySector(s: string): string {
+    return s.toLowerCase().replace(/\s+/g, "-");
+  }
+  const LAST_4Q = new Set<string>(QUARTERS.slice(0, 4));
+  const sectorTickers = new Map<string, string[]>();
+  for (const [sym, sec] of Object.entries(SECTOR_MAP)) {
+    const arr = sectorTickers.get(sec) ?? [];
+    arr.push(sym);
+    sectorTickers.set(sec, arr);
+  }
+  // Pre-compute conviction once per ticker to avoid re-walking moves
+  // inside the sector loop.
+  const convBySym = new Map<string, ReturnType<typeof getConviction>>();
+  for (const sym of Object.keys(TICKER_INDEX)) {
+    convBySym.set(sym, getConviction(sym));
+  }
+  for (const sector of sectorOrder) {
+    const syms = sectorTickers.get(sector) ?? [];
+    if (syms.length === 0 && sector !== "Other") continue;
+
+    // Tickers ranked by conviction
+    type SectorTickerRow = {
+      ticker: string;
+      name: string;
+      owner_count: number;
+      conviction_score: number;
+      direction: "BUY" | "SELL" | "NEUTRAL";
+    };
+    const rows: SectorTickerRow[] = [];
+    for (const sym of syms) {
+      const td = TICKER_INDEX[sym];
+      if (!td) continue;
+      const conv = convBySym.get(sym);
+      rows.push({
+        ticker: sym,
+        name: td.name,
+        owner_count: td.ownerCount ?? 0,
+        conviction_score: conv?.score ?? 0,
+        direction: conv?.direction ?? "NEUTRAL",
+      });
+    }
+    rows.sort((a, b) => b.conviction_score - a.conviction_score);
+
+    // Top managers overweight in sector — sum positionPct across all topHoldings
+    // whose ticker falls in this sector.
+    const mgrExposure = new Map<string, number>();
+    for (const m of MANAGERS) {
+      let exposure = 0;
+      for (const h of m.topHoldings) {
+        if ((SECTOR_MAP[h.ticker] ?? "Other") === sector) exposure += h.pct;
+      }
+      if (exposure > 0) mgrExposure.set(m.slug, exposure);
+    }
+    const topManagers = Array.from(mgrExposure.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([slug, exposure]) => {
+        const m = MANAGERS.find((mm) => mm.slug === slug)!;
+        return {
+          slug,
+          name: m.name,
+          fund: m.fund,
+          sector_pct: Math.round(exposure * 10) / 10,
+        };
+      });
+
+    // Per-quarter flow for this sector — mirrors /rotation.json shape so deep-link
+    // consumers get the same series without re-filtering.
+    const flow: Record<string, { net: number; buys: number; sells: number }> = {};
+    for (const q of QUARTERS) {
+      const qmoves = moves.filter(
+        (mv) => (SECTOR_MAP[mv.ticker] ?? "Other") === sector && mv.quarter === q,
+      );
+      let net = 0,
+        buys = 0,
+        sells = 0;
+      for (const mv of qmoves) {
+        const impact = mv.portfolioImpactPct ?? 2;
+        const factor = Math.max(0.5, Math.min(3, impact / 2));
+        const isBuy = mv.action === "new" || mv.action === "add";
+        const isSell = mv.action === "trim" || mv.action === "exit";
+        if (isBuy) {
+          net += factor;
+          buys += 1;
+        }
+        if (isSell) {
+          net -= factor;
+          sells += 1;
+        }
+      }
+      flow[q] = { net: Math.round(net * 10) / 10, buys, sells };
+    }
+
+    // Aggregate stats — tickers, owners, avg conviction, recent 4Q net flow
+    const totalOwners = rows.reduce((s, t) => s + t.owner_count, 0);
+    const avgConviction =
+      rows.length > 0
+        ? Math.round(
+            (rows.reduce((s, t) => s + t.conviction_score, 0) / rows.length) * 10,
+          ) / 10
+        : 0;
+    let net4Q = 0;
+    for (const q of LAST_4Q) net4Q += flow[q]?.net ?? 0;
+
+    const slug = slugifySector(sector);
+    await writeJson(`sector/${slug}.json`, {
+      data: {
+        sector,
+        slug,
+        tickers: rows,
+        top_managers: topManagers,
+        flow,
+        stats: {
+          ticker_count: rows.length,
+          total_owners: totalOwners,
+          avg_conviction: avgConviction,
+          net_flow_4q: Math.round(net4Q * 10) / 10,
+          strong_buys: rows.filter((r) => r.conviction_score >= 20).length,
+          strong_sells: rows.filter((r) => r.conviction_score <= -20).length,
+        },
+        permalink: `https://holdlens.com/sector/${slug}`,
+      },
+      meta: meta({
+        quarters: QUARTERS,
+      }),
+    });
+  }
+
   // ---------- /best-now.json ----------
   const bestNow = [...scores].filter((s) => s.direction === "BUY").slice(0, 50);
   await writeJson("best-now.json", { data: bestNow, meta: meta({ count: bestNow.length }) });
@@ -271,6 +411,7 @@ async function main(): Promise<void> {
       { path: "/managers/{slug}.json", desc: "Single manager with holdings + recent moves" },
       { path: "/big-bets.json", desc: "Top 100 conviction × position-size ranked bets" },
       { path: "/rotation.json", desc: "8Q × 12-sector signed net-flow heatmap" },
+      { path: "/sector/{slug}.json", desc: "Per-sector tickers + top owners + 4Q flow drilldown" },
       { path: "/best-now.json", desc: "Top 50 buy candidates" },
       { path: "/value.json", desc: "Top 50 smart-money buy signals for value overlays" },
       { path: "/quarters.json", desc: "Available 13F quarters" },
@@ -282,7 +423,7 @@ async function main(): Promise<void> {
   // Count total files written
   let fileCount = 1 /* index */ + 1 /* scores */ + allTickers.length;
   fileCount += 2 /* buys/sells */ + 1 /* managers */ + MANAGERS.length;
-  fileCount += 1 /* big-bets */ + 1 /* rotation */ + 1 /* best-now */ + 1 /* value */ + 1 /* quarters */;
+  fileCount += 1 /* big-bets */ + 1 /* rotation */ + sectorOrder.length /* sector/[slug] */ + 1 /* best-now */ + 1 /* value */ + 1 /* quarters */;
   console.log(`  Wrote ${fileCount} JSON files under public/api/v1/`);
 }
 

@@ -1,0 +1,251 @@
+{
+  "data": {
+    "sector": "Technology",
+    "slug": "technology",
+    "tickers": [
+      {
+        "ticker": "BABA",
+        "name": "Alibaba",
+        "owner_count": 4,
+        "conviction_score": 39,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "COHR",
+        "name": "Coherent",
+        "owner_count": 1,
+        "conviction_score": 26,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "JD",
+        "name": "JD.com",
+        "owner_count": 1,
+        "conviction_score": 24,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "NVDA",
+        "name": "NVIDIA",
+        "owner_count": 8,
+        "conviction_score": 19,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "MU",
+        "name": "Micron Technology",
+        "owner_count": 2,
+        "conviction_score": 19,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "TSM",
+        "name": "Taiwan Semi",
+        "owner_count": 2,
+        "conviction_score": 16,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "MSFT",
+        "name": "Microsoft",
+        "owner_count": 12,
+        "conviction_score": 6,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "AMZN",
+        "name": "Amazon",
+        "owner_count": 3,
+        "conviction_score": 6,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "META",
+        "name": "Meta Platforms",
+        "owner_count": 15,
+        "conviction_score": 5,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "GOOG",
+        "name": "Alphabet Class C",
+        "owner_count": 4,
+        "conviction_score": 0,
+        "direction": "NEUTRAL"
+      },
+      {
+        "ticker": "ESTC",
+        "name": "Elastic NV",
+        "owner_count": 1,
+        "conviction_score": 0,
+        "direction": "NEUTRAL"
+      },
+      {
+        "ticker": "BB",
+        "name": "BlackBerry",
+        "owner_count": 1,
+        "conviction_score": 0,
+        "direction": "NEUTRAL"
+      },
+      {
+        "ticker": "BIDU",
+        "name": "Baidu",
+        "owner_count": 1,
+        "conviction_score": -1,
+        "direction": "SELL"
+      },
+      {
+        "ticker": "FIS",
+        "name": "Fidelity National Info",
+        "owner_count": 1,
+        "conviction_score": -3,
+        "direction": "SELL"
+      },
+      {
+        "ticker": "GOOGL",
+        "name": "Alphabet",
+        "owner_count": 9,
+        "conviction_score": -9,
+        "direction": "SELL"
+      },
+      {
+        "ticker": "AAPL",
+        "name": "Apple Inc.",
+        "owner_count": 3,
+        "conviction_score": -20,
+        "direction": "SELL"
+      }
+    ],
+    "top_managers": [
+      {
+        "slug": "michael-burry",
+        "name": "Michael Burry",
+        "fund": "Scion Asset Management",
+        "sector_pct": 62.4
+      },
+      {
+        "slug": "monish-pabrai",
+        "name": "Mohnish Pabrai",
+        "fund": "Pabrai Investment Funds",
+        "sector_pct": 52.7
+      },
+      {
+        "slug": "david-tepper",
+        "name": "David Tepper",
+        "fund": "Appaloosa Management",
+        "sector_pct": 44.8
+      },
+      {
+        "slug": "chase-coleman",
+        "name": "Chase Coleman",
+        "fund": "Tiger Global Management",
+        "sector_pct": 39.4
+      },
+      {
+        "slug": "li-lu",
+        "name": "Li Lu",
+        "fund": "Himalaya Capital",
+        "sector_pct": 38.6
+      },
+      {
+        "slug": "chris-hohn",
+        "name": "Chris Hohn",
+        "fund": "TCI Fund Management",
+        "sector_pct": 35.9
+      },
+      {
+        "slug": "stanley-druckenmiller",
+        "name": "Stanley Druckenmiller",
+        "fund": "Duquesne Family Office",
+        "sector_pct": 32.5
+      },
+      {
+        "slug": "john-armitage",
+        "name": "John Armitage",
+        "fund": "Egerton Capital",
+        "sector_pct": 29.3
+      },
+      {
+        "slug": "stephen-mandel",
+        "name": "Stephen Mandel",
+        "fund": "Lone Pine Capital",
+        "sector_pct": 26.2
+      },
+      {
+        "slug": "david-rolfe",
+        "name": "David Rolfe",
+        "fund": "Wedgewood Partners",
+        "sector_pct": 25.8
+      }
+    ],
+    "flow": {
+      "2025-Q4": {
+        "net": 13.9,
+        "buys": 36,
+        "sells": 30
+      },
+      "2025-Q3": {
+        "net": 31.5,
+        "buys": 44,
+        "sells": 27
+      },
+      "2025-Q2": {
+        "net": 21.8,
+        "buys": 27,
+        "sells": 24
+      },
+      "2025-Q1": {
+        "net": 8.1,
+        "buys": 25,
+        "sells": 21
+      },
+      "2024-Q4": {
+        "net": 28.3,
+        "buys": 28,
+        "sells": 18
+      },
+      "2024-Q3": {
+        "net": 13.1,
+        "buys": 24,
+        "sells": 23
+      },
+      "2024-Q2": {
+        "net": 3.8,
+        "buys": 24,
+        "sells": 18
+      },
+      "2024-Q1": {
+        "net": 17.7,
+        "buys": 8,
+        "sells": 3
+      }
+    },
+    "stats": {
+      "ticker_count": 16,
+      "total_owners": 68,
+      "avg_conviction": 7.9,
+      "net_flow_4q": 75.3,
+      "strong_buys": 3,
+      "strong_sells": 1
+    },
+    "permalink": "https://holdlens.com/sector/technology"
+  },
+  "meta": {
+    "generated_at": "2026-04-15T10:37:53.686Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs",
+    "quarters": [
+      "2025-Q4",
+      "2025-Q3",
+      "2025-Q2",
+      "2025-Q1",
+      "2024-Q4",
+      "2024-Q3",
+      "2024-Q2",
+      "2024-Q1"
+    ]
+  }
+}

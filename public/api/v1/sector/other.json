@@ -1,0 +1,138 @@
+{
+  "data": {
+    "sector": "Other",
+    "slug": "other",
+    "tickers": [],
+    "top_managers": [
+      {
+        "slug": "dev-kantesaria",
+        "name": "Dev Kantesaria",
+        "fund": "Valley Forge Capital",
+        "sector_pct": 53.6
+      },
+      {
+        "slug": "chuck-akre",
+        "name": "Chuck Akre",
+        "fund": "Akre Capital Management",
+        "sector_pct": 33.5
+      },
+      {
+        "slug": "jeffrey-ubben",
+        "name": "Jeffrey Ubben",
+        "fund": "ValueAct Capital",
+        "sector_pct": 30.1
+      },
+      {
+        "slug": "terry-smith",
+        "name": "Terry Smith",
+        "fund": "Fundsmith",
+        "sector_pct": 24.1
+      },
+      {
+        "slug": "francois-rochon",
+        "name": "François Rochon",
+        "fund": "Giverny Capital",
+        "sector_pct": 19.3
+      },
+      {
+        "slug": "tom-slater",
+        "name": "Tom Slater",
+        "fund": "Baillie Gifford (Long Term Global Growth)",
+        "sector_pct": 18.7
+      },
+      {
+        "slug": "chris-hohn",
+        "name": "Chris Hohn",
+        "fund": "TCI Fund Management",
+        "sector_pct": 18.2
+      },
+      {
+        "slug": "william-von-mueffling",
+        "name": "William von Mueffling",
+        "fund": "Cantillon Capital Management",
+        "sector_pct": 16.2
+      },
+      {
+        "slug": "chase-coleman",
+        "name": "Chase Coleman",
+        "fund": "Tiger Global Management",
+        "sector_pct": 14.8
+      },
+      {
+        "slug": "polen-capital",
+        "name": "Polen Capital",
+        "fund": "Polen Capital Management",
+        "sector_pct": 13.4
+      }
+    ],
+    "flow": {
+      "2025-Q4": {
+        "net": 39,
+        "buys": 259,
+        "sells": 209
+      },
+      "2025-Q3": {
+        "net": 58.7,
+        "buys": 284,
+        "sells": 192
+      },
+      "2025-Q2": {
+        "net": 67.8,
+        "buys": 298,
+        "sells": 181
+      },
+      "2025-Q1": {
+        "net": 46.1,
+        "buys": 276,
+        "sells": 180
+      },
+      "2024-Q4": {
+        "net": 23.4,
+        "buys": 233,
+        "sells": 189
+      },
+      "2024-Q3": {
+        "net": 1.5,
+        "buys": 210,
+        "sells": 202
+      },
+      "2024-Q2": {
+        "net": 57.1,
+        "buys": 245,
+        "sells": 160
+      },
+      "2024-Q1": {
+        "net": 18,
+        "buys": 7,
+        "sells": 4
+      }
+    },
+    "stats": {
+      "ticker_count": 0,
+      "total_owners": 0,
+      "avg_conviction": 0,
+      "net_flow_4q": 211.6,
+      "strong_buys": 0,
+      "strong_sells": 0
+    },
+    "permalink": "https://holdlens.com/sector/other"
+  },
+  "meta": {
+    "generated_at": "2026-04-15T10:37:53.686Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs",
+    "quarters": [
+      "2025-Q4",
+      "2025-Q3",
+      "2025-Q2",
+      "2025-Q1",
+      "2024-Q4",
+      "2024-Q3",
+      "2024-Q2",
+      "2024-Q1"
+    ]
+  }
+}

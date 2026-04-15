@@ -193,7 +193,15 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
             <span className="text-brand">{t.symbol}</span>
           </h1>
-          <p className="text-muted text-lg mt-2">{t.name} · {t.sector}</p>
+          <p className="text-muted text-lg mt-2">
+            {t.name}
+            {t.sector && (
+              <> · <a
+                href={`/sector/${t.sector.toLowerCase().replace(/\s+/g, "-")}`}
+                className="hover:text-brand transition"
+              >{t.sector}</a></>
+            )}
+          </p>
         </div>
         <StarButton symbol={t.symbol} size="lg" />
       </div>

@@ -42,6 +42,10 @@
       "desc": "8Q × 12-sector signed net-flow heatmap"
     },
     {
+      "path": "/sector/{slug}.json",
+      "desc": "Per-sector tickers + top owners + 4Q flow drilldown"
+    },
+    {
       "path": "/best-now.json",
       "desc": "Top 50 buy candidates"
     },
@@ -55,7 +59,7 @@
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T09:57:44.949Z",
+    "generated_at": "2026-04-15T10:37:53.686Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

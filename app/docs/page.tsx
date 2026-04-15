@@ -144,6 +144,20 @@ const ENDPOINTS: { method: "GET"; path: string; desc: string; example: string }[
   },
   {
     method: "GET",
+    path: "/api/v1/sector/{slug}.json",
+    desc: "Per-sector drilldown: tickers ranked by conviction, top managers overweight in the sector, 8Q flow. One-click from the rotation heatmap. Slugs: technology, financials, energy, healthcare, consumer-discretionary, consumer-staples, industrials, materials, real-estate, communication, utilities.",
+    example: `{
+  "data": {
+    "sector": "Technology",
+    "slug": "technology",
+    "stats": { "ticker_count": 16, "avg_conviction": 7.9, "net_flow_4q": 75.3 },
+    "tickers": [ { "ticker": "NVDA", "conviction_score": 19, "direction": "BUY" } ],
+    "top_managers": [ { "name": "Michael Burry", "sector_pct": 62.4 } ]
+  }
+}`,
+  },
+  {
+    method: "GET",
     path: "/api/v1/best-now.json",
     desc: "Top 50 buy candidates — what the smartest investors are buying right now.",
     example: `{ "data": [ { "ticker": "NVDA", "score": 68, "direction": "BUY" } ] }`,

@@ -1,0 +1,258 @@
+{
+  "data": {
+    "sector": "Financials",
+    "slug": "financials",
+    "tickers": [
+      {
+        "ticker": "SCHW",
+        "name": "Charles Schwab",
+        "owner_count": 2,
+        "conviction_score": 29,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "BN",
+        "name": "Brookfield Corp",
+        "owner_count": 1,
+        "conviction_score": 23,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "CB",
+        "name": "Chubb",
+        "owner_count": 1,
+        "conviction_score": 19,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "MCO",
+        "name": "Moody's Corp",
+        "owner_count": 7,
+        "conviction_score": 15,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "BAC",
+        "name": "Bank of America",
+        "owner_count": 3,
+        "conviction_score": 14,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "V",
+        "name": "Visa",
+        "owner_count": 10,
+        "conviction_score": 8,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "FNF",
+        "name": "Fidelity National Financial",
+        "owner_count": 1,
+        "conviction_score": 6,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "BRK.B",
+        "name": "Berkshire Hathaway",
+        "owner_count": 2,
+        "conviction_score": 2,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "JPM",
+        "name": "JPMorgan Chase",
+        "owner_count": 1,
+        "conviction_score": 1,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "ALLY",
+        "name": "Ally Financial",
+        "owner_count": 1,
+        "conviction_score": 1,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "AXP",
+        "name": "American Express",
+        "owner_count": 1,
+        "conviction_score": 0,
+        "direction": "NEUTRAL"
+      },
+      {
+        "ticker": "LNC",
+        "name": "Lincoln National",
+        "owner_count": 1,
+        "conviction_score": 0,
+        "direction": "NEUTRAL"
+      },
+      {
+        "ticker": "IEP",
+        "name": "Icahn Enterprises (own)",
+        "owner_count": 1,
+        "conviction_score": 0,
+        "direction": "NEUTRAL"
+      },
+      {
+        "ticker": "FCAU",
+        "name": "Brookfield Reins.",
+        "owner_count": 1,
+        "conviction_score": 0,
+        "direction": "NEUTRAL"
+      },
+      {
+        "ticker": "BRO",
+        "name": "Brown & Brown",
+        "owner_count": 1,
+        "conviction_score": 0,
+        "direction": "NEUTRAL"
+      },
+      {
+        "ticker": "C",
+        "name": "Citigroup",
+        "owner_count": 1,
+        "conviction_score": -2,
+        "direction": "SELL"
+      },
+      {
+        "ticker": "COF",
+        "name": "Capital One Financial",
+        "owner_count": 1,
+        "conviction_score": -6,
+        "direction": "SELL"
+      }
+    ],
+    "top_managers": [
+      {
+        "slug": "carl-icahn",
+        "name": "Carl Icahn",
+        "fund": "Icahn Enterprises",
+        "sector_pct": 65
+      },
+      {
+        "slug": "glenn-greenberg",
+        "name": "Glenn Greenberg",
+        "fund": "Brave Warrior Advisors",
+        "sector_pct": 52.3
+      },
+      {
+        "slug": "li-lu",
+        "name": "Li Lu",
+        "fund": "Himalaya Capital",
+        "sector_pct": 43.6
+      },
+      {
+        "slug": "warren-buffett",
+        "name": "Warren Buffett",
+        "fund": "Berkshire Hathaway",
+        "sector_pct": 35.3
+      },
+      {
+        "slug": "dev-kantesaria",
+        "name": "Dev Kantesaria",
+        "fund": "Valley Forge Capital",
+        "sector_pct": 35.2
+      },
+      {
+        "slug": "chuck-akre",
+        "name": "Chuck Akre",
+        "fund": "Akre Capital Management",
+        "sector_pct": 27.6
+      },
+      {
+        "slug": "chris-hohn",
+        "name": "Chris Hohn",
+        "fund": "TCI Fund Management",
+        "sector_pct": 21.2
+      },
+      {
+        "slug": "david-rolfe",
+        "name": "David Rolfe",
+        "fund": "Wedgewood Partners",
+        "sector_pct": 16.2
+      },
+      {
+        "slug": "francois-rochon",
+        "name": "François Rochon",
+        "fund": "Giverny Capital",
+        "sector_pct": 15.3
+      },
+      {
+        "slug": "bill-nygren",
+        "name": "Bill Nygren",
+        "fund": "Oakmark Funds",
+        "sector_pct": 13.5
+      }
+    ],
+    "flow": {
+      "2025-Q4": {
+        "net": 13.4,
+        "buys": 24,
+        "sells": 20
+      },
+      "2025-Q3": {
+        "net": 24.6,
+        "buys": 26,
+        "sells": 11
+      },
+      "2025-Q2": {
+        "net": 16.3,
+        "buys": 21,
+        "sells": 12
+      },
+      "2025-Q1": {
+        "net": 10.7,
+        "buys": 24,
+        "sells": 11
+      },
+      "2024-Q4": {
+        "net": 3.7,
+        "buys": 15,
+        "sells": 11
+      },
+      "2024-Q3": {
+        "net": 6,
+        "buys": 18,
+        "sells": 10
+      },
+      "2024-Q2": {
+        "net": 3.6,
+        "buys": 11,
+        "sells": 11
+      },
+      "2024-Q1": {
+        "net": 6.7,
+        "buys": 3,
+        "sells": 0
+      }
+    },
+    "stats": {
+      "ticker_count": 17,
+      "total_owners": 36,
+      "avg_conviction": 6.5,
+      "net_flow_4q": 65,
+      "strong_buys": 2,
+      "strong_sells": 0
+    },
+    "permalink": "https://holdlens.com/sector/financials"
+  },
+  "meta": {
+    "generated_at": "2026-04-15T10:37:53.686Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs",
+    "quarters": [
+      "2025-Q4",
+      "2025-Q3",
+      "2025-Q2",
+      "2025-Q1",
+      "2024-Q4",
+      "2024-Q3",
+      "2024-Q2",
+      "2024-Q1"
+    ]
+  }
+}
