@@ -95,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/vs/dataroma" className="hover:text-brand transition hidden lg:inline font-semibold">vs Dataroma</a>
               <a href="/quarter/2025-q4" className="hover:text-text transition hidden lg:inline">Quarters</a>
               <a href="/trend-streak" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Streaks</a>
+              <a href="/accelerators" className="hover:text-brand transition hidden lg:inline font-semibold">Accelerators</a>
               <a href="/this-week" className="hover:text-text transition hidden lg:inline">This week</a>
               <a href="/pricing" className="text-brand hover:text-text transition font-semibold">Pro</a>
               <GlobalSearch />
@@ -150,6 +151,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/vs/dataroma" className="hover:text-brand font-semibold">vs Dataroma</a>
               <a href="/quarter/2025-q4" className="hover:text-text">Quarter digest</a>
               <a href="/trend-streak" className="hover:text-emerald-400 font-semibold">Trend streaks</a>
+              <a href="/accelerators" className="hover:text-brand font-semibold">Accelerators</a>
               <a href="/screener" className="hover:text-text">Screener</a>
               <a href="/activity" className="hover:text-text">Activity</a>
               <a href="/insiders" className="hover:text-emerald-400">Insiders</a>

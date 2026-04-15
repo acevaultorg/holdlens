@@ -28,6 +28,7 @@ const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: b
   { href: "/vs/dataroma", label: "vs Dataroma — honest feature comparison", brand: true },
   { href: "/quarter/2025-q4", label: "Quarter digest · Q4 2025 → 2024", brand: true },
   { href: "/trend-streak", label: "Trend streaks · multi-quarter compounding", emerald: true },
+  { href: "/accelerators", label: "Accelerators · crowd forming", brand: true },
   { href: "/screener", label: "Screener" },
   { href: "/activity", label: "Activity" },
   { href: "/insiders", label: "Insider activity", emerald: true },
