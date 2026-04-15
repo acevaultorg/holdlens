@@ -43,6 +43,9 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 2026-04-15 | v0.81 plural bug on /best-now             | bug_fix_blocking_revenue  | est €0.5/wk| TBD | TBD | trivial copy polish, trust signal
 2026-04-15 | v0.84 global focus ring + reduced-motion  | bug_fix_blocking_revenue  | est €2/wk  | TBD | TBD | keyboard users + vestibular users were effectively blocked
 2026-04-15 | v0.84 buffett page parity (InvestorConcentration + FoundersNudge) | conversion_copy_fix | est €4/wk | TBD | TBD | most-visited manager page (Buffett) previously lacked concentration visual + Pro nudge that all 29 other managers had; closes UX parity gap on tier-1 traffic page
+2026-04-15 | v0.87 custom 404 (retention, POPULAR_ROUTES x6)   | new_landing_page          | est €4/wk  | TBD | TBD | prior default Next.js 404 was a close-tab trap; now branded with outcome-voice CTA to /best-now
+2026-04-15 | v0.87 /compare index (was 404)                   | new_landing_page          | est €3/wk  | TBD | TBD | users bookmarking /compare or trimming URLs landed on 404; now routes to both stock + manager pair modes
+2026-04-15 | v0.91 RelatedSignals on /ticker/[symbol]         | SEO_page_addition         | est €1.5/wk| TBD | TBD | 94 ticker pages get same-sector + co-owned cross-link strip; proven on /signal, expected bounce-rate reduction on top-tier landing surface
 ```
 
 ## Top blocker (honest)
