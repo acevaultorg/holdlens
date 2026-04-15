@@ -3,6 +3,7 @@ import AdSlot from "@/components/AdSlot";
 import LiveQuote from "@/components/LiveQuote";
 import SectorHeatmap from "@/components/SectorHeatmap";
 import TrendBadge from "@/components/TrendBadge";
+import TickerLogo from "@/components/TickerLogo";
 import { topTickers } from "@/lib/tickers";
 
 export const metadata: Metadata = {
@@ -56,7 +57,10 @@ export default function TopPicksPage() {
               <tr key={t.symbol} className="border-b border-border last:border-0 hover:bg-bg/50 transition">
                 <td className="px-5 py-3 text-dim tabular-nums">{i + 1}</td>
                 <td className="px-5 py-3 font-mono font-semibold">
-                  <a href={`/signal/${t.symbol}`} className="text-brand hover:underline">{t.symbol}</a>
+                  <a href={`/signal/${t.symbol}`} className="inline-flex items-center gap-2 text-brand hover:underline">
+                    <TickerLogo symbol={t.symbol} size={22} />
+                    {t.symbol}
+                  </a>
                 </td>
                 <td className="px-5 py-3">
                   <div className="flex items-center gap-2 flex-wrap">

@@ -1,8 +1,15 @@
 node_modules
 .next
+.next*
 .vercel
 .env*
 .DS_Store
 .data
 next-env.d.ts
 scripts/.indexnow-key
+# iCloud creates numbered-suffix copies during sync conflicts
+# (e.g. ".next 2", "out 3"). They can contain webpack cache .pack files
+# that exceed GitHub's 100MB per-file limit and block the push.
+*\ 2
+*\ 3
+*\ 4

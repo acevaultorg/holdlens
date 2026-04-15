@@ -88,14 +88,24 @@ function SignalColumn({
 
   return (
     <div className={`rounded-2xl border ${accentBorder} ${accentBg} p-6`}>
-      <div className="flex items-baseline justify-between mb-5">
-        <div>
+      <div className="flex items-baseline justify-between mb-5 gap-3">
+        <div className="min-w-0">
           <div className={`text-[10px] uppercase tracking-widest font-bold ${accent}`}>{subtitle}</div>
           <h3 className="text-2xl font-bold mt-1">{title}</h3>
         </div>
-        <div className={`text-[10px] uppercase tracking-wider font-bold ${accent} opacity-60`}>
-          {kind === "buy" ? "0 → +100" : "0 → −100"}
-        </div>
+        {/* ConvictionScore attribution — names the proprietary metric so the
+            scoring isn't mistaken for generic data. Links to the explainer
+            page, giving curious readers a one-click path to the methodology. */}
+        <a
+          href="/learn/conviction-score-explained"
+          className={`shrink-0 text-right text-[10px] uppercase tracking-wider font-bold ${accent} opacity-70 hover:opacity-100 transition`}
+          title="Learn how ConvictionScore is calculated"
+        >
+          <div>ConvictionScore →</div>
+          <div className="opacity-70 normal-case tracking-normal mt-0.5">
+            {kind === "buy" ? "0 → +100" : "0 → −100"}
+          </div>
+        </a>
       </div>
 
       {items.length === 0 ? (

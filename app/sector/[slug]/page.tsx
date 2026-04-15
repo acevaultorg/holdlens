@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
+import TickerLogo from "@/components/TickerLogo";
+import FundLogo from "@/components/FundLogo";
 import { TICKER_INDEX, type TickerData } from "@/lib/tickers";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
@@ -232,8 +234,11 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
                     {formatSignedScore(t.convictionScore)}
                   </div>
                 </div>
-                <div className="mt-2 text-2xl font-bold text-text">{t.symbol}</div>
-                <div className="text-xs text-dim truncate">{t.name}</div>
+                <div className="mt-2 flex items-center gap-2">
+                  <TickerLogo symbol={t.symbol} size={32} />
+                  <div className="text-2xl font-bold text-text">{t.symbol}</div>
+                </div>
+                <div className="text-xs text-dim truncate mt-1">{t.name}</div>
                 <div className="text-[11px] text-muted mt-3">
                   {t.ownerCount} owner{t.ownerCount === 1 ? "" : "s"} · Σ{" "}
                   {t.totalConviction.toFixed(0)}%
@@ -334,8 +339,9 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
                     <td className="px-4 py-3 font-mono font-semibold">
                       <a
                         href={`/signal/${t.symbol}`}
-                        className="text-brand hover:underline"
+                        className="inline-flex items-center gap-2 text-brand hover:underline"
                       >
+                        <TickerLogo symbol={t.symbol} size={22} />
                         {t.symbol}
                       </a>
                     </td>
@@ -392,11 +398,12 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
                     <td className="px-4 py-3">
                       <a
                         href={`/investor/${m.slug}`}
-                        className="font-semibold text-text hover:text-brand transition"
+                        className="inline-flex items-center gap-2 font-semibold text-text hover:text-brand transition"
                       >
+                        <FundLogo slug={m.slug} name={m.name} size={22} />
                         {m.name}
                       </a>
-                      <div className="text-[11px] text-dim truncate max-w-[14rem]">
+                      <div className="text-[11px] text-dim truncate max-w-[14rem] ml-8">
                         {m.fund}
                       </div>
                     </td>

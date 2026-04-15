@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FundLogo from "@/components/FundLogo";
 import { MANAGERS, type Manager } from "@/lib/managers";
 import { MANAGER_QUALITY } from "@/lib/signals";
 
@@ -294,8 +295,11 @@ export default function CompareManagersIndex() {
           const mgr = MANAGERS.find((m) => m.slug === slug)!;
           return (
             <section key={slug}>
-              <div className="flex items-baseline justify-between mb-3 border-b border-border pb-2">
-                <h2 className="text-lg font-bold text-text">{mgr.name}</h2>
+              <div className="flex items-center justify-between mb-3 border-b border-border pb-2">
+                <h2 className="text-lg font-bold text-text inline-flex items-center gap-2">
+                  <FundLogo slug={mgr.slug} name={mgr.name} size={22} />
+                  {mgr.name}
+                </h2>
                 <div className="text-xs text-dim">{groups[slug].length} comparisons</div>
               </div>
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import TickerLogo from "@/components/TickerLogo";
+import FundLogo from "@/components/FundLogo";
 import { getAllMovesEnriched, LATEST_QUARTER, QUARTER_LABELS } from "@/lib/moves";
 import { TICKER_INDEX, SECTOR_MAP } from "@/lib/tickers";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -128,7 +130,10 @@ export default function NewPositionsPage() {
               <div className="text-[10px] font-bold uppercase tracking-widest text-brand mb-1">
                 #{r.rank} · {r.managerFund}
               </div>
-              <div className="text-2xl font-bold text-text mb-1">{r.ticker}</div>
+              <div className="flex items-center gap-2 mb-1">
+                <TickerLogo symbol={r.ticker} size={32} />
+                <div className="text-2xl font-bold text-text">{r.ticker}</div>
+              </div>
               <div className="text-xs text-muted mb-3 line-clamp-1">{r.name}</div>
               <div className="flex items-baseline gap-3 flex-wrap text-xs">
                 <span className="text-text font-semibold">
@@ -185,19 +190,21 @@ export default function NewPositionsPage() {
                     <td className="px-4 py-3">
                       <a
                         href={`/signal/${r.ticker}`}
-                        className="text-brand font-bold hover:underline"
+                        className="inline-flex items-center gap-2 text-brand font-bold hover:underline"
                       >
+                        <TickerLogo symbol={r.ticker} size={20} />
                         {r.ticker}
                       </a>
-                      <div className="text-[11px] text-dim line-clamp-1 max-w-[200px]">
+                      <div className="text-[11px] text-dim line-clamp-1 max-w-[200px] ml-7">
                         {r.name}
                       </div>
                     </td>
                     <td className="px-4 py-3">
                       <a
                         href={`/investor/${r.managerSlug}`}
-                        className="text-text hover:text-brand transition"
+                        className="inline-flex items-center gap-2 text-text hover:text-brand transition"
                       >
+                        <FundLogo slug={r.managerSlug} name={r.managerName} size={20} />
                         {r.managerName}
                       </a>
                       <div className="text-[11px] text-dim">
