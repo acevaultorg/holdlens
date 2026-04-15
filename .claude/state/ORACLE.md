@@ -42,6 +42,7 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 2026-04-15 | v0.81 text-dim contrast WCAG fix          | bug_fix_blocking_revenue  | est €3/wk  | TBD | TBD | a11y: previously-unreadable caption text now passes AA
 2026-04-15 | v0.81 plural bug on /best-now             | bug_fix_blocking_revenue  | est €0.5/wk| TBD | TBD | trivial copy polish, trust signal
 2026-04-15 | v0.84 global focus ring + reduced-motion  | bug_fix_blocking_revenue  | est €2/wk  | TBD | TBD | keyboard users + vestibular users were effectively blocked
+2026-04-15 | v0.84 buffett page parity (InvestorConcentration + FoundersNudge) | conversion_copy_fix | est €4/wk | TBD | TBD | most-visited manager page (Buffett) previously lacked concentration visual + Pro nudge that all 29 other managers had; closes UX parity gap on tier-1 traffic page
 ```
 
 ## Top blocker (honest)

@@ -3,6 +3,7 @@
 ## Behavior Log
 
 ```
+2026-04-15 17:00 | v0.84-buffett-parity | modify | next-static | single | quick | self-review(designer) | AUTO(sovereign-auto) | ~180s | success (wired InvestorConcentration + FoundersNudge into /investor/warren-buffett to match generic /investor/[slug] layout; tier-1 traffic page now has concentration visual + Pro nudge; Oracle: conversion_copy_fix × est €4/wk)
 2026-04-15 16:49 | v0.80-v0.83-live-verify | verify | next-static | site-wide | quick | self | AUTO | ~30s | success (deploy-truth confirmed: hero 'Spot smart money moves' LIVE, footer Site-map-grouped LIVE, skip-link LIVE, pricing competitor-anchor LIVE, handbook Amazon-widget LIVE; operator UX-retention directive fully fulfilled across 4 version ships)
 2026-04-15 14:45 | v0.80-v0.83-cf-deploy | deploy | next-static | bundle | quick | self | AUTO | ~70s | success via parallel session (2134 files, a9069bf8.holdlens.pages.dev); earlier wrangler attempts 12:14-12:17 from this session returned UND_ERR_SOCKET due to CF API flake — resolved by parallel-session retry
 2026-04-15 14:10 | v0.80-ux-retention-pass | modify | next-static | multi | standard | self-review(designer) | AUTO | ~420s | success (footer 51→25 grouped, desktop-nav a11y fix aria-haspopup=menu + cursor-pointer, mobile-nav 49→~33 grouped into 5 sections; Oracle archetype:conversion_copy_fix+accessibility_fix site-wide; build clean)

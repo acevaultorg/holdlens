@@ -8,6 +8,8 @@ import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
 import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
+import InvestorConcentration from "@/components/InvestorConcentration";
+import FoundersNudge from "@/components/FoundersNudge";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
@@ -79,6 +81,15 @@ export default function BuffettPage() {
         <Stat label="Longest holding" value="Coca-Cola (37yr)" />
       </div>
 
+      {/* Concentration profile — v0.84 — wired to match generic
+          /investor/[slug] layout: Top-1/5/10 percentages, diversification
+          verdict, and a stacked bar showing how the portfolio distributes
+          across the biggest bets. Pure server component, zero client JS. */}
+      <InvestorConcentration
+        holdings={BUFFETT_TOP.map((h) => ({ ticker: h.ticker, pct: h.pctPortfolio, name: h.name }))}
+        managerFirstName="Warren"
+      />
+
       <section className="mt-8">
         <ManagerROICard slug="warren-buffett" />
       </section>
@@ -142,6 +153,8 @@ export default function BuffettPage() {
           </table>
         </div>
       </section>
+
+      <FoundersNudge context="You're reading Warren Buffett's full 13F portfolio and conviction signals." />
 
       <AdSlot format="horizontal" priority="primary" />
 
