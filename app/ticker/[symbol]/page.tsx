@@ -12,6 +12,7 @@ import TickerEarnings from "@/components/TickerEarnings";
 import InsiderActivity from "@/components/InsiderActivity";
 import AdSlot from "@/components/AdSlot";
 import AffiliateCTA from "@/components/AffiliateCTA";
+import RelatedSignals from "@/components/RelatedSignals";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
@@ -185,6 +186,13 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
       </section>
 
       <AffiliateCTA symbol={t.symbol} />
+
+      {/* Retention cross-link (v0.91) — same-sector + co-owned tickers.
+          Proven on /signal/[ticker]; here it converts bounce from /ticker
+          into a second page-view without any new client JS. */}
+      <section className="mt-16 pt-10 border-t border-border">
+        <RelatedSignals symbol={t.symbol} />
+      </section>
 
       <p className="text-xs text-dim mt-16">
         Data sourced from SEC 13F filings. {t.symbol} ownership reflects publicly disclosed long positions only.
