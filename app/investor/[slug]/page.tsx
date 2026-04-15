@@ -10,6 +10,7 @@ import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
+import InvestorConcentration from "@/components/InvestorConcentration";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -135,6 +136,14 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         <Stat label="Top concentration" value={`${total.toFixed(0)}%`} />
         <Stat label="Longest holding" value={m.longestHolding} />
       </div>
+
+      {/* Concentration profile — v0.85 — Top-1/5/10 percentages,
+          diversification verdict, and a stacked bar showing how the
+          portfolio distributes across the biggest bets. Pure server. */}
+      <InvestorConcentration
+        holdings={m.topHoldings.map((h) => ({ ticker: h.ticker, pct: h.pct, name: h.name }))}
+        managerFirstName={m.name.split(" ")[0]}
+      />
 
       {/* Realized 10-year track record */}
       <section className="mt-8">

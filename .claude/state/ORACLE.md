@@ -38,6 +38,10 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 2026-04-15 | v0.79 FoundersNudge + launch-kit       | conversion_copy_fix       | est €15/wk | TBD | TBD
 2026-04-15 | v0.80 UX retention pass (nav+footer)   | conversion_copy_fix       | est €8/wk  | TBD | TBD
 2026-04-15 | v0.81 hero rewrite + FoundersNudge fan | conversion_copy_fix       | est €12/wk | TBD | TBD
+2026-04-15 | v0.81 sticky header + BackToTop on 10k pages | conversion_copy_fix  | est €6/wk  | TBD | TBD | deep retention signal, affects every page beyond fold
+2026-04-15 | v0.81 text-dim contrast WCAG fix          | bug_fix_blocking_revenue  | est €3/wk  | TBD | TBD | a11y: previously-unreadable caption text now passes AA
+2026-04-15 | v0.81 plural bug on /best-now             | bug_fix_blocking_revenue  | est €0.5/wk| TBD | TBD | trivial copy polish, trust signal
+2026-04-15 | v0.84 global focus ring + reduced-motion  | bug_fix_blocking_revenue  | est €2/wk  | TBD | TBD | keyboard users + vestibular users were effectively blocked
 ```
 
 ## Top blocker (honest)

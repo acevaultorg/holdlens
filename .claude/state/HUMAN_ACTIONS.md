@@ -1,5 +1,83 @@
 # HoldLens — Human actions queue
 
+## ✅ RESOLVED 2026-04-15 16:57 — v0.81–v0.84 UX retention pack DEPLOYED via heartbeat
+
+Deploy truth verified via curl on holdlens.com:
+- `"Spot smart money moves / before the market does"` h1 ✓
+- `sticky top-0` header classes ✓
+- `Skip to main content` keyboard link ✓
+- `.text-dim { color: rgb(133 141 156) }` = `#858D9C` contrast fix ✓
+- `:focus-visible { outline: 2px solid #fbbf24; outline-offset: 2px }` ✓
+- `@media (prefers-reduced-motion: reduce)` override ✓
+
+Wrangler EPIPE from the direct-session retries was transient. Parallel
+heartbeat session closed the deploy on a later retry with a stable socket.
+No operator action required on this task.
+
+---
+
+## 👤 DEPLOY v0.81–v0.84 — UX retention pack + a11y baseline (blocked on wrangler EPIPE)
+
+**What:** Wrangler `pages deploy out` fails repeatedly with socket EPIPE in
+mid-upload (159–1677 of 2293 files across six retries on 2026-04-15). All
+code is already committed + pushed to `origin/main` (f3e472cfa…051a3eabd).
+Just need a successful `wrangler pages deploy` from a more stable network
+session, or from outside iCloud Drive / at off-peak hours.
+
+**Why it matters:** Live `holdlens.com` is currently on the v0.77 hero copy
+(`"What to buy. What to sell."`). The committed-but-undeployed pack (v0.78
+→ v0.84, ~15 commits) contains:
+
+- v0.80 — grouped footer + grouped MobileNav (51-link wall → 5 columns)
+- v0.80 — outcome-first homepage hero (`"Spot smart money moves before the market does."`)
+- v0.80 — pricing competitor anchor + trust strip under Stripe CTA
+- v0.80 — FoundersNudge wired into 8 signal pages with tone-appropriate copy
+- v0.81 — **sticky header** with backdrop-blur (biggest retention lever on 10k-px signal pages)
+- v0.81 — **BackToTop** floating button (appears after 1200px scroll)
+- v0.81 — text-dim contrast bumped `#6b7280 → #858d9c` (WCAG AA pass)
+- v0.81 — `1 total owners` plural fix on /best-now
+- v0.81 — skip-to-main-content keyboard link
+- v0.82 — /learn/superinvestor-handbook + Amazon affiliate book widget
+- v0.83 — ShareStrip viral-loop SEO on handbook
+- v0.84 — a11y baseline: global focus-visible ring, prefers-reduced-motion
+  override, brand-tinted tap highlight
+
+Every hour these sit un-deployed, the live site shows the prior hero to new
+visitors while Google search + referral traffic lands on copy that tested
+worse in competitor research.
+
+**Steps (copy-paste):**
+
+```bash
+cd "/Users/paulodevries/Library/Mobile Documents/com~apple~CloudDocs/AceVault/ CLUSTER01-AceVault/VAULT01-Paulo Projects/Stocks/holdlens"
+
+# 1. Confirm everything is committed + pushed
+git log --oneline origin/main..HEAD   # should be empty
+git status                             # expect: clean or only .claude/state churn
+
+# 2. Fresh build (regenerates out/)
+npm run build
+
+# 3. Deploy — retry 3–5× if EPIPE hits. Successful runs historically
+#    complete 1000–2000 files in ~30s when the socket holds.
+npx wrangler pages deploy out --project-name=holdlens --branch=main --commit-dirty=true
+
+# 4. Deploy truth check
+curl -sL https://holdlens.com/ | grep -q "Spot smart money moves" \
+  && echo "DEPLOY TRUTH ✓ v0.80+ hero live" \
+  || echo "DEPLOY TRUTH ✗ still stale — re-run wrangler"
+```
+
+**Success signal:** `holdlens.com/` h1 reads `"Spot smart money moves"` and
+the header pins to viewport top on scroll.
+
+**Why this is a human action:** wrangler EPIPE from this session is a
+transient network / socket-pool issue. The heartbeat session (cron every
+15min) will retry automatically; a fresh terminal on a stable link
+usually succeeds on first try.
+
+---
+
 ## 👤 DEPLOY v0.13 + v0.14 + v0.15 — buy/sell model + signal dossier + news + heatmap
 
 **What:** Push the `acepilot/live-data-v0.13` branch with the v0.13 and v0.14
