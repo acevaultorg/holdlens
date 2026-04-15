@@ -8,6 +8,8 @@ import ManagerROICard from "@/components/ManagerROICard";
 import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import FundLogo from "@/components/FundLogo";
+import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -83,7 +85,10 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Investor profile</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-2">{m.name}</h1>
+      <div className="flex items-center gap-4 mb-2">
+        <FundLogo slug={m.slug} name={m.name} size={56} />
+        <h1 className="text-4xl md:text-5xl font-bold leading-tight">{m.name}</h1>
+      </div>
       <p className="text-muted text-lg">{m.fund} · {m.role} · Net worth: {m.netWorth}</p>
       <p className="mt-4 text-text leading-relaxed max-w-2xl">{m.bio}</p>
       <div className="mt-3 text-sm text-muted italic">"{m.philosophy}"</div>
@@ -176,7 +181,10 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
               {m.topHoldings.map((h) => (
                 <tr key={h.ticker} className="border-b border-border last:border-0 align-top">
                   <td className="px-5 py-4 font-mono font-semibold">
-                    <a href={`/ticker/${h.ticker}`} className="text-brand hover:underline">{h.ticker}</a>
+                    <a href={`/ticker/${h.ticker}`} className="inline-flex items-center gap-2 text-brand hover:underline">
+                      <TickerLogo symbol={h.ticker} size={22} />
+                      {h.ticker}
+                    </a>
                   </td>
                   <td className="px-5 py-4">
                     <div className="text-text">{h.name}</div>

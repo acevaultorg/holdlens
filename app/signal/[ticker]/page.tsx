@@ -17,6 +17,8 @@ import AdSlot from "@/components/AdSlot";
 import TrendBadge from "@/components/TrendBadge";
 import FoundersNudge from "@/components/FoundersNudge";
 import RelatedSignals from "@/components/RelatedSignals";
+import TickerLogo from "@/components/TickerLogo";
+import FundLogo from "@/components/FundLogo";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
 import { formatSignedScore, convictionLabel, getConviction } from "@/lib/conviction";
@@ -192,7 +194,8 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
             Signal dossier · {QUARTER_LABELS[LATEST_QUARTER]}
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight flex items-center gap-3 flex-wrap">
+            <TickerLogo symbol={t.symbol} size={48} />
             <span className="text-brand">{t.symbol}</span>
           </h1>
           <p className="text-muted text-lg mt-2">
@@ -437,6 +440,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
                     <div key={o.slug}>
                       <div className="flex items-baseline justify-between gap-3 mb-1.5">
                         <div className="flex items-center gap-2 min-w-0">
+                          <FundLogo slug={o.slug} name={o.manager} size={20} />
                           <a
                             href={`/investor/${o.slug}`}
                             className="text-sm font-semibold text-text hover:text-brand transition truncate"

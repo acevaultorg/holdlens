@@ -3,6 +3,8 @@ import { getAllMovesEnriched, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { getConviction } from "@/lib/conviction";
 import { TICKER_INDEX } from "@/lib/tickers";
 import SectorBadge from "@/components/SectorBadge";
+import TickerLogo from "@/components/TickerLogo";
+import FundLogo from "@/components/FundLogo";
 
 // <LatestMoves /> — homepage engagement lever, ported from Dataroma's biggest
 // time-on-site pattern. Reads enriched MERGED_MOVES at build time, takes the
@@ -120,8 +122,9 @@ export default function LatestMoves() {
                 <td className="px-4 py-3">
                   <a
                     href={`/signal/${r.ticker}`}
-                    className="font-mono font-semibold text-brand hover:underline"
+                    className="inline-flex items-center gap-2 font-mono font-semibold text-brand hover:underline"
                   >
+                    <TickerLogo symbol={r.ticker} size={24} />
                     {r.ticker}
                   </a>
                   {r.sector && (
@@ -133,11 +136,12 @@ export default function LatestMoves() {
                 <td className="px-4 py-3">
                   <a
                     href={`/investor/${r.managerSlug}`}
-                    className="text-text hover:text-brand transition font-semibold"
+                    className="inline-flex items-center gap-2 text-text hover:text-brand transition font-semibold"
                   >
+                    <FundLogo slug={r.managerSlug} name={r.managerName} size={24} />
                     {r.managerName}
                   </a>
-                  <div className="text-[11px] text-dim truncate max-w-[14rem]">{r.fund}</div>
+                  <div className="text-[11px] text-dim truncate max-w-[14rem] ml-8">{r.fund}</div>
                 </td>
                 <td className="px-4 py-3 text-right text-dim tabular-nums hidden sm:table-cell">
                   {QUARTER_LABELS[r.quarter]}

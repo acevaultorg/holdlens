@@ -3,6 +3,8 @@ import BuySellSignals from "@/components/BuySellSignals";
 import LiveStats from "@/components/LiveStats";
 import LatestMoves from "@/components/LatestMoves";
 import FaqSchema, { type FaqItem } from "@/components/FaqSchema";
+import TickerLogo from "@/components/TickerLogo";
+import FundLogo from "@/components/FundLogo";
 import { MANAGERS } from "@/lib/managers";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { getAllConvictionScores } from "@/lib/conviction";
@@ -297,7 +299,10 @@ export default function HomePage() {
                 <tr key={t.symbol} className="border-b border-border last:border-0 hover:bg-bg/50 transition">
                   <td className="px-5 py-3 text-dim tabular-nums">{i + 1}</td>
                   <td className="px-5 py-3 font-mono font-semibold">
-                    <a href={`/ticker/${t.symbol}`} className="text-brand hover:underline">{t.symbol}</a>
+                    <a href={`/ticker/${t.symbol}`} className="inline-flex items-center gap-2 text-brand hover:underline">
+                      <TickerLogo symbol={t.symbol} size={22} />
+                      {t.symbol}
+                    </a>
                   </td>
                   <td className="px-5 py-3 text-text">{t.name}</td>
                   <td className="px-5 py-3 text-right tabular-nums">{t.ownerCount}</td>
@@ -323,9 +328,19 @@ export default function HomePage() {
           {featuredManagers.map((m) => (
             <a key={m.slug} href={`/investor/${m.slug}`}
                className="rounded-xl border border-border bg-panel p-4 hover:border-brand transition group">
-              <div className="font-semibold group-hover:text-brand transition">{m.name}</div>
-              <div className="text-xs text-muted mt-1">{m.fund}</div>
-              <div className="text-xs text-dim mt-2">Top: <span className="font-mono text-brand">{m.topHoldings[0]?.ticker}</span> ({m.topHoldings[0]?.pct.toFixed(1)}%)</div>
+              <div className="flex items-center gap-3 mb-1">
+                <FundLogo slug={m.slug} name={m.name} size={36} />
+                <div className="min-w-0">
+                  <div className="font-semibold group-hover:text-brand transition truncate">{m.name}</div>
+                  <div className="text-xs text-muted truncate">{m.fund}</div>
+                </div>
+              </div>
+              <div className="text-xs text-dim mt-2 flex items-center gap-1.5">
+                Top:
+                {m.topHoldings[0] && <TickerLogo symbol={m.topHoldings[0].ticker} size={14} />}
+                <span className="font-mono text-brand">{m.topHoldings[0]?.ticker}</span>
+                ({m.topHoldings[0]?.pct.toFixed(1)}%)
+              </div>
             </a>
           ))}
         </div>
