@@ -46,21 +46,25 @@ export default function HomePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6">
-      {/* Hero — v0.80 outcome-first copy. Competitor research flagged the prior
-          "What to buy / What to sell" as feature-voice, not outcome-voice. New
-          copy leads with "spot before the market" verb-first framing. */}
+      {/* Hero — v0.90 honest-outcome rewrite. Prior "Spot smart money moves
+          before the market does" implied an information edge that 13F's 45-day
+          lag cannot deliver (data is already public when it arrives on the
+          site). New copy promises interpretation, not front-running. Subcopy
+          trimmed from 7 named managers to 3 for scannability. Trust row
+          retargeted from dev-speak (API endpoints, static pages) to
+          audience-aligned signals (quarters of data, investor count). */}
       <section className="pt-20 pb-12 text-center">
         <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-6">
-          SEC-filed · {MANAGERS.length} tracked superinvestors · updated every quarter
+          SEC-sourced · {MANAGERS.length} investors tracked · updated every quarter
         </div>
         <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
-          Spot smart money moves
+          Understand every move by the
           <br />
-          <span className="text-brand">before the market does.</span>
+          <span className="text-brand">smartest investors in the world.</span>
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl mx-auto">
-          Every 13F move from Buffett, Ackman, Druckenmiller, Klarman, Burry, Tepper, Hohn and{" "}
-          {MANAGERS.length - 7} other top portfolio managers — scored on a single signed{" "}
+          Every 13F move from Buffett, Ackman, Burry and {MANAGERS.length - 3} other top portfolio
+          managers — scored on a signed{" "}
           <span className="text-emerald-400 font-semibold">+100 buy</span> /{" "}
           <span className="text-rose-400 font-semibold">−100 sell</span> scale.{" "}
           <span className="text-text font-semibold">Live prices. No signup. Free forever.</span>
@@ -80,7 +84,7 @@ export default function HomePage() {
           </a>
         </div>
         <div className="mt-6 text-xs text-dim">
-          150+ free JSON API endpoints · 484 static pages · built on SEC Form 13F · not investment advice
+          SEC-sourced · 8 quarters of data · {MANAGERS.length} investors tracked · not investment advice
         </div>
       </section>
 
