@@ -69,6 +69,8 @@ const GROUPS: MGroup[] = [
     title: "Product",
     accent: "brand",
     links: [
+      { href: "/pricing", label: "Pro pricing", color: "brand" },
+      { href: "/premium", label: "Pro features", color: "brand" },
       { href: "/portfolio", label: "My portfolio", color: "brand" },
       { href: "/watchlist", label: "Watchlist" },
       { href: "/alerts", label: "Email alerts" },

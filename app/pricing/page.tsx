@@ -149,6 +149,15 @@ export default function PricingPage() {
             <Feature text="Priority feature requests + direct line to the builder" />
             <Feature text="No ads, ever" />
           </ul>
+          <p className="mt-6 text-[13px] text-dim text-center">
+            Want the full feature rundown?{" "}
+            <a
+              href="/premium"
+              className="text-brand hover:underline font-semibold"
+            >
+              See every Pro feature →
+            </a>
+          </p>
         </div>
       </div>
 
