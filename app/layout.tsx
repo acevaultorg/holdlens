@@ -100,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/by-philosophy" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Schools</a>
               <a href="/first-movers" className="hover:text-brand transition hidden lg:inline font-semibold">First movers</a>
               <a href="/biggest-buys" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Biggest buys</a>
+              <a href="/themes" className="hover:text-brand transition hidden lg:inline font-semibold">Themes</a>
               <a href="/this-week" className="hover:text-text transition hidden lg:inline">This week</a>
               <a href="/pricing" className="text-brand hover:text-text transition font-semibold">Pro</a>
               <GlobalSearch />
@@ -160,6 +161,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/by-philosophy" className="hover:text-emerald-400 font-semibold">By philosophy</a>
               <a href="/first-movers" className="hover:text-brand font-semibold">First movers</a>
               <a href="/biggest-buys" className="hover:text-emerald-400 font-semibold">Biggest buys</a>
+              <a href="/themes" className="hover:text-brand font-semibold">Themes</a>
               <a href="/screener" className="hover:text-text">Screener</a>
               <a href="/activity" className="hover:text-text">Activity</a>
               <a href="/insiders" className="hover:text-emerald-400">Insiders</a>
