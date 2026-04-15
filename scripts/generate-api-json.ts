@@ -28,6 +28,7 @@
  *   /api/v1/overlap.json                  — manager pair overlap (shared holdings counts)
  *   /api/v1/best-now.json                 — top 50 buy candidates
  *   /api/v1/value.json                    — smart money × 52w low combo
+ *   /api/v1/changelog.json               — top 200 moves this quarter ranked by portfolio impact
  *   /api/v1/quarters.json                 — available 13F quarters
  *
  * All responses are a thin envelope: { data, meta }.
@@ -749,6 +750,37 @@ async function main(): Promise<void> {
   const valueRows = [...scores].filter((s) => s.direction === "BUY").slice(0, 50);
   await writeJson("value.json", { data: valueRows, meta: meta({ note: "Combine with a live 52w-range feed client-side." }) });
 
+  // ---------- /changelog.json ----------
+  // "What changed this quarter" — all moves for LATEST_QUARTER enriched with
+  // manager display name. Ranked by absolute portfolioImpactPct descending
+  // (biggest portfolio movements first, regardless of buy/sell direction).
+  const allEnriched = getAllMovesEnriched();
+  const changelogRaw = allEnriched
+    .filter((m) => m.quarter === LATEST_QUARTER)
+    .sort((a, b) => Math.abs(b.portfolioImpactPct) - Math.abs(a.portfolioImpactPct))
+    .slice(0, 200);
+  const changelog = changelogRaw.map((m, i) => ({
+    rank: i + 1,
+    quarter: m.quarter,
+    ticker: m.ticker,
+    name: m.name ?? m.ticker,
+    action: m.action,
+    delta_pct: m.deltaPct ?? null,
+    portfolio_impact_pct: m.portfolioImpactPct,
+    manager: m.managerSlug,
+    manager_name: m.managerName,
+    manager_fund: m.managerFund,
+  }));
+  await writeJson("changelog.json", {
+    data: changelog,
+    meta: meta({
+      count: changelog.length,
+      quarter: LATEST_QUARTER,
+      sort: "abs(portfolio_impact_pct) desc",
+      note: `Top ${changelog.length} moves filed in ${LATEST_QUARTER} by portfolio impact. action: new | add | trim | exit.`,
+    }),
+  });
+
   // ---------- /quarters.json ----------
   await writeJson("quarters.json", {
     data: QUARTERS.map((q) => ({ quarter: q, label: QUARTER_LABELS[q] })),
@@ -782,6 +814,7 @@ async function main(): Promise<void> {
       { path: "/overlap.json", desc: "All manager pairs with shared topHoldings — Jaccard similarity matrix" },
       { path: "/best-now.json", desc: "Top 50 buy candidates" },
       { path: "/value.json", desc: "Top 50 smart-money buy signals for value overlays" },
+      { path: "/changelog.json", desc: `Top 200 moves filed in ${LATEST_QUARTER} ranked by portfolio impact — the quarter's biggest changes` },
       { path: "/quarters.json", desc: "Available 13F quarters" },
     ],
     meta: meta(),
@@ -794,7 +827,7 @@ async function main(): Promise<void> {
   fileCount += 1 /* big-bets */ + 1 /* rotation */ + sectorOrder.length /* sector/[slug] */;
   fileCount += 1 /* alerts */ + 1 /* consensus */ + 1 /* crowded */ + 1 /* contrarian */;
   fileCount += 1 /* concentration */ + 1 /* exits */ + 1 /* overlap */;
-  fileCount += 1 /* best-now */ + 1 /* value */ + 1 /* quarters */;
+  fileCount += 1 /* best-now */ + 1 /* value */ + 1 /* changelog */ + 1 /* quarters */;
   console.log(`  Wrote ${fileCount} JSON files under public/api/v1/`);
 }
 
