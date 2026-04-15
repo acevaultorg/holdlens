@@ -1,26 +1,27 @@
 # HoldLens — CONTEXT
 
 ## Orient
-**Project:** HoldLens — 13F superinvestor tracker, Next.js 15 static export, Cloudflare Pages + Worker proxy.
-**State:** v0.31 shipped. AdSense + affiliate ad placements wired across 26 pages. Build verified (484 pages).
+**Project:** HoldLens — 13F superinvestor tracker, Next.js 15 static export, Cloudflare Pages.
+**State:** v0.76 shipped — public JSON API now 146 endpoints (added /api/v1/sector/{slug}.json, 12 drilldown files). Signal page cross-links t.sector → /sector/[slug]. TASKS.md reconciled: 7 stale P0s + /alerts + api-sector marked done after deploy-truth check.
 **Goal:** Revenue activation. Three [👤] actions pending: Stripe, AdSense, affiliates.
 
 ## Session Handoff
 
-**Mode:** god
-**Objective:** wire AdSense + affiliate ad placements across all pages
-**Progress:** COMPLETE — 26 pages wired, build verified, committed + pushed
-**Branch:** `acepilot/v0.25-unified-score` · 14 commits on top of v0.25
+**Mode:** god --loop
+**Objective:** v0.76 public API completeness + task-queue reality check
+**Progress:** COMPLETE — 12 sector JSON endpoints live, signal sector crosslink live, /docs updated with example, 8 stale tasks reconciled, committed 57e699ce0, deployed ecc81625, verified prod + direct
+**Branch:** `main` · 1 commit on top of v0.75
 **Next actions:**
-  1. Operator: apply for AdSense at adsense.google.com, set NEXT_PUBLIC_ADSENSE_CLIENT env var (see HUMAN_ACTIONS.md)
-  2. Operator: sign up for IBKR affiliate ($200/funded account), set NEXT_PUBLIC_AFF_IBKR env var
-  3. Operator: activate Stripe payment links (existing [👤] task from v0.28)
-  4. Chief: deploy latest build to CF Pages
-  5. Next dev: EDGAR 13F parser, Resend email integration, AI thesis generator
+  1. Chief: next P1 — /stock/[ticker] redirect alias (app/stock/[symbol]/page.tsx) for SEO — human-memorable URL
+  2. Chief: next P1 — /api/v1/alerts.json + /api/v1/consensus.json + /api/v1/crowded.json + /api/v1/contrarian.json (round out public API)
+  3. Chief: next P1 — /compare/[pair] visual diff (overlap Venn + shared-name convergence chart)
+  4. Operator: apply for AdSense, set NEXT_PUBLIC_ADSENSE_CLIENT (HUMAN_ACTIONS.md)
+  5. Operator: IBKR affiliate, set NEXT_PUBLIC_AFF_IBKR
+  6. Operator: activate Stripe payment links
 **Human actions pending:** 3 — adsense-activate, affiliate-activate, stripe-activate
 **Open questions:** none
 **Momentum:** high
-<!-- handoff: 2026-04-14 10:30 -->
+<!-- handoff: 2026-04-15 12:43 -->
 
 ## Ad placement map (v0.31)
 

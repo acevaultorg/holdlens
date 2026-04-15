@@ -33,3 +33,4 @@
 2026-04-15 11:49 | ship | v0.71 /investor/[slug]/q/[quarter] — 232 SEO pages | commit:7d597082c | deploy:52416d47 | verify: Ackman Q4 2025 h1+5sec+9cards, Burry Q1 2025 NVDA NEW 49% LIVE
 2026-04-15 11:53 | ship | v0.72 /biggest-sells — conviction collapses | commit:78f7980d2 | deploy:3b9a937c | verify: 1309 sells/351 exits/403 cut40+ #1 Buffett EXIT SIRI Q3 2025 LIVE
 2026-04-15 11:57 | ship | v0.73 /fresh-conviction — lonely new trades | commit:54203ce76 | deploy:26d75a41 | verify: 415 lonely/319 alone/76 paired #1 Buffett NEW SIRI Q3 2024 ALONE LIVE
+2026-04-15 12:43 | god | v0.76 /api/v1/sector/{slug}.json + signal sector crosslink | commit:57e699ce0 | deploy:ecc81625 | verify: technology.json 16 tickers/68 owners/7.9 avg / Burry 62.4% Pabrai 52.7% overweight / financials.json 17/36/6.5 LIVE prod+direct; /signal/AAPL → /sector/technology crosslink LIVE
