@@ -86,6 +86,7 @@ const MORE: NavGroup = {
     { href: "/insiders", label: "Insider activity", color: "emerald" },
     { href: "/watchlist", label: "Watchlist" },
     { href: "/simulate", label: "Backtest" },
+    { href: "/learn/superinvestor-handbook", label: "Handbook", desc: "The 10-section 13F guide", color: "emerald" },
     { href: "/learn", label: "Learn" },
     { href: "/docs", label: "API docs" },
     { href: "/faq", label: "FAQ" },

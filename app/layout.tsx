@@ -198,6 +198,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/pricing" className="text-brand hover:text-text font-semibold">Pricing</a>
               <a href="/simulate" className="hover:text-text">Backtest</a>
               <a href="/learn" className="hover:text-text">Learn</a>
+              <a href="/learn/superinvestor-handbook" className="hover:text-emerald-400 font-semibold">Handbook</a>
               <a href="/faq" className="hover:text-text">FAQ</a>
               <a href="/docs" className="hover:text-text">API docs</a>
               <a href="/about" className="hover:text-text">About</a>
