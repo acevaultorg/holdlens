@@ -30,6 +30,7 @@ const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: b
   { href: "/trend-streak", label: "Trend streaks · multi-quarter compounding", emerald: true },
   { href: "/accelerators", label: "Accelerators · crowd forming", brand: true },
   { href: "/overlap", label: "Overlap · who thinks alike", brand: true },
+  { href: "/by-philosophy", label: "By philosophy · school-level conviction", emerald: true },
   { href: "/screener", label: "Screener" },
   { href: "/activity", label: "Activity" },
   { href: "/insiders", label: "Insider activity", emerald: true },
