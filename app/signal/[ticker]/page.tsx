@@ -17,6 +17,7 @@ import AdSlot from "@/components/AdSlot";
 import TrendBadge from "@/components/TrendBadge";
 import FoundersNudge from "@/components/FoundersNudge";
 import RelatedSignals from "@/components/RelatedSignals";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
@@ -483,6 +484,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
 
       {/* Mid-page ad slot */}
       <FoundersNudge context={`You're reading the full smart-money dossier on ${t.symbol}.`} />
+      <BrokerCta ticker={t.symbol} />
       <AdSlot format="in-article" />
 
       {/* Share */}
