@@ -48,10 +48,12 @@ function managerInfo(slug: string): { name: string; fund: string } {
 function computeExits(): ExitRow[] {
   const quarterOrder = new Map<string, number>();
   QUARTERS.forEach((q, i) => quarterOrder.set(q, i));
+  const tracked = new Set<string>(QUARTERS);
 
   const out: ExitRow[] = [];
   for (const mv of MERGED_MOVES) {
     if (mv.action !== "exit") continue;
+    if (!tracked.has(mv.quarter)) continue;
     const td = TICKER_INDEX[mv.ticker];
     const conv = getConviction(mv.ticker);
     const info = managerInfo(mv.managerSlug);
