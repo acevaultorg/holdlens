@@ -82,12 +82,16 @@
       "desc": "Top 50 smart-money buy signals for value overlays"
     },
     {
+      "path": "/changelog.json",
+      "desc": "Top 200 moves filed in 2025-Q4 ranked by portfolio impact — the quarter's biggest changes"
+    },
+    {
       "path": "/quarters.json",
       "desc": "Available 13F quarters"
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T18:42:14.882Z",
+    "generated_at": "2026-04-15T21:52:39.407Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

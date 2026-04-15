@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import InvestingBooks from "@/components/InvestingBooks";
 
 export const metadata: Metadata = {
   title: "What is a 13F filing? — Plain English guide for retail investors",
@@ -74,6 +75,11 @@ export default function What13FPage() {
           Raw filings: <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F" className="text-brand underline">SEC EDGAR</a>.
           Painful to read. We do it for you on <a href="/" className="text-brand underline">HoldLens</a>.
         </p>
+
+        <InvestingBooks
+          heading="Foundational reading on securities analysis"
+          sub="You just learned what a 13F is. The three books below are where the managers themselves learned — Graham, Lynch, Munger. Start with whichever voice you want to hear first."
+        />
 
         <p className="text-xs text-dim pt-8 border-t border-border mt-12">
           Not investment advice. See <a href="/methodology" className="underline">methodology</a> for how we parse

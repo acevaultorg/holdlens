@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import InvestingBooks from "@/components/InvestingBooks";
 
 export const metadata: Metadata = {
   title: "What is the HoldLens ConvictionScore? — The single signed −100..+100 scale",
@@ -142,6 +143,11 @@ export default function ConvictionPage() {
             </a>
           </div>
         </div>
+
+        <InvestingBooks
+          heading="Where this scoring model came from"
+          sub="Conviction scoring borrows from three traditions: Graham's margin-of-safety, Buffett's circle-of-competence, and modern factor research. These books are the primary sources."
+        />
 
         <p className="text-xs text-dim pt-8 border-t border-border mt-12">
           The full six-layer formula lives in the project repo and is described in detail on the{" "}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import InvestingBooks from "@/components/InvestingBooks";
 
 export const metadata: Metadata = {
   title: "Can you actually copy Warren Buffett? — The honest answer",
@@ -64,6 +65,11 @@ export default function CopyMythPage() {
             See all investors →
           </a>
         </div>
+
+        <InvestingBooks
+          heading="Books that reframe how you read 13F data"
+          sub="The three books below explain why mechanically copying a portfolio underperforms the portfolio itself. Each is the honest next step after this article."
+        />
 
         <p className="text-xs text-dim pt-8 border-t border-border mt-12">
           Not investment advice. See <a href="/methodology" className="underline">methodology</a>.
