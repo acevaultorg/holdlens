@@ -431,6 +431,42 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
         </section>
       )}
 
+      {/* Other sectors cross-link (v0.93) — retention strip. Users who
+          reach a /sector page and read the full dossier previously had
+          no obvious next click besides the sticky nav or footer. Now
+          they see the 10 sibling sectors one row up with hover-colour
+          matched to each tone (brand/emerald/rose) so the eye can tell
+          them apart at a glance. Closes the dead-end on a surface that
+          gets organic SEO traffic ("technology stocks hedge funds",
+          etc.) and is indexed in 11 OG images. */}
+      <section className="mt-16 pt-10 border-t border-border">
+        <div className="flex items-end justify-between mb-5 flex-wrap gap-2">
+          <div>
+            <div className="text-[11px] uppercase tracking-widest text-brand font-semibold mb-1">
+              More sectors
+            </div>
+            <h2 className="text-2xl font-bold">Where smart money is moving next</h2>
+          </div>
+          <a
+            href="/rotation"
+            className="text-sm text-brand hover:text-text font-semibold"
+          >
+            Full sector rotation heatmap →
+          </a>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+          {SECTORS.filter((s) => s !== sector).map((s) => (
+            <a
+              key={s}
+              href={`/sector/${slugify(s)}`}
+              className="rounded-xl border border-border bg-panel p-3 hover:border-brand/40 hover:bg-bg/40 transition block"
+            >
+              <div className="text-sm font-semibold text-text leading-tight">{s}</div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* Methodology */}
       <section className="mt-12 rounded-2xl border border-border bg-panel p-6">
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
