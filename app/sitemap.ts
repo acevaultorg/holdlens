@@ -78,9 +78,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const topN = topTickers(15).map((t) => t.symbol);
   const compareUrls: MetadataRoute.Sitemap = [];
+  // Both orderings — matches the route generator that ships pages both ways so
+  // Google indexes each direction.
   for (const a of topN) {
     for (const b of topN) {
-      if (a < b) {
+      if (a !== b) {
         compareUrls.push({
           url: `${base}/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}`,
           lastModified: now,

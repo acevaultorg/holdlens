@@ -73,10 +73,15 @@ export default function LiveTicker({ symbols }: Props) {
             }
             const up = q.dayChange >= 0;
             const color = up ? "text-emerald-400" : "text-rose-400";
+            // Yahoo uses "BRK-B" format for the class-B share; the site's
+            // TICKER_INDEX keys the page as "BRK.B". Normalise the href so
+            // /ticker/BRK-B does not 404. No other tracked ticker contains a
+            // hyphen, so a blanket "-" → "." swap is safe today.
+            const hrefSym = sym.replace("-", ".");
             return (
               <a
                 key={`${sym}-${i}`}
-                href={`/ticker/${sym}`}
+                href={`/ticker/${hrefSym}`}
                 aria-hidden={i >= symbols.length}
                 tabIndex={i >= symbols.length ? -1 : 0}
                 className="inline-flex items-center gap-2 text-xs hover:opacity-80 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-brand/40 rounded px-1 transition"

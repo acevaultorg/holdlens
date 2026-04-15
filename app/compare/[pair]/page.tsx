@@ -9,9 +9,12 @@ const TOP_N = 15;
 export async function generateStaticParams() {
   const top = topTickers(TOP_N).map((t) => t.symbol);
   const params: { pair: string }[] = [];
+  // Generate BOTH orderings — users type either direction and Google may index
+  // either; both must return 200. Previously only a<b was generated, which 404'd
+  // on the reverse. Page count doubles to ~420 which is still tiny.
   for (const a of top) {
     for (const b of top) {
-      if (a < b) params.push({ pair: `${a.toLowerCase()}-vs-${b.toLowerCase()}` });
+      if (a !== b) params.push({ pair: `${a.toLowerCase()}-vs-${b.toLowerCase()}` });
     }
   }
   return params;
