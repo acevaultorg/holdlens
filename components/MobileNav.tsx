@@ -20,6 +20,7 @@ const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: b
   { href: "/manager-rankings", label: "Manager rankings · skill × activity", brand: true },
   { href: "/conviction-leaders", label: "Conviction leaders · weighted picks", emerald: true },
   { href: "/crowded-trades", label: "Crowded trades — who's piled in?", rose: true },
+  { href: "/contrarian-bets", label: "Contrarian bets — where smart money is split", brand: true },
   { href: "/screener", label: "Screener" },
   { href: "/activity", label: "Activity" },
   { href: "/insiders", label: "Insider activity", emerald: true },
