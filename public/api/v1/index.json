@@ -46,6 +46,22 @@
       "desc": "Per-sector tickers + top owners + 4Q flow drilldown"
     },
     {
+      "path": "/alerts.json",
+      "desc": "Top 200 high-impact 13F moves (>5% portfolio shift), sorted by impact"
+    },
+    {
+      "path": "/consensus.json",
+      "desc": "Widely-held + bullish + net-buying tickers — what smart money agrees on"
+    },
+    {
+      "path": "/crowded.json",
+      "desc": "Top 30 by ownership with loading/unwinding/stable flow tag"
+    },
+    {
+      "path": "/contrarian.json",
+      "desc": "Tickers where ≥2 managers buying AND ≥2 selling, last 4Q — the debate signal"
+    },
+    {
       "path": "/best-now.json",
       "desc": "Top 50 buy candidates"
     },
@@ -59,7 +75,7 @@
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T10:37:53.686Z",
+    "generated_at": "2026-04-15T10:57:18.340Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

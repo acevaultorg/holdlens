@@ -1,0 +1,1902 @@
+{
+  "data": [
+    {
+      "rank": 1,
+      "ticker": "META",
+      "name": "Meta Platforms",
+      "sector": "Technology",
+      "conviction_score": 5,
+      "buyer_count": 16,
+      "seller_count": 9,
+      "total": 25,
+      "buyers": [
+        {
+          "slug": "li-lu",
+          "name": "Li Lu",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "jeffrey-ubben",
+          "name": "Jeffrey Ubben",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chris-hohn",
+          "name": "Chris Hohn",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "chuck-akre",
+          "name": "Chuck Akre",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "john-armitage",
+          "name": "John Armitage",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "francois-rochon",
+          "name": "François Rochon",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "david-tepper",
+          "name": "David Tepper",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "michael-burry",
+          "name": "Michael Burry",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "chris-hohn",
+          "name": "Chris Hohn",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chuck-akre",
+          "name": "Chuck Akre",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "terry-smith",
+          "name": "Terry Smith",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "david-tepper",
+          "name": "David Tepper",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "michael-burry",
+          "name": "Michael Burry",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q2"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "sector": "Technology",
+      "conviction_score": 6,
+      "buyer_count": 10,
+      "seller_count": 9,
+      "total": 19,
+      "buyers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "terry-smith",
+          "name": "Terry Smith",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "john-armitage",
+          "name": "John Armitage",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "william-von-mueffling",
+          "name": "William von Mueffling",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "chris-hohn",
+          "name": "Chris Hohn",
+          "quarter": "2025-Q1"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q1"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "william-von-mueffling",
+          "name": "William von Mueffling",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chris-hohn",
+          "name": "Chris Hohn",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "terry-smith",
+          "name": "Terry Smith",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "ticker": "AMZN",
+      "name": "Amazon",
+      "sector": "Technology",
+      "conviction_score": 6,
+      "buyer_count": 8,
+      "seller_count": 8,
+      "total": 16,
+      "buyers": [
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "seth-klarman",
+          "name": "Seth Klarman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "warren-buffett",
+          "name": "Warren Buffett",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q2"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "sector": "Technology",
+      "conviction_score": 19,
+      "buyer_count": 9,
+      "seller_count": 5,
+      "total": 14,
+      "buyers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q1"
+        },
+        {
+          "slug": "david-tepper",
+          "name": "David Tepper",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "tom-slater",
+          "name": "Tom Slater",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "michael-burry",
+          "name": "Michael Burry",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "michael-burry",
+          "name": "Michael Burry",
+          "quarter": "2025-Q2"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "ticker": "TSM",
+      "name": "Taiwan Semi",
+      "sector": "Technology",
+      "conviction_score": 16,
+      "buyer_count": 6,
+      "seller_count": 7,
+      "total": 13,
+      "buyers": [
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "david-rolfe",
+          "name": "David Rolfe",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q1"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "prem-watsa",
+          "name": "Prem Watsa",
+          "quarter": "2025-Q2"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "ticker": "GOOGL",
+      "name": "Alphabet",
+      "sector": "Technology",
+      "conviction_score": -9,
+      "buyer_count": 7,
+      "seller_count": 6,
+      "total": 13,
+      "buyers": [
+        {
+          "slug": "john-armitage",
+          "name": "John Armitage",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "francois-rochon",
+          "name": "François Rochon",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "warren-buffett",
+          "name": "Warren Buffett",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "terry-smith",
+          "name": "Terry Smith",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chris-hohn",
+          "name": "Chris Hohn",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q1"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "ticker": "V",
+      "name": "Visa",
+      "sector": "Financials",
+      "conviction_score": 8,
+      "buyer_count": 7,
+      "seller_count": 5,
+      "total": 12,
+      "buyers": [
+        {
+          "slug": "glenn-greenberg",
+          "name": "Glenn Greenberg",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "francois-rochon",
+          "name": "François Rochon",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "dev-kantesaria",
+          "name": "Dev Kantesaria",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chris-hohn",
+          "name": "Chris Hohn",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q1"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "chuck-akre",
+          "name": "Chuck Akre",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "terry-smith",
+          "name": "Terry Smith",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q2"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "ticker": "LLY",
+      "name": "Eli Lilly",
+      "sector": "Other",
+      "conviction_score": -9,
+      "buyer_count": 5,
+      "seller_count": 6,
+      "total": 11,
+      "buyers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q1"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q2"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "ticker": "BN",
+      "name": "Brookfield Corp",
+      "sector": "Financials",
+      "conviction_score": 23,
+      "buyer_count": 7,
+      "seller_count": 3,
+      "total": 10,
+      "buyers": [
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chuck-akre",
+          "name": "Chuck Akre",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "ticker": "UNH",
+      "name": "UnitedHealth",
+      "sector": "Healthcare",
+      "conviction_score": 12,
+      "buyer_count": 5,
+      "seller_count": 4,
+      "total": 9,
+      "buyers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "michael-burry",
+          "name": "Michael Burry",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "warren-buffett",
+          "name": "Warren Buffett",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "michael-burry",
+          "name": "Michael Burry",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q2"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "ticker": "SPOT",
+      "name": "Spotify",
+      "sector": "Other",
+      "conviction_score": 1,
+      "buyer_count": 4,
+      "seller_count": 5,
+      "total": 9,
+      "buyers": [
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q4"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "john-armitage",
+          "name": "John Armitage",
+          "quarter": "2025-Q1"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "ticker": "BAC",
+      "name": "Bank of America",
+      "sector": "Financials",
+      "conviction_score": 14,
+      "buyer_count": 4,
+      "seller_count": 4,
+      "total": 8,
+      "buyers": [
+        {
+          "slug": "li-lu",
+          "name": "Li Lu",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q1"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "warren-buffett",
+          "name": "Warren Buffett",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "ticker": "UBER",
+      "name": "Uber",
+      "sector": "Other",
+      "conviction_score": 19,
+      "buyer_count": 5,
+      "seller_count": 3,
+      "total": 8,
+      "buyers": [
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "david-tepper",
+          "name": "David Tepper",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "howard-marks",
+          "name": "Howard Marks",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "howard-marks",
+          "name": "Howard Marks",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "ticker": "COF",
+      "name": "Capital One Financial",
+      "sector": "Financials",
+      "conviction_score": -6,
+      "buyer_count": 4,
+      "seller_count": 4,
+      "total": 8,
+      "buyers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q4"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "conviction_score": -20,
+      "buyer_count": 2,
+      "seller_count": 5,
+      "total": 7,
+      "buyers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "warren-buffett",
+          "name": "Warren Buffett",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "david-rolfe",
+          "name": "David Rolfe",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "john-armitage",
+          "name": "John Armitage",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "li-lu",
+          "name": "Li Lu",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "ticker": "NKE",
+      "name": "Nike",
+      "sector": "Consumer Discretionary",
+      "conviction_score": 5,
+      "buyer_count": 3,
+      "seller_count": 4,
+      "total": 7,
+      "buyers": [
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "terry-smith",
+          "name": "Terry Smith",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "ticker": "GOOG",
+      "name": "Alphabet Class C",
+      "sector": "Technology",
+      "conviction_score": 0,
+      "buyer_count": 2,
+      "seller_count": 5,
+      "total": 7,
+      "buyers": [
+        {
+          "slug": "seth-klarman",
+          "name": "Seth Klarman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chris-hohn",
+          "name": "Chris Hohn",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q1"
+        },
+        {
+          "slug": "li-lu",
+          "name": "Li Lu",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 18,
+      "ticker": "NFLX",
+      "name": "Netflix",
+      "sector": "Communication",
+      "conviction_score": 6,
+      "buyer_count": 5,
+      "seller_count": 2,
+      "total": 7,
+      "buyers": [
+        {
+          "slug": "bill-nygren",
+          "name": "Bill Nygren",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        }
+      ]
+    },
+    {
+      "rank": 19,
+      "ticker": "MA",
+      "name": "Mastercard",
+      "sector": "Other",
+      "conviction_score": 17,
+      "buyer_count": 4,
+      "seller_count": 3,
+      "total": 7,
+      "buyers": [
+        {
+          "slug": "chuck-akre",
+          "name": "Chuck Akre",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "francois-rochon",
+          "name": "François Rochon",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "terry-smith",
+          "name": "Terry Smith",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "chuck-akre",
+          "name": "Chuck Akre",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "ticker": "HHH",
+      "name": "Howard Hughes Holdings",
+      "sector": "Real Estate",
+      "conviction_score": 6,
+      "buyer_count": 3,
+      "seller_count": 3,
+      "total": 6,
+      "buyers": [
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q2"
+        }
+      ]
+    },
+    {
+      "rank": 21,
+      "ticker": "SCHW",
+      "name": "Charles Schwab",
+      "sector": "Financials",
+      "conviction_score": 29,
+      "buyer_count": 4,
+      "seller_count": 2,
+      "total": 6,
+      "buyers": [
+        {
+          "slug": "glenn-greenberg",
+          "name": "Glenn Greenberg",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "john-armitage",
+          "name": "John Armitage",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q1"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        }
+      ]
+    },
+    {
+      "rank": 22,
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "sector": "Technology",
+      "conviction_score": 19,
+      "buyer_count": 3,
+      "seller_count": 3,
+      "total": 6,
+      "buyers": [
+        {
+          "slug": "monish-pabrai",
+          "name": "Mohnish Pabrai",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "prem-watsa",
+          "name": "Prem Watsa",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "prem-watsa",
+          "name": "Prem Watsa",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q1"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "ticker": "NOW",
+      "name": "ServiceNow",
+      "sector": "Other",
+      "conviction_score": 7,
+      "buyer_count": 3,
+      "seller_count": 3,
+      "total": 6,
+      "buyers": [
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "chase-coleman",
+          "name": "Chase Coleman",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 24,
+      "ticker": "CMG",
+      "name": "Chipotle Mexican Grill",
+      "sector": "Consumer Discretionary",
+      "conviction_score": 8,
+      "buyer_count": 4,
+      "seller_count": 2,
+      "total": 6,
+      "buyers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        }
+      ]
+    },
+    {
+      "rank": 25,
+      "ticker": "C",
+      "name": "Citigroup",
+      "sector": "Financials",
+      "conviction_score": -2,
+      "buyer_count": 3,
+      "seller_count": 3,
+      "total": 6,
+      "buyers": [
+        {
+          "slug": "bill-nygren",
+          "name": "Bill Nygren",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "warren-buffett",
+          "name": "Warren Buffett",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 26,
+      "ticker": "TSLA",
+      "name": "Tesla",
+      "sector": "Other",
+      "conviction_score": -4,
+      "buyer_count": 3,
+      "seller_count": 3,
+      "total": 6,
+      "buyers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "tom-slater",
+          "name": "Tom Slater",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "lee-ainslie",
+          "name": "Lee Ainslie",
+          "quarter": "2025-Q1"
+        }
+      ]
+    },
+    {
+      "rank": 27,
+      "ticker": "SPGI",
+      "name": "S&P Global",
+      "sector": "Other",
+      "conviction_score": -2,
+      "buyer_count": 4,
+      "seller_count": 2,
+      "total": 6,
+      "buyers": [
+        {
+          "slug": "william-von-mueffling",
+          "name": "William von Mueffling",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "howard-marks",
+          "name": "Howard Marks",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "stanley-druckenmiller",
+          "name": "Stanley Druckenmiller",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "howard-marks",
+          "name": "Howard Marks",
+          "quarter": "2025-Q3"
+        }
+      ]
+    },
+    {
+      "rank": 28,
+      "ticker": "BABA",
+      "name": "Alibaba",
+      "sector": "Technology",
+      "conviction_score": 39,
+      "buyer_count": 3,
+      "seller_count": 2,
+      "total": 5,
+      "buyers": [
+        {
+          "slug": "michael-burry",
+          "name": "Michael Burry",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "david-tepper",
+          "name": "David Tepper",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q1"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "li-lu",
+          "name": "Li Lu",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        }
+      ]
+    },
+    {
+      "rank": 29,
+      "ticker": "MCO",
+      "name": "Moody's Corp",
+      "sector": "Financials",
+      "conviction_score": 15,
+      "buyer_count": 3,
+      "seller_count": 2,
+      "total": 5,
+      "buyers": [
+        {
+          "slug": "dev-kantesaria",
+          "name": "Dev Kantesaria",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "william-von-mueffling",
+          "name": "William von Mueffling",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q2"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "chuck-akre",
+          "name": "Chuck Akre",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        }
+      ]
+    },
+    {
+      "rank": 30,
+      "ticker": "CVX",
+      "name": "Chevron",
+      "sector": "Energy",
+      "conviction_score": 4,
+      "buyer_count": 2,
+      "seller_count": 2,
+      "total": 4,
+      "buyers": [
+        {
+          "slug": "warren-buffett",
+          "name": "Warren Buffett",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "warren-buffett",
+          "name": "Warren Buffett",
+          "quarter": "2025-Q2"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        }
+      ]
+    },
+    {
+      "rank": 31,
+      "ticker": "MSCI",
+      "name": "MSCI Inc",
+      "sector": "Other",
+      "conviction_score": 19,
+      "buyer_count": 2,
+      "seller_count": 2,
+      "total": 4,
+      "buyers": [
+        {
+          "slug": "dev-kantesaria",
+          "name": "Dev Kantesaria",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q1"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "polen-capital",
+          "name": "Polen Capital",
+          "quarter": "2025-Q4"
+        }
+      ]
+    },
+    {
+      "rank": 32,
+      "ticker": "JPM",
+      "name": "JPMorgan Chase",
+      "sector": "Financials",
+      "conviction_score": 1,
+      "buyer_count": 2,
+      "seller_count": 2,
+      "total": 4,
+      "buyers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "andreas-halvorsen",
+          "name": "Andreas Halvorsen",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        }
+      ]
+    },
+    {
+      "rank": 33,
+      "ticker": "HLT",
+      "name": "Hilton Worldwide",
+      "sector": "Consumer Discretionary",
+      "conviction_score": 1,
+      "buyer_count": 2,
+      "seller_count": 2,
+      "total": 4,
+      "buyers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q4"
+        },
+        {
+          "slug": "stephen-mandel",
+          "name": "Stephen Mandel",
+          "quarter": "2025-Q4"
+        }
+      ],
+      "sellers": [
+        {
+          "slug": "joel-greenblatt",
+          "name": "Joel Greenblatt",
+          "quarter": "2025-Q3"
+        },
+        {
+          "slug": "bill-ackman",
+          "name": "Bill Ackman",
+          "quarter": "2025-Q1"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "generated_at": "2026-04-15T10:56:13.248Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs",
+    "count": 33,
+    "rules": "≥2 distinct managers buying AND ≥2 distinct managers selling, last 4Q",
+    "lookback_quarters": [
+      "2025-Q4",
+      "2025-Q3",
+      "2025-Q2",
+      "2025-Q1"
+    ]
+  }
+}

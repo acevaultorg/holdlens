@@ -1,0 +1,75 @@
+{
+  "data": [
+    {
+      "rank": 1,
+      "ticker": "META",
+      "name": "Meta Platforms",
+      "sector": "Technology",
+      "owner_count": 15,
+      "conviction_score": 5,
+      "recent_buyers": 20,
+      "recent_sellers": 9,
+      "net_flow": 11,
+      "score": 177
+    },
+    {
+      "rank": 2,
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "sector": "Technology",
+      "owner_count": 12,
+      "conviction_score": 6,
+      "recent_buyers": 10,
+      "recent_sellers": 9,
+      "net_flow": 1,
+      "score": 128
+    },
+    {
+      "rank": 3,
+      "ticker": "V",
+      "name": "Visa",
+      "sector": "Financials",
+      "owner_count": 10,
+      "conviction_score": 8,
+      "recent_buyers": 8,
+      "recent_sellers": 7,
+      "net_flow": 1,
+      "score": 110
+    },
+    {
+      "rank": 4,
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "sector": "Technology",
+      "owner_count": 8,
+      "conviction_score": 19,
+      "recent_buyers": 10,
+      "recent_sellers": 5,
+      "net_flow": 5,
+      "score": 109
+    },
+    {
+      "rank": 5,
+      "ticker": "MA",
+      "name": "Mastercard",
+      "sector": "Other",
+      "owner_count": 6,
+      "conviction_score": 17,
+      "recent_buyers": 5,
+      "recent_sellers": 3,
+      "net_flow": 2,
+      "score": 81
+    }
+  ],
+  "meta": {
+    "generated_at": "2026-04-15T10:57:18.340Z",
+    "quarter": "2025-Q4",
+    "quarter_label": "Q4 2025",
+    "source": "HoldLens",
+    "license": "Free for personal and commercial use. Attribution appreciated.",
+    "docs": "https://holdlens.com/docs",
+    "count": 5,
+    "rules": "ownerCount≥5 AND conviction>0 AND 2Q netFlow≥0",
+    "score_formula": "ownerCount × 10 + conviction + netFlow × 2"
+  }
+}

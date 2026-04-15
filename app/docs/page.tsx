@@ -158,6 +158,74 @@ const ENDPOINTS: { method: "GET"; path: string; desc: string; example: string }[
   },
   {
     method: "GET",
+    path: "/api/v1/alerts.json",
+    desc: "Top 200 high-impact 13F moves where a single position change shifted more than 5% of a superinvestor's portfolio. The raw feed behind the /alerts page email digest.",
+    example: `{
+  "data": [
+    {
+      "ticker": "NVDA",
+      "action": "new",
+      "manager": "Michael Burry",
+      "quarter": "2025-Q1",
+      "portfolio_impact_pct": 49.0,
+      "conviction_score": 19
+    }
+  ]
+}`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/consensus.json",
+    desc: "Widely-held tickers (≥5 superinvestor owners) that ALSO have positive ConvictionScore AND net-buying flow in the last 2 quarters. Where smart money agrees.",
+    example: `{
+  "data": [
+    {
+      "rank": 1,
+      "ticker": "META",
+      "owner_count": 15,
+      "conviction_score": 5,
+      "recent_buyers": 6,
+      "recent_sellers": 0,
+      "score": 177.0
+    }
+  ]
+}`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/crowded.json",
+    desc: "Top 30 tickers by ownership, each tagged loading / unwinding / stable based on last 2Q flow. Crowded + unwinding = the exit is about to get ugly.",
+    example: `{
+  "data": [
+    {
+      "rank": 1,
+      "ticker": "META",
+      "owner_count": 15,
+      "conviction_score": 5,
+      "net_direction": "loading"
+    }
+  ]
+}`,
+  },
+  {
+    method: "GET",
+    path: "/api/v1/contrarian.json",
+    desc: "Tickers where ≥2 superinvestors are buying AND ≥2 others are selling in the same 4-quarter window. The disagreement signal Dataroma can't show. Returns per-ticker split of who's on each side.",
+    example: `{
+  "data": [
+    {
+      "rank": 1,
+      "ticker": "META",
+      "buyer_count": 16,
+      "seller_count": 9,
+      "buyers": [ { "slug": "bill-ackman", "name": "Bill Ackman" } ],
+      "sellers": [ { "slug": "david-tepper", "name": "David Tepper" } ]
+    }
+  ]
+}`,
+  },
+  {
+    method: "GET",
     path: "/api/v1/best-now.json",
     desc: "Top 50 buy candidates — what the smartest investors are buying right now.",
     example: `{ "data": [ { "ticker": "NVDA", "score": 68, "direction": "BUY" } ] }`,

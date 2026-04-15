@@ -19,6 +19,10 @@
  *   /api/v1/big-bets.json                 — conviction × size top 100
  *   /api/v1/rotation.json                 — 8Q × 12 sector heatmap
  *   /api/v1/sector/[slug].json            — per-sector tickers + top owners + 4Q flow
+ *   /api/v1/alerts.json                   — high-impact moves (>5% portfolio shift), ranked
+ *   /api/v1/consensus.json                — widely-held + bullish + net-buying tickers
+ *   /api/v1/crowded.json                  — highest-ownership tickers with unwind signal
+ *   /api/v1/contrarian.json               — tickers where ≥2 buy AND ≥2 sell, last 4Q
  *   /api/v1/best-now.json                 — top 50 buy candidates
  *   /api/v1/value.json                    — smart money × 52w low combo
  *   /api/v1/quarters.json                 — available 13F quarters
@@ -28,12 +32,12 @@
 
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { TICKER_INDEX } from "../lib/tickers";
+import { TICKER_INDEX, topTickers } from "../lib/tickers";
 import { SECTOR_MAP } from "../lib/tickers";
 import { MANAGERS } from "../lib/managers";
 import { MANAGER_QUALITY } from "../lib/signals";
 import { getConviction, convictionLabel, formatSignedScore } from "../lib/conviction";
-import { getAllMovesEnriched, QUARTERS, QUARTER_LABELS, LATEST_QUARTER } from "../lib/moves";
+import { getAllMovesEnriched, MERGED_MOVES, QUARTERS, QUARTER_LABELS, LATEST_QUARTER } from "../lib/moves";
 import { getManagerROI } from "../lib/manager-roi";
 
 const OUT_ROOT = join(process.cwd(), "public", "api", "v1");
@@ -377,6 +381,230 @@ async function main(): Promise<void> {
     });
   }
 
+  // ---------- /alerts.json — high-impact 13F moves, ranked by portfolio shift ----------
+  // Feeds "what changed >5% this quarter" consumers. Mirrors the same
+  // high-impact filter we use for the /alerts page email digest.
+  type AlertRow = {
+    timestamp: string;
+    ticker: string;
+    action: "new" | "add" | "trim" | "exit";
+    manager: string;
+    manager_slug: string;
+    fund: string;
+    quarter: string;
+    quarter_label: string;
+    portfolio_impact_pct: number;
+    delta_pct: number | null;
+    conviction_score: number;
+  };
+  const enrichedMoves = getAllMovesEnriched();
+  const highImpact: AlertRow[] = [];
+  for (const mv of enrichedMoves) {
+    const impact = mv.portfolioImpactPct ?? 0;
+    if (impact <= 5) continue;
+    const mgr = MANAGERS.find((m) => m.slug === mv.managerSlug);
+    if (!mgr) continue;
+    const conv = convBySym.get(mv.ticker) ?? getConviction(mv.ticker);
+    highImpact.push({
+      timestamp: mv.quarter,
+      ticker: mv.ticker,
+      action: mv.action,
+      manager: mv.managerName,
+      manager_slug: mv.managerSlug,
+      fund: mgr.fund,
+      quarter: mv.quarter,
+      quarter_label: QUARTER_LABELS[mv.quarter as keyof typeof QUARTER_LABELS] ?? mv.quarter,
+      portfolio_impact_pct: Math.round(impact * 10) / 10,
+      delta_pct: mv.deltaPct ?? null,
+      conviction_score: conv.score,
+    });
+  }
+  highImpact.sort((a, b) => b.portfolio_impact_pct - a.portfolio_impact_pct);
+  const alerts = highImpact.slice(0, 200);
+  await writeJson("alerts.json", {
+    data: alerts,
+    meta: meta({
+      count: alerts.length,
+      total_matches: highImpact.length,
+      threshold_pct: 5,
+      note: "Moves with portfolio_impact_pct > 5. Top 200.",
+    }),
+  });
+
+  // ---------- /consensus.json — widely held + bullish + net-buying ----------
+  // Mirrors /consensus page logic: top 50 tickers by ownership, filter
+  // ownerCount ≥5 AND conviction > 0 AND recent 2Q net flow ≥0.
+  type ConsensusRow = {
+    rank: number;
+    ticker: string;
+    name: string;
+    sector: string;
+    owner_count: number;
+    conviction_score: number;
+    recent_buyers: number;
+    recent_sellers: number;
+    net_flow: number;
+    score: number;
+  };
+  const last2Q = new Set<string>(QUARTERS.slice(0, 2));
+  const flowByTicker = new Map<string, { buy: number; sell: number }>();
+  for (const mv of MERGED_MOVES) {
+    if (!last2Q.has(mv.quarter)) continue;
+    const rec = flowByTicker.get(mv.ticker) ?? { buy: 0, sell: 0 };
+    if (mv.action === "new" || mv.action === "add") rec.buy += 1;
+    else if (mv.action === "trim" || mv.action === "exit") rec.sell += 1;
+    flowByTicker.set(mv.ticker, rec);
+  }
+  const consensusAccum: Omit<ConsensusRow, "rank">[] = [];
+  for (const t of topTickers(50)) {
+    if (t.ownerCount < 5) continue;
+    const conv = convBySym.get(t.symbol) ?? getConviction(t.symbol);
+    if (conv.score <= 0) continue;
+    const flow = flowByTicker.get(t.symbol) ?? { buy: 0, sell: 0 };
+    const netFlow = flow.buy - flow.sell;
+    if (netFlow < 0) continue;
+    const composite = t.ownerCount * 10 + conv.score + netFlow * 2;
+    consensusAccum.push({
+      ticker: t.symbol,
+      name: t.name,
+      sector: t.sector ?? "Other",
+      owner_count: t.ownerCount,
+      conviction_score: conv.score,
+      recent_buyers: flow.buy,
+      recent_sellers: flow.sell,
+      net_flow: netFlow,
+      score: Math.round(composite * 10) / 10,
+    });
+  }
+  consensusAccum.sort((a, b) => b.score - a.score);
+  const consensus: ConsensusRow[] = consensusAccum.map((r, i) => ({ rank: i + 1, ...r }));
+  await writeJson("consensus.json", {
+    data: consensus,
+    meta: meta({
+      count: consensus.length,
+      rules: "ownerCount≥5 AND conviction>0 AND 2Q netFlow≥0",
+      score_formula: "ownerCount × 10 + conviction + netFlow × 2",
+    }),
+  });
+
+  // ---------- /crowded.json — top owned tickers + unwind signal ----------
+  // Mirrors /crowded-trades: top 30 by ownership, classify each by recent
+  // buyer vs seller flow → loading / unwinding / stable. High-ownership
+  // tickers going net-sell are where the exit is crowded.
+  type CrowdedRow = {
+    rank: number;
+    ticker: string;
+    name: string;
+    sector: string;
+    owner_count: number;
+    conviction_score: number;
+    recent_buyers: number;
+    recent_sellers: number;
+    net_direction: "loading" | "unwinding" | "stable";
+  };
+  const crowdedAccum: Omit<CrowdedRow, "rank">[] = [];
+  for (const t of topTickers(30)) {
+    const conv = convBySym.get(t.symbol) ?? getConviction(t.symbol);
+    const flow = flowByTicker.get(t.symbol) ?? { buy: 0, sell: 0 };
+    const net = flow.buy - flow.sell;
+    const direction: CrowdedRow["net_direction"] =
+      net > 0 ? "loading" : net < 0 ? "unwinding" : "stable";
+    crowdedAccum.push({
+      ticker: t.symbol,
+      name: t.name,
+      sector: t.sector ?? "Other",
+      owner_count: t.ownerCount,
+      conviction_score: conv.score,
+      recent_buyers: flow.buy,
+      recent_sellers: flow.sell,
+      net_direction: direction,
+    });
+  }
+  // Already sorted by owner_count desc via topTickers
+  const crowded: CrowdedRow[] = crowdedAccum.map((r, i) => ({ rank: i + 1, ...r }));
+  await writeJson("crowded.json", {
+    data: crowded,
+    meta: meta({
+      count: crowded.length,
+      rules: "top 30 by ownerCount; net = buyers − sellers over last 2Q",
+      note: "net_direction=unwinding + high owner_count = most fragile crowding",
+    }),
+  });
+
+  // ---------- /contrarian.json — ≥2 buying AND ≥2 selling, last 4Q ----------
+  // Mirrors /contrarian-bets: tickers where tier-1 managers are actively
+  // arguing. Returns per-ticker split of who's buying and who's selling.
+  type ContrarianMove = { slug: string; name: string; quarter: string };
+  type ContrarianRow = {
+    rank: number;
+    ticker: string;
+    name: string;
+    sector: string;
+    conviction_score: number;
+    buyer_count: number;
+    seller_count: number;
+    total: number;
+    buyers: ContrarianMove[];
+    sellers: ContrarianMove[];
+  };
+  const last4Q = new Set<string>(QUARTERS.slice(0, 4));
+  const bucket = new Map<
+    string,
+    { buyers: Map<string, string>; sellers: Map<string, string> }
+  >();
+  for (const mv of MERGED_MOVES) {
+    if (!last4Q.has(mv.quarter)) continue;
+    if (!bucket.has(mv.ticker)) {
+      bucket.set(mv.ticker, { buyers: new Map(), sellers: new Map() });
+    }
+    const rec = bucket.get(mv.ticker)!;
+    const isBuy = mv.action === "new" || mv.action === "add";
+    const isSell = mv.action === "trim" || mv.action === "exit";
+    if (isBuy && !rec.buyers.has(mv.managerSlug)) {
+      rec.buyers.set(mv.managerSlug, mv.quarter);
+    } else if (isSell && !rec.sellers.has(mv.managerSlug)) {
+      rec.sellers.set(mv.managerSlug, mv.quarter);
+    }
+  }
+  const contrarianAccum: Omit<ContrarianRow, "rank">[] = [];
+  for (const [ticker, rec] of bucket) {
+    if (rec.buyers.size < 2 || rec.sellers.size < 2) continue;
+    const td = TICKER_INDEX[ticker];
+    if (!td) continue;
+    const conv = convBySym.get(ticker) ?? getConviction(ticker);
+    const buyers: ContrarianMove[] = [];
+    for (const [slug, quarter] of rec.buyers) {
+      const m = MANAGERS.find((mm) => mm.slug === slug);
+      buyers.push({ slug, name: m?.name ?? slug, quarter });
+    }
+    const sellers: ContrarianMove[] = [];
+    for (const [slug, quarter] of rec.sellers) {
+      const m = MANAGERS.find((mm) => mm.slug === slug);
+      sellers.push({ slug, name: m?.name ?? slug, quarter });
+    }
+    contrarianAccum.push({
+      ticker,
+      name: td.name,
+      sector: td.sector ?? "Other",
+      conviction_score: conv.score,
+      buyer_count: rec.buyers.size,
+      seller_count: rec.sellers.size,
+      total: rec.buyers.size + rec.sellers.size,
+      buyers,
+      sellers,
+    });
+  }
+  contrarianAccum.sort((a, b) => b.total - a.total);
+  const contrarian: ContrarianRow[] = contrarianAccum.map((r, i) => ({ rank: i + 1, ...r }));
+  await writeJson("contrarian.json", {
+    data: contrarian,
+    meta: meta({
+      count: contrarian.length,
+      rules: "≥2 distinct managers buying AND ≥2 distinct managers selling, last 4Q",
+      lookback_quarters: Array.from(last4Q),
+    }),
+  });
+
   // ---------- /best-now.json ----------
   const bestNow = [...scores].filter((s) => s.direction === "BUY").slice(0, 50);
   await writeJson("best-now.json", { data: bestNow, meta: meta({ count: bestNow.length }) });
@@ -412,6 +640,10 @@ async function main(): Promise<void> {
       { path: "/big-bets.json", desc: "Top 100 conviction × position-size ranked bets" },
       { path: "/rotation.json", desc: "8Q × 12-sector signed net-flow heatmap" },
       { path: "/sector/{slug}.json", desc: "Per-sector tickers + top owners + 4Q flow drilldown" },
+      { path: "/alerts.json", desc: "Top 200 high-impact 13F moves (>5% portfolio shift), sorted by impact" },
+      { path: "/consensus.json", desc: "Widely-held + bullish + net-buying tickers — what smart money agrees on" },
+      { path: "/crowded.json", desc: "Top 30 by ownership with loading/unwinding/stable flow tag" },
+      { path: "/contrarian.json", desc: "Tickers where ≥2 managers buying AND ≥2 selling, last 4Q — the debate signal" },
       { path: "/best-now.json", desc: "Top 50 buy candidates" },
       { path: "/value.json", desc: "Top 50 smart-money buy signals for value overlays" },
       { path: "/quarters.json", desc: "Available 13F quarters" },
@@ -423,7 +655,9 @@ async function main(): Promise<void> {
   // Count total files written
   let fileCount = 1 /* index */ + 1 /* scores */ + allTickers.length;
   fileCount += 2 /* buys/sells */ + 1 /* managers */ + MANAGERS.length;
-  fileCount += 1 /* big-bets */ + 1 /* rotation */ + sectorOrder.length /* sector/[slug] */ + 1 /* best-now */ + 1 /* value */ + 1 /* quarters */;
+  fileCount += 1 /* big-bets */ + 1 /* rotation */ + sectorOrder.length /* sector/[slug] */;
+  fileCount += 1 /* alerts */ + 1 /* consensus */ + 1 /* crowded */ + 1 /* contrarian */;
+  fileCount += 1 /* best-now */ + 1 /* value */ + 1 /* quarters */;
   console.log(`  Wrote ${fileCount} JSON files under public/api/v1/`);
 }
 
