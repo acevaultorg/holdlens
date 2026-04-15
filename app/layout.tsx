@@ -68,6 +68,47 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://plausible.io/js/script.js"
           strategy="afterInteractive"
         />
+        {/* Google Analytics 4 — conversion funnel + audience building. Fires
+            only when NEXT_PUBLIC_GA4_ID is set, so it's a no-op until the
+            operator drops in a measurement ID. Consent Mode defaults above
+            gate ads/analytics storage until the CookieConsent banner grants. */}
+        {process.env.NEXT_PUBLIC_GA4_ID && (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA4_ID}', { anonymize_ip: true, send_page_view: true });`}
+            </Script>
+          </>
+        )}
+        {/* Microsoft Clarity — free heatmaps + session recordings. The
+            highest-signal UX research tool that Plausible can't provide.
+            Activates when NEXT_PUBLIC_CLARITY_ID is set. */}
+        {process.env.NEXT_PUBLIC_CLARITY_ID && (
+          <Script id="ms-clarity" strategy="afterInteractive">
+            {`(function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window,document,"clarity","script","${process.env.NEXT_PUBLIC_CLARITY_ID}");`}
+          </Script>
+        )}
+        {/* Cloudflare Web Analytics — privacy-friendly, zero-sampling RUM
+            (real Core Web Vitals from every visitor). Free at any scale.
+            Activates when NEXT_PUBLIC_CF_ANALYTICS_TOKEN is set. */}
+        {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
+          <Script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN}"}`}
+            strategy="afterInteractive"
+          />
+        )}
         {/* AdSense site verification — loads the loader script on every page so Google
             can verify ownership during onboarding and auto-ads can serve after approval.
             lazyOnload defers until the page is idle, protecting LCP + INP. */}

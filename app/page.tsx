@@ -1,9 +1,38 @@
 import EmailCapture from "@/components/EmailCapture";
 import BuySellSignals from "@/components/BuySellSignals";
 import LiveStats from "@/components/LiveStats";
+import LatestMoves from "@/components/LatestMoves";
+import FaqSchema, { type FaqItem } from "@/components/FaqSchema";
 import { MANAGERS } from "@/lib/managers";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { getAllConvictionScores } from "@/lib/conviction";
+
+const HOMEPAGE_FAQ: FaqItem[] = [
+  {
+    q: "What is a ConvictionScore?",
+    a: "A signed number from −100 to +100 that tells you how strongly tracked superinvestors are buying or selling a stock. +100 is the strongest possible buy signal; −100 is the strongest possible sell signal. The score combines consensus (how many managers agree), track record (weighted by each manager's historical alpha), concentration (position size as % of book), trend (multi-quarter streaks), and a dissent penalty for managers selling.",
+  },
+  {
+    q: "How often is HoldLens updated?",
+    a: "Every time a tracked portfolio manager files a 13F with the SEC, which happens quarterly within 45 days of quarter end. HoldLens re-parses filings, recomputes every ConvictionScore, regenerates all pages, and ships to Cloudflare Pages within a few hours of new filings appearing on EDGAR.",
+  },
+  {
+    q: "Is HoldLens free?",
+    a: "Yes. Every page, every ConvictionScore, every manager profile, every JSON API endpoint is free. No paywall, no signup required for any feature. Ad-supported via Google AdSense and an affiliate relationship with Interactive Brokers.",
+  },
+  {
+    q: "How is HoldLens different from Dataroma?",
+    a: "Dataroma lists holdings. HoldLens scores them. Every ticker has a signed −100..+100 ConvictionScore plus 16 distinct signal pages (best-now, big-bets, rotation, consensus, contrarian, crowded-trades, first-movers, accelerators, trend-streaks, and more), a 150-endpoint public JSON API, live prices, and a mobile-optimized UI built on Next.js static export.",
+  },
+  {
+    q: "Is this investment advice?",
+    a: "No. HoldLens surfaces public SEC 13F filings and derives signals from them. Nothing on the site is a recommendation to buy or sell any security. 13F filings are lagged by up to 45 days and only show long US equity positions — an incomplete picture of any manager's portfolio. Do your own research.",
+  },
+  {
+    q: "How many portfolio managers does HoldLens track?",
+    a: `${MANAGERS.length} of the world's best active superinvestors, including Warren Buffett, Bill Ackman, Stanley Druckenmiller, Seth Klarman, Howard Marks, David Tepper, Michael Burry, Chris Hohn, Chase Coleman, Li Lu, and others across value, growth, activist, macro, and long-short strategies.`,
+  },
+];
 
 export default function HomePage() {
   const featuredManagers = MANAGERS.slice(0, 6);
@@ -53,6 +82,11 @@ export default function HomePage() {
 
       {/* Live stats — computed client-side */}
       <LiveStats />
+
+      {/* Latest big moves — Dataroma's biggest engagement lever, now native to
+          HoldLens. Eight highest-portfolio-impact 13F moves across the
+          tracked book, action-coded, clickable, zero client JS. */}
+      <LatestMoves />
 
       {/* Signal explorer — discovery grid for the forward-looking pages.
           This is what Dataroma does not have: eight distinct views on smart
@@ -403,6 +437,32 @@ export default function HomePage() {
         </div>
         <div className="text-xs text-dim mt-4">Free forever. ~3 emails per week during filing seasons.</div>
       </section>
+
+      {/* FAQ — visible copy + matching JSON-LD for Google rich results */}
+      <section className="py-16 border-t border-border">
+        <div className="mb-8">
+          <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+            Frequently asked
+          </div>
+          <h2 className="text-3xl font-bold">What HoldLens does, in plain English</h2>
+        </div>
+        <div className="space-y-4">
+          {HOMEPAGE_FAQ.map((item) => (
+            <details
+              key={item.q}
+              className="group rounded-2xl border border-border bg-panel px-5 py-4 open:border-brand/40 transition"
+            >
+              <summary className="cursor-pointer list-none flex items-baseline justify-between gap-4">
+                <span className="font-semibold text-text text-lg">{item.q}</span>
+                <span className="text-brand text-xl shrink-0 transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 text-muted leading-relaxed text-sm">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <FaqSchema id="homepage-faq-ld" items={HOMEPAGE_FAQ} />
     </div>
   );
 }

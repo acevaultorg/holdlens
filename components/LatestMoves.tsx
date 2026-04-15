@@ -1,0 +1,162 @@
+import { MANAGERS } from "@/lib/managers";
+import { getAllMovesEnriched, QUARTER_LABELS, type Quarter } from "@/lib/moves";
+import { getConviction } from "@/lib/conviction";
+
+// <LatestMoves /> — homepage engagement lever, ported from Dataroma's biggest
+// time-on-site pattern. Reads enriched MERGED_MOVES at build time, takes the
+// top 8 highest-portfolio-impact moves across all tracked managers, and
+// renders them with action-coded rows (emerald for buy/add, rose for
+// exit/trim). Each row links to the relevant /investor and /signal pages so
+// it doubles as an internal-link cluster for SEO.
+//
+// Server component — zero client JS, zero runtime cost. Works inside the
+// Next.js static export.
+
+type Row = {
+  quarter: Quarter;
+  ticker: string;
+  managerName: string;
+  managerSlug: string;
+  fund: string;
+  action: "new" | "add" | "trim" | "exit";
+  impact: number;
+  convictionScore: number;
+};
+
+function actionStyle(action: Row["action"]): string {
+  if (action === "new") return "bg-emerald-400/15 text-emerald-400 border-emerald-400/30";
+  if (action === "add") return "bg-emerald-400/10 text-emerald-400 border-emerald-400/25";
+  if (action === "trim") return "bg-amber-400/10 text-amber-400 border-amber-400/25";
+  return "bg-rose-400/15 text-rose-400 border-rose-400/30";
+}
+
+function actionLabel(action: Row["action"]): string {
+  if (action === "new") return "NEW";
+  if (action === "add") return "ADD";
+  if (action === "trim") return "TRIM";
+  return "EXIT";
+}
+
+function computeRows(): Row[] {
+  const moves = getAllMovesEnriched();
+  const out: Row[] = [];
+  for (const mv of moves) {
+    const impact = mv.portfolioImpactPct ?? 0;
+    if (impact <= 5) continue;
+    const mgr = MANAGERS.find((m) => m.slug === mv.managerSlug);
+    if (!mgr) continue;
+    out.push({
+      quarter: mv.quarter as Quarter,
+      ticker: mv.ticker,
+      managerName: mgr.name,
+      managerSlug: mgr.slug,
+      fund: mgr.fund,
+      action: mv.action,
+      impact: Math.round(impact * 10) / 10,
+      convictionScore: getConviction(mv.ticker).score,
+    });
+  }
+  // Sort by impact desc, then by quarter desc (newer first on ties)
+  out.sort((a, b) => {
+    if (b.impact !== a.impact) return b.impact - a.impact;
+    return b.quarter.localeCompare(a.quarter);
+  });
+  return out.slice(0, 8);
+}
+
+export default function LatestMoves() {
+  const rows = computeRows();
+  if (rows.length === 0) return null;
+
+  return (
+    <section className="py-16 border-t border-border">
+      <div className="flex items-end justify-between mb-6 flex-wrap gap-3">
+        <div>
+          <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+            Live from the filings
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold">The biggest smart-money bets right now.</h2>
+          <p className="text-muted mt-2 max-w-2xl">
+            The eight single trades that moved the most portfolio weight across all {MANAGERS.length} tracked
+            managers. When a superinvestor puts <span className="text-text font-semibold">5%+ of their book</span>{" "}
+            behind one ticker in a single quarter, that&rsquo;s the signal everyone else chases.
+          </p>
+        </div>
+        <a href="/alerts" className="text-sm text-brand hover:text-text font-semibold shrink-0">
+          All alerts →
+        </a>
+      </div>
+
+      <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <table className="w-full text-sm">
+          <thead className="bg-bg/40 border-b border-border">
+            <tr className="text-[10px] uppercase tracking-wider text-dim font-semibold">
+              <th className="px-4 py-3 text-left">Move</th>
+              <th className="px-4 py-3 text-left">Ticker</th>
+              <th className="px-4 py-3 text-left">Manager</th>
+              <th className="px-4 py-3 text-right hidden sm:table-cell">Quarter</th>
+              <th className="px-4 py-3 text-right">% of book</th>
+              <th className="px-4 py-3 text-right hidden md:table-cell">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r, i) => (
+              <tr
+                key={`${r.managerSlug}-${r.ticker}-${r.quarter}-${i}`}
+                className="border-b border-border last:border-0 hover:bg-bg/40 transition"
+              >
+                <td className="px-4 py-3">
+                  <span
+                    className={`inline-block text-[10px] font-bold uppercase tracking-wider border rounded px-1.5 py-0.5 ${actionStyle(r.action)}`}
+                  >
+                    {actionLabel(r.action)}
+                  </span>
+                </td>
+                <td className="px-4 py-3">
+                  <a
+                    href={`/signal/${r.ticker}`}
+                    className="font-mono font-semibold text-brand hover:underline"
+                  >
+                    {r.ticker}
+                  </a>
+                </td>
+                <td className="px-4 py-3">
+                  <a
+                    href={`/investor/${r.managerSlug}`}
+                    className="text-text hover:text-brand transition font-semibold"
+                  >
+                    {r.managerName}
+                  </a>
+                  <div className="text-[11px] text-dim truncate max-w-[14rem]">{r.fund}</div>
+                </td>
+                <td className="px-4 py-3 text-right text-dim tabular-nums hidden sm:table-cell">
+                  {QUARTER_LABELS[r.quarter]}
+                </td>
+                <td className="px-4 py-3 text-right tabular-nums font-bold text-text">
+                  {r.impact.toFixed(1)}%
+                </td>
+                <td
+                  className={`px-4 py-3 text-right tabular-nums font-semibold hidden md:table-cell ${
+                    r.convictionScore > 0
+                      ? "text-emerald-400"
+                      : r.convictionScore < 0
+                        ? "text-rose-400"
+                        : "text-dim"
+                  }`}
+                >
+                  {r.convictionScore > 0 ? "+" : ""}
+                  {r.convictionScore}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="text-xs text-dim mt-4">
+        Sorted by single-move portfolio impact (position value as % of manager&rsquo;s filed book at that quarter).
+        Source: SEC Form 13F. <a href="/methodology" className="underline">Methodology</a>.
+      </p>
+    </section>
+  );
+}

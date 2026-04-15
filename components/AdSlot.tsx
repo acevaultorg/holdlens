@@ -18,6 +18,7 @@
 //   NEXT_PUBLIC_ADSENSE_CLIENT, _SLOT_HORIZONTAL, _SLOT_RECTANGLE, _SLOT_INARTICLE
 
 import { useEffect, useId, useRef, useState } from "react";
+import { isProUser } from "@/lib/pro";
 
 declare global {
   interface Window {
@@ -92,7 +93,24 @@ export default function AdSlot({
   const containerRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   const [hide, setHide] = useState(false);
+  const [pro, setPro] = useState(false);
   const pushedRef = useRef(false);
+
+  // Pro = no ads. Check on mount + re-check whenever the user activates
+  // Pro (fired from /thank-you post-Stripe-checkout) or reverts.
+  useEffect(() => {
+    const check = () => setPro(isProUser());
+    check();
+    window.addEventListener("holdlens:pro:activated", check);
+    window.addEventListener("holdlens:pro:deactivated", check);
+    // Cross-tab sync: Pro activated in another tab should propagate here
+    window.addEventListener("storage", check);
+    return () => {
+      window.removeEventListener("holdlens:pro:activated", check);
+      window.removeEventListener("holdlens:pro:deactivated", check);
+      window.removeEventListener("storage", check);
+    };
+  }, []);
 
   // Returning-visitor lite mode — only hide SECONDARY ads for returning users
   useEffect(() => {
@@ -158,7 +176,7 @@ export default function AdSlot({
     }
   }
 
-  if (hide) return null;
+  if (pro || hide) return null;
 
   const mh = minHeightClass(format);
 

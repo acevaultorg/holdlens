@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ProActivator from "@/components/ProActivator";
 
 export const metadata: Metadata = {
   title: "Thanks — welcome to HoldLens Pro",
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-24 text-center">
+      {/* Flip the Pro flag in localStorage the instant the user lands here.
+          Every mounted AdSlot listens for the activation event and unmounts. */}
+      <ProActivator />
       <div className="text-6xl mb-6">🎯</div>
       <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
         Welcome to HoldLens Pro.

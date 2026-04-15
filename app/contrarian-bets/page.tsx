@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import CsvExportButton from "@/components/CsvExportButton";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX } from "@/lib/tickers";
@@ -124,10 +125,18 @@ export default function ContrarianBetsPage() {
         while <span className="text-rose-400 font-semibold">≥2 others were selling</span>{" "}
         over the last 4 quarters. The active-disagreement signal.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Consensus bets are safer but less interesting. Contrarian bets are where one side of
         the smart-money trade is wrong — and when a consensus forms, it moves the price.
       </p>
+      <div className="mb-10 flex items-center gap-2 flex-wrap">
+        <CsvExportButton
+          endpoint="/api/v1/contrarian.json"
+          filename="holdlens-contrarian"
+          label="Export contrarian CSV"
+        />
+        <span className="text-xs text-dim">Free download — no signup.</span>
+      </div>
 
       {rows.length === 0 ? (
         <div className="rounded-2xl border border-border bg-panel p-10 text-center">

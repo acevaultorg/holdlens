@@ -53,12 +53,27 @@ function cacheSet(symbol: string, range: string, data: LiveQuote) {
 // from non-browser clients. See workers/yahoo-proxy/src/index.ts.
 const PROXY_BASE = "https://holdlens-yahoo-proxy.paulomdevries.workers.dev";
 
+/**
+ * Convert a HoldLens ticker (e.g. "BRK.B", "BF.B") to the form Yahoo
+ * Finance accepts (e.g. "BRK-B", "BF-B"). Our data layer stores the
+ * "canonical" SEC/press format with a dot; Yahoo's URL routing uses a
+ * dash. Without this conversion, every dotted class-B ticker returns
+ * "Chart unavailable" + empty quote.
+ *
+ * Also handles preferred-share tickers with slashes (e.g. "BAC/PH" →
+ * "BAC-PH") and forward-trailing spaces.
+ */
+function toYahooSymbol(symbol: string): string {
+  return symbol.toUpperCase().trim().replace(/[./]/g, "-");
+}
+
 async function fetchFromYahoo(symbol: string, range: string): Promise<LiveQuote> {
+  const yahooSym = toYahooSymbol(symbol);
   const endpoints = [
-    `${PROXY_BASE}/quote/${encodeURIComponent(symbol)}?range=${range}`,
-    `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}`,
+    `${PROXY_BASE}/quote/${encodeURIComponent(yahooSym)}?range=${range}`,
+    `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(yahooSym)}?interval=1d&range=${range}`,
     `https://corsproxy.io/?url=${encodeURIComponent(
-      `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=${range}`
+      `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSym}?interval=1d&range=${range}`
     )}`,
   ];
 

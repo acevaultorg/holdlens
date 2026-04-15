@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import CsvExportButton from "@/components/CsvExportButton";
 import { MERGED_MOVES, QUARTERS } from "@/lib/moves";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { getConviction, formatSignedScore, convictionLabel } from "@/lib/conviction";
@@ -101,11 +102,19 @@ export default function ConsensusPage() {
         <span className="text-emerald-400 font-semibold">net buying</span> over the last 2
         quarters.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         When every filter agrees, you&rsquo;re not chasing a contrarian edge — you&rsquo;re
         riding a collective bet. Less upside, less downside, but higher conviction that
         the trade is right.
       </p>
+      <div className="mb-10 flex items-center gap-2 flex-wrap">
+        <CsvExportButton
+          endpoint="/api/v1/consensus.json"
+          filename="holdlens-consensus"
+          label="Export consensus CSV"
+        />
+        <span className="text-xs text-dim">Free download — no signup.</span>
+      </div>
 
       {rows.length === 0 ? (
         <div className="rounded-2xl border border-border bg-panel p-10 text-center">

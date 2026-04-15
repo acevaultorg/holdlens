@@ -1,71 +1,154 @@
 "use client";
+
 import { useState } from "react";
 
-type Row = Record<string, string | number>;
+// <CsvExportButton /> — free CSV export of any HoldLens ranked-list page.
+// WhaleWisdom + GuruFocus paywall exports; HoldLens makes them free to
+// flip the funnel ("our free tier beats their premium").
+//
+// Reads from the matching /api/v1/*.json endpoint, serializes every field
+// of the data array into CSV (flattens nested objects as JSON-strings),
+// and triggers a download. No server runtime required — safe on the
+// static export.
+//
+// Usage:
+//   <CsvExportButton endpoint="/api/v1/best-now.json" filename="holdlens-best-now" />
 
 type Props = {
-  filename: string;
-  rows: Row[];
+  /** Pre-built rows to export (legacy path — still used by /sells, /value, /screener, /grand, /this-week). */
+  rows?: Array<Record<string, unknown>>;
+  /** Absolute URL or site-relative path of a HoldLens JSON endpoint. When set,
+   *  the button fetches + serializes on click instead of using `rows`. */
+  endpoint?: string;
+  /** File name (legacy: full name) OR file prefix (when endpoint is set; date suffix auto-appended). */
+  filename?: string;
+  /** Optional label override. */
   label?: string;
 };
 
-export default function CsvExportButton({ filename, rows, label = "Download CSV" }: Props) {
-  const [state, setState] = useState<"idle" | "done">("idle");
-
-  function onClick() {
-    if (rows.length === 0) return;
-    const headers = Object.keys(rows[0]);
-    const escape = (v: string | number) => {
-      const s = String(v ?? "");
-      return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-    };
-    const csv = [
-      headers.join(","),
-      ...rows.map((r) => headers.map((h) => escape(r[h])).join(",")),
-    ].join("\n");
-
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.style.display = "none";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    setState("done");
-    setTimeout(() => setState("idle"), 1800);
+function csvEscape(value: unknown): string {
+  if (value === null || value === undefined) return "";
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  let s: string;
+  if (typeof value === "object") {
+    try {
+      s = JSON.stringify(value);
+    } catch {
+      s = String(value);
+    }
+  } else {
+    s = String(value);
   }
+  // RFC 4180: wrap in quotes if contains delimiter, quote, or newline; double embedded quotes.
+  if (/[",\n\r]/.test(s)) {
+    return `"${s.replace(/"/g, '""')}"`;
+  }
+  return s;
+}
+
+function rowsToCsv(rows: Array<Record<string, unknown>>): string {
+  if (rows.length === 0) return "";
+  // Collect union of keys across all rows, preserving first-seen order.
+  const keySeen = new Set<string>();
+  const keys: string[] = [];
+  for (const row of rows) {
+    for (const k of Object.keys(row)) {
+      if (!keySeen.has(k)) {
+        keySeen.add(k);
+        keys.push(k);
+      }
+    }
+  }
+  const header = keys.map(csvEscape).join(",");
+  const body = rows
+    .map((row) => keys.map((k) => csvEscape(row[k])).join(","))
+    .join("\n");
+  return `${header}\n${body}\n`;
+}
+
+function triggerDownload(csv: string, fname: string) {
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fname;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+export default function CsvExportButton({ rows, endpoint, filename, label }: Props) {
+  const [state, setState] = useState<"idle" | "loading" | "error">("idle");
+
+  async function download() {
+    // Legacy path: rows supplied directly → serialize synchronously.
+    if (rows && !endpoint) {
+      const csv = rowsToCsv(rows);
+      triggerDownload(csv, filename ?? "holdlens.csv");
+      return;
+    }
+
+    // Endpoint path: fetch + serialize.
+    if (!endpoint) return;
+    setState("loading");
+    try {
+      const res = await fetch(endpoint);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json = await res.json();
+      const rawRows = Array.isArray(json) ? json : json?.data ?? [];
+      let fetched: Array<Record<string, unknown>>;
+      if (Array.isArray(rawRows)) {
+        fetched = rawRows;
+      } else if (rawRows && typeof rawRows === "object" && Array.isArray((rawRows as { tickers?: unknown }).tickers)) {
+        fetched = (rawRows as { tickers: Array<Record<string, unknown>> }).tickers;
+      } else {
+        fetched = [rawRows as Record<string, unknown>];
+      }
+      const csv = rowsToCsv(fetched);
+      const today = new Date().toISOString().slice(0, 10);
+      const prefix = filename ?? "holdlens";
+      // If filename already has a .csv extension, treat as full name (legacy).
+      const fname = prefix.endsWith(".csv") ? prefix : `${prefix}-${today}.csv`;
+      triggerDownload(csv, fname);
+      setState("idle");
+    } catch {
+      setState("error");
+      setTimeout(() => setState("idle"), 3000);
+    }
+  }
+
+  const buttonLabel =
+    state === "loading"
+      ? "Preparing…"
+      : state === "error"
+        ? "Failed — retry"
+        : label ?? "Export CSV";
 
   return (
     <button
-      onClick={onClick}
-      className="inline-flex items-center gap-2 text-xs font-semibold text-muted hover:text-text border border-border hover:border-brand/40 rounded-lg px-3 py-2 bg-panel transition"
-      aria-label={label}
+      type="button"
+      onClick={download}
+      disabled={state === "loading"}
+      className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand bg-brand/10 border border-brand/30 hover:bg-brand/20 transition rounded-md px-2.5 py-1.5 disabled:opacity-50"
+      aria-label="Download this list as CSV"
     >
-      <DownloadIcon />
-      {state === "done" ? "Downloaded ✓" : label}
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </svg>
+      {buttonLabel}
     </button>
-  );
-}
-
-function DownloadIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" y1="15" x2="12" y2="3" />
-    </svg>
   );
 }

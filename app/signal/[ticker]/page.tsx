@@ -15,6 +15,7 @@ import SignalShareCard from "@/components/SignalShareCard";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import AdSlot from "@/components/AdSlot";
 import TrendBadge from "@/components/TrendBadge";
+import RelatedSignals from "@/components/RelatedSignals";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
 import { formatSignedScore, convictionLabel, getConviction } from "@/lib/conviction";
@@ -468,6 +469,12 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           );
         })()}
       </section>
+
+      {/* Related smart-money signals — same-sector top conviction + co-owned
+          tickers. Creates ~940 cross-link edges across the 94 signal pages
+          (each page outlinks to 10 sibling signals), dramatically widening
+          internal authority flow + time-on-site. */}
+      <RelatedSignals symbol={t.symbol} />
 
       {/* Mid-page ad slot */}
       <AdSlot format="in-article" />

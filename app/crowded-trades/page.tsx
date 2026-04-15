@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import CsvExportButton from "@/components/CsvExportButton";
 import { topTickers } from "@/lib/tickers";
 import { MERGED_MOVES, QUARTERS } from "@/lib/moves";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
@@ -115,10 +116,18 @@ export default function CrowdedTradesPage() {
         <span className="text-rose-400 font-semibold">seller</span> activity over the last
         two quarters.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Crowded ≠ good. The tickers at the top are the most dangerous — high ownership
         means if smart money starts selling, the exit door is narrow.
       </p>
+      <div className="mb-10 flex items-center gap-2 flex-wrap">
+        <CsvExportButton
+          endpoint="/api/v1/crowded.json"
+          filename="holdlens-crowded"
+          label="Export crowded trades CSV"
+        />
+        <span className="text-xs text-dim">Free download — no signup.</span>
+      </div>
 
       {/* Two hero callouts side by side */}
       <div className="grid md:grid-cols-2 gap-4 mb-12">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
+import CsvExportButton from "@/components/CsvExportButton";
 import { getTopBuys, getTopSells, convictionLabel } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
@@ -32,10 +33,18 @@ export default function BestNowPage() {
         Multi-factor ConvictionScore v3 with expected annual return projection. Ranked by
         composite score across 6 signal layers — not just consensus.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-12">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Each row shows the model's expected annualized return based on the buyers' realized 10-year
         CAGRs weighted by their position size. <a href="/methodology" className="underline">Read the methodology →</a>
       </p>
+      <div className="mb-12 flex items-center gap-2 flex-wrap">
+        <CsvExportButton
+          endpoint="/api/v1/best-now.json"
+          filename="holdlens-best-now"
+          label="Export top 50 as CSV"
+        />
+        <span className="text-xs text-dim">Free download — no signup.</span>
+      </div>
 
       {/* TOP BUYS */}
       <section className="mb-16">
