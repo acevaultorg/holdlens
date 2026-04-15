@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
 import CsvExportButton from "@/components/CsvExportButton";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
@@ -176,6 +177,7 @@ export default function ContrarianBetsPage() {
         </>
       )}
 
+      <FoundersNudge tone="brand" context="You're seeing where smart money actively disagrees — the most interesting bets on the table." />
       <AdSlot format="horizontal" />
 
       {/* Methodology */}

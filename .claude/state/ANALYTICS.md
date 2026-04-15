@@ -3,6 +3,7 @@
 ## Behavior Log
 
 ```
+2026-04-15 14:10 | v0.80-ux-retention-pass | modify | next-static | multi | standard | self-review(designer) | AUTO | ~420s | success (footer 51→25 grouped, desktop-nav a11y fix aria-haspopup=menu + cursor-pointer, mobile-nav 49→~33 grouped into 5 sections; Oracle archetype:conversion_copy_fix+accessibility_fix site-wide; build clean)
 2026-04-15 12:59 | v0.77-api-signals    | creation | next-static | feature | standard | self | AUTO | ~600s | success (4 JSON endpoints alerts/consensus/crowded/contrarian + docs update + 2 TASKS.md reconciliations; clean rebuild after iCloud sync hiccup)
 2026-04-15 12:43 | v0.76-api-sector     | creation | next-static | feature | standard | self | AUTO | ~360s | success (12 JSON endpoints + signal crosslink + docs update + 7 TASKS.md reconciliations)
 2026-04-12 10:10 | og-images            | creation | next-static | feature | standard | self | AUTO | ~120s | success

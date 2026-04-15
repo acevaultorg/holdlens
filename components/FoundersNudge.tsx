@@ -55,7 +55,8 @@ export default function FoundersNudge({
   tone = "brand",
   context = "You're reading premium 13F analysis.",
 }: {
-  tone?: "brand" | "emerald";
+  // "rose" tone added for risk/warning contexts (/crowded-trades, /biggest-sells).
+  tone?: "brand" | "emerald" | "rose";
   context?: string;
 }) {
   const [visible, setVisible] = useState(false);
@@ -87,9 +88,15 @@ export default function FoundersNudge({
   if (pro || !visible) return null;
 
   const accent =
-    tone === "emerald" ? "border-emerald-400/40 bg-emerald-400/5" : "border-brand/40 bg-brand/5";
-  const accentText = tone === "emerald" ? "text-emerald-400" : "text-brand";
-  const buttonBg = tone === "emerald" ? "bg-emerald-400" : "bg-brand";
+    tone === "emerald"
+      ? "border-emerald-400/40 bg-emerald-400/5"
+      : tone === "rose"
+      ? "border-rose-400/40 bg-rose-400/5"
+      : "border-brand/40 bg-brand/5";
+  const accentText =
+    tone === "emerald" ? "text-emerald-400" : tone === "rose" ? "text-rose-400" : "text-brand";
+  const buttonBg =
+    tone === "emerald" ? "bg-emerald-400" : tone === "rose" ? "bg-rose-400" : "bg-brand";
 
   return (
     <aside

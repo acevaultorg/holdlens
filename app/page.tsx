@@ -44,34 +44,41 @@ export default function HomePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6">
-      {/* Hero */}
+      {/* Hero — v0.80 outcome-first copy. Competitor research flagged the prior
+          "What to buy / What to sell" as feature-voice, not outcome-voice. New
+          copy leads with "spot before the market" verb-first framing. */}
       <section className="pt-20 pb-12 text-center">
         <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-6">
-          Learn from the best portfolio managers in the world
+          SEC-filed · {MANAGERS.length} tracked superinvestors · updated every quarter
         </div>
         <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
-          What to <span className="text-emerald-400">buy.</span><br />
-          What to <span className="text-rose-400">sell.</span>
+          Spot smart money moves
+          <br />
+          <span className="text-brand">before the market does.</span>
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl mx-auto">
-          Every move from {MANAGERS.length} of the world's best portfolio managers — Buffett, Ackman,
-          Druckenmiller, Klarman, TCI, Tiger — scored on a single signed scale where{" "}
-          <span className="text-emerald-400 font-semibold">+100 is the strongest possible buy</span> and{" "}
-          <span className="text-rose-400 font-semibold">−100 the strongest possible sell</span>. Live prices. Free.
+          Every 13F move from Buffett, Ackman, Druckenmiller, Klarman, Burry, Tepper, Hohn and{" "}
+          {MANAGERS.length - 7} other top portfolio managers — scored on a single signed{" "}
+          <span className="text-emerald-400 font-semibold">+100 buy</span> /{" "}
+          <span className="text-rose-400 font-semibold">−100 sell</span> scale.{" "}
+          <span className="text-text font-semibold">Live prices. No signup. Free forever.</span>
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
           <a
-            href="/buys"
-            className="bg-emerald-400 text-black font-semibold rounded-xl px-6 py-4 hover:opacity-90 transition"
+            href="/best-now"
+            className="bg-brand text-black font-semibold rounded-xl px-6 py-4 hover:opacity-90 transition"
           >
-            See what to buy →
+            See the top buy signals →
           </a>
           <a
-            href="/sells"
-            className="border border-rose-400/40 bg-panel text-rose-400 rounded-xl px-6 py-4 hover:bg-rose-400/5 transition"
+            href="/vs/dataroma"
+            className="border border-border bg-panel text-text rounded-xl px-6 py-4 hover:border-brand/40 transition"
           >
-            See what to sell →
+            vs Dataroma
           </a>
+        </div>
+        <div className="mt-6 text-xs text-dim">
+          150+ free JSON API endpoints · 484 static pages · built on SEC Form 13F · not investment advice
         </div>
       </section>
 

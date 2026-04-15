@@ -5,60 +5,103 @@ import { useEffect, useState } from "react";
 // and this component renders nothing. Below md, this is the only nav surface
 // — so it must include EVERY link a user could want.
 
-const PRIMARY_LINKS: { href: string; label: string; brand?: boolean; emerald?: boolean; rose?: boolean }[] = [
-  { href: "/best-now", label: "Best stocks now", brand: true },
-  { href: "/value", label: "Smart money × 52w low", emerald: true },
-  { href: "/big-bets", label: "Big bets · size × conviction", brand: true },
-  { href: "/rotation", label: "Sector rotation heatmap", brand: true },
-  { href: "/new-positions", label: "New positions — fresh money", emerald: true },
-  { href: "/proof", label: "Proof — does it work?", emerald: true },
-  { href: "/portfolio", label: "My portfolio", brand: true },
-  { href: "/buys", label: "Buys", emerald: true },
-  { href: "/sells", label: "Sells", rose: true },
-  { href: "/this-week", label: "This week" },
-  { href: "/leaderboard", label: "Leaderboard" },
-  { href: "/manager-rankings", label: "Manager rankings · skill × activity", brand: true },
-  { href: "/conviction-leaders", label: "Conviction leaders · weighted picks", emerald: true },
-  { href: "/crowded-trades", label: "Crowded trades — who's piled in?", rose: true },
-  { href: "/contrarian-bets", label: "Contrarian bets — where smart money is split", brand: true },
-  { href: "/consensus", label: "Consensus picks — collective buy signal", emerald: true },
-  { href: "/exits", label: "Exits — capitulation feed", rose: true },
-  { href: "/concentration", label: "Concentration — who's all-in vs diversified", brand: true },
-  { href: "/hidden-gems", label: "Hidden gems — quiet conviction", emerald: true },
-  { href: "/vs/dataroma", label: "vs Dataroma — honest feature comparison", brand: true },
-  { href: "/quarter/2025-q4", label: "Quarter digest · Q4 2025 → 2024", brand: true },
-  { href: "/trend-streak", label: "Trend streaks · multi-quarter compounding", emerald: true },
-  { href: "/accelerators", label: "Accelerators · crowd forming", brand: true },
-  { href: "/overlap", label: "Overlap · who thinks alike", brand: true },
-  { href: "/by-philosophy", label: "By philosophy · school-level conviction", emerald: true },
-  { href: "/first-movers", label: "First movers · before the crowd", brand: true },
-  { href: "/biggest-buys", label: "Biggest buys · all-in trades", emerald: true },
-  { href: "/biggest-sells", label: "Biggest sells · conviction collapses", rose: true },
-  { href: "/fresh-conviction", label: "Fresh conviction · nobody else is on it", brand: true },
-  { href: "/themes", label: "Themes · AI, Energy, Banks, Mag 7", brand: true },
-  { href: "/reversals", label: "Reversals · when smart money changes its mind", emerald: true },
-  { href: "/screener", label: "Screener" },
-  { href: "/activity", label: "Activity" },
-  { href: "/insiders", label: "Insider activity", emerald: true },
-  { href: "/grand", label: "Grand portfolio" },
-  { href: "/investor", label: "Investors" },
-  { href: "/ticker", label: "Stocks" },
-  { href: "/watchlist", label: "Watchlist" },
-  { href: "/alerts", label: "Alerts" },
+type MLink = { href: string; label: string; color?: "brand" | "emerald" | "rose" };
+type MGroup = { title: string; accent: "brand" | "emerald"; links: MLink[] };
+
+// Grouped mobile navigation (v0.80) — replaces the previous 39-link wall +
+// 10-link secondary with five clearly labelled sections. Fewer total links
+// than before (curated to the highest-conviction entry points), and every
+// link sits under a named group header so users can find what they need by
+// scanning section titles, not by reading every label.
+const GROUPS: MGroup[] = [
+  {
+    title: "Signals",
+    accent: "brand",
+    links: [
+      { href: "/best-now", label: "Best stocks now", color: "brand" },
+      { href: "/value", label: "Value — smart money × 52w low", color: "emerald" },
+      { href: "/big-bets", label: "Big bets", color: "brand" },
+      { href: "/consensus", label: "Consensus picks", color: "emerald" },
+      { href: "/contrarian-bets", label: "Contrarian bets", color: "brand" },
+      { href: "/hidden-gems", label: "Hidden gems", color: "emerald" },
+      { href: "/fresh-conviction", label: "Fresh conviction", color: "brand" },
+    ],
+  },
+  {
+    title: "Moves",
+    accent: "emerald",
+    links: [
+      { href: "/biggest-buys", label: "Biggest buys", color: "emerald" },
+      { href: "/biggest-sells", label: "Biggest sells", color: "rose" },
+      { href: "/new-positions", label: "New positions", color: "emerald" },
+      { href: "/exits", label: "Exits", color: "rose" },
+      { href: "/this-week", label: "This week" },
+      { href: "/activity", label: "Full activity" },
+    ],
+  },
+  {
+    title: "Managers",
+    accent: "brand",
+    links: [
+      { href: "/leaderboard", label: "Leaderboard" },
+      { href: "/manager-rankings", label: "Rankings", color: "brand" },
+      { href: "/conviction-leaders", label: "Conviction leaders", color: "emerald" },
+      { href: "/overlap", label: "Overlap", color: "brand" },
+      { href: "/concentration", label: "Concentration", color: "brand" },
+      { href: "/by-philosophy", label: "By philosophy", color: "emerald" },
+      { href: "/compare/managers", label: "Compare" },
+    ],
+  },
+  {
+    title: "Discover",
+    accent: "emerald",
+    links: [
+      { href: "/rotation", label: "Sector rotation", color: "brand" },
+      { href: "/proof", label: "Proof — does it work?", color: "emerald" },
+      { href: "/vs/dataroma", label: "vs Dataroma", color: "brand" },
+      { href: "/learn/superinvestor-handbook", label: "Handbook", color: "emerald" },
+      { href: "/themes", label: "Themes" },
+      { href: "/trend-streak", label: "Trend streaks", color: "emerald" },
+      { href: "/reversals", label: "Reversals", color: "emerald" },
+    ],
+  },
+  {
+    title: "Product",
+    accent: "brand",
+    links: [
+      { href: "/portfolio", label: "My portfolio", color: "brand" },
+      { href: "/watchlist", label: "Watchlist" },
+      { href: "/alerts", label: "Email alerts" },
+      { href: "/simulate", label: "Backtest" },
+      { href: "/screener", label: "Screener" },
+      { href: "/docs", label: "API docs" },
+      { href: "/learn", label: "Learn" },
+    ],
+  },
 ];
 
-const SECONDARY_LINKS: { href: string; label: string }[] = [
-  { href: "/profile", label: "Profile" },
-  { href: "/compare/managers", label: "Compare managers" },
-  { href: "/top-picks", label: "Top picks" },
-  { href: "/simulate", label: "Backtest" },
-  { href: "/learn", label: "Learn" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/docs", label: "API docs" },
+const LEGAL_LINKS: { href: string; label: string }[] = [
   { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
   { href: "/methodology", label: "Methodology" },
   { href: "/changelog", label: "Changelog" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
 ];
+
+function linkColorClass(color?: "brand" | "emerald" | "rose"): string {
+  switch (color) {
+    case "brand":
+      return "text-brand";
+    case "emerald":
+      return "text-emerald-400";
+    case "rose":
+      return "text-rose-400";
+    default:
+      return "text-text";
+  }
+}
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -159,47 +202,46 @@ export default function MobileNav() {
               <div className="text-base font-bold text-text">Lock in $9/mo for life →</div>
             </a>
 
-            {/* Primary links */}
-            <div className="px-6 py-4">
-              <div className="text-[10px] uppercase tracking-wider text-dim font-semibold mb-2">
-                Smart money
-              </div>
-              <ul className="space-y-1">
-                {PRIMARY_LINKS.map((link) => {
-                  const color = link.emerald
-                    ? "text-emerald-400"
-                    : link.rose
-                    ? "text-rose-400"
-                    : link.brand
-                    ? "text-brand"
-                    : "text-text";
-                  return (
+            {/* Grouped sections — Signals / Moves / Managers / Discover / Product */}
+            {GROUPS.map((grp, idx) => (
+              <div
+                key={grp.title}
+                className={`px-6 py-4${idx > 0 ? " border-t border-border" : ""}`}
+              >
+                <div
+                  className={`text-[10px] uppercase tracking-widest font-bold mb-3 ${
+                    grp.accent === "emerald" ? "text-emerald-400" : "text-brand"
+                  }`}
+                >
+                  {grp.title}
+                </div>
+                <ul className="space-y-1">
+                  {grp.links.map((link) => (
                     <li key={link.href}>
                       <a
                         href={link.href}
                         onClick={() => setOpen(false)}
-                        className={`block py-3 text-base font-semibold ${color} hover:opacity-80 transition`}
+                        className={`block py-2.5 text-base font-semibold ${linkColorClass(
+                          link.color
+                        )} hover:opacity-80 transition`}
                       >
                         {link.label}
                       </a>
                     </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            {/* Secondary links */}
-            <div className="px-6 py-4 border-t border-border">
-              <div className="text-[10px] uppercase tracking-wider text-dim font-semibold mb-2">
-                More
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-1">
-                {SECONDARY_LINKS.map((link) => (
+            ))}
+
+            {/* Legal + meta strip */}
+            <div className="px-6 py-4 border-t border-border">
+              <ul className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-dim">
+                {LEGAL_LINKS.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="block py-2 text-sm text-muted hover:text-text transition"
+                      className="hover:text-text transition"
                     >
                       {link.label}
                     </a>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
 import { MANAGERS } from "@/lib/managers";
 import { getConviction, formatSignedScore, convictionLabel } from "@/lib/conviction";
 
@@ -212,6 +213,7 @@ export default function ConvictionLeadersPage() {
         </div>
       </section>
 
+      <FoundersNudge tone="brand" context="You're reading the managers with the highest average conviction across their top holdings." />
       <AdSlot format="horizontal" />
 
       {/* Methodology */}

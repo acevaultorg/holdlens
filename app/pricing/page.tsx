@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
-      <div className="text-center mb-14">
+      <div className="text-center mb-10">
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
           Pricing
         </div>
@@ -27,6 +27,32 @@ export default function PricingPage() {
           live prices, multi-quarter trend detection — is free for everyone. Pro adds
           email alerts, EDGAR automation, custom watchlists, and API access.
         </p>
+      </div>
+
+      {/* Competitor anchor — establishes price context without trashing anyone.
+          Pure data. Readers orient: €9 is the price floor of this category. */}
+      <div className="max-w-3xl mx-auto mb-12">
+        <div className="text-center text-[11px] uppercase tracking-widest text-dim font-semibold mb-3">
+          The 13F-tracker market
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+          <div className="rounded-xl border border-border bg-panel/60 p-4 text-center">
+            <div className="text-text font-semibold mb-0.5">Dataroma</div>
+            <div className="text-xs text-dim">Free · manual · stale</div>
+          </div>
+          <div className="rounded-xl border border-border bg-panel/60 p-4 text-center">
+            <div className="text-text font-semibold mb-0.5">Stock Analysis</div>
+            <div className="text-xs text-dim">$24–40/mo · no 13F depth</div>
+          </div>
+          <div className="rounded-xl border border-border bg-panel/60 p-4 text-center">
+            <div className="text-text font-semibold mb-0.5">GuruFocus</div>
+            <div className="text-xs text-dim">$99–599/mo · legacy UI</div>
+          </div>
+          <div className="rounded-xl border-2 border-brand bg-brand/10 p-4 text-center">
+            <div className="text-brand font-bold mb-0.5">HoldLens Pro</div>
+            <div className="text-xs text-text">€9/mo · live · free core</div>
+          </div>
+        </div>
       </div>
 
       {/* Two-tier pricing grid */}
@@ -83,11 +109,31 @@ export default function PricingPage() {
             </div>
             <p className="text-xs text-muted mb-3">
               First 100 subscribers lock in <span className="text-text font-semibold">€9/mo for life</span>.
-              After that, the price goes up to €14/mo. Cancel anytime.
+              Price steps up to €14/mo after the 100th spot. Cancel anytime.
             </p>
             <StripeCheckoutButton variant="founders" label="Subscribe — €9/mo founders rate →" />
+            {/* Trust strip under CTA — standard conversion-lift pattern.
+                Each marker removes a specific checkout objection. */}
+            <ul className="mt-3 flex items-center justify-center gap-x-4 gap-y-1 flex-wrap text-[10.5px] text-dim">
+              <li className="inline-flex items-center gap-1">
+                <span className="inline-block w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
+                Cancel anytime
+              </li>
+              <li className="inline-flex items-center gap-1">
+                <span className="inline-block w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
+                14-day refund
+              </li>
+              <li className="inline-flex items-center gap-1">
+                <span className="inline-block w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
+                Secure via Stripe
+              </li>
+              <li className="inline-flex items-center gap-1">
+                <span className="inline-block w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
+                EU VAT included
+              </li>
+            </ul>
             <p className="text-[11px] text-dim mt-3 text-center">
-              or <a href="/alerts" className="underline">join the weekly digest</a> first
+              or <a href="/alerts" className="underline hover:text-text transition">join the weekly digest</a> first
             </p>
           </div>
 

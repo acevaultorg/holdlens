@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -233,6 +234,7 @@ export default function BiggestBuysPage() {
         </section>
       )}
 
+      <FoundersNudge tone="emerald" context="You're reading every single trade that pushed past 10% of a manager's book." />
       <AdSlot format="horizontal" />
 
       {/* Full table */}

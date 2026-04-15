@@ -139,9 +139,8 @@ export default function DesktopNav() {
         <div key={grp.label} className="relative group">
           <button
             type="button"
-            className={`inline-flex items-center gap-1 transition font-semibold cursor-default ${triggerColor(grp.color)}`}
-            aria-haspopup="true"
-            aria-expanded="false"
+            className={`inline-flex items-center gap-1 transition font-semibold cursor-pointer ${triggerColor(grp.color)}`}
+            aria-haspopup="menu"
           >
             {grp.label}
             <svg

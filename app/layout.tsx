@@ -150,63 +150,81 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Support bar — renders only when an NEXT_PUBLIC_KOFI/BMAC/LIBERAPAY/GITHUB_SPONSORS env var is set */}
           <SupportBar />
 
-          <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
-            <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice. · <span className="opacity-50 text-xs">Powered by AcePilot</span></div>
-            <div className="flex gap-5 flex-wrap">
-              <a href="/best-now" className="hover:text-brand font-semibold">Best now</a>
-              <a href="/value" className="hover:text-emerald-400 font-semibold">Value</a>
-              <a href="/big-bets" className="hover:text-brand font-semibold">Big bets</a>
-              <a href="/rotation" className="hover:text-brand font-semibold">Rotation</a>
-              <a href="/new-positions" className="hover:text-emerald-400 font-semibold">New positions</a>
-              <a href="/proof" className="hover:text-emerald-400 font-semibold">Proof</a>
-              <a href="/buys" className="hover:text-emerald-400">Buys</a>
-              <a href="/sells" className="hover:text-rose-400">Sells</a>
-              <a href="/portfolio" className="hover:text-brand font-semibold">My portfolio</a>
-              <a href="/profile" className="hover:text-text">Profile</a>
-              <a href="/this-week" className="hover:text-text">This week</a>
-              <a href="/leaderboard" className="hover:text-text">Leaderboard</a>
-              <a href="/manager-rankings" className="hover:text-text">Manager rankings</a>
-              <a href="/conviction-leaders" className="hover:text-text">Conviction leaders</a>
-              <a href="/crowded-trades" className="hover:text-rose-400 font-semibold">Crowded trades</a>
-              <a href="/contrarian-bets" className="hover:text-text font-semibold">Contrarian bets</a>
-              <a href="/consensus" className="hover:text-emerald-400 font-semibold">Consensus picks</a>
-              <a href="/exits" className="hover:text-rose-400 font-semibold">Exits</a>
-              <a href="/concentration" className="hover:text-brand font-semibold">Concentration</a>
-              <a href="/hidden-gems" className="hover:text-emerald-400 font-semibold">Hidden gems</a>
-              <a href="/vs/dataroma" className="hover:text-brand font-semibold">vs Dataroma</a>
-              <a href="/quarter/2025-q4" className="hover:text-text">Quarter digest</a>
-              <a href="/trend-streak" className="hover:text-emerald-400 font-semibold">Trend streaks</a>
-              <a href="/accelerators" className="hover:text-brand font-semibold">Accelerators</a>
-              <a href="/overlap" className="hover:text-brand font-semibold">Overlap</a>
-              <a href="/by-philosophy" className="hover:text-emerald-400 font-semibold">By philosophy</a>
-              <a href="/first-movers" className="hover:text-brand font-semibold">First movers</a>
-              <a href="/biggest-buys" className="hover:text-emerald-400 font-semibold">Biggest buys</a>
-              <a href="/biggest-sells" className="hover:text-rose-400 font-semibold">Biggest sells</a>
-              <a href="/fresh-conviction" className="hover:text-brand font-semibold">Fresh conviction</a>
-              <a href="/themes" className="hover:text-brand font-semibold">Themes</a>
-              <a href="/reversals" className="hover:text-emerald-400 font-semibold">Reversals</a>
-              <a href="/screener" className="hover:text-text">Screener</a>
-              <a href="/activity" className="hover:text-text">Activity</a>
-              <a href="/insiders" className="hover:text-emerald-400">Insiders</a>
-              <a href="/grand" className="hover:text-text">Grand</a>
-              <a href="/compare/managers" className="hover:text-text">Compare</a>
-              <a href="/top-picks" className="hover:text-text">Top picks</a>
-              <a href="/investor" className="hover:text-text">Investors</a>
-              <a href="/ticker" className="hover:text-text">Stocks</a>
-              <a href="/watchlist" className="hover:text-text">Watchlist</a>
-              <a href="/alerts" className="hover:text-text">Alerts</a>
-              <a href="/pricing" className="text-brand hover:text-text font-semibold">Pricing</a>
-              <a href="/simulate" className="hover:text-text">Backtest</a>
-              <a href="/learn" className="hover:text-text">Learn</a>
-              <a href="/learn/superinvestor-handbook" className="hover:text-emerald-400 font-semibold">Handbook</a>
-              <a href="/faq" className="hover:text-text">FAQ</a>
-              <a href="/docs" className="hover:text-text">API docs</a>
-              <a href="/about" className="hover:text-text">About</a>
-              <a href="/contact" className="hover:text-text">Contact</a>
-              <a href="/press" className="hover:text-text">Press</a>
-              <a href="/changelog" className="hover:text-text">Changelog</a>
-              <a href="/privacy" className="hover:text-text">Privacy</a>
-              <a href="/terms" className="hover:text-text">Terms</a>
+          {/* Grouped footer (v0.80) — replaces the previous 51-link flat wall.
+              Five columns of 5 curated entry points each, plus a compact legal
+              strip. Organized for mental-model clarity: what users come for
+              (Signals), what's moving (Moves), who's behind it (Managers),
+              how to evaluate (Discover), and product (Product). */}
+          <div className="max-w-5xl mx-auto px-6 pt-10 pb-6">
+            <nav
+              aria-label="Site map"
+              className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-8 text-sm"
+            >
+              <div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-brand mb-3">Signals</div>
+                <ul className="space-y-2">
+                  <li><a href="/best-now" className="text-dim hover:text-brand transition">Best now</a></li>
+                  <li><a href="/value" className="text-dim hover:text-emerald-400 transition">Value</a></li>
+                  <li><a href="/big-bets" className="text-dim hover:text-brand transition">Big bets</a></li>
+                  <li><a href="/consensus" className="text-dim hover:text-emerald-400 transition">Consensus picks</a></li>
+                  <li><a href="/contrarian-bets" className="text-dim hover:text-text transition">Contrarian bets</a></li>
+                </ul>
+              </div>
+              <div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-emerald-400 mb-3">Moves</div>
+                <ul className="space-y-2">
+                  <li><a href="/biggest-buys" className="text-dim hover:text-emerald-400 transition">Biggest buys</a></li>
+                  <li><a href="/biggest-sells" className="text-dim hover:text-rose-400 transition">Biggest sells</a></li>
+                  <li><a href="/new-positions" className="text-dim hover:text-emerald-400 transition">New positions</a></li>
+                  <li><a href="/exits" className="text-dim hover:text-rose-400 transition">Exits</a></li>
+                  <li><a href="/this-week" className="text-dim hover:text-text transition">This week</a></li>
+                </ul>
+              </div>
+              <div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-brand mb-3">Managers</div>
+                <ul className="space-y-2">
+                  <li><a href="/leaderboard" className="text-dim hover:text-text transition">Leaderboard</a></li>
+                  <li><a href="/manager-rankings" className="text-dim hover:text-brand transition">Rankings</a></li>
+                  <li><a href="/overlap" className="text-dim hover:text-brand transition">Overlap</a></li>
+                  <li><a href="/concentration" className="text-dim hover:text-brand transition">Concentration</a></li>
+                  <li><a href="/compare/managers" className="text-dim hover:text-text transition">Compare</a></li>
+                </ul>
+              </div>
+              <div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-emerald-400 mb-3">Discover</div>
+                <ul className="space-y-2">
+                  <li><a href="/rotation" className="text-dim hover:text-brand transition">Sector rotation</a></li>
+                  <li><a href="/proof" className="text-dim hover:text-emerald-400 transition">Proof</a></li>
+                  <li><a href="/vs/dataroma" className="text-dim hover:text-brand transition">vs Dataroma</a></li>
+                  <li><a href="/learn/superinvestor-handbook" className="text-dim hover:text-emerald-400 transition">Handbook</a></li>
+                  <li><a href="/themes" className="text-dim hover:text-brand transition">Themes</a></li>
+                </ul>
+              </div>
+              <div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-text mb-3">Product</div>
+                <ul className="space-y-2">
+                  <li><a href="/pricing" className="text-brand hover:opacity-80 transition font-semibold">Pro pricing</a></li>
+                  <li><a href="/watchlist" className="text-dim hover:text-text transition">Watchlist</a></li>
+                  <li><a href="/portfolio" className="text-dim hover:text-text transition">My portfolio</a></li>
+                  <li><a href="/alerts" className="text-dim hover:text-text transition">Email alerts</a></li>
+                  <li><a href="/faq" className="text-dim hover:text-text transition">FAQ</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+
+          {/* Legal + meta strip */}
+          <div className="border-t border-border">
+            <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between gap-3 text-xs text-dim">
+              <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice.</div>
+              <div className="flex gap-5 flex-wrap">
+                <a href="/about" className="hover:text-text transition">About</a>
+                <a href="/contact" className="hover:text-text transition">Contact</a>
+                <a href="/docs" className="hover:text-text transition">API</a>
+                <a href="/changelog" className="hover:text-text transition">Changelog</a>
+                <a href="/privacy" className="hover:text-text transition">Privacy</a>
+                <a href="/terms" className="hover:text-text transition">Terms</a>
+              </div>
             </div>
           </div>
         </footer>
