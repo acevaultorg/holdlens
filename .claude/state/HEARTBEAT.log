@@ -31,3 +31,4 @@
 2026-04-15 09:53 | ship | v0.69 homepage → 16 cards | commit:299d28c28 | deploy:93708615 | verify: h2='Sixteen ways' 16/16 SignalCard hrefs present (adds first-movers/biggest-buys/themes) LIVE direct-deploy
 2026-04-15 09:59 | ship | v0.70 /reversals | commit:691dbead1 | deploy:43864e51 | verify: 48 comebacks / 147 whipsaws / 195 total; #1 comeback Druckenmiller META; 48 comeback cards + 147 whipsaw rows LIVE direct-deploy
 2026-04-15 11:49 | ship | v0.71 /investor/[slug]/q/[quarter] — 232 SEO pages | commit:7d597082c | deploy:52416d47 | verify: Ackman Q4 2025 h1+5sec+9cards, Burry Q1 2025 NVDA NEW 49% LIVE
+2026-04-15 11:53 | ship | v0.72 /biggest-sells — conviction collapses | commit:78f7980d2 | deploy:3b9a937c | verify: 1309 sells/351 exits/403 cut40+ #1 Buffett EXIT SIRI Q3 2025 LIVE

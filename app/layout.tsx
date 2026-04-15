@@ -101,6 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/first-movers" className="hover:text-brand transition hidden lg:inline font-semibold">First movers</a>
               <a href="/biggest-buys" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Biggest buys</a>
               <a href="/biggest-sells" className="hover:text-rose-400 transition hidden lg:inline font-semibold">Biggest sells</a>
+              <a href="/fresh-conviction" className="hover:text-brand transition hidden lg:inline font-semibold">Fresh</a>
               <a href="/themes" className="hover:text-brand transition hidden lg:inline font-semibold">Themes</a>
               <a href="/reversals" className="hover:text-emerald-400 transition hidden lg:inline font-semibold">Reversals</a>
               <a href="/this-week" className="hover:text-text transition hidden lg:inline">This week</a>
@@ -164,6 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/first-movers" className="hover:text-brand font-semibold">First movers</a>
               <a href="/biggest-buys" className="hover:text-emerald-400 font-semibold">Biggest buys</a>
               <a href="/biggest-sells" className="hover:text-rose-400 font-semibold">Biggest sells</a>
+              <a href="/fresh-conviction" className="hover:text-brand font-semibold">Fresh conviction</a>
               <a href="/themes" className="hover:text-brand font-semibold">Themes</a>
               <a href="/reversals" className="hover:text-emerald-400 font-semibold">Reversals</a>
               <a href="/screener" className="hover:text-text">Screener</a>
