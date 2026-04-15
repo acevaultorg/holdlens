@@ -211,15 +211,23 @@ export default function BigBetsPage() {
                       {r.convictionLabel}
                     </div>
                   </td>
-                  <td className="px-5 py-3 text-right w-40">
+                  <td className="px-5 py-3 text-right whitespace-nowrap">
+                    {/* v0.91 fix — was w-40 with w-14 score span. High-ranked
+                        rows have 5-6 digit combined scores (e.g. "123,456")
+                        that exceed w-14=56px, pushing total cell content
+                        past the 160px cell and getting clipped by the card's
+                        overflow-hidden rounded-2xl. Fix: let cell size
+                        naturally (no fixed w-40), keep bar at w-20, widen
+                        score container to w-20 with flex-none so it never
+                        shrinks, add whitespace-nowrap as belt-and-braces. */}
                     <div className="flex items-center justify-end gap-2">
-                      <div className="h-1.5 w-20 rounded-full bg-bg overflow-hidden hidden sm:block">
+                      <div className="h-1.5 w-20 rounded-full bg-bg overflow-hidden hidden sm:block flex-none">
                         <div
                           className="h-full bg-brand"
                           style={{ width: `${Math.max(4, barPct)}%` }}
                         />
                       </div>
-                      <span className="tabular-nums font-semibold w-14 text-right">
+                      <span className="tabular-nums font-semibold w-20 text-right flex-none">
                         {Math.round(r.combinedScore).toLocaleString()}
                       </span>
                     </div>
