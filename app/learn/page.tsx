@@ -13,6 +13,7 @@ const ARTICLES: Article[] = [
   { slug: "how-to-read-a-13f", title: "How to read a 13F filing in 5 minutes", desc: "Step-by-step: open any 13F on EDGAR and know what every field means. With real Berkshire examples." },
   { slug: "what-is-alpha", title: "What is alpha?", desc: "The hedge fund edge explained without jargon. Why 85% of managers have none — and what the 15% have in common." },
   { slug: "45-day-lag-explained", title: "The 45-day lag in 13F filings", desc: "Why every 13F is six weeks late by design — and how to use lagged data without getting burned." },
+  { slug: "warren-buffett-method", title: "The Warren Buffett method", desc: "Which Buffett principles are actually transferable to a retail account, and which depend on structural edges you don't have." },
   { slug: "copy-trading-myth", title: "The copy-trading myth", desc: "Why mechanically copying Buffett's 13F underperforms the underlying portfolio." },
   { slug: "conviction-score-explained", title: "What is a Conviction Score?", desc: "How to tell a real bet from index padding. The −100..+100 scale explained." },
 ];
@@ -38,8 +39,9 @@ const LD = {
       { "@type": "ListItem", position: 3, url: "https://holdlens.com/learn/how-to-read-a-13f", name: "How to read a 13F filing in 5 minutes" },
       { "@type": "ListItem", position: 4, url: "https://holdlens.com/learn/what-is-alpha", name: "What is alpha?" },
       { "@type": "ListItem", position: 5, url: "https://holdlens.com/learn/45-day-lag-explained", name: "The 45-day lag in 13F filings" },
-      { "@type": "ListItem", position: 6, url: "https://holdlens.com/learn/copy-trading-myth", name: "The copy-trading myth" },
-      { "@type": "ListItem", position: 7, url: "https://holdlens.com/learn/conviction-score-explained", name: "What is a Conviction Score?" },
+      { "@type": "ListItem", position: 6, url: "https://holdlens.com/learn/warren-buffett-method", name: "The Warren Buffett method" },
+      { "@type": "ListItem", position: 7, url: "https://holdlens.com/learn/copy-trading-myth", name: "The copy-trading myth" },
+      { "@type": "ListItem", position: 8, url: "https://holdlens.com/learn/conviction-score-explained", name: "What is a Conviction Score?" },
     ],
   },
 };
