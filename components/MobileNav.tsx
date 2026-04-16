@@ -149,25 +149,22 @@ export default function MobileNav() {
       </button>
 
       {open && (
+        // v0.98 rewrite — single full-screen sheet. Previous nested-fixed
+        // pattern failed on iOS Safari (fixed children inside scroll
+        // containers lose viewport pinning). This is the battle-tested
+        // drawer pattern: one fixed container, bg-bg opaque (no backdrop
+        // needed), internal scroll, close-button-only dismissal.
         <div
-          className="md:hidden fixed inset-0 z-50 overflow-y-auto"
+          className="md:hidden fixed inset-0 z-50 overflow-y-auto bg-bg"
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
-          style={{ WebkitOverflowScrolling: "touch" }}
+          style={{
+            WebkitOverflowScrolling: "touch",
+            overscrollBehavior: "contain",
+          }}
         >
-          {/* Backdrop — fixed so it doesn't scroll with the panel */}
-          <button
-            onClick={() => setOpen(false)}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
-            aria-label="Close menu"
-            tabIndex={-1}
-          />
-
-          {/* Slide-down panel — relative so it can scroll freely; iOS dynamic
-              viewport friendly. No max-height clamp; the parent overflow
-              container handles long lists without clipping. */}
-          <div className="relative bg-bg border-b border-border shadow-2xl">
+          <div className="min-h-full">
             {/* Top bar with logo + close */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-border">
               <a href="/" className="flex items-center gap-2 font-semibold text-lg text-text">
