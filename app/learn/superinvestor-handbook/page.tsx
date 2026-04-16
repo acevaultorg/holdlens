@@ -160,7 +160,7 @@ export default function SuperinvestorHandbookPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Handbook · Updated April 2026
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
         The Superinvestor Handbook.
       </h1>
       <p className="text-muted text-lg leading-relaxed mb-8">

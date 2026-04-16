@@ -228,7 +228,7 @@ export default function ByPhilosophyPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         By philosophy · smart money by school
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         What does each investing school collectively own?
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">

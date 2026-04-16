@@ -187,7 +187,7 @@ export default function LaunchKitPage() {
       <div className="mb-4 inline-block text-[10px] font-bold uppercase tracking-widest bg-rose-400/15 text-rose-400 border border-rose-400/30 rounded px-2 py-1">
         Operator only · noindex
       </div>
-      <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-4">
         Launch kit — copy, paste, ship.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-10">

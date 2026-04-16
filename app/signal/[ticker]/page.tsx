@@ -195,7 +195,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
             Signal dossier · {QUARTER_LABELS[LATEST_QUARTER]}
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight flex items-center gap-3 flex-wrap">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight flex items-center gap-3 flex-wrap">
             <TickerLogo symbol={t.symbol} size={48} />
             <span className="text-brand">{t.symbol}</span>
           </h1>

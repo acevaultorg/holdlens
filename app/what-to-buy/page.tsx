@@ -28,7 +28,7 @@ export default function WhatToBuyPage() {
       <div className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-4">
         What to buy · {quarterLabel}
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         What should you <span className="text-emerald-400">buy</span> right now?
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-6">

@@ -41,7 +41,7 @@ export default function BuysPage() {
       <div className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-4">
         Buy signals · {quarterLabel}
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         What to <span className="text-emerald-400">buy</span>.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">

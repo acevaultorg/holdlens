@@ -83,7 +83,7 @@ export default function ConcentrationPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Concentration · who's betting the farm?
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         How concentrated is each superinvestor&rsquo;s biggest bet?
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">

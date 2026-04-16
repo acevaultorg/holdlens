@@ -93,7 +93,7 @@ export default function ConsensusPage() {
       <div className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-3">
         Consensus picks · where smart money agrees
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         The stocks smart money agrees on.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">

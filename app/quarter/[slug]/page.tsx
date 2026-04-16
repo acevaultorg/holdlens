@@ -175,7 +175,7 @@ export default async function QuarterPage({
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-3">
         Quarter digest
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         {label} — superinvestor 13F recap
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">

@@ -319,7 +319,7 @@ export default function ChangelogPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Changelog
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         What shipped, version by version.
       </h1>
       <p className="text-muted text-lg leading-relaxed mb-12">

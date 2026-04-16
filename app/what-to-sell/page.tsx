@@ -26,7 +26,7 @@ export default function WhatToSellPage() {
       <div className="text-xs uppercase tracking-widest text-rose-400 font-semibold mb-4">
         What to sell · {quarterLabel}
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         What should you <span className="text-rose-400">sell</span> right now?
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-6">

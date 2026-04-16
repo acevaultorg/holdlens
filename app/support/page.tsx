@@ -121,7 +121,7 @@ export default function SupportPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Support
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
         HoldLens is free and will stay free.
       </h1>
       <p className="text-muted text-lg leading-relaxed mb-8">

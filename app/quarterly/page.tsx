@@ -15,7 +15,7 @@ export default function QuarterlyIndex() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Quarterly recaps</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">Every quarter, every move</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Every quarter, every move</h1>
       <p className="text-muted text-lg max-w-2xl mb-12">
         What tracked superinvestors bought, sold, and held. One recap per quarter, updated as filings drop.
       </p>

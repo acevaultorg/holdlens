@@ -112,7 +112,7 @@ export default function BiggestSellsPage() {
       <div className="text-xs uppercase tracking-widest text-rose-400 font-semibold mb-3">
         Biggest sells · conviction collapses
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         When smart money walked away
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">

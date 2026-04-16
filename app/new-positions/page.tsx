@@ -101,7 +101,7 @@ export default function NewPositionsPage() {
         <div className="inline-block text-[10px] font-bold uppercase tracking-widest text-black bg-brand rounded-full px-3 py-1 mb-4">
           Fresh money · {QUARTER_LABELS[LATEST_QUARTER]}
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
           New positions from the best investors
         </h1>
         <p className="text-muted text-lg max-w-2xl">

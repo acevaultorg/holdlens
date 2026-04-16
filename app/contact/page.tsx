@@ -10,7 +10,7 @@ export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Contact</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">Get in touch</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Get in touch</h1>
       <p className="text-muted text-lg mb-10">
         HoldLens is built by one person. You get a real human, usually within 24 hours.
       </p>

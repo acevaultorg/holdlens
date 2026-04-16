@@ -73,7 +73,7 @@ export default function NotFound() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         404 · Page not found
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         That page doesn&rsquo;t exist — yet.
       </h1>
       <p className="text-muted text-lg max-w-xl mx-auto mb-8">

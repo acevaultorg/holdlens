@@ -48,7 +48,7 @@ export default function BuffettPage() {
       </div>
       <div className="flex items-center gap-4 mb-2">
         <FundLogo slug="warren-buffett" name="Warren Buffett" size={56} />
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight">Warren Buffett</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Warren Buffett</h1>
       </div>
       <p className="text-muted text-lg">Berkshire Hathaway · CEO since 1970 · Net worth: ~$140B</p>
 

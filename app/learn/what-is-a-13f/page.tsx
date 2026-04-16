@@ -21,7 +21,7 @@ export default function What13FPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <a href="/" className="text-xs text-muted hover:text-text">← Home</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Learn</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-8">What is a 13F filing?</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">What is a 13F filing?</h1>
       <div className="space-y-6 text-text leading-relaxed">
         <p className="text-lg text-muted">
           A 13F is an SEC form that institutional investment managers with over <strong className="text-text">$100 million</strong>

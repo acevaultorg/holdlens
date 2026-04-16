@@ -131,7 +131,7 @@ export default async function ManagerQuarterPage({ params }: Props) {
         </a>{" "}
         · quarter digest
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         What {m.name} did in {label}
       </h1>
       <p className="text-muted text-lg max-w-3xl mb-4">

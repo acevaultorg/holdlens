@@ -14,7 +14,7 @@ export default function DruckPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Backtest · Stanley Druckenmiller</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
         What if you'd copied<br />Druckenmiller?
       </h1>
       <p className="text-lg text-muted mb-12 max-w-2xl">

@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 prose-content">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">About</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-8">Smart money, out loud.</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">Smart money, out loud.</h1>
       <div className="space-y-6 text-text leading-relaxed">
         <p>
           HoldLens exists for one reason: <strong>to help retail investors follow the smartest minds in the

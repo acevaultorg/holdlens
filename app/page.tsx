@@ -454,7 +454,7 @@ export default function HomePage() {
 
       {/* Email capture */}
       <section className="py-20 border-t border-border text-center">
-        <h2 className="text-3xl md:text-4xl font-bold">Get alerts the moment they move.</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Get alerts the moment they move.</h2>
         <p className="mt-4 text-muted max-w-xl mx-auto">
           One email per 13F filing. No spam, no advice, just the data. Unsubscribe anytime.
         </p>

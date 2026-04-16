@@ -10,7 +10,7 @@ export default function PressPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Press kit</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-8">For journalists</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">For journalists</h1>
 
       <div className="space-y-8 text-text leading-relaxed">
         <section>

@@ -71,7 +71,7 @@ export default function FAQPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">FAQ</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-12">Frequently asked questions</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-12">Frequently asked questions</h1>
       <div className="space-y-8">
         {FAQS.slice(0, Math.ceil(FAQS.length / 2)).map((f, i) => (
           <div key={i} className="border-b border-border pb-8 last:border-0">

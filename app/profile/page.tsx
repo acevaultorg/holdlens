@@ -13,7 +13,7 @@ export default function ProfilePage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         My profile
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3">
         Your HoldLens.
       </h1>
       <p className="text-muted text-lg mb-10">

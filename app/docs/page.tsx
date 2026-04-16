@@ -251,7 +251,7 @@ export default function DocsPage() {
         <div className="inline-block text-[10px] font-bold uppercase tracking-widest text-black bg-brand rounded-full px-3 py-1 mb-4">
           Shipped · Free · No auth
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
           Public JSON API
         </h1>
         <p className="text-muted text-lg max-w-2xl">

@@ -24,7 +24,7 @@ export default function AlertsPage() {
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
           Alerts
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
           Be first to know.
         </h1>
         <p className="text-muted text-lg max-w-xl mx-auto">

@@ -150,7 +150,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-3">
         Sector · smart-money dashboard
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">{sector}</h1>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">{sector}</h1>
       <p className="text-muted text-lg max-w-2xl mb-4">
         {tickers.length} {sector.toLowerCase()} tickers held by tracked superinvestors,
         ranked by <span className="text-brand font-semibold">ConvictionScore</span> —

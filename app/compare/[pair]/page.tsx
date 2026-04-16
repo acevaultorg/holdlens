@@ -97,7 +97,7 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">
         Ownership Diff · {a} vs {b}
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-2">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-2">
         <span className="text-brand">{a}</span>
         <span className="text-dim"> vs </span>
         <span className="text-brand">{b}</span>

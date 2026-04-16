@@ -64,7 +64,7 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
       <div className="mt-6 flex items-start justify-between gap-4 flex-wrap">
         <div>
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Stock ownership · Live</div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight flex items-center gap-3 flex-wrap">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight flex items-center gap-3 flex-wrap">
             <TickerLogo symbol={t.symbol} size={48} />
             <span className="text-brand">{t.symbol}</span>
           </h1>

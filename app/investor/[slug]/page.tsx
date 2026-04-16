@@ -100,7 +100,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Investor profile</div>
       <div className="flex items-center gap-4 mb-2">
         <FundLogo slug={m.slug} name={m.name} size={56} />
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight">{m.name}</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">{m.name}</h1>
       </div>
       <p className="text-muted text-lg">{m.fund} · {m.role} · Net worth: {m.netWorth}</p>
       <p className="mt-4 text-text leading-relaxed max-w-2xl">{m.bio}</p>

@@ -14,7 +14,7 @@ export default function ThankYouPage() {
           Every mounted AdSlot listens for the activation event and unmounts. */}
       <ProActivator />
       <div className="text-6xl mb-6">🎯</div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         Welcome to HoldLens Pro.
       </h1>
       <p className="text-muted text-lg mb-10">

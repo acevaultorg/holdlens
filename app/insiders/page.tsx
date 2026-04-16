@@ -81,7 +81,7 @@ export default function InsidersPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Insider Activity
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         Who&apos;s buying. Who&apos;s selling.
       </h1>
       <p className="text-muted text-lg leading-relaxed mb-4 max-w-2xl">
