@@ -59,7 +59,7 @@ const CIK_MAP: Record<string, string> = {
   "dev-kantesaria":        "0001697868", // Valley Forge Capital
   "jeffrey-ubben":         "0001817187", // Inclusive Capital Partners LP (v1.14 — was 0001400940, empty registrant; Ubben founded Inclusive in 2020 after leaving ValueAct)
   "tom-slater":            "0001088875", // Baillie Gifford & Co (v1.14 — was 0001596110 "VOIT 50/50 BALANCED", unrelated; Slater co-manages Baillie Gifford's Scottish Mortgage Trust)
-  "bill-von-mueffling":    "0001279936", // Cantillon Capital Management LLC (v1.14 — was 0001359419 "NEWPORT MANOR LLC", unrelated)
+  "william-von-mueffling": "0001279936", // Cantillon Capital Management LLC (v1.14 — was 0001359419 "NEWPORT MANOR LLC", unrelated. v1.17 — also renamed slug from bill-von-mueffling to william-von-mueffling to match lib/managers.ts; EDGAR rows previously wrote under the wrong key and never joined to the manager entry)
   "polen-capital":         "0001034524", // Polen Capital Management
 };
 
