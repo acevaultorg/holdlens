@@ -30,6 +30,15 @@ export async function generateMetadata({ params }: { params: Promise<{ symbol: s
       title: `${t.symbol} · Hedge fund ownership`,
       description: `${t.ownerCount} superinvestors hold ${t.name}. See full ownership.`,
     },
+    // v1.15 — per-ticker RSS discovery. Feed readers (NetNewsWire, Feedly,
+    // Inoreader) auto-discover via <link rel="alternate" type="application/rss+xml">.
+    // See app/ticker/[symbol]/feed.xml/route.ts.
+    alternates: {
+      canonical: `https://holdlens.com/ticker/${t.symbol}`,
+      types: {
+        "application/rss+xml": `https://holdlens.com/ticker/${t.symbol}/feed.xml`,
+      },
+    },
   };
 }
 

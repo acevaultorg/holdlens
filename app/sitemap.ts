@@ -151,6 +151,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // v1.15 — /ticker/[sym]/feed.xml — per-ticker RSS feeds. Not typically
+  // indexed by Google (RSS is for feed readers) but including them helps
+  // Google discover the semantic relationship to the ticker page + lets us
+  // track feed-click attribution in Plausible if traffic lands directly.
+  const tickerFeedUrls: MetadataRoute.Sitemap = Object.keys(TICKER_INDEX).map((sym) => ({
+    url: `${base}/ticker/${sym}/feed.xml`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.4,
+  }));
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -160,5 +171,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...signalUrls,
     ...investorQuarterUrls,
     ...quarterUrls,
+    ...tickerFeedUrls,
   ];
 }
