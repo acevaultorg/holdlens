@@ -120,7 +120,8 @@ export default function FilingWaveBanner() {
         <div className="flex items-center gap-3">
           <a
             href="/alerts"
-            className="text-brand hover:text-text font-semibold transition"
+            className="text-brand hover:text-text font-semibold transition plausible-event-name=FilingBanner+Click"
+            data-source="filing-wave-banner"
           >
             Get the alert →
           </a>
@@ -129,6 +130,16 @@ export default function FilingWaveBanner() {
             onClick={() => {
               dismiss();
               setVisible(false);
+              try {
+                // Plausible custom event for dismissal — helps us learn whether
+                // users consistently dismiss (banner is annoying) or rarely
+                // dismiss (banner is valued). Silent if Plausible not loaded.
+                (window as unknown as { plausible?: (name: string) => void }).plausible?.(
+                  "FilingBanner Dismiss"
+                );
+              } catch {
+                /* ignore */
+              }
             }}
             className="text-dim hover:text-text transition"
             aria-label="Dismiss this banner for 14 days"
