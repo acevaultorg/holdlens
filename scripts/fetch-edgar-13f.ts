@@ -12,6 +12,9 @@
 
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { resolve } from "path";
+// v1.19 — import MANAGERS for slug-drift validation. lib/managers.ts is a
+// clean TS module with no browser dependencies so tsx picks it up cleanly.
+import { MANAGERS } from "../lib/managers";
 
 // ---------------------------------------------------------------------------
 // Config
@@ -62,6 +65,43 @@ const CIK_MAP: Record<string, string> = {
   "william-von-mueffling": "0001279936", // Cantillon Capital Management LLC (v1.14 — was 0001359419 "NEWPORT MANOR LLC", unrelated. v1.17 — also renamed slug from bill-von-mueffling to william-von-mueffling to match lib/managers.ts; EDGAR rows previously wrote under the wrong key and never joined to the manager entry)
   "polen-capital":         "0001034524", // Polen Capital Management
 };
+
+// v1.19 — slug-drift guard. This is the hygiene fix for the root cause of
+// the v1.17 william-von-mueffling bug: CIK_MAP and lib/managers.ts maintained
+// parallel slug spaces and drifted silently. We now assert on boot that every
+// CIK_MAP key is also a MANAGERS[].slug, and every MANAGERS slug is covered
+// by CIK_MAP (or flagged as intentionally missing). The build fails fast with
+// a specific diff if anyone introduces drift.
+(function validateSlugAlignment() {
+  const managerSlugs = new Set(MANAGERS.map((m) => m.slug));
+  const cikSlugs = new Set(Object.keys(CIK_MAP));
+
+  const inCikNotManagers = [...cikSlugs].filter((s) => !managerSlugs.has(s));
+  const inManagersNotCik = [...managerSlugs].filter((s) => !cikSlugs.has(s));
+
+  const errors: string[] = [];
+  if (inCikNotManagers.length > 0) {
+    errors.push(
+      `CIK_MAP has slugs not in MANAGERS[].slug — EDGAR rows would never join:\n  ${inCikNotManagers.join("\n  ")}\n  (Fix: rename CIK_MAP key to match MANAGERS, or add MANAGERS entry.)`
+    );
+  }
+  if (inManagersNotCik.length > 0) {
+    errors.push(
+      `MANAGERS has slugs not in CIK_MAP — manager has no EDGAR data source:\n  ${inManagersNotCik.join("\n  ")}\n  (Fix: add SEC CIK to CIK_MAP, or confirm manager files <$100M and document as curated-only.)`
+    );
+  }
+  if (errors.length > 0) {
+    console.error("\n❌ SLUG DRIFT DETECTED — see rules/slug-alignment below:\n");
+    console.error(errors.join("\n\n"));
+    console.error(
+      "\nThis guard was added in v1.19 to prevent a repeat of the v1.17 " +
+        "william-von-mueffling silent-miss (EDGAR rows written under the " +
+        "wrong slug and never rendered on the manager's page).\n"
+    );
+    process.exit(1);
+  }
+  console.log(`✓ Slug alignment check passed — ${cikSlugs.size}/${managerSlugs.size} managers mapped`);
+})();
 
 // CUSIP → ticker mapping for the ~200 most common institutional holdings.
 // Built from the project's existing ticker coverage + major S&P 500 names.

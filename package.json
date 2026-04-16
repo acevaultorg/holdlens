@@ -10,7 +10,9 @@
     "prebuild": "npx tsx scripts/generate-og-images.ts && npx tsx scripts/generate-api-json.ts",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "indexnow": "npx tsx scripts/ping-indexnow.ts",
+    "deploy": "npm run build && npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true && npm run indexnow"
   },
   "dependencies": {
     "next": "15.0.3",
