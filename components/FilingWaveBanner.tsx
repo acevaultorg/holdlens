@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { nextFilingDeadline } from "@/lib/filings";
 
 // <FilingWaveBanner /> — thin site-wide band that surfaces the next 13F
 // filing wave as a live countdown + funnel into /alerts email capture.
@@ -15,19 +16,35 @@ import { useEffect, useState } from "react";
 // via localStorage. Auto-hides once the deadline has passed. Not sticky, not
 // fixed — just natural flow above hero. No popup, no countdown-timer dark
 // pattern. Purely ambient context.
+//
+// v1.01 — replaced hardcoded deadline with lib/filings.nextFilingDeadline()
+// so the banner stays correct forever without manual updates. Every quarter
+// the deadline auto-advances on its own.
 
 const STORAGE_KEY = "holdlens_filing_wave_banner_dismissed_v1";
 const DISMISS_DAYS = 14;
-
-// Next SEC 13F filing deadline for Q1 2026 (filed 45 days after quarter end).
-// When this passes, the banner auto-hides and the next session's build should
-// bump this to the following deadline (or a follow-up PR adds automatic calc).
-const NEXT_DEADLINE_ISO = "2026-05-15";
 
 function daysUntil(iso: string): number {
   const target = new Date(iso + "T00:00:00Z").getTime();
   const now = Date.now();
   return Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+}
+
+function formatWindow(deadlineIso: string): string {
+  // 13F filings typically land in the 4-5 days before the deadline — show as
+  // a range like "May 11–15, 2026" instead of a single day.
+  const end = new Date(deadlineIso + "T00:00:00Z");
+  const start = new Date(end);
+  start.setUTCDate(start.getUTCDate() - 4);
+  const year = end.getUTCFullYear();
+  const endMonthShort = end.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+  const startMonthShort = start.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+  const startDay = start.getUTCDate();
+  const endDay = end.getUTCDate();
+  if (startMonthShort === endMonthShort) {
+    return `${endMonthShort} ${startDay}\u2013${endDay}, ${year}`;
+  }
+  return `${startMonthShort} ${startDay} \u2013 ${endMonthShort} ${endDay}, ${year}`;
 }
 
 function wasRecentlyDismissed(): boolean {
@@ -55,40 +72,50 @@ function dismiss() {
   }
 }
 
+type State = {
+  days: number;
+  windowLabel: string;
+  quarterLabel: string;
+};
+
 export default function FilingWaveBanner() {
+  const [state, setState] = useState<State | null>(null);
   const [visible, setVisible] = useState(false);
-  const [days, setDays] = useState<number | null>(null);
 
   useEffect(() => {
-    // Hide after deadline passes + during dismissal window
-    const d = daysUntil(NEXT_DEADLINE_ISO);
-    if (d < 0) return;
     if (wasRecentlyDismissed()) return;
-    setDays(d);
+    const dl = nextFilingDeadline();
+    const days = daysUntil(dl.date);
+    if (days < 0) return; // should never happen — nextFilingDeadline always returns future
+    setState({
+      days,
+      windowLabel: formatWindow(dl.date),
+      quarterLabel: dl.quarter,
+    });
     setVisible(true);
   }, []);
 
-  if (!visible || days === null) return null;
+  if (!visible || !state) return null;
 
-  const windowLabel =
-    days <= 1
+  const countdownLabel =
+    state.days <= 0
       ? "filings landing today"
-      : days <= 4
-      ? `wave in ${days} days`
-      : `wave in ${days} days`;
+      : state.days === 1
+      ? "wave tomorrow"
+      : `wave in ${state.days} days`;
 
   return (
     <div
       role="region"
-      aria-label="Next 13F filing wave"
+      aria-label={`Next 13F filing wave — ${state.quarterLabel}`}
       className="border-b border-border bg-brand/5"
     >
       <div className="max-w-5xl mx-auto px-6 py-2 flex items-center justify-between gap-3 text-xs flex-wrap">
         <div className="text-muted">
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand align-middle mr-2" />
-          <span className="text-text font-semibold">Next 13F filings:</span>{" "}
-          May&nbsp;11&ndash;15, 2026 <span className="text-dim">·</span>{" "}
-          <span className="text-brand font-semibold">{windowLabel}</span>
+          <span className="text-text font-semibold">Next {state.quarterLabel} filings:</span>{" "}
+          {state.windowLabel} <span className="text-dim">·</span>{" "}
+          <span className="text-brand font-semibold">{countdownLabel}</span>
         </div>
         <div className="flex items-center gap-3">
           <a
