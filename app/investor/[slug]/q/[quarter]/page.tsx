@@ -123,8 +123,49 @@ export default async function ManagerQuarterPage({ params }: Props) {
   const prevQ = qIdx > 0 ? chrono[qIdx - 1] : null;
   const nextQ = qIdx < chrono.length - 1 ? chrono[qIdx + 1] : null;
 
+  // v1.20 — Article + BreadcrumbList schema for 232 quarter-digest pages.
+  // Article schema: Google treats each digest as a news-like article,
+  // surfacing it in Top Stories / Discover when a tracked manager's name
+  // trends. BreadcrumbList: shows a clean URL ladder (Home › Investors ›
+  // Manager › Q3 2025) in the SERP entry, which beats the raw URL.
+  // Organization (publisher) reuses the site-wide @id so Google joins them.
+  const pageUrl = `https://holdlens.com/investor/${m.slug}/q/${quarter.toLowerCase()}`;
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Investors", item: "https://holdlens.com/investor" },
+      { "@type": "ListItem", position: 3, name: m.name, item: `https://holdlens.com/investor/${m.slug}` },
+      { "@type": "ListItem", position: 4, name: label, item: pageUrl },
+    ],
+  };
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `What ${m.name} did in ${label} — full 13F decomposition`,
+    description: `${m.name} (${m.fund}) filed ${totalMoves} moves in ${label}: ${news.length} new positions, ${adds.length} adds, ${trims.length} trims, ${exits.length} exits. Plus the resulting portfolio snapshot.`,
+    datePublished: filedAt,
+    dateModified: filedAt,
+    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+    publisher: { "@id": "https://holdlens.com/#organization" },
+    mainEntityOfPage: pageUrl,
+    about: { "@type": "Person", name: m.name, jobTitle: m.role, worksFor: { "@type": "Organization", name: m.fund } },
+    // No image per-quarter yet; the per-manager OG will serve as fallback.
+    image: `https://holdlens.com/og/investor/${m.slug}.png`,
+    inLanguage: "en-US",
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         <a href={`/investor/${m.slug}`} className="hover:underline">
           {m.name}
