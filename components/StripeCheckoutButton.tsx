@@ -62,12 +62,28 @@ export default function StripeCheckoutButton({
       rel="noopener noreferrer"
       className={`block w-full text-center bg-brand text-black font-bold rounded-xl px-6 py-4 hover:opacity-90 transition ${className}`}
       onClick={() => {
-        // Plausible custom event — already loaded site-wide
+        // Plausible + GA4 begin_checkout events — fire and forget, never block navigation
         try {
           const w = window as Window & {
             plausible?: (name: string, opts?: object) => void;
+            gtag?: (...args: unknown[]) => void;
           };
           w.plausible?.("Pro Checkout Click", { props: { variant } });
+          // GA4 begin_checkout — opens the conversion funnel in GA4 reports.
+          // Allows creating a begin_checkout→purchase funnel without waiting
+          // for organic clicks to populate the event in the Admin UI.
+          w.gtag?.("event", "begin_checkout", {
+            currency: "EUR",
+            value: variant === "founders" ? 9 : 14,
+            items: [
+              {
+                item_id: "holdlens_pro",
+                item_name: "HoldLens Pro",
+                price: variant === "founders" ? 9 : 14,
+                quantity: 1,
+              },
+            ],
+          });
         } catch {
           // ignore
         }

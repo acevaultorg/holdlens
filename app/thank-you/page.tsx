@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ProActivator from "@/components/ProActivator";
+import PurchaseTracker from "@/components/PurchaseTracker";
 
 export const metadata: Metadata = {
   title: "Thanks — welcome to HoldLens Pro",
@@ -13,6 +14,8 @@ export default function ThankYouPage() {
       {/* Flip the Pro flag in localStorage the instant the user lands here.
           Every mounted AdSlot listens for the activation event and unmounts. */}
       <ProActivator />
+      {/* GA4 purchase conversion event — fires once per session, deduped via sessionStorage */}
+      <PurchaseTracker />
       <div className="text-6xl mb-6">🎯</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         Welcome to HoldLens Pro.
