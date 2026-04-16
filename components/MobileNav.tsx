@@ -37,6 +37,9 @@ type MGroup = { title: string; accent: "brand" | "emerald"; links: MLink[] };
 const POPULAR_TICKERS = ["AAPL", "MSFT", "NVDA", "META", "TSLA", "BRK-B"];
 
 // Five groups in intent order: what users came for first, account stuff last.
+// v1.04 — normalized color coding: within each group, ONE link is un-colored
+// (the "neutral reference"); the rest are colored. Previous state had random
+// color dropouts that broke visual rhythm.
 const GROUPS: MGroup[] = [
   {
     title: "Signals",
@@ -46,7 +49,7 @@ const GROUPS: MGroup[] = [
       { href: "/value", label: "Value · smart money × cheap", color: "emerald" },
       { href: "/big-bets", label: "Big bets · size × conviction", color: "brand" },
       { href: "/consensus", label: "Consensus picks", color: "emerald" },
-      { href: "/contrarian-bets", label: "Contrarian bets" },
+      { href: "/contrarian-bets", label: "Contrarian bets", color: "brand" },
       { href: "/hidden-gems", label: "Hidden gems", color: "emerald" },
     ],
   },
@@ -58,18 +61,18 @@ const GROUPS: MGroup[] = [
       { href: "/biggest-sells", label: "Biggest sells", color: "rose" },
       { href: "/new-positions", label: "New positions", color: "emerald" },
       { href: "/exits", label: "Exits", color: "rose" },
-      { href: "/this-week", label: "This week" },
+      { href: "/this-week", label: "This week · fresh filings", color: "emerald" },
     ],
   },
   {
     title: "Investors",
     accent: "brand",
     links: [
-      { href: "/leaderboard", label: "Leaderboard" },
+      { href: "/leaderboard", label: "Leaderboard", color: "brand" },
       { href: "/manager-rankings", label: "Manager rankings", color: "brand" },
       { href: "/conviction-leaders", label: "Conviction leaders", color: "emerald" },
-      { href: "/compare/managers", label: "Compare side-by-side" },
-      { href: "/overlap", label: "Overlap matrix" },
+      { href: "/compare/managers", label: "Compare side-by-side", color: "brand" },
+      { href: "/overlap", label: "Overlap matrix", color: "brand" },
     ],
   },
   {
@@ -77,7 +80,7 @@ const GROUPS: MGroup[] = [
     accent: "emerald",
     links: [
       { href: "/rotation", label: "Sector rotation heatmap", color: "brand" },
-      { href: "/themes", label: "AI · Mag 7 · Energy themes" },
+      { href: "/themes", label: "AI · Mag 7 · Energy themes", color: "brand" },
       { href: "/learn/superinvestor-handbook", label: "Superinvestor handbook", color: "emerald" },
       { href: "/vs/dataroma", label: "vs Dataroma", color: "brand" },
       { href: "/proof", label: "Proof — does it work?", color: "emerald" },
@@ -89,9 +92,9 @@ const GROUPS: MGroup[] = [
     links: [
       { href: "/watchlist", label: "Watchlist", color: "brand" },
       { href: "/portfolio", label: "My portfolio", color: "brand" },
-      { href: "/alerts", label: "Email alerts" },
-      { href: "/premium", label: "Pro features" },
-      { href: "/docs", label: "API docs" },
+      { href: "/alerts", label: "Email alerts", color: "emerald" },
+      { href: "/premium", label: "Pro features", color: "brand" },
+      { href: "/docs", label: "API docs", color: "emerald" },
     ],
   },
 ];
@@ -275,14 +278,16 @@ export default function MobileNav() {
           </div>
         </a>
 
-        {/* Five intent-grouped sections */}
+        {/* Five intent-grouped sections — v1.04 stronger dividers (h-2 spacer
+            bar above the border) + more vertical breathing room (py-5) so
+            groups feel visually distinct, not a wall of links. */}
         {GROUPS.map((grp, idx) => (
           <div
             key={grp.title}
-            className={`px-5 py-4${idx > 0 ? " border-t border-border" : ""}`}
+            className={`px-5 py-5${idx > 0 ? " border-t border-border mt-2 pt-6" : ""}`}
           >
             <div
-              className={`text-[10px] uppercase tracking-widest font-bold mb-2 ${
+              className={`text-[10px] uppercase tracking-widest font-bold mb-3 ${
                 grp.accent === "emerald" ? "text-emerald-400" : "text-brand"
               }`}
             >
@@ -312,8 +317,8 @@ export default function MobileNav() {
         ))}
 
         {/* Legal */}
-        <div className="px-5 py-5 border-t border-border">
-          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-dim">
+        <div className="px-5 py-5 border-t border-border mt-2 pt-6">
+          <ul className="flex flex-wrap gap-x-5 gap-y-2.5 text-xs text-dim">
             {LEGAL_LINKS.map((link) => (
               <li key={link.href}>
                 <a
@@ -328,8 +333,22 @@ export default function MobileNav() {
           </ul>
         </div>
 
+        {/* v1.04 — bottom close button. After scrolling through 1900+px of
+            menu, reaching the top-sticky X is a thumb-stretch. This gives a
+            near-the-thumb exit at the natural end of the scroll. */}
+        <div className="px-5 py-6 border-t border-border mt-2 pt-8">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="w-full rounded-xl border border-border bg-panel text-muted font-semibold py-3.5 text-[15px] hover:text-text hover:border-brand/40 transition"
+            aria-label="Close menu"
+          >
+            Close menu
+          </button>
+        </div>
+
         {/* iOS bottom safe area */}
-        <div className="h-16" aria-hidden />
+        <div className="h-8" aria-hidden />
       </div>
     </div>
   ) : null;
