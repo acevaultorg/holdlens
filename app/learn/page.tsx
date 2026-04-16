@@ -14,9 +14,34 @@ const ARTICLES: Article[] = [
   { slug: "conviction-score-explained", title: "What is a Conviction Score?", desc: "How to tell a real bet from index padding. The −100..+100 scale explained." },
 ];
 
+// v1.20 — CollectionPage + ItemList schema. Google prefers CollectionPage
+// for "index of guides" style pages (vs Article) because it's a hub, not a
+// single piece of content. ItemList exposes each guide to Google as a
+// clickable entity, boosting sitelink eligibility under the guide category.
+const LD = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Learn — Plain English guides to hedge fund investing",
+  description:
+    "Free guides to 13F filings, copy-trading, hedge fund tracking, and how superinvestors think.",
+  url: "https://holdlens.com/learn",
+  publisher: { "@id": "https://holdlens.com/#organization" },
+  inLanguage: "en-US",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, url: "https://holdlens.com/learn/superinvestor-handbook", name: "The Superinvestor Handbook" },
+      { "@type": "ListItem", position: 2, url: "https://holdlens.com/learn/what-is-a-13f", name: "What is a 13F filing?" },
+      { "@type": "ListItem", position: 3, url: "https://holdlens.com/learn/copy-trading-myth", name: "The copy-trading myth" },
+      { "@type": "ListItem", position: 4, url: "https://holdlens.com/learn/conviction-score-explained", name: "What is a Conviction Score?" },
+    ],
+  },
+};
+
 export default function LearnIndex() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Learn</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Plain English guides</h1>
       <p className="text-muted text-lg max-w-2xl mb-12">

@@ -7,9 +7,31 @@ export const metadata: Metadata = {
   description: "Why 13F-based copy-trading doesn't work the way retail investors think — and what to do instead.",
 };
 
+// v1.20 — Article schema for Google Discover + Top Stories eligibility on
+// trending copy-trading queries. Publisher joins site-wide @id from home
+// page so Google stitches the knowledge graph cleanly.
+const ARTICLE_LD = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Can you actually copy Warren Buffett? — The honest answer",
+  description:
+    "Why 13F-based copy-trading doesn't work the way retail investors think — and what to do instead.",
+  author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+  publisher: { "@id": "https://holdlens.com/#organization" },
+  mainEntityOfPage: "https://holdlens.com/learn/copy-trading-myth",
+  datePublished: "2026-03-15",
+  dateModified: "2026-04-10",
+  inLanguage: "en-US",
+  image: "https://holdlens.com/og/home.png",
+};
+
 export default function CopyMythPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ARTICLE_LD) }}
+      />
       <a href="/learn" className="text-xs text-muted hover:text-text">← All guides</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Learn</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">

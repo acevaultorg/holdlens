@@ -169,8 +169,41 @@ export default async function QuarterPage({
   const prev = idx + 1 < QUARTERS.length ? QUARTERS[idx + 1] : null; // older
   const next = idx > 0 ? QUARTERS[idx - 1] : null; // newer
 
+  // v1.20 — Article + BreadcrumbList LD+JSON. Each quarter digest is a
+  // news-like piece — same schema pattern as per-manager quarter pages,
+  // different mainEntity (the filing wave, not a specific manager).
+  const pageUrl = `https://holdlens.com/quarter/${slug}`;
+  const LD = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+        { "@type": "ListItem", position: 2, name: "Quarters", item: "https://holdlens.com/quarter" },
+        { "@type": "ListItem", position: 3, name: label, item: pageUrl },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: `${label} superinvestor 13F digest`,
+      description: `Every tracked 13F move filed in ${label}: top new positions, biggest adds, full exits, sector net flow, and which managers were most active.`,
+      datePublished: filedAt,
+      dateModified: filedAt,
+      author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+      publisher: { "@id": "https://holdlens.com/#organization" },
+      mainEntityOfPage: pageUrl,
+      inLanguage: "en-US",
+      image: "https://holdlens.com/og/home.png",
+    },
+  ];
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }}
+      />
       <a href="/this-week" className="text-xs text-muted hover:text-text">← Activity feed</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-3">
         Quarter digest

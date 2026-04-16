@@ -7,9 +7,43 @@ export const metadata: Metadata = {
   description: "How HoldLens assigns every stock one signed conviction score on a −100..+100 scale where +100 is the strongest possible buy and −100 the strongest possible sell.",
 };
 
+// v1.20 — Article + DefinedTerm schema. DefinedTerm is the correct
+// schema.org type for concepts ("ConvictionScore") and Google uses it for
+// knowledge-panel-like inline definitions on related SERPs.
+const LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "What is the HoldLens ConvictionScore?",
+    description:
+      "How HoldLens assigns every stock one signed conviction score on a −100..+100 scale where +100 is the strongest possible buy and −100 the strongest possible sell.",
+    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+    publisher: { "@id": "https://holdlens.com/#organization" },
+    mainEntityOfPage: "https://holdlens.com/learn/conviction-score-explained",
+    datePublished: "2026-03-20",
+    dateModified: "2026-04-10",
+    inLanguage: "en-US",
+    image: "https://holdlens.com/og/home.png",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: "ConvictionScore",
+    description:
+      "HoldLens ConvictionScore is a signed number from −100 to +100 that summarises how strongly tracked portfolio managers are buying or selling a single stock based on 13F filings.",
+    termCode: "CONVICTION_SCORE",
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      name: "HoldLens Glossary",
+      url: "https://holdlens.com/learn",
+    },
+  },
+];
+
 export default function ConvictionPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
       <a href="/learn" className="text-xs text-muted hover:text-text">← All guides</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Learn</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
