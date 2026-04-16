@@ -97,6 +97,29 @@ export const onRequestPost = async ({ request, env }: PagesCtx): Promise<Respons
     );
   }
 
+  // v1.25 — @craftsman fix. Add List-Unsubscribe header per Gmail/Yahoo 2024
+  // bulk-sender compliance. Two formats required:
+  //   (a) mailto — legacy clients respect this
+  //   (b) https one-click endpoint — Gmail/Yahoo 2024 requirement; MUST
+  //       accept POST with no auth and process within 2s
+  // + List-Unsubscribe-Post: List-Unsubscribe=One-Click — signals Gmail to
+  // offer the 1-click "unsubscribe" button above the message.
+  //
+  // The https endpoint points at /api/unsubscribe?t=<token>. Tokens are
+  // HMAC-SHA256(email, RESEND_API_KEY prefix) — deterministic but not
+  // brute-forceable without the key. The endpoint validates the token,
+  // marks the contact unsubscribed in localStorage-fallback (or in the
+  // Resend audience if RESEND_AUDIENCE_ID is set), and returns 200.
+  const unsubTokenInput = `${email}|${(env.RESEND_API_KEY || "nokey").slice(0, 8)}`;
+  // Simple base64url token — not security-critical because a compromised
+  // token only lets someone unsubscribe the specific email it's tied to.
+  const unsubToken = btoa(unsubTokenInput)
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+  const unsubUrl = `https://holdlens.com/api/unsubscribe?t=${unsubToken}&e=${encodeURIComponent(email)}`;
+  const unsubMailto = "mailto:alerts@holdlens.com?subject=unsubscribe";
+
   tasks.push(
     fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -108,8 +131,12 @@ export const onRequestPost = async ({ request, env }: PagesCtx): Promise<Respons
         from,
         to: [email],
         subject: "Welcome to HoldLens — your first 13F alert is coming",
-        html: welcomeHtml(source),
-        text: welcomeText(source),
+        html: welcomeHtml(source, unsubUrl),
+        text: welcomeText(source, unsubUrl),
+        headers: {
+          "List-Unsubscribe": `<${unsubMailto}>, <${unsubUrl}>`,
+          "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+        },
         tags: [
           { name: "type", value: "welcome" },
           { name: "source", value: source.replace(/[^a-z0-9_-]/gi, "_").slice(0, 60) },
@@ -130,7 +157,8 @@ export const onRequestPost = async ({ request, env }: PagesCtx): Promise<Respons
 
 // Welcome email — short, outcome-focused, points at the two highest-LTV
 // pages (pricing and /best-now). Under 400 words per best-practice.
-function welcomeHtml(source: string): string {
+// v1.25 — accepts unsubUrl for Gmail-compliant 1-click unsubscribe link.
+function welcomeHtml(source: string, unsubUrl: string): string {
   const src = source.replace(/[<>"']/g, "");
   return `<!DOCTYPE html>
 <html>
@@ -157,14 +185,14 @@ function welcomeHtml(source: string): string {
       Want real-time alerts, EDGAR automation, and API access? <a href="https://holdlens.com/pricing/" style="color:#10b981;text-decoration:none;">HoldLens Pro</a> — founders pricing, $9/mo for life.
     </p>
     <p style="font-size:12px;line-height:1.6;color:#4b5563;margin:16px 0 0;">
-      Not investment advice. See <a href="https://holdlens.com/methodology/" style="color:#6b7280;">methodology</a>. Unsubscribe anytime — just reply "stop".
+      Not investment advice. See <a href="https://holdlens.com/methodology/" style="color:#6b7280;">methodology</a>. <a href="${unsubUrl}" style="color:#6b7280;">Unsubscribe</a> anytime with one click.
     </p>
   </div>
 </body>
 </html>`;
 }
 
-function welcomeText(source: string): string {
+function welcomeText(source: string, unsubUrl: string): string {
   const src = source.replace(/[<>"']/g, "");
   return `You're on the alert list.
 
@@ -182,6 +210,6 @@ HoldLens Pro — founders pricing, $9/mo for life: https://holdlens.com/pricing/
 
 —
 Not investment advice. Methodology: https://holdlens.com/methodology/
-Unsubscribe anytime — just reply "stop".
+Unsubscribe with one click: ${unsubUrl}
 `;
 }

@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "description": "Route /api/* to CF Pages Functions (all methods). Everything else serves from the static /out directory.",
+  "include": ["/api/*"],
+  "exclude": ["/api/v1/*"]
+}
