@@ -3,12 +3,12 @@
     "ticker": "AXP",
     "name": "American Express",
     "sector": "Financials",
-    "score": 0,
-    "formatted_score": "0",
-    "direction": "NEUTRAL",
-    "label": "NEUTRAL",
+    "score": -3,
+    "formatted_score": "−3",
+    "direction": "SELL",
+    "label": "WEAK SELL",
     "buyer_count": 4,
-    "seller_count": 0,
+    "seller_count": 5,
     "owner_count": 1,
     "breakdown": {
       "smartMoney": 0,
@@ -17,13 +17,13 @@
       "trendStreak": 0,
       "concentration": 0,
       "contrarian": 0,
-      "dissentPenalty": 0,
+      "dissentPenalty": 4,
       "crowdingPenalty": 0,
-      "raw": 0
+      "raw": -3
     }
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

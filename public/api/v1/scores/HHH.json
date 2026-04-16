@@ -3,12 +3,12 @@
     "ticker": "HHH",
     "name": "Howard Hughes Holdings",
     "sector": "Real Estate",
-    "score": 6,
-    "formatted_score": "+6",
-    "direction": "BUY",
-    "label": "WEAK BUY",
+    "score": 0,
+    "formatted_score": "0",
+    "direction": "NEUTRAL",
+    "label": "NEUTRAL",
     "buyer_count": 9,
-    "seller_count": 5,
+    "seller_count": 10,
     "owner_count": 1,
     "breakdown": {
       "smartMoney": 5,
@@ -17,13 +17,13 @@
       "trendStreak": 0,
       "concentration": 7,
       "contrarian": 0,
-      "dissentPenalty": 6,
+      "dissentPenalty": 12,
       "crowdingPenalty": 0,
-      "raw": 6
+      "raw": 0
     }
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

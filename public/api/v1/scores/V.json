@@ -7,23 +7,23 @@
     "formatted_score": "+8",
     "direction": "BUY",
     "label": "WEAK BUY",
-    "buyer_count": 13,
-    "seller_count": 17,
+    "buyer_count": 14,
+    "seller_count": 20,
     "owner_count": 10,
     "breakdown": {
-      "smartMoney": 15,
+      "smartMoney": 16,
       "insiderBoost": 0,
       "trackRecord": 4,
       "trendStreak": 5,
       "concentration": 10,
       "contrarian": 0,
-      "dissentPenalty": 22,
+      "dissentPenalty": 23,
       "crowdingPenalty": 3,
       "raw": 8
     }
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

@@ -3,15 +3,15 @@
     "ticker": "LLY",
     "name": "Eli Lilly",
     "sector": "Other",
-    "score": -9,
-    "formatted_score": "−9",
+    "score": -8,
+    "formatted_score": "−8",
     "direction": "SELL",
     "label": "WEAK SELL",
-    "buyer_count": 14,
+    "buyer_count": 15,
     "seller_count": 13,
     "owner_count": 1,
     "breakdown": {
-      "smartMoney": 6,
+      "smartMoney": 7,
       "insiderBoost": 0,
       "trackRecord": 0,
       "trendStreak": 0,
@@ -19,11 +19,11 @@
       "contrarian": 0,
       "dissentPenalty": 17,
       "crowdingPenalty": 0,
-      "raw": -9
+      "raw": -8
     }
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

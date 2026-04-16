@@ -6,7 +6,7 @@
     <atom:link href="https://holdlens.com/investor/david-rolfe/feed.xml" rel="self" type="application/rss+xml" />
     <description>Every 13F move by David Rolfe (Wedgewood Partners) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2026 21:52:58 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:27 GMT</lastBuildDate>
     <item>
       <title>David Rolfe: ADDED TSM (+18%) · Q4 2025</title>
       <link>https://holdlens.com/signal/TSM</link>
@@ -32,9 +32,65 @@
       <category>trim</category>
     </item>
     <item>
+      <title>David Rolfe: TRIMMED GOOGL (-21%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/GOOGL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-GOOGL-trim-3</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed GOOGL (ALPHABET INC) in Q4 2025 · 9.9% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: ADDED CDW (+26%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/CDW</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-CDW-add-4</guid>
+      <description>David Rolfe (Wedgewood Partners) added CDW (CDW CORP) in Q4 2025 · 4.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Rolfe: NEW POSITION CB (+100%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/CB</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-CB-new-5</guid>
+      <description>David Rolfe (Wedgewood Partners) new position CB (CHUBB LIMITED) in Q4 2025 · 3.4% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>new</category>
+    </item>
+    <item>
+      <title>David Rolfe: NEW POSITION AMZN (+100%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/AMZN</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-AMZN-new-6</guid>
+      <description>David Rolfe (Wedgewood Partners) new position AMZN (AMAZON COM INC) in Q4 2025 · 2.6% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>new</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED PYPL (-55%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/PYPL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-PYPL-trim-7</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed PYPL (PAYPAL HLDGS INC) in Q4 2025 · 2.4% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: NEW POSITION IVV (+100%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/IVV</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-IVV-new-8</guid>
+      <description>David Rolfe (Wedgewood Partners) new position IVV (ISHARES TR) in Q4 2025 · 1.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>new</category>
+    </item>
+    <item>
+      <title>David Rolfe: EXITED POOL (-100%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/POOL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q4-POOL-exit-9</guid>
+      <description>David Rolfe (Wedgewood Partners) exited POOL (POOL CORP) in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>exit</category>
+    </item>
+    <item>
       <title>David Rolfe: ADDED TSM (+22%) · Q3 2025</title>
       <link>https://holdlens.com/signal/TSM</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q3-TSM-add-3</guid>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q3-TSM-add-10</guid>
       <description>David Rolfe (Wedgewood Partners) added TSM in Q3 2025 · 7.7% of portfolio. Building TSM position.</description>
       <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>add</category>
@@ -42,10 +98,114 @@
     <item>
       <title>David Rolfe: ADDED BRK.B (+6%) · Q3 2025</title>
       <link>https://holdlens.com/signal/BRK.B</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q3-BRK.B-add-4</guid>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q3-BRK.B-add-11</guid>
       <description>David Rolfe (Wedgewood Partners) added BRK.B in Q3 2025 · 7.8% of portfolio. Adding Berkshire.</description>
       <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>add</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED TSM (-17%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/TSM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q2-TSM-trim-12</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed TSM (TAIWAN SEMICONDUCTOR MFG LTD) in Q2 2025 · 9.5% of portfolio.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED GOOGL (-19%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/GOOGL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q2-GOOGL-trim-13</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed GOOGL (ALPHABET INC) in Q2 2025 · 7.9% of portfolio.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: EXITED UNH (-100%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/UNH</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q2-UNH-exit-14</guid>
+      <description>David Rolfe (Wedgewood Partners) exited UNH (UNITEDHEALTH GROUP INC) in Q2 2025 · 0.0% of portfolio.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>exit</category>
+    </item>
+    <item>
+      <title>David Rolfe: EXITED IVV (-100%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/IVV</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q2-IVV-exit-15</guid>
+      <description>David Rolfe (Wedgewood Partners) exited IVV (ISHARES TR) in Q2 2025 · 0.0% of portfolio.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>exit</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED META (-13%) · Q1 2025</title>
+      <link>https://holdlens.com/signal/META</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q1-META-trim-16</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed META (META PLATFORMS INC) in Q1 2025 · 9.6% of portfolio.</description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: ADDED MSFT (+18%) · Q1 2025</title>
+      <link>https://holdlens.com/signal/MSFT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q1-MSFT-add-17</guid>
+      <description>David Rolfe (Wedgewood Partners) added MSFT (MICROSOFT CORP) in Q1 2025 · 7.3% of portfolio.</description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED V (-26%) · Q1 2025</title>
+      <link>https://holdlens.com/signal/V</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q1-V-trim-18</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed V (VISA INC) in Q1 2025 · 6.7% of portfolio.</description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: ADDED CDW (+27%) · Q1 2025</title>
+      <link>https://holdlens.com/signal/CDW</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q1-CDW-add-19</guid>
+      <description>David Rolfe (Wedgewood Partners) added CDW (CDW CORP) in Q1 2025 · 4.6% of portfolio.</description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED UNH (-81%) · Q1 2025</title>
+      <link>https://holdlens.com/signal/UNH</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q1-UNH-trim-20</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed UNH (UNITEDHEALTH GROUP INC) in Q1 2025 · 0.7% of portfolio.</description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: ADDED IVV (+96%) · Q1 2025</title>
+      <link>https://holdlens.com/signal/IVV</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2025-Q1-IVV-add-21</guid>
+      <description>David Rolfe (Wedgewood Partners) added IVV (ISHARES TR) in Q1 2025 · 0.6% of portfolio.</description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED CDW (-6%) · Q4 2024</title>
+      <link>https://holdlens.com/signal/CDW</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2024-Q4-CDW-trim-22</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed CDW (CDW CORP) in Q4 2024 · 3.2% of portfolio.</description>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: TRIMMED POOL (-11%) · Q4 2024</title>
+      <link>https://holdlens.com/signal/POOL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2024-Q4-POOL-trim-23</guid>
+      <description>David Rolfe (Wedgewood Partners) trimmed POOL (POOL CORP) in Q4 2024 · 2.0% of portfolio.</description>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Rolfe: NEW POSITION IVV (+100%) · Q4 2024</title>
+      <link>https://holdlens.com/signal/IVV</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-rolfe#2024-Q4-IVV-new-24</guid>
+      <description>David Rolfe (Wedgewood Partners) new position IVV (ISHARES TR) in Q4 2024 · 0.3% of portfolio.</description>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+      <category>new</category>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NOVO — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/NOVO</link>
+    <atom:link href="https://holdlens.com/ticker/NOVO/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on NOVO (Novo Nordisk) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:15 GMT</lastBuildDate>
+    <item>
+      <title>Terry Smith: ADDED NOVO (+6%) · Q2 2024</title>
+      <link>https://holdlens.com/signal/NOVO</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/NOVO#2024-Q2-terry-smith-add-0</guid>
+      <description>Terry Smith (Fundsmith) added NOVO in Q2 2024 · 9.0% of portfolio. Novo Nordisk add.</description>
+      <pubDate>Wed, 14 Aug 2024 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Terry Smith)</author>
+    </item>
+  </channel>
+</rss>

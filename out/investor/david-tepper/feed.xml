@@ -6,7 +6,7 @@
     <atom:link href="https://holdlens.com/investor/david-tepper/feed.xml" rel="self" type="application/rss+xml" />
     <description>Every 13F move by David Tepper (Appaloosa Management) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2026 21:52:58 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:27 GMT</lastBuildDate>
     <item>
       <title>David Tepper: ADDED NVDA (+25%) · Q4 2025</title>
       <link>https://holdlens.com/signal/NVDA</link>
@@ -40,9 +40,113 @@
       <category>trim</category>
     </item>
     <item>
+      <title>David Tepper: ADDED GOOG (+29%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/GOOG</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-GOOG-add-4</guid>
+      <description>David Tepper (Appaloosa Management) added GOOG (ALPHABET INC) in Q4 2025 · 8.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED AMZN (-13%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/AMZN</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-AMZN-trim-5</guid>
+      <description>David Tepper (Appaloosa Management) trimmed AMZN (AMAZON COM INC) in Q4 2025 · 7.3% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: ADDED MU (+250%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MU</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-MU-add-6</guid>
+      <description>David Tepper (Appaloosa Management) added MU (MICRON TECHNOLOGY INC) in Q4 2025 · 7.2% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Tepper: ADDED TSM (+7%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/TSM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-TSM-add-7</guid>
+      <description>David Tepper (Appaloosa Management) added TSM (TAIWAN SEMICONDUCTOR MFG LTD) in Q4 2025 · 5.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Tepper: ADDED MSFT (+8%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MSFT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-MSFT-add-8</guid>
+      <description>David Tepper (Appaloosa Management) added MSFT (MICROSOFT CORP) in Q4 2025 · 3.5% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED QCOM (-8%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/QCOM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-QCOM-trim-9</guid>
+      <description>David Tepper (Appaloosa Management) trimmed QCOM (QUALCOMM INC) in Q4 2025 · 2.8% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED BAIDU (-45%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/BAIDU</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-BAIDU-trim-10</guid>
+      <description>David Tepper (Appaloosa Management) trimmed BAIDU (BAIDU INC) in Q4 2025 · 1.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED LYFT (-32%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/LYFT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-LYFT-trim-11</guid>
+      <description>David Tepper (Appaloosa Management) trimmed LYFT (LYFT INC) in Q4 2025 · 1.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED AMD (-66%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/AMD</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-AMD-trim-12</guid>
+      <description>David Tepper (Appaloosa Management) trimmed AMD (ADVANCED MICRO DEVICES INC) in Q4 2025 · 1.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: NEW POSITION BALL (+100%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/BALL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-BALL-new-13</guid>
+      <description>David Tepper (Appaloosa Management) new position BALL (BALL CORP) in Q4 2025 · 0.9% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>new</category>
+    </item>
+    <item>
+      <title>David Tepper: ADDED MPLX (+17%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MPLX</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-MPLX-add-14</guid>
+      <description>David Tepper (Appaloosa Management) added MPLX (MPLX LP) in Q4 2025 · 0.5% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Tepper: EXITED FE (-100%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/FE</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-FE-exit-15</guid>
+      <description>David Tepper (Appaloosa Management) exited FE (FISERV INC) in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>exit</category>
+    </item>
+    <item>
+      <title>David Tepper: EXITED BLOCK (-100%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/BLOCK</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q4-BLOCK-exit-16</guid>
+      <description>David Tepper (Appaloosa Management) exited BLOCK (BLOCK INC) in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>exit</category>
+    </item>
+    <item>
       <title>David Tepper: ADDED NVDA (+35%) · Q3 2025</title>
       <link>https://holdlens.com/signal/NVDA</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-NVDA-add-4</guid>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-NVDA-add-17</guid>
       <description>David Tepper (Appaloosa Management) added NVDA in Q3 2025 · 8.4% of portfolio. Big NVDA add.</description>
       <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>add</category>
@@ -50,7 +154,7 @@
     <item>
       <title>David Tepper: ADDED META (+22%) · Q3 2025</title>
       <link>https://holdlens.com/signal/META</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-META-add-5</guid>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-META-add-18</guid>
       <description>David Tepper (Appaloosa Management) added META in Q3 2025 · 9.8% of portfolio. Building META conviction.</description>
       <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>add</category>
@@ -58,81 +162,169 @@
     <item>
       <title>David Tepper: NEW POSITION BABA · Q3 2025</title>
       <link>https://holdlens.com/signal/BABA</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-BABA-new-6</guid>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-BABA-new-19</guid>
       <description>David Tepper (Appaloosa Management) new position BABA in Q3 2025 · 4.2% of portfolio. New Alibaba position — China contrarian.</description>
       <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>new</category>
     </item>
     <item>
-      <title>David Tepper: ADDED NVDA (+30%) · Q4 2024</title>
-      <link>https://holdlens.com/signal/NVDA</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q4-NVDA-add-7</guid>
-      <description>David Tepper (Appaloosa Management) added NVDA in Q4 2024 · 8.6% of portfolio. Loaded up on NVDA.</description>
-      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+      <title>David Tepper: TRIMMED AMZN (-7%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/AMZN</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-AMZN-trim-20</guid>
+      <description>David Tepper (Appaloosa Management) trimmed AMZN (AMAZON COM INC) in Q3 2025 · 7.4% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED GOOG (-7%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/GOOG</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-GOOG-trim-21</guid>
+      <description>David Tepper (Appaloosa Management) trimmed GOOG (ALPHABET INC) in Q3 2025 · 4.6% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED MSFT (-7%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/MSFT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-MSFT-trim-22</guid>
+      <description>David Tepper (Appaloosa Management) trimmed MSFT (MICROSOFT CORP) in Q3 2025 · 3.2% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED PDD (-10%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/PDD</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-PDD-trim-23</guid>
+      <description>David Tepper (Appaloosa Management) trimmed PDD (PDD HOLDINGS INC) in Q3 2025 · 3.2% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED UBER (-12%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/UBER</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-UBER-trim-24</guid>
+      <description>David Tepper (Appaloosa Management) trimmed UBER (UBER TECHNOLOGIES INC) in Q3 2025 · 3.2% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: ADDED QCOM (+256%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/QCOM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-QCOM-add-25</guid>
+      <description>David Tepper (Appaloosa Management) added QCOM (QUALCOMM INC) in Q3 2025 · 2.8% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>add</category>
     </item>
     <item>
-      <title>David Tepper: ADDED META (+25%) · Q4 2024</title>
-      <link>https://holdlens.com/signal/META</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q4-META-add-8</guid>
-      <description>David Tepper (Appaloosa Management) added META in Q4 2024 · 9.0% of portfolio. Building META conviction.</description>
-      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
-      <category>add</category>
-    </item>
-    <item>
-      <title>David Tepper: NEW POSITION BABA · Q4 2024</title>
-      <link>https://holdlens.com/signal/BABA</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q4-BABA-new-9</guid>
-      <description>David Tepper (Appaloosa Management) new position BABA in Q4 2024 · 3.4% of portfolio. First BABA position.</description>
-      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+      <title>David Tepper: NEW POSITION AMD (+100%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/AMD</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-AMD-new-26</guid>
+      <description>David Tepper (Appaloosa Management) new position AMD (ADVANCED MICRO DEVICES INC) in Q3 2025 · 2.1% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>new</category>
     </item>
     <item>
-      <title>David Tepper: ADDED NVDA (+25%) · Q3 2024</title>
-      <link>https://holdlens.com/signal/NVDA</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q3-NVDA-add-10</guid>
-      <description>David Tepper (Appaloosa Management) added NVDA in Q3 2024 · 7.0% of portfolio. NVDA buildup.</description>
-      <pubDate>Thu, 14 Nov 2024 00:00:00 GMT</pubDate>
+      <title>David Tepper: ADDED BAIDU (+67%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/BAIDU</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-BAIDU-add-27</guid>
+      <description>David Tepper (Appaloosa Management) added BAIDU (BAIDU INC) in Q3 2025 · 1.9% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>add</category>
     </item>
     <item>
-      <title>David Tepper: ADDED META (+18%) · Q3 2024</title>
-      <link>https://holdlens.com/signal/META</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q3-META-add-11</guid>
-      <description>David Tepper (Appaloosa Management) added META in Q3 2024 · 7.5% of portfolio. Building META.</description>
-      <pubDate>Thu, 14 Nov 2024 00:00:00 GMT</pubDate>
-      <category>add</category>
+      <title>David Tepper: TRIMMED LYFT (-30%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/LYFT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-LYFT-trim-28</guid>
+      <description>David Tepper (Appaloosa Management) trimmed LYFT (LYFT INC) in Q3 2025 · 1.7% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
     </item>
     <item>
-      <title>David Tepper: ADDED NVDA (+18%) · Q2 2024</title>
-      <link>https://holdlens.com/signal/NVDA</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q2-NVDA-add-12</guid>
-      <description>David Tepper (Appaloosa Management) added NVDA in Q2 2024 · 5.8% of portfolio. NVDA build.</description>
-      <pubDate>Wed, 14 Aug 2024 00:00:00 GMT</pubDate>
-      <category>add</category>
-    </item>
-    <item>
-      <title>David Tepper: ADDED META (+14%) · Q2 2024</title>
-      <link>https://holdlens.com/signal/META</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q2-META-add-13</guid>
-      <description>David Tepper (Appaloosa Management) added META in Q2 2024 · 6.5% of portfolio. META add.</description>
-      <pubDate>Wed, 14 Aug 2024 00:00:00 GMT</pubDate>
-      <category>add</category>
-    </item>
-    <item>
-      <title>David Tepper: NEW POSITION NVDA · Q1 2024</title>
-      <link>https://holdlens.com/signal/NVDA</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q1-NVDA-new-14</guid>
-      <description>David Tepper (Appaloosa Management) new position NVDA in Q1 2024 · 5.0% of portfolio. Tepper&amp;apos;s first NVDA position.</description>
-      <pubDate>Wed, 15 May 2024 00:00:00 GMT</pubDate>
+      <title>David Tepper: NEW POSITION FE (+100%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/FE</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-FE-new-29</guid>
+      <description>David Tepper (Appaloosa Management) new position FE (FISERV INC) in Q3 2025 · 1.6% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>new</category>
     </item>
     <item>
-      <title>David Tepper: ADDED META (+8%) · Q1 2024</title>
-      <link>https://holdlens.com/signal/META</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2024-Q1-META-add-15</guid>
-      <description>David Tepper (Appaloosa Management) added META in Q1 2024 · 5.5% of portfolio. META add.</description>
-      <pubDate>Wed, 15 May 2024 00:00:00 GMT</pubDate>
+      <title>David Tepper: TRIMMED MU (-39%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/MU</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-MU-trim-30</guid>
+      <description>David Tepper (Appaloosa Management) trimmed MU (MICRON TECHNOLOGY INC) in Q3 2025 · 1.1% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED UNH (-92%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/UNH</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-UNH-trim-31</guid>
+      <description>David Tepper (Appaloosa Management) trimmed UNH (UNITEDHEALTH GROUP INC) in Q3 2025 · 1.0% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: ADDED IVV (+11%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/IVV</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-IVV-add-32</guid>
+      <description>David Tepper (Appaloosa Management) added IVV (ISHARES TR) in Q3 2025 · 0.6% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED BLOCK (-42%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/BLOCK</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-BLOCK-trim-33</guid>
+      <description>David Tepper (Appaloosa Management) trimmed BLOCK (BLOCK INC) in Q3 2025 · 0.4% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED DELL (-16%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/DELL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-DELL-trim-34</guid>
+      <description>David Tepper (Appaloosa Management) trimmed DELL (DELTA AIR LINES INC DEL) in Q3 2025 · 0.4% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: TRIMMED MPLX (-8%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/MPLX</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-MPLX-trim-35</guid>
+      <description>David Tepper (Appaloosa Management) trimmed MPLX (MPLX LP) in Q3 2025 · 0.4% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>David Tepper: EXITED INTC (-100%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/INTC</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-INTC-exit-36</guid>
+      <description>David Tepper (Appaloosa Management) exited INTC (INTEL CORP) in Q3 2025 · 0.0% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>exit</category>
+    </item>
+    <item>
+      <title>David Tepper: EXITED ORCL (-100%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/ORCL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q3-ORCL-exit-37</guid>
+      <description>David Tepper (Appaloosa Management) exited ORCL (ORACLE CORP) in Q3 2025 · 0.0% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>exit</category>
+    </item>
+    <item>
+      <title>David Tepper: ADDED UNH (+1300%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/UNH</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q2-UNH-add-38</guid>
+      <description>David Tepper (Appaloosa Management) added UNH (UNITEDHEALTH GROUP INC) in Q2 2025 · 11.9% of portfolio.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>David Tepper: ADDED AMZN (+8%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/AMZN</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/david-tepper#2025-Q2-AMZN-add-39</guid>
+      <description>David Tepper (Appaloosa Management) added AMZN (AMAZON COM INC) in Q2 2025 · 9.2% of portfolio.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
       <category>add</category>
     </item>
   </channel>

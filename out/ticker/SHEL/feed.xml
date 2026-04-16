@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SHEL — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/SHEL</link>
+    <atom:link href="https://holdlens.com/ticker/SHEL/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on SHEL (Shell) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Michael Burry: TRIMMED SHEL (-30%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/SHEL</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/SHEL#2025-Q4-michael-burry-trim-0</guid>
+      <description>Michael Burry (Scion Asset Management) trimmed SHEL in Q4 2025 · 6.1% of portfolio. Taking Shell profits.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+      <author>noreply@holdlens.com (Michael Burry)</author>
+    </item>
+  </channel>
+</rss>

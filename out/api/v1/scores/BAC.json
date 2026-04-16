@@ -3,12 +3,12 @@
     "ticker": "BAC",
     "name": "Bank of America",
     "sector": "Financials",
-    "score": 14,
-    "formatted_score": "+14",
+    "score": 6,
+    "formatted_score": "+6",
     "direction": "BUY",
     "label": "WEAK BUY",
-    "buyer_count": 12,
-    "seller_count": 13,
+    "buyer_count": 13,
+    "seller_count": 21,
     "owner_count": 3,
     "breakdown": {
       "smartMoney": 10,
@@ -17,13 +17,13 @@
       "trendStreak": 10,
       "concentration": 10,
       "contrarian": 0,
-      "dissentPenalty": 19,
+      "dissentPenalty": 28,
       "crowdingPenalty": 0,
-      "raw": 14
+      "raw": 6
     }
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

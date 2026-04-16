@@ -6,9 +6,9 @@
       "name": "Meta Platforms",
       "sector": "Technology",
       "owner_count": 15,
-      "conviction_score": 5,
-      "recent_buyers": 20,
-      "recent_sellers": 9,
+      "conviction_score": -1,
+      "recent_buyers": 22,
+      "recent_sellers": 10,
       "net_direction": "loading"
     },
     {
@@ -17,10 +17,10 @@
       "name": "Microsoft",
       "sector": "Technology",
       "owner_count": 12,
-      "conviction_score": 6,
-      "recent_buyers": 10,
-      "recent_sellers": 9,
-      "net_direction": "loading"
+      "conviction_score": 2,
+      "recent_buyers": 12,
+      "recent_sellers": 12,
+      "net_direction": "stable"
     },
     {
       "rank": 3,
@@ -39,10 +39,10 @@
       "name": "Alphabet",
       "sector": "Technology",
       "owner_count": 9,
-      "conviction_score": -9,
-      "recent_buyers": 8,
-      "recent_sellers": 7,
-      "net_direction": "loading"
+      "conviction_score": -21,
+      "recent_buyers": 9,
+      "recent_sellers": 12,
+      "net_direction": "unwinding"
     },
     {
       "rank": 5,
@@ -50,9 +50,9 @@
       "name": "NVIDIA",
       "sector": "Technology",
       "owner_count": 8,
-      "conviction_score": 19,
+      "conviction_score": 16,
       "recent_buyers": 10,
-      "recent_sellers": 5,
+      "recent_sellers": 7,
       "net_direction": "loading"
     },
     {
@@ -61,9 +61,9 @@
       "name": "Moody's Corp",
       "sector": "Financials",
       "owner_count": 7,
-      "conviction_score": 15,
+      "conviction_score": 6,
       "recent_buyers": 2,
-      "recent_sellers": 3,
+      "recent_sellers": 6,
       "net_direction": "unwinding"
     },
     {
@@ -72,9 +72,9 @@
       "name": "Mastercard",
       "sector": "Other",
       "owner_count": 6,
-      "conviction_score": 17,
+      "conviction_score": 13,
       "recent_buyers": 5,
-      "recent_sellers": 3,
+      "recent_sellers": 4,
       "net_direction": "loading"
     },
     {
@@ -94,10 +94,10 @@
       "name": "Alphabet Class C",
       "sector": "Technology",
       "owner_count": 4,
-      "conviction_score": 0,
-      "recent_buyers": 4,
-      "recent_sellers": 3,
-      "net_direction": "loading"
+      "conviction_score": -6,
+      "recent_buyers": 6,
+      "recent_sellers": 6,
+      "net_direction": "stable"
     },
     {
       "rank": 10,
@@ -105,10 +105,10 @@
       "name": "Bank of America",
       "sector": "Financials",
       "owner_count": 3,
-      "conviction_score": 14,
+      "conviction_score": 6,
       "recent_buyers": 5,
-      "recent_sellers": 5,
-      "net_direction": "stable"
+      "recent_sellers": 8,
+      "net_direction": "unwinding"
     },
     {
       "rank": 11,
@@ -116,9 +116,9 @@
       "name": "Apple Inc.",
       "sector": "Technology",
       "owner_count": 3,
-      "conviction_score": -20,
+      "conviction_score": -25,
       "recent_buyers": 3,
-      "recent_sellers": 5,
+      "recent_sellers": 6,
       "net_direction": "unwinding"
     },
     {
@@ -138,9 +138,9 @@
       "name": "Amazon",
       "sector": "Technology",
       "owner_count": 3,
-      "conviction_score": 6,
-      "recent_buyers": 7,
-      "recent_sellers": 8,
+      "conviction_score": -4,
+      "recent_buyers": 8,
+      "recent_sellers": 13,
       "net_direction": "unwinding"
     },
     {
@@ -149,9 +149,9 @@
       "name": "Netflix",
       "sector": "Communication",
       "owner_count": 3,
-      "conviction_score": 6,
-      "recent_buyers": 8,
-      "recent_sellers": 3,
+      "conviction_score": 5,
+      "recent_buyers": 9,
+      "recent_sellers": 4,
       "net_direction": "loading"
     },
     {
@@ -171,9 +171,9 @@
       "name": "Micron Technology",
       "sector": "Technology",
       "owner_count": 2,
-      "conviction_score": 19,
-      "recent_buyers": 4,
-      "recent_sellers": 0,
+      "conviction_score": 20,
+      "recent_buyers": 5,
+      "recent_sellers": 1,
       "net_direction": "loading"
     },
     {
@@ -193,7 +193,7 @@
       "name": "Berkshire Hathaway",
       "sector": "Financials",
       "owner_count": 2,
-      "conviction_score": 2,
+      "conviction_score": 1,
       "recent_buyers": 3,
       "recent_sellers": 1,
       "net_direction": "loading"
@@ -204,9 +204,9 @@
       "name": "Charles Schwab",
       "sector": "Financials",
       "owner_count": 2,
-      "conviction_score": 29,
+      "conviction_score": 27,
       "recent_buyers": 4,
-      "recent_sellers": 2,
+      "recent_sellers": 3,
       "net_direction": "loading"
     },
     {
@@ -237,9 +237,9 @@
       "name": "Taiwan Semi",
       "sector": "Technology",
       "owner_count": 2,
-      "conviction_score": 16,
-      "recent_buyers": 6,
-      "recent_sellers": 7,
+      "conviction_score": 7,
+      "recent_buyers": 9,
+      "recent_sellers": 11,
       "net_direction": "unwinding"
     },
     {
@@ -270,9 +270,9 @@
       "name": "UnitedHealth",
       "sector": "Healthcare",
       "owner_count": 2,
-      "conviction_score": 12,
-      "recent_buyers": 3,
-      "recent_sellers": 4,
+      "conviction_score": -1,
+      "recent_buyers": 4,
+      "recent_sellers": 8,
       "net_direction": "unwinding"
     },
     {
@@ -332,7 +332,7 @@
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

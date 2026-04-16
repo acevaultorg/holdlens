@@ -2,30 +2,18 @@
   "data": [
     {
       "rank": 1,
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "sector": "Technology",
-      "owner_count": 15,
-      "conviction_score": 5,
-      "recent_buyers": 20,
-      "recent_sellers": 9,
-      "net_flow": 11,
-      "score": 177
-    },
-    {
-      "rank": 2,
       "ticker": "MSFT",
       "name": "Microsoft",
       "sector": "Technology",
       "owner_count": 12,
-      "conviction_score": 6,
-      "recent_buyers": 10,
-      "recent_sellers": 9,
-      "net_flow": 1,
-      "score": 128
+      "conviction_score": 2,
+      "recent_buyers": 12,
+      "recent_sellers": 12,
+      "net_flow": 0,
+      "score": 122
     },
     {
-      "rank": 3,
+      "rank": 2,
       "ticker": "V",
       "name": "Visa",
       "sector": "Financials",
@@ -37,38 +25,38 @@
       "score": 110
     },
     {
-      "rank": 4,
+      "rank": 3,
       "ticker": "NVDA",
       "name": "NVIDIA",
       "sector": "Technology",
       "owner_count": 8,
-      "conviction_score": 19,
+      "conviction_score": 16,
       "recent_buyers": 10,
-      "recent_sellers": 5,
-      "net_flow": 5,
-      "score": 109
+      "recent_sellers": 7,
+      "net_flow": 3,
+      "score": 102
     },
     {
-      "rank": 5,
+      "rank": 4,
       "ticker": "MA",
       "name": "Mastercard",
       "sector": "Other",
       "owner_count": 6,
-      "conviction_score": 17,
+      "conviction_score": 13,
       "recent_buyers": 5,
-      "recent_sellers": 3,
-      "net_flow": 2,
-      "score": 81
+      "recent_sellers": 4,
+      "net_flow": 1,
+      "score": 75
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",
     "license": "Free for personal and commercial use. Attribution appreciated.",
     "docs": "https://holdlens.com/docs",
-    "count": 5,
+    "count": 4,
     "rules": "ownerCount≥5 AND conviction>0 AND 2Q netFlow≥0",
     "score_formula": "ownerCount × 10 + conviction + netFlow × 2"
   }

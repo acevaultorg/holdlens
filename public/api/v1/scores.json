@@ -34,17 +34,6 @@
       "owner_count": 3
     },
     {
-      "ticker": "SCHW",
-      "name": "Charles Schwab",
-      "sector": "Financials",
-      "score": 29,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 12,
-      "seller_count": 5,
-      "owner_count": 2
-    },
-    {
       "ticker": "FICO",
       "name": "Fair Isaac",
       "sector": "Other",
@@ -53,6 +42,17 @@
       "label": "WEAK BUY",
       "buyer_count": 2,
       "seller_count": 0,
+      "owner_count": 2
+    },
+    {
+      "ticker": "SCHW",
+      "name": "Charles Schwab",
+      "sector": "Financials",
+      "score": 27,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 15,
+      "seller_count": 8,
       "owner_count": 2
     },
     {
@@ -89,14 +89,14 @@
       "owner_count": 1
     },
     {
-      "ticker": "BN",
-      "name": "Brookfield Corp",
+      "ticker": "CB",
+      "name": "Chubb",
       "sector": "Financials",
-      "score": 23,
+      "score": 22,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 29,
-      "seller_count": 8,
+      "buyer_count": 14,
+      "seller_count": 2,
       "owner_count": 1
     },
     {
@@ -122,6 +122,17 @@
       "owner_count": 2
     },
     {
+      "ticker": "MSCI",
+      "name": "MSCI Inc",
+      "sector": "Other",
+      "score": 22,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 12,
+      "seller_count": 8,
+      "owner_count": 1
+    },
+    {
       "ticker": "TRMD",
       "name": "Torm plc",
       "sector": "Industrials",
@@ -133,103 +144,48 @@
       "owner_count": 1
     },
     {
-      "ticker": "CB",
-      "name": "Chubb",
+      "ticker": "BN",
+      "name": "Brookfield Corp",
       "sector": "Financials",
-      "score": 19,
+      "score": 20,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 13,
-      "seller_count": 2,
+      "buyer_count": 35,
+      "seller_count": 13,
       "owner_count": 1
-    },
-    {
-      "ticker": "NVDA",
-      "name": "NVIDIA",
-      "sector": "Technology",
-      "score": 19,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 32,
-      "seller_count": 9,
-      "owner_count": 8
     },
     {
       "ticker": "MU",
       "name": "Micron Technology",
       "sector": "Technology",
-      "score": 19,
+      "score": 20,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 10,
-      "seller_count": 6,
+      "buyer_count": 13,
+      "seller_count": 9,
       "owner_count": 2
     },
     {
       "ticker": "UBER",
       "name": "Uber",
       "sector": "Other",
-      "score": 19,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 14,
-      "seller_count": 10,
-      "owner_count": 1
-    },
-    {
-      "ticker": "MSCI",
-      "name": "MSCI Inc",
-      "sector": "Other",
-      "score": 19,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 9,
-      "seller_count": 8,
-      "owner_count": 1
-    },
-    {
-      "ticker": "MA",
-      "name": "Mastercard",
-      "sector": "Other",
       "score": 17,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 14,
-      "seller_count": 14,
-      "owner_count": 6
+      "buyer_count": 22,
+      "seller_count": 13,
+      "owner_count": 1
     },
     {
-      "ticker": "TSM",
-      "name": "Taiwan Semi",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
       "sector": "Technology",
       "score": 16,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 19,
-      "seller_count": 17,
-      "owner_count": 2
-    },
-    {
-      "ticker": "MCO",
-      "name": "Moody's Corp",
-      "sector": "Financials",
-      "score": 15,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 7,
-      "seller_count": 6,
-      "owner_count": 7
-    },
-    {
-      "ticker": "BAC",
-      "name": "Bank of America",
-      "sector": "Financials",
-      "score": 14,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 12,
-      "seller_count": 13,
-      "owner_count": 3
+      "buyer_count": 37,
+      "seller_count": 15,
+      "owner_count": 8
     },
     {
       "ticker": "MELI",
@@ -241,6 +197,17 @@
       "buyer_count": 2,
       "seller_count": 0,
       "owner_count": 2
+    },
+    {
+      "ticker": "MA",
+      "name": "Mastercard",
+      "sector": "Other",
+      "score": 13,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 16,
+      "seller_count": 18,
+      "owner_count": 6
     },
     {
       "ticker": "KHC",
@@ -263,17 +230,6 @@
       "buyer_count": 10,
       "seller_count": 2,
       "owner_count": 1
-    },
-    {
-      "ticker": "UNH",
-      "name": "UnitedHealth",
-      "sector": "Healthcare",
-      "score": 12,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 12,
-      "seller_count": 18,
-      "owner_count": 2
     },
     {
       "ticker": "KKR",
@@ -304,9 +260,31 @@
       "score": 8,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 13,
-      "seller_count": 17,
+      "buyer_count": 14,
+      "seller_count": 20,
       "owner_count": 10
+    },
+    {
+      "ticker": "NKE",
+      "name": "Nike",
+      "sector": "Consumer Discretionary",
+      "score": 7,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 17,
+      "seller_count": 10,
+      "owner_count": 1
+    },
+    {
+      "ticker": "TSM",
+      "name": "Taiwan Semi",
+      "sector": "Technology",
+      "score": 7,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 26,
+      "seller_count": 30,
+      "owner_count": 2
     },
     {
       "ticker": "DIS",
@@ -320,26 +298,26 @@
       "owner_count": 1
     },
     {
-      "ticker": "NOW",
-      "name": "ServiceNow",
-      "sector": "Other",
-      "score": 7,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 7,
-      "seller_count": 6,
-      "owner_count": 1
-    },
-    {
-      "ticker": "HHH",
-      "name": "Howard Hughes Holdings",
-      "sector": "Real Estate",
+      "ticker": "BAC",
+      "name": "Bank of America",
+      "sector": "Financials",
       "score": 6,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 9,
-      "seller_count": 5,
-      "owner_count": 1
+      "buyer_count": 13,
+      "seller_count": 21,
+      "owner_count": 3
+    },
+    {
+      "ticker": "MCO",
+      "name": "Moody's Corp",
+      "sector": "Financials",
+      "score": 6,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 8,
+      "seller_count": 18,
+      "owner_count": 7
     },
     {
       "ticker": "DNUT",
@@ -364,28 +342,6 @@
       "owner_count": 1
     },
     {
-      "ticker": "FNF",
-      "name": "Fidelity National Financial",
-      "sector": "Financials",
-      "score": 6,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 10,
-      "seller_count": 4,
-      "owner_count": 1
-    },
-    {
-      "ticker": "MSFT",
-      "name": "Microsoft",
-      "sector": "Technology",
-      "score": 6,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 30,
-      "seller_count": 24,
-      "owner_count": 12
-    },
-    {
       "ticker": "PR",
       "name": "Permian Resources",
       "sector": "Energy",
@@ -395,39 +351,6 @@
       "buyer_count": 1,
       "seller_count": 0,
       "owner_count": 1
-    },
-    {
-      "ticker": "CVS",
-      "name": "CVS Health",
-      "sector": "Healthcare",
-      "score": 6,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 5,
-      "seller_count": 7,
-      "owner_count": 1
-    },
-    {
-      "ticker": "NFLX",
-      "name": "Netflix",
-      "sector": "Communication",
-      "score": 6,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 14,
-      "seller_count": 11,
-      "owner_count": 3
-    },
-    {
-      "ticker": "AMZN",
-      "name": "Amazon",
-      "sector": "Technology",
-      "score": 6,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 19,
-      "seller_count": 22,
-      "owner_count": 3
     },
     {
       "ticker": "NOVO",
@@ -452,26 +375,15 @@
       "owner_count": 1
     },
     {
-      "ticker": "NKE",
-      "name": "Nike",
-      "sector": "Consumer Discretionary",
+      "ticker": "FNF",
+      "name": "Fidelity National Financial",
+      "sector": "Financials",
       "score": 5,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 14,
-      "seller_count": 9,
+      "buyer_count": 10,
+      "seller_count": 7,
       "owner_count": 1
-    },
-    {
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "sector": "Technology",
-      "score": 5,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 52,
-      "seller_count": 21,
-      "owner_count": 15
     },
     {
       "ticker": "STR",
@@ -483,6 +395,17 @@
       "buyer_count": 1,
       "seller_count": 0,
       "owner_count": 1
+    },
+    {
+      "ticker": "NFLX",
+      "name": "Netflix",
+      "sector": "Communication",
+      "score": 5,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 15,
+      "seller_count": 15,
+      "owner_count": 3
     },
     {
       "ticker": "ENPH",
@@ -518,17 +441,6 @@
       "owner_count": 1
     },
     {
-      "ticker": "CVX",
-      "name": "Chevron",
-      "sector": "Energy",
-      "score": 4,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 5,
-      "seller_count": 4,
-      "owner_count": 1
-    },
-    {
       "ticker": "FTNT",
       "name": "Fortinet",
       "sector": "Other",
@@ -537,6 +449,17 @@
       "label": "WEAK BUY",
       "buyer_count": 1,
       "seller_count": 0,
+      "owner_count": 1
+    },
+    {
+      "ticker": "NOW",
+      "name": "ServiceNow",
+      "sector": "Other",
+      "score": 4,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 8,
+      "seller_count": 7,
       "owner_count": 1
     },
     {
@@ -551,36 +474,58 @@
       "owner_count": 1
     },
     {
-      "ticker": "FE",
-      "name": "FirstEnergy",
-      "sector": "Utilities",
+      "ticker": "CVS",
+      "name": "CVS Health",
+      "sector": "Healthcare",
       "score": 3,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 4,
-      "seller_count": 4,
+      "buyer_count": 7,
+      "seller_count": 9,
       "owner_count": 1
     },
     {
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway",
+      "ticker": "CMCSA",
+      "name": "Comcast",
+      "sector": "Communication",
+      "score": 3,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 8,
+      "seller_count": 2,
+      "owner_count": 1
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "sector": "Technology",
+      "score": 2,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 40,
+      "seller_count": 33,
+      "owner_count": 12
+    },
+    {
+      "ticker": "JPM",
+      "name": "JPMorgan Chase",
       "sector": "Financials",
       "score": 2,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 5,
-      "seller_count": 2,
-      "owner_count": 2
+      "buyer_count": 12,
+      "seller_count": 6,
+      "owner_count": 1
     },
     {
-      "ticker": "HLT",
-      "name": "Hilton Worldwide",
-      "sector": "Consumer Discretionary",
+      "ticker": "CVX",
+      "name": "Chevron",
+      "sector": "Energy",
       "score": 1,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 7,
-      "seller_count": 4,
+      "buyer_count": 8,
+      "seller_count": 7,
       "owner_count": 1
     },
     {
@@ -590,53 +535,20 @@
       "score": 1,
       "direction": "BUY",
       "label": "WEAK BUY",
-      "buyer_count": 5,
-      "seller_count": 2,
-      "owner_count": 1
-    },
-    {
-      "ticker": "JPM",
-      "name": "JPMorgan Chase",
-      "sector": "Financials",
-      "score": 1,
-      "direction": "BUY",
-      "label": "WEAK BUY",
       "buyer_count": 9,
-      "seller_count": 5,
+      "seller_count": 3,
       "owner_count": 1
     },
     {
-      "ticker": "CMCSA",
-      "name": "Comcast",
-      "sector": "Communication",
-      "score": 1,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 7,
-      "seller_count": 2,
-      "owner_count": 1
-    },
-    {
-      "ticker": "SPOT",
-      "name": "Spotify",
-      "sector": "Other",
-      "score": 1,
-      "direction": "BUY",
-      "label": "WEAK BUY",
-      "buyer_count": 10,
-      "seller_count": 14,
-      "owner_count": 1
-    },
-    {
-      "ticker": "AXP",
-      "name": "American Express",
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway",
       "sector": "Financials",
-      "score": 0,
-      "direction": "NEUTRAL",
-      "label": "NEUTRAL",
-      "buyer_count": 4,
-      "seller_count": 0,
-      "owner_count": 1
+      "score": 1,
+      "direction": "BUY",
+      "label": "WEAK BUY",
+      "buyer_count": 5,
+      "seller_count": 6,
+      "owner_count": 2
     },
     {
       "ticker": "DVA",
@@ -650,15 +562,15 @@
       "owner_count": 1
     },
     {
-      "ticker": "GOOG",
-      "name": "Alphabet Class C",
-      "sector": "Technology",
+      "ticker": "HHH",
+      "name": "Howard Hughes Holdings",
+      "sector": "Real Estate",
       "score": 0,
       "direction": "NEUTRAL",
       "label": "NEUTRAL",
-      "buyer_count": 8,
-      "seller_count": 15,
-      "owner_count": 4
+      "buyer_count": 9,
+      "seller_count": 10,
+      "owner_count": 1
     },
     {
       "ticker": "CP",
@@ -903,6 +815,28 @@
       "owner_count": 2
     },
     {
+      "ticker": "META",
+      "name": "Meta Platforms",
+      "sector": "Technology",
+      "score": -1,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 58,
+      "seller_count": 27,
+      "owner_count": 15
+    },
+    {
+      "ticker": "UNH",
+      "name": "UnitedHealth",
+      "sector": "Healthcare",
+      "score": -1,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 18,
+      "seller_count": 33,
+      "owner_count": 2
+    },
+    {
       "ticker": "BIDU",
       "name": "Baidu",
       "sector": "Technology",
@@ -936,14 +870,14 @@
       "owner_count": 1
     },
     {
-      "ticker": "C",
-      "name": "Citigroup",
-      "sector": "Financials",
+      "ticker": "SPOT",
+      "name": "Spotify",
+      "sector": "Other",
       "score": -2,
       "direction": "SELL",
       "label": "WEAK SELL",
-      "buyer_count": 7,
-      "seller_count": 11,
+      "buyer_count": 10,
+      "seller_count": 19,
       "owner_count": 1
     },
     {
@@ -958,14 +892,14 @@
       "owner_count": 1
     },
     {
-      "ticker": "KO",
-      "name": "Coca-Cola",
-      "sector": "Consumer Staples",
+      "ticker": "AXP",
+      "name": "American Express",
+      "sector": "Financials",
       "score": -3,
       "direction": "SELL",
       "label": "WEAK SELL",
-      "buyer_count": 2,
-      "seller_count": 6,
+      "buyer_count": 4,
+      "seller_count": 5,
       "owner_count": 1
     },
     {
@@ -980,63 +914,129 @@
       "owner_count": 1
     },
     {
-      "ticker": "TSLA",
-      "name": "Tesla",
-      "sector": "Other",
+      "ticker": "HLT",
+      "name": "Hilton Worldwide",
+      "sector": "Consumer Discretionary",
       "score": -4,
       "direction": "SELL",
       "label": "WEAK SELL",
+      "buyer_count": 7,
+      "seller_count": 10,
+      "owner_count": 1
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon",
+      "sector": "Technology",
+      "score": -4,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 23,
+      "seller_count": 37,
+      "owner_count": 3
+    },
+    {
+      "ticker": "C",
+      "name": "Citigroup",
+      "sector": "Financials",
+      "score": -5,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 8,
+      "seller_count": 13,
+      "owner_count": 1
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla",
+      "sector": "Other",
+      "score": -5,
+      "direction": "SELL",
+      "label": "WEAK SELL",
       "buyer_count": 15,
-      "seller_count": 6,
+      "seller_count": 10,
+      "owner_count": 1
+    },
+    {
+      "ticker": "KO",
+      "name": "Coca-Cola",
+      "sector": "Consumer Staples",
+      "score": -6,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 4,
+      "seller_count": 7,
+      "owner_count": 1
+    },
+    {
+      "ticker": "GOOG",
+      "name": "Alphabet Class C",
+      "sector": "Technology",
+      "score": -6,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 12,
+      "seller_count": 26,
+      "owner_count": 4
+    },
+    {
+      "ticker": "FE",
+      "name": "FirstEnergy",
+      "sector": "Utilities",
+      "score": -6,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 8,
+      "seller_count": 10,
       "owner_count": 1
     },
     {
       "ticker": "COF",
       "name": "Capital One Financial",
       "sector": "Financials",
-      "score": -6,
+      "score": -8,
       "direction": "SELL",
       "label": "WEAK SELL",
-      "buyer_count": 16,
-      "seller_count": 11,
+      "buyer_count": 21,
+      "seller_count": 19,
+      "owner_count": 1
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly",
+      "sector": "Other",
+      "score": -8,
+      "direction": "SELL",
+      "label": "WEAK SELL",
+      "buyer_count": 15,
+      "seller_count": 13,
       "owner_count": 1
     },
     {
       "ticker": "GOOGL",
       "name": "Alphabet",
       "sector": "Technology",
-      "score": -9,
+      "score": -21,
       "direction": "SELL",
       "label": "WEAK SELL",
-      "buyer_count": 15,
-      "seller_count": 21,
+      "buyer_count": 19,
+      "seller_count": 32,
       "owner_count": 9
-    },
-    {
-      "ticker": "LLY",
-      "name": "Eli Lilly",
-      "sector": "Other",
-      "score": -9,
-      "direction": "SELL",
-      "label": "WEAK SELL",
-      "buyer_count": 14,
-      "seller_count": 13,
-      "owner_count": 1
     },
     {
       "ticker": "AAPL",
       "name": "Apple Inc.",
       "sector": "Technology",
-      "score": -20,
+      "score": -25,
       "direction": "SELL",
       "label": "WEAK SELL",
-      "buyer_count": 9,
-      "seller_count": 21,
+      "buyer_count": 14,
+      "seller_count": 25,
       "owner_count": 3
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

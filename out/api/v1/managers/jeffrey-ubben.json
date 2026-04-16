@@ -81,11 +81,18 @@
         "action": "add",
         "delta_pct": 10,
         "portfolio_impact_pct": 11.2
+      },
+      {
+        "quarter": "2024-Q1",
+        "ticker": "UNIFI",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
       }
     ]
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

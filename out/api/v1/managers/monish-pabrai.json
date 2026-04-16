@@ -67,11 +67,32 @@
         "action": "trim",
         "delta_pct": -25,
         "portfolio_impact_pct": 21.3
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "NOBLE",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "NOBLE",
+        "action": "trim",
+        "delta_pct": -86,
+        "portfolio_impact_pct": 2
+      },
+      {
+        "quarter": "2025-Q1",
+        "ticker": "NOBLE",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 17.4
       }
     ]
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

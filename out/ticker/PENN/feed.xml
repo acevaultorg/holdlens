@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PENN — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/PENN</link>
+    <atom:link href="https://holdlens.com/ticker/PENN/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on PENN (PENN Entertainment) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>David Einhorn: EXITED PENN · Q3 2025</title>
+      <link>https://holdlens.com/signal/PENN</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/PENN#2025-Q3-david-einhorn-exit-0</guid>
+      <description>David Einhorn (Greenlight Capital) exited PENN in Q3 2025. Closed PENN Entertainment fully.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>exit</category>
+      <author>noreply@holdlens.com (David Einhorn)</author>
+    </item>
+  </channel>
+</rss>

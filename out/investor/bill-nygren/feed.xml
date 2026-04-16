@@ -6,7 +6,7 @@
     <atom:link href="https://holdlens.com/investor/bill-nygren/feed.xml" rel="self" type="application/rss+xml" />
     <description>Every 13F move by Bill Nygren (Oakmark Funds) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2026 21:52:58 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:27 GMT</lastBuildDate>
     <item>
       <title>Bill Nygren: ADDED NFLX (+12%) · Q4 2025</title>
       <link>https://holdlens.com/signal/NFLX</link>
@@ -24,43 +24,307 @@
       <category>add</category>
     </item>
     <item>
-      <title>Bill Nygren: ADDED NFLX (+10%) · Q3 2025</title>
-      <link>https://holdlens.com/signal/NFLX</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q3-NFLX-add-2</guid>
-      <description>Bill Nygren (Oakmark Funds) added NFLX in Q3 2025 · 3.6% of portfolio. Netflix profitability story.</description>
-      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <title>Bill Nygren: ADDED  (+7%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4--add-2</guid>
+      <description>Bill Nygren (Oakmark Funds) added  in Q4 2025 · 56.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>add</category>
     </item>
     <item>
-      <title>Bill Nygren: ADDED C (+15%) · Q3 2025</title>
+      <title>Bill Nygren: TRIMMED GOOGL (-22%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/GOOGL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-GOOGL-trim-3</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed GOOGL in Q4 2025 · 3.5% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED COF (+20%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/COF</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-COF-add-4</guid>
+      <description>Bill Nygren (Oakmark Funds) added COF in Q4 2025 · 3.3% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED CRM (+39%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/CRM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-CRM-add-5</guid>
+      <description>Bill Nygren (Oakmark Funds) added CRM in Q4 2025 · 3.3% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED ABNB (+21%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/ABNB</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-ABNB-add-6</guid>
+      <description>Bill Nygren (Oakmark Funds) added ABNB in Q4 2025 · 3.2% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED KEYS (+38%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/KEYS</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-KEYS-add-7</guid>
+      <description>Bill Nygren (Oakmark Funds) added KEYS in Q4 2025 · 3.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED COP (+27%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/COP</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-COP-add-8</guid>
+      <description>Bill Nygren (Oakmark Funds) added COP in Q4 2025 · 2.8% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED MRK (+43%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MRK</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-MRK-add-9</guid>
+      <description>Bill Nygren (Oakmark Funds) added MRK in Q4 2025 · 1.9% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED GM (-17%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/GM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-GM-trim-10</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed GM in Q4 2025 · 1.8% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED DELL (+45%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/DELL</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-DELL-add-11</guid>
+      <description>Bill Nygren (Oakmark Funds) added DELL in Q4 2025 · 1.7% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED FE (+198%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/FE</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-FE-add-12</guid>
+      <description>Bill Nygren (Oakmark Funds) added FE in Q4 2025 · 1.7% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED C (-27%) · Q4 2025</title>
       <link>https://holdlens.com/signal/C</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q3-C-add-3</guid>
-      <description>Bill Nygren (Oakmark Funds) added C in Q3 2025 · 4.0% of portfolio. More Citigroup on turnaround.</description>
-      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-C-trim-13</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed C in Q4 2025 · 1.5% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED BAC (-27%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/BAC</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-BAC-trim-14</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed BAC in Q4 2025 · 1.4% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED ZM (+158%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/ZM</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-ZM-add-15</guid>
+      <description>Bill Nygren (Oakmark Funds) added ZM in Q4 2025 · 1.4% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>add</category>
     </item>
     <item>
-      <title>Bill Nygren: NEW POSITION KKR · Q3 2025</title>
-      <link>https://holdlens.com/signal/KKR</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q3-KKR-new-4</guid>
-      <description>Bill Nygren (Oakmark Funds) new position KKR in Q3 2025 · 2.2% of portfolio. New KKR position — alts.</description>
-      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
-      <category>new</category>
-    </item>
-    <item>
-      <title>Bill Nygren: ADDED NFLX (+8%) · Q2 2025</title>
-      <link>https://holdlens.com/signal/NFLX</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q2-NFLX-add-5</guid>
-      <description>Bill Nygren (Oakmark Funds) added NFLX in Q2 2025 · 3.4% of portfolio. Building Netflix.</description>
-      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <title>Bill Nygren: ADDED NKE (+72%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/NKE</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-NKE-add-16</guid>
+      <description>Bill Nygren (Oakmark Funds) added NKE in Q4 2025 · 1.2% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>add</category>
     </item>
     <item>
-      <title>Bill Nygren: ADDED C (+10%) · Q2 2025</title>
-      <link>https://holdlens.com/signal/C</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q2-C-add-6</guid>
-      <description>Bill Nygren (Oakmark Funds) added C in Q2 2025 · 3.7% of portfolio. Building Citigroup.</description>
-      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <title>Bill Nygren: ADDED CHTR (+24%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/CHTR</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-CHTR-add-17</guid>
+      <description>Bill Nygren (Oakmark Funds) added CHTR in Q4 2025 · 1.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED GPN (+66%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/GPN</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-GPN-add-18</guid>
+      <description>Bill Nygren (Oakmark Funds) added GPN in Q4 2025 · 1.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED CMCSA (+24%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/CMCSA</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-CMCSA-add-19</guid>
+      <description>Bill Nygren (Oakmark Funds) added CMCSA in Q4 2025 · 1.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED STZ (+58%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/STZ</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-STZ-add-20</guid>
+      <description>Bill Nygren (Oakmark Funds) added STZ in Q4 2025 · 0.6% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED GOOG (-19%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/GOOG</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-GOOG-trim-21</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed GOOG in Q4 2025 · 0.4% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED AXP (-10%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/AXP</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-AXP-trim-22</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed AXP in Q4 2025 · 0.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED HCA (-18%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/HCA</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-HCA-trim-23</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed HCA in Q4 2025 · 0.1% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED ABBV (-15%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/ABBV</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-ABBV-trim-24</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed ABBV in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED CVX (-18%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/CVX</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-CVX-trim-25</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed CVX in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED DHR (-22%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/DHR</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-DHR-trim-26</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed DHR in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED DEO (-32%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/DEO</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-DEO-trim-27</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed DEO in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED GS (-10%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/GS</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-GS-trim-28</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed GS in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED HLT (-9%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/HLT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-HLT-trim-29</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed HLT in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED HHH (-35%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/HHH</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-HHH-trim-30</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed HHH in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED IVV (-73%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/IVV</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-IVV-trim-31</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed IVV in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED KR (-85%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/KR</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-KR-trim-32</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed KR in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED META (+12%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/META</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-META-add-33</guid>
+      <description>Bill Nygren (Oakmark Funds) added META in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED MSFT (-13%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MSFT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-MSFT-trim-34</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed MSFT in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED MCO (-25%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/MCO</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-MCO-trim-35</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed MCO in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: TRIMMED NVDA (-12%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/NVDA</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-NVDA-trim-36</guid>
+      <description>Bill Nygren (Oakmark Funds) trimmed NVDA in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED SPG (+152%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/SPG</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-SPG-add-37</guid>
+      <description>Bill Nygren (Oakmark Funds) added SPG in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED VTI (+1320%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/VTI</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-VTI-add-38</guid>
+      <description>Bill Nygren (Oakmark Funds) added VTI in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+    </item>
+    <item>
+      <title>Bill Nygren: ADDED WMT (+33%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/WMT</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/bill-nygren#2025-Q4-WMT-add-39</guid>
+      <description>Bill Nygren (Oakmark Funds) added WMT in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>add</category>
     </item>
   </channel>

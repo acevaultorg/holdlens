@@ -7,35 +7,21 @@
         "ticker": "SCHW",
         "name": "Charles Schwab",
         "owner_count": 2,
-        "conviction_score": 29,
-        "direction": "BUY"
-      },
-      {
-        "ticker": "BN",
-        "name": "Brookfield Corp",
-        "owner_count": 1,
-        "conviction_score": 23,
+        "conviction_score": 27,
         "direction": "BUY"
       },
       {
         "ticker": "CB",
         "name": "Chubb",
         "owner_count": 1,
-        "conviction_score": 19,
+        "conviction_score": 22,
         "direction": "BUY"
       },
       {
-        "ticker": "MCO",
-        "name": "Moody's Corp",
-        "owner_count": 7,
-        "conviction_score": 15,
-        "direction": "BUY"
-      },
-      {
-        "ticker": "BAC",
-        "name": "Bank of America",
-        "owner_count": 3,
-        "conviction_score": 14,
+        "ticker": "BN",
+        "name": "Brookfield Corp",
+        "owner_count": 1,
+        "conviction_score": 20,
         "direction": "BUY"
       },
       {
@@ -46,24 +32,31 @@
         "direction": "BUY"
       },
       {
-        "ticker": "FNF",
-        "name": "Fidelity National Financial",
-        "owner_count": 1,
+        "ticker": "BAC",
+        "name": "Bank of America",
+        "owner_count": 3,
         "conviction_score": 6,
         "direction": "BUY"
       },
       {
-        "ticker": "BRK.B",
-        "name": "Berkshire Hathaway",
-        "owner_count": 2,
-        "conviction_score": 2,
+        "ticker": "MCO",
+        "name": "Moody's Corp",
+        "owner_count": 7,
+        "conviction_score": 6,
+        "direction": "BUY"
+      },
+      {
+        "ticker": "FNF",
+        "name": "Fidelity National Financial",
+        "owner_count": 1,
+        "conviction_score": 5,
         "direction": "BUY"
       },
       {
         "ticker": "JPM",
         "name": "JPMorgan Chase",
         "owner_count": 1,
-        "conviction_score": 1,
+        "conviction_score": 2,
         "direction": "BUY"
       },
       {
@@ -74,11 +67,11 @@
         "direction": "BUY"
       },
       {
-        "ticker": "AXP",
-        "name": "American Express",
-        "owner_count": 1,
-        "conviction_score": 0,
-        "direction": "NEUTRAL"
+        "ticker": "BRK.B",
+        "name": "Berkshire Hathaway",
+        "owner_count": 2,
+        "conviction_score": 1,
+        "direction": "BUY"
       },
       {
         "ticker": "LNC",
@@ -109,17 +102,24 @@
         "direction": "NEUTRAL"
       },
       {
+        "ticker": "AXP",
+        "name": "American Express",
+        "owner_count": 1,
+        "conviction_score": -3,
+        "direction": "SELL"
+      },
+      {
         "ticker": "C",
         "name": "Citigroup",
         "owner_count": 1,
-        "conviction_score": -2,
+        "conviction_score": -5,
         "direction": "SELL"
       },
       {
         "ticker": "COF",
         "name": "Capital One Financial",
         "owner_count": 1,
-        "conviction_score": -6,
+        "conviction_score": -8,
         "direction": "SELL"
       }
     ],
@@ -187,39 +187,39 @@
     ],
     "flow": {
       "2025-Q4": {
-        "net": 13.4,
-        "buys": 24,
-        "sells": 20
+        "net": 14.3,
+        "buys": 27,
+        "sells": 25
       },
       "2025-Q3": {
-        "net": 24.6,
+        "net": 12.9,
         "buys": 26,
-        "sells": 11
+        "sells": 20
       },
       "2025-Q2": {
-        "net": 16.3,
-        "buys": 21,
-        "sells": 12
+        "net": 17.5,
+        "buys": 28,
+        "sells": 19
       },
       "2025-Q1": {
-        "net": 10.7,
-        "buys": 24,
-        "sells": 11
+        "net": -0.3,
+        "buys": 29,
+        "sells": 22
       },
       "2024-Q4": {
-        "net": 3.7,
-        "buys": 15,
-        "sells": 11
+        "net": 0.5,
+        "buys": 18,
+        "sells": 18
       },
       "2024-Q3": {
-        "net": 6,
-        "buys": 18,
-        "sells": 10
+        "net": 7.4,
+        "buys": 25,
+        "sells": 16
       },
       "2024-Q2": {
-        "net": 3.6,
-        "buys": 11,
-        "sells": 11
+        "net": -5.3,
+        "buys": 12,
+        "sells": 21
       },
       "2024-Q1": {
         "net": 6.7,
@@ -230,15 +230,15 @@
     "stats": {
       "ticker_count": 17,
       "total_owners": 36,
-      "avg_conviction": 6.5,
-      "net_flow_4q": 65,
-      "strong_buys": 2,
+      "avg_conviction": 4.8,
+      "net_flow_4q": 44.4,
+      "strong_buys": 3,
       "strong_sells": 0
     },
     "permalink": "https://holdlens.com/sector/financials"
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

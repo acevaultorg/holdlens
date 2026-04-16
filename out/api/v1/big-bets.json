@@ -57,25 +57,25 @@
     },
     {
       "rank": 6,
-      "manager": "Glenn Greenberg",
-      "manager_slug": "glenn-greenberg",
-      "fund": "Brave Warrior Advisors",
-      "ticker": "SCHW",
-      "name": "Charles Schwab",
-      "position_pct": 17.8,
-      "conviction_score": 29,
-      "combined_score": 516.2
-    },
-    {
-      "rank": 7,
       "manager": "Mohnish Pabrai",
       "manager_slug": "monish-pabrai",
       "fund": "Pabrai Investment Funds",
       "ticker": "MU",
       "name": "Micron Technology",
       "position_pct": 24.6,
-      "conviction_score": 19,
-      "combined_score": 467.4
+      "conviction_score": 20,
+      "combined_score": 492
+    },
+    {
+      "rank": 7,
+      "manager": "Glenn Greenberg",
+      "manager_slug": "glenn-greenberg",
+      "fund": "Brave Warrior Advisors",
+      "ticker": "SCHW",
+      "name": "Charles Schwab",
+      "position_pct": 17.8,
+      "conviction_score": 27,
+      "combined_score": 480.6
     },
     {
       "rank": 8,
@@ -104,17 +104,6 @@
       "manager": "Li Lu",
       "manager_slug": "li-lu",
       "fund": "Himalaya Capital",
-      "ticker": "BAC",
-      "name": "Bank of America",
-      "position_pct": 27.4,
-      "conviction_score": 14,
-      "combined_score": 383.6
-    },
-    {
-      "rank": 11,
-      "manager": "Li Lu",
-      "manager_slug": "li-lu",
-      "fund": "Himalaya Capital",
       "ticker": "BABA",
       "name": "Alibaba",
       "position_pct": 9.7,
@@ -122,18 +111,18 @@
       "combined_score": 378.3
     },
     {
-      "rank": 12,
+      "rank": 11,
       "manager": "Dev Kantesaria",
       "manager_slug": "dev-kantesaria",
       "fund": "Valley Forge Capital",
-      "ticker": "MCO",
-      "name": "Moody's",
-      "position_pct": 22.4,
-      "conviction_score": 15,
-      "combined_score": 336
+      "ticker": "MSCI",
+      "name": "MSCI Inc",
+      "position_pct": 15.3,
+      "conviction_score": 22,
+      "combined_score": 336.6
     },
     {
-      "rank": 13,
+      "rank": 12,
       "manager": "Howard Marks",
       "manager_slug": "howard-marks",
       "fund": "Oaktree Capital",
@@ -144,29 +133,7 @@
       "combined_score": 310.8
     },
     {
-      "rank": 14,
-      "manager": "Chuck Akre",
-      "manager_slug": "chuck-akre",
-      "fund": "Akre Capital Management",
-      "ticker": "MA",
-      "name": "Mastercard",
-      "position_pct": 17.8,
-      "conviction_score": 17,
-      "combined_score": 302.6
-    },
-    {
-      "rank": 15,
-      "manager": "Dev Kantesaria",
-      "manager_slug": "dev-kantesaria",
-      "fund": "Valley Forge Capital",
-      "ticker": "MSCI",
-      "name": "MSCI Inc",
-      "position_pct": 15.3,
-      "conviction_score": 19,
-      "combined_score": 290.7
-    },
-    {
-      "rank": 16,
+      "rank": 13,
       "manager": "Howard Marks",
       "manager_slug": "howard-marks",
       "fund": "Oaktree Capital",
@@ -177,40 +144,18 @@
       "combined_score": 246.4
     },
     {
-      "rank": 17,
-      "manager": "Bill Ackman",
-      "manager_slug": "bill-ackman",
-      "fund": "Pershing Square Capital",
-      "ticker": "BN",
-      "name": "Brookfield Corp",
-      "position_pct": 9.5,
-      "conviction_score": 23,
-      "combined_score": 218.5
+      "rank": 14,
+      "manager": "Chuck Akre",
+      "manager_slug": "chuck-akre",
+      "fund": "Akre Capital Management",
+      "ticker": "MA",
+      "name": "Mastercard",
+      "position_pct": 17.8,
+      "conviction_score": 13,
+      "combined_score": 231.4
     },
     {
-      "rank": 18,
-      "manager": "Stanley Druckenmiller",
-      "manager_slug": "stanley-druckenmiller",
-      "fund": "Duquesne Family Office",
-      "ticker": "NVDA",
-      "name": "NVIDIA",
-      "position_pct": 11.4,
-      "conviction_score": 19,
-      "combined_score": 216.6
-    },
-    {
-      "rank": 19,
-      "manager": "Glenn Greenberg",
-      "manager_slug": "glenn-greenberg",
-      "fund": "Brave Warrior Advisors",
-      "ticker": "MCO",
-      "name": "Moody's",
-      "position_pct": 14.2,
-      "conviction_score": 15,
-      "combined_score": 213
-    },
-    {
-      "rank": 20,
+      "rank": 15,
       "manager": "Seth Klarman",
       "manager_slug": "seth-klarman",
       "fund": "Baupost Group",
@@ -221,7 +166,7 @@
       "combined_score": 211.2
     },
     {
-      "rank": 21,
+      "rank": 16,
       "manager": "David Tepper",
       "manager_slug": "david-tepper",
       "fund": "Appaloosa Management",
@@ -232,7 +177,7 @@
       "combined_score": 210.6
     },
     {
-      "rank": 22,
+      "rank": 17,
       "manager": "Dev Kantesaria",
       "manager_slug": "dev-kantesaria",
       "fund": "Valley Forge Capital",
@@ -243,7 +188,7 @@
       "combined_score": 210
     },
     {
-      "rank": 23,
+      "rank": 18,
       "manager": "Howard Marks",
       "manager_slug": "howard-marks",
       "fund": "Oaktree Capital",
@@ -254,62 +199,29 @@
       "combined_score": 206.8
     },
     {
-      "rank": 24,
-      "manager": "Chuck Akre",
-      "manager_slug": "chuck-akre",
-      "fund": "Akre Capital Management",
-      "ticker": "MCO",
-      "name": "Moody's",
-      "position_pct": 13.4,
-      "conviction_score": 15,
-      "combined_score": 201
+      "rank": 19,
+      "manager": "Bill Ackman",
+      "manager_slug": "bill-ackman",
+      "fund": "Pershing Square Capital",
+      "ticker": "BN",
+      "name": "Brookfield Corp",
+      "position_pct": 9.5,
+      "conviction_score": 20,
+      "combined_score": 190
     },
     {
-      "rank": 25,
-      "manager": "David Tepper",
-      "manager_slug": "david-tepper",
-      "fund": "Appaloosa Management",
+      "rank": 20,
+      "manager": "Stanley Druckenmiller",
+      "manager_slug": "stanley-druckenmiller",
+      "fund": "Duquesne Family Office",
       "ticker": "NVDA",
       "name": "NVIDIA",
-      "position_pct": 10.2,
-      "conviction_score": 19,
-      "combined_score": 193.8
+      "position_pct": 11.4,
+      "conviction_score": 16,
+      "combined_score": 182.4
     },
     {
-      "rank": 26,
-      "manager": "François Rochon",
-      "manager_slug": "francois-rochon",
-      "fund": "Giverny Capital",
-      "ticker": "MA",
-      "name": "Mastercard",
-      "position_pct": 11.2,
-      "conviction_score": 17,
-      "combined_score": 190.4
-    },
-    {
-      "rank": 27,
-      "manager": "Dev Kantesaria",
-      "manager_slug": "dev-kantesaria",
-      "fund": "Valley Forge Capital",
-      "ticker": "MA",
-      "name": "Mastercard",
-      "position_pct": 11.2,
-      "conviction_score": 17,
-      "combined_score": 190.4
-    },
-    {
-      "rank": 28,
-      "manager": "Tom Slater",
-      "manager_slug": "tom-slater",
-      "fund": "Baillie Gifford (Long Term Global Growth)",
-      "ticker": "NVDA",
-      "name": "NVIDIA",
-      "position_pct": 9.4,
-      "conviction_score": 19,
-      "combined_score": 178.6
-    },
-    {
-      "rank": 29,
+      "rank": 21,
       "manager": "Bill Ackman",
       "manager_slug": "bill-ackman",
       "fund": "Pershing Square Capital",
@@ -320,7 +232,7 @@
       "combined_score": 177.6
     },
     {
-      "rank": 30,
+      "rank": 22,
       "manager": "Stanley Druckenmiller",
       "manager_slug": "stanley-druckenmiller",
       "fund": "Duquesne Family Office",
@@ -331,7 +243,7 @@
       "combined_score": 176.8
     },
     {
-      "rank": 31,
+      "rank": 23,
       "manager": "Bill Ackman",
       "manager_slug": "bill-ackman",
       "fund": "Pershing Square Capital",
@@ -342,18 +254,7 @@
       "combined_score": 171.2
     },
     {
-      "rank": 32,
-      "manager": "Terry Smith",
-      "manager_slug": "terry-smith",
-      "fund": "Fundsmith",
-      "ticker": "MA",
-      "name": "Mastercard",
-      "position_pct": 9.8,
-      "conviction_score": 17,
-      "combined_score": 166.6
-    },
-    {
-      "rank": 33,
+      "rank": 24,
       "manager": "David Rolfe",
       "manager_slug": "david-rolfe",
       "fund": "Wedgewood Partners",
@@ -364,7 +265,29 @@
       "combined_score": 165.2
     },
     {
-      "rank": 34,
+      "rank": 25,
+      "manager": "Li Lu",
+      "manager_slug": "li-lu",
+      "fund": "Himalaya Capital",
+      "ticker": "BAC",
+      "name": "Bank of America",
+      "position_pct": 27.4,
+      "conviction_score": 6,
+      "combined_score": 164.4
+    },
+    {
+      "rank": 26,
+      "manager": "David Tepper",
+      "manager_slug": "david-tepper",
+      "fund": "Appaloosa Management",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "position_pct": 10.2,
+      "conviction_score": 16,
+      "combined_score": 163.2
+    },
+    {
+      "rank": 27,
       "manager": "Warren Buffett",
       "manager_slug": "warren-buffett",
       "fund": "Berkshire Hathaway",
@@ -375,7 +298,7 @@
       "combined_score": 161.7
     },
     {
-      "rank": 35,
+      "rank": 28,
       "manager": "Carl Icahn",
       "manager_slug": "carl-icahn",
       "fund": "Icahn Enterprises",
@@ -386,95 +309,84 @@
       "combined_score": 158.4
     },
     {
-      "rank": 36,
-      "manager": "Warren Buffett",
-      "manager_slug": "warren-buffett",
-      "fund": "Berkshire Hathaway",
-      "ticker": "BAC",
-      "name": "Bank of America",
-      "position_pct": 11.2,
-      "conviction_score": 14,
-      "combined_score": 156.8
-    },
-    {
-      "rank": 37,
-      "manager": "David Rolfe",
-      "manager_slug": "david-rolfe",
-      "fund": "Wedgewood Partners",
-      "ticker": "TSM",
-      "name": "Taiwan Semiconductor",
-      "position_pct": 9.1,
-      "conviction_score": 16,
-      "combined_score": 145.6
-    },
-    {
-      "rank": 38,
-      "manager": "Chris Hohn",
-      "manager_slug": "chris-hohn",
-      "fund": "TCI Fund Management",
-      "ticker": "MCO",
-      "name": "Moody's",
+      "rank": 29,
+      "manager": "Tom Slater",
+      "manager_slug": "tom-slater",
+      "fund": "Baillie Gifford (Long Term Global Growth)",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
       "position_pct": 9.4,
-      "conviction_score": 15,
-      "combined_score": 141
+      "conviction_score": 16,
+      "combined_score": 150.4
     },
     {
-      "rank": 39,
+      "rank": 30,
       "manager": "Prem Watsa",
       "manager_slug": "prem-watsa",
       "fund": "Fairfax Financial",
       "ticker": "MU",
       "name": "Micron Technology",
       "position_pct": 7.4,
-      "conviction_score": 19,
-      "combined_score": 140.6
+      "conviction_score": 20,
+      "combined_score": 148
     },
     {
-      "rank": 40,
+      "rank": 31,
+      "manager": "François Rochon",
+      "manager_slug": "francois-rochon",
+      "fund": "Giverny Capital",
+      "ticker": "MA",
+      "name": "Mastercard",
+      "position_pct": 11.2,
+      "conviction_score": 13,
+      "combined_score": 145.6
+    },
+    {
+      "rank": 32,
+      "manager": "Dev Kantesaria",
+      "manager_slug": "dev-kantesaria",
+      "fund": "Valley Forge Capital",
+      "ticker": "MA",
+      "name": "Mastercard",
+      "position_pct": 11.2,
+      "conviction_score": 13,
+      "combined_score": 145.6
+    },
+    {
+      "rank": 33,
+      "manager": "Dev Kantesaria",
+      "manager_slug": "dev-kantesaria",
+      "fund": "Valley Forge Capital",
+      "ticker": "MCO",
+      "name": "Moody's",
+      "position_pct": 22.4,
+      "conviction_score": 6,
+      "combined_score": 134.4
+    },
+    {
+      "rank": 34,
+      "manager": "Terry Smith",
+      "manager_slug": "terry-smith",
+      "fund": "Fundsmith",
+      "ticker": "MA",
+      "name": "Mastercard",
+      "position_pct": 9.8,
+      "conviction_score": 13,
+      "combined_score": 127.4
+    },
+    {
+      "rank": 35,
       "manager": "John Armitage",
       "manager_slug": "john-armitage",
       "fund": "Egerton Capital",
       "ticker": "SCHW",
       "name": "Charles Schwab",
       "position_pct": 4.7,
-      "conviction_score": 29,
-      "combined_score": 136.3
+      "conviction_score": 27,
+      "combined_score": 126.9
     },
     {
-      "rank": 41,
-      "manager": "Chase Coleman",
-      "manager_slug": "chase-coleman",
-      "fund": "Tiger Global Management",
-      "ticker": "NVDA",
-      "name": "NVIDIA",
-      "position_pct": 7.1,
-      "conviction_score": 19,
-      "combined_score": 134.9
-    },
-    {
-      "rank": 42,
-      "manager": "John Armitage",
-      "manager_slug": "john-armitage",
-      "fund": "Egerton Capital",
-      "ticker": "NVDA",
-      "name": "NVIDIA",
-      "position_pct": 6.4,
-      "conviction_score": 19,
-      "combined_score": 121.6
-    },
-    {
-      "rank": 43,
-      "manager": "Andreas Halvorsen",
-      "manager_slug": "andreas-halvorsen",
-      "fund": "Viking Global Investors",
-      "ticker": "NVDA",
-      "name": "NVIDIA",
-      "position_pct": 6.2,
-      "conviction_score": 19,
-      "combined_score": 117.8
-    },
-    {
-      "rank": 44,
+      "rank": 36,
       "manager": "Chuck Akre",
       "manager_slug": "chuck-akre",
       "fund": "Akre Capital Management",
@@ -485,7 +397,29 @@
       "combined_score": 113.6
     },
     {
-      "rank": 45,
+      "rank": 37,
+      "manager": "Chase Coleman",
+      "manager_slug": "chase-coleman",
+      "fund": "Tiger Global Management",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "position_pct": 7.1,
+      "conviction_score": 16,
+      "combined_score": 113.6
+    },
+    {
+      "rank": 38,
+      "manager": "John Armitage",
+      "manager_slug": "john-armitage",
+      "fund": "Egerton Capital",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "position_pct": 6.4,
+      "conviction_score": 16,
+      "combined_score": 102.4
+    },
+    {
+      "rank": 39,
       "manager": "Dev Kantesaria",
       "manager_slug": "dev-kantesaria",
       "fund": "Valley Forge Capital",
@@ -496,7 +430,7 @@
       "combined_score": 102.4
     },
     {
-      "rank": 46,
+      "rank": 40,
       "manager": "Tom Slater",
       "manager_slug": "tom-slater",
       "fund": "Baillie Gifford (Long Term Global Growth)",
@@ -507,40 +441,18 @@
       "combined_score": 100.8
     },
     {
-      "rank": 47,
-      "manager": "Stephen Mandel",
-      "manager_slug": "stephen-mandel",
-      "fund": "Lone Pine Capital",
+      "rank": 41,
+      "manager": "Andreas Halvorsen",
+      "manager_slug": "andreas-halvorsen",
+      "fund": "Viking Global Investors",
       "ticker": "NVDA",
       "name": "NVIDIA",
-      "position_pct": 5.1,
-      "conviction_score": 19,
-      "combined_score": 96.9
+      "position_pct": 6.2,
+      "conviction_score": 16,
+      "combined_score": 99.2
     },
     {
-      "rank": 48,
-      "manager": "William von Mueffling",
-      "manager_slug": "william-von-mueffling",
-      "fund": "Cantillon Capital Management",
-      "ticker": "MCO",
-      "name": "Moody's",
-      "position_pct": 6.4,
-      "conviction_score": 15,
-      "combined_score": 96
-    },
-    {
-      "rank": 49,
-      "manager": "Polen Capital",
-      "manager_slug": "polen-capital",
-      "fund": "Polen Capital Management",
-      "ticker": "MA",
-      "name": "Mastercard",
-      "position_pct": 5.6,
-      "conviction_score": 17,
-      "combined_score": 95.2
-    },
-    {
-      "rank": 50,
+      "rank": 42,
       "manager": "Chris Hohn",
       "manager_slug": "chris-hohn",
       "fund": "TCI Fund Management",
@@ -551,7 +463,7 @@
       "combined_score": 94.4
     },
     {
-      "rank": 51,
+      "rank": 43,
       "manager": "Jeffrey Ubben",
       "manager_slug": "jeffrey-ubben",
       "fund": "ValueAct Capital",
@@ -562,29 +474,40 @@
       "combined_score": 86.8
     },
     {
-      "rank": 52,
-      "manager": "Stanley Druckenmiller",
-      "manager_slug": "stanley-druckenmiller",
-      "fund": "Duquesne Family Office",
-      "ticker": "TSM",
-      "name": "Taiwan Semi",
-      "position_pct": 5.2,
-      "conviction_score": 16,
-      "combined_score": 83.2
-    },
-    {
-      "rank": 53,
-      "manager": "François Rochon",
-      "manager_slug": "francois-rochon",
-      "fund": "Giverny Capital",
+      "rank": 44,
+      "manager": "Glenn Greenberg",
+      "manager_slug": "glenn-greenberg",
+      "fund": "Brave Warrior Advisors",
       "ticker": "MCO",
       "name": "Moody's",
-      "position_pct": 5.5,
-      "conviction_score": 15,
-      "combined_score": 82.5
+      "position_pct": 14.2,
+      "conviction_score": 6,
+      "combined_score": 85.2
     },
     {
-      "rank": 54,
+      "rank": 45,
+      "manager": "Stephen Mandel",
+      "manager_slug": "stephen-mandel",
+      "fund": "Lone Pine Capital",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "position_pct": 5.1,
+      "conviction_score": 16,
+      "combined_score": 81.6
+    },
+    {
+      "rank": 46,
+      "manager": "Chuck Akre",
+      "manager_slug": "chuck-akre",
+      "fund": "Akre Capital Management",
+      "ticker": "MCO",
+      "name": "Moody's",
+      "position_pct": 13.4,
+      "conviction_score": 6,
+      "combined_score": 80.4
+    },
+    {
+      "rank": 47,
       "manager": "Chuck Akre",
       "manager_slug": "chuck-akre",
       "fund": "Akre Capital Management",
@@ -595,29 +518,7 @@
       "combined_score": 80.1
     },
     {
-      "rank": 55,
-      "manager": "Bill Ackman",
-      "manager_slug": "bill-ackman",
-      "fund": "Pershing Square Capital",
-      "ticker": "HHH",
-      "name": "Howard Hughes Holdings",
-      "position_pct": 13.2,
-      "conviction_score": 6,
-      "combined_score": 79.2
-    },
-    {
-      "rank": 56,
-      "manager": "Chris Hohn",
-      "manager_slug": "chris-hohn",
-      "fund": "TCI Fund Management",
-      "ticker": "MSFT",
-      "name": "Microsoft",
-      "position_pct": 13.1,
-      "conviction_score": 6,
-      "combined_score": 78.6
-    },
-    {
-      "rank": 57,
+      "rank": 48,
       "manager": "François Rochon",
       "manager_slug": "francois-rochon",
       "fund": "Giverny Capital",
@@ -628,18 +529,7 @@
       "combined_score": 78.4
     },
     {
-      "rank": 58,
-      "manager": "David Tepper",
-      "manager_slug": "david-tepper",
-      "fund": "Appaloosa Management",
-      "ticker": "UBER",
-      "name": "Uber",
-      "position_pct": 4.1,
-      "conviction_score": 19,
-      "combined_score": 77.9
-    },
-    {
-      "rank": 59,
+      "rank": 49,
       "manager": "Glenn Greenberg",
       "manager_slug": "glenn-greenberg",
       "fund": "Brave Warrior Advisors",
@@ -650,7 +540,18 @@
       "combined_score": 75.2
     },
     {
-      "rank": 60,
+      "rank": 50,
+      "manager": "Polen Capital",
+      "manager_slug": "polen-capital",
+      "fund": "Polen Capital Management",
+      "ticker": "MA",
+      "name": "Mastercard",
+      "position_pct": 5.6,
+      "conviction_score": 13,
+      "combined_score": 72.8
+    },
+    {
+      "rank": 51,
       "manager": "Seth Klarman",
       "manager_slug": "seth-klarman",
       "fund": "Baupost Group",
@@ -661,7 +562,18 @@
       "combined_score": 70.8
     },
     {
-      "rank": 61,
+      "rank": 52,
+      "manager": "David Tepper",
+      "manager_slug": "david-tepper",
+      "fund": "Appaloosa Management",
+      "ticker": "UBER",
+      "name": "Uber",
+      "position_pct": 4.1,
+      "conviction_score": 17,
+      "combined_score": 69.7
+    },
+    {
+      "rank": 53,
       "manager": "Chase Coleman",
       "manager_slug": "chase-coleman",
       "fund": "Tiger Global Management",
@@ -672,18 +584,18 @@
       "combined_score": 68.6
     },
     {
-      "rank": 62,
-      "manager": "Terry Smith",
-      "manager_slug": "terry-smith",
-      "fund": "Fundsmith",
-      "ticker": "MSFT",
-      "name": "Microsoft",
+      "rank": 54,
+      "manager": "Warren Buffett",
+      "manager_slug": "warren-buffett",
+      "fund": "Berkshire Hathaway",
+      "ticker": "BAC",
+      "name": "Bank of America",
       "position_pct": 11.2,
       "conviction_score": 6,
       "combined_score": 67.2
     },
     {
-      "rank": 63,
+      "rank": 55,
       "manager": "David Rolfe",
       "manager_slug": "david-rolfe",
       "fund": "Wedgewood Partners",
@@ -694,51 +606,29 @@
       "combined_score": 67.2
     },
     {
-      "rank": 64,
-      "manager": "Chase Coleman",
-      "manager_slug": "chase-coleman",
-      "fund": "Tiger Global Management",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 13.4,
-      "conviction_score": 5,
-      "combined_score": 67
-    },
-    {
-      "rank": 65,
+      "rank": 56,
       "manager": "Warren Buffett",
       "manager_slug": "warren-buffett",
       "fund": "Berkshire Hathaway",
-      "ticker": "MCO",
-      "name": "Moody's Corp",
-      "position_pct": 4.4,
-      "conviction_score": 15,
-      "combined_score": 66
+      "ticker": "CB",
+      "name": "Chubb",
+      "position_pct": 2.9,
+      "conviction_score": 22,
+      "combined_score": 63.8
     },
     {
-      "rank": 66,
-      "manager": "Chase Coleman",
-      "manager_slug": "chase-coleman",
-      "fund": "Tiger Global Management",
-      "ticker": "MSFT",
-      "name": "Microsoft",
-      "position_pct": 10.7,
-      "conviction_score": 6,
-      "combined_score": 64.2
+      "rank": 57,
+      "manager": "David Rolfe",
+      "manager_slug": "david-rolfe",
+      "fund": "Wedgewood Partners",
+      "ticker": "TSM",
+      "name": "Taiwan Semiconductor",
+      "position_pct": 9.1,
+      "conviction_score": 7,
+      "combined_score": 63.7
     },
     {
-      "rank": 67,
-      "manager": "Andreas Halvorsen",
-      "manager_slug": "andreas-halvorsen",
-      "fund": "Viking Global Investors",
-      "ticker": "MA",
-      "name": "Mastercard",
-      "position_pct": 3.7,
-      "conviction_score": 17,
-      "combined_score": 62.9
-    },
-    {
-      "rank": 68,
+      "rank": 58,
       "manager": "Polen Capital",
       "manager_slug": "polen-capital",
       "fund": "Polen Capital Management",
@@ -749,106 +639,18 @@
       "combined_score": 62.4
     },
     {
-      "rank": 69,
-      "manager": "Bill Nygren",
-      "manager_slug": "bill-nygren",
-      "fund": "Oakmark Funds",
-      "ticker": "BAC",
-      "name": "Bank of America",
-      "position_pct": 4.3,
-      "conviction_score": 14,
-      "combined_score": 60.2
-    },
-    {
-      "rank": 70,
-      "manager": "Li Lu",
-      "manager_slug": "li-lu",
-      "fund": "Himalaya Capital",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 11.8,
-      "conviction_score": 5,
-      "combined_score": 59
-    },
-    {
-      "rank": 71,
-      "manager": "Lee Ainslie",
-      "manager_slug": "lee-ainslie",
-      "fund": "Maverick Capital",
-      "ticker": "NVDA",
-      "name": "NVIDIA",
-      "position_pct": 3.1,
-      "conviction_score": 19,
-      "combined_score": 58.9
-    },
-    {
-      "rank": 72,
-      "manager": "Polen Capital",
-      "manager_slug": "polen-capital",
-      "fund": "Polen Capital Management",
-      "ticker": "MSFT",
-      "name": "Microsoft",
+      "rank": 59,
+      "manager": "Chris Hohn",
+      "manager_slug": "chris-hohn",
+      "fund": "TCI Fund Management",
+      "ticker": "MCO",
+      "name": "Moody's",
       "position_pct": 9.4,
       "conviction_score": 6,
       "combined_score": 56.4
     },
     {
-      "rank": 73,
-      "manager": "Warren Buffett",
-      "manager_slug": "warren-buffett",
-      "fund": "Berkshire Hathaway",
-      "ticker": "CB",
-      "name": "Chubb",
-      "position_pct": 2.9,
-      "conviction_score": 19,
-      "combined_score": 55.1
-    },
-    {
-      "rank": 74,
-      "manager": "Stanley Druckenmiller",
-      "manager_slug": "stanley-druckenmiller",
-      "fund": "Duquesne Family Office",
-      "ticker": "MSFT",
-      "name": "Microsoft",
-      "position_pct": 9.1,
-      "conviction_score": 6,
-      "combined_score": 54.6
-    },
-    {
-      "rank": 75,
-      "manager": "Polen Capital",
-      "manager_slug": "polen-capital",
-      "fund": "Polen Capital Management",
-      "ticker": "NOW",
-      "name": "ServiceNow",
-      "position_pct": 7.8,
-      "conviction_score": 7,
-      "combined_score": 54.6
-    },
-    {
-      "rank": 76,
-      "manager": "John Armitage",
-      "manager_slug": "john-armitage",
-      "fund": "Egerton Capital",
-      "ticker": "MSFT",
-      "name": "Microsoft",
-      "position_pct": 8.9,
-      "conviction_score": 6,
-      "combined_score": 53.4
-    },
-    {
-      "rank": 77,
-      "manager": "Tom Slater",
-      "manager_slug": "tom-slater",
-      "fund": "Baillie Gifford (Long Term Global Growth)",
-      "ticker": "AMZN",
-      "name": "Amazon",
-      "position_pct": 8.7,
-      "conviction_score": 6,
-      "combined_score": 52.2
-    },
-    {
-      "rank": 78,
+      "rank": 60,
       "manager": "Terry Smith",
       "manager_slug": "terry-smith",
       "fund": "Fundsmith",
@@ -859,18 +661,18 @@
       "combined_score": 50.4
     },
     {
-      "rank": 79,
-      "manager": "Andreas Halvorsen",
-      "manager_slug": "andreas-halvorsen",
-      "fund": "Viking Global Investors",
-      "ticker": "UNH",
-      "name": "UnitedHealth",
-      "position_pct": 4.1,
-      "conviction_score": 12,
-      "combined_score": 49.2
+      "rank": 61,
+      "manager": "Lee Ainslie",
+      "manager_slug": "lee-ainslie",
+      "fund": "Maverick Capital",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "position_pct": 3.1,
+      "conviction_score": 16,
+      "combined_score": 49.6
     },
     {
-      "rank": 80,
+      "rank": 62,
       "manager": "William von Mueffling",
       "manager_slug": "william-von-mueffling",
       "fund": "Cantillon Capital Management",
@@ -881,29 +683,18 @@
       "combined_score": 48.8
     },
     {
-      "rank": 81,
-      "manager": "Stephen Mandel",
-      "manager_slug": "stephen-mandel",
-      "fund": "Lone Pine Capital",
-      "ticker": "MSFT",
-      "name": "Microsoft",
-      "position_pct": 7.8,
-      "conviction_score": 6,
-      "combined_score": 46.8
+      "rank": 63,
+      "manager": "Andreas Halvorsen",
+      "manager_slug": "andreas-halvorsen",
+      "fund": "Viking Global Investors",
+      "ticker": "MA",
+      "name": "Mastercard",
+      "position_pct": 3.7,
+      "conviction_score": 13,
+      "combined_score": 48.1
     },
     {
-      "rank": 82,
-      "manager": "William von Mueffling",
-      "manager_slug": "william-von-mueffling",
-      "fund": "Cantillon Capital Management",
-      "ticker": "MSFT",
-      "name": "Microsoft",
-      "position_pct": 7.8,
-      "conviction_score": 6,
-      "combined_score": 46.8
-    },
-    {
-      "rank": 83,
+      "rank": 64,
       "manager": "Andreas Halvorsen",
       "manager_slug": "andreas-halvorsen",
       "fund": "Viking Global Investors",
@@ -914,7 +705,7 @@
       "combined_score": 46.4
     },
     {
-      "rank": 84,
+      "rank": 65,
       "manager": "Howard Marks",
       "manager_slug": "howard-marks",
       "fund": "Oaktree Capital",
@@ -925,18 +716,7 @@
       "combined_score": 45.6
     },
     {
-      "rank": 85,
-      "manager": "David Tepper",
-      "manager_slug": "david-tepper",
-      "fund": "Appaloosa Management",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 9.1,
-      "conviction_score": 5,
-      "combined_score": 45.5
-    },
-    {
-      "rank": 86,
+      "rank": 66,
       "manager": "Warren Buffett",
       "manager_slug": "warren-buffett",
       "fund": "Berkshire Hathaway",
@@ -947,7 +727,7 @@
       "combined_score": 44.4
     },
     {
-      "rank": 87,
+      "rank": 67,
       "manager": "Terry Smith",
       "manager_slug": "terry-smith",
       "fund": "Fundsmith",
@@ -958,7 +738,7 @@
       "combined_score": 43.2
     },
     {
-      "rank": 88,
+      "rank": 68,
       "manager": "Carl Icahn",
       "manager_slug": "carl-icahn",
       "fund": "Icahn Enterprises",
@@ -969,81 +749,301 @@
       "combined_score": 42.6
     },
     {
-      "rank": 89,
+      "rank": 69,
+      "manager": "William von Mueffling",
+      "manager_slug": "william-von-mueffling",
+      "fund": "Cantillon Capital Management",
+      "ticker": "MCO",
+      "name": "Moody's",
+      "position_pct": 6.4,
+      "conviction_score": 6,
+      "combined_score": 38.4
+    },
+    {
+      "rank": 70,
+      "manager": "Bill Ackman",
+      "manager_slug": "bill-ackman",
+      "fund": "Pershing Square Capital",
+      "ticker": "NKE",
+      "name": "Nike",
+      "position_pct": 5.3,
+      "conviction_score": 7,
+      "combined_score": 37.1
+    },
+    {
+      "rank": 71,
+      "manager": "Stanley Druckenmiller",
+      "manager_slug": "stanley-druckenmiller",
+      "fund": "Duquesne Family Office",
+      "ticker": "TSM",
+      "name": "Taiwan Semi",
+      "position_pct": 5.2,
+      "conviction_score": 7,
+      "combined_score": 36.4
+    },
+    {
+      "rank": 72,
       "manager": "Seth Klarman",
       "manager_slug": "seth-klarman",
       "fund": "Baupost Group",
       "ticker": "FNF",
       "name": "Fidelity National Financial",
       "position_pct": 7.1,
-      "conviction_score": 6,
-      "combined_score": 42.6
+      "conviction_score": 5,
+      "combined_score": 35.5
     },
     {
-      "rank": 90,
-      "manager": "Stephen Mandel",
-      "manager_slug": "stephen-mandel",
-      "fund": "Lone Pine Capital",
-      "ticker": "AMZN",
-      "name": "Amazon",
-      "position_pct": 6.9,
+      "rank": 73,
+      "manager": "François Rochon",
+      "manager_slug": "francois-rochon",
+      "fund": "Giverny Capital",
+      "ticker": "MCO",
+      "name": "Moody's",
+      "position_pct": 5.5,
       "conviction_score": 6,
-      "combined_score": 41.4
+      "combined_score": 33
     },
     {
-      "rank": 91,
+      "rank": 74,
+      "manager": "Polen Capital",
+      "manager_slug": "polen-capital",
+      "fund": "Polen Capital Management",
+      "ticker": "NOW",
+      "name": "ServiceNow",
+      "position_pct": 7.8,
+      "conviction_score": 4,
+      "combined_score": 31.2
+    },
+    {
+      "rank": 75,
+      "manager": "Chase Coleman",
+      "manager_slug": "chase-coleman",
+      "fund": "Tiger Global Management",
+      "ticker": "SE",
+      "name": "Sea Limited",
+      "position_pct": 5.8,
+      "conviction_score": 5,
+      "combined_score": 29
+    },
+    {
+      "rank": 76,
+      "manager": "William von Mueffling",
+      "manager_slug": "william-von-mueffling",
+      "fund": "Cantillon Capital Management",
+      "ticker": "ICE",
+      "name": "Intercontinental Exchange",
+      "position_pct": 5.8,
+      "conviction_score": 5,
+      "combined_score": 29
+    },
+    {
+      "rank": 77,
+      "manager": "Tom Slater",
+      "manager_slug": "tom-slater",
+      "fund": "Baillie Gifford (Long Term Global Growth)",
+      "ticker": "SHOP",
+      "name": "Shopify",
+      "position_pct": 4.7,
+      "conviction_score": 6,
+      "combined_score": 28.2
+    },
+    {
+      "rank": 78,
+      "manager": "Warren Buffett",
+      "manager_slug": "warren-buffett",
+      "fund": "Berkshire Hathaway",
+      "ticker": "MCO",
+      "name": "Moody's Corp",
+      "position_pct": 4.4,
+      "conviction_score": 6,
+      "combined_score": 26.4
+    },
+    {
+      "rank": 79,
       "manager": "Chris Hohn",
       "manager_slug": "chris-hohn",
       "fund": "TCI Fund Management",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 8.2,
-      "conviction_score": 5,
-      "combined_score": 41
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 13.1,
+      "conviction_score": 2,
+      "combined_score": 26.2
     },
     {
-      "rank": 92,
+      "rank": 80,
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "ticker": "BAC",
+      "name": "Bank of America",
+      "position_pct": 4.3,
+      "conviction_score": 6,
+      "combined_score": 25.8
+    },
+    {
+      "rank": 81,
+      "manager": "Howard Marks",
+      "manager_slug": "howard-marks",
+      "fund": "Oaktree Capital",
+      "ticker": "STR",
+      "name": "Sitio Royalties",
+      "position_pct": 5.1,
+      "conviction_score": 5,
+      "combined_score": 25.5
+    },
+    {
+      "rank": 82,
+      "manager": "Terry Smith",
+      "manager_slug": "terry-smith",
+      "fund": "Fundsmith",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 11.2,
+      "conviction_score": 2,
+      "combined_score": 22.4
+    },
+    {
+      "rank": 83,
+      "manager": "Chase Coleman",
+      "manager_slug": "chase-coleman",
+      "fund": "Tiger Global Management",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 10.7,
+      "conviction_score": 2,
+      "combined_score": 21.4
+    },
+    {
+      "rank": 84,
       "manager": "Jeffrey Ubben",
       "manager_slug": "jeffrey-ubben",
       "fund": "ValueAct Capital",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 8.1,
+      "ticker": "ENPH",
+      "name": "Enphase Energy",
+      "position_pct": 4.2,
       "conviction_score": 5,
-      "combined_score": 40.5
+      "combined_score": 21
     },
     {
-      "rank": 93,
-      "manager": "David Tepper",
-      "manager_slug": "david-tepper",
-      "fund": "Appaloosa Management",
-      "ticker": "AMZN",
-      "name": "Amazon",
-      "position_pct": 6.4,
-      "conviction_score": 6,
-      "combined_score": 38.4
-    },
-    {
-      "rank": 94,
+      "rank": 85,
       "manager": "John Armitage",
       "manager_slug": "john-armitage",
       "fund": "Egerton Capital",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 7.2,
+      "ticker": "NFLX",
+      "name": "Netflix",
+      "position_pct": 3.9,
       "conviction_score": 5,
-      "combined_score": 36
+      "combined_score": 19.5
     },
     {
-      "rank": 95,
+      "rank": 86,
+      "manager": "Polen Capital",
+      "manager_slug": "polen-capital",
+      "fund": "Polen Capital Management",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 9.4,
+      "conviction_score": 2,
+      "combined_score": 18.8
+    },
+    {
+      "rank": 87,
+      "manager": "Stanley Druckenmiller",
+      "manager_slug": "stanley-druckenmiller",
+      "fund": "Duquesne Family Office",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 9.1,
+      "conviction_score": 2,
+      "combined_score": 18.2
+    },
+    {
+      "rank": 88,
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "ticker": "NFLX",
+      "name": "Netflix",
+      "position_pct": 3.6,
+      "conviction_score": 5,
+      "combined_score": 18
+    },
+    {
+      "rank": 89,
+      "manager": "John Armitage",
+      "manager_slug": "john-armitage",
+      "fund": "Egerton Capital",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 8.9,
+      "conviction_score": 2,
+      "combined_score": 17.8
+    },
+    {
+      "rank": 90,
       "manager": "Prem Watsa",
       "manager_slug": "prem-watsa",
       "fund": "Fairfax Financial",
       "ticker": "CVS",
       "name": "CVS Health",
       "position_pct": 5.9,
+      "conviction_score": 3,
+      "combined_score": 17.7
+    },
+    {
+      "rank": 91,
+      "manager": "Lee Ainslie",
+      "manager_slug": "lee-ainslie",
+      "fund": "Maverick Capital",
+      "ticker": "NFLX",
+      "name": "Netflix",
+      "position_pct": 3.4,
+      "conviction_score": 5,
+      "combined_score": 17
+    },
+    {
+      "rank": 92,
+      "manager": "Li Lu",
+      "manager_slug": "li-lu",
+      "fund": "Himalaya Capital",
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway",
+      "position_pct": 16.2,
+      "conviction_score": 1,
+      "combined_score": 16.2
+    },
+    {
+      "rank": 93,
+      "manager": "Stephen Mandel",
+      "manager_slug": "stephen-mandel",
+      "fund": "Lone Pine Capital",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 7.8,
+      "conviction_score": 2,
+      "combined_score": 15.6
+    },
+    {
+      "rank": 94,
+      "manager": "William von Mueffling",
+      "manager_slug": "william-von-mueffling",
+      "fund": "Cantillon Capital Management",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 7.8,
+      "conviction_score": 2,
+      "combined_score": 15.6
+    },
+    {
+      "rank": 95,
+      "manager": "Carl Icahn",
+      "manager_slug": "carl-icahn",
+      "fund": "Icahn Enterprises",
+      "ticker": "DNUT",
+      "name": "Krispy Kreme",
+      "position_pct": 2.4,
       "conviction_score": 6,
-      "combined_score": 35.4
+      "combined_score": 14.4
     },
     {
       "rank": 96,
@@ -1053,56 +1053,56 @@
       "ticker": "MSFT",
       "name": "Microsoft",
       "position_pct": 5.9,
-      "conviction_score": 6,
-      "combined_score": 35.4
+      "conviction_score": 2,
+      "combined_score": 11.8
     },
     {
       "rank": 97,
-      "manager": "Terry Smith",
-      "manager_slug": "terry-smith",
-      "fund": "Fundsmith",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 6.5,
-      "conviction_score": 5,
-      "combined_score": 32.5
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "ticker": "CMCSA",
+      "name": "Comcast",
+      "position_pct": 3.8,
+      "conviction_score": 3,
+      "combined_score": 11.4
     },
     {
       "rank": 98,
-      "manager": "Li Lu",
-      "manager_slug": "li-lu",
-      "fund": "Himalaya Capital",
-      "ticker": "BRK.B",
-      "name": "Berkshire Hathaway",
-      "position_pct": 16.2,
-      "conviction_score": 2,
-      "combined_score": 32.4
+      "manager": "Stephen Mandel",
+      "manager_slug": "stephen-mandel",
+      "fund": "Lone Pine Capital",
+      "ticker": "FTNT",
+      "name": "Fortinet",
+      "position_pct": 2.8,
+      "conviction_score": 4,
+      "combined_score": 11.2
     },
     {
       "rank": 99,
       "manager": "Andreas Halvorsen",
       "manager_slug": "andreas-halvorsen",
       "fund": "Viking Global Investors",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 6.4,
-      "conviction_score": 5,
-      "combined_score": 32
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 4.8,
+      "conviction_score": 2,
+      "combined_score": 9.6
     },
     {
       "rank": 100,
-      "manager": "Stephen Mandel",
-      "manager_slug": "stephen-mandel",
-      "fund": "Lone Pine Capital",
-      "ticker": "META",
-      "name": "Meta Platforms",
-      "position_pct": 6.4,
-      "conviction_score": 5,
-      "combined_score": 32
+      "manager": "Joel Greenblatt",
+      "manager_slug": "joel-greenblatt",
+      "fund": "Gotham Asset Management",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "position_pct": 4.1,
+      "conviction_score": 2,
+      "combined_score": 8.2
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

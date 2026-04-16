@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ENPH — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/ENPH</link>
+    <atom:link href="https://holdlens.com/ticker/ENPH/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on ENPH (Enphase Energy) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Jeffrey Ubben: NEW POSITION ENPH · Q4 2025</title>
+      <link>https://holdlens.com/signal/ENPH</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/ENPH#2025-Q4-jeffrey-ubben-new-0</guid>
+      <description>Jeffrey Ubben (ValueAct Capital) new position ENPH in Q4 2025 · 4.2% of portfolio. New solar position.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>new</category>
+      <author>noreply@holdlens.com (Jeffrey Ubben)</author>
+    </item>
+  </channel>
+</rss>

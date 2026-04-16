@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>COHR — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/COHR</link>
+    <atom:link href="https://holdlens.com/ticker/COHR/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on COHR (Coherent) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Stanley Druckenmiller: ADDED COHR (+22%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/COHR</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/COHR#2025-Q4-stanley-druckenmiller-add-0</guid>
+      <description>Stanley Druckenmiller (Duquesne Family Office) added COHR in Q4 2025 · 8.3% of portfolio. Building Coherent further — optical networking.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Stanley Druckenmiller)</author>
+    </item>
+    <item>
+      <title>Stanley Druckenmiller: ADDED COHR (+30%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/COHR</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/COHR#2025-Q3-stanley-druckenmiller-add-1</guid>
+      <description>Stanley Druckenmiller (Duquesne Family Office) added COHR in Q3 2025 · 6.8% of portfolio. Added to Coherent.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Stanley Druckenmiller)</author>
+    </item>
+    <item>
+      <title>Stanley Druckenmiller: ADDED COHR (+20%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/COHR</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/COHR#2025-Q2-stanley-druckenmiller-add-2</guid>
+      <description>Stanley Druckenmiller (Duquesne Family Office) added COHR in Q2 2025 · 5.3% of portfolio. First Coherent add.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Stanley Druckenmiller)</author>
+    </item>
+    <item>
+      <title>Stanley Druckenmiller: NEW POSITION COHR · Q4 2024</title>
+      <link>https://holdlens.com/signal/COHR</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/COHR#2024-Q4-stanley-druckenmiller-new-3</guid>
+      <description>Stanley Druckenmiller (Duquesne Family Office) new position COHR in Q4 2024 · 4.5% of portfolio. New Coherent position.</description>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+      <category>new</category>
+      <author>noreply@holdlens.com (Stanley Druckenmiller)</author>
+    </item>
+  </channel>
+</rss>

@@ -95,11 +95,319 @@
         "action": "add",
         "delta_pct": 15,
         "portfolio_impact_pct": 6.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "AMZN",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 5.7
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "NFLX",
+        "action": "add",
+        "delta_pct": 912,
+        "portfolio_impact_pct": 2.9
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "META",
+        "action": "trim",
+        "delta_pct": -17,
+        "portfolio_impact_pct": 2.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "GOOG",
+        "action": "add",
+        "delta_pct": 29,
+        "portfolio_impact_pct": 1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MA",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 0.7
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "GOOGL",
+        "action": "add",
+        "delta_pct": 167,
+        "portfolio_impact_pct": 0.5
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "BLOCK",
+        "action": "trim",
+        "delta_pct": -15,
+        "portfolio_impact_pct": 0.5
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MSCI",
+        "action": "add",
+        "delta_pct": 22,
+        "portfolio_impact_pct": 0.4
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "BN",
+        "action": "add",
+        "delta_pct": 45,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MCO",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "TSM",
+        "action": "trim",
+        "delta_pct": -15,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "AAPL",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 0.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "AVGO",
+        "action": "trim",
+        "delta_pct": -40,
+        "portfolio_impact_pct": 0.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "FIGMA",
+        "action": "add",
+        "delta_pct": 94,
+        "portfolio_impact_pct": 0.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "QXO",
+        "action": "add",
+        "delta_pct": 16118,
+        "portfolio_impact_pct": 0.2
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "INTU",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "MNST",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "YETI",
+        "action": "add",
+        "delta_pct": 51,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "AMT",
+        "action": "trim",
+        "delta_pct": -14,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "CRH",
+        "action": "add",
+        "delta_pct": 9,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "EQT",
+        "action": "add",
+        "delta_pct": 21,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "IREN",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "JFROG",
+        "action": "trim",
+        "delta_pct": -11,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "PFE",
+        "action": "add",
+        "delta_pct": 59,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "SBUX",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "UNH",
+        "action": "trim",
+        "delta_pct": -19,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "CHEWY",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "EXPE",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "GRACO",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q4",
+        "ticker": "PYPL",
+        "action": "exit",
+        "delta_pct": -100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "SPOT",
+        "action": "trim",
+        "delta_pct": -10,
+        "portfolio_impact_pct": 4.5
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "NFLX",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 3.2
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "PDD",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 3.1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "IONQ",
+        "action": "trim",
+        "delta_pct": -16,
+        "portfolio_impact_pct": 0.9
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "CBRE",
+        "action": "trim",
+        "delta_pct": -6,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "MSCI",
+        "action": "add",
+        "delta_pct": 92,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "TSM",
+        "action": "trim",
+        "delta_pct": -31,
+        "portfolio_impact_pct": 0.3
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "GOOGL",
+        "action": "trim",
+        "delta_pct": -7,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "FIGMA",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0.1
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "ADBE",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "BKNG",
+        "action": "trim",
+        "delta_pct": -31,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "CRH",
+        "action": "add",
+        "delta_pct": 97,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "EQT",
+        "action": "new",
+        "delta_pct": 100,
+        "portfolio_impact_pct": 0
+      },
+      {
+        "quarter": "2025-Q3",
+        "ticker": "GRACO",
+        "action": "add",
+        "delta_pct": 10,
+        "portfolio_impact_pct": 0
       }
     ]
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

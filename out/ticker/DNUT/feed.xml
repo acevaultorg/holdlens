@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DNUT — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/DNUT</link>
+    <atom:link href="https://holdlens.com/ticker/DNUT/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on DNUT (Krispy Kreme) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Carl Icahn: ADDED DNUT (+22%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/DNUT</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/DNUT#2025-Q4-carl-icahn-add-0</guid>
+      <description>Carl Icahn (Icahn Enterprises) added DNUT in Q4 2025 · 2.9% of portfolio. Adding to the Krispy Kreme recovery play.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Carl Icahn)</author>
+    </item>
+    <item>
+      <title>Carl Icahn: ADDED DNUT (+18%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/DNUT</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/DNUT#2025-Q3-carl-icahn-add-1</guid>
+      <description>Carl Icahn (Icahn Enterprises) added DNUT in Q3 2025 · 2.4% of portfolio. Adding to Krispy Kreme.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Carl Icahn)</author>
+    </item>
+  </channel>
+</rss>

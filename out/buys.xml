@@ -6,7 +6,7 @@
     <atom:link href="https://holdlens.com/buys.xml" rel="self" type="application/rss+xml" />
     <description>Top buy signals from the best portfolio managers in the world — ranked on a single signed −100..+100 ConvictionScore where +100 is the strongest possible buy. Updated every 13F filing deadline.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2026 21:52:56 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:15 GMT</lastBuildDate>
     <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
     <item>
       <title>GE BUY signal · score +41 on a −100..+100 scale</title>
@@ -33,20 +33,20 @@
       <category>Energy</category>
     </item>
     <item>
-      <title>SCHW BUY signal · score +29 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/SCHW</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/SCHW?rank=4</guid>
-      <description>John Armitage, Glenn Greenberg are buying SCHW (Charles Schwab) this quarter. Unified ConvictionScore: +29 (positive = buy, negative = sell). Quality-weighted buyer list: John Armitage (Q4.9), Glenn Greenberg (Q6.2).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Financials</category>
-    </item>
-    <item>
       <title>FICO BUY signal · score +28 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/FICO</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/FICO?rank=5</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/FICO?rank=4</guid>
       <description>David Rolfe is buying FICO (Fair Isaac) this quarter. Unified ConvictionScore: +28 (positive = buy, negative = sell). Quality-weighted buyer list: David Rolfe (Q4.8).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Other</category>
+    </item>
+    <item>
+      <title>SCHW BUY signal · score +27 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/SCHW</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/SCHW?rank=5</guid>
+      <description>John Armitage, Glenn Greenberg are buying SCHW (Charles Schwab) this quarter. Unified ConvictionScore: +27 (positive = buy, negative = sell). Quality-weighted buyer list: John Armitage (Q4.9), Glenn Greenberg (Q6.2).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Financials</category>
     </item>
     <item>
       <title>COHR BUY signal · score +26 on a −100..+100 scale</title>
@@ -73,10 +73,10 @@
       <category>Technology</category>
     </item>
     <item>
-      <title>BN BUY signal · score +23 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/BN</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/BN?rank=9</guid>
-      <description>Chuck Akre, Bill Ackman, Stephen Mandel, Joel Greenblatt, Lee Ainslie are buying BN (Brookfield Corp) this quarter. Unified ConvictionScore: +23 (positive = buy, negative = sell). Quality-weighted buyer list: Chuck Akre (Q7), Bill Ackman (Q5.1), Stephen Mandel (Q2.5), Joel Greenblatt (Q2.2), Lee Ainslie (Q1).</description>
+      <title>CB BUY signal · score +22 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/CB</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/CB?rank=9</guid>
+      <description>David Rolfe, Andreas Halvorsen, Warren Buffett, Joel Greenblatt are buying CB (Chubb) this quarter. Unified ConvictionScore: +22 (positive = buy, negative = sell). Quality-weighted buyer list: David Rolfe (Q4.8), Andreas Halvorsen (Q4.2), Warren Buffett (Q5.9), Joel Greenblatt (Q2.2).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Financials</category>
     </item>
@@ -97,76 +97,76 @@
       <category>Real Estate</category>
     </item>
     <item>
+      <title>MSCI BUY signal · score +22 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/MSCI</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/MSCI?rank=12</guid>
+      <description>Dev Kantesaria, Tom Slater are buying MSCI (MSCI Inc) this quarter. Unified ConvictionScore: +22 (positive = buy, negative = sell). Quality-weighted buyer list: Dev Kantesaria (Q8.2), Tom Slater (Q4.8).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Other</category>
+    </item>
+    <item>
       <title>TRMD BUY signal · score +21 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/TRMD</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/TRMD?rank=12</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/TRMD?rank=13</guid>
       <description>Howard Marks is buying TRMD (Torm plc) this quarter. Unified ConvictionScore: +21 (positive = buy, negative = sell). Quality-weighted buyer list: Howard Marks (Q3.7).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Industrials</category>
     </item>
     <item>
-      <title>CB BUY signal · score +19 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/CB</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/CB?rank=13</guid>
-      <description>Andreas Halvorsen, Warren Buffett, Joel Greenblatt are buying CB (Chubb) this quarter. Unified ConvictionScore: +19 (positive = buy, negative = sell). Quality-weighted buyer list: Andreas Halvorsen (Q4.2), Warren Buffett (Q5.9), Joel Greenblatt (Q2.2).</description>
+      <title>BN BUY signal · score +20 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/BN</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/BN?rank=14</guid>
+      <description>Chuck Akre, Bill Ackman, Tom Slater, Stephen Mandel, Joel Greenblatt, Lee Ainslie are buying BN (Brookfield Corp) this quarter. Unified ConvictionScore: +20 (positive = buy, negative = sell). Quality-weighted buyer list: Chuck Akre (Q7), Bill Ackman (Q5.1), Tom Slater (Q4.8), Stephen Mandel (Q2.5), Joel Greenblatt (Q2.2), Lee Ainslie (Q1).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Financials</category>
     </item>
     <item>
-      <title>UBER BUY signal · score +19 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/UBER</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/UBER?rank=14</guid>
-      <description>David Tepper, Bill Ackman, Joel Greenblatt are buying UBER (Uber) this quarter. Unified ConvictionScore: +19 (positive = buy, negative = sell). Quality-weighted buyer list: David Tepper (Q7.6), Bill Ackman (Q5.1), Joel Greenblatt (Q2.2).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Other</category>
-    </item>
-    <item>
-      <title>NVDA BUY signal · score +19 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/NVDA</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/NVDA?rank=15</guid>
-      <description>David Tepper, Tom Slater, Andreas Halvorsen, Joel Greenblatt are buying NVDA (NVIDIA) this quarter. Unified ConvictionScore: +19 (positive = buy, negative = sell). Quality-weighted buyer list: David Tepper (Q7.6), Tom Slater (Q4.8), Andreas Halvorsen (Q4.2), Joel Greenblatt (Q2.2).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Technology</category>
-    </item>
-    <item>
-      <title>MU BUY signal · score +19 on a −100..+100 scale</title>
+      <title>MU BUY signal · score +20 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/MU</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/MU?rank=16</guid>
-      <description>Mohnish Pabrai is buying MU (Micron Technology) this quarter. Unified ConvictionScore: +19 (positive = buy, negative = sell). Quality-weighted buyer list: Mohnish Pabrai (Q5.4).</description>
+      <guid isPermaLink="true">https://holdlens.com/signal/MU?rank=15</guid>
+      <description>David Tepper, Mohnish Pabrai are buying MU (Micron Technology) this quarter. Unified ConvictionScore: +20 (positive = buy, negative = sell). Quality-weighted buyer list: David Tepper (Q7.6), Mohnish Pabrai (Q5.4).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Technology</category>
-    </item>
-    <item>
-      <title>MSCI BUY signal · score +19 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/MSCI</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/MSCI?rank=17</guid>
-      <description>Dev Kantesaria is buying MSCI (MSCI Inc) this quarter. Unified ConvictionScore: +19 (positive = buy, negative = sell). Quality-weighted buyer list: Dev Kantesaria (Q8.2).</description>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Other</category>
     </item>
     <item>
       <title>PLTR BUY signal · score +18 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/PLTR</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/PLTR?rank=18</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/PLTR?rank=16</guid>
       <description>Stanley Druckenmiller is buying PLTR (PLTR) this quarter. Unified ConvictionScore: +18 (positive = buy, negative = sell). Quality-weighted buyer list: Stanley Druckenmiller (Q7.2).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Stocks</category>
     </item>
     <item>
-      <title>MA BUY signal · score +17 on a −100..+100 scale</title>
-      <link>https://holdlens.com/signal/MA</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/MA?rank=19</guid>
-      <description>Chuck Akre, Stephen Mandel, François Rochon are buying MA (Mastercard) this quarter. Unified ConvictionScore: +17 (positive = buy, negative = sell). Quality-weighted buyer list: Chuck Akre (Q7), Stephen Mandel (Q2.5), François Rochon (Q4.5).</description>
+      <title>UBER BUY signal · score +17 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/UBER</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/UBER?rank=17</guid>
+      <description>David Tepper, Bill Ackman, Joel Greenblatt are buying UBER (Uber) this quarter. Unified ConvictionScore: +17 (positive = buy, negative = sell). Quality-weighted buyer list: David Tepper (Q7.6), Bill Ackman (Q5.1), Joel Greenblatt (Q2.2).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Other</category>
     </item>
     <item>
       <title>DPZ BUY signal · score +16 on a −100..+100 scale</title>
       <link>https://holdlens.com/signal/DPZ</link>
-      <guid isPermaLink="true">https://holdlens.com/signal/DPZ?rank=20</guid>
+      <guid isPermaLink="true">https://holdlens.com/signal/DPZ?rank=18</guid>
       <description>Warren Buffett, Joel Greenblatt are buying DPZ (DPZ) this quarter. Unified ConvictionScore: +16 (positive = buy, negative = sell). Quality-weighted buyer list: Warren Buffett (Q5.9), Joel Greenblatt (Q2.2).</description>
       <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
       <category>Stocks</category>
+    </item>
+    <item>
+      <title>NVDA BUY signal · score +16 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/NVDA</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/NVDA?rank=19</guid>
+      <description>David Tepper, Tom Slater, Andreas Halvorsen, Joel Greenblatt are buying NVDA (NVIDIA) this quarter. Unified ConvictionScore: +16 (positive = buy, negative = sell). Quality-weighted buyer list: David Tepper (Q7.6), Tom Slater (Q4.8), Andreas Halvorsen (Q4.2), Joel Greenblatt (Q2.2).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Technology</category>
+    </item>
+    <item>
+      <title>MELI BUY signal · score +14 on a −100..+100 scale</title>
+      <link>https://holdlens.com/signal/MELI</link>
+      <guid isPermaLink="true">https://holdlens.com/signal/MELI?rank=20</guid>
+      <description>Tom Slater is buying MELI (MercadoLibre) this quarter. Unified ConvictionScore: +14 (positive = buy, negative = sell). Quality-weighted buyer list: Tom Slater (Q4.8).</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Other</category>
     </item>
   </channel>
 </rss>

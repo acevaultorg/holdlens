@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BIDU — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/BIDU</link>
+    <atom:link href="https://holdlens.com/ticker/BIDU/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on BIDU (Baidu) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Michael Burry: TRIMMED BIDU (-20%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/BIDU</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/BIDU#2025-Q3-michael-burry-trim-0</guid>
+      <description>Michael Burry (Scion Asset Management) trimmed BIDU in Q3 2025 · 14.8% of portfolio. Reduced Baidu to fund BABA add.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+      <author>noreply@holdlens.com (Michael Burry)</author>
+    </item>
+  </channel>
+</rss>

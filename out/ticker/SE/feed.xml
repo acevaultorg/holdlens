@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SE — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/SE</link>
+    <atom:link href="https://holdlens.com/ticker/SE/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on SE (Sea Limited) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:15 GMT</lastBuildDate>
+    <item>
+      <title>Chase Coleman: ADDED SE (+22%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/SE</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/SE#2025-Q4-chase-coleman-add-0</guid>
+      <description>Chase Coleman (Tiger Global Management) added SE in Q4 2025 · 5.8% of portfolio. Building Sea Limited — Southeast Asia.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Chase Coleman)</author>
+    </item>
+  </channel>
+</rss>

@@ -3,6 +3,18 @@
     {
       "rank": 1,
       "quarter": "2025-Q4",
+      "ticker": "",
+      "name": "",
+      "action": "add",
+      "delta_pct": 7,
+      "portfolio_impact_pct": 56.1,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 2,
+      "quarter": "2025-Q4",
       "ticker": "GRBK",
       "name": "GRBK",
       "action": "add",
@@ -13,7 +25,7 @@
       "manager_fund": "Greenlight Capital"
     },
     {
-      "rank": 2,
+      "rank": 3,
       "quarter": "2025-Q4",
       "ticker": "BAC",
       "name": "BAC",
@@ -25,7 +37,7 @@
       "manager_fund": "Himalaya Capital"
     },
     {
-      "rank": 3,
+      "rank": 4,
       "quarter": "2025-Q4",
       "ticker": "BABA",
       "name": "BABA",
@@ -37,7 +49,7 @@
       "manager_fund": "Scion Asset Management"
     },
     {
-      "rank": 4,
+      "rank": 5,
       "quarter": "2025-Q4",
       "ticker": "MU",
       "name": "MU",
@@ -49,7 +61,7 @@
       "manager_fund": "Pabrai Investment Funds"
     },
     {
-      "rank": 5,
+      "rank": 6,
       "quarter": "2025-Q4",
       "ticker": "MCO",
       "name": "MCO",
@@ -61,7 +73,7 @@
       "manager_fund": "Valley Forge Capital"
     },
     {
-      "rank": 6,
+      "rank": 7,
       "quarter": "2025-Q4",
       "ticker": "AAPL",
       "name": "AAPL",
@@ -73,7 +85,7 @@
       "manager_fund": "Berkshire Hathaway"
     },
     {
-      "rank": 7,
+      "rank": 8,
       "quarter": "2025-Q4",
       "ticker": "JD",
       "name": "JD",
@@ -85,7 +97,7 @@
       "manager_fund": "Scion Asset Management"
     },
     {
-      "rank": 8,
+      "rank": 9,
       "quarter": "2025-Q4",
       "ticker": "SCHW",
       "name": "SCHW",
@@ -97,7 +109,7 @@
       "manager_fund": "Brave Warrior Advisors"
     },
     {
-      "rank": 9,
+      "rank": 10,
       "quarter": "2025-Q4",
       "ticker": "GE",
       "name": "GE",
@@ -109,7 +121,7 @@
       "manager_fund": "TCI Fund Management"
     },
     {
-      "rank": 10,
+      "rank": 11,
       "quarter": "2025-Q4",
       "ticker": "MA",
       "name": "MA",
@@ -121,7 +133,7 @@
       "manager_fund": "Akre Capital Management"
     },
     {
-      "rank": 11,
+      "rank": 12,
       "quarter": "2025-Q4",
       "ticker": "OXY",
       "name": "OXY",
@@ -133,7 +145,7 @@
       "manager_fund": "Fairfax Financial"
     },
     {
-      "rank": 12,
+      "rank": 13,
       "quarter": "2025-Q4",
       "ticker": "MSCI",
       "name": "MSCI",
@@ -145,7 +157,7 @@
       "manager_fund": "Valley Forge Capital"
     },
     {
-      "rank": 13,
+      "rank": 14,
       "quarter": "2025-Q4",
       "ticker": "TRMD",
       "name": "TRMD",
@@ -157,7 +169,7 @@
       "manager_fund": "Oaktree Capital"
     },
     {
-      "rank": 14,
+      "rank": 15,
       "quarter": "2025-Q4",
       "ticker": "AMZN",
       "name": "AMAZON COM INC",
@@ -169,7 +181,7 @@
       "manager_fund": "Pershing Square Capital"
     },
     {
-      "rank": 15,
+      "rank": 16,
       "quarter": "2025-Q4",
       "ticker": "BN",
       "name": "BROOKFIELD CORP",
@@ -181,7 +193,7 @@
       "manager_fund": "Akre Capital Management"
     },
     {
-      "rank": 16,
+      "rank": 17,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -193,7 +205,7 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 17,
+      "rank": 18,
       "quarter": "2025-Q4",
       "ticker": "VST",
       "name": "VST",
@@ -205,7 +217,7 @@
       "manager_fund": "Oaktree Capital"
     },
     {
-      "rank": 18,
+      "rank": 19,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -217,7 +229,7 @@
       "manager_fund": "Himalaya Capital"
     },
     {
-      "rank": 19,
+      "rank": 20,
       "quarter": "2025-Q4",
       "ticker": "HHH",
       "name": "HHH",
@@ -229,7 +241,7 @@
       "manager_fund": "Pershing Square Capital"
     },
     {
-      "rank": 20,
+      "rank": 21,
       "quarter": "2025-Q4",
       "ticker": "VST",
       "name": "VST",
@@ -241,7 +253,7 @@
       "manager_fund": "Baupost Group"
     },
     {
-      "rank": 21,
+      "rank": 22,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META PLATFORMS INC",
@@ -253,7 +265,7 @@
       "manager_fund": "Pershing Square Capital"
     },
     {
-      "rank": 22,
+      "rank": 23,
       "quarter": "2025-Q4",
       "ticker": "MSFT",
       "name": "MSFT",
@@ -265,7 +277,7 @@
       "manager_fund": "Fundsmith"
     },
     {
-      "rank": 23,
+      "rank": 24,
       "quarter": "2025-Q4",
       "ticker": "MA",
       "name": "MA",
@@ -277,7 +289,7 @@
       "manager_fund": "Giverny Capital"
     },
     {
-      "rank": 24,
+      "rank": 25,
       "quarter": "2025-Q4",
       "ticker": "BAC",
       "name": "BAC",
@@ -289,7 +301,7 @@
       "manager_fund": "Berkshire Hathaway"
     },
     {
-      "rank": 25,
+      "rank": 26,
       "quarter": "2025-Q4",
       "ticker": "BN",
       "name": "BN",
@@ -301,7 +313,7 @@
       "manager_fund": "Pershing Square Capital"
     },
     {
-      "rank": 26,
+      "rank": 27,
       "quarter": "2025-Q4",
       "ticker": "QSR",
       "name": "RESTAURANT BRANDS INTL INC",
@@ -313,7 +325,7 @@
       "manager_fund": "Baupost Group"
     },
     {
-      "rank": 27,
+      "rank": 28,
       "quarter": "2025-Q4",
       "ticker": "V",
       "name": "VISA INC",
@@ -325,7 +337,7 @@
       "manager_fund": "Akre Capital Management"
     },
     {
-      "rank": 28,
+      "rank": 29,
       "quarter": "2025-Q4",
       "ticker": "WBD",
       "name": "WBD",
@@ -337,7 +349,7 @@
       "manager_fund": "Baupost Group"
     },
     {
-      "rank": 29,
+      "rank": 30,
       "quarter": "2025-Q4",
       "ticker": "V",
       "name": "V",
@@ -349,7 +361,7 @@
       "manager_fund": "Brave Warrior Advisors"
     },
     {
-      "rank": 30,
+      "rank": 31,
       "quarter": "2025-Q4",
       "ticker": "NVDA",
       "name": "NVDA",
@@ -361,7 +373,7 @@
       "manager_fund": "Appaloosa Management"
     },
     {
-      "rank": 31,
+      "rank": 32,
       "quarter": "2025-Q4",
       "ticker": "AAPL",
       "name": "AAPL",
@@ -373,7 +385,19 @@
       "manager_fund": "Wedgewood Partners"
     },
     {
-      "rank": 32,
+      "rank": 33,
+      "quarter": "2025-Q4",
+      "ticker": "GOOGL",
+      "name": "ALPHABET INC",
+      "action": "trim",
+      "delta_pct": -21,
+      "portfolio_impact_pct": 9.9,
+      "manager": "david-rolfe",
+      "manager_name": "David Rolfe",
+      "manager_fund": "Wedgewood Partners"
+    },
+    {
+      "rank": 34,
       "quarter": "2025-Q4",
       "ticker": "V",
       "name": "V",
@@ -385,7 +409,7 @@
       "manager_fund": "Giverny Capital"
     },
     {
-      "rank": 33,
+      "rank": 35,
       "quarter": "2025-Q4",
       "ticker": "BN",
       "name": "BROADCOM INC",
@@ -397,7 +421,7 @@
       "manager_fund": "Lone Pine Capital"
     },
     {
-      "rank": 34,
+      "rank": 36,
       "quarter": "2025-Q4",
       "ticker": "MCO",
       "name": "MOODYS CORP",
@@ -409,7 +433,7 @@
       "manager_fund": "Akre Capital Management"
     },
     {
-      "rank": 35,
+      "rank": 37,
       "quarter": "2025-Q4",
       "ticker": "NVDA",
       "name": "NVDA",
@@ -421,7 +445,7 @@
       "manager_fund": "Baillie Gifford (Long Term Global Growth)"
     },
     {
-      "rank": 36,
+      "rank": 38,
       "quarter": "2025-Q4",
       "ticker": "AMZN",
       "name": "AMAZON COM INC",
@@ -433,7 +457,7 @@
       "manager_fund": "Baupost Group"
     },
     {
-      "rank": 37,
+      "rank": 39,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -445,7 +469,7 @@
       "manager_fund": "Appaloosa Management"
     },
     {
-      "rank": 38,
+      "rank": 40,
       "quarter": "2025-Q4",
       "ticker": "TSM",
       "name": "TSM",
@@ -457,7 +481,7 @@
       "manager_fund": "Wedgewood Partners"
     },
     {
-      "rank": 39,
+      "rank": 41,
       "quarter": "2025-Q4",
       "ticker": "MSFT",
       "name": "MSFT",
@@ -469,7 +493,7 @@
       "manager_fund": "Egerton Capital"
     },
     {
-      "rank": 40,
+      "rank": 42,
       "quarter": "2025-Q4",
       "ticker": "MSFT",
       "name": "MICROSOFT CORP",
@@ -481,7 +505,7 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 41,
+      "rank": 43,
       "quarter": "2025-Q4",
       "ticker": "NVDA",
       "name": "NVDA",
@@ -493,7 +517,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 42,
+      "rank": 44,
       "quarter": "2025-Q4",
       "ticker": "AMZN",
       "name": "AMAZON COM INC",
@@ -505,7 +529,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 43,
+      "rank": 45,
       "quarter": "2025-Q4",
       "ticker": "HEI",
       "name": "HEI",
@@ -517,7 +541,7 @@
       "manager_fund": "Valley Forge Capital"
     },
     {
-      "rank": 44,
+      "rank": 46,
       "quarter": "2025-Q4",
       "ticker": "COHR",
       "name": "COHR",
@@ -529,7 +553,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 45,
+      "rank": 47,
       "quarter": "2025-Q4",
       "ticker": "MSFT",
       "name": "MSFT",
@@ -541,7 +565,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 46,
+      "rank": 48,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -553,7 +577,7 @@
       "manager_fund": "TCI Fund Management"
     },
     {
-      "rank": 47,
+      "rank": 49,
       "quarter": "2025-Q4",
       "ticker": "PR",
       "name": "PR",
@@ -565,7 +589,7 @@
       "manager_fund": "Oaktree Capital"
     },
     {
-      "rank": 48,
+      "rank": 50,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -577,7 +601,31 @@
       "manager_fund": "ValueAct Capital"
     },
     {
-      "rank": 49,
+      "rank": 51,
+      "quarter": "2025-Q4",
+      "ticker": "GOOG",
+      "name": "ALPHABET INC",
+      "action": "add",
+      "delta_pct": 29,
+      "portfolio_impact_pct": 8.1,
+      "manager": "david-tepper",
+      "manager_name": "David Tepper",
+      "manager_fund": "Appaloosa Management"
+    },
+    {
+      "rank": 52,
+      "quarter": "2025-Q4",
+      "ticker": "SLM",
+      "name": "SLM CORP",
+      "action": "add",
+      "delta_pct": 10,
+      "portfolio_impact_pct": 8.1,
+      "manager": "glenn-greenberg",
+      "manager_name": "Glenn Greenberg",
+      "manager_fund": "Brave Warrior Advisors"
+    },
+    {
+      "rank": 53,
       "quarter": "2025-Q4",
       "ticker": "MSFT",
       "name": "MICROSOFT CORP",
@@ -589,7 +637,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 50,
+      "rank": 54,
       "quarter": "2025-Q4",
       "ticker": "NOW",
       "name": "NOW",
@@ -601,7 +649,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 51,
+      "rank": 55,
       "quarter": "2025-Q4",
       "ticker": "MSFT",
       "name": "MSFT",
@@ -613,7 +661,7 @@
       "manager_fund": "Cantillon Capital Management"
     },
     {
-      "rank": 52,
+      "rank": 56,
       "quarter": "2025-Q4",
       "ticker": "AMZN",
       "name": "AMAZON COM INC",
@@ -625,7 +673,7 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 53,
+      "rank": 57,
       "quarter": "2025-Q4",
       "ticker": "PDD",
       "name": "PG&amp;E CORP",
@@ -637,7 +685,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 54,
+      "rank": 58,
       "quarter": "2025-Q4",
       "ticker": "TORM",
       "name": "TORM PLC",
@@ -649,7 +697,7 @@
       "manager_fund": "Oaktree Capital"
     },
     {
-      "rank": 55,
+      "rank": 59,
       "quarter": "2025-Q4",
       "ticker": "IBKR",
       "name": "IDEXX LABS INC",
@@ -661,7 +709,19 @@
       "manager_fund": "Fundsmith"
     },
     {
-      "rank": 56,
+      "rank": 60,
+      "quarter": "2025-Q4",
+      "ticker": "AMZN",
+      "name": "AMAZON COM INC",
+      "action": "trim",
+      "delta_pct": -13,
+      "portfolio_impact_pct": 7.3,
+      "manager": "david-tepper",
+      "manager_name": "David Tepper",
+      "manager_fund": "Appaloosa Management"
+    },
+    {
+      "rank": 61,
       "quarter": "2025-Q4",
       "ticker": "GOLD",
       "name": "GOLD",
@@ -673,7 +733,7 @@
       "manager_fund": "Scion Asset Management"
     },
     {
-      "rank": 57,
+      "rank": 62,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -685,7 +745,7 @@
       "manager_fund": "Egerton Capital"
     },
     {
-      "rank": 58,
+      "rank": 63,
       "quarter": "2025-Q4",
       "ticker": "MELI",
       "name": "MELI",
@@ -697,7 +757,19 @@
       "manager_fund": "Baillie Gifford (Long Term Global Growth)"
     },
     {
-      "rank": 59,
+      "rank": 64,
+      "quarter": "2025-Q4",
+      "ticker": "MU",
+      "name": "MICRON TECHNOLOGY INC",
+      "action": "add",
+      "delta_pct": 250,
+      "portfolio_impact_pct": 7.2,
+      "manager": "david-tepper",
+      "manager_name": "David Tepper",
+      "manager_fund": "Appaloosa Management"
+    },
+    {
+      "rank": 65,
       "quarter": "2025-Q4",
       "ticker": "V",
       "name": "VISA INC",
@@ -709,7 +781,7 @@
       "manager_fund": "Fundsmith"
     },
     {
-      "rank": 60,
+      "rank": 66,
       "quarter": "2025-Q4",
       "ticker": "CVX",
       "name": "CHEVRON CORP NEW",
@@ -721,7 +793,7 @@
       "manager_fund": "Berkshire Hathaway"
     },
     {
-      "rank": 61,
+      "rank": 67,
       "quarter": "2025-Q4",
       "ticker": "NVDA",
       "name": "NVDA",
@@ -733,7 +805,7 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 62,
+      "rank": 68,
       "quarter": "2025-Q4",
       "ticker": "AMZN",
       "name": "AMAZON COM INC",
@@ -745,7 +817,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 63,
+      "rank": 69,
       "quarter": "2025-Q4",
       "ticker": "TSLA",
       "name": "TSLA",
@@ -757,7 +829,7 @@
       "manager_fund": "Baillie Gifford (Long Term Global Growth)"
     },
     {
-      "rank": 64,
+      "rank": 70,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -769,7 +841,7 @@
       "manager_fund": "Fundsmith"
     },
     {
-      "rank": 65,
+      "rank": 71,
       "quarter": "2025-Q4",
       "ticker": "NKE",
       "name": "NKE",
@@ -781,7 +853,7 @@
       "manager_fund": "Pershing Square Capital"
     },
     {
-      "rank": 66,
+      "rank": 72,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -793,7 +865,7 @@
       "manager_fund": "Lone Pine Capital"
     },
     {
-      "rank": 67,
+      "rank": 73,
       "quarter": "2025-Q4",
       "ticker": "MCO",
       "name": "MCO",
@@ -805,7 +877,7 @@
       "manager_fund": "Cantillon Capital Management"
     },
     {
-      "rank": 68,
+      "rank": 74,
       "quarter": "2025-Q4",
       "ticker": "GOOGL",
       "name": "ALPHABET INC",
@@ -817,7 +889,7 @@
       "manager_fund": "Fundsmith"
     },
     {
-      "rank": 69,
+      "rank": 75,
       "quarter": "2025-Q4",
       "ticker": "NVDA",
       "name": "NVDA",
@@ -829,7 +901,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 70,
+      "rank": 76,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -841,7 +913,7 @@
       "manager_fund": "Giverny Capital"
     },
     {
-      "rank": 71,
+      "rank": 77,
       "quarter": "2025-Q4",
       "ticker": "SHEL",
       "name": "SHEL",
@@ -853,7 +925,7 @@
       "manager_fund": "Scion Asset Management"
     },
     {
-      "rank": 72,
+      "rank": 78,
       "quarter": "2025-Q4",
       "ticker": "MSFT",
       "name": "MICROSOFT CORP",
@@ -865,7 +937,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 73,
+      "rank": 79,
       "quarter": "2025-Q4",
       "ticker": "ORCL",
       "name": "ORACLE CORP",
@@ -877,7 +949,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 74,
+      "rank": 80,
       "quarter": "2025-Q4",
       "ticker": "FICO",
       "name": "FICO",
@@ -889,7 +961,7 @@
       "manager_fund": "Wedgewood Partners"
     },
     {
-      "rank": 75,
+      "rank": 81,
       "quarter": "2025-Q4",
       "ticker": "SE",
       "name": "SE",
@@ -901,7 +973,7 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 76,
+      "rank": 82,
       "quarter": "2025-Q4",
       "ticker": "ICE",
       "name": "ICE",
@@ -913,7 +985,19 @@
       "manager_fund": "Cantillon Capital Management"
     },
     {
-      "rank": 77,
+      "rank": 83,
+      "quarter": "2025-Q4",
+      "ticker": "LEN",
+      "name": "LENNAR CORP",
+      "action": "add",
+      "delta_pct": 20,
+      "portfolio_impact_pct": 5.8,
+      "manager": "glenn-greenberg",
+      "manager_name": "Glenn Greenberg",
+      "manager_fund": "Brave Warrior Advisors"
+    },
+    {
+      "rank": 84,
       "quarter": "2025-Q4",
       "ticker": "LLY",
       "name": "ELI LILLY &amp; CO",
@@ -925,7 +1009,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 78,
+      "rank": 85,
       "quarter": "2025-Q4",
       "ticker": "FNF",
       "name": "FIDELITY NATL INFORMATION SV",
@@ -937,7 +1021,7 @@
       "manager_fund": "Baupost Group"
     },
     {
-      "rank": 79,
+      "rank": 86,
       "quarter": "2025-Q4",
       "ticker": "PFE",
       "name": "PHILIP MORRIS INTL INC",
@@ -949,7 +1033,19 @@
       "manager_fund": "Fundsmith"
     },
     {
-      "rank": 80,
+      "rank": 87,
+      "quarter": "2025-Q4",
+      "ticker": "AMZN",
+      "name": "Amazon.Com",
+      "action": "trim",
+      "delta_pct": -7,
+      "portfolio_impact_pct": 5.7,
+      "manager": "tom-slater",
+      "manager_name": "Tom Slater",
+      "manager_fund": "Baillie Gifford (Long Term Global Growth)"
+    },
+    {
+      "rank": 88,
       "quarter": "2025-Q4",
       "ticker": "OXY",
       "name": "OXY",
@@ -961,7 +1057,7 @@
       "manager_fund": "Berkshire Hathaway"
     },
     {
-      "rank": 81,
+      "rank": 89,
       "quarter": "2025-Q4",
       "ticker": "BABA",
       "name": "BABA",
@@ -973,7 +1069,7 @@
       "manager_fund": "Appaloosa Management"
     },
     {
-      "rank": 82,
+      "rank": 90,
       "quarter": "2025-Q4",
       "ticker": "GOOG",
       "name": "ALPHABET INC",
@@ -985,7 +1081,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 83,
+      "rank": 91,
       "quarter": "2025-Q4",
       "ticker": "GOOG",
       "name": "GOOG",
@@ -997,7 +1093,7 @@
       "manager_fund": "Baupost Group"
     },
     {
-      "rank": 84,
+      "rank": 92,
       "quarter": "2025-Q4",
       "ticker": "BN",
       "name": "BROADCOM INC",
@@ -1009,7 +1105,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 85,
+      "rank": 93,
       "quarter": "2025-Q4",
       "ticker": "MA",
       "name": "MASTERCARD INCORPORATED",
@@ -1021,7 +1117,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 86,
+      "rank": 94,
       "quarter": "2025-Q4",
       "ticker": "V",
       "name": "VISA INC",
@@ -1033,7 +1129,19 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 87,
+      "rank": 95,
+      "quarter": "2025-Q4",
+      "ticker": "TSM",
+      "name": "TAIWAN SEMICONDUCTOR MFG LTD",
+      "action": "add",
+      "delta_pct": 7,
+      "portfolio_impact_pct": 5,
+      "manager": "david-tepper",
+      "manager_name": "David Tepper",
+      "manager_fund": "Appaloosa Management"
+    },
+    {
+      "rank": 96,
       "quarter": "2025-Q4",
       "ticker": "MSFT",
       "name": "MSFT",
@@ -1045,7 +1153,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 88,
+      "rank": 97,
       "quarter": "2025-Q4",
       "ticker": "SCHW",
       "name": "SCHW",
@@ -1057,7 +1165,7 @@
       "manager_fund": "Egerton Capital"
     },
     {
-      "rank": 89,
+      "rank": 98,
       "quarter": "2025-Q4",
       "ticker": "SHOP",
       "name": "SHOP",
@@ -1069,7 +1177,7 @@
       "manager_fund": "Baillie Gifford (Long Term Global Growth)"
     },
     {
-      "rank": 90,
+      "rank": 99,
       "quarter": "2025-Q4",
       "ticker": "CRH",
       "name": "CRH PLC",
@@ -1081,7 +1189,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 91,
+      "rank": 100,
       "quarter": "2025-Q4",
       "ticker": "AMZN",
       "name": "Amazon Com Inc",
@@ -1093,7 +1201,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 92,
+      "rank": 101,
       "quarter": "2025-Q4",
       "ticker": "OXY",
       "name": "OXY",
@@ -1105,7 +1213,7 @@
       "manager_fund": "Icahn Enterprises"
     },
     {
-      "rank": 93,
+      "rank": 102,
       "quarter": "2025-Q4",
       "ticker": "ENPH",
       "name": "ENPH",
@@ -1117,7 +1225,7 @@
       "manager_fund": "ValueAct Capital"
     },
     {
-      "rank": 94,
+      "rank": 103,
       "quarter": "2025-Q4",
       "ticker": "INTU",
       "name": "INTUIT",
@@ -1129,7 +1237,7 @@
       "manager_fund": "Valley Forge Capital"
     },
     {
-      "rank": 95,
+      "rank": 104,
       "quarter": "2025-Q4",
       "ticker": "NVDA",
       "name": "NVIDIA CORPORATION",
@@ -1141,7 +1249,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 96,
+      "rank": 105,
       "quarter": "2025-Q4",
       "ticker": "PLTR",
       "name": "PLTR",
@@ -1153,7 +1261,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 97,
+      "rank": 106,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -1165,7 +1273,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 98,
+      "rank": 107,
       "quarter": "2025-Q4",
       "ticker": "UBER",
       "name": "UBER",
@@ -1177,7 +1285,7 @@
       "manager_fund": "Appaloosa Management"
     },
     {
-      "rank": 99,
+      "rank": 108,
       "quarter": "2025-Q4",
       "ticker": "SPOT",
       "name": "SPOT",
@@ -1189,7 +1297,7 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 100,
+      "rank": 109,
       "quarter": "2025-Q4",
       "ticker": "AMZN",
       "name": "AMAZON COM INC",
@@ -1201,7 +1309,7 @@
       "manager_fund": "Lone Pine Capital"
     },
     {
-      "rank": 101,
+      "rank": 110,
       "quarter": "2025-Q4",
       "ticker": "COF",
       "name": "CAPITAL ONE FINL CORP",
@@ -1213,7 +1321,7 @@
       "manager_fund": "Lone Pine Capital"
     },
     {
-      "rank": 102,
+      "rank": 111,
       "quarter": "2025-Q4",
       "ticker": "NFLX",
       "name": "NFLX",
@@ -1225,7 +1333,7 @@
       "manager_fund": "Oakmark Funds"
     },
     {
-      "rank": 103,
+      "rank": 112,
       "quarter": "2025-Q4",
       "ticker": "TSM",
       "name": "TAIWAN SEMICONDUCTOR MFG LTD",
@@ -1237,7 +1345,19 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 104,
+      "rank": 113,
+      "quarter": "2025-Q4",
+      "ticker": "CDW",
+      "name": "CDW CORP",
+      "action": "add",
+      "delta_pct": 26,
+      "portfolio_impact_pct": 4,
+      "manager": "david-rolfe",
+      "manager_name": "David Rolfe",
+      "manager_fund": "Wedgewood Partners"
+    },
+    {
+      "rank": 114,
       "quarter": "2025-Q4",
       "ticker": "BN",
       "name": "BROOKFIELD CORP",
@@ -1249,7 +1369,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 105,
+      "rank": 115,
       "quarter": "2025-Q4",
       "ticker": "APP",
       "name": "APPLOVIN CORP",
@@ -1261,7 +1381,7 @@
       "manager_fund": "Lone Pine Capital"
     },
     {
-      "rank": 106,
+      "rank": 116,
       "quarter": "2025-Q4",
       "ticker": "TSM",
       "name": "TAIWAN SEMICONDUCTOR MFG LTD",
@@ -1273,7 +1393,7 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 107,
+      "rank": 117,
       "quarter": "2025-Q4",
       "ticker": "SCHW",
       "name": "SCHWAB CHARLES CORP",
@@ -1285,7 +1405,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 108,
+      "rank": 118,
       "quarter": "2025-Q4",
       "ticker": "V",
       "name": "VISA INC",
@@ -1297,7 +1417,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 109,
+      "rank": 119,
       "quarter": "2025-Q4",
       "ticker": "SPG",
       "name": "STATE STREET CORP",
@@ -1309,7 +1429,7 @@
       "manager_fund": "Oaktree Capital"
     },
     {
-      "rank": 110,
+      "rank": 120,
       "quarter": "2025-Q4",
       "ticker": "COF",
       "name": "CAPITAL ONE FINL CORP",
@@ -1321,7 +1441,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 111,
+      "rank": 121,
       "quarter": "2025-Q4",
       "ticker": "TSM",
       "name": "Taiwan Semiconductor Mfg Ltd",
@@ -1333,7 +1453,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 112,
+      "rank": 122,
       "quarter": "2025-Q4",
       "ticker": "PG",
       "name": "PROCTER AND GAMBLE CO",
@@ -1345,7 +1465,31 @@
       "manager_fund": "Fundsmith"
     },
     {
-      "rank": 113,
+      "rank": 123,
+      "quarter": "2025-Q4",
+      "ticker": "GOOGL",
+      "name": "",
+      "action": "trim",
+      "delta_pct": -22,
+      "portfolio_impact_pct": 3.5,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 124,
+      "quarter": "2025-Q4",
+      "ticker": "MSFT",
+      "name": "MICROSOFT CORP",
+      "action": "add",
+      "delta_pct": 8,
+      "portfolio_impact_pct": 3.5,
+      "manager": "david-tepper",
+      "manager_name": "David Tepper",
+      "manager_fund": "Appaloosa Management"
+    },
+    {
+      "rank": 125,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -1357,7 +1501,7 @@
       "manager_fund": "Gotham Asset Management"
     },
     {
-      "rank": 114,
+      "rank": 126,
       "quarter": "2025-Q4",
       "ticker": "CNH",
       "name": "CNH",
@@ -1369,7 +1513,7 @@
       "manager_fund": "Greenlight Capital"
     },
     {
-      "rank": 115,
+      "rank": 127,
       "quarter": "2025-Q4",
       "ticker": "NFLX",
       "name": "NFLX",
@@ -1381,7 +1525,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 116,
+      "rank": 128,
       "quarter": "2025-Q4",
       "ticker": "DHR",
       "name": "DISNEY WALT CO",
@@ -1393,7 +1537,43 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 117,
+      "rank": 129,
+      "quarter": "2025-Q4",
+      "ticker": "CB",
+      "name": "CHUBB LIMITED",
+      "action": "new",
+      "delta_pct": 100,
+      "portfolio_impact_pct": 3.4,
+      "manager": "david-rolfe",
+      "manager_name": "David Rolfe",
+      "manager_fund": "Wedgewood Partners"
+    },
+    {
+      "rank": 130,
+      "quarter": "2025-Q4",
+      "ticker": "COF",
+      "name": "",
+      "action": "add",
+      "delta_pct": 20,
+      "portfolio_impact_pct": 3.3,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 131,
+      "quarter": "2025-Q4",
+      "ticker": "CRM",
+      "name": "",
+      "action": "add",
+      "delta_pct": 39,
+      "portfolio_impact_pct": 3.3,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 132,
       "quarter": "2025-Q4",
       "ticker": "MSCI",
       "name": "MSCI INC",
@@ -1405,7 +1585,19 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 118,
+      "rank": 133,
+      "quarter": "2025-Q4",
+      "ticker": "ABNB",
+      "name": "",
+      "action": "add",
+      "delta_pct": 21,
+      "portfolio_impact_pct": 3.2,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 134,
       "quarter": "2025-Q4",
       "ticker": "CB",
       "name": "CB",
@@ -1417,7 +1609,7 @@
       "manager_fund": "Berkshire Hathaway"
     },
     {
-      "rank": 119,
+      "rank": 135,
       "quarter": "2025-Q4",
       "ticker": "UBER",
       "name": "UBER",
@@ -1429,7 +1621,7 @@
       "manager_fund": "Pershing Square Capital"
     },
     {
-      "rank": 120,
+      "rank": 136,
       "quarter": "2025-Q4",
       "ticker": "UNH",
       "name": "UNH",
@@ -1441,7 +1633,7 @@
       "manager_fund": "Gotham Asset Management"
     },
     {
-      "rank": 121,
+      "rank": 137,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -1453,7 +1645,19 @@
       "manager_fund": "Akre Capital Management"
     },
     {
-      "rank": 122,
+      "rank": 138,
+      "quarter": "2025-Q4",
+      "ticker": "KEYS",
+      "name": "",
+      "action": "add",
+      "delta_pct": 38,
+      "portfolio_impact_pct": 3.1,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 139,
       "quarter": "2025-Q4",
       "ticker": "PFE",
       "name": "PHILIP MORRIS INTL INC",
@@ -1465,7 +1669,7 @@
       "manager_fund": "Lone Pine Capital"
     },
     {
-      "rank": 123,
+      "rank": 140,
       "quarter": "2025-Q4",
       "ticker": "META",
       "name": "META",
@@ -1477,7 +1681,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 124,
+      "rank": 141,
       "quarter": "2025-Q4",
       "ticker": "DNUT",
       "name": "DNUT",
@@ -1489,7 +1693,7 @@
       "manager_fund": "Icahn Enterprises"
     },
     {
-      "rank": 125,
+      "rank": 142,
       "quarter": "2025-Q4",
       "ticker": "APP",
       "name": "APPLOVIN CORP",
@@ -1501,7 +1705,19 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 126,
+      "rank": 143,
+      "quarter": "2025-Q4",
+      "ticker": "NFLX",
+      "name": "Netflix Inc",
+      "action": "add",
+      "delta_pct": 912,
+      "portfolio_impact_pct": 2.9,
+      "manager": "tom-slater",
+      "manager_name": "Tom Slater",
+      "manager_fund": "Baillie Gifford (Long Term Global Growth)"
+    },
+    {
+      "rank": 144,
       "quarter": "2025-Q4",
       "ticker": "FTNT",
       "name": "FTNT",
@@ -1513,7 +1729,31 @@
       "manager_fund": "Lone Pine Capital"
     },
     {
-      "rank": 127,
+      "rank": 145,
+      "quarter": "2025-Q4",
+      "ticker": "COP",
+      "name": "",
+      "action": "add",
+      "delta_pct": 27,
+      "portfolio_impact_pct": 2.8,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 146,
+      "quarter": "2025-Q4",
+      "ticker": "QCOM",
+      "name": "QUALCOMM INC",
+      "action": "trim",
+      "delta_pct": -8,
+      "portfolio_impact_pct": 2.8,
+      "manager": "david-tepper",
+      "manager_name": "David Tepper",
+      "manager_fund": "Appaloosa Management"
+    },
+    {
+      "rank": 147,
       "quarter": "2025-Q4",
       "ticker": "AON",
       "name": "AON PLC",
@@ -1525,7 +1765,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 128,
+      "rank": 148,
       "quarter": "2025-Q4",
       "ticker": "IBKR",
       "name": "IDEXX LABS INC",
@@ -1537,7 +1777,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 129,
+      "rank": 149,
       "quarter": "2025-Q4",
       "ticker": "FE",
       "name": "FISERV INC",
@@ -1549,7 +1789,7 @@
       "manager_fund": "Baupost Group"
     },
     {
-      "rank": 130,
+      "rank": 150,
       "quarter": "2025-Q4",
       "ticker": "KKR",
       "name": "KKR",
@@ -1561,7 +1801,7 @@
       "manager_fund": "Oakmark Funds"
     },
     {
-      "rank": 131,
+      "rank": 151,
       "quarter": "2025-Q4",
       "ticker": "SHW",
       "name": "SHERWIN WILLIAMS CO",
@@ -1573,7 +1813,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 132,
+      "rank": 152,
       "quarter": "2025-Q4",
       "ticker": "GOOGL",
       "name": "Alphabet Inc",
@@ -1585,7 +1825,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 133,
+      "rank": 153,
       "quarter": "2025-Q4",
       "ticker": "SEA",
       "name": "Sea Ltd",
@@ -1597,7 +1837,19 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 134,
+      "rank": 154,
+      "quarter": "2025-Q4",
+      "ticker": "AMZN",
+      "name": "AMAZON COM INC",
+      "action": "new",
+      "delta_pct": 100,
+      "portfolio_impact_pct": 2.6,
+      "manager": "david-rolfe",
+      "manager_name": "David Rolfe",
+      "manager_fund": "Wedgewood Partners"
+    },
+    {
+      "rank": 155,
       "quarter": "2025-Q4",
       "ticker": "NVDA",
       "name": "NVIDIA CORPORATION",
@@ -1609,7 +1861,7 @@
       "manager_fund": "Gotham Asset Management"
     },
     {
-      "rank": 135,
+      "rank": 156,
       "quarter": "2025-Q4",
       "ticker": "THC",
       "name": "TENET HEALTHCARE CORP",
@@ -1621,7 +1873,7 @@
       "manager_fund": "Lone Pine Capital"
     },
     {
-      "rank": 136,
+      "rank": 157,
       "quarter": "2025-Q4",
       "ticker": "CRH",
       "name": "CRH PLC",
@@ -1633,7 +1885,19 @@
       "manager_fund": "Baupost Group"
     },
     {
-      "rank": 137,
+      "rank": 158,
+      "quarter": "2025-Q4",
+      "ticker": "PYPL",
+      "name": "PAYPAL HLDGS INC",
+      "action": "trim",
+      "delta_pct": -55,
+      "portfolio_impact_pct": 2.4,
+      "manager": "david-rolfe",
+      "manager_name": "David Rolfe",
+      "manager_fund": "Wedgewood Partners"
+    },
+    {
+      "rank": 159,
       "quarter": "2025-Q4",
       "ticker": "CMG",
       "name": "CHIPOTLE MEXICAN GRILL INC",
@@ -1645,7 +1909,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 138,
+      "rank": 160,
       "quarter": "2025-Q4",
       "ticker": "SBUX",
       "name": "STARBUCKS CORP",
@@ -1657,7 +1921,19 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 139,
+      "rank": 161,
+      "quarter": "2025-Q4",
+      "ticker": "META",
+      "name": "Meta Platforms Inc",
+      "action": "trim",
+      "delta_pct": -17,
+      "portfolio_impact_pct": 2.4,
+      "manager": "tom-slater",
+      "manager_name": "Tom Slater",
+      "manager_fund": "Baillie Gifford (Long Term Global Growth)"
+    },
+    {
+      "rank": 162,
       "quarter": "2025-Q4",
       "ticker": "IVV",
       "name": "Ishares Tr",
@@ -1669,7 +1945,19 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 140,
+      "rank": 163,
+      "quarter": "2025-Q4",
+      "ticker": "ADBE",
+      "name": "ADOBE INC",
+      "action": "add",
+      "delta_pct": 16,
+      "portfolio_impact_pct": 2.3,
+      "manager": "william-von-mueffling",
+      "manager_name": "William von Mueffling",
+      "manager_fund": "Cantillon Capital Management"
+    },
+    {
+      "rank": 164,
       "quarter": "2025-Q4",
       "ticker": "GOOGL",
       "name": "ALPHABET INC",
@@ -1681,7 +1969,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 141,
+      "rank": 165,
       "quarter": "2025-Q4",
       "ticker": "AMD",
       "name": "ADVANCED MICRO DEVICES INC",
@@ -1693,7 +1981,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 142,
+      "rank": 166,
       "quarter": "2025-Q4",
       "ticker": "GEV",
       "name": "GE VERNOVA INC",
@@ -1705,7 +1993,19 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 143,
+      "rank": 167,
+      "quarter": "2025-Q4",
+      "ticker": "DHR",
+      "name": "DISNEY WALT CO",
+      "action": "add",
+      "delta_pct": 109,
+      "portfolio_impact_pct": 2.1,
+      "manager": "francois-rochon",
+      "manager_name": "François Rochon",
+      "manager_fund": "Giverny Capital"
+    },
+    {
+      "rank": 168,
       "quarter": "2025-Q4",
       "ticker": "ABT",
       "name": "ABBOTT LABS",
@@ -1717,7 +2017,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 144,
+      "rank": 169,
       "quarter": "2025-Q4",
       "ticker": "NKE",
       "name": "NIKE INC",
@@ -1729,7 +2029,7 @@
       "manager_fund": "Fundsmith"
     },
     {
-      "rank": 145,
+      "rank": 170,
       "quarter": "2025-Q4",
       "ticker": "TSLA",
       "name": "TESLA INC",
@@ -1741,7 +2041,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 146,
+      "rank": 171,
       "quarter": "2025-Q4",
       "ticker": "ADBE",
       "name": "ADOBE INC",
@@ -1753,7 +2053,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 147,
+      "rank": 172,
       "quarter": "2025-Q4",
       "ticker": "IONQ",
       "name": "INTUITIVE SURGICAL INC",
@@ -1765,7 +2065,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 148,
+      "rank": 173,
       "quarter": "2025-Q4",
       "ticker": "AMZN",
       "name": "AMAZON COM INC",
@@ -1777,7 +2077,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 149,
+      "rank": 174,
       "quarter": "2025-Q4",
       "ticker": "COF",
       "name": "CAPITAL ONE FINL CORP",
@@ -1789,7 +2089,19 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 150,
+      "rank": 175,
+      "quarter": "2025-Q4",
+      "ticker": "MRK",
+      "name": "",
+      "action": "add",
+      "delta_pct": 43,
+      "portfolio_impact_pct": 1.9,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 176,
       "quarter": "2025-Q4",
       "ticker": "DHR",
       "name": "DANAHER CORPORATION",
@@ -1801,7 +2113,19 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 151,
+      "rank": 177,
+      "quarter": "2025-Q4",
+      "ticker": "GM",
+      "name": "",
+      "action": "trim",
+      "delta_pct": -17,
+      "portfolio_impact_pct": 1.8,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 178,
       "quarter": "2025-Q4",
       "ticker": "AAPL",
       "name": "APPLE INC",
@@ -1813,7 +2137,7 @@
       "manager_fund": "Gotham Asset Management"
     },
     {
-      "rank": 152,
+      "rank": 179,
       "quarter": "2025-Q4",
       "ticker": "TSM",
       "name": "TAIWAN SEMICONDUCTOR MFG LTD",
@@ -1825,7 +2149,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 153,
+      "rank": 180,
       "quarter": "2025-Q4",
       "ticker": "ABNB",
       "name": "AIRBNB INC",
@@ -1837,7 +2161,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 154,
+      "rank": 181,
       "quarter": "2025-Q4",
       "ticker": "QSR",
       "name": "Restaurant Brands Intl Inc",
@@ -1849,7 +2173,31 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 155,
+      "rank": 182,
+      "quarter": "2025-Q4",
+      "ticker": "DELL",
+      "name": "",
+      "action": "add",
+      "delta_pct": 45,
+      "portfolio_impact_pct": 1.7,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 183,
+      "quarter": "2025-Q4",
+      "ticker": "FE",
+      "name": "",
+      "action": "add",
+      "delta_pct": 198,
+      "portfolio_impact_pct": 1.7,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 184,
       "quarter": "2025-Q4",
       "ticker": "JPM",
       "name": "JPMORGAN CHASE &amp; CO.",
@@ -1861,7 +2209,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 156,
+      "rank": 185,
       "quarter": "2025-Q4",
       "ticker": "API",
       "name": "API GROUP CORP",
@@ -1873,7 +2221,7 @@
       "manager_fund": "Maverick Capital"
     },
     {
-      "rank": 157,
+      "rank": 186,
       "quarter": "2025-Q4",
       "ticker": "IVV",
       "name": "ISHARES TR",
@@ -1885,7 +2233,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 158,
+      "rank": 187,
       "quarter": "2025-Q4",
       "ticker": "ALCOA",
       "name": "Alcoa Corp",
@@ -1897,7 +2245,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 159,
+      "rank": 188,
       "quarter": "2025-Q4",
       "ticker": "GM",
       "name": "GENERAL MTRS CO",
@@ -1909,7 +2257,19 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 160,
+      "rank": 189,
+      "quarter": "2025-Q4",
+      "ticker": "C",
+      "name": "",
+      "action": "trim",
+      "delta_pct": -27,
+      "portfolio_impact_pct": 1.5,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 190,
       "quarter": "2025-Q4",
       "ticker": "CROCS",
       "name": "CROCS INC",
@@ -1921,7 +2281,7 @@
       "manager_fund": "Himalaya Capital"
     },
     {
-      "rank": 161,
+      "rank": 191,
       "quarter": "2025-Q4",
       "ticker": "GOOGL",
       "name": "ALPHABET INC",
@@ -1933,7 +2293,31 @@
       "manager_fund": "Pershing Square Capital"
     },
     {
-      "rank": 162,
+      "rank": 192,
+      "quarter": "2025-Q4",
+      "ticker": "BAC",
+      "name": "",
+      "action": "trim",
+      "delta_pct": -27,
+      "portfolio_impact_pct": 1.4,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 193,
+      "quarter": "2025-Q4",
+      "ticker": "ZM",
+      "name": "",
+      "action": "add",
+      "delta_pct": 158,
+      "portfolio_impact_pct": 1.4,
+      "manager": "bill-nygren",
+      "manager_name": "Bill Nygren",
+      "manager_fund": "Oakmark Funds"
+    },
+    {
+      "rank": 194,
       "quarter": "2025-Q4",
       "ticker": "BLOCK",
       "name": "BLOCK INC",
@@ -1945,7 +2329,7 @@
       "manager_fund": "Tiger Global Management"
     },
     {
-      "rank": 163,
+      "rank": 195,
       "quarter": "2025-Q4",
       "ticker": "INTU",
       "name": "INTUIT",
@@ -1957,7 +2341,7 @@
       "manager_fund": "Polen Capital Management"
     },
     {
-      "rank": 164,
+      "rank": 196,
       "quarter": "2025-Q4",
       "ticker": "ROKU",
       "name": "Roku Inc",
@@ -1969,7 +2353,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 165,
+      "rank": 197,
       "quarter": "2025-Q4",
       "ticker": "CSX",
       "name": "CSX CORP",
@@ -1981,7 +2365,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 166,
+      "rank": 198,
       "quarter": "2025-Q4",
       "ticker": "CRH",
       "name": "Crh Plc",
@@ -1993,7 +2377,7 @@
       "manager_fund": "Duquesne Family Office"
     },
     {
-      "rank": 167,
+      "rank": 199,
       "quarter": "2025-Q4",
       "ticker": "API",
       "name": "API GROUP CORP",
@@ -2005,7 +2389,7 @@
       "manager_fund": "Viking Global Investors"
     },
     {
-      "rank": 168,
+      "rank": 200,
       "quarter": "2025-Q4",
       "ticker": "CHEWY",
       "name": "CHEWY INC",
@@ -2015,394 +2399,10 @@
       "manager": "andreas-halvorsen",
       "manager_name": "Andreas Halvorsen",
       "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 169,
-      "quarter": "2025-Q4",
-      "ticker": "HCA",
-      "name": "HCA HEALTHCARE INC",
-      "action": "trim",
-      "delta_pct": -28,
-      "portfolio_impact_pct": 1.2,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 170,
-      "quarter": "2025-Q4",
-      "ticker": "SEA",
-      "name": "SEA LTD",
-      "action": "add",
-      "delta_pct": 21,
-      "portfolio_impact_pct": 1.2,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 171,
-      "quarter": "2025-Q4",
-      "ticker": "ZS",
-      "name": "ZSCALER INC",
-      "action": "trim",
-      "delta_pct": -6,
-      "portfolio_impact_pct": 1.2,
-      "manager": "chase-coleman",
-      "manager_name": "Chase Coleman",
-      "manager_fund": "Tiger Global Management"
-    },
-    {
-      "rank": 172,
-      "quarter": "2025-Q4",
-      "ticker": "UBER",
-      "name": "UBER TECHNOLOGIES INC",
-      "action": "trim",
-      "delta_pct": -22,
-      "portfolio_impact_pct": 1.2,
-      "manager": "polen-capital",
-      "manager_name": "Polen Capital",
-      "manager_fund": "Polen Capital Management"
-    },
-    {
-      "rank": 173,
-      "quarter": "2025-Q4",
-      "ticker": "UBS",
-      "name": "UBS GROUP AG",
-      "action": "trim",
-      "delta_pct": -30,
-      "portfolio_impact_pct": 1.1,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 174,
-      "quarter": "2025-Q4",
-      "ticker": "NOW",
-      "name": "SERVICENOW INC",
-      "action": "add",
-      "delta_pct": 609,
-      "portfolio_impact_pct": 1.1,
-      "manager": "chase-coleman",
-      "manager_name": "Chase Coleman",
-      "manager_fund": "Tiger Global Management"
-    },
-    {
-      "rank": 175,
-      "quarter": "2025-Q4",
-      "ticker": "AMZN",
-      "name": "AMAZON COM INC",
-      "action": "add",
-      "delta_pct": 27,
-      "portfolio_impact_pct": 1.1,
-      "manager": "joel-greenblatt",
-      "manager_name": "Joel Greenblatt",
-      "manager_fund": "Gotham Asset Management"
-    },
-    {
-      "rank": 176,
-      "quarter": "2025-Q4",
-      "ticker": "META",
-      "name": "META",
-      "action": "add",
-      "delta_pct": 78,
-      "portfolio_impact_pct": 1.02,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 177,
-      "quarter": "2025-Q4",
-      "ticker": "UNH",
-      "name": "UNITEDHEALTH GROUP INC",
-      "action": "new",
-      "delta_pct": 100,
-      "portfolio_impact_pct": 1,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 178,
-      "quarter": "2025-Q4",
-      "ticker": "FTI",
-      "name": "TECHNIPFMC PLC",
-      "action": "trim",
-      "delta_pct": -6,
-      "portfolio_impact_pct": 1,
-      "manager": "john-armitage",
-      "manager_name": "John Armitage",
-      "manager_fund": "Egerton Capital"
-    },
-    {
-      "rank": 179,
-      "quarter": "2025-Q4",
-      "ticker": "DELL",
-      "name": "Delta Air Lines Inc Del",
-      "action": "new",
-      "delta_pct": 100,
-      "portfolio_impact_pct": 1,
-      "manager": "stanley-druckenmiller",
-      "manager_name": "Stanley Druckenmiller",
-      "manager_fund": "Duquesne Family Office"
-    },
-    {
-      "rank": 180,
-      "quarter": "2025-Q4",
-      "ticker": "SAIA",
-      "name": "SAIA INC",
-      "action": "trim",
-      "delta_pct": -21,
-      "portfolio_impact_pct": 0.9,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 181,
-      "quarter": "2025-Q4",
-      "ticker": "FND",
-      "name": "FND",
-      "action": "new",
-      "delta_pct": null,
-      "portfolio_impact_pct": 0.8,
-      "manager": "warren-buffett",
-      "manager_name": "Warren Buffett",
-      "manager_fund": "Berkshire Hathaway"
-    },
-    {
-      "rank": 182,
-      "quarter": "2025-Q4",
-      "ticker": "CB",
-      "name": "CHUBB LIMITED",
-      "action": "new",
-      "delta_pct": 100,
-      "portfolio_impact_pct": 0.8,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 183,
-      "quarter": "2025-Q4",
-      "ticker": "PGR",
-      "name": "PROGRESSIVE CORP",
-      "action": "new",
-      "delta_pct": 100,
-      "portfolio_impact_pct": 0.8,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 184,
-      "quarter": "2025-Q4",
-      "ticker": "NFLX",
-      "name": "NETFLIX INC",
-      "action": "add",
-      "delta_pct": 1108,
-      "portfolio_impact_pct": 0.8,
-      "manager": "chase-coleman",
-      "manager_name": "Chase Coleman",
-      "manager_fund": "Tiger Global Management"
-    },
-    {
-      "rank": 185,
-      "quarter": "2025-Q4",
-      "ticker": "GRAB",
-      "name": "GRAB HOLDINGS LTD",
-      "action": "trim",
-      "delta_pct": -7,
-      "portfolio_impact_pct": 0.8,
-      "manager": "howard-marks",
-      "manager_name": "Howard Marks",
-      "manager_fund": "Oaktree Capital"
-    },
-    {
-      "rank": 186,
-      "quarter": "2025-Q4",
-      "ticker": "XP",
-      "name": "XP INC",
-      "action": "add",
-      "delta_pct": 63,
-      "portfolio_impact_pct": 0.8,
-      "manager": "howard-marks",
-      "manager_name": "Howard Marks",
-      "manager_fund": "Oaktree Capital"
-    },
-    {
-      "rank": 187,
-      "quarter": "2025-Q4",
-      "ticker": "GOOG",
-      "name": "ALPHABET INC",
-      "action": "add",
-      "delta_pct": 16,
-      "portfolio_impact_pct": 0.8,
-      "manager": "joel-greenblatt",
-      "manager_name": "Joel Greenblatt",
-      "manager_fund": "Gotham Asset Management"
-    },
-    {
-      "rank": 188,
-      "quarter": "2025-Q4",
-      "ticker": "BN",
-      "name": "BROADCOM INC",
-      "action": "add",
-      "delta_pct": 7,
-      "portfolio_impact_pct": 0.8,
-      "manager": "joel-greenblatt",
-      "manager_name": "Joel Greenblatt",
-      "manager_fund": "Gotham Asset Management"
-    },
-    {
-      "rank": 189,
-      "quarter": "2025-Q4",
-      "ticker": "SPOT",
-      "name": "SPOTIFY TECHNOLOGY S A",
-      "action": "new",
-      "delta_pct": 100,
-      "portfolio_impact_pct": 0.8,
-      "manager": "lee-ainslie",
-      "manager_name": "Lee Ainslie",
-      "manager_fund": "Maverick Capital"
-    },
-    {
-      "rank": 190,
-      "quarter": "2025-Q4",
-      "ticker": "AON",
-      "name": "AON PLC",
-      "action": "trim",
-      "delta_pct": -45,
-      "portfolio_impact_pct": 0.7,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 191,
-      "quarter": "2025-Q4",
-      "ticker": "BAC",
-      "name": "BANK AMERICA CORP",
-      "action": "trim",
-      "delta_pct": -61,
-      "portfolio_impact_pct": 0.7,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 192,
-      "quarter": "2025-Q4",
-      "ticker": "ABNB",
-      "name": "AIRBNB INC",
-      "action": "add",
-      "delta_pct": 29,
-      "portfolio_impact_pct": 0.7,
-      "manager": "howard-marks",
-      "manager_name": "Howard Marks",
-      "manager_fund": "Oaktree Capital"
-    },
-    {
-      "rank": 193,
-      "quarter": "2025-Q4",
-      "ticker": "LILAK",
-      "name": "LIBERTY LATIN AMERICA LTD",
-      "action": "trim",
-      "delta_pct": -12,
-      "portfolio_impact_pct": 0.7,
-      "manager": "howard-marks",
-      "manager_name": "Howard Marks",
-      "manager_fund": "Oaktree Capital"
-    },
-    {
-      "rank": 194,
-      "quarter": "2025-Q4",
-      "ticker": "GOOGL",
-      "name": "ALPHABET INC",
-      "action": "add",
-      "delta_pct": 9,
-      "portfolio_impact_pct": 0.7,
-      "manager": "joel-greenblatt",
-      "manager_name": "Joel Greenblatt",
-      "manager_fund": "Gotham Asset Management"
-    },
-    {
-      "rank": 195,
-      "quarter": "2025-Q4",
-      "ticker": "CNC",
-      "name": "CENTENE CORP DEL",
-      "action": "add",
-      "delta_pct": 117,
-      "portfolio_impact_pct": 0.7,
-      "manager": "joel-greenblatt",
-      "manager_name": "Joel Greenblatt",
-      "manager_fund": "Gotham Asset Management"
-    },
-    {
-      "rank": 196,
-      "quarter": "2025-Q4",
-      "ticker": "CB",
-      "name": "CHUBB LIMITED",
-      "action": "add",
-      "delta_pct": 52,
-      "portfolio_impact_pct": 0.7,
-      "manager": "joel-greenblatt",
-      "manager_name": "Joel Greenblatt",
-      "manager_fund": "Gotham Asset Management"
-    },
-    {
-      "rank": 197,
-      "quarter": "2025-Q4",
-      "ticker": "WMT",
-      "name": "WALMART INC",
-      "action": "add",
-      "delta_pct": 6,
-      "portfolio_impact_pct": 0.7,
-      "manager": "joel-greenblatt",
-      "manager_name": "Joel Greenblatt",
-      "manager_fund": "Gotham Asset Management"
-    },
-    {
-      "rank": 198,
-      "quarter": "2025-Q4",
-      "ticker": "PGR",
-      "name": "PROGRESSIVE CORP",
-      "action": "new",
-      "delta_pct": 100,
-      "portfolio_impact_pct": 0.7,
-      "manager": "lee-ainslie",
-      "manager_name": "Lee Ainslie",
-      "manager_fund": "Maverick Capital"
-    },
-    {
-      "rank": 199,
-      "quarter": "2025-Q4",
-      "ticker": "FIGMA",
-      "name": "FIGMA INC",
-      "action": "new",
-      "delta_pct": 100,
-      "portfolio_impact_pct": 0.6,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
-    },
-    {
-      "rank": 200,
-      "quarter": "2025-Q4",
-      "ticker": "LOW",
-      "name": "LOWES COS INC",
-      "action": "new",
-      "delta_pct": 100,
-      "portfolio_impact_pct": 0.6,
-      "manager": "andreas-halvorsen",
-      "manager_name": "Andreas Halvorsen",
-      "manager_fund": "Viking Global Investors"
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

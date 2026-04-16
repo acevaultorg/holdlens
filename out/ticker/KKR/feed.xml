@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KKR — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/KKR</link>
+    <atom:link href="https://holdlens.com/ticker/KKR/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on KKR (KKR &amp; Co) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:15 GMT</lastBuildDate>
+    <item>
+      <title>Bill Nygren: ADDED KKR (+20%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/KKR</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KKR#2025-Q4-bill-nygren-add-0</guid>
+      <description>Bill Nygren (Oakmark Funds) added KKR in Q4 2025 · 2.7% of portfolio. Building the new KKR position.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Bill Nygren)</author>
+    </item>
+    <item>
+      <title>Bill Nygren: NEW POSITION KKR · Q3 2025</title>
+      <link>https://holdlens.com/signal/KKR</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KKR#2025-Q3-bill-nygren-new-1</guid>
+      <description>Bill Nygren (Oakmark Funds) new position KKR in Q3 2025 · 2.2% of portfolio. New KKR position — alts.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>new</category>
+      <author>noreply@holdlens.com (Bill Nygren)</author>
+    </item>
+  </channel>
+</rss>

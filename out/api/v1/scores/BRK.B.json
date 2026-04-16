@@ -3,12 +3,12 @@
     "ticker": "BRK.B",
     "name": "Berkshire Hathaway",
     "sector": "Financials",
-    "score": 2,
-    "formatted_score": "+2",
+    "score": 1,
+    "formatted_score": "+1",
     "direction": "BUY",
     "label": "WEAK BUY",
     "buyer_count": 5,
-    "seller_count": 2,
+    "seller_count": 6,
     "owner_count": 2,
     "breakdown": {
       "smartMoney": 3,
@@ -17,13 +17,13 @@
       "trendStreak": 1,
       "concentration": 4,
       "contrarian": 0,
-      "dissentPenalty": 5,
+      "dissentPenalty": 6,
       "crowdingPenalty": 0,
-      "raw": 2
+      "raw": 1
     }
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

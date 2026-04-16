@@ -3,15 +3,15 @@
     "ticker": "MSCI",
     "name": "MSCI Inc",
     "sector": "Other",
-    "score": 19,
-    "formatted_score": "+19",
+    "score": 22,
+    "formatted_score": "+22",
     "direction": "BUY",
     "label": "WEAK BUY",
-    "buyer_count": 9,
+    "buyer_count": 12,
     "seller_count": 8,
     "owner_count": 1,
     "breakdown": {
-      "smartMoney": 5,
+      "smartMoney": 8,
       "insiderBoost": 0,
       "trackRecord": 5,
       "trendStreak": 1,
@@ -19,11 +19,11 @@
       "contrarian": 9,
       "dissentPenalty": 9,
       "crowdingPenalty": 0,
-      "raw": 19
+      "raw": 22
     }
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

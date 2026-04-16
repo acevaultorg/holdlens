@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DIS — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/DIS</link>
+    <atom:link href="https://holdlens.com/ticker/DIS/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on DIS (The Walt Disney Company) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Jeffrey Ubben: ADDED DIS (+10%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/DIS</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/DIS#2025-Q2-jeffrey-ubben-add-0</guid>
+      <description>Jeffrey Ubben (ValueAct Capital) added DIS in Q2 2025 · 11.2% of portfolio. Building Disney.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Jeffrey Ubben)</author>
+    </item>
+  </channel>
+</rss>

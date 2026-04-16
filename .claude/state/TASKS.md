@@ -225,7 +225,7 @@ Priority = (revenue impact × reversibility) / effort. Top of list executed firs
 - [x] `P0` BUILD EDGAR 13F parser (21 managers, 168 filings, 22K moves from SEC EDGAR API) [id:edgar] [score:11.0] ⏱ done v0.31 b98c28f4+20e5b9e4
 - [x] `P1` INTEGRATE Resend for email alerts [id:resend] [score:9.0] ⏱ done v0.36 — functions/api/subscribe.ts CF Pages Function, graceful pre-activation, EmailCapture POSTs w/ honeypot + localStorage fallback, HUMAN_ACTIONS.md guide
 - [x] `P1` BUILD Stripe Pro tier checkout [id:stripe] [score:11.0] ⏱ done (StripeCheckoutButton.tsx Payment Link integration shipped, activation is [👤] stripe-activate)
-- [ ] `P1` BUILD Claude Haiku thesis generator per ticker/manager [id:ai-thesis] [score:8.0]
+- [x] `P1` BUILD Claude Haiku thesis generator per ticker/manager [id:ai-thesis] [score:8.0] ⏱ done wave9 — functions/api/thesis.ts CF Pages Function + components/AiThesisCard.tsx + wired into /signal/[ticker]. Activation: set ANTHROPIC_API_KEY in CF Pages env vars.
 - [ ] `P2` BUILD X (formerly Twitter) bot posting top buy/sell signals [id:x-bot] [score:7.0]
 - [ ] `P2` BUILD public API + embeds [id:api] [score:7.0]
 

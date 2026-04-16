@@ -14,14 +14,14 @@
         "ticker": "NFLX",
         "name": "Netflix",
         "owner_count": 3,
-        "conviction_score": 6,
+        "conviction_score": 5,
         "direction": "BUY"
       },
       {
         "ticker": "CMCSA",
         "name": "Comcast",
         "owner_count": 1,
-        "conviction_score": 1,
+        "conviction_score": 3,
         "direction": "BUY"
       },
       {
@@ -60,14 +60,14 @@
     ],
     "flow": {
       "2025-Q4": {
-        "net": 1.2,
-        "buys": 5,
+        "net": 3.2,
+        "buys": 7,
         "sells": 3
       },
       "2025-Q3": {
-        "net": -0.3,
+        "net": -1.9,
         "buys": 4,
-        "sells": 2
+        "sells": 3
       },
       "2025-Q2": {
         "net": -4,
@@ -75,9 +75,9 @@
         "sells": 4
       },
       "2025-Q1": {
-        "net": 0.3,
+        "net": -1.8,
         "buys": 3,
-        "sells": 2
+        "sells": 4
       },
       "2024-Q4": {
         "net": -2.2,
@@ -90,9 +90,9 @@
         "sells": 3
       },
       "2024-Q2": {
-        "net": -3.6,
+        "net": -4.1,
         "buys": 2,
-        "sells": 3
+        "sells": 4
       },
       "2024-Q1": {
         "net": 3,
@@ -103,15 +103,15 @@
     "stats": {
       "ticker_count": 4,
       "total_owners": 6,
-      "avg_conviction": 3.3,
-      "net_flow_4q": -2.8,
+      "avg_conviction": 3.5,
+      "net_flow_4q": -4.5,
       "strong_buys": 0,
       "strong_sells": 0
     },
     "permalink": "https://holdlens.com/sector/communication"
   },
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",

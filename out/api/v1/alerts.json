@@ -1,6 +1,84 @@
 {
   "data": [
     {
+      "timestamp": "2024-Q3",
+      "ticker": "",
+      "action": "add",
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "quarter": "2024-Q3",
+      "quarter_label": "Q3 2024",
+      "portfolio_impact_pct": 64.1,
+      "delta_pct": 2617,
+      "conviction_score": 10
+    },
+    {
+      "timestamp": "2025-Q1",
+      "ticker": "",
+      "action": "trim",
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "quarter": "2025-Q1",
+      "quarter_label": "Q1 2025",
+      "portfolio_impact_pct": 56.4,
+      "delta_pct": -97,
+      "conviction_score": 10
+    },
+    {
+      "timestamp": "2025-Q4",
+      "ticker": "",
+      "action": "add",
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "quarter": "2025-Q4",
+      "quarter_label": "Q4 2025",
+      "portfolio_impact_pct": 56.1,
+      "delta_pct": 7,
+      "conviction_score": 10
+    },
+    {
+      "timestamp": "2025-Q3",
+      "ticker": "",
+      "action": "trim",
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "quarter": "2025-Q3",
+      "quarter_label": "Q3 2025",
+      "portfolio_impact_pct": 55,
+      "delta_pct": -7,
+      "conviction_score": 10
+    },
+    {
+      "timestamp": "2025-Q2",
+      "ticker": "",
+      "action": "trim",
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "quarter": "2025-Q2",
+      "quarter_label": "Q2 2025",
+      "portfolio_impact_pct": 53.6,
+      "delta_pct": -7,
+      "conviction_score": 10
+    },
+    {
+      "timestamp": "2024-Q2",
+      "ticker": "",
+      "action": "add",
+      "manager": "Bill Nygren",
+      "manager_slug": "bill-nygren",
+      "fund": "Oakmark Funds",
+      "quarter": "2024-Q2",
+      "quarter_label": "Q2 2024",
+      "portfolio_impact_pct": 52.9,
+      "delta_pct": 7,
+      "conviction_score": 10
+    },
+    {
       "timestamp": "2025-Q1",
       "ticker": "NVDA",
       "action": "new",
@@ -11,7 +89,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 49,
       "delta_pct": 100,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2024-Q1",
@@ -24,7 +102,7 @@
       "quarter_label": "Q1 2024",
       "portfolio_impact_pct": 40.5,
       "delta_pct": -13,
-      "conviction_score": -20
+      "conviction_score": -25
     },
     {
       "timestamp": "2024-Q2",
@@ -37,7 +115,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 30.5,
       "delta_pct": -49,
-      "conviction_score": -20
+      "conviction_score": -25
     },
     {
       "timestamp": "2025-Q4",
@@ -102,7 +180,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 28.6,
       "delta_pct": 12,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q4",
@@ -128,7 +206,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 27.4,
       "delta_pct": 10,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q2",
@@ -167,7 +245,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 27.1,
       "delta_pct": 10,
-      "conviction_score": 19
+      "conviction_score": 20
     },
     {
       "timestamp": "2024-Q3",
@@ -180,7 +258,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 25.2,
       "delta_pct": -25,
-      "conviction_score": -20
+      "conviction_score": -25
     },
     {
       "timestamp": "2025-Q2",
@@ -193,7 +271,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 25.1,
       "delta_pct": 8,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q3",
@@ -206,7 +284,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 24.6,
       "delta_pct": 15,
-      "conviction_score": 19
+      "conviction_score": 20
     },
     {
       "timestamp": "2024-Q4",
@@ -219,7 +297,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 23.4,
       "delta_pct": -7,
-      "conviction_score": -20
+      "conviction_score": -25
     },
     {
       "timestamp": "2025-Q1",
@@ -232,7 +310,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 23.2,
       "delta_pct": 6,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2024-Q1",
@@ -271,7 +349,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 22.4,
       "delta_pct": -5,
-      "conviction_score": -20
+      "conviction_score": -25
     },
     {
       "timestamp": "2025-Q4",
@@ -284,7 +362,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 22.4,
       "delta_pct": 4,
-      "conviction_score": 15
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q2",
@@ -297,7 +375,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 22.3,
       "delta_pct": -7,
-      "conviction_score": -20
+      "conviction_score": -25
     },
     {
       "timestamp": "2024-Q3",
@@ -323,7 +401,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 21.8,
       "delta_pct": -3,
-      "conviction_score": -20
+      "conviction_score": -25
     },
     {
       "timestamp": "2025-Q3",
@@ -388,7 +466,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 20,
       "delta_pct": 100,
-      "conviction_score": 12
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q4",
@@ -414,7 +492,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 19.6,
       "delta_pct": 10,
-      "conviction_score": 29
+      "conviction_score": 27
     },
     {
       "timestamp": "2025-Q3",
@@ -440,7 +518,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 18.5,
       "delta_pct": 100,
-      "conviction_score": 19
+      "conviction_score": 17
     },
     {
       "timestamp": "2025-Q4",
@@ -466,7 +544,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 18.2,
       "delta_pct": -6,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2024-Q1",
@@ -492,7 +570,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 17.9,
       "delta_pct": 100,
-      "conviction_score": -1
+      "conviction_score": -8
     },
     {
       "timestamp": "2025-Q4",
@@ -505,7 +583,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 17.8,
       "delta_pct": 4,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2025-Q3",
@@ -518,7 +596,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 17.8,
       "delta_pct": 8,
-      "conviction_score": 29
+      "conviction_score": 27
     },
     {
       "timestamp": "2025-Q3",
@@ -544,7 +622,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 17.6,
       "delta_pct": -10,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2024-Q4",
@@ -570,7 +648,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 17.5,
       "delta_pct": 5,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2025-Q3",
@@ -583,7 +661,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 17.4,
       "delta_pct": 5,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2025-Q2",
@@ -600,6 +678,19 @@
     },
     {
       "timestamp": "2025-Q1",
+      "ticker": "NOBLE",
+      "action": "new",
+      "manager": "Mohnish Pabrai",
+      "manager_slug": "monish-pabrai",
+      "fund": "Pabrai Investment Funds",
+      "quarter": "2025-Q1",
+      "quarter_label": "Q1 2025",
+      "portfolio_impact_pct": 17.4,
+      "delta_pct": 100,
+      "conviction_score": 4
+    },
+    {
+      "timestamp": "2025-Q1",
       "ticker": "GOOG",
       "action": "trim",
       "manager": "Li Lu",
@@ -609,7 +700,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 17.3,
       "delta_pct": -19,
-      "conviction_score": 0
+      "conviction_score": -6
     },
     {
       "timestamp": "2024-Q3",
@@ -622,7 +713,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 17,
       "delta_pct": 4,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2025-Q1",
@@ -635,7 +726,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 17,
       "delta_pct": 24,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2025-Q2",
@@ -648,7 +739,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 16.9,
       "delta_pct": 6,
-      "conviction_score": 29
+      "conviction_score": 27
     },
     {
       "timestamp": "2024-Q3",
@@ -661,7 +752,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 16.9,
       "delta_pct": 6,
-      "conviction_score": 15
+      "conviction_score": 6
     },
     {
       "timestamp": "2024-Q3",
@@ -674,7 +765,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 16.9,
       "delta_pct": 178,
-      "conviction_score": 1
+      "conviction_score": -4
     },
     {
       "timestamp": "2024-Q1",
@@ -687,7 +778,7 @@
       "quarter_label": "Q1 2024",
       "portfolio_impact_pct": 16.5,
       "delta_pct": 3,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2025-Q1",
@@ -700,7 +791,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 16.3,
       "delta_pct": 4,
-      "conviction_score": 29
+      "conviction_score": 27
     },
     {
       "timestamp": "2024-Q3",
@@ -739,7 +830,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 15.8,
       "delta_pct": 17,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2024-Q2",
@@ -752,7 +843,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 15.7,
       "delta_pct": -12,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2025-Q1",
@@ -765,7 +856,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 15.6,
       "delta_pct": 5,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2025-Q4",
@@ -791,7 +882,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 15.4,
       "delta_pct": 9,
-      "conviction_score": 15
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q4",
@@ -804,7 +895,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 15.3,
       "delta_pct": 8,
-      "conviction_score": 19
+      "conviction_score": 22
     },
     {
       "timestamp": "2025-Q4",
@@ -882,7 +973,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 14.6,
       "delta_pct": 8,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2024-Q3",
@@ -908,7 +999,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 14.5,
       "delta_pct": -8,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2024-Q2",
@@ -934,7 +1025,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 14.4,
       "delta_pct": -14,
-      "conviction_score": 6
+      "conviction_score": -4
     },
     {
       "timestamp": "2025-Q4",
@@ -947,7 +1038,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 14.3,
       "delta_pct": 65,
-      "conviction_score": 6
+      "conviction_score": -4
     },
     {
       "timestamp": "2025-Q2",
@@ -973,7 +1064,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 14,
       "delta_pct": -23,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2024-Q2",
@@ -999,7 +1090,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 13.8,
       "delta_pct": 8,
-      "conviction_score": 6
+      "conviction_score": 0
     },
     {
       "timestamp": "2025-Q2",
@@ -1012,7 +1103,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 13.8,
       "delta_pct": -12,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2024-Q4",
@@ -1025,7 +1116,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 13.6,
       "delta_pct": -40,
-      "conviction_score": 1
+      "conviction_score": -4
     },
     {
       "timestamp": "2025-Q3",
@@ -1064,7 +1155,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 13.5,
       "delta_pct": 12,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2024-Q1",
@@ -1090,7 +1181,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 13.5,
       "delta_pct": 40,
-      "conviction_score": 23
+      "conviction_score": 20
     },
     {
       "timestamp": "2025-Q3",
@@ -1103,7 +1194,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 13.5,
       "delta_pct": 100,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2025-Q4",
@@ -1116,7 +1207,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 13.4,
       "delta_pct": 18,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2024-Q4",
@@ -1129,7 +1220,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 13.4,
       "delta_pct": 18,
-      "conviction_score": -1
+      "conviction_score": -8
     },
     {
       "timestamp": "2024-Q3",
@@ -1142,7 +1233,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 13.4,
       "delta_pct": 14,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2024-Q3",
@@ -1155,7 +1246,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 13.3,
       "delta_pct": -20,
-      "conviction_score": 15
+      "conviction_score": 6
     },
     {
       "timestamp": "2024-Q2",
@@ -1168,7 +1259,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 13.3,
       "delta_pct": -20,
-      "conviction_score": 0
+      "conviction_score": -6
     },
     {
       "timestamp": "2025-Q2",
@@ -1194,7 +1285,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 13.2,
       "delta_pct": -18,
-      "conviction_score": 1
+      "conviction_score": -4
     },
     {
       "timestamp": "2024-Q3",
@@ -1207,7 +1298,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 13.2,
       "delta_pct": -7,
-      "conviction_score": -1
+      "conviction_score": -8
     },
     {
       "timestamp": "2025-Q2",
@@ -1233,7 +1324,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 13,
       "delta_pct": 6,
-      "conviction_score": 6
+      "conviction_score": 0
     },
     {
       "timestamp": "2024-Q4",
@@ -1259,7 +1350,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 13,
       "delta_pct": -6,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2025-Q4",
@@ -1285,7 +1376,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 12.8,
       "delta_pct": 15,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q3",
@@ -1311,7 +1402,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 12.8,
       "delta_pct": 100,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q4",
@@ -1324,7 +1415,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 12.7,
       "delta_pct": -4,
-      "conviction_score": 6
+      "conviction_score": 0
     },
     {
       "timestamp": "2024-Q4",
@@ -1337,7 +1428,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 12.6,
       "delta_pct": -8,
-      "conviction_score": 15
+      "conviction_score": 6
     },
     {
       "timestamp": "2024-Q3",
@@ -1363,7 +1454,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 12.5,
       "delta_pct": 22,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2025-Q2",
@@ -1376,7 +1467,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 12.4,
       "delta_pct": -18,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2024-Q3",
@@ -1389,7 +1480,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 12.4,
       "delta_pct": -13,
-      "conviction_score": 6
+      "conviction_score": -4
     },
     {
       "timestamp": "2024-Q2",
@@ -1402,7 +1493,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 12.4,
       "delta_pct": 88,
-      "conviction_score": 1
+      "conviction_score": -4
     },
     {
       "timestamp": "2024-Q3",
@@ -1415,7 +1506,20 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 12.3,
       "delta_pct": 8,
-      "conviction_score": 6
+      "conviction_score": 0
+    },
+    {
+      "timestamp": "2025-Q2",
+      "ticker": "UNH",
+      "action": "add",
+      "manager": "David Tepper",
+      "manager_slug": "david-tepper",
+      "fund": "Appaloosa Management",
+      "quarter": "2025-Q2",
+      "quarter_label": "Q2 2025",
+      "portfolio_impact_pct": 11.9,
+      "delta_pct": 1300,
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q1",
@@ -1428,7 +1532,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 11.9,
       "delta_pct": 167,
-      "conviction_score": -1
+      "conviction_score": -8
     },
     {
       "timestamp": "2025-Q3",
@@ -1454,7 +1558,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 11.8,
       "delta_pct": 18,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2024-Q4",
@@ -1480,7 +1584,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 11.6,
       "delta_pct": -24,
-      "conviction_score": 6
+      "conviction_score": -4
     },
     {
       "timestamp": "2024-Q4",
@@ -1532,7 +1636,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 11.4,
       "delta_pct": -18,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2025-Q4",
@@ -1545,7 +1649,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 11.4,
       "delta_pct": 100,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q2",
@@ -1558,7 +1662,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 11.4,
       "delta_pct": -8,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2024-Q4",
@@ -1571,7 +1675,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 11.4,
       "delta_pct": -6,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q2",
@@ -1584,7 +1688,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 11.3,
       "delta_pct": 27,
-      "conviction_score": 0
+      "conviction_score": -6
     },
     {
       "timestamp": "2025-Q4",
@@ -1597,7 +1701,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 11.2,
       "delta_pct": 5,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2025-Q3",
@@ -1610,7 +1714,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 11.2,
       "delta_pct": -25,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q3",
@@ -1662,7 +1766,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 11.2,
       "delta_pct": 6,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2025-Q3",
@@ -1675,7 +1779,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 11.2,
       "delta_pct": 45,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2024-Q4",
@@ -1688,7 +1792,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 11.2,
       "delta_pct": -15,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q3",
@@ -1701,7 +1805,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 11.1,
       "delta_pct": 100,
-      "conviction_score": -5
+      "conviction_score": -2
     },
     {
       "timestamp": "2025-Q3",
@@ -1714,7 +1818,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 11,
       "delta_pct": 8,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2024-Q4",
@@ -1727,7 +1831,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 11,
       "delta_pct": 7,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2024-Q1",
@@ -1740,7 +1844,7 @@
       "quarter_label": "Q1 2024",
       "portfolio_impact_pct": 11,
       "delta_pct": 30,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2025-Q1",
@@ -1753,7 +1857,20 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 10.9,
       "delta_pct": -21,
-      "conviction_score": 15
+      "conviction_score": 6
+    },
+    {
+      "timestamp": "2024-Q2",
+      "ticker": "AMZN",
+      "action": "trim",
+      "manager": "David Tepper",
+      "manager_slug": "david-tepper",
+      "fund": "Appaloosa Management",
+      "quarter": "2024-Q2",
+      "quarter_label": "Q2 2024",
+      "portfolio_impact_pct": 10.9,
+      "delta_pct": -9,
+      "conviction_score": -4
     },
     {
       "timestamp": "2024-Q4",
@@ -1779,7 +1896,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 10.8,
       "delta_pct": 200,
-      "conviction_score": 10
+      "conviction_score": 9
     },
     {
       "timestamp": "2025-Q2",
@@ -1792,7 +1909,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 10.7,
       "delta_pct": -8,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2024-Q4",
@@ -1805,7 +1922,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 10.7,
       "delta_pct": -26,
-      "conviction_score": 1
+      "conviction_score": -4
     },
     {
       "timestamp": "2024-Q2",
@@ -1818,7 +1935,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 10.7,
       "delta_pct": -7,
-      "conviction_score": -1
+      "conviction_score": -8
     },
     {
       "timestamp": "2025-Q3",
@@ -1831,7 +1948,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 10.6,
       "delta_pct": 4,
-      "conviction_score": 17
+      "conviction_score": 13
     },
     {
       "timestamp": "2025-Q1",
@@ -1844,7 +1961,20 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 10.6,
       "delta_pct": -9,
-      "conviction_score": 6
+      "conviction_score": -4
+    },
+    {
+      "timestamp": "2024-Q3",
+      "ticker": "PDD",
+      "action": "add",
+      "manager": "David Tepper",
+      "manager_slug": "david-tepper",
+      "fund": "Appaloosa Management",
+      "quarter": "2024-Q3",
+      "quarter_label": "Q3 2024",
+      "portfolio_impact_pct": 10.6,
+      "delta_pct": 173,
+      "conviction_score": -8
     },
     {
       "timestamp": "2024-Q3",
@@ -1857,7 +1987,7 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 10.5,
       "delta_pct": 6,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2025-Q4",
@@ -1870,7 +2000,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 10.4,
       "delta_pct": -7,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q4",
@@ -1883,7 +2013,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 10.4,
       "delta_pct": 10,
-      "conviction_score": 23
+      "conviction_score": 20
     },
     {
       "timestamp": "2025-Q4",
@@ -1948,7 +2078,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 10.2,
       "delta_pct": 10,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q4",
@@ -1961,7 +2091,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 10.2,
       "delta_pct": 25,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2025-Q4",
@@ -1974,7 +2104,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 10.2,
       "delta_pct": -5,
-      "conviction_score": -20
+      "conviction_score": -25
     },
     {
       "timestamp": "2025-Q1",
@@ -1987,7 +2117,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 10.2,
       "delta_pct": -15,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q1",
@@ -2000,7 +2130,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 10.2,
       "delta_pct": -7,
-      "conviction_score": 14
+      "conviction_score": 6
     },
     {
       "timestamp": "2024-Q4",
@@ -2013,7 +2143,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 10.2,
       "delta_pct": -7,
-      "conviction_score": 6
+      "conviction_score": -4
     },
     {
       "timestamp": "2025-Q3",
@@ -2026,7 +2156,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 10.1,
       "delta_pct": -8,
-      "conviction_score": 15
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q3",
@@ -2052,7 +2182,7 @@
       "quarter_label": "Q2 2024",
       "portfolio_impact_pct": 10.1,
       "delta_pct": -7,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2024-Q1",
@@ -2078,7 +2208,20 @@
       "quarter_label": "Q1 2024",
       "portfolio_impact_pct": 10,
       "delta_pct": 5,
-      "conviction_score": 6
+      "conviction_score": 2
+    },
+    {
+      "timestamp": "2025-Q4",
+      "ticker": "GOOGL",
+      "action": "trim",
+      "manager": "David Rolfe",
+      "manager_slug": "david-rolfe",
+      "fund": "Wedgewood Partners",
+      "quarter": "2025-Q4",
+      "quarter_label": "Q4 2025",
+      "portfolio_impact_pct": 9.9,
+      "delta_pct": -21,
+      "conviction_score": -21
     },
     {
       "timestamp": "2025-Q4",
@@ -2104,7 +2247,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 9.8,
       "delta_pct": 22,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q3",
@@ -2117,7 +2260,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 9.8,
       "delta_pct": 30,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2025-Q4",
@@ -2130,7 +2273,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 9.8,
       "delta_pct": 50,
-      "conviction_score": 23
+      "conviction_score": 20
     },
     {
       "timestamp": "2025-Q3",
@@ -2156,7 +2299,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 9.7,
       "delta_pct": -18,
-      "conviction_score": 15
+      "conviction_score": 6
     },
     {
       "timestamp": "2025-Q3",
@@ -2182,7 +2325,20 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 9.6,
       "delta_pct": 5,
-      "conviction_score": 17
+      "conviction_score": 13
+    },
+    {
+      "timestamp": "2025-Q1",
+      "ticker": "META",
+      "action": "trim",
+      "manager": "David Rolfe",
+      "manager_slug": "david-rolfe",
+      "fund": "Wedgewood Partners",
+      "quarter": "2025-Q1",
+      "quarter_label": "Q1 2025",
+      "portfolio_impact_pct": 9.6,
+      "delta_pct": -13,
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q3",
@@ -2195,7 +2351,7 @@
       "quarter_label": "Q3 2025",
       "portfolio_impact_pct": 9.5,
       "delta_pct": 15,
-      "conviction_score": 23
+      "conviction_score": 20
     },
     {
       "timestamp": "2024-Q4",
@@ -2208,7 +2364,20 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 9.5,
       "delta_pct": 14,
-      "conviction_score": 6
+      "conviction_score": 2
+    },
+    {
+      "timestamp": "2025-Q2",
+      "ticker": "TSM",
+      "action": "trim",
+      "manager": "David Rolfe",
+      "manager_slug": "david-rolfe",
+      "fund": "Wedgewood Partners",
+      "quarter": "2025-Q2",
+      "quarter_label": "Q2 2025",
+      "portfolio_impact_pct": 9.5,
+      "delta_pct": -17,
+      "conviction_score": 7
     },
     {
       "timestamp": "2025-Q3",
@@ -2234,7 +2403,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 9.4,
       "delta_pct": 20,
-      "conviction_score": 19
+      "conviction_score": 16
     },
     {
       "timestamp": "2024-Q4",
@@ -2247,7 +2416,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 9.4,
       "delta_pct": 50,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q2",
@@ -2260,7 +2429,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 9.4,
       "delta_pct": -22,
-      "conviction_score": 6
+      "conviction_score": -4
     },
     {
       "timestamp": "2024-Q4",
@@ -2273,7 +2442,7 @@
       "quarter_label": "Q4 2024",
       "portfolio_impact_pct": 9.4,
       "delta_pct": 100,
-      "conviction_score": -1
+      "conviction_score": -8
     },
     {
       "timestamp": "2025-Q4",
@@ -2286,7 +2455,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 9.3,
       "delta_pct": 100,
-      "conviction_score": 6
+      "conviction_score": -4
     },
     {
       "timestamp": "2025-Q2",
@@ -2299,7 +2468,7 @@
       "quarter_label": "Q2 2025",
       "portfolio_impact_pct": 9.3,
       "delta_pct": 100,
-      "conviction_score": 6
+      "conviction_score": -4
     },
     {
       "timestamp": "2025-Q1",
@@ -2312,7 +2481,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 9.3,
       "delta_pct": 46,
-      "conviction_score": 0
+      "conviction_score": -6
     },
     {
       "timestamp": "2024-Q3",
@@ -2325,7 +2494,33 @@
       "quarter_label": "Q3 2024",
       "portfolio_impact_pct": 9.3,
       "delta_pct": -27,
-      "conviction_score": 6
+      "conviction_score": -4
+    },
+    {
+      "timestamp": "2025-Q2",
+      "ticker": "AMZN",
+      "action": "add",
+      "manager": "David Tepper",
+      "manager_slug": "david-tepper",
+      "fund": "Appaloosa Management",
+      "quarter": "2025-Q2",
+      "quarter_label": "Q2 2025",
+      "portfolio_impact_pct": 9.2,
+      "delta_pct": 8,
+      "conviction_score": -4
+    },
+    {
+      "timestamp": "2025-Q2",
+      "ticker": "BN",
+      "action": "trim",
+      "manager": "William von Mueffling",
+      "manager_slug": "william-von-mueffling",
+      "fund": "Cantillon Capital Management",
+      "quarter": "2025-Q2",
+      "quarter_label": "Q2 2025",
+      "portfolio_impact_pct": 9.2,
+      "delta_pct": -13,
+      "conviction_score": 20
     },
     {
       "timestamp": "2025-Q1",
@@ -2338,7 +2533,7 @@
       "quarter_label": "Q1 2025",
       "portfolio_impact_pct": 9.2,
       "delta_pct": -13,
-      "conviction_score": 6
+      "conviction_score": 2
     },
     {
       "timestamp": "2024-Q4",
@@ -2364,7 +2559,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 9.1,
       "delta_pct": -8,
-      "conviction_score": 5
+      "conviction_score": -1
     },
     {
       "timestamp": "2025-Q4",
@@ -2377,7 +2572,7 @@
       "quarter_label": "Q4 2025",
       "portfolio_impact_pct": 9.1,
       "delta_pct": 18,
-      "conviction_score": 16
+      "conviction_score": 7
     },
     {
       "timestamp": "2025-Q1",
@@ -2404,212 +2599,17 @@
       "portfolio_impact_pct": 9,
       "delta_pct": 18,
       "conviction_score": 22
-    },
-    {
-      "timestamp": "2024-Q4",
-      "ticker": "META",
-      "action": "add",
-      "manager": "David Tepper",
-      "manager_slug": "david-tepper",
-      "fund": "Appaloosa Management",
-      "quarter": "2024-Q4",
-      "quarter_label": "Q4 2024",
-      "portfolio_impact_pct": 9,
-      "delta_pct": 25,
-      "conviction_score": 5
-    },
-    {
-      "timestamp": "2024-Q2",
-      "ticker": "NOVO",
-      "action": "add",
-      "manager": "Terry Smith",
-      "manager_slug": "terry-smith",
-      "fund": "Fundsmith",
-      "quarter": "2024-Q2",
-      "quarter_label": "Q2 2024",
-      "portfolio_impact_pct": 9,
-      "delta_pct": 6,
-      "conviction_score": 6
-    },
-    {
-      "timestamp": "2025-Q4",
-      "ticker": "MSFT",
-      "action": "add",
-      "manager": "John Armitage",
-      "manager_slug": "john-armitage",
-      "fund": "Egerton Capital",
-      "quarter": "2025-Q4",
-      "quarter_label": "Q4 2025",
-      "portfolio_impact_pct": 8.9,
-      "delta_pct": 12,
-      "conviction_score": 6
-    },
-    {
-      "timestamp": "2025-Q4",
-      "ticker": "MSFT",
-      "action": "trim",
-      "manager": "Chase Coleman",
-      "manager_slug": "chase-coleman",
-      "fund": "Tiger Global Management",
-      "quarter": "2025-Q4",
-      "quarter_label": "Q4 2025",
-      "portfolio_impact_pct": 8.9,
-      "delta_pct": -16,
-      "conviction_score": 6
-    },
-    {
-      "timestamp": "2025-Q3",
-      "ticker": "BN",
-      "action": "add",
-      "manager": "Stephen Mandel",
-      "manager_slug": "stephen-mandel",
-      "fund": "Lone Pine Capital",
-      "quarter": "2025-Q3",
-      "quarter_label": "Q3 2025",
-      "portfolio_impact_pct": 8.8,
-      "delta_pct": 109,
-      "conviction_score": 23
-    },
-    {
-      "timestamp": "2025-Q1",
-      "ticker": "MSFT",
-      "action": "add",
-      "manager": "Chase Coleman",
-      "manager_slug": "chase-coleman",
-      "fund": "Tiger Global Management",
-      "quarter": "2025-Q1",
-      "quarter_label": "Q1 2025",
-      "portfolio_impact_pct": 8.8,
-      "delta_pct": 17,
-      "conviction_score": 6
-    },
-    {
-      "timestamp": "2025-Q1",
-      "ticker": "META",
-      "action": "trim",
-      "manager": "Stephen Mandel",
-      "manager_slug": "stephen-mandel",
-      "fund": "Lone Pine Capital",
-      "quarter": "2025-Q1",
-      "quarter_label": "Q1 2025",
-      "portfolio_impact_pct": 8.8,
-      "delta_pct": -14,
-      "conviction_score": 5
-    },
-    {
-      "timestamp": "2025-Q2",
-      "ticker": "BN",
-      "action": "add",
-      "manager": "Bill Ackman",
-      "manager_slug": "bill-ackman",
-      "fund": "Pershing Square Capital",
-      "quarter": "2025-Q2",
-      "quarter_label": "Q2 2025",
-      "portfolio_impact_pct": 8.7,
-      "delta_pct": 12,
-      "conviction_score": 23
-    },
-    {
-      "timestamp": "2024-Q4",
-      "ticker": "AMT",
-      "action": "trim",
-      "manager": "Chuck Akre",
-      "manager_slug": "chuck-akre",
-      "fund": "Akre Capital Management",
-      "quarter": "2024-Q4",
-      "quarter_label": "Q4 2024",
-      "portfolio_impact_pct": 8.7,
-      "delta_pct": -9,
-      "conviction_score": -9
-    },
-    {
-      "timestamp": "2024-Q2",
-      "ticker": "CRH",
-      "action": "add",
-      "manager": "Seth Klarman",
-      "manager_slug": "seth-klarman",
-      "fund": "Baupost Group",
-      "quarter": "2024-Q2",
-      "quarter_label": "Q2 2024",
-      "portfolio_impact_pct": 8.7,
-      "delta_pct": 56,
-      "conviction_score": 8
-    },
-    {
-      "timestamp": "2025-Q4",
-      "ticker": "NVDA",
-      "action": "trim",
-      "manager": "Stanley Druckenmiller",
-      "manager_slug": "stanley-druckenmiller",
-      "fund": "Duquesne Family Office",
-      "quarter": "2025-Q4",
-      "quarter_label": "Q4 2025",
-      "portfolio_impact_pct": 8.6,
-      "delta_pct": -25,
-      "conviction_score": 19
-    },
-    {
-      "timestamp": "2024-Q4",
-      "ticker": "NVDA",
-      "action": "add",
-      "manager": "David Tepper",
-      "manager_slug": "david-tepper",
-      "fund": "Appaloosa Management",
-      "quarter": "2024-Q4",
-      "quarter_label": "Q4 2024",
-      "portfolio_impact_pct": 8.6,
-      "delta_pct": 30,
-      "conviction_score": 19
-    },
-    {
-      "timestamp": "2024-Q4",
-      "ticker": "MSFT",
-      "action": "add",
-      "manager": "Chase Coleman",
-      "manager_slug": "chase-coleman",
-      "fund": "Tiger Global Management",
-      "quarter": "2024-Q4",
-      "quarter_label": "Q4 2024",
-      "portfolio_impact_pct": 8.6,
-      "delta_pct": 35,
-      "conviction_score": 6
-    },
-    {
-      "timestamp": "2024-Q3",
-      "ticker": "BABA",
-      "action": "new",
-      "manager": "Michael Burry",
-      "manager_slug": "michael-burry",
-      "fund": "Scion Asset Management",
-      "quarter": "2024-Q3",
-      "quarter_label": "Q3 2024",
-      "portfolio_impact_pct": 8.5,
-      "delta_pct": null,
-      "conviction_score": 39
-    },
-    {
-      "timestamp": "2025-Q4",
-      "ticker": "AMZN",
-      "action": "trim",
-      "manager": "Polen Capital",
-      "manager_slug": "polen-capital",
-      "fund": "Polen Capital Management",
-      "quarter": "2025-Q4",
-      "quarter_label": "Q4 2025",
-      "portfolio_impact_pct": 8.5,
-      "delta_pct": -23,
-      "conviction_score": 6
     }
   ],
   "meta": {
-    "generated_at": "2026-04-15T21:52:39.407Z",
+    "generated_at": "2026-04-16T18:51:50.799Z",
     "quarter": "2025-Q4",
     "quarter_label": "Q4 2025",
     "source": "HoldLens",
     "license": "Free for personal and commercial use. Attribution appreciated.",
     "docs": "https://holdlens.com/docs",
     "count": 200,
-    "total_matches": 395,
+    "total_matches": 448,
     "threshold_pct": 5,
     "note": "Moves with portfolio_impact_pct > 5. Top 200."
   }

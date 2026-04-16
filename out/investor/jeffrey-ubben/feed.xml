@@ -6,7 +6,7 @@
     <atom:link href="https://holdlens.com/investor/jeffrey-ubben/feed.xml" rel="self" type="application/rss+xml" />
     <description>Every 13F move by Jeffrey Ubben (ValueAct Capital) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2026 21:52:58 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:27 GMT</lastBuildDate>
     <item>
       <title>Jeffrey Ubben: ADDED META (+10%) · Q4 2025</title>
       <link>https://holdlens.com/signal/META</link>
@@ -46,6 +46,14 @@
       <description>Jeffrey Ubben (ValueAct Capital) added DIS in Q2 2025 · 11.2% of portfolio. Building Disney.</description>
       <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
       <category>add</category>
+    </item>
+    <item>
+      <title>Jeffrey Ubben: EXITED UNIFI (-100%) · Q1 2024</title>
+      <link>https://holdlens.com/signal/UNIFI</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/jeffrey-ubben#2024-Q1-UNIFI-exit-5</guid>
+      <description>Jeffrey Ubben (ValueAct Capital) exited UNIFI (UNIFI INC) in Q1 2024 · 0.0% of portfolio.</description>
+      <pubDate>Wed, 15 May 2024 00:00:00 GMT</pubDate>
+      <category>exit</category>
     </item>
   </channel>
 </rss>

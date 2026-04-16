@@ -6,7 +6,7 @@
     <atom:link href="https://holdlens.com/investor/monish-pabrai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Every 13F move by Mohnish Pabrai (Pabrai Investment Funds) — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing. Not investment advice.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2026 21:52:58 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:27 GMT</lastBuildDate>
     <item>
       <title>Mohnish Pabrai: ADDED MU (+10%) · Q4 2025</title>
       <link>https://holdlens.com/signal/MU</link>
@@ -16,9 +16,17 @@
       <category>add</category>
     </item>
     <item>
+      <title>Mohnish Pabrai: EXITED NOBLE (-100%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/NOBLE</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q4-NOBLE-exit-1</guid>
+      <description>Mohnish Pabrai (Pabrai Investment Funds) exited NOBLE (NOBLE CORP PLC) in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>exit</category>
+    </item>
+    <item>
       <title>Mohnish Pabrai: ADDED MU (+15%) · Q3 2025</title>
       <link>https://holdlens.com/signal/MU</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q3-MU-add-1</guid>
+      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q3-MU-add-2</guid>
       <description>Mohnish Pabrai (Pabrai Investment Funds) added MU in Q3 2025 · 24.6% of portfolio. Micron cycle bet.</description>
       <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>add</category>
@@ -26,10 +34,26 @@
     <item>
       <title>Mohnish Pabrai: TRIMMED STLA (-25%) · Q3 2025</title>
       <link>https://holdlens.com/signal/STLA</link>
-      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q3-STLA-trim-2</guid>
+      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q3-STLA-trim-3</guid>
       <description>Mohnish Pabrai (Pabrai Investment Funds) trimmed STLA in Q3 2025 · 21.3% of portfolio. Material Stellantis reduction.</description>
       <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
       <category>trim</category>
+    </item>
+    <item>
+      <title>Mohnish Pabrai: TRIMMED NOBLE (-86%) · Q3 2025</title>
+      <link>https://holdlens.com/signal/NOBLE</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q3-NOBLE-trim-4</guid>
+      <description>Mohnish Pabrai (Pabrai Investment Funds) trimmed NOBLE (NOBLE CORP PLC) in Q3 2025 · 2.0% of portfolio.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+    </item>
+    <item>
+      <title>Mohnish Pabrai: NEW POSITION NOBLE (+100%) · Q1 2025</title>
+      <link>https://holdlens.com/signal/NOBLE</link>
+      <guid isPermaLink="false">https://holdlens.com/investor/monish-pabrai#2025-Q1-NOBLE-new-5</guid>
+      <description>Mohnish Pabrai (Pabrai Investment Funds) new position NOBLE (NOBLE CORP PLC) in Q1 2025 · 17.4% of portfolio.</description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <category>new</category>
     </item>
   </channel>
 </rss>

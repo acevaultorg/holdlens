@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PR — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/PR</link>
+    <atom:link href="https://holdlens.com/ticker/PR/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on PR (Permian Resources) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Howard Marks: ADDED PR (+15%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/PR</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/PR#2025-Q4-howard-marks-add-0</guid>
+      <description>Howard Marks (Oaktree Capital) added PR in Q4 2025 · 8.1% of portfolio. Building Permian Resources.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Howard Marks)</author>
+    </item>
+  </channel>
+</rss>

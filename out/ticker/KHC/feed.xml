@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KHC — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/KHC</link>
+    <atom:link href="https://holdlens.com/ticker/KHC/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on KHC (Kraft Heinz) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Joel Greenblatt: ADDED KHC (+17%) · Q4 2025</title>
+      <link>https://holdlens.com/signal/KHC</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KHC#2025-Q4-joel-greenblatt-add-0</guid>
+      <description>Joel Greenblatt (Gotham Asset Management) added KHC in Q4 2025 · 0.0% of portfolio.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Joel Greenblatt)</author>
+    </item>
+    <item>
+      <title>Prem Watsa: ADDED KHC (+45%) · Q2 2025</title>
+      <link>https://holdlens.com/signal/KHC</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KHC#2025-Q2-prem-watsa-add-1</guid>
+      <description>Prem Watsa (Fairfax Financial) added KHC in Q2 2025 · 6.9% of portfolio.</description>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Prem Watsa)</author>
+    </item>
+    <item>
+      <title>Joel Greenblatt: TRIMMED KHC (-7%) · Q1 2025</title>
+      <link>https://holdlens.com/signal/KHC</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KHC#2025-Q1-joel-greenblatt-trim-2</guid>
+      <description>Joel Greenblatt (Gotham Asset Management) trimmed KHC in Q1 2025 · 0.1% of portfolio.</description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+      <author>noreply@holdlens.com (Joel Greenblatt)</author>
+    </item>
+    <item>
+      <title>Prem Watsa: ADDED KHC (+342%) · Q4 2024</title>
+      <link>https://holdlens.com/signal/KHC</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KHC#2024-Q4-prem-watsa-add-3</guid>
+      <description>Prem Watsa (Fairfax Financial) added KHC in Q4 2024 · 6.5% of portfolio.</description>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Prem Watsa)</author>
+    </item>
+    <item>
+      <title>Joel Greenblatt: TRIMMED KHC (-25%) · Q4 2024</title>
+      <link>https://holdlens.com/signal/KHC</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KHC#2024-Q4-joel-greenblatt-trim-4</guid>
+      <description>Joel Greenblatt (Gotham Asset Management) trimmed KHC in Q4 2024 · 0.1% of portfolio.</description>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+      <category>trim</category>
+      <author>noreply@holdlens.com (Joel Greenblatt)</author>
+    </item>
+    <item>
+      <title>Prem Watsa: NEW POSITION KHC (+100%) · Q3 2024</title>
+      <link>https://holdlens.com/signal/KHC</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KHC#2024-Q3-prem-watsa-new-5</guid>
+      <description>Prem Watsa (Fairfax Financial) new position KHC in Q3 2024 · 2.4% of portfolio.</description>
+      <pubDate>Thu, 14 Nov 2024 00:00:00 GMT</pubDate>
+      <category>new</category>
+      <author>noreply@holdlens.com (Prem Watsa)</author>
+    </item>
+    <item>
+      <title>Joel Greenblatt: TRIMMED KHC (-14%) · Q3 2024</title>
+      <link>https://holdlens.com/signal/KHC</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KHC#2024-Q3-joel-greenblatt-trim-6</guid>
+      <description>Joel Greenblatt (Gotham Asset Management) trimmed KHC in Q3 2024 · 0.2% of portfolio.</description>
+      <pubDate>Thu, 14 Nov 2024 00:00:00 GMT</pubDate>
+      <category>trim</category>
+      <author>noreply@holdlens.com (Joel Greenblatt)</author>
+    </item>
+    <item>
+      <title>Joel Greenblatt: ADDED KHC (+14%) · Q2 2024</title>
+      <link>https://holdlens.com/signal/KHC</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/KHC#2024-Q2-joel-greenblatt-add-7</guid>
+      <description>Joel Greenblatt (Gotham Asset Management) added KHC in Q2 2024 · 0.2% of portfolio.</description>
+      <pubDate>Wed, 14 Aug 2024 00:00:00 GMT</pubDate>
+      <category>add</category>
+      <author>noreply@holdlens.com (Joel Greenblatt)</author>
+    </item>
+  </channel>
+</rss>

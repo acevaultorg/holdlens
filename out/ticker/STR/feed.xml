@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>STR — Smart money 13F moves · HoldLens</title>
+    <link>https://holdlens.com/ticker/STR</link>
+    <atom:link href="https://holdlens.com/ticker/STR/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Every 13F move on STR (Sitio Royalties) by the 30 tracked portfolio managers — buys, adds, trims, exits — as filed with the SEC. Updated after each quarterly filing wave. Not investment advice.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2026 18:52:14 GMT</lastBuildDate>
+    <item>
+      <title>Howard Marks: NEW POSITION STR · Q3 2025</title>
+      <link>https://holdlens.com/signal/STR</link>
+      <guid isPermaLink="false">https://holdlens.com/ticker/STR#2025-Q3-howard-marks-new-0</guid>
+      <description>Howard Marks (Oaktree Capital) new position STR in Q3 2025 · 5.1% of portfolio. New Sitio Royalties — mineral rights.</description>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+      <category>new</category>
+      <author>noreply@holdlens.com (Howard Marks)</author>
+    </item>
+  </channel>
+</rss>
