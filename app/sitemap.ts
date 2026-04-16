@@ -46,6 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/profile`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/alerts`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/pricing`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    // v1.00 — /premium was shipped in v0.90 as the Pro feature marketing
+    // surface but never registered in the sitemap, so Google had no path to
+    // it. Revenue-adjacent page missing from crawl = silent acquisition leak.
+    { url: `${base}/premium`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    // /compare landing — v0.87 new route, previously missing from sitemap
+    { url: `${base}/compare`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/docs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/press-kit`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     // Backtests
