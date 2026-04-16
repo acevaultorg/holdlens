@@ -8,6 +8,7 @@ import SupportBar from "@/components/SupportBar";
 import CookieConsent from "@/components/CookieConsent";
 import BackToTop from "@/components/BackToTop";
 import FilingWaveBanner from "@/components/FilingWaveBanner";
+import InstallPrompt from "@/components/InstallPrompt";
 import Logo from "@/components/Logo";
 import "./globals.css";
 
@@ -181,6 +182,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <BackToTop />
         <CookieConsent />
+        {/* PWA install prompt — dismissible, 20s delay, 60d TTL. See
+            components/InstallPrompt.tsx for the retention rationale. */}
+        <InstallPrompt />
         <footer className="border-t border-border mt-24">
           {/* Data freshness band */}
           <div className="border-b border-border bg-panel/30">
