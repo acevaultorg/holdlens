@@ -105,7 +105,7 @@ export default function PremiumPage() {
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
           HoldLens Pro
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4">
           Six things you unlock
           <br />
           <span className="text-brand">for €9/mo.</span>
@@ -154,7 +154,7 @@ export default function PremiumPage() {
             Founders tier — 100 seats
           </div>
           <div className="flex items-baseline justify-center gap-2 mb-3">
-            <span className="text-5xl font-bold text-text">€9</span>
+            <span className="text-4xl sm:text-5xl font-bold text-text">€9</span>
             <span className="text-dim text-sm">/mo</span>
           </div>
           <p className="text-xs text-muted mb-5">

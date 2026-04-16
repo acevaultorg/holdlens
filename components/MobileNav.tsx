@@ -150,21 +150,24 @@ export default function MobileNav() {
 
       {open && (
         <div
-          className="md:hidden fixed inset-0 z-50"
+          className="md:hidden fixed inset-0 z-50 overflow-y-auto"
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
+          style={{ WebkitOverflowScrolling: "touch" }}
         >
-          {/* Backdrop */}
+          {/* Backdrop — fixed so it doesn't scroll with the panel */}
           <button
             onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
             aria-label="Close menu"
             tabIndex={-1}
           />
 
-          {/* Slide-down panel */}
-          <div className="absolute inset-x-0 top-0 max-h-full overflow-y-auto bg-bg border-b border-border shadow-2xl">
+          {/* Slide-down panel — relative so it can scroll freely; iOS dynamic
+              viewport friendly. No max-height clamp; the parent overflow
+              container handles long lists without clipping. */}
+          <div className="relative bg-bg border-b border-border shadow-2xl">
             {/* Top bar with logo + close */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-border">
               <a href="/" className="flex items-center gap-2 font-semibold text-lg text-text">

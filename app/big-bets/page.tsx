@@ -103,7 +103,7 @@ export default function BigBetsPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Big Bets · size × conviction
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         Where the best investors <span className="text-brand">bet biggest</span>.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">

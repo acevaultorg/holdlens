@@ -37,7 +37,7 @@ export default function ValuePage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Smart money × 52-week low
       </div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         The best investors are buying this.{" "}
         <span className="text-emerald-400">And it&apos;s cheap.</span>
       </h1>

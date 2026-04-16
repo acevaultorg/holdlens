@@ -57,7 +57,7 @@ export default function HomePage() {
         <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-6">
           SEC-sourced · {MANAGERS.length} investors tracked · updated every quarter
         </div>
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight">
           Understand every move by the
           <br />
           <span className="text-brand">smartest investors in the world.</span>
@@ -110,7 +110,7 @@ export default function HomePage() {
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
               Signal explorer
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Nineteen ways to read smart money</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Nineteen ways to read smart money</h2>
             <p className="text-muted mt-2 max-w-xl">
               Every card below answers a different question Dataroma can&rsquo;t.
               Pick the angle, not the ticker.
@@ -264,7 +264,7 @@ export default function HomePage() {
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
               The viral wedge
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">What if you'd copied them?</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">What if you'd copied them?</h2>
             <p className="text-muted mt-2">Interactive backtests. Drag a year, drop in a dollar amount.</p>
           </div>
           <a href="/simulate" className="text-sm text-muted hover:text-text">All backtests →</a>
@@ -356,7 +356,7 @@ export default function HomePage() {
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
             Every buy, every sell, every quarter
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
             The full activity feed.
           </h2>
           <p className="text-muted max-w-xl mx-auto mb-6">

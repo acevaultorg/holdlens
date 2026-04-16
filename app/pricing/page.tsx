@@ -19,7 +19,7 @@ export default function PricingPage() {
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
           Pricing
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
           Free forever. Pro for €9/mo.
         </h1>
         <p className="text-muted text-lg max-w-2xl mx-auto">
@@ -62,7 +62,7 @@ export default function PricingPage() {
           <div className="text-xs uppercase tracking-widest text-dim font-semibold mb-2">
             Free
           </div>
-          <div className="text-5xl font-bold mb-1 tabular-nums">€0</div>
+          <div className="text-4xl sm:text-5xl font-bold mb-1 tabular-nums">€0</div>
           <div className="text-sm text-muted mb-6">forever, no card</div>
 
           <a
@@ -95,7 +95,7 @@ export default function PricingPage() {
             Pro
           </div>
           <div className="flex items-baseline gap-2 mb-1">
-            <div className="text-5xl font-bold tabular-nums">€9</div>
+            <div className="text-4xl sm:text-5xl font-bold tabular-nums">€9</div>
             <div className="text-sm text-muted">/month</div>
             <div className="text-sm text-muted line-through tabular-nums ml-2">€14</div>
           </div>
