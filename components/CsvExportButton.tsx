@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { csvExportsRemaining, recordCsvExport } from "@/lib/pro";
 
-// <CsvExportButton /> — free CSV export of any HoldLens ranked-list page.
-// WhaleWisdom + GuruFocus paywall exports; HoldLens makes them free to
-// flip the funnel ("our free tier beats their premium").
+// <CsvExportButton /> — CSV export with a generous free tier (10/month).
+// WhaleWisdom + GuruFocus paywall exports; HoldLens free tier is already
+// better than their free offering. Pro users get unlimited exports with no
+// interruption. Free users see a friendly upgrade nudge at the limit —
+// no hard block, no dark patterns, just honest context.
 //
-// Reads from the matching /api/v1/*.json endpoint, serializes every field
-// of the data array into CSV (flattens nested objects as JSON-strings),
-// and triggers a download. No server runtime required — safe on the
-// static export.
+// Pro upgrade: NEXT_PUBLIC_STRIPE_PAYMENT_LINK / _FOUNDERS env vars control
+// the checkout link (set in Cloudflare Pages env → redeploy to activate).
 //
 // Usage:
 //   <CsvExportButton endpoint="/api/v1/best-now.json" filename="holdlens-best-now" />
@@ -78,14 +79,35 @@ function triggerDownload(csv: string, fname: string) {
   URL.revokeObjectURL(url);
 }
 
+const STRIPE_LINK =
+  process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_FOUNDERS ||
+  process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK ||
+  "https://holdlens.com/pricing/";
+
 export default function CsvExportButton({ rows, endpoint, filename, label }: Props) {
-  const [state, setState] = useState<"idle" | "loading" | "error">("idle");
+  const [state, setState] = useState<"idle" | "loading" | "error" | "gate">("idle");
+  // Track remaining quota client-side (re-reads after each download).
+  const [remaining, setRemaining] = useState<number>(Infinity);
+
+  useEffect(() => {
+    // Initialize remaining count once mounted (localStorage is only available in the browser).
+    setRemaining(csvExportsRemaining());
+  }, []);
 
   async function download() {
+    // Check quota before doing any work.
+    const quota = csvExportsRemaining();
+    if (quota <= 0) {
+      setState("gate");
+      return;
+    }
+
     // Legacy path: rows supplied directly → serialize synchronously.
     if (rows && !endpoint) {
       const csv = rowsToCsv(rows);
       triggerDownload(csv, filename ?? "holdlens.csv");
+      recordCsvExport();
+      setRemaining(csvExportsRemaining());
       return;
     }
 
@@ -111,11 +133,38 @@ export default function CsvExportButton({ rows, endpoint, filename, label }: Pro
       // If filename already has a .csv extension, treat as full name (legacy).
       const fname = prefix.endsWith(".csv") ? prefix : `${prefix}-${today}.csv`;
       triggerDownload(csv, fname);
+      recordCsvExport();
+      setRemaining(csvExportsRemaining());
       setState("idle");
     } catch {
       setState("error");
       setTimeout(() => setState("idle"), 3000);
     }
+  }
+
+  // Upgrade gate — shown inline when free limit is reached.
+  if (state === "gate") {
+    return (
+      <span className="inline-flex items-center gap-2 text-xs rounded-md border border-amber-500/40 bg-amber-500/5 px-3 py-1.5">
+        <span className="text-amber-400 font-semibold">10 exports/month on the free tier.</span>
+        <a
+          href={STRIPE_LINK}
+          className="text-brand font-semibold hover:underline whitespace-nowrap"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Go Pro →
+        </a>
+        <button
+          type="button"
+          onClick={() => setState("idle")}
+          className="text-dim hover:text-text transition ml-1"
+          aria-label="Dismiss"
+        >
+          ✕
+        </button>
+      </span>
+    );
   }
 
   const buttonLabel =
@@ -125,11 +174,15 @@ export default function CsvExportButton({ rows, endpoint, filename, label }: Pro
         ? "Failed — retry"
         : label ?? "Export CSV";
 
+  // Show remaining count as a tooltip hint for free users nearing the limit.
+  const showQuotaHint = remaining !== Infinity && remaining <= 3 && remaining > 0;
+
   return (
     <button
       type="button"
       onClick={download}
       disabled={state === "loading"}
+      title={showQuotaHint ? `${remaining} free export${remaining === 1 ? "" : "s"} left this month` : undefined}
       className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand bg-brand/10 border border-brand/30 hover:bg-brand/20 transition rounded-md px-2.5 py-1.5 disabled:opacity-50"
       aria-label="Download this list as CSV"
     >
@@ -149,6 +202,9 @@ export default function CsvExportButton({ rows, endpoint, filename, label }: Pro
         <line x1="12" y1="15" x2="12" y2="3" />
       </svg>
       {buttonLabel}
+      {showQuotaHint && (
+        <span className="text-amber-400 font-normal">({remaining} left)</span>
+      )}
     </button>
   );
 }

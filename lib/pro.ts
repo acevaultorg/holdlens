@@ -66,3 +66,64 @@ export function deactivatePro(): void {
     /* swallow */
   }
 }
+
+// ---------------------------------------------------------------------------
+// CSV export quota — free tier gets 10 exports / calendar month.
+// Pro users are unlimited. The count resets automatically on the 1st of
+// each month (keyed by "YYYY-MM"). Honor-system: same philosophy as the
+// Pro flag itself — no server enforcement, no hard block, just a soft
+// gate that tells honest users they've hit the free limit.
+// ---------------------------------------------------------------------------
+
+const CSV_KEY = "holdlens_csv_v1";
+const FREE_MONTHLY_EXPORTS = 10;
+
+interface CsvRecord {
+  count: number;
+  month: string; // "YYYY-MM"
+}
+
+function currentMonth(): string {
+  return new Date().toISOString().slice(0, 7);
+}
+
+function readCsvRecord(): CsvRecord {
+  const m = currentMonth();
+  if (typeof window === "undefined") return { count: 0, month: m };
+  try {
+    const raw = window.localStorage.getItem(CSV_KEY);
+    if (!raw) return { count: 0, month: m };
+    const parsed = JSON.parse(raw) as CsvRecord;
+    // New month → reset
+    return parsed.month === m ? parsed : { count: 0, month: m };
+  } catch {
+    return { count: 0, month: m };
+  }
+}
+
+/**
+ * Returns how many CSV exports remain this month for free-tier users.
+ * Always returns Infinity for Pro users.
+ */
+export function csvExportsRemaining(): number {
+  if (isProUser()) return Infinity;
+  const rec = readCsvRecord();
+  return Math.max(0, FREE_MONTHLY_EXPORTS - rec.count);
+}
+
+/**
+ * Record one CSV export. Call AFTER a successful download.
+ * No-ops for Pro users and SSR.
+ */
+export function recordCsvExport(): void {
+  if (typeof window === "undefined" || isProUser()) return;
+  try {
+    const rec = readCsvRecord();
+    window.localStorage.setItem(
+      CSV_KEY,
+      JSON.stringify({ count: rec.count + 1, month: rec.month }),
+    );
+  } catch {
+    /* swallow */
+  }
+}
