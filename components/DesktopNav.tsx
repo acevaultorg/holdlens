@@ -196,10 +196,16 @@ export default function DesktopNav() {
         </div>
       ))}
 
+      {/* v1.08 — Pro link softened. Prior brand-amber bordered button was
+          the loudest element in the nav on every page; violated operator's
+          "Pro ≠ harm user growth" directive. Now a plain nav link with a
+          subtle amber dot — discoverable but not demanding. */}
       <a
         href="/pricing"
-        className="ml-1 rounded-lg border border-brand/30 px-3 py-1 text-brand hover:bg-brand/10 transition font-semibold"
+        className="ml-1 inline-flex items-center gap-1.5 text-muted hover:text-text transition font-semibold"
+        aria-label="HoldLens Pro — optional subscription"
       >
+        <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand/70" aria-hidden />
         Pro
       </a>
       <GlobalSearch />

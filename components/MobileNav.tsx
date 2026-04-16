@@ -264,60 +264,135 @@ export default function MobileNav() {
           </div>
         </form>
 
-        {/* Pro CTA */}
-        <a
-          href="/pricing"
-          onClick={() => setOpen(false)}
-          className="block mx-5 mt-5 mb-2 rounded-xl border border-brand bg-brand/10 p-4 hover:bg-brand/15 transition"
-        >
-          <div className="text-[10px] uppercase tracking-widest font-bold text-brand mb-1">
-            Pro · Founders rate
-          </div>
-          <div className="text-[15px] font-bold text-text leading-tight">
-            Lock in €9/mo for life →
-          </div>
-          <div className="text-xs text-dim mt-1">
-            First 100 subscribers · cancel anytime
-          </div>
-        </a>
+        {/* v1.08 — Pro CTA REMOVED from top-of-menu per operator directive:
+            "commercial strategy to let people buy Pro should never harm user
+            growth." First-impression of a menu shouldn't be "pay us."
+            Pro card now lives after all 5 nav groups, before legal strip,
+            positioned as earned/optional — not as the menu's opening move. */}
 
-        {/* Five intent-grouped sections — v1.04 stronger dividers (h-2 spacer
-            bar above the border) + more vertical breathing room (py-5) so
-            groups feel visually distinct, not a wall of links. */}
-        {GROUPS.map((grp, idx) => (
-          <div
-            key={grp.title}
-            className={`px-5 py-5${idx > 0 ? " border-t border-border mt-2 pt-6" : ""}`}
-          >
+        {/* v1.08 — Hybrid accordion. Research (NN/g, Baymard, LukeW) shows
+            mobile menus >40 items cause scan-drop-off. Prior flat layout
+            scrolled 2157px (2.7 viewports); users had to parse 33 links at
+            once. Solution: each group shows its primary (highest-intent)
+            link pinned at top + a native <details> disclosure revealing
+            secondary links on tap.
+
+            Reasoning:
+            • Retail investors landing on mobile almost always want one
+              specific page: /best-now, /biggest-buys, /leaderboard,
+              /rotation, /watchlist. Those are now 1 tap each.
+            • Long-tail items (crowded-trades, hidden-gems, etc.) stay
+              discoverable via 2 taps — no feature hidden.
+            • Native <details>/<summary> = zero client JS, built-in a11y
+              (expanded/collapsed ARIA for free), keyboard-accessible.
+            • Multiple groups can be open at once — users can compare. */}
+        {GROUPS.map((grp, idx) => {
+          const [primary, ...secondary] = grp.links;
+          const accentText = grp.accent === "emerald" ? "text-emerald-400" : "text-brand";
+          return (
             <div
-              className={`text-[10px] uppercase tracking-widest font-bold mb-3 ${
-                grp.accent === "emerald" ? "text-emerald-400" : "text-brand"
-              }`}
+              key={grp.title}
+              className={`px-5 py-5${idx > 0 ? " border-t border-border mt-2 pt-6" : ""}`}
             >
-              {grp.title}
-            </div>
-            <ul className="space-y-0.5">
-              {grp.links.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className={`flex items-center justify-between gap-3 py-3 text-[15px] font-semibold ${linkColorClass(
-                      link.color
-                    )} hover:opacity-80 transition`}
+              <div
+                className={`text-[10px] uppercase tracking-widest font-bold mb-3 ${accentText}`}
+              >
+                {grp.title}
+              </div>
+
+              {/* Pinned primary link — always visible, no expand needed. */}
+              <a
+                href={primary.href}
+                onClick={() => setOpen(false)}
+                className={`flex items-center justify-between gap-3 py-3 text-[15px] font-semibold ${linkColorClass(
+                  primary.color
+                )} hover:opacity-80 transition`}
+              >
+                <span>{primary.label}</span>
+                {primary.badge && (
+                  <span className="inline-block text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full bg-brand text-black">
+                    {primary.badge}
+                  </span>
+                )}
+              </a>
+
+              {/* Collapsed secondary — native <details> means zero JS,
+                  keyboard accessible, screen readers get correct state. */}
+              {secondary.length > 0 && (
+                <details className="group">
+                  <summary
+                    className={`list-none cursor-pointer flex items-center justify-between gap-3 py-2.5 text-[13px] text-muted hover:text-text transition select-none`}
                   >
-                    <span>{link.label}</span>
-                    {link.badge && (
-                      <span className="inline-block text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full bg-brand text-black">
-                        {link.badge}
-                      </span>
-                    )}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+                    <span>
+                      <span className="text-dim">Show</span>{" "}
+                      <span className={accentText}>{secondary.length} more</span>{" "}
+                      <span className="text-dim">in {grp.title.toLowerCase()}</span>
+                    </span>
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="opacity-60 group-open:rotate-180 transition-transform duration-base"
+                      aria-hidden
+                    >
+                      <polyline points="3,6 8,11 13,6" />
+                    </svg>
+                  </summary>
+                  <ul className="mt-1 pl-0 space-y-0.5 border-l-2 border-border/60 pl-3">
+                    {secondary.map((link) => (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          onClick={() => setOpen(false)}
+                          className={`flex items-center justify-between gap-3 py-2.5 text-[14px] font-semibold ${linkColorClass(
+                            link.color
+                          )} hover:opacity-80 transition`}
+                        >
+                          <span>{link.label}</span>
+                          {link.badge && (
+                            <span className="inline-block text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full bg-brand text-black">
+                              {link.badge}
+                            </span>
+                          )}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </div>
+          );
+        })}
+
+        {/* v1.08 — Pro CTA RELOCATED to post-groups position. Softer copy
+            ("Optional Pro" vs prior "Lock in €9/mo"), neutral border (not
+            brand-amber) so it reads as supporting information, not an
+            aggressive paywall. Users who want Pro after browsing reach it
+            here; users who don't care scroll past with zero cognitive
+            cost. Growth-first positioning per operator directive. */}
+        <div className="px-5 py-5 border-t border-border mt-2 pt-6">
+          <a
+            href="/pricing"
+            onClick={() => setOpen(false)}
+            className="block rounded-xl border border-border bg-panel/60 p-4 hover:border-brand/40 hover:bg-brand/5 transition"
+          >
+            <div className="text-[10px] uppercase tracking-widest font-semibold text-dim mb-1">
+              Support HoldLens · Optional
+            </div>
+            <div className="text-[14px] font-semibold text-text leading-tight">
+              Pro — €9/mo founders rate
+            </div>
+            <div className="text-xs text-muted mt-1 leading-snug">
+              Everything stays free forever. Pro adds email alerts + EDGAR-wide
+              universe for supporters.
+            </div>
+          </a>
+        </div>
 
         {/* Legal */}
         <div className="px-5 py-5 border-t border-border mt-2 pt-6">

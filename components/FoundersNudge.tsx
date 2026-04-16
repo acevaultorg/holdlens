@@ -87,49 +87,53 @@ export default function FoundersNudge({
 
   if (pro || !visible) return null;
 
-  const accent =
-    tone === "emerald"
-      ? "border-emerald-400/40 bg-emerald-400/5"
-      : tone === "rose"
-      ? "border-rose-400/40 bg-rose-400/5"
-      : "border-brand/40 bg-brand/5";
+  // v1.08 — softened variant uses only accentText; removed the filled
+  // buttonBg/accent-border block that made the card loud. Card is now
+  // neutral panel with one accent-bordered CTA.
   const accentText =
     tone === "emerald" ? "text-emerald-400" : tone === "rose" ? "text-rose-400" : "text-brand";
-  const buttonBg =
-    tone === "emerald" ? "bg-emerald-400" : tone === "rose" ? "bg-rose-400" : "bg-brand";
 
+  // v1.08 — softened copy + visual per operator directive: "Pro should never
+  // harm user growth." Prior "Lock in €9/mo" + bold amber card was selling,
+  // not informing. New version leads with "Everything stays free" so the
+  // free product feels complete, not crippled. Pro is positioned as optional
+  // support — an invitation, not a pitch.
   return (
     <aside
-      className={`my-8 rounded-2xl border ${accent} p-5 md:p-6`}
-      aria-label="Founders rate offer"
+      className={`my-8 rounded-xl border border-border bg-panel/60 p-5 md:p-6`}
+      aria-label="Optional Pro support"
     >
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div className="min-w-0 flex-1">
-          <div className={`text-[10px] uppercase tracking-widest font-bold ${accentText} mb-2`}>
-            Founders rate · first 100 subscribers
+          <div className={`text-[10px] uppercase tracking-widest font-semibold ${accentText} mb-2 opacity-80`}>
+            Optional · Pro supporter
           </div>
-          <div className="text-lg md:text-xl font-bold text-text leading-snug">
-            €9/mo for life. <span className="text-dim font-normal text-sm">(normally €14/mo)</span>
+          <div className="text-base md:text-lg font-semibold text-text leading-snug">
+            Everything stays free.{" "}
+            <span className="text-muted font-normal">
+              Pro adds email alerts, weekly digest, and the EDGAR-wide 80+ manager
+              universe — for readers who want to support the work.
+            </span>
           </div>
-          <p className="text-sm text-muted mt-1.5 leading-relaxed">
-            {context} Pro adds email alerts on every 13F filing, weekly digest, watchlist triggers, EDGAR-wide 80+ manager universe, and no ads ever.
+          <p className="text-xs text-dim mt-2 leading-relaxed">
+            €9/mo founders rate · first 100 subscribers · cancel anytime. {context}
           </p>
         </div>
-        <div className="flex gap-2 items-center flex-wrap justify-end">
+        <div className="flex gap-2 items-center flex-wrap justify-end shrink-0">
           <a
             href={STRIPE_LINK}
             onClick={handleClick}
-            className={`${buttonBg} text-black font-bold rounded-lg px-4 py-2 text-sm hover:opacity-90 transition whitespace-nowrap`}
+            className={`border ${accentText === "text-brand" ? "border-brand/40 hover:bg-brand/10" : accentText === "text-emerald-400" ? "border-emerald-400/40 hover:bg-emerald-400/10" : "border-rose-400/40 hover:bg-rose-400/10"} ${accentText} font-semibold rounded-lg px-4 py-2 text-sm transition whitespace-nowrap`}
           >
-            Lock in €9/mo →
+            See Pro →
           </a>
           <button
             type="button"
             onClick={dismiss}
             className="text-xs text-dim hover:text-text transition"
-            aria-label="Dismiss this offer for 30 days"
+            aria-label="Dismiss this nudge for 30 days"
           >
-            Not now
+            Dismiss
           </button>
         </div>
       </div>
