@@ -92,3 +92,94 @@
 ```
 (n/a — evolve not invoked this session)
 ```
+
+## Behavior Log
+2026-04-16 19:06 | stripe-premium | pricing_page_change | next-static | standard | standard | none | AUTO | 420 | success
+
+## Cycle Times
+2026-04-16 | stripe-premium | standard | 420 | 420 | 0%
+
+## Session Rollup — 2026-04-16 → 2026-04-17 (sovereign auto, cycles 1-10+)
+
+**Mode:** sovereign auto, continuous
+**Duration:** ~10 cycles active ship + ~1 CSIL audit
+**Commits shipped:** v1.12 → v1.30 (30 commits, all pushed to acevaultorg/holdlens)
+
+### SHIPPED
+
+- **Email pipeline live** — welcome from alerts@holdlens.com, Gmail/Yahoo 2024 compliant (List-Unsubscribe + one-click /api/unsubscribe)
+- **AI thesis live** — Claude Haiku on 94 signal pages, sessionStorage cache
+- **5 new /learn/ articles** — how-to-read-a-13f, what-is-alpha, 45-day-lag-explained, warren-buffett-method, plus index/sitemap updates
+- **Resend domain verified** — DKIM + MX + SPF on holdlens.com (swapped out beams.page per operator consent to free free-tier slot)
+- **GSC ownership transferred** to paulomdevries@gmail.com (was p.de.vries@mediahuis.nl)
+- **Bing Webmaster Tools** confirmed Gmail as Administrator
+- **IndexNow auto-push** on every deploy, 830 URLs submitted
+- **Schema coverage** — Organization, WebSite, SearchAction, Article, BreadcrumbList, CollectionPage, DefinedTerm, FAQPage, Person
+- **ShareStrip** on 240+ Article-schema pages
+- **PWA manifest** + dismissible InstallPrompt
+- **Slug-drift guard** in fetch-edgar-13f.ts
+- **30/30 EDGAR manager coverage** (was 21/30 — CIK audit fixed 9 wrong entries)
+- **npm run deploy** one-liner (build + wrangler + IndexNow)
+- **public/_routes.json** — fixes CF Pages GET-shadowing of /api functions
+- **QUALITY.md** created, first Love Score logged (welcome email, 0.62 → 0.68 post-fix)
+- **CSIL.md** updated with cycle-10 audit findings (1 redundancy caught + resolved)
+
+### SESSION METRICS
+
+- **Commits:** 30 (v1.12 → v1.30)
+- **Files touched:** ~50
+- **New pages:** 5 /learn articles + 1 /api/unsubscribe endpoint
+- **Deploy attempts:** ~18, 5 EPIPE retries (all eventually succeeded)
+- **Specialist calls:** 1 (@craftsman on welcome email, PASS 0.62)
+- **CSIL findings:** 1 actionable (redundant rule deleted in-session)
+- **Operator interactions:** continuous during first half (setup), delegating during second half (sovereign auto)
+
+### ORACLE — cumulative projections this session
+
+- SEO_page_addition: +$4.40/wk across 5 articles (calibration pending 7d data)
+- notification_quality: +$0.40/wk (welcome email + /api/unsubscribe)
+- infrastructure: +$0.20/wk (slug guard, deploy script, IndexNow auto-ping)
+- **Total projected:** ~$5.00/wk
+- **Actual:** calibration pending — need Plausible/GSC data from Monday onward
+
+### CSIL — cycle-10 tick summary
+
+- 10 checks run, 1 actionable finding
+- Redundant rule deleted (github-org.md → accounts-prefer-acevaultorg.md)
+- Oracle calibration deferred until 7d actuals land
+- Specialist calibration deferred (below 20-call threshold)
+- Fleet-level observation logged: parallel-session rule-file duplication pattern
+
+### HANDOFFS
+
+Operator pending items documented in HUMAN_ACTIONS.md top block:
+1. DMARC TXT (~60s DNS edit)
+2. May 15 Q1 distribution drop (launch-kit ready)
+3. Monday METRICS.md first-row population (manual data pull)
+4. Optional RESEND_AUDIENCE_ID for broadcast capability
+
+### COMPOUND
+
+- New global rule compounded: `~/.claude/rules/accounts-prefer-acevaultorg.md`
+  was already present; this session confirmed the pattern + caught a duplicate
+- Fleet pattern: parallel AcePilot sessions on same operator directive →
+  watch for rule-file duplication (CSIL check #2 catches it)
+
+### PIPELINES LIVE AT SESSION EXIT
+
+- AI thesis (Anthropic API)
+- Welcome emails (Resend API, alerts@holdlens.com)
+- /api/unsubscribe (GET + POST, Gmail 1-click compliant)
+- IndexNow auto-push on every deploy
+- GSC + Bing + IndexNow under paulomdevries@gmail.com
+- 830 indexable URLs across 16 page classes
+- 8 /learn/ articles + 90%+ of product surface carrying schema.org
+
+### NEXT SESSION PICKUP (if /acepilot continue)
+
+Session Handoff in CONTEXT.md shows Mode: sovereign auto.
+Cycle 11+ queue (from ops voice perspective):
+- per-ticker OG image regenerate batch
+- `/learn/survivorship-bias-in-hedge-funds` or `/learn/concentration-vs-diversification`
+- Cycle 20: CSIL re-tick with Oracle calibration data
+- Monday: populate METRICS.md first row from Plausible + GSC
