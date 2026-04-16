@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import CsvExportButton from "@/components/CsvExportButton";
+import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX } from "@/lib/tickers";
@@ -225,10 +226,13 @@ function ContrarianCard({ row }: { row: Contrarian }) {
       href={`/signal/${row.ticker}`}
       className={`block rounded-2xl border ${tone} bg-panel p-5 hover:opacity-90 transition`}
     >
-      <div className="flex items-baseline justify-between mb-2">
-        <div className="text-lg font-bold text-text">{row.ticker}</div>
+      <div className="flex items-center justify-between mb-2 gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <TickerLogo symbol={row.ticker} size={22} />
+          <div className="text-lg font-bold text-text">{row.ticker}</div>
+        </div>
         <div
-          className={`text-sm font-bold tabular-nums ${
+          className={`text-sm font-bold tabular-nums shrink-0 ${
             row.convictionScore >= 0 ? "text-emerald-400" : "text-rose-400"
           }`}
         >

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX } from "@/lib/tickers";
@@ -182,7 +183,10 @@ export default function TrendStreakPage() {
                     {formatSignedScore(s.convictionScore)}
                   </div>
                 </div>
-                <div className="mt-2 text-2xl font-bold text-text">{s.ticker}</div>
+                <div className="mt-2 flex items-center gap-2">
+                  <TickerLogo symbol={s.ticker} size={24} />
+                  <div className="text-2xl font-bold text-text">{s.ticker}</div>
+                </div>
                 <div className="text-xs text-dim truncate">{s.tickerName}</div>
                 <div className="mt-3 text-[11px] text-text font-semibold truncate">
                   {s.managerName}

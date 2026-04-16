@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import TickerLogo from "@/components/TickerLogo";
 import { TICKER_INDEX } from "@/lib/tickers";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -182,7 +183,10 @@ export default function HiddenGemsPage() {
                     {formatSignedScore(g.convictionScore)}
                   </div>
                 </div>
-                <div className="mt-2 text-2xl font-bold text-text">{g.symbol}</div>
+                <div className="mt-2 flex items-center gap-2">
+                  <TickerLogo symbol={g.symbol} size={24} />
+                  <div className="text-2xl font-bold text-text">{g.symbol}</div>
+                </div>
                 <div className="text-xs text-dim truncate">{g.name}</div>
                 <div className="mt-3 text-[11px] text-muted">
                   {g.ownerCount === 1 ? "Solo owner" : `${g.ownerCount} owners`} · q{g.topOwner.quality}

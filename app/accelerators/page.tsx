@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { TICKER_INDEX } from "@/lib/tickers";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
@@ -219,7 +220,10 @@ export default function AcceleratorsPage() {
                     {formatSignedScore(a.convictionScore)}
                   </div>
                 </div>
-                <div className="mt-2 text-2xl font-bold text-text">{a.ticker}</div>
+                <div className="mt-2 flex items-center gap-2">
+                  <TickerLogo symbol={a.ticker} size={24} />
+                  <div className="text-2xl font-bold text-text">{a.ticker}</div>
+                </div>
                 <div className="text-xs text-dim truncate">{a.name}</div>
                 <div className="mt-3 text-[11px] text-muted">
                   Net +{a.runSum} owners · {a.ownerCount} holders

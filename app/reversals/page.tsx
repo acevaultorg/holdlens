@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -232,11 +233,12 @@ export default function ReversalsPage() {
                     </span>
                   </div>
                 </div>
-                <div className="flex items-baseline gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-3">
                   <a
                     href={`/signal/${r.ticker}`}
-                    className="text-xl font-mono font-bold text-text hover:text-emerald-400 transition"
+                    className="inline-flex items-center gap-2 text-xl font-mono font-bold text-text hover:text-emerald-400 transition"
                   >
+                    <TickerLogo symbol={r.ticker} size={26} />
                     {r.ticker}
                   </a>
                   <div className="text-sm text-dim truncate max-w-[18rem]">{r.name}</div>

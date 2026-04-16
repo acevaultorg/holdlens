@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import CsvExportButton from "@/components/CsvExportButton";
+import TickerLogo from "@/components/TickerLogo";
 import { topTickers } from "@/lib/tickers";
 import { MERGED_MOVES, QUARTERS } from "@/lib/moves";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
@@ -137,12 +138,13 @@ export default function CrowdedTradesPage() {
             <div className="text-[10px] uppercase tracking-widest font-bold text-rose-400 mb-2">
               Crack in the foundation
             </div>
-            <div className="flex items-baseline justify-between">
-              <div>
+            <div className="flex items-center justify-between gap-2">
+              <div className="min-w-0">
                 <a
                   href={`/signal/${topUnwind.symbol}`}
-                  className="text-2xl font-bold text-text hover:text-brand transition"
+                  className="inline-flex items-center gap-2 text-2xl font-bold text-text hover:text-brand transition"
                 >
+                  <TickerLogo symbol={topUnwind.symbol} size={26} />
                   {topUnwind.symbol}
                 </a>
                 <div className="text-xs text-muted mt-0.5 truncate max-w-[14rem]">
@@ -177,12 +179,13 @@ export default function CrowdedTradesPage() {
             <div className="text-[10px] uppercase tracking-widest font-bold text-emerald-400 mb-2">
               Still loading
             </div>
-            <div className="flex items-baseline justify-between">
-              <div>
+            <div className="flex items-center justify-between gap-2">
+              <div className="min-w-0">
                 <a
                   href={`/signal/${topLoad.symbol}`}
-                  className="text-2xl font-bold text-text hover:text-brand transition"
+                  className="inline-flex items-center gap-2 text-2xl font-bold text-text hover:text-brand transition"
                 >
+                  <TickerLogo symbol={topLoad.symbol} size={26} />
                   {topLoad.symbol}
                 </a>
                 <div className="text-xs text-muted mt-0.5 truncate max-w-[14rem]">

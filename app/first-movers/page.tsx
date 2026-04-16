@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -276,14 +277,15 @@ export default function FirstMoversPage() {
                 className="rounded-2xl border border-brand/30 bg-brand/5 p-5"
               >
                 <div className="flex items-baseline justify-between flex-wrap gap-2 mb-3">
-                  <div className="flex items-baseline gap-3">
+                  <div className="flex items-center gap-3">
                     <div className="text-[10px] uppercase tracking-widest text-brand font-bold">
                       #{i + 1}
                     </div>
                     <a
                       href={`/signal/${r.ticker}`}
-                      className="text-xl font-bold font-mono text-text hover:text-brand transition"
+                      className="inline-flex items-center gap-2 text-xl font-bold font-mono text-text hover:text-brand transition"
                     >
+                      <TickerLogo symbol={r.ticker} size={22} />
                       {r.ticker}
                     </a>
                     <div className="text-sm text-dim truncate max-w-[14rem]">
