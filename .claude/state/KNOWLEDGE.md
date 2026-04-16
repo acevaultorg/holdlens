@@ -89,3 +89,65 @@ howard-marks, prem-watsa, bill-nygren, glenn-greenberg.
 
 `warren-buffett` has a dedicated static page at `/investor/warren-buffett` —
 excluded from `generateStaticParams` in `app/investor/[slug]/page.tsx`.
+
+## Analytics stack <!-- verified: 2026-04-16 -->
+
+### Google Analytics 4 (primary product analytics)
+
+- **Account:** `HoldLens` (account ID `391571004`) under `paulomdevries@gmail.com`
+- **Property:** `holdlens.com` (property ID `533294495`), Netherlands timezone, USD currency
+- **Measurement ID:** `G-HDK5CHBQEY`
+- **Stream:** `HoldLens Web`, stream ID `14382101557`, URL `https://holdlens.com`
+- **Env var:** `NEXT_PUBLIC_GA4_ID=G-HDK5CHBQEY` in `.env.production.local` (gitignored).
+  Next.js inlines `NEXT_PUBLIC_*` at build time → GA snippet appears in every
+  static HTML page from `app/layout.tsx` lines 110-127 (no-op until env var set).
+- **Direct link:** `https://analytics.google.com/analytics/web/?authuser=2#/a391571004p533294495/reports/intelligenthome`
+
+### Property configuration
+
+- **Data retention:** 14 months (both event and user data). Default is 2 months — was extended 2026-04-16.
+- **Google signals:** ON (enables cross-device + aggregated demographics/interests, gated by Consent Mode).
+- **Enhanced Measurement:** ON (auto-captures scrolls, outbound clicks, file downloads, video, form interactions).
+- **Industry:** Finance. Business size: Small (1-10). Objectives: Drive sales + Understand web traffic.
+
+### Product links
+
+- **Google Search Console:** `holdlens.com` (Domain property) linked — organic search queries flow into GA Search Console report. GSC verification meta in `app/layout.tsx` verification block (v1.18).
+- **Google AdSense:** `pub-7449214764048186` (AdSense for Content) linked with Revenue Data Reporting ON — ad revenue per-page surfaces in GA. Activation pending Google AdSense approval (submitted 2026-04-14).
+- **Google Ads:** not linked (no paid ad spend yet).
+
+### Consent Mode v2 (EU/GDPR)
+
+- Defaults in `app/layout.tsx` lines 81-93: `ad_storage`, `ad_user_data`,
+  `ad_personalization`, `analytics_storage` all DENIED on page load with
+  `wait_for_update: 500`.
+- Promotion to GRANTED happens on read of `localStorage['holdlens_cookie_consent_v1'] === 'granted'`,
+  set by the `CookieConsent` banner component.
+- Effect: EU visitors see NO GA data collection until they click grant.
+  Google signals/demographics only activate for consented users.
+
+### Key events (conversions)
+
+- `purchase` — auto-marked key event (selected when picking "Drive sales" at property creation).
+  Requires code instrumentation on Stripe thank-you page to fire
+  `gtag('event', 'purchase', { currency, value, transaction_id })`.
+- `begin_checkout` — NOT yet marked. To enable, either:
+  (a) wait for GA to observe ≥1 outbound `click` event on `buy.stripe.com`, then
+  create a custom event filter via Admin → Events → Create, OR
+  (b) explicit `gtag('event', 'begin_checkout', { currency: 'USD', value })`
+  call in `StripeCheckoutButton.tsx` `onClick` handler.
+
+### Secondary analytics (already shipped)
+
+- **Plausible:** `script.outbound-links.tagged-events.js`, `data-domain=holdlens.com`.
+  Outbound links auto-tracked. Tagged events via `className="plausible-event-name=NAME"` —
+  used on `StripeCheckoutButton` (`Pro Checkout Click`), `InvestingBooks` book cards (`Book Click`),
+  `AffiliateCTA` broker cards (`Broker Click`).
+- **Microsoft Clarity:** activates when `NEXT_PUBLIC_CLARITY_ID` env var is set.
+- **Cloudflare Web Analytics:** activates when `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` is set.
+- **AdSense loader:** `pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7449214764048186`,
+  `lazyOnload` strategy. Auto-ads serve after Google approval.
+
+### Tag firing verification
+
+Chrome MCP probe on 2026-04-16: `region1.google-analytics.com/g/collect?v=2&tid=G-HDK5CHBQEY&en=page_view&ep.anonymize_ip=true` — firing. Initial hits returned 503 during GA4 property provisioning (first ~30 min post-creation, known GA4 backend behavior); realtime panel confirmed events landed despite edge 503s.

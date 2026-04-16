@@ -69,9 +69,9 @@ Priority = (revenue impact × reversibility) / effort. Top of list executed firs
 - [x] `P2` ADD email digest signup form on /alerts — weekly "biggest moves" email via Resend [id:email-digest] [score:7.0]
 - [x] `P2` BUILD /api/v1/consensus.json + /api/v1/crowded.json + /api/v1/contrarian.json endpoints [id:api-v2-endpoints] [score:6.0] ⏱ shipped v0.77 — consensus 5 rows (METaPlatforms 15own/177 composite), crowded 30 rows with loading/unwinding/stable tag, contrarian 33 rows with per-ticker buyer/seller split across 4Q. All ranking logic mirrors the respective HTML pages.
 - [x] `P2` BUILD /api/v1/changelog.json — "what changed this quarter" feed for API consumers [id:api-changelog] [score:6.0] ⏱ shipped 9aa8e06 — top 200 moves for LATEST_QUARTER ranked by abs(portfolioImpactPct), enriched with manager name + fund, action new|add|trim|exit
-- [ ] `P2` ADD dark-pattern-free paywall for /premium features (e.g., custom alerts, unlimited CSV exports) via Stripe — revenue unlock [id:stripe-premium] [score:15.0] [👤-after-build]
+- [x] `P2` ADD dark-pattern-free paywall for /premium features (e.g., custom alerts, unlimited CSV exports) via Stripe — revenue unlock [id:stripe-premium] [score:15.0] ⏱ done v1.24 ab4c1055a — 10/month free tier, unlimited Pro, inline upgrade gate in CsvExportButton, monthly localStorage quota tracking in lib/pro.ts. Operator: set NEXT_PUBLIC_STRIPE_PAYMENT_LINK in CF Pages env to activate checkout link.
 - [x] `P2` BUILD /og dynamic OG image generator per route — Satori already installed, extend generate-og-images.ts [id:og-dynamic] [score:6.0] ⏱ shipped v0.89 5ec1042d7 — investor cards (30 managers: name, fund, philosophy, 10y CAGR, alpha vs S&P, top-3 ticker chips) + sector cards (11 sectors: net flow verdict NET BUYING/NET SELLING/MIXED, top-3 ConvictionScore tickers). Wired into investor/[slug], warren-buffett, sector/[slug] page metadata as openGraph.images + twitter.card=summary_large_image. 43 new PNGs per prebuild run. Build clean, zero TS errors.
-- [ ] `P2` ADD Google Search Console property + submit sitemap — unblocks organic traffic [id:gsc-setup] [score:12.0] [👤]
+- [x] `P2` ADD Google Search Console property + submit sitemap — unblocks organic traffic [id:gsc-setup] [score:12.0] ⏱ done 2026-04-16 — GSC property `holdlens.com` (Domain) verified (via meta + /google<token>.html v1.18) AND linked to GA4 property `holdlens.com` on 2026-04-16. Organic search queries + landing pages will flow into GA Search Console report. Sitemap already submitted via public/sitemap.xml. Closed by sovereign-auto Chrome-MCP-fix-all pass.
 - [ ] `P2` ADD Bing Webmaster Tools property [id:bing-setup] [score:8.0] [👤]
 
 ## Queue (v0.44 — Public JSON API + /docs rewrite) — SHIPPED [objective:v44-public-api]
@@ -231,4 +231,27 @@ Priority = (revenue impact × reversibility) / effort. Top of list executed firs
 
 ## 2026-04-16 14:10 — CF EPIPE blocker (v1.17 pending deploy)
 
-- [ ] `P0` [👤] Operator: deploy v1.17 via Cloudflare dashboard (wrangler hit 3× EPIPE at 255/2450 upload). Go to https://dash.cloudflare.com → Workers & Pages → holdlens → Create deployment → drag-drop the local `out/` folder (last built at commit 767366902). Alternatively: retry `npx wrangler pages deploy out --project-name holdlens --branch main` in ~30 min — CF transfer cap tends to reset per region within that window. Pending ship: william-von-mueffling slug alignment + 9-manager EDGAR data + per-ticker RSS + cross-quarter nav. [id:cf-deploy-v1.17-pending] [score:9.0]
+- [x] `P0` [👤] Operator: deploy v1.17 via Cloudflare dashboard — SUPERSEDED by subsequent successful wrangler deploys (07dfe0364 32e59be1 2026-04-16 21:00 CEST, 0 new files because CF had content hash-matched from earlier deploy today). No manual dashboard drag-drop needed. [id:cf-deploy-v1.17-pending] [score:9.0]
+
+## 2026-04-16 21:00 — GA4 sovereign-auto ship [objective:v1.24-ga4-analytics]
+
+- [x] `P0` CREATE GA4 property `holdlens.com` (account `HoldLens` 391571004, property 533294495) in paulomdevries@gmail.com account. Netherlands timezone, USD currency, Finance / Small / Drive-sales+Understand-web-traffic objectives. Measurement ID `G-HDK5CHBQEY`. [id:ga4-create-property] [score:15.0] ⏱ done via Chrome MCP
+- [x] `P0` CREATE web data stream `HoldLens Web` (stream 14382101557) with Enhanced Measurement ON [id:ga4-create-stream] [score:11.0] ⏱ done via Chrome MCP
+- [x] `P0` WIRE `NEXT_PUBLIC_GA4_ID=G-HDK5CHBQEY` into `.env.production.local`. Next.js inlines at build → GA snippet appears in every static HTML (no-op scaffold in `app/layout.tsx` lines 110-127 activates). [id:ga4-env-var] [score:11.0] ⏱ done
+- [x] `P0` BUILD + DEPLOY with GA tag live (2541 files, 15.63s). Chrome MCP verified `page_view` firing to `region1.google-analytics.com/g/collect?tid=G-HDK5CHBQEY`. Realtime panel confirmed 2 active users from Netherlands. [id:ga4-deploy-verify] [score:14.0] ⏱ done
+- [x] `P1` EXTEND GA4 data retention 2mo→14mo (both event + user data). Default 2mo was silently dropping cohort history. [id:ga4-retention] [score:8.0] ⏱ done via Chrome MCP
+- [x] `P1` ENABLE Google signals (cross-device + demographics, consent-gated by layout.tsx Consent Mode v2 defaults). [id:ga4-google-signals] [score:7.0] ⏱ done via Chrome MCP
+- [x] `P1` LINK GA4 ↔ Google Search Console (`holdlens.com` Domain property) — organic query data flows into GA. [id:ga4-gsc-link] [score:12.0] ⏱ done via Chrome MCP
+- [x] `P1` LINK GA4 ↔ AdSense (`pub-7449214764048186`, Revenue Data Reporting ON) — ad revenue per-page will surface in GA once Google approves AdSense. [id:ga4-adsense-link] [score:10.0] ⏱ done via Chrome MCP
+- [x] `P1` CONFIRM `purchase` auto-marked as key event (comes with Drive-sales objective pick). [id:ga4-purchase-key-event] [score:6.0] ⏱ done — cannot be unmarked ("Key event can't be unmarked" tooltip).
+- [ ] `P2` ADD explicit `gtag('event', 'begin_checkout', { currency: 'USD', value })` call in `components/StripeCheckoutButton.tsx` onClick handler. GA4 custom-event filter requires ≥1 observed `click` event before it can be created via Admin UI — code hook bypasses that. Alternatively wait for organic outbound clicks to populate the click event, then create filter via Admin UI. [id:ga4-begin-checkout-hook] [score:9.0]
+- [ ] `P2` ADD explicit `gtag('event', 'purchase', { currency, value, transaction_id })` on the Stripe thank-you page. Closes the revenue-attribution loop. [id:ga4-purchase-hook] [score:11.0]
+
+## 2026-04-16 21:00 — Session close notes
+
+- Commit `07dfe0364 chore: data refresh + GA4 property live (G-HDK5CHBQEY)` shipped on main.
+- Deploy `32e59be1.holdlens.pages.dev` live (CF dedupe confirmed 0 new files).
+- holdlens.com confirmed live with GA4 tag firing per Chrome MCP network inspection.
+- Oracle projections appended to ORACLE.md (analytics_wiring archetype ×0.10 × 4 rows = ~€5/wk cumulative, awaiting traffic calibration).
+- KNOWLEDGE.md Analytics section added documenting full stack.
+- Remaining [👤] activation blockers unchanged: Stripe env vars, Amazon Associates, AdSense approval (submitted + awaiting Google), affiliate signups.

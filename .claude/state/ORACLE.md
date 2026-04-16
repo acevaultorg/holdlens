@@ -49,6 +49,10 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 2026-04-16 | v0.93 /sector/[slug] "More sectors" strip         | SEO_page_addition         | est €1.5/wk| TBD | TBD | 11 sector dossier pages get 10-link sibling grid + /rotation CTA, closes SEO-landing dead end
 2026-04-16 | v0.94 homepage OG image (silent distribution leak) | SEO_page_addition         | est €3/wk  | TBD | TBD | every prior social/chat share of holdlens.com rendered as text-only card; compounds with every unsolicited referral going forward
 2026-04-16 | v1.00 sitemap /premium + /compare registration    | SEO_page_addition         | est €0.5/wk| TBD | TBD | /premium (Pro marketing) + /compare (landing) were shipped but never added to sitemap — Google had no crawl path to either
+2026-04-16 | GA4 property live (G-HDK5CHBQEY) + env var wired   | analytics_wiring          | est €2/wk  | TBD | TBD | NEXT_PUBLIC_GA4_ID set, layout.tsx no-op scaffold activated, page_view firing verified via Chrome MCP — unblocks conversion attribution for all downstream revenue instrumentation
+2026-04-16 | GA4 post-setup: retention 14mo + Google signals    | analytics_wiring          | est €0.5/wk| TBD | TBD | 12-month additional cohort visibility + cross-device/demographics (consent-gated) — enables 14mo trend reports that default 2mo would have silently dropped
+2026-04-16 | GA4 ↔ GSC link (holdlens.com Domain property)      | analytics_wiring          | est €1.5/wk| TBD | TBD | organic search queries + landing pages now flow into GA Search Console report — closes the attribution gap between GSC indexed-click data and GA session/conversion data
+2026-04-16 | GA4 ↔ AdSense link (pub-7449214764048186, rev ON)  | analytics_wiring          | est €1/wk  | TBD | TBD | ad revenue per-page surfaces in GA once AdSense approves and auto-ads serve; pairs with on-page AdSlot components already shipped
 ```
 
 ## Top blocker (honest)

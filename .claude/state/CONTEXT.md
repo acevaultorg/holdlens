@@ -2,31 +2,34 @@
 
 ## Orient
 **Project:** HoldLens — 13F superinvestor tracker, Next.js 15 static export, Cloudflare Pages.
-**State:** v0.77 shipped — public JSON API now 150 endpoints (v0.76 added /api/v1/sector/{slug}.json ×12; v0.77 added alerts/consensus/crowded/contrarian). Signal page cross-links t.sector → /sector/[slug]. Dataroma still has zero API; HoldLens JSON surface: scores, signals, managers, sectors, big-bets, rotation, alerts, consensus, crowded, contrarian, best-now, value, quarters. TASKS.md reconciled 11 entries.
-**Goal:** Revenue activation. Three [👤] actions pending: Stripe, AdSense, affiliates.
+**State:** v1.24 shipped — GA4 property LIVE (G-HDK5CHBQEY). Public JSON API at 150 endpoints. All conversion measurement infrastructure now in place: GA4 + GSC link + AdSense link + retention 14mo + Google signals. Consent Mode v2 gates EU traffic per `app/layout.tsx:81-93`. Deploy pipeline: wrangler pages deploy out (NOT git-integrated — CRITICAL per KNOWLEDGE.md).
+**Goal:** Revenue activation. 4 [👤] actions pending: Stripe, AdSense approval, Amazon Associates, broker affiliates. **GSC setup CLOSED 2026-04-16.**
 
-## Session Handoff (previous — 2026-04-15 18:00, superseded)
+## Session Handoff (2026-04-15 18:00 and 2026-04-16 00:15 — superseded by block below)
 
-_Previous handoff retained for context, replaced by block below._
+_Previous handoffs retained for context, replaced by the v1.24 sovereign-auto block._
 
 ## Session Handoff
 
 **Mode:** sovereign auto
-**Objective:** Revenue-adjacent continuous shipping — sovereign auto
-**Progress:** 5 versions LIVE this session window — v0.90 /premium (6 Pro feature cards + €9 CTA + trust strip + FAQPage JSON-LD, deploy a9069bf8→d21f713d batch), v0.91+v0.92 parallel InvestingBooks fan-out + ticker retention + hero rewrite (parallel session), v0.93 CSV export buttons wired on /value + /rotation (deploy d21f713d), v0.94 /premium discoverability — homepage footer + mobile nav + /pricing crosslink (deploy 92ce1b34), v0.95 /premium Product + Offer JSON-LD for Google pricing rich results (deploy 42d2f1e6). All deploy-truth verified on prod + direct. CF EPIPE flakes encountered but cleared within 1-3 retries each time.
-**Branch:** `main` · latest HEAD=a2dec8c48 pushed.
+**Objective:** GA4 conversion instrumentation + state sync — sovereign auto continuation
+**Progress:** v1.24 GA4 analytics stack COMPLETE. (1) Created GA4 property `holdlens.com` (account HoldLens 391571004, property 533294495, measurement ID `G-HDK5CHBQEY`) in paulomdevries@gmail.com. (2) Wired `NEXT_PUBLIC_GA4_ID` env var; built + deployed holdlens.com with GA tag firing (verified `page_view` hits via Chrome MCP network inspection + realtime panel showing 2 active users). (3) Post-setup via Chrome MCP: data retention 2mo→14mo, Google signals ON, GSC Domain property linked, AdSense `pub-7449214764048186` linked with Revenue Data Reporting ON, `purchase` key event auto-marked. (4) Commit `07dfe0364` on main — 2696 files (API JSON regen + OG regen + TASKS.md sync) pushed to acevaultorg/holdlens. (5) Deploy `32e59be1.holdlens.pages.dev` (CF dedupe → 0 new files, 0.70s). (6) KNOWLEDGE.md Analytics section added; ORACLE.md 4 new projection rows; TASKS.md closed stale gsc-setup + cf-deploy-v1.17-pending.
+**Branch:** `main` · HEAD=07dfe0364 pushed to acevaultorg/holdlens.
 **Next actions (operator — all [👤]):**
-  1. **[P0 revenue]** Stripe env vars in CF Pages env → /pricing + /premium become live checkout.
-  2. **[P0 revenue]** Amazon Associates signup (24h review) + `NEXT_PUBLIC_AMZN_TAG` env → InvestingBooks affiliate funnel activates across /learn/* pages.
-  3. **[P0 revenue]** AdSense apply + `NEXT_PUBLIC_ADSENSE_CLIENT` → 32 ad slots activate.
-  4. **[P1 distribution]** Google Search Console property + submit sitemap → organic traffic discoverable.
-  5. **[P1 distribution]** IBKR/Public/Robinhood affiliate signups → broker referrals activate.
-  6. **[P2]** Bing Webmaster Tools property.
-**Remaining code-side P2 tasks (lower Oracle):** twitter-bot (needs operator OAuth), additional feature polish.
-**Human actions pending:** 5 — stripe-activate, amazon-associates-signup, adsense-activate, affiliate-activate, gsc-setup.
-**Open questions:** none.
-**Momentum:** very high — 8 deploys across v0.84→v0.95 in this session window, all revenue-adjacent. Oracle projected cumulative $8-25/wk contingent on platform activations. Every platform signup is now the rate-limiter, not code.
-<!-- handoff: 2026-04-16 00:15 -->
+  1. **[P0 revenue]** Stripe env vars in CF Pages env → /pricing + /premium checkout activates.
+  2. **[P0 revenue]** Amazon Associates signup (~24h review) + `NEXT_PUBLIC_AMZN_TAG` env → InvestingBooks affiliate funnel activates on /learn/*.
+  3. **[P0 revenue]** AdSense approval (submitted 2026-04-14, status "Getting ready" in dashboard). Set `NEXT_PUBLIC_ADSENSE_CLIENT` post-approval → 32 ad slots activate.
+  4. **[P1 distribution]** IBKR / Public / Robinhood affiliate signups → broker-referral revenue.
+  5. **[P2]** Bing Webmaster Tools property (lower-impact organic channel).
+**Next actions (pilot / Chief — P2 code hooks that need source edits):**
+  6. **[P2]** Add explicit `gtag('event', 'begin_checkout', ...)` in `components/StripeCheckoutButton.tsx` onClick.
+  7. **[P2]** Add explicit `gtag('event', 'purchase', ...)` on Stripe thank-you page.
+  8. **[P2]** /compare/[pair] visual diff (Venn + convergence).
+  9. **[P2]** Plausible custom events on /signal search / /value filter / /big-bets row-click.
+**Human actions pending:** 4 — stripe-activate, amazon-associates-signup, adsense-approval-wait, affiliate-activate. (gsc-setup CLOSED in this session.)
+**Open questions:** none. All conversion measurement infra in place; remaining revenue unlocks are platform-side.
+**Momentum:** very high — GA4 stack landed, chrome-mcp-fix-all pass complete, 4 product-link integrations on the new property. Next traffic spike (organic/social) will produce the first Oracle calibration row per-archetype.
+<!-- handoff: 2026-04-16 21:00 -->
 **Objective:** Continuous revenue-adjacent shipping — SOVEREIGN AUTO
 **Progress:** 3 tasks SHIPPED + DEPLOYED this session window: (1) v0.84 TickerLogo + FundLogo (Parqet CDN + DuckDuckGo ip3) sitewide + /support page + a11y focus-ring baseline → deploy e2b3c2de; (2) v0.85 InvestorConcentration server component (Top-1/5/10 % + verdict + stacked bar) on 14 manager slugs + warren-buffett dedicated page → deploy 4d460911; (3) TASKS.md bookkeeping — closed stock-alias, investor-viz, vs-dataroma, learn-handbook, quarterly-pages (all were shipped but marked open). Parallel sessions contributed heavily and attribution folded via absorption; all work preserved in origin/main. HEAD=62dba7445 + 4 further heartbeat commits.
 **Branch:** `main` · pushed to origin. Local build artifacts in sync after v0.85 final build.
