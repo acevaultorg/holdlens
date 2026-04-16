@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MANAGERS } from "@/lib/managers";
 
 // /launch-kit — operator-only page (noindex) with copy-paste templates
-// for Reddit, HackerNews, Twitter, and ProductHunt. The €100 ask is
+// for Reddit, HackerNews, X, and ProductHunt. The €100 ask is
 // gated by distribution, not code. One successful Reddit front-page
 // post in r/SecurityAnalysis or r/ValueInvesting typically drives
 // 2,000–10,000 targeted visitors — at a 1% conversion, that's enough
@@ -10,10 +10,13 @@ import { MANAGERS } from "@/lib/managers";
 //
 // This page is deliberately noindex + robots:false so it never shows
 // in search results. Pure internal launch aid.
+//
+// v1.12 — "Twitter" retired everywhere in user-visible copy. Brand is X;
+// the compose URL is x.com/compose/post (the current canonical surface).
 
 export const metadata: Metadata = {
   title: "Launch kit — operator only",
-  description: "Pre-written templates for launching HoldLens on Reddit, HackerNews, Twitter, and ProductHunt.",
+  description: "Pre-written templates for launching HoldLens on Reddit, HackerNews, X, and ProductHunt.",
   robots: { index: false, follow: false },
 };
 
@@ -263,22 +266,22 @@ export default function LaunchKitPage() {
 {HN_POST.body}
         </pre>
         <p className="text-xs text-dim mt-3">
-          Timing: submit 7–9am ET Tuesday or Wednesday. Retweet from a warm account in the
+          Timing: submit 7–9am ET Tuesday or Wednesday. Re-share from a warm account in the
           first 30 minutes. Reply to every top comment — HN rewards author engagement.
         </p>
       </section>
 
-      {/* Twitter */}
+      {/* X (formerly Twitter) */}
       <section className="mb-10 rounded-2xl border border-border bg-panel p-6">
         <div className="flex items-baseline justify-between gap-3 flex-wrap mb-3">
           <div>
             <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-1">
-              Twitter / X · 6-tweet thread
+              X · 6-post thread
             </div>
             <h2 className="text-lg font-bold">Launch thread</h2>
           </div>
           <a
-            href="https://twitter.com/compose/tweet"
+            href="https://x.com/compose/post"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs font-semibold text-brand hover:text-text"
@@ -290,7 +293,7 @@ export default function LaunchKitPage() {
           {TWITTER_THREADS.map((t, i) => (
             <div key={i} className="rounded-lg border border-border bg-bg/60 p-3">
               <div className="text-[9px] uppercase tracking-wider text-dim font-semibold mb-1.5">
-                Tweet {i + 1} / 6
+                Post {i + 1} / 6
               </div>
               <pre className="text-xs text-text font-mono whitespace-pre-wrap leading-relaxed">
 {t}

@@ -205,51 +205,58 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               aria-label="Site map"
               className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-8 text-sm"
             >
+              {/* v1.12 — color rationalization: one neutral muted hue for all 5
+                  category headers (uniform hierarchy via weight/size/tracking,
+                  not rainbow hue). Link hovers also normalized to text (the
+                  full-brightness text color). ONLY amber accent in the footer
+                  is "Pro pricing" — the one CTA-worthy highlight. This follows
+                  the design system's amber-reserved rule AND keeps emerald
+                  reserved for BUY signals everywhere else on the site. */}
               <div>
-                <div className="text-[11px] uppercase tracking-widest font-bold text-brand mb-3">Signals</div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-dim mb-3">Signals</div>
                 <ul className="space-y-2">
-                  <li><a href="/best-now" className="text-dim hover:text-brand transition">Best now</a></li>
-                  <li><a href="/value" className="text-dim hover:text-emerald-400 transition">Value</a></li>
-                  <li><a href="/big-bets" className="text-dim hover:text-brand transition">Big bets</a></li>
-                  <li><a href="/consensus" className="text-dim hover:text-emerald-400 transition">Consensus picks</a></li>
+                  <li><a href="/best-now" className="text-dim hover:text-text transition">Best now</a></li>
+                  <li><a href="/value" className="text-dim hover:text-text transition">Value</a></li>
+                  <li><a href="/big-bets" className="text-dim hover:text-text transition">Big bets</a></li>
+                  <li><a href="/consensus" className="text-dim hover:text-text transition">Consensus picks</a></li>
                   <li><a href="/contrarian-bets" className="text-dim hover:text-text transition">Contrarian bets</a></li>
                 </ul>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-widest font-bold text-emerald-400 mb-3">Moves</div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-dim mb-3">Moves</div>
                 <ul className="space-y-2">
-                  <li><a href="/biggest-buys" className="text-dim hover:text-emerald-400 transition">Biggest buys</a></li>
-                  <li><a href="/biggest-sells" className="text-dim hover:text-rose-400 transition">Biggest sells</a></li>
-                  <li><a href="/new-positions" className="text-dim hover:text-emerald-400 transition">New positions</a></li>
-                  <li><a href="/exits" className="text-dim hover:text-rose-400 transition">Exits</a></li>
+                  <li><a href="/biggest-buys" className="text-dim hover:text-text transition">Biggest buys</a></li>
+                  <li><a href="/biggest-sells" className="text-dim hover:text-text transition">Biggest sells</a></li>
+                  <li><a href="/new-positions" className="text-dim hover:text-text transition">New positions</a></li>
+                  <li><a href="/exits" className="text-dim hover:text-text transition">Exits</a></li>
                   <li><a href="/this-week" className="text-dim hover:text-text transition">This week</a></li>
                 </ul>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-widest font-bold text-brand mb-3">Managers</div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-dim mb-3">Managers</div>
                 <ul className="space-y-2">
                   <li><a href="/leaderboard" className="text-dim hover:text-text transition">Leaderboard</a></li>
-                  <li><a href="/manager-rankings" className="text-dim hover:text-brand transition">Rankings</a></li>
-                  <li><a href="/overlap" className="text-dim hover:text-brand transition">Overlap</a></li>
-                  <li><a href="/concentration" className="text-dim hover:text-brand transition">Concentration</a></li>
+                  <li><a href="/manager-rankings" className="text-dim hover:text-text transition">Rankings</a></li>
+                  <li><a href="/overlap" className="text-dim hover:text-text transition">Overlap</a></li>
+                  <li><a href="/concentration" className="text-dim hover:text-text transition">Concentration</a></li>
                   <li><a href="/compare/managers" className="text-dim hover:text-text transition">Compare</a></li>
                 </ul>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-widest font-bold text-emerald-400 mb-3">Discover</div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-dim mb-3">Discover</div>
                 <ul className="space-y-2">
-                  <li><a href="/rotation" className="text-dim hover:text-brand transition">Sector rotation</a></li>
-                  <li><a href="/proof" className="text-dim hover:text-emerald-400 transition">Proof</a></li>
-                  <li><a href="/vs/dataroma" className="text-dim hover:text-brand transition">vs Dataroma</a></li>
-                  <li><a href="/learn/superinvestor-handbook" className="text-dim hover:text-emerald-400 transition">Handbook</a></li>
-                  <li><a href="/themes" className="text-dim hover:text-brand transition">Themes</a></li>
+                  <li><a href="/rotation" className="text-dim hover:text-text transition">Sector rotation</a></li>
+                  <li><a href="/proof" className="text-dim hover:text-text transition">Proof</a></li>
+                  <li><a href="/vs/dataroma" className="text-dim hover:text-text transition">vs Dataroma</a></li>
+                  <li><a href="/learn/superinvestor-handbook" className="text-dim hover:text-text transition">Handbook</a></li>
+                  <li><a href="/themes" className="text-dim hover:text-text transition">Themes</a></li>
                 </ul>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-widest font-bold text-text mb-3">Product</div>
+                <div className="text-[11px] uppercase tracking-widest font-bold text-dim mb-3">Product</div>
                 <ul className="space-y-2">
                   <li><a href="/pricing" className="text-brand hover:opacity-80 transition font-semibold">Pro pricing</a></li>
-                  <li><a href="/premium" className="text-dim hover:text-brand transition">Pro features</a></li>
+                  <li><a href="/premium" className="text-dim hover:text-text transition">Pro features</a></li>
                   <li><a href="/watchlist" className="text-dim hover:text-text transition">Watchlist</a></li>
                   <li><a href="/alerts" className="text-dim hover:text-text transition">Email alerts</a></li>
                   <li><a href="/faq" className="text-dim hover:text-text transition">FAQ</a></li>
