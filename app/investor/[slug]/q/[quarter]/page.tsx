@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
+import ShareStrip from "@/components/ShareStrip";
 import { MANAGERS, getManager } from "@/lib/managers";
 import {
   MERGED_MOVES,
@@ -347,6 +348,18 @@ export default async function ManagerQuarterPage({ params }: Props) {
           </table>
         </div>
       </section>
+
+      {/* v1.21 — ShareStrip above the cross-quarter nav. Manager-quarter
+          digests are high-density, high-intent content — the point where
+          a reader has just digested what Buffett/Ackman/Tepper did in a
+          quarter. That's peak share intent. Five-button strip (X, Reddit,
+          HN, LinkedIn, Email) with pre-composed title + canonical URL.
+          Plausible-tagged per platform for attribution. */}
+      <ShareStrip
+        title={`What ${m.name} did in ${label} — full 13F decomposition`}
+        url={pageUrl}
+        via="holdlens"
+      />
 
       {/* v1.16 — cross-quarter internal linking. Every per-quarter page gets
           links to the 7 sibling quarters for the same manager (prev/next

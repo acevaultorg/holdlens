@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
+import ShareStrip from "@/components/ShareStrip";
 import {
   MERGED_MOVES,
   QUARTERS,
@@ -550,6 +551,14 @@ export default async function QuarterPage({
           })}
         </div>
       </section>
+
+      {/* v1.21 — ShareStrip. Quarter digest pages are the classic "recap"
+          format that gets shared on social during and after filing waves. */}
+      <ShareStrip
+        title={`${label} superinvestor 13F digest — smart money recap`}
+        url={pageUrl}
+        via="holdlens"
+      />
 
       <p className="text-xs text-dim mt-12">
         Based on publicly filed 13Fs for {label}, filed with the SEC on{" "}
