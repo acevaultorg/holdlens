@@ -39,14 +39,26 @@ export async function generateMetadata({ params }: { params: Promise<{ pair: str
   if (!ta || !tb) return { title: "Comparison not found" };
   const convA = getConviction(a);
   const convB = getConviction(b);
+  // v1.23 — per-pair OG image for top-10×top-10 combos. File existence is
+  // checked at build time when Satori wrote it; if not present, fallback to
+  // the site-wide home OG (still valid, just generic). We can't check
+  // existsSync here without an IO hit; instead, we ship the URL to the pair
+  // image confidently for top tickers and let CF Pages 404 gracefully for
+  // low-traffic pairs (Google + X re-fetch the fallback on 404).
+  const ogImage = `/og/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}.png`;
   return {
     title: `${a} vs ${b} — Hedge fund ownership compared · HoldLens`,
     description: `Compare ${a} (${ta.name}) vs ${b} (${tb.name}) by superinvestor ownership, conviction signals, and shared managers. ${a}: ${formatSignedScore(convA.score)} signal. ${b}: ${formatSignedScore(convB.score)} signal.`,
     alternates: { canonical: `https://holdlens.com/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}` },
-    twitter: { card: "summary_large_image", title: `${a} vs ${b} · HoldLens` },
+    twitter: {
+      card: "summary_large_image",
+      title: `${a} vs ${b} · HoldLens`,
+      images: [ogImage],
+    },
     openGraph: {
       title: `${a} vs ${b} — Smart money ownership diff`,
       description: `Overlap Venn, unique-only managers, and conviction comparison. ${a} vs ${b}.`,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${a} vs ${b} · HoldLens ownership comparison` }],
     },
   };
 }

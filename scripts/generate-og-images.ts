@@ -735,6 +735,199 @@ async function main() {
   }
   console.log(`Generated ${sectorCount} sector OG images in ${sectorDir}`);
 
+  // ── Compare-pair OG (v1.23) ─────────────────────────────────────────────
+  // Head-to-head comparison pages are a classic viral head surface:
+  // "AAPL vs MSFT ownership" gets shared on X/LinkedIn constantly. Without
+  // a tailored OG image, every share rendered as generic site OG. Now every
+  // page in the top-30 most-likely-shared pairs gets a 2-ticker side-by-side
+  // card with both ConvictionScores and shared-owner count. Pairs are top
+  // tickers × top tickers, filtered to ones where at least one manager
+  // holds both (prevents shipping zero-signal pairs).
+  console.log("Generating compare-pair OG images...");
+  const compareDir = join(process.cwd(), "public", "og", "compare");
+  await mkdir(compareDir, { recursive: true });
+
+  // Top 10 tickers by ownership count — 10×10 = 100 pair combos but we
+  // skip self and dedup orderings (a-vs-b == b-vs-a for the OG file).
+  // Net: ~45 unique pairs. Each ~1 sec with Satori; ~45 sec total build hit.
+  const TOP_FOR_OG = 10;
+  const topSymbols = Object.values(TICKER_INDEX)
+    .sort((a, b) => b.ownerCount - a.ownerCount)
+    .slice(0, TOP_FOR_OG)
+    .map((t) => t.symbol);
+
+  let compareCount = 0;
+  for (let i = 0; i < topSymbols.length; i++) {
+    for (let j = 0; j < topSymbols.length; j++) {
+      if (i === j) continue;
+      const a = topSymbols[i];
+      const b = topSymbols[j];
+      const pairSlug = `${a.toLowerCase()}-vs-${b.toLowerCase()}`;
+      const ta = TICKER_INDEX[a];
+      const tb = TICKER_INDEX[b];
+      if (!ta || !tb) continue;
+
+      const convA = getConviction(a);
+      const convB = getConviction(b);
+      const labelA = convictionLabel(convA.score).label;
+      const labelB = convictionLabel(convB.score).label;
+      const scoreA = formatSignedScore(convA.score);
+      const scoreB = formatSignedScore(convB.score);
+
+      // Shared-owners count
+      const aOwners = new Set((ta.owners ?? []).map((o) => o.slug));
+      const sharedCount = (tb.owners ?? []).filter((o) => aOwners.has(o.slug)).length;
+
+      const colorA =
+        convA.direction === "BUY" ? "#34d399" : convA.direction === "SELL" ? "#fb7185" : "#9ca3af";
+      const colorB =
+        convB.direction === "BUY" ? "#34d399" : convB.direction === "SELL" ? "#fb7185" : "#9ca3af";
+
+      const svg = await satori(
+        {
+          type: "div",
+          props: {
+            style: {
+              display: "flex",
+              flexDirection: "column",
+              width: WIDTH,
+              height: HEIGHT,
+              backgroundColor: "#0a0a0a",
+              padding: "56px 64px",
+              fontFamily: "Inter",
+              color: "#e5e5e5",
+            },
+            children: [
+              // Brand row
+              {
+                type: "div",
+                props: {
+                  style: { display: "flex", alignItems: "center", gap: "12px", marginBottom: "28px" },
+                  children: [
+                    { type: "div", props: { style: { color: "#fbbf24", fontSize: "28px" }, children: "◉" } },
+                    { type: "div", props: { style: { fontSize: "22px", fontWeight: 700 }, children: "HoldLens" } },
+                    {
+                      type: "div",
+                      props: {
+                        style: {
+                          fontSize: "14px",
+                          color: "#fbbf24",
+                          textTransform: "uppercase" as const,
+                          letterSpacing: "0.12em",
+                          marginLeft: "16px",
+                          fontWeight: 700,
+                        },
+                        children: "Head-to-head",
+                      },
+                    },
+                  ],
+                },
+              },
+              // The "vs" hero
+              {
+                type: "div",
+                props: {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "40px",
+                    marginBottom: "auto",
+                    marginTop: "24px",
+                  },
+                  children: [
+                    // LEFT ticker
+                    {
+                      type: "div",
+                      props: {
+                        style: { display: "flex", flexDirection: "column", flex: 1 },
+                        children: [
+                          { type: "div", props: { style: { fontSize: "88px", fontWeight: 700, color: "#e5e5e5", lineHeight: 1 }, children: a } },
+                          { type: "div", props: { style: { fontSize: "20px", color: "#9ca3af", marginTop: "8px", maxWidth: "360px" }, children: ta.name } },
+                          {
+                            type: "div",
+                            props: {
+                              style: { fontSize: "52px", fontWeight: 700, color: colorA, marginTop: "16px" },
+                              children: scoreA,
+                            },
+                          },
+                          { type: "div", props: { style: { fontSize: "16px", color: "#858d9c", marginTop: "4px" }, children: labelA } },
+                        ],
+                      },
+                    },
+                    // "vs" divider
+                    {
+                      type: "div",
+                      props: {
+                        style: {
+                          fontSize: "48px",
+                          fontWeight: 700,
+                          color: "#fbbf24",
+                          display: "flex",
+                          alignItems: "center",
+                        },
+                        children: "vs",
+                      },
+                    },
+                    // RIGHT ticker
+                    {
+                      type: "div",
+                      props: {
+                        style: { display: "flex", flexDirection: "column", flex: 1, alignItems: "flex-end", textAlign: "right" as const },
+                        children: [
+                          { type: "div", props: { style: { fontSize: "88px", fontWeight: 700, color: "#e5e5e5", lineHeight: 1 }, children: b } },
+                          { type: "div", props: { style: { fontSize: "20px", color: "#9ca3af", marginTop: "8px", maxWidth: "360px" }, children: tb.name } },
+                          {
+                            type: "div",
+                            props: {
+                              style: { fontSize: "52px", fontWeight: 700, color: colorB, marginTop: "16px" },
+                              children: scoreB,
+                            },
+                          },
+                          { type: "div", props: { style: { fontSize: "16px", color: "#858d9c", marginTop: "4px" }, children: labelB } },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              // Footer strip
+              {
+                type: "div",
+                props: {
+                  style: {
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    borderTop: "1px solid #262626",
+                    paddingTop: "18px",
+                    fontSize: "15px",
+                    color: "#858d9c",
+                    marginTop: "20px",
+                  },
+                  children: [
+                    { type: "div", props: { children: `${sharedCount} manager${sharedCount === 1 ? "" : "s"} hold both · 13F ownership compared` } },
+                    { type: "div", props: { style: { color: "#fbbf24", fontWeight: 700 }, children: `holdlens.com/compare/${pairSlug}` } },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+        {
+          width: WIDTH,
+          height: HEIGHT,
+          fonts: [{ name: "Inter", data: fontData, weight: 700, style: "normal" }],
+        }
+      );
+
+      const png = await sharp(Buffer.from(svg)).png({ quality: 88 }).toBuffer();
+      await writeFile(join(compareDir, `${pairSlug}.png`), png);
+      compareCount++;
+    }
+  }
+  console.log(`Generated ${compareCount} compare-pair OG images in ${compareDir}`);
+
   // ── Homepage OG (v0.94) ────────────────────────────────────────────────────
   // Prior to this, holdlens.com had NO og:image, so every share on Twitter /
   // Slack / LinkedIn / WhatsApp / iMessage rendered as a text-only card. Now
