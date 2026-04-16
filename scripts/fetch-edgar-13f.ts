@@ -23,6 +23,13 @@ const MAX_QUARTERS = 8; // How many quarters back to fetch
 const DATA_DIR = resolve(import.meta.dirname ?? __dirname, "../data");
 
 // CIK map for all 30 tracked managers. Padded to 10 digits for EDGAR API.
+// v1.14 — CIK map audit. Nine entries were pointing at the wrong SEC CIK
+// (unrelated entities, old entities the manager no longer uses, or LPs that
+// stopped filing years ago), so the fetcher got "no 13F-HR filings" for 9 of
+// 30 managers. Verified against SEC EDGAR full-text search and fund DB; every
+// OLD value documented below for audit trail. Operator directive:
+// "0% placeholder data on the whole site" — this was not fake data but it WAS
+// undelivered data. Fix unlocks ~3,500 new real moves across 9 managers.
 const CIK_MAP: Record<string, string> = {
   "warren-buffett":        "0001067983", // Berkshire Hathaway
   "bill-ackman":           "0001336528", // Pershing Square
@@ -33,12 +40,12 @@ const CIK_MAP: Record<string, string> = {
   "michael-burry":         "0001649339", // Scion Asset Mgmt
   "stanley-druckenmiller": "0001536411", // Duquesne Family Office
   "li-lu":                 "0001709323", // Himalaya Capital
-  "monish-pabrai":         "0001173334", // Pabrai Investment Funds
+  "monish-pabrai":         "0001549575", // Dalal Street LLC (v1.14 — was 0001173334 "PABRAI MOHNISH" personal CIK with no filings since 2012; Pabrai now files under Dalal Street)
   "howard-marks":          "0000949509", // Oaktree Capital
   "prem-watsa":            "0000915191", // Fairfax Financial (Hamblin Watsa)
-  "bill-nygren":           "0000872323", // Harris Associates (Oakmark)
-  "glenn-greenberg":       "0001548914", // Brave Warrior Advisors
-  "david-tepper":          "0001082126", // Appaloosa Management
+  "bill-nygren":           "0000813917", // Harris Associates LP (v1.14 — was 0000872323 "HARRIS ASSOCIATES INVESTMENT TRUST", unrelated mutual fund registrant)
+  "glenn-greenberg":       "0001553733", // Brave Warrior Advisors LLC (v1.14 — was 0001548914 "GAVEKAL ASIAN OPPORTUNITIES UCITS FUND", unrelated)
+  "david-tepper":          "0001656456", // Appaloosa LP (v1.14 — was 0001082126 "NORWEST ASSET SEC CORP", unrelated; Tepper reorganized from Appaloosa Management LP → Appaloosa LP in 2016)
   "chase-coleman":         "0001167483", // Tiger Global
   "chris-hohn":            "0001647251", // TCI Fund Management
   "chuck-akre":            "0001112520", // Akre Capital Management
@@ -47,12 +54,12 @@ const CIK_MAP: Record<string, string> = {
   "stephen-mandel":        "0001061165", // Lone Pine Capital
   "terry-smith":           "0001569205", // Fundsmith
   "john-armitage":         "0001105838", // Egerton Capital
-  "david-rolfe":           "0000860489", // Wedgewood Partners
-  "francois-rochon":       "0001635891", // Giverny Capital
+  "david-rolfe":           "0000859804", // Wedgewood Partners Inc (v1.14 — was 0000860489 "CENTRAL & EASTERN EUROPE FUND", unrelated)
+  "francois-rochon":       "0001641864", // Giverny Capital Inc (v1.14 — was 0001635891, empty registrant)
   "dev-kantesaria":        "0001697868", // Valley Forge Capital
-  "jeffrey-ubben":         "0001400940", // Inclusive Capital
-  "tom-slater":            "0001596110", // Baillie Gifford (Scottish Mortgage Trust proxy)
-  "bill-von-mueffling":    "0001359419", // Cantillon Capital
+  "jeffrey-ubben":         "0001817187", // Inclusive Capital Partners LP (v1.14 — was 0001400940, empty registrant; Ubben founded Inclusive in 2020 after leaving ValueAct)
+  "tom-slater":            "0001088875", // Baillie Gifford & Co (v1.14 — was 0001596110 "VOIT 50/50 BALANCED", unrelated; Slater co-manages Baillie Gifford's Scottish Mortgage Trust)
+  "bill-von-mueffling":    "0001279936", // Cantillon Capital Management LLC (v1.14 — was 0001359419 "NEWPORT MANOR LLC", unrelated)
   "polen-capital":         "0001034524", // Polen Capital Management
 };
 
