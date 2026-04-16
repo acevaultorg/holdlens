@@ -159,7 +159,7 @@ export default function DesignPage() {
             <span className="text-body-sm text-muted">on bg</span>
           </div>
           <div className="rounded-card border border-brand bg-brand p-5 flex items-center justify-center gap-3">
-            <Logo size={32} className="text-black" bgColor="#fbbf24" />
+            <Logo size={32} className="text-black" />
             <span className="text-body-sm text-black/70">on brand</span>
           </div>
         </div>
