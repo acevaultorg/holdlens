@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -188,11 +189,12 @@ export default function BiggestBuysPage() {
                     </span>
                   </div>
                 </div>
-                <div className="flex items-baseline gap-3 mb-2">
+                <div className="flex items-center gap-3 mb-2">
                   <a
                     href={`/signal/${b.ticker}`}
-                    className="text-2xl font-mono font-bold text-text hover:text-brand transition"
+                    className="inline-flex items-center gap-2 text-2xl font-mono font-bold text-text hover:text-brand transition"
                   >
+                    <TickerLogo symbol={b.ticker} size={28} />
                     {b.ticker}
                   </a>
                   <div className="text-sm text-dim truncate max-w-[18rem]">

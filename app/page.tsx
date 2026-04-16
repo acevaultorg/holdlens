@@ -53,7 +53,12 @@ export default function HomePage() {
           trimmed from 7 named managers to 3 for scannability. Trust row
           retargeted from dev-speak (API endpoints, static pages) to
           audience-aligned signals (quarters of data, investor count). */}
-      <section className="pt-20 pb-12 text-center">
+      {/* v1.07 — tightened hero: pt-20→pt-12 (under 70px header+banner the
+          prior 80px top-padding stacked to 150px+ before content started).
+          Trust row cut to 3 items (was 4 — too dense). Removed border-y
+          divider on the BuySellSignals section that fragmented hero → card
+          flow. All three are spacing-consistency fixes flagged by operator. */}
+      <section className="pt-12 pb-10 text-center">
         <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-6">
           SEC-sourced · {MANAGERS.length} investors tracked · updated every quarter
         </div>
@@ -69,7 +74,7 @@ export default function HomePage() {
           <span className="text-rose-400 font-semibold">−100 sell</span> scale.{" "}
           <span className="text-text font-semibold">Live prices. No signup. Free forever.</span>
         </p>
-        <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <a
             href="/best-now"
             className="bg-brand text-black font-semibold rounded-xl px-6 py-4 hover:opacity-90 transition"
@@ -83,13 +88,15 @@ export default function HomePage() {
             See the top sell signals →
           </a>
         </div>
-        <div className="mt-6 text-xs text-dim">
-          SEC-sourced · 8 quarters of data · {MANAGERS.length} investors tracked · not investment advice
+        <div className="mt-5 text-xs text-dim">
+          SEC-sourced · 8 quarters of data · not investment advice
         </div>
       </section>
 
-      {/* Buy/Sell signal card — the headline feature */}
-      <section className="py-10 border-y border-border">
+      {/* Buy/Sell signal card — the headline feature. v1.07 removed
+          border-y divider: the card already has its own borders per column,
+          the extra horizontal rule fragmented the flow from hero to card. */}
+      <section className="pb-10">
         <BuySellSignals />
       </section>
 

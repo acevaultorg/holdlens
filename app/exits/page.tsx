@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import CsvExportButton from "@/components/CsvExportButton";
+import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX } from "@/lib/tickers";
@@ -165,9 +166,10 @@ export default function ExitsPage() {
                 href={`/signal/${r.ticker}`}
                 className="flex items-baseline justify-between gap-3 rounded-lg bg-bg/40 border border-border p-3 hover:bg-bg/60 transition"
               >
-                <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2 min-w-0 flex-1">
+                  <TickerLogo symbol={r.ticker} size={18} />
                   <span className="font-bold text-text">{r.ticker}</span>
-                  <span className="text-xs text-dim ml-2 truncate">
+                  <span className="text-xs text-dim truncate">
                     · {r.managerName} · {QUARTER_LABELS[r.quarter as Quarter]}
                   </span>
                 </div>
@@ -202,8 +204,11 @@ export default function ExitsPage() {
                     href={`/signal/${r.ticker}`}
                     className="block rounded-xl border border-border bg-panel p-4 hover:bg-bg/40 transition"
                   >
-                    <div className="flex items-baseline justify-between gap-2">
-                      <div className="font-bold text-text text-base">{r.ticker}</div>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <TickerLogo symbol={r.ticker} size={20} />
+                        <div className="font-bold text-text text-base">{r.ticker}</div>
+                      </div>
                       <div
                         className={`text-xs font-bold tabular-nums ${
                           r.convictionScore >= 0 ? "text-emerald-400" : "text-rose-400"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import CsvExportButton from "@/components/CsvExportButton";
 import FoundersNudge from "@/components/FoundersNudge";
+import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES, QUARTERS } from "@/lib/moves";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { getConviction, formatSignedScore, convictionLabel } from "@/lib/conviction";
@@ -154,7 +155,10 @@ export default function ConsensusPage() {
                       {r.ownerCount} owners
                     </div>
                   </div>
-                  <div className="text-2xl font-bold text-text">{r.ticker}</div>
+                  <div className="flex items-center gap-2">
+                    <TickerLogo symbol={r.ticker} size={28} />
+                    <div className="text-2xl font-bold text-text">{r.ticker}</div>
+                  </div>
                   <div className="text-xs text-dim truncate mb-4">{r.name}</div>
                   <div className="flex items-baseline gap-3">
                     <div>

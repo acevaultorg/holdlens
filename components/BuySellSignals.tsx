@@ -126,7 +126,11 @@ function SignalColumn({
                   <TickerLogo symbol={it.ticker} size={32} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <div className="font-mono font-bold text-brand">{it.ticker}</div>
+                      {/* v1.07 — ticker was text-brand (amber), violating the v1.05
+                          brand rule ("amber is earned, not free — reserved for Pro /
+                          primary CTA / trust signal"). Switched to text-text (neutral
+                          strong). Consistent across every feed surface site-wide. */}
+                      <div className="font-mono font-bold text-text">{it.ticker}</div>
                       <div className="text-xs text-muted truncate">{it.name}</div>
                     </div>
                     <div className="text-[11px] text-dim flex items-center gap-2">
