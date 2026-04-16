@@ -43,6 +43,24 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { types: { "application/rss+xml": "/feed.xml" } },
+  // v1.18 — Search engine webmaster verification. Added after audit revealed
+  // holdlens.com was NOT registered in Google Search Console, meaning zero
+  // crawl stats, zero indexation data, zero SERP impressions visibility. This
+  // is the single biggest gap in the "unique-visitors-always-up" compounding
+  // engine because without GSC, every SEO ship is blind. Bing/Yandex tokens
+  // added for completeness — Bing drives ~3% of US organic, Yandex ~0.5% in
+  // EN markets, both free to verify and both feed IndexNow which is a zero-
+  // cost instant-crawl API we can ship separately.
+  verification: {
+    google: "j71mc7etNJQ8O8hAiKXqoPiguv1ePm1M0NSL3gANEGE",
+    // yandex: "<token>",  // add when operator registers on yandex.webmaster
+    // yahoo:  "<token>",  // add when operator registers on bing.webmaster (same token covers Yahoo since Yahoo is powered by Bing)
+    other: {
+      // Bing uses <meta name="msvalidate.01" content="..."/>. Populate after
+      // Bing Webmaster Tools registration (a separate step — see below).
+      // "msvalidate.01": "<bing-token>",
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
