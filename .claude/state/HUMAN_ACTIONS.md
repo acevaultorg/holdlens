@@ -1,5 +1,79 @@
 # HoldLens — Human actions queue
 
+## 👤 PENDING (2026-04-16 sovereign-auto session)
+
+Small operator follow-ups after v1.12–v1.26 shipped all primary pipelines live.
+
+### 1. DMARC TXT record on holdlens.com (~60s, polish)
+
+**What:** Add one DNS TXT record at `_dmarc.holdlens.com` with value
+`v=DMARC1; p=none; rua=mailto:alerts@holdlens.com`.
+
+**Why:** Rounds out Gmail/Yahoo 2024 deliverability triplet (DKIM + SPF + DMARC).
+Without it: emails reach inboxes fine, but you're not collecting the
+aggregate reports that tell you if spoofing is happening. With `p=none` there's
+zero risk — reporting only, no rejection policy. Upgrade to `p=quarantine`
+later if desired.
+
+**Where:** https://dash.cloudflare.com/...../holdlens.com/dns/records
+→ Add record → TXT → Name `_dmarc` → Content as above → Save.
+
+MCP tried this during the session but kept misclicking in the nested type
+dropdown. Operator can do it in 60 seconds directly.
+
+### 2. First Q1 13F-wave distribution drop (May 15, operator required per I-21)
+
+**What:** At the May 15 Q1 filing wave, fire off the launch-kit templates.
+
+**Where:** `/launch-kit` page has pre-drafted copy for:
+- Reddit: r/SecurityAnalysis, r/ValueInvesting, r/investing
+- HackerNews (Show HN)
+- X: 6-post thread (`x.com/compose/post`)
+- ProductHunt
+
+**Why operator-only:** I-21 (Sovereign Auto scope) blocks unsolicited public
+posting from AcePilot; every surface needs explicit operator directive in chat.
+
+### 3. Monday METRICS.md first row (every Monday 9am local)
+
+Pull from Plausible + GSC + Bing + Resend:
+- visitors, returning %, sessions, bounce %, dwell s
+- subs_total, subs_delta
+- top_entry page, indexed_pages
+- notes (anything unusual this week)
+
+Paste into `.claude/state/METRICS.md` weekly rollup block. AcePilot takes
+over from week 2 once data-pulls are wired.
+
+### 4. Optional — RESEND_AUDIENCE_ID (if you want to broadcast vs. per-email)
+
+Currently each welcome email sends standalone via Resend. To broadcast
+(e.g., weekly digest to full list), set `RESEND_AUDIENCE_ID` env var in CF
+Pages to the audience UUID from Resend dashboard. Subscribers will then be
+added to the audience on signup, enabling `/broadcasts` sends.
+
+Not blocking — welcome emails work without it. Needed only when you want
+to send a single email to N subscribers simultaneously.
+
+---
+
+## ✅ RESOLVED 2026-04-16 — Full email + AI + SEO pipeline activated
+
+- AI thesis (Claude Haiku) LIVE on 94 signal pages → requires `ANTHROPIC_API_KEY` (operator set)
+- Welcome emails LIVE from `alerts@holdlens.com` → required `RESEND_API_KEY` (operator set)
+- Resend domain `holdlens.com` verified (deleted `beams.page` to free the free-tier slot; operator consent given)
+- DKIM + MX + SPF DNS records added to holdlens.com via Cloudflare dashboard
+- RESEND_FROM set to `HoldLens <alerts@holdlens.com>`
+- List-Unsubscribe header shipped (v1.25) — Gmail/Yahoo 2024 compliant
+- `/api/unsubscribe` endpoint shipped (GET + POST, one-click)
+- GSC property transferred from `p.de.vries@mediahuis.nl` to `paulomdevries@gmail.com`
+- Bing Webmaster Tools confirmed admin under Gmail
+- `~/.claude/rules/github-org.md` — `acevaultorg` always, `pmdevries-rgb` never
+
+Deploy truth: `curl -sL https://holdlens.com/api/unsubscribe?t=x&e=test@example.com` = HTTP 200, both GET + POST work.
+
+---
+
 ## ✅ RESOLVED 2026-04-15 16:57 — v0.81–v0.84 UX retention pack DEPLOYED via heartbeat
 
 Deploy truth verified via curl on holdlens.com:
