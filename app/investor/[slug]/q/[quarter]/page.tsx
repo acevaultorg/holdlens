@@ -307,6 +307,61 @@ export default async function ManagerQuarterPage({ params }: Props) {
         </div>
       </section>
 
+      {/* v1.16 — cross-quarter internal linking. Every per-quarter page gets
+          links to the 7 sibling quarters for the same manager (prev/next
+          context + full quarter grid). Closes a major SEO + UX gap: Google
+          previously had to infer the relationship; now each page explicitly
+          links to its siblings. Users who land on Q4 2024 can jump straight
+          to Q3 2024 or Q1 2025 without going back to the manager index. */}
+      <section className="mt-16 pt-10 border-t border-border">
+        <div className="text-xs uppercase tracking-widest text-dim font-semibold mb-3">
+          Other quarters for {m.name}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {QUARTERS.map((qOther) => {
+            const isCurrent = qOther === quarter;
+            const href = `/investor/${m.slug}/q/${qOther.toLowerCase()}`;
+            const label = QUARTER_LABELS[qOther] ?? qOther;
+            return isCurrent ? (
+              <span
+                key={qOther}
+                aria-current="page"
+                className="rounded-chip border border-brand/40 bg-brand/10 px-3 py-1.5 text-xs text-brand font-semibold"
+              >
+                {label}
+              </span>
+            ) : (
+              <a
+                key={qOther}
+                href={href}
+                className="rounded-chip border border-border bg-panel hover:border-brand/50 hover:text-text px-3 py-1.5 text-xs text-muted transition"
+              >
+                {label}
+              </a>
+            );
+          })}
+        </div>
+        <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted">
+          <a href={`/investor/${m.slug}`} className="hover:text-text transition">
+            ← Full profile
+          </a>
+          <a href="/investor" className="hover:text-text transition">
+            All managers
+          </a>
+          <a href="/leaderboard" className="hover:text-text transition">
+            Leaderboard
+          </a>
+          <a
+            href={`/investor/${m.slug}/feed.xml`}
+            className="hover:text-text transition"
+            rel="alternate"
+            type="application/rss+xml"
+          >
+            RSS feed
+          </a>
+        </div>
+      </section>
+
       <p className="text-xs text-dim mt-12">
         Not investment advice. Data from 13F filings with HoldLens parsing.{" "}
         <a href="/methodology" className="underline">Methodology</a>.
