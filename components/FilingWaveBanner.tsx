@@ -108,7 +108,7 @@ export default function FilingWaveBanner() {
     <div
       role="region"
       aria-label={`Next 13F filing wave — ${state.quarterLabel}`}
-      className="border-b border-border bg-brand/5"
+      className="border-b border-border bg-surface-brand"
     >
       <div className="max-w-5xl mx-auto px-6 py-2 flex items-center justify-between gap-3 text-xs flex-wrap">
         <div className="text-muted">

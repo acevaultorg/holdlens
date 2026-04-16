@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import Logo from "@/components/Logo";
 
 // MobileNav v1.03 — ROOT CAUSE FIX: portal dialog to document.body.
 //
@@ -183,8 +184,10 @@ export default function MobileNav() {
             href="/"
             onClick={() => setOpen(false)}
             className="flex items-center gap-2 font-semibold text-base text-text"
+            aria-label="HoldLens — home"
           >
-            <span className="text-brand text-lg leading-none">◉</span> HoldLens
+            <Logo size={22} className="text-brand" />
+            <span>HoldLens</span>
           </a>
           <button
             onClick={() => setOpen(false)}

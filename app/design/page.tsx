@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Logo from "@/components/Logo";
 
 // /design — HoldLens brand guide. Single-page visual reference documenting
 // every token and design rule. Serves three audiences:
@@ -104,6 +105,86 @@ export default function DesignPage() {
           this guide, it shouldn't be on the site.
         </p>
       </div>
+
+      {/* Logo mark */}
+      <section className="mb-16">
+        <div className="text-eyebrow text-brand mb-3">Logo mark</div>
+        <h2 className="text-display-2 mb-4">The lens, the iris, the light-catch.</h2>
+        <p className="text-body text-muted max-w-2xl mb-8">
+          HoldLens — a lens for smart money. The mark is a lens body (outer
+          ring), an off-center iris (directional energy, not flat symmetry),
+          and a highlight dot catching imaginary light from the top-left. It
+          reads at 16px (favicon) and scales to 400px+ (OG, press). One form,
+          one meaning.
+        </p>
+        <div className="grid md:grid-cols-4 gap-5">
+          <div className="rounded-card-lg border border-border bg-panel p-6 flex flex-col items-center gap-4">
+            <Logo size={64} className="text-brand" />
+            <div className="text-center">
+              <div className="text-caption font-mono text-dim">brand · 64px</div>
+              <div className="text-body-sm text-muted mt-1">Primary usage</div>
+            </div>
+          </div>
+          <div className="rounded-card-lg border border-border bg-panel p-6 flex flex-col items-center gap-4">
+            <Logo size={40} className="text-brand" />
+            <div className="text-center">
+              <div className="text-caption font-mono text-dim">brand · 40px</div>
+              <div className="text-body-sm text-muted mt-1">Featured cards</div>
+            </div>
+          </div>
+          <div className="rounded-card-lg border border-border bg-panel p-6 flex flex-col items-center gap-4">
+            <Logo size={24} className="text-brand" />
+            <div className="text-center">
+              <div className="text-caption font-mono text-dim">brand · 24px</div>
+              <div className="text-body-sm text-muted mt-1">Site header</div>
+            </div>
+          </div>
+          <div className="rounded-card-lg border border-border bg-panel p-6 flex flex-col items-center gap-4">
+            <Logo size={16} className="text-brand" />
+            <div className="text-center">
+              <div className="text-caption font-mono text-dim">brand · 16px</div>
+              <div className="text-body-sm text-muted mt-1">Favicon / inline</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Alternate color variants */}
+        <div className="mt-6 grid md:grid-cols-3 gap-4">
+          <div className="rounded-card border border-border bg-panel p-5 flex items-center justify-center gap-3">
+            <Logo size={32} className="text-brand" />
+            <span className="text-body-sm text-muted">on panel</span>
+          </div>
+          <div className="rounded-card border border-border bg-bg p-5 flex items-center justify-center gap-3">
+            <Logo size={32} className="text-brand" />
+            <span className="text-body-sm text-muted">on bg</span>
+          </div>
+          <div className="rounded-card border border-brand bg-brand p-5 flex items-center justify-center gap-3">
+            <Logo size={32} className="text-black" bgColor="#fbbf24" />
+            <span className="text-body-sm text-black/70">on brand</span>
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-card border border-border bg-panel p-5">
+          <div className="text-eyebrow text-signal-buy mb-3">Logo rules</div>
+          <ul className="text-body-sm text-muted space-y-2 leading-snug">
+            <li>
+              <span className="text-signal-buy font-semibold">✓ Do:</span> render
+              at 16, 24, 32, 40, or 64px sizes. Use <code className="text-muted font-mono">text-brand</code>{" "}
+              or <code className="text-muted font-mono">text-text</code> as color. Always on a solid
+              background (bg, panel, or brand itself).
+            </li>
+            <li>
+              <span className="text-signal-sell font-semibold">✗ Don&apos;t:</span> rotate, shear,
+              recolor with gradients, add drop shadows, crop the iris, or place on
+              busy photographic backgrounds.
+            </li>
+            <li>
+              <span className="text-info font-semibold">•</span> Clear-space: minimum
+              padding of 0.5× the logo size on all sides.
+            </li>
+          </ul>
+        </div>
+      </section>
 
       {/* Brand identity */}
       <section className="mb-16">

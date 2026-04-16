@@ -8,6 +8,7 @@ import SupportBar from "@/components/SupportBar";
 import CookieConsent from "@/components/CookieConsent";
 import BackToTop from "@/components/BackToTop";
 import FilingWaveBanner from "@/components/FilingWaveBanner";
+import Logo from "@/components/Logo";
 import "./globals.css";
 
 const TICKER_SCROLL = ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "BRK-B", "AMZN", "JPM", "BAC", "KO", "CVX", "OXY", "AXP", "CMG", "V"];
@@ -158,8 +159,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             MobileNav overlay (z-50). */}
         <header className="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur-md supports-[backdrop-filter]:bg-bg/75">
           <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-            <a href="/" className="flex items-center gap-2 font-semibold text-lg shrink-0">
-              <span className="text-brand">◉</span> HoldLens
+            <a
+              href="/"
+              className="flex items-center gap-2 font-semibold text-lg shrink-0 hover:opacity-90 transition-base"
+              aria-label="HoldLens — home"
+            >
+              <Logo size={24} className="text-brand" />
+              <span>HoldLens</span>
             </a>
             {/* Desktop nav — grouped dropdowns at md and up */}
             <DesktopNav />
