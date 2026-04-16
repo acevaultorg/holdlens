@@ -144,8 +144,56 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
 
   const top3 = tickers.slice(0, 3);
 
+  // v1.21 — CollectionPage + ItemList + BreadcrumbList. Sector page is a
+  // hub aggregating tickers within one GICS sector; CollectionPage is the
+  // correct schema.org type. ItemList enumerates the ranked tickers (top
+  // 10 by ConvictionScore) so Google can surface sector-specific clusters
+  // in knowledge-panel sitelinks. Publisher joins the site-wide @id.
+  //
+  // Shipped now because sector pages are first-seen by Google in this
+  // evaluation cycle (post-GSC-verify 2026-04-16) — adding schema to a
+  // first-crawled page is a positive-only signal, not a re-evaluation
+  // reset. After this patch the site enters SEO FREEZE until week 16.
+  const pageUrl = `https://holdlens.com/sector/${slug}`;
+  const LD = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+        { "@type": "ListItem", position: 2, name: "Sectors", item: "https://holdlens.com/sector" },
+        { "@type": "ListItem", position: 3, name: sector, item: pageUrl },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: `${sector} stocks held by superinvestors`,
+      description: `${sector} sector smart-money dashboard: which tickers have the strongest ConvictionScore, recent 4Q buyer vs seller flow, and which superinvestors are overweight.`,
+      url: pageUrl,
+      publisher: { "@id": "https://holdlens.com/#organization" },
+      inLanguage: "en-US",
+      image: `https://holdlens.com/og/sector/${slug}.png`,
+      mainEntity: {
+        "@type": "ItemList",
+        itemListOrder: "https://schema.org/ItemListOrderDescending",
+        numberOfItems: Math.min(10, tickers.length),
+        itemListElement: tickers.slice(0, 10).map((t, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: `https://holdlens.com/signal/${t.symbol}`,
+          name: `${t.symbol} — ${t.name}`,
+        })),
+      },
+    },
+  ];
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }}
+      />
       <a href="/ticker" className="text-xs text-muted hover:text-text">← All stocks</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-3">
         Sector · smart-money dashboard

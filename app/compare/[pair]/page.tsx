@@ -90,8 +90,45 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
   const preferA = shared.filter((s) => s.aPct >= s.bPct).length;
   const preferB = shared.length - preferA;
 
+  // v1.21 — BreadcrumbList + ComparePage-ish Article schema. schema.org has
+  // no dedicated "comparison" type, but Article with "about" array naming
+  // both entities is the pattern Google uses for competitor/head-to-head
+  // pages. Publisher joins the site-wide @id. Image falls back to home OG
+  // until a per-pair OG image is generated (follow-up).
+  const pageUrl = `https://holdlens.com/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}`;
+  const LD = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+        { "@type": "ListItem", position: 2, name: "Compare", item: "https://holdlens.com/compare" },
+        { "@type": "ListItem", position: 3, name: `${a} vs ${b}`, item: pageUrl },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: `${a} vs ${b} — hedge fund ownership compared`,
+      description: `Compare ${a} (${ta.name}) vs ${b} (${tb.name}) by superinvestor ownership, conviction signals, and shared managers. ${a}: ${formatSignedScore(convA.score)} signal. ${b}: ${formatSignedScore(convB.score)} signal.`,
+      author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+      publisher: { "@id": "https://holdlens.com/#organization" },
+      mainEntityOfPage: pageUrl,
+      about: [
+        { "@type": "Corporation", name: ta.name, tickerSymbol: a },
+        { "@type": "Corporation", name: tb.name, tickerSymbol: b },
+      ],
+      inLanguage: "en-US",
+      image: "https://holdlens.com/og/home.png",
+    },
+  ];
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }}
+      />
       <a href="/compare" className="text-xs text-muted hover:text-text transition">← All comparisons</a>
 
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">

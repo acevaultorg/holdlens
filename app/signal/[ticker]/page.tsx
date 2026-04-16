@@ -17,6 +17,7 @@ import AdSlot from "@/components/AdSlot";
 import TrendBadge from "@/components/TrendBadge";
 import FoundersNudge from "@/components/FoundersNudge";
 import RelatedSignals from "@/components/RelatedSignals";
+import AiThesisCard from "@/components/AiThesisCard";
 import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
@@ -484,6 +485,39 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
             </div>
           );
         })()}
+      </section>
+
+      {/* AI thesis — Claude Haiku synthesis of all positioning data above.
+          On-demand (button click) so it doesn't block static generation.
+          Passes enriched owner context so the thesis is ticker-specific. */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-3">AI thesis</h2>
+        <p className="text-muted text-sm mb-6 max-w-2xl">
+          An AI-synthesised investment thesis for {t.symbol}, based on the 13F data above.
+          Generated on demand — not stored or pre-computed.
+        </p>
+        <AiThesisCard
+          ticker={t.symbol}
+          tickerName={t.name}
+          sector={t.sector}
+          signedScore={signedScore}
+          verdict={verdict}
+          ownerCount={t.ownerCount}
+          topOwners={[...t.owners]
+            .sort((a, b) => b.pct - a.pct)
+            .slice(0, 5)
+            .map((o) => {
+              const mgr = MANAGERS.find((m) => m.slug === o.slug);
+              return {
+                name: o.manager,
+                fund: mgr?.fund ?? "",
+                positionPct: o.pct,
+                philosophy: mgr?.philosophy,
+                thesis: o.thesis,
+                qualityScore: MANAGER_QUALITY[o.slug] ?? 6,
+              };
+            })}
+        />
       </section>
 
       {/* Related smart-money signals — same-sector top conviction + co-owned
