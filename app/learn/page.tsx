@@ -10,6 +10,7 @@ type Article = { slug: string; title: string; desc: string; coming?: boolean };
 const ARTICLES: Article[] = [
   { slug: "superinvestor-handbook", title: "The Superinvestor Handbook", desc: "The full 10-section guide — 13F filings, conviction signals, copy-trading myths, and the honest limits of smart-money data. ~15 min read." },
   { slug: "what-is-a-13f", title: "What is a 13F filing?", desc: "Plain English guide to SEC Form 13F. What's in it, when it drops, what it does and doesn't show." },
+  { slug: "how-to-read-a-13f", title: "How to read a 13F filing in 5 minutes", desc: "Step-by-step: open any 13F on EDGAR and know what every field means. With real Berkshire examples." },
   { slug: "copy-trading-myth", title: "The copy-trading myth", desc: "Why mechanically copying Buffett's 13F underperforms the underlying portfolio." },
   { slug: "conviction-score-explained", title: "What is a Conviction Score?", desc: "How to tell a real bet from index padding. The −100..+100 scale explained." },
 ];
@@ -32,8 +33,9 @@ const LD = {
     itemListElement: [
       { "@type": "ListItem", position: 1, url: "https://holdlens.com/learn/superinvestor-handbook", name: "The Superinvestor Handbook" },
       { "@type": "ListItem", position: 2, url: "https://holdlens.com/learn/what-is-a-13f", name: "What is a 13F filing?" },
-      { "@type": "ListItem", position: 3, url: "https://holdlens.com/learn/copy-trading-myth", name: "The copy-trading myth" },
-      { "@type": "ListItem", position: 4, url: "https://holdlens.com/learn/conviction-score-explained", name: "What is a Conviction Score?" },
+      { "@type": "ListItem", position: 3, url: "https://holdlens.com/learn/how-to-read-a-13f", name: "How to read a 13F filing in 5 minutes" },
+      { "@type": "ListItem", position: 4, url: "https://holdlens.com/learn/copy-trading-myth", name: "The copy-trading myth" },
+      { "@type": "ListItem", position: 5, url: "https://holdlens.com/learn/conviction-score-explained", name: "What is a Conviction Score?" },
     ],
   },
 };
