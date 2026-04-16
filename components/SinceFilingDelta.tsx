@@ -104,7 +104,17 @@ export default function SinceFilingDelta({
       ? "text-rose-400"
       : "text-dim";
   const sign = deltaPct > 0 ? "+" : "";
-  const filedLabel = new Date(filedAt).toLocaleDateString("en-US", {
+
+  // v1.11 — filing date is now visible inline, not just in a tooltip.
+  // Previously users had to hover (desktop) to learn which filing the
+  // delta referenced. Mobile users (majority) never saw it. For trust,
+  // the date should be ambient: "+5.3% since Feb 14" beats "+5.3% since
+  // filing" because it's verifiable — users can cross-check against SEC.
+  const filedShort = new Date(filedAt).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+  const filedFull = new Date(filedAt).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -117,11 +127,13 @@ export default function SinceFilingDelta({
         className={`tabular-nums font-semibold ${colorClass}`}
         title={`Price ${deltaPct >= 0 ? "up" : "down"} ${Math.abs(deltaPct).toFixed(
           1
-        )}% since this filing landed on ${filedLabel}`}
+        )}% since this filing landed on ${filedFull}`}
       >
         {sign}
         {deltaPct.toFixed(1)}%
-        {!compact && <span className="font-normal opacity-70"> {label}</span>}
+        {!compact && (
+          <span className="font-normal opacity-70"> since {filedShort}</span>
+        )}
       </span>
     </>
   );
