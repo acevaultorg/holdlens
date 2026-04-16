@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="HoldLens">
+  <title>HoldLens</title>
+  <!-- Rounded-square dark panel background so the mark reads on both light
+       and dark browser chrome without relying on tab-bar color. -->
+  <rect width="32" height="32" rx="7" fill="#0a0a0a"/>
+  <!-- Lens outer ring — brand amber stroke. -->
+  <circle cx="16" cy="16" r="10" stroke="#fbbf24" stroke-width="2" fill="none"/>
+  <!-- Iris — offset up-and-right for directional energy, matching the
+       full-size Logo component. No light-catch dot — at 16-32px the dot
+       reads as a sub-pixel speck rather than a highlight. Clean wins. -->
+  <circle cx="17.6" cy="14.4" r="4.5" fill="#fbbf24"/>
+</svg>

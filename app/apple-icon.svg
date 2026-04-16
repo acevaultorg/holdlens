@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" aria-label="HoldLens">
+  <title>HoldLens</title>
+  <!-- iOS home-screen icon. Same simplified mark as app/icon.svg,
+       scaled 180×180 with more generous stroke weight. Iris offset
+       up-and-right gives directional energy without a light-catch dot. -->
+  <rect width="180" height="180" rx="40" fill="#0a0a0a"/>
+  <circle cx="90" cy="90" r="56" stroke="#fbbf24" stroke-width="11" fill="none"/>
+  <circle cx="99" cy="81" r="25" fill="#fbbf24"/>
+</svg>

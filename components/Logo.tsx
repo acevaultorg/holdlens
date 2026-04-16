@@ -1,15 +1,17 @@
-// <Logo /> — HoldLens brand mark. A lens with an offset iris and a crisp
-// highlight dot. Reads at 16px (favicon) up to 400px+ (OG images, press).
+// <Logo /> — HoldLens brand mark. A lens with an offset iris.
+// Reads at 16px (favicon) up to 400px+ (OG images, press).
 //
-// Design concept:
+// Design concept (v1.10 simplification):
 //   • Outer ring = the lens body (strokeWidth 1.75, currentColor)
 //   • Inner disc = the iris — filled solid with currentColor, slightly
 //     offset up-and-right so the mark has directional energy instead of
-//     flat symmetry. This is the "distinguishing detail" @craftsman looks
-//     for: instantly recognizable after one glance, hard to accidentally
-//     reproduce.
-//   • Light-catch dot = top-left on the iris, filled with the background
-//     color. Gives the mark life — makes it a lens, not a target.
+//     flat symmetry. This offset is the distinguishing detail —
+//     instantly recognizable, hard to accidentally reproduce.
+//
+// Previous versions had a third circle (a "light-catch" dot filled with
+// the background color). In practice that dot scaled to a sub-pixel speck
+// at favicon sizes (16/24px) where it read as a defect rather than a
+// highlight. Removed. Great logos are 1-2 shapes, not 3.
 //
 // Default size 24, default color currentColor so it inherits from parent.
 // Use text-brand on the wrapping element to color it amber.
@@ -21,11 +23,6 @@
 type Props = {
   size?: number;
   className?: string;
-  /**
-   * Background color for the light-catch highlight dot. Should match the
-   * surface the logo renders on. Default: CSS var --hl-bg.
-   */
-  bgColor?: string;
   /** Override the full accessible label. Default: "HoldLens logo". */
   title?: string;
 };
@@ -33,7 +30,6 @@ type Props = {
 export default function Logo({
   size = 24,
   className = "",
-  bgColor = "var(--hl-bg, #0a0a0a)",
   title = "HoldLens logo",
 }: Props) {
   return (
@@ -56,10 +52,10 @@ export default function Logo({
         stroke="currentColor"
         strokeWidth="1.75"
       />
-      {/* Iris — offset up-and-right for directional energy */}
+      {/* Iris — offset up-and-right for directional energy. This offset
+          (NOT centered) is what makes it read as a lens looking somewhere
+          vs. a flat target/bullseye. */}
       <circle cx="13.2" cy="10.8" r="4.2" fill="currentColor" />
-      {/* Light-catch highlight — top-left on the iris */}
-      <circle cx="11.2" cy="9" r="1.15" fill={bgColor} />
     </svg>
   );
 }
