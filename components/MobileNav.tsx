@@ -1,30 +1,41 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// Hamburger menu for mobile (< md = 768px). At md+ the desktop nav is visible
-// and this component renders nothing. Below md, this is the only nav surface
-// — so it must include EVERY link a user could want.
+// MobileNav v0.99 — 10/10 mobile UX rewrite. Below md (<768px) this is the
+// only nav surface, so it must answer every "what can this site do" question
+// in 2 seconds without scrolling.
+//
+// Design principles applied:
+// 1. Search input front-and-center — financial-tracker users land on mobile
+//    looking up specific tickers more often than they browse.
+// 2. Popular tickers as one-tap chips — six highest-traffic symbols, no
+//    typing required for the common case.
+// 3. Five sharp groups, max 6 items each (was 7-9 in v0.96) — cuts total
+//    from ~40 links to ~28 with better intent labels.
+// 4. Pro CTA in a single, calm position at top — no flashing, no upsells
+//    embedded mid-list (anti-dark-pattern floor).
+// 5. Full-screen opaque sheet — no nested-fixed iOS bug surface (v0.98 fix).
+// 6. overscroll-behavior: contain — momentum scroll doesn't chain to body.
 
-type MLink = { href: string; label: string; color?: "brand" | "emerald" | "rose" };
+type MLink = { href: string; label: string; color?: "brand" | "emerald" | "rose"; badge?: string };
 type MGroup = { title: string; accent: "brand" | "emerald"; links: MLink[] };
 
-// Grouped mobile navigation (v0.80) — replaces the previous 39-link wall +
-// 10-link secondary with five clearly labelled sections. Fewer total links
-// than before (curated to the highest-conviction entry points), and every
-// link sits under a named group header so users can find what they need by
-// scanning section titles, not by reading every label.
+// Popular tickers — chips at top of menu for one-tap entry. These are the
+// six highest-traffic /signal/[ticker] pages by typical search demand.
+const POPULAR_TICKERS = ["AAPL", "MSFT", "NVDA", "META", "TSLA", "BRK-B"];
+
+// Five groups in intent order: what users came for first, account stuff last.
 const GROUPS: MGroup[] = [
   {
     title: "Signals",
     accent: "brand",
     links: [
       { href: "/best-now", label: "Best stocks now", color: "brand" },
-      { href: "/value", label: "Value — smart money × 52w low", color: "emerald" },
-      { href: "/big-bets", label: "Big bets", color: "brand" },
+      { href: "/value", label: "Value · smart money × cheap", color: "emerald" },
+      { href: "/big-bets", label: "Big bets · size × conviction", color: "brand" },
       { href: "/consensus", label: "Consensus picks", color: "emerald" },
-      { href: "/contrarian-bets", label: "Contrarian bets", color: "brand" },
+      { href: "/contrarian-bets", label: "Contrarian bets" },
       { href: "/hidden-gems", label: "Hidden gems", color: "emerald" },
-      { href: "/fresh-conviction", label: "Fresh conviction", color: "brand" },
     ],
   },
   {
@@ -36,48 +47,39 @@ const GROUPS: MGroup[] = [
       { href: "/new-positions", label: "New positions", color: "emerald" },
       { href: "/exits", label: "Exits", color: "rose" },
       { href: "/this-week", label: "This week" },
-      { href: "/activity", label: "Full activity" },
     ],
   },
   {
-    title: "Managers",
+    title: "Investors",
     accent: "brand",
     links: [
       { href: "/leaderboard", label: "Leaderboard" },
-      { href: "/manager-rankings", label: "Rankings", color: "brand" },
+      { href: "/manager-rankings", label: "Manager rankings", color: "brand" },
       { href: "/conviction-leaders", label: "Conviction leaders", color: "emerald" },
-      { href: "/overlap", label: "Overlap", color: "brand" },
-      { href: "/concentration", label: "Concentration", color: "brand" },
-      { href: "/by-philosophy", label: "By philosophy", color: "emerald" },
-      { href: "/compare/managers", label: "Compare" },
+      { href: "/compare/managers", label: "Compare side-by-side" },
+      { href: "/overlap", label: "Overlap matrix" },
     ],
   },
   {
     title: "Discover",
     accent: "emerald",
     links: [
-      { href: "/rotation", label: "Sector rotation", color: "brand" },
-      { href: "/proof", label: "Proof — does it work?", color: "emerald" },
+      { href: "/rotation", label: "Sector rotation heatmap", color: "brand" },
+      { href: "/themes", label: "AI · Mag 7 · Energy themes" },
+      { href: "/learn/superinvestor-handbook", label: "Superinvestor handbook", color: "emerald" },
       { href: "/vs/dataroma", label: "vs Dataroma", color: "brand" },
-      { href: "/learn/superinvestor-handbook", label: "Handbook", color: "emerald" },
-      { href: "/themes", label: "Themes" },
-      { href: "/trend-streak", label: "Trend streaks", color: "emerald" },
-      { href: "/reversals", label: "Reversals", color: "emerald" },
+      { href: "/proof", label: "Proof — does it work?", color: "emerald" },
     ],
   },
   {
-    title: "Product",
+    title: "Your tools",
     accent: "brand",
     links: [
-      { href: "/pricing", label: "Pro pricing", color: "brand" },
-      { href: "/premium", label: "Pro features", color: "brand" },
+      { href: "/watchlist", label: "Watchlist", color: "brand" },
       { href: "/portfolio", label: "My portfolio", color: "brand" },
-      { href: "/watchlist", label: "Watchlist" },
       { href: "/alerts", label: "Email alerts" },
-      { href: "/simulate", label: "Backtest" },
-      { href: "/screener", label: "Screener" },
+      { href: "/premium", label: "Pro features" },
       { href: "/docs", label: "API docs" },
-      { href: "/learn", label: "Learn" },
     ],
   },
 ];
@@ -86,8 +88,7 @@ const LEGAL_LINKS: { href: string; label: string }[] = [
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
-  { href: "/methodology", label: "Methodology" },
-  { href: "/changelog", label: "Changelog" },
+  { href: "/methodology", label: "How it works" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
 ];
@@ -107,15 +108,16 @@ function linkColorClass(color?: "brand" | "emerald" | "rose"): string {
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  // Close menu on Escape key
+  // Close menu on Escape key + lock body scroll while open
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
     }
     window.addEventListener("keydown", onKey);
-    // Lock body scroll when menu open
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
@@ -123,21 +125,30 @@ export default function MobileNav() {
     };
   }, [open]);
 
+  function submitSearch(e: React.FormEvent) {
+    e.preventDefault();
+    const t = query.trim().toUpperCase().replace(/[^A-Z.\-]/g, "");
+    if (!t) return;
+    // Naive but useful: route to /signal/{TICKER}; if no match, signal page
+    // shows a graceful "not in coverage" via notFound() upstream.
+    window.location.href = `/signal/${encodeURIComponent(t)}`;
+  }
+
   return (
     <>
       <button
         onClick={() => setOpen(true)}
-        className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-border bg-panel text-text hover:border-brand/40 transition"
+        className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-border bg-panel text-text hover:border-brand/40 transition"
         aria-label="Open menu"
         aria-expanded={open}
       >
         <svg
-          width="20"
-          height="20"
+          width="22"
+          height="22"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="2.25"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden
@@ -149,11 +160,7 @@ export default function MobileNav() {
       </button>
 
       {open && (
-        // v0.98 rewrite — single full-screen sheet. Previous nested-fixed
-        // pattern failed on iOS Safari (fixed children inside scroll
-        // containers lose viewport pinning). This is the battle-tested
-        // drawer pattern: one fixed container, bg-bg opaque (no backdrop
-        // needed), internal scroll, close-button-only dismissal.
+        // Full-screen opaque sheet (v0.98 pattern) with internal scroll.
         <div
           className="md:hidden fixed inset-0 z-50 overflow-y-auto bg-bg"
           role="dialog"
@@ -165,23 +172,28 @@ export default function MobileNav() {
           }}
         >
           <div className="min-h-full">
-            {/* Top bar with logo + close */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-              <a href="/" className="flex items-center gap-2 font-semibold text-lg text-text">
-                <span className="text-brand">◉</span> HoldLens
+            {/* Sticky top bar — logo + close. Stays visible during scroll
+                so the user always has an exit. */}
+            <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 border-b border-border bg-bg/95 backdrop-blur-sm">
+              <a
+                href="/"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 font-semibold text-base text-text"
+              >
+                <span className="text-brand text-lg leading-none">◉</span> HoldLens
               </a>
               <button
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-border bg-panel text-text hover:border-brand/40 transition"
+                className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-border bg-panel text-text hover:border-brand/40 transition"
                 aria-label="Close menu"
               >
                 <svg
-                  width="20"
-                  height="20"
+                  width="22"
+                  height="22"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.25"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   aria-hidden
@@ -192,42 +204,108 @@ export default function MobileNav() {
               </button>
             </div>
 
-            {/* Pro CTA at the very top */}
+            {/* Search — the #1 missing primitive on mobile until v0.99.
+                Submits to /signal/{TICKER}; non-coverage tickers land on the
+                graceful notFound() flow upstream. */}
+            <form onSubmit={submitSearch} className="px-5 mt-4">
+              <label htmlFor="mobile-search" className="sr-only">
+                Search ticker
+              </label>
+              <div className="relative">
+                <input
+                  id="mobile-search"
+                  ref={inputRef}
+                  type="search"
+                  inputMode="search"
+                  autoComplete="off"
+                  autoCapitalize="characters"
+                  placeholder="Search a ticker (e.g. AAPL)"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="w-full rounded-xl border border-border bg-panel pl-11 pr-4 py-3 text-base text-text placeholder:text-dim focus:border-brand/60 focus:outline-none focus:ring-2 focus:ring-brand/20 transition"
+                />
+                <svg
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-dim"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </div>
+
+              {/* Popular ticker chips — one-tap to top demand */}
+              <div className="mt-3 flex items-center gap-2 overflow-x-auto -mx-5 px-5 pb-1">
+                <span className="text-[10px] uppercase tracking-widest text-dim font-semibold shrink-0 mr-1">
+                  Popular
+                </span>
+                {POPULAR_TICKERS.map((t) => (
+                  <a
+                    key={t}
+                    href={`/signal/${t}`}
+                    onClick={() => setOpen(false)}
+                    className="shrink-0 rounded-full border border-border bg-panel px-3 py-1.5 text-xs font-mono font-semibold text-text hover:border-brand/40 hover:text-brand transition"
+                  >
+                    {t}
+                  </a>
+                ))}
+              </div>
+            </form>
+
+            {/* Pro CTA — single, prominent, calm. No countdown timers,
+                no flashing badges, no urgency theater (anti-dark-pattern). */}
             <a
               href="/pricing"
               onClick={() => setOpen(false)}
-              className="block mx-6 mt-5 mb-2 rounded-xl border border-brand bg-brand/10 p-4 hover:bg-brand/20 transition"
+              className="block mx-5 mt-5 mb-2 rounded-xl border border-brand bg-brand/10 p-4 hover:bg-brand/15 transition"
             >
-              <div className="text-xs uppercase tracking-widest font-bold text-brand mb-1">
+              <div className="text-[10px] uppercase tracking-widest font-bold text-brand mb-1">
                 Pro · Founders rate
               </div>
-              <div className="text-base font-bold text-text">Lock in $9/mo for life →</div>
+              <div className="text-[15px] font-bold text-text leading-tight">
+                Lock in €9/mo for life →
+              </div>
+              <div className="text-xs text-dim mt-1">
+                First 100 subscribers · cancel anytime
+              </div>
             </a>
 
-            {/* Grouped sections — Signals / Moves / Managers / Discover / Product */}
+            {/* Five intent-grouped sections */}
             {GROUPS.map((grp, idx) => (
               <div
                 key={grp.title}
-                className={`px-6 py-4${idx > 0 ? " border-t border-border" : ""}`}
+                className={`px-5 py-4${idx > 0 ? " border-t border-border" : ""}`}
               >
                 <div
-                  className={`text-[10px] uppercase tracking-widest font-bold mb-3 ${
+                  className={`text-[10px] uppercase tracking-widest font-bold mb-2 ${
                     grp.accent === "emerald" ? "text-emerald-400" : "text-brand"
                   }`}
                 >
                   {grp.title}
                 </div>
-                <ul className="space-y-1">
+                <ul className="space-y-0.5">
                   {grp.links.map((link) => (
                     <li key={link.href}>
                       <a
                         href={link.href}
                         onClick={() => setOpen(false)}
-                        className={`block py-2.5 text-base font-semibold ${linkColorClass(
+                        className={`flex items-center justify-between gap-3 py-3 text-[15px] font-semibold ${linkColorClass(
                           link.color
                         )} hover:opacity-80 transition`}
                       >
-                        {link.label}
+                        <span>{link.label}</span>
+                        {link.badge && (
+                          <span className="inline-block text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full bg-brand text-black">
+                            {link.badge}
+                          </span>
+                        )}
                       </a>
                     </li>
                   ))}
@@ -235,8 +313,9 @@ export default function MobileNav() {
               </div>
             ))}
 
-            {/* Legal + meta strip */}
-            <div className="px-6 py-4 border-t border-border">
+            {/* Legal — small, single row, low contrast. Always reachable
+                without dominating the menu's content hierarchy. */}
+            <div className="px-5 py-5 border-t border-border">
               <ul className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-dim">
                 {LEGAL_LINKS.map((link) => (
                   <li key={link.href}>
@@ -252,9 +331,8 @@ export default function MobileNav() {
               </ul>
             </div>
 
-            <div className="px-6 py-4 border-t border-border text-[11px] text-dim text-center">
-              Tap outside or press Esc to close
-            </div>
+            {/* Spacer for iOS bottom safe area + final breathing room */}
+            <div className="h-12" aria-hidden />
           </div>
         </div>
       )}
