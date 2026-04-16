@@ -228,3 +228,7 @@ Priority = (revenue impact × reversibility) / effort. Top of list executed firs
 - [ ] `P1` BUILD Claude Haiku thesis generator per ticker/manager [id:ai-thesis] [score:8.0]
 - [ ] `P2` BUILD X (formerly Twitter) bot posting top buy/sell signals [id:x-bot] [score:7.0]
 - [ ] `P2` BUILD public API + embeds [id:api] [score:7.0]
+
+## 2026-04-16 14:10 — CF EPIPE blocker (v1.17 pending deploy)
+
+- [ ] `P0` [👤] Operator: deploy v1.17 via Cloudflare dashboard (wrangler hit 3× EPIPE at 255/2450 upload). Go to https://dash.cloudflare.com → Workers & Pages → holdlens → Create deployment → drag-drop the local `out/` folder (last built at commit 767366902). Alternatively: retry `npx wrangler pages deploy out --project-name holdlens --branch main` in ~30 min — CF transfer cap tends to reset per region within that window. Pending ship: william-von-mueffling slug alignment + 9-manager EDGAR data + per-ticker RSS + cross-quarter nav. [id:cf-deploy-v1.17-pending] [score:9.0]
