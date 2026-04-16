@@ -2,8 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; }
-html, body { background: #0a0a0a; color: #e5e5e5; }
+/* HoldLens design tokens — source of truth (v1.05 design system).
+   Tailwind config mirrors these; non-Tailwind consumers (inline SVG,
+   JSON-LD, OG image generator) reach for these CSS vars. Keep in sync. */
+:root {
+  color-scheme: dark;
+
+  /* Base surface */
+  --hl-bg: #0a0a0a;
+  --hl-panel: #141414;
+  --hl-border: #262626;
+  --hl-text: #e5e5e5;
+  --hl-muted: #9ca3af;
+  --hl-dim: #858d9c;
+
+  /* Brand identity — RESERVED for Pro / primary CTA / trust signals */
+  --hl-brand: #fbbf24;
+
+  /* Semantic signal colors */
+  --hl-signal-buy: #34d399;    /* emerald-400 */
+  --hl-signal-sell: #fb7185;   /* rose-400    */
+  --hl-caution: #fcd34d;       /* amber-300   */
+  --hl-info: #38bdf8;          /* sky-400     */
+  --hl-accent: #a78bfa;        /* violet-400 — non-premium "notable" */
+
+  /* Tinted surfaces (matched to signal colors, alpha 0.08) */
+  --hl-surface-buy: rgba(52, 211, 153, 0.08);
+  --hl-surface-sell: rgba(251, 113, 133, 0.08);
+  --hl-surface-brand: rgba(251, 191, 36, 0.08);
+  --hl-surface-info: rgba(56, 189, 248, 0.08);
+
+  /* Motion */
+  --hl-ease-swift: cubic-bezier(0.16, 1, 0.3, 1);
+  --hl-ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --hl-duration-fast: 120ms;
+  --hl-duration-base: 180ms;
+  --hl-duration-slow: 280ms;
+}
+
+html, body { background: var(--hl-bg); color: var(--hl-text); }
 * { -webkit-font-smoothing: antialiased; }
 
 /* Smooth scroll for in-page anchors (back-to-top button, TOC links, etc.) —
