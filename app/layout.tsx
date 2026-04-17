@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Script from "next/script";
 import LiveTicker from "@/components/LiveTicker";
 import MobileNav from "@/components/MobileNav";
+import PlausiblePageView from "@/components/PlausiblePageView";
 import DesktopNav from "@/components/DesktopNav";
 import DataFreshness from "@/components/DataFreshness";
 import SupportBar from "@/components/SupportBar";
@@ -101,8 +103,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               `plausible-event-{prop}=value` fires that event on click.
               Used on high-intent surfaces (InvestingBooks book cards,
               AffiliateCTA brokerage cards, Stripe checkout button). */}
+        {/* v1.10 — removed redundant `defer` attribute. Next.js <Script
+            strategy="afterInteractive"> already controls the load timing;
+            adding `defer` on top created a race with Plausible's internal
+            auto-pageview trigger — observed result: zero `/api/event`
+            pageview POSTs despite a healthy script load. The manual
+            PlausiblePageView client component below fires pageview on
+            every route change, so outbound-links + tagged-events script
+            still works for its DOM-hook features without the init-race
+            kneecapping pageview counting. */}
         <Script
-          defer
           data-domain="holdlens.com"
           src="https://plausible.io/js/script.outbound-links.tagged-events.js"
           strategy="afterInteractive"
@@ -160,6 +170,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="google-adsense-account" content="ca-pub-7449214764048186" />
       </head>
       <body className="min-h-screen bg-bg text-text font-sans">
+        {/* v1.10 — manual Plausible pageview on every route change.
+            Fires once on initial load AND on each Next.js Link soft-nav.
+            Fixes the silent-pageview-loss since v0.86 (see component).
+            Suspense boundary is required because PlausiblePageView uses
+            useSearchParams(), which forces client rendering without a
+            boundary and breaks Next.js 15 static export. */}
+        <Suspense fallback={null}>
+          <PlausiblePageView />
+        </Suspense>
         {/* Skip to main content — keyboard-only users land here on Tab.
             Shows only when focused; invisible otherwise. Critical for a11y
             on pages this dense (50+ nav links otherwise sit between the

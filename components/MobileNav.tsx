@@ -332,11 +332,32 @@ export default function MobileNav() {
               </a>
 
               {/* Collapsed secondary — native <details> means zero JS,
-                  keyboard accessible, screen readers get correct state. */}
+                  keyboard accessible, screen readers get correct state.
+
+                  v1.10 — mobile sticky-focus fix. Global :focus-visible paints
+                  a 2px amber outline (app/globals.css, v0.84 a11y pass). On
+                  iOS Safari, tapping a <summary> matches :focus-visible AND
+                  the focus does not clear after the tap ends, so the user
+                  sees a loud amber ring glued to "Show N more" for the rest
+                  of the session. Worse, amber is the ONLY reserved color in
+                  the menu — it shouts louder than every link.
+
+                  Fix: onPointerUp, call blur() so the focus releases
+                  immediately after a touch (tap/click both go through
+                  PointerEvent). Real keyboard users never fire pointer
+                  events, so they still get the 2px amber outline when they
+                  Tab here. Best of both: visual quiet on touch, full a11y
+                  on keyboard. */}
               {secondary.length > 0 && (
                 <details className="group">
                   <summary
-                    className="list-none cursor-pointer flex items-center justify-between gap-3 py-2.5 text-[13px] text-muted hover:text-text transition select-none"
+                    onPointerUp={(e) => {
+                      // Release sticky touch-focus immediately after the tap
+                      // that opens/closes the group. Keyboard path never runs
+                      // this (keyboard doesn't fire pointer events).
+                      (e.currentTarget as HTMLElement).blur();
+                    }}
+                    className="list-none cursor-pointer flex items-center justify-between gap-3 py-2.5 text-[13px] text-muted hover:text-text transition select-none rounded-md"
                   >
                     <span>
                       <span className="text-dim">Show</span>{" "}
