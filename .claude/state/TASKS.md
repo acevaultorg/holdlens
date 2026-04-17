@@ -1,5 +1,11 @@
 # HoldLens — TASKS
 
+## Queue (v1.10 — Plausible pageview fix + MobileNav focus fix) — SHIPPED [objective:v1.10-analytics-a11y]
+
+- [x] `P0` FIX Plausible pageview silent-loss since v0.86 — `<Script afterInteractive defer>` race killed auto-pageview trigger, zero `/api/event` POSTs for weeks. Added components/PlausiblePageView.tsx firing window.plausible("pageview") on mount + every route change. Dropped redundant `defer`. Wrapped in Suspense for useSearchParams static-export compatibility. [id:plausible-pageview-fix] [score:10.0] ⏱ done 2026-04-17 11:42 commit 2af825e3c — verified live via Chrome MCP (202 POST on holdlens.com every load). Deployed: https://e796ef00.holdlens.pages.dev
+- [x] `P2` FIX MobileNav sticky amber focus ring on "Show N more" — iOS Safari held :focus-visible after tap, amber outline shouted louder than all links. onPointerUp → blur() releases touch focus; keyboard a11y preserved (keyboard doesn't fire pointer events). [id:mobilenav-focus-fix] [score:3.0] ⏱ done 2026-04-17 commit 2af825e3c. Verified via Chrome MCP — document.activeElement moves to BODY after pointerup.
+- [x] `P0` DEPLOY v1.10 — wrangler retry 2 succeeded (EPIPE on attempt 1 per rules/cloudflare-pages-epipe.md). IndexNow pinged (830 URLs). [id:deploy-v1.10] [score:5.0] ⏱ done 2026-04-17 11:42
+
 ## Queue (v1.32 — cycle 9 learn article) — SHIPPED [objective:v1.32-survivorship-bias]
 
 - [x] `P2` BUILD /learn/survivorship-bias-in-hedge-funds — 2000+ word SEO article, honest HoldLens selection-effect angle, Schema.org BreadcrumbList+Article+DefinedTerm, ShareStrip, cross-links. Learn index updated (9th article). Build clean 88da63297 pushed to origin/main. [score:6.0] [id:learn-survivorship-bias] ⏱ done 2026-04-17 11:48
