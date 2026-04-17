@@ -3,6 +3,7 @@
 ## Behavior Log
 
 ```
+2026-04-17 09:15 | v1.09-mobilenav-colors | modify   | next-static | single | quick | self-review(craftsman Love=0.78 PASS) | AUTO(sovereign-auto) | ~210s | success (MobileNav.tsx: removed brand-amber/emerald group-accent rotation that violated tailwind.config.ts reserved-use rule for `brand`; switched link colors to semantic-only — buy/sell/brand/info; neutral text-dim eyebrow headers; no behavior change, portal+a11y+accordion intact; Oracle archetype:craftsmanship_polish × est €0/wk; Retention archetype:craftsmanship_polish +0.010 × user_reach~0.6 = +0.006 Δ return-rate projected)
 2026-04-15 og-dynamic | creation | next-static/script | multi | quick | self-review(designer) | AUTO(heartbeat) | ~120s | success (extended generate-og-images.ts: investor cards for 30 managers + sector cards for 11 sectors; wired openGraph.images+twitter.card into investor/[slug]+warren-buffett+sector/[slug] pages; commit 5ec1042d7 pushed; Oracle archetype:SEO_page_addition ×0.15 × ~€50/wk site → ~€7.50/wk projected via improved social CTR)
 2026-04-15 17:00 | v0.84-buffett-parity | modify | next-static | single | quick | self-review(designer) | AUTO(sovereign-auto) | ~180s | success (wired InvestorConcentration + FoundersNudge into /investor/warren-buffett to match generic /investor/[slug] layout; tier-1 traffic page now has concentration visual + Pro nudge; Oracle: conversion_copy_fix × est €4/wk)
 2026-04-15 16:49 | v0.80-v0.83-live-verify | verify | next-static | site-wide | quick | self | AUTO | ~30s | success (deploy-truth confirmed: hero 'Spot smart money moves' LIVE, footer Site-map-grouped LIVE, skip-link LIVE, pricing competitor-anchor LIVE, handbook Amazon-widget LIVE; operator UX-retention directive fully fulfilled across 4 version ships)
@@ -183,3 +184,10 @@ Cycle 11+ queue (from ops voice perspective):
 - `/learn/survivorship-bias-in-hedge-funds` or `/learn/concentration-vs-diversification`
 - Cycle 20: CSIL re-tick with Oracle calibration data
 - Monday: populate METRICS.md first row from Plausible + GSC
+
+## Behavior Log
+2026-04-16 22:44 | task:ga4-events-v1.25 | archetype:analytics_wiring | stack-class:next-static | scale:component | tier:quick | specialist-mix:none | gate:AUTO | cycle-time-sec:180 | success:true
+
+## Cycle Times
+2026-04-17 | task:v1.09-mobilenav-colors | tier:quick | estimated-sec:240 | actual-sec:210 | delta:-12%
+2026-04-16 | task:ga4-events-v1.25 | tier:quick | estimated-sec:300 | actual-sec:180 | delta:-40%

@@ -53,6 +53,7 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 2026-04-16 | GA4 post-setup: retention 14mo + Google signals    | analytics_wiring          | est €0.5/wk| TBD | TBD | 12-month additional cohort visibility + cross-device/demographics (consent-gated) — enables 14mo trend reports that default 2mo would have silently dropped
 2026-04-16 | GA4 ↔ GSC link (holdlens.com Domain property)      | analytics_wiring          | est €1.5/wk| TBD | TBD | organic search queries + landing pages now flow into GA Search Console report — closes the attribution gap between GSC indexed-click data and GA session/conversion data
 2026-04-16 | GA4 ↔ AdSense link (pub-7449214764048186, rev ON)  | analytics_wiring          | est €1/wk  | TBD | TBD | ad revenue per-page surfaces in GA once AdSense approves and auto-ads serve; pairs with on-page AdSlot components already shipped
+2026-04-17 | v1.09 MobileNav semantic color system             | craftsmanship_polish      | est €0/wk  | TBD | TBD | mobile menu color rotation removed; emerald=buy, rose=sell, sky=info, amber=Pro-reserved; Retention Oracle paired projection +0.006 Δ 7d-return (craftsmanship_polish × user_reach~0.6 × confidence 0.3) — revenue is near-zero short-term, compounding bet through retention
 ```
 
 ## Top blocker (honest)

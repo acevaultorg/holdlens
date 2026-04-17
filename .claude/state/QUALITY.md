@@ -11,6 +11,7 @@ Append-only. Corrections go in `## Corrections` at the bottom.
 
 ```
 ts                 | target                              | U   D   R   C   Un  | mean | verdict | fix
+2026-04-17 09:15   | MobileNav.tsx v1.09 color system    | .80 .70 .90 .90 .60 | 0.78 | PASS    | optional 2px left-edge accent per group (deferred)
 2026-04-16 19:55   | welcome email (subscribe.ts)        | .75 .50 .55 .75 .55 | 0.62 | PASS    | List-Unsubscribe header
 ```
 

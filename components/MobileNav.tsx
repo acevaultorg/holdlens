@@ -30,72 +30,78 @@ import Logo from "@/components/Logo";
 // 5. Full-screen opaque sheet
 // 6. overscroll-behavior: contain
 
-type MLink = { href: string; label: string; color?: "brand" | "emerald" | "rose"; badge?: string };
-type MGroup = { title: string; accent: "brand" | "emerald"; links: MLink[] };
+type MLinkColor = "buy" | "sell" | "brand" | "info";
+type MLink = { href: string; label: string; color?: MLinkColor; badge?: string };
+type MGroup = { title: string; links: MLink[] };
 
 // Popular tickers — chips at top of menu for one-tap entry. These are the
 // six highest-traffic /signal/[ticker] pages by typical search demand.
 const POPULAR_TICKERS = ["AAPL", "MSFT", "NVDA", "META", "TSLA", "BRK-B"];
 
-// Five groups in intent order: what users came for first, account stuff last.
-// v1.04 — normalized color coding: within each group, ONE link is un-colored
-// (the "neutral reference"); the rest are colored. Previous state had random
-// color dropouts that broke visual rhythm.
+// v1.09 — semantic color discipline. Per tailwind.config.ts, `brand` (amber)
+// is RESERVED for Pro/premium signaling. `signal-buy` (emerald) means "buy",
+// `signal-sell` (rose) means "sell/exit", `info` (sky) means mixed/contrarian.
+// Previous versions applied brand/emerald as generic group accents, which
+// (a) violated the reserved-use rule in the design tokens, (b) created two
+// competing loud colors per group (header + pinned primary doubled up), and
+// (c) diluted buy/sell semantics on pages where direction didn't apply.
+//
+// New rule: group headers are neutral (text-dim eyebrow, no per-group color).
+// Link colors are semantic-only — emerald for buy-side suggestions, rose for
+// exit-side moves, sky for mixed/contrarian analysis, brand for the single
+// Pro link. Neutral default for tool/rankings links. Visual hierarchy comes
+// from position + weight (pinned primary vs collapsed secondary), not from
+// color rotation.
 const GROUPS: MGroup[] = [
   {
     title: "Signals",
-    accent: "brand",
     links: [
-      { href: "/best-now", label: "Best stocks now", color: "brand" },
-      { href: "/value", label: "Value · smart money × cheap", color: "emerald" },
-      { href: "/big-bets", label: "Big bets · size × conviction", color: "brand" },
-      { href: "/consensus", label: "Consensus picks", color: "emerald" },
-      { href: "/contrarian-bets", label: "Contrarian bets", color: "brand" },
-      { href: "/hidden-gems", label: "Hidden gems", color: "emerald" },
+      { href: "/best-now", label: "Best stocks now", color: "buy" },
+      { href: "/value", label: "Value · smart money × cheap", color: "buy" },
+      { href: "/big-bets", label: "Big bets · size × conviction" },
+      { href: "/consensus", label: "Consensus picks", color: "buy" },
+      { href: "/contrarian-bets", label: "Contrarian bets", color: "info" },
+      { href: "/hidden-gems", label: "Hidden gems", color: "buy" },
     ],
   },
   {
     title: "Moves",
-    accent: "emerald",
     links: [
-      { href: "/biggest-buys", label: "Biggest buys", color: "emerald" },
-      { href: "/biggest-sells", label: "Biggest sells", color: "rose" },
-      { href: "/new-positions", label: "New positions", color: "emerald" },
-      { href: "/exits", label: "Exits", color: "rose" },
-      { href: "/this-week", label: "This week · fresh filings", color: "emerald" },
+      { href: "/biggest-buys", label: "Biggest buys", color: "buy" },
+      { href: "/biggest-sells", label: "Biggest sells", color: "sell" },
+      { href: "/new-positions", label: "New positions", color: "buy" },
+      { href: "/exits", label: "Exits", color: "sell" },
+      { href: "/this-week", label: "This week · fresh filings" },
     ],
   },
   {
     title: "Investors",
-    accent: "brand",
     links: [
-      { href: "/leaderboard", label: "Leaderboard", color: "brand" },
-      { href: "/manager-rankings", label: "Manager rankings", color: "brand" },
-      { href: "/conviction-leaders", label: "Conviction leaders", color: "emerald" },
-      { href: "/compare/managers", label: "Compare side-by-side", color: "brand" },
-      { href: "/overlap", label: "Overlap matrix", color: "brand" },
+      { href: "/leaderboard", label: "Leaderboard" },
+      { href: "/manager-rankings", label: "Manager rankings" },
+      { href: "/conviction-leaders", label: "Conviction leaders" },
+      { href: "/compare/managers", label: "Compare side-by-side" },
+      { href: "/overlap", label: "Overlap matrix" },
     ],
   },
   {
     title: "Discover",
-    accent: "emerald",
     links: [
-      { href: "/rotation", label: "Sector rotation heatmap", color: "brand" },
-      { href: "/themes", label: "AI · Mag 7 · Energy themes", color: "brand" },
-      { href: "/learn/superinvestor-handbook", label: "Superinvestor handbook", color: "emerald" },
-      { href: "/vs/dataroma", label: "vs Dataroma", color: "brand" },
-      { href: "/proof", label: "Proof — does it work?", color: "emerald" },
+      { href: "/rotation", label: "Sector rotation heatmap", color: "info" },
+      { href: "/themes", label: "AI · Mag 7 · Energy themes" },
+      { href: "/learn/superinvestor-handbook", label: "Superinvestor handbook" },
+      { href: "/vs/dataroma", label: "vs Dataroma" },
+      { href: "/proof", label: "Proof — does it work?" },
     ],
   },
   {
     title: "Your tools",
-    accent: "brand",
     links: [
-      { href: "/watchlist", label: "Watchlist", color: "brand" },
-      { href: "/portfolio", label: "My portfolio", color: "brand" },
-      { href: "/alerts", label: "Email alerts", color: "emerald" },
+      { href: "/watchlist", label: "Watchlist" },
+      { href: "/portfolio", label: "My portfolio" },
+      { href: "/alerts", label: "Email alerts" },
       { href: "/premium", label: "Pro features", color: "brand" },
-      { href: "/docs", label: "API docs", color: "emerald" },
+      { href: "/docs", label: "API docs" },
     ],
   },
 ];
@@ -109,14 +115,20 @@ const LEGAL_LINKS: { href: string; label: string }[] = [
   { href: "/terms", label: "Terms" },
 ];
 
-function linkColorClass(color?: "brand" | "emerald" | "rose"): string {
+function linkColorClass(color?: MLinkColor): string {
+  // Map semantic intent → design-token color. These map 1:1 to the tokens
+  // declared in tailwind.config.ts, so changing the palette later updates
+  // the menu automatically. Default is neutral text — most links don't
+  // carry a buy/sell/premium meaning and shouldn't be colored.
   switch (color) {
+    case "buy":
+      return "text-signal-buy";
+    case "sell":
+      return "text-signal-sell";
     case "brand":
       return "text-brand";
-    case "emerald":
-      return "text-emerald-400";
-    case "rose":
-      return "text-rose-400";
+    case "info":
+      return "text-info";
     default:
       return "text-text";
   }
@@ -288,14 +300,17 @@ export default function MobileNav() {
             • Multiple groups can be open at once — users can compare. */}
         {GROUPS.map((grp, idx) => {
           const [primary, ...secondary] = grp.links;
-          const accentText = grp.accent === "emerald" ? "text-emerald-400" : "text-brand";
           return (
             <div
               key={grp.title}
               className={`px-5 py-5${idx > 0 ? " border-t border-border mt-2 pt-6" : ""}`}
             >
+              {/* v1.09 — neutral eyebrow header. Previously colored per-group
+                  (brand/emerald rotation), which shouted and doubled up with
+                  the pinned primary link below. Now content + weight carry
+                  the hierarchy; color is reserved for semantic meaning. */}
               <div
-                className={`text-[10px] uppercase tracking-widest font-bold mb-3 ${accentText}`}
+                className="text-[10px] uppercase tracking-widest font-bold mb-3 text-dim"
               >
                 {grp.title}
               </div>
@@ -321,11 +336,11 @@ export default function MobileNav() {
               {secondary.length > 0 && (
                 <details className="group">
                   <summary
-                    className={`list-none cursor-pointer flex items-center justify-between gap-3 py-2.5 text-[13px] text-muted hover:text-text transition select-none`}
+                    className="list-none cursor-pointer flex items-center justify-between gap-3 py-2.5 text-[13px] text-muted hover:text-text transition select-none"
                   >
                     <span>
                       <span className="text-dim">Show</span>{" "}
-                      <span className={accentText}>{secondary.length} more</span>{" "}
+                      <span className="text-text">{secondary.length} more</span>{" "}
                       <span className="text-dim">in {grp.title.toLowerCase()}</span>
                     </span>
                     <svg
