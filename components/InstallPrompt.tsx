@@ -175,10 +175,13 @@ export default function InstallPrompt() {
             </>
           )}
         </div>
+        {/* v1.12 — mobile tap-target fix. Prior × was ~20×20 px (text-lg
+            leading-none + px-1). Mobile audit confirmed it's under the
+            44×44 WCAG AA minimum. Fix: inline-flex centering + min-w/h 44. */}
         <button
           onClick={dismiss}
           aria-label="Dismiss install prompt"
-          className="shrink-0 text-dim hover:text-text transition text-lg leading-none px-1 -mt-0.5"
+          className="-mr-2 -mt-2 shrink-0 inline-flex items-center justify-center min-w-[44px] min-h-[44px] text-lg leading-none text-dim hover:text-text transition rounded-md"
         >
           ×
         </button>

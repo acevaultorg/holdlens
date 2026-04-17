@@ -155,10 +155,11 @@ export default function CsvExportButton({ rows, endpoint, filename, label }: Pro
         >
           Go Pro →
         </a>
+        {/* v1.12 — mobile tap-target fix. Prior was text-only ✕ with ml-1. */}
         <button
           type="button"
           onClick={() => setState("idle")}
-          className="text-dim hover:text-text transition ml-1"
+          className="ml-1 inline-flex items-center justify-center min-w-[36px] min-h-[36px] text-dim hover:text-text transition rounded-md"
           aria-label="Dismiss"
         >
           ✕

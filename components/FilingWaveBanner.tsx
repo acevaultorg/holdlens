@@ -125,6 +125,12 @@ export default function FilingWaveBanner() {
           >
             Get the alert →
           </a>
+          {/* v1.12 — tap-target fix. Prior × was 8×16 px (text-only button),
+              far below WCAG AA minimum 44×44 and effectively untappable on
+              phones. Mobile audit via Chrome MCP iframe at 390px vw confirmed
+              the issue. Fix: explicit min-h + min-w + inline-flex centering +
+              -mr-2 so visual position doesn't shift. Text character stays ×
+              to preserve the visual language; only the hit area grows. */}
           <button
             type="button"
             onClick={() => {
@@ -141,7 +147,7 @@ export default function FilingWaveBanner() {
                 /* ignore */
               }
             }}
-            className="text-dim hover:text-text transition"
+            className="-mr-2 inline-flex items-center justify-center min-w-[44px] min-h-[44px] text-base leading-none text-dim hover:text-text transition rounded-md"
             aria-label="Dismiss this banner for 14 days"
             title="Dismiss for 14 days"
           >

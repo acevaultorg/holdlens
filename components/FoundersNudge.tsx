@@ -127,10 +127,12 @@ export default function FoundersNudge({
           >
             See Pro →
           </a>
+          {/* v1.12 — mobile tap-target fix. Prior text-xs inline button
+              was ~50×16 px. Now padded to meet 36×36 min for touch. */}
           <button
             type="button"
             onClick={dismiss}
-            className="text-xs text-dim hover:text-text transition"
+            className="inline-flex items-center justify-center min-h-[36px] px-2 text-xs text-dim hover:text-text transition rounded-md"
             aria-label="Dismiss this nudge for 30 days"
           >
             Dismiss
