@@ -1,5 +1,57 @@
 # HoldLens — Session context
 
+## Session Handoff (2026-04-17 15:35 sovereign auto, cycle 11 close)
+
+**Mode:** sovereign auto
+**Last commit:** 6eb3b2f78 (v1.33 — /learn/13f-vs-13d-vs-13g + RETENTION.md v17.2 init)
+**Last deploy:** 89c2dfec.holdlens.pages.dev — LIVE on holdlens.com (prod CDN propagated)
+**Heartbeat:** fresh, `3,18,33,48 * * * *` active
+**Branch:** main (up to date with origin)
+**Stash:** clean
+
+### What was shipped this cycle (v1.33, cycle 11)
+
+- /learn/13f-vs-13d-vs-13g — 2500-word SEO comparison article. Signal-spectrum framing (passive 13G → quarterly 13F → active 13D). Full schema stack: BreadcrumbList + Article + FAQPage (4 FAQs) + 3 DefinedTerm.
+- Cross-linked 5 existing /learn articles + /investor CTA for loop-closure.
+- /learn index updated to 10 entries (CollectionPage + ItemList schema sync).
+- Sitemap.xml patched — 13f-vs-13d-vs-13g + survivorship-bias-in-hedge-funds (back-filled v1.32 gap).
+- RETENTION.md initialized — closes v17.2 I-22 compliance gap noted in prior handoff. Archetype multipliers seeded for ad+sub funnel; first calibration row waits for Monday METRICS + ≥7d returning-visitor data.
+
+### Self-review results
+
+- @craftsman Love Score: **0.80 PASS** (U .82 D .68 R .85 C .88 Un .78). Highest-leverage fix: filing-speed timeline infographic (+0.10 Delightful) — deferred.
+- @distributor Fit Score: **0.78 PASS** (SEO .88 Share .65 Channel .82 Loop .75 Moat .80). Strong keyword cluster ~5,200/mo.
+- MOBILE-VERIFY: pass via Chrome MCP 375×812 — h1, hamburger, Quick-ref card, ShareStrip all render.
+
+### Deploy event
+
+- Retry 1: EPIPE at 726/2560 files (~56MB cap, known CF bug per rules/cloudflare-pages-epipe.md).
+- Retry 2: success — 2560 files / 107.75s to 89c2dfec.holdlens.pages.dev.
+- Deploy-truth verified direct + prod CDN: h1 + title + sitemap entry all match.
+
+### Cycle 12+ queue
+
+- Cycle 12: scan for revenue-adjacent candidate (queue is thin, most P0/P1 items shipped or 👤-blocked). Candidates: DISTRIBUTION.md v17.3 init, new /learn article ("Form 4 vs 13F: insider vs institutional signals"), per-ticker OG batch expansion, filing-speed timeline infographic for v1.33 (+0.1 Love Score).
+- Cycle 20: CSIL re-tick per sovereign spec — focus on first Oracle calibration once Plausible + Monday METRICS data lands.
+
+### Pending operator actions (HUMAN_ACTIONS.md top block)
+
+1. DMARC TXT on holdlens.com (~60s DNS edit; MCP misclicking prevented it)
+2. May 15 Q1 distribution drop (launch-kit templates ready)
+3. Monday METRICS.md first row (manual data pull) — unblocks Oracle calibration
+4. Stripe activation (env vars in CF Pages)
+
+### v17.3 brain version detected mid-session
+
+Brain updated from v17.2 → v17.3 during this cycle (Distribution Oracle + @distributor specialist + I-24/I-26 invariants). Session operated in v17.2 mode for the ship; v17.3 spec inline for @distributor review. Full v17.3 integration (DISTRIBUTION.md state file + formal I-24/I-26 invariant hash registration) is next-cycle work.
+
+### Immortality strings
+
+Only `stop`, `pause`, `halt` from the live operator exits. All other
+interruptions are transient.
+
+---
+
 ## Session Handoff (2026-04-16 sovereign auto, cycle 7→8)
 
 **Mode:** sovereign auto

@@ -45,6 +45,7 @@ dark_pattern_anything     × -1.000   IMMUTABLE (I-23, hard reject)
 2026-04-17 | v1.10 Plausible pageview race fix            | bug_fix_blocking_core    | +0.015 Δ 7d-return | TBD | TBD | unblocks retention MEASUREMENT (data compound), not retention itself; reach ~1.0
 2026-04-17 | v1.12 Mobile WCAG AA tap targets             | bug_fix_blocking_core    | +0.010 Δ 7d-return | TBD | TBD | reduced rage-taps on dismiss buttons; reach ~0.6 mobile
 2026-04-17 | v1.32 /learn/survivorship-bias              | SEO_page_addition        | -0.001 Δ 7d-return | TBD | TBD | thick editorial content — expect near-zero retention hit; marginally negative because SEO landing pages don't typically bring retention signal
+2026-04-17 | v1.33 /learn/13f-vs-13d-vs-13g              | SEO_page_addition        | -0.001 Δ 7d-return | TBD | TBD | comparison article; cross-links 5 existing /learn articles + /investor CTA = strong loop-closure which partially offsets baseline SEO-page retention penalty
 ```
 
 ## Top blocker (honest)

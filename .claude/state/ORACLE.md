@@ -54,6 +54,7 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 2026-04-16 | GA4 ↔ GSC link (holdlens.com Domain property)      | analytics_wiring          | est €1.5/wk| TBD | TBD | organic search queries + landing pages now flow into GA Search Console report — closes the attribution gap between GSC indexed-click data and GA session/conversion data
 2026-04-16 | GA4 ↔ AdSense link (pub-7449214764048186, rev ON)  | analytics_wiring          | est €1/wk  | TBD | TBD | ad revenue per-page surfaces in GA once AdSense approves and auto-ads serve; pairs with on-page AdSlot components already shipped
 2026-04-17 | v1.09 MobileNav semantic color system             | craftsmanship_polish      | est €0/wk  | TBD | TBD | mobile menu color rotation removed; emerald=buy, rose=sell, sky=info, amber=Pro-reserved; Retention Oracle paired projection +0.006 Δ 7d-return (craftsmanship_polish × user_reach~0.6 × confidence 0.3) — revenue is near-zero short-term, compounding bet through retention
+2026-04-17 | v1.33 /learn/13f-vs-13d-vs-13g comparison article | SEO_page_addition         | est €3/wk  | TBD | TBD | targets ~5,200/mo searches across 13d-vs-13g / 13f-vs-13d / 13f-vs-13g / "difference between" — full schema stack (Article+BreadcrumbList+FAQPage+3 DefinedTerm), thick editorial (2500 words) avoids thin-content penalty, HoldLens-native "signal spectrum" angle = moat vs generic SEC-jargon guides
 ```
 
 ## Top blocker (honest)
