@@ -1,5 +1,9 @@
 # HoldLens — TASKS
 
+## Queue (v1.32 — cycle 9 learn article) — SHIPPED [objective:v1.32-survivorship-bias]
+
+- [x] `P2` BUILD /learn/survivorship-bias-in-hedge-funds — 2000+ word SEO article, honest HoldLens selection-effect angle, Schema.org BreadcrumbList+Article+DefinedTerm, ShareStrip, cross-links. Learn index updated (9th article). Build clean 88da63297 pushed to origin/main. [score:6.0] [id:learn-survivorship-bias] ⏱ done 2026-04-17 11:48
+
 ## Queue (v1.09 — mobile menu color system) — SHIPPED [objective:v1.09-mobilenav-colors]
 
 - [x] `P2` FIX MobileNav color rotation — brand/emerald group accents violated tailwind.config.ts reserved-use rule for `brand` and doubled up with pinned-primary link colors → visual noise, no hierarchy [id:mobilenav-colors] [score:4.0] ⏱ done commit fd5dd8f1f — semantic-only colors (buy/sell/info/brand), neutral eyebrow headers, typecheck clean, @craftsman Love 0.78 PASS
