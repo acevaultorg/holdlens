@@ -45,12 +45,21 @@ function actionLabel(action: Row["action"]): string {
   return "EXIT";
 }
 
+// Manager → ticker of that manager's OWN listed holding company. Moves on
+// these are trivially large (they're the manager buying/trimming their own
+// vehicle) but not an edge the reader can act on. Matches the `(own)` filter
+// pattern already used by /big-bets via topHoldings names.
+const OWN_HOLDINGS: Record<string, string> = {
+  "carl-icahn": "IEP",
+};
+
 function computeRows(): Row[] {
   const moves = getAllMovesEnriched();
   const out: Row[] = [];
   for (const mv of moves) {
     const impact = mv.portfolioImpactPct ?? 0;
     if (impact <= 5) continue;
+    if (OWN_HOLDINGS[mv.managerSlug] === mv.ticker) continue;
     const mgr = MANAGERS.find((m) => m.slug === mv.managerSlug);
     if (!mgr) continue;
     const td = TICKER_INDEX[mv.ticker];

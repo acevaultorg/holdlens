@@ -334,6 +334,187 @@ const CUSIP_TO_TICKER: Record<string, string> = {
   "427866108": "HIMS",   // Hims & Hers
   "45168D104": "IBKR",   // Interactive Brokers
   "29786A106": "EQIX",   // Equinix
+  // v1.35 — top-60 most-seen unmapped issuers from fleet 13F filings (2026-04-17 audit).
+  // Each row maps a real CUSIP that was falling through to cleaned-issuer-name fallback,
+  // hiding genuine positions across hundreds of manager-quarters.
+  "N07059210": "ASML",   // ASML Holding
+  "92840M102": "VST",    // Vistra Corp
+  "22160N109": "CSGP",   // CoStar Group
+  "G3643J108": "FLUT",   // Flutter Entertainment
+  "98978V103": "ZTS",    // Zoetis
+  "47215P106": "JD",     // JD.com
+  "883556102": "TMO",    // Thermo Fisher
+  "03769M106": "APO",    // Apollo Global Mgmt
+  "48251W104": "KKR",    // KKR & Co
+  "670100205": "NVO",    // Novo-Nordisk
+  "G6683N103": "NU",     // Nu Holdings
+  "217204106": "CPRT",   // Copart
+  "45866F104": "ICE",    // Intercontinental Exchange
+  "10806X102": "BBIO",   // BridgeBio Pharma
+  "294429105": "EFX",    // Equifax
+  "40415F101": "HDB",    // HDFC Bank
+  "13646K108": "CP",     // Canadian Pacific Kansas City
+  "78463V107": "GLD",    // SPDR Gold Trust
+  "31488V107": "FERG",   // Ferguson
+  "512807306": "LRCX",   // Lam Research
+  "032654105": "ADI",    // Analog Devices
+  "464288752": "IVV",    // iShares Core S&P 500 ETF
+  "67103H107": "ORLY",   // O'Reilly Automotive
+  "12008R107": "BLDR",   // Builders FirstSource
+  "366505105": "GTX",    // Garrett Motion
+  "538034109": "LYV",    // Live Nation Entertainment
+  "50212V100": "LPLA",   // LPL Financial
+  "679580100": "ODFL",   // Old Dominion Freight Line
+  "70432V102": "PAYC",   // Paycom Software
+  "G61188101": "LBTYK",  // Liberty Global (C shares)
+  "219948106": "CPAY",   // Corpay (fka FleetCor)
+  "01609W102": "BABA",   // Alibaba (alt CUSIP)
+  "146869102": "CVNA",   // Carvana
+  "12510Q100": "CCCS",   // CCC Intelligent Solutions
+  "74758T303": "QLYS",   // Qualys
+  "87422Q109": "TLN",    // Talen Energy
+  "872590104": "TMUS",   // T-Mobile US
+  "G96629103": "WTW",    // Willis Towers Watson
+  "58506Q109": "MEDP",   // Medpace
+  "35671D857": "FCX",    // Freeport-McMoRan
+  "053015103": "ADP",    // Automatic Data Processing
+  "25809K105": "DASH",   // DoorDash
+  "28176E108": "EW",     // Edwards Lifesciences
+  "45780R101": "IBP",    // Installed Building Products
+  "550021109": "LULU",   // Lululemon
+  "571903202": "MAR",    // Marriott
+  "82982L103": "SITE",   // SiteOne Landscape Supply
+  "88034P109": "TME",    // Tencent Music
+  "339750101": "FND",    // Floor & Decor
+  "46266C105": "IQV",    // IQVIA
+  "517834107": "LVS",    // Las Vegas Sands
+  "09061G101": "BMRN",   // BioMarin Pharmaceutical
+  "052769106": "ADSK",   // Autodesk
+  "629377508": "NRG",    // NRG Energy
+  "23331A109": "DHI",    // D.R. Horton
+  "016255101": "ALGN",   // Align Technology
+  "00650F109": "ADPT",   // Adaptive Biotechnologies
+  "29362U104": "ENTG",   // Entegris
+  "303250104": "FICO",   // Fair Isaac
+  "34959J108": "FTV",    // Fortive
+  // v1.35 — round 2 additions (next 78 unmapped issuers, ~1,270 filing-rows)
+  "38267D109": "GSHD",   // Goosehead Insurance
+  "740444104": "PLPC",   // Preformed Line Products
+  "98850P109": "YUMC",   // Yum China
+  "55933J203": "MX",     // MagnaChip Semiconductor
+  "776696106": "ROP",    // Roper Technologies
+  "101137107": "BSX",    // Boston Scientific
+  "144285103": "CRS",    // Carpenter Technology
+  "33829M101": "FIVE",   // Five Below
+  "09290D101": "BLK",    // BlackRock
+  "225310101": "CACC",   // Credit Acceptance
+  "91688F104": "UPWK",   // Upwork
+  "N00985106": "AER",    // AerCap Holdings
+  "87162W100": "SNX",    // TD Synnex
+  "G4412G101": "HLF",    // Herbalife
+  "366651107": "IT",     // Gartner
+  "874054109": "TTWO",   // Take-Two Interactive
+  "05329W102": "AN",     // AutoNation
+  "58733R102": "MELI",   // MercadoLibre (alt CUSIP)
+  "892672106": "TW",     // Tradeweb Markets
+  "94419L101": "W",      // Wayfair
+  "051774107": "AUR",    // Aurora Innovation
+  "21037T109": "CEG",    // Constellation Energy
+  "26622P107": "DOCS",   // Doximity
+  "55261F104": "MTB",    // M&T Bank
+  "819047101": "SHAK",   // Shake Shack
+  "82509L107": "SHOP",   // Shopify
+  "20854L108": "CEIX",   // CONSOL Energy
+  "388689101": "GPK",    // Graphic Packaging
+  "67080N101": "NUVB",   // Nuvation Bio
+  "95082P105": "WCC",    // Wesco International
+  "049468101": "TEAM",   // Atlassian
+  "040413205": "ANET",   // Arista Networks
+  "G1151C101": "ACN",    // Accenture
+  "N14506104": "ESTC",   // Elastic NV
+  "008474108": "AEM",    // Agnico Eagle Mines
+  "031100100": "AME",    // AMETEK
+  "031652100": "AMKR",   // Amkor Technology
+  "127190304": "CACI",   // CACI International
+  "27579R104": "EWBC",   // East West Bancorp
+  "533900106": "LECO",   // Lincoln Electric
+  "68268W103": "OMF",    // OneMain Holdings
+  "78467J100": "SSNC",   // SS&C Technologies
+  "894164102": "TNL",    // Travel + Leisure
+  "00402L107": "ASO",    // Academy Sports & Outdoors
+  "020764106": "AMR",    // Alpha Metallurgical Resources
+  "05988J103": "BAND",   // Bandwidth
+  "06417N103": "OZK",    // Bank OZK
+  "12685J105": "CABO",   // Cable One
+  "133131102": "CPT",    // Camden Property Trust
+  "149568107": "CVCO",   // Cavco Industries
+  "151290889": "CX",     // CEMEX
+  "29414B104": "EPAM",   // EPAM Systems
+  "311900104": "FAST",   // Fastenal
+  "G4124C109": "GRAB",   // Grab Holdings
+  "40131M109": "GH",     // Guardant Health
+  "423452101": "HP",     // Helmerich & Payne
+  "537008104": "LFUS",   // Littelfuse
+  "620076307": "MSI",    // Motorola Solutions
+  "682189105": "ON",     // ON Semiconductor
+  "687793109": "OSCR",   // Oscar Health
+  "71654V101": "PBR",    // Petrobras
+  "74164M108": "PRI",    // Primerica
+  "74275K108": "PCOR",   // Procore Technologies
+  "750491102": "RDNT",   // RadNet
+  "75282U104": "RNGR",   // Ranger Energy Services
+  "758750103": "RRX",    // Regal Rexnord
+  "83193G107": "SMRT",   // SmartRent
+  "34385P108": "LAB",    // Standard BioTools
+  "87918A105": "TDOC",   // Teladoc Health
+  "879433829": "TDS",    // Telephone & Data Systems
+  "892356106": "TSCO",   // Tractor Supply
+  "023586100": "UHAL",   // U-Haul (AMERCO)
+  "91332U101": "U",      // Unity Software
+  "93627C101": "HCC",    // Warrior Met Coal
+  "941848103": "WAT",    // Waters Corp
+  "988498101": "YUM",    // Yum! Brands
+  "929740108": "WAB",    // Wabtec
+  "88337F105": "ODP",    // ODP Corp
+  "878742204": "TECK",   // Teck Resources
+  // v1.35 — round 3: high-concentration positions on priority-manager books
+  // that were still hidden from the UI (Burry's 66% PLTR, Icahn's 61.8% IEP, etc).
+  "69608A108": "PLTR",   // Palantir Technologies (Burry 66%)
+  "451100101": "IEP",    // Icahn Enterprises (Icahn own holding)
+  "68634K106": "ORLA",   // Orla Mining
+  "G9460G101": "VAL",    // Valaris
+  "12662P108": "CVI",    // CVR Energy
+  "H8817H100": "RIG",    // Transocean
+  "03940R107": "ARCH",   // Arch Resources
+  "036752103": "ELV",    // Elevance Health
+  "75886F107": "REGN",   // Regeneron Pharmaceuticals
+  "632307104": "NTRA",   // Natera
+  "136375102": "CNI",    // Canadian National Railway
+  "82452J109": "FOUR",   // Shift4 Payments
+  "60855R100": "MOH",    // Molina Healthcare
+  "489398107": "KW",     // Kennedy-Wilson Holdings
+  "904311107": "UAA",    // Under Armour A
+  "165167180": "EXE",    // Expand Energy (fka Chesapeake)
+  "09228F103": "BB",     // BlackBerry
+  "254709108": "DFS",    // Discover Financial
+  "444097109": "HPP",    // Hudson Pacific Properties
+  "165167735": "CHK",    // Chesapeake Energy (pre-rename)
+  "518439104": "EL",     // Estée Lauder
+  "22266T109": "CPNG",   // Coupang
+  "185899101": "CLF",    // Cleveland-Cliffs
+  "19247G107": "COHR",   // Coherent
+  "863667101": "SYK",    // Stryker
+  "457669307": "INSM",   // Insmed
+  "881624209": "TEVA",   // Teva Pharmaceuticals
+  "G21810109": "CLVT",   // Clarivate
+  "256677105": "DG",     // Dollar General
+  "92552V100": "VSAT",   // Viasat
+  "85207H104": "PHYS",   // Sprott Physical Gold Trust
+  "907818108": "UNP",    // Union Pacific (alt CUSIP)
+  "G7997R103": "STX",    // Seagate Technology
+  "783513203": "RYAAY",  // Ryanair Holdings
+  "406216101": "HAL",    // Halliburton
+  "116794108": "BRKR",   // Bruker Corp
 };
 
 // ETF/index CUSIPs to skip (not individual stocks)
@@ -449,12 +630,16 @@ function reportDateToQuarter(reportDate: string): string {
 }
 
 function cusipToTicker(cusip: string, issuerName: string): string {
-  const c6 = cusip.substring(0, 6); // 6-digit issuer
+  // EDGAR filings mix uppercase/lowercase CUSIPs (e.g. "48251W104" vs
+  // "48251w104"). Normalize to uppercase before lookup so the same issuer
+  // isn't duplicated into separate unmapped rows.
+  const cu = cusip.toUpperCase();
+  const c6 = cu.substring(0, 6); // 6-digit issuer
   // Try exact match first
-  if (CUSIP_TO_TICKER[cusip]) return CUSIP_TO_TICKER[cusip];
+  if (CUSIP_TO_TICKER[cu]) return CUSIP_TO_TICKER[cu];
   // Try 6-char prefix match (different share classes)
   for (const [k, v] of Object.entries(CUSIP_TO_TICKER)) {
-    if (k.substring(0, 6) === c6) return v;
+    if (k.substring(0, 6).toUpperCase() === c6) return v;
   }
   // Return cleaned issuer name as fallback
   return issuerName
