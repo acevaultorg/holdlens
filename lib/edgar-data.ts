@@ -73,7 +73,7 @@ export const EDGAR_META = edgarMeta as {
  * Filtered to only include moves with valid ticker symbols (≤5 chars, no spaces).
  */
 export const EDGAR_MOVES: Move[] = (edgarMoves as EdgarMoveJson[])
-  .filter((m) => m.ticker.length <= 5 && !m.ticker.includes(" "))
+  .filter((m) => m.ticker.length >= 1 && m.ticker.length <= 5 && !m.ticker.includes(" "))
   .map((m) => ({
     managerSlug: m.managerSlug,
     quarter: m.quarter as Quarter,
@@ -103,7 +103,7 @@ export function getEdgarHoldings(managerSlug: string) {
     filingDate: latest.filingDate,
     totalValueMn: latest.totalValueMn,
     holdings: latest.holdings
-      .filter((h) => h.ticker.length <= 5 && !h.ticker.includes(" "))
+      .filter((h) => h.ticker.length >= 1 && h.ticker.length <= 5 && !h.ticker.includes(" "))
       .map((h) => ({
         ticker: h.ticker,
         name: h.name,

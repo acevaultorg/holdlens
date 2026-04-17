@@ -713,6 +713,10 @@ async function main() {
       const tickerMap = new Map<string, { name: string; cusip: string; shares: number; value: number }>();
       for (const h of p.holdings) {
         const ticker = cusipToTicker(h.cusip, h.issuerName);
+        // Skip unmapped CUSIPs whose cleaned-name fallback produced an empty
+        // string — these would otherwise aggregate into a phantom position
+        // that shows up as a single 50%+ portfolio slice.
+        if (!ticker) continue;
         const existing = tickerMap.get(ticker);
         if (existing) {
           existing.shares += h.shares;
