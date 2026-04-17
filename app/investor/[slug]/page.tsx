@@ -15,6 +15,38 @@ import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 import { MANAGER_QUALITY } from "@/lib/signals";
 import { QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
+import { getEdgarHoldings } from "@/lib/edgar-data";
+
+type ActiveHolding = { ticker: string; name: string; pct: number; sharesMn: number; thesis: string };
+
+// v1.36 — prefer EDGAR's latest filed positions over hand-curated topHoldings.
+// The hand-curated list rots between filings (Burry's 2023-era BABA/JD/BIDU
+// positions shouldn't linger after his 2025-Q3 PLTR 66% pivot). EDGAR has the
+// current position weights; we overlay the curated `thesis` string where the
+// ticker still appears.
+function getActiveHoldings(m: Manager): ActiveHolding[] {
+  const edgar = getEdgarHoldings(m.slug);
+  if (edgar && edgar.holdings.length > 0) {
+    const thesisByTicker = new Map(m.topHoldings.map((h) => [h.ticker, h.thesis]));
+    return edgar.holdings
+      .slice(0, 10)
+      .map((h) => ({
+        ticker: h.ticker,
+        name: h.name,
+        pct: h.pct,
+        sharesMn: h.sharesMn,
+        thesis: thesisByTicker.get(h.ticker) ?? "",
+      }));
+  }
+  // No EDGAR data → fall back to curated list.
+  return m.topHoldings.map((h) => ({
+    ticker: h.ticker,
+    name: h.name,
+    pct: h.pct,
+    sharesMn: h.sharesMn,
+    thesis: h.thesis,
+  }));
+}
 
 // Find managers whose top 10 holdings overlap with this manager's top 10.
 // Scored by count of shared tickers. Returns the top 3 related.
@@ -73,7 +105,8 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
   const m = getManager(slug);
   if (!m) notFound();
 
-  const total = m.topHoldings.reduce((s, h) => s + h.pct, 0);
+  const activeHoldings = getActiveHoldings(m);
+  const total = activeHoldings.reduce((s, h) => s + h.pct, 0);
   const ld = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -144,7 +177,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       })()}
 
       <div className="mt-12 grid md:grid-cols-3 gap-4">
-        <Stat label="Tracked positions" value={m.topHoldings.length.toString()} />
+        <Stat label="Tracked positions" value={activeHoldings.length.toString()} />
         <Stat label="Top concentration" value={`${total.toFixed(0)}%`} />
         <Stat label="Longest holding" value={m.longestHolding} />
       </div>
@@ -153,7 +186,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           diversification verdict, and a stacked bar showing how the
           portfolio distributes across the biggest bets. Pure server. */}
       <InvestorConcentration
-        holdings={m.topHoldings.map((h) => ({ ticker: h.ticker, pct: h.pct, name: h.name }))}
+        holdings={activeHoldings.map((h) => ({ ticker: h.ticker, pct: h.pct, name: h.name }))}
         managerFirstName={m.name.split(" ")[0]}
       />
 
@@ -163,7 +196,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       </section>
 
       <section className="mt-6">
-        <PortfolioValue holdings={m.topHoldings.map((h) => ({ ticker: h.ticker, sharesMn: h.sharesMn, pct: h.pct }))} label={`${m.name.split(" ")[0]}'s portfolio value`} />
+        <PortfolioValue holdings={activeHoldings.map((h) => ({ ticker: h.ticker, sharesMn: h.sharesMn, pct: h.pct }))} label={`${m.name.split(" ")[0]}'s portfolio value`} />
       </section>
 
       <section className="mt-12">
@@ -181,7 +214,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       </section>
 
       <SectorBreakdown
-        holdings={m.topHoldings.map((h) => ({ ticker: h.ticker, pct: h.pct }))}
+        holdings={activeHoldings.map((h) => ({ ticker: h.ticker, pct: h.pct }))}
         label={`${m.name.split(" ")[0]}'s sector breakdown`}
       />
 
@@ -199,7 +232,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
               </tr>
             </thead>
             <tbody>
-              {m.topHoldings.map((h) => (
+              {activeHoldings.map((h) => (
                 <tr key={h.ticker} className="border-b border-border last:border-0 align-top">
                   <td className="px-5 py-4 font-mono font-semibold">
                     <a href={`/ticker/${h.ticker}`} className="inline-flex items-center gap-2 text-brand hover:underline">
