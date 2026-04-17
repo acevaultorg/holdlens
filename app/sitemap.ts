@@ -39,6 +39,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/learn/warren-buffett-method`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/learn/copy-trading-myth`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/learn/conviction-score-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/learn/survivorship-bias-in-hedge-funds`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/learn/13f-vs-13d-vs-13g`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/grand`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/screener`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },

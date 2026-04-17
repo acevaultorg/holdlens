@@ -17,6 +17,7 @@ const ARTICLES: Article[] = [
   { slug: "copy-trading-myth", title: "The copy-trading myth", desc: "Why mechanically copying Buffett's 13F underperforms the underlying portfolio." },
   { slug: "conviction-score-explained", title: "What is a Conviction Score?", desc: "How to tell a real bet from index padding. The −100..+100 scale explained." },
   { slug: "survivorship-bias-in-hedge-funds", title: "Survivorship bias in hedge funds", desc: "Why every hedge fund performance number you read is probably an overestimate — and how missing dead funds distorts 13F signals." },
+  { slug: "13f-vs-13d-vs-13g", title: "13F vs 13D vs 13G", desc: "Three SEC filings, three signals. The difference between a quarterly portfolio snapshot, an activist disclosure, and a passive big-stake filing — and how to read each one." },
 ];
 
 // v1.20 — CollectionPage + ItemList schema. Google prefers CollectionPage
@@ -44,6 +45,7 @@ const LD = {
       { "@type": "ListItem", position: 7, url: "https://holdlens.com/learn/copy-trading-myth", name: "The copy-trading myth" },
       { "@type": "ListItem", position: 8, url: "https://holdlens.com/learn/conviction-score-explained", name: "What is a Conviction Score?" },
       { "@type": "ListItem", position: 9, url: "https://holdlens.com/learn/survivorship-bias-in-hedge-funds", name: "Survivorship bias in hedge funds" },
+      { "@type": "ListItem", position: 10, url: "https://holdlens.com/learn/13f-vs-13d-vs-13g", name: "13F vs 13D vs 13G" },
     ],
   },
 };
