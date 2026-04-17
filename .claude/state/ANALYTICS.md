@@ -210,3 +210,17 @@ Cycle 11+ queue (from ops voice perspective):
 
 ## Specialist Log
 2026-04-17 16:50 | @self (main-session qualify) | homepage-moves-component | 1 root-cause | actionable | 100%
+
+## Behavior Log (v1.35 — CUSIP coverage expansion)
+2026-04-17 17:20 | task:v1.35-cusip-expansion | archetype:bug_fix_blocking_revenue | stack-class:next-static+data | scale:file-4 | tier:standard | specialist-mix:self-review | gate:AUTO(sovereign-auto) | cycle-time-sec:1800 | success:true
+
+## Behavior Log (v1.36 — investor-page EDGAR preference)
+2026-04-17 17:35 | task:v1.36-investor-edgar-preference | archetype:bug_fix_blocking_revenue | stack-class:next-static | scale:file-1 | tier:quick | specialist-mix:self-review | gate:AUTO(sovereign-auto) | cycle-time-sec:600 | success:true
+
+## Cycle Times
+2026-04-17 | task:v1.35-cusip-expansion | standard | 2100s | 1800s | -14%
+2026-04-17 | task:v1.36-investor-edgar-preference | quick | 900s | 600s | -33%
+
+## Gate Log
+2026-04-17 17:20 | AUTO(sovereign-auto) | data-quality-sweep | cusip-map-expand-175 | holdings-coverage-lifted-to-32pct | correct
+2026-04-17 17:35 | AUTO(sovereign-auto) | data-freshness-fix | investor-page-edgar-preference | all-27-mgrs-fresh | correct

@@ -33,3 +33,7 @@ per-archetype multiplier adjustments kick in.
 
 ## Love Log (v1.34)
 2026-04-17 16:50 | homepage-LatestMoves | USEFUL:0.7 DELIGHT:0.5 RELIABLE:0.9 CLEAR:0.8 UNIQUE:0.6 | mean:0.70 | PASS | Fix: empty-ticker phantom rows eliminated from homepage top-8 moves. Before: 6/8 rows were broken (ticker missing, implausible 50-64% weights). After: all 8 rows show real tickers with realistic 22-49% weights. Useful+Reliable lifted materially; Delight flat (no new ornamentation); Unique unchanged (feature existed).
+
+## Love Log (v1.35 + v1.36)
+2026-04-17 17:20 | edgar-cusip-coverage | USEFUL:0.85 DELIGHT:0.5 RELIABLE:0.90 CLEAR:0.8 UNIQUE:0.75 | mean:0.76 | PASS | Fix: 175 additional CUSIP mappings rescue 3,340 hidden 13F position rows. Before: users saw ~21% of actual 13F data. After: ~32%. Useful lift substantial (actual 13F-tracker function now works). Unique bump (HoldLens showing current positions where competitors don't).
+2026-04-17 17:35 | investor-edgar-preference | USEFUL:0.90 DELIGHT:0.6 RELIABLE:0.95 CLEAR:0.85 UNIQUE:0.85 | mean:0.83 | PASS | Fix: all 27 investor pages now show current 2025-Q4 filings instead of stale 2023 hand-curated data. Burry page: BABA/JD/BIDU → PLTR/NVDA/HAL. This is the core product working correctly for the first time.

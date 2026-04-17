@@ -68,3 +68,7 @@ candidate). Pre-traffic, there's no baseline to drop from.
 
 ## Calibration (v1.34 — data-integrity fix on homepage)
 2026-04-17 16:50 | v1.34-moves-phantom-fix | bug_fix_blocking_core | +0.015 | TBD | TBD | Hypothesis: returning visitor who saw broken Bill Nygren rows last visit now sees real data. Trust-repair on entry page = +1.5% projected 7d return rate. Confidence 0.3.
+
+## Calibration (v1.35 + v1.36)
+2026-04-17 17:20 | v1.35-cusip-expansion | bug_fix_blocking_core | +0.030 | TBD | TBD | +3,340 previously-hidden position rows visible across homepage, biggest-buys/sells, big-bets, investor pages. Hypothesis: users who doubted data integrity (saw "?" tickers) now see real tickers → +3% 7d return. Confidence 0.3.
+2026-04-17 17:35 | v1.36-investor-edgar-preference | bug_fix_blocking_core | +0.045 | TBD | TBD | Investor pages no longer show 1-2yr-stale portfolios. Returning visitor who last saw 2023 data now sees current quarter. Hypothesis: accurate portfolios are the core product value proposition — trust restored. Confidence 0.4.
