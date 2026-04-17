@@ -93,28 +93,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               if(c==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
             }catch(e){}`}
         </Script>
-        {/* Plausible — tagged-events + outbound-links variant (v0.86).
-            - Outbound links auto-track: clicks on external hrefs post an
-              "Outbound Link: Click" event with the URL as prop. Amazon
-              book clicks, affiliate CTAs, and any external reference get
-              measurement for free.
-            - Tagged events: any element with
-              `className="plausible-event-name=MyEvent"` + optional
-              `plausible-event-{prop}=value` fires that event on click.
-              Used on high-intent surfaces (InvestingBooks book cards,
-              AffiliateCTA brokerage cards, Stripe checkout button). */}
-        {/* v1.10 — removed redundant `defer` attribute. Next.js <Script
-            strategy="afterInteractive"> already controls the load timing;
-            adding `defer` on top created a race with Plausible's internal
-            auto-pageview trigger — observed result: zero `/api/event`
-            pageview POSTs despite a healthy script load. The manual
-            PlausiblePageView client component below fires pageview on
-            every route change, so outbound-links + tagged-events script
-            still works for its DOM-hook features without the init-race
-            kneecapping pageview counting. */}
+        {/* Plausible v2 tracker (v1.11 — migrated from legacy
+            script.outbound-links.tagged-events.js → pa-<ID>.js).
+            WHY: Plausible rolled out a new per-site tracker + SDK-style
+            init (queue → plausible.init). The new dashboard's verifier
+            REQUIRES this script src to mark the install verified. Legacy
+            scripts still work for data (events flow, dashboard receives),
+            but the verifier fails with "Script not detected" — bad UX.
+            WHAT THIS SCRIPT GIVES US:
+            - Pageview auto-tracking (first-party, single source of truth)
+            - Outbound link tracking
+            - File download tracking (new — legacy script didn't have this)
+            - Form submission tracking (new)
+            - Tagged events (className="plausible-event-name=X ...") still
+              work identically — preserved in the new tracker for BC.
+            The init stub queues calls before the async script loads,
+            so `window.plausible(...)` is safe to call from any component
+            at any time (e.g., PlausiblePageView below, BacktestShareCard,
+            AdSlot, etc. — all existing call sites keep working). */}
         <Script
-          data-domain="holdlens.com"
-          src="https://plausible.io/js/script.outbound-links.tagged-events.js"
+          id="plausible-init"
+          strategy="beforeInteractive"
+        >{`
+          window.plausible = window.plausible || function(){(plausible.q = plausible.q || []).push(arguments)};
+          plausible.init = plausible.init || function(i){plausible.o=i||{}};
+          plausible.init();
+        `}</Script>
+        <Script
+          async
+          src="https://plausible.io/js/pa--4UvPgnqn5WWDVjuzKOoW.js"
           strategy="afterInteractive"
         />
         {/* Google Analytics 4 — conversion funnel + audience building. Fires
