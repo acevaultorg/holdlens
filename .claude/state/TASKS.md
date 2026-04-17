@@ -1,9 +1,9 @@
 # HoldLens — TASKS
 
-## Queue (v1.09 — mobile menu color system) — COMMITTED, DEPLOY PENDING [objective:v1.09-mobilenav-colors]
+## Queue (v1.09 — mobile menu color system) — SHIPPED [objective:v1.09-mobilenav-colors]
 
 - [x] `P2` FIX MobileNav color rotation — brand/emerald group accents violated tailwind.config.ts reserved-use rule for `brand` and doubled up with pinned-primary link colors → visual noise, no hierarchy [id:mobilenav-colors] [score:4.0] ⏱ done commit fd5dd8f1f — semantic-only colors (buy/sell/info/brand), neutral eyebrow headers, typecheck clean, @craftsman Love 0.78 PASS
-- [ ] `P2` DEPLOY v1.09 via `npm run deploy` from holdlens/ (wrangler pages deploy) [id:deploy-v1.09] [score:4.0] [👤] commit fd5dd8f1f pushed to origin/main. Known `wrangler pages deploy` EPIPE at ~56MB per `rules/cloudflare-pages-epipe.md` — if 3 retries fail, use CF dashboard drag-drop of `out/` directory. Deploy-truth verify post-deploy: open mobile menu at holdlens.com on phone or /design/ → confirm section headers are muted gray (not yellow/green rotation), primary "Best stocks now" is emerald, "Biggest sells" + "Exits" are rose, "Pro features" is amber, everything else is white.
+- [x] `P2` DEPLOY v1.09 via wrangler pages deploy [id:deploy-v1.09] [score:4.0] ⏱ done 2026-04-17 09:38 — deployed to https://fc73b538.holdlens.pages.dev (2557 files, 30.46s after 1 EPIPE retry per rules/cloudflare-pages-epipe.md — succeeded on attempt 2). Deploy-truth verified live via Chrome MCP at holdlens.com: section headers all `rgb(133,141,156)` text-dim (was brand/emerald rotation); buy-side links emerald `rgb(52,211,153)`; sell-side rose `rgb(251,113,133)`; contrarian+rotation sky `rgb(56,189,248)`; Pro features amber `rgb(251,191,36)`; neutral tool links white `rgb(229,229,229)`. IndexNow pinged (830 URLs → Bing/Yandex/Seznam/Naver).
 
 ## Queue (v0.80+v0.81 UX retention pass — COMMITTED, DEPLOY PENDING) [objective:v80-v81-ux-retention]
 
