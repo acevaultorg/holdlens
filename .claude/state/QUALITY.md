@@ -30,3 +30,6 @@ PASS (≥0.5) · SLOP (<0.5) · EXPERIMENTAL-OK (operator-tagged).
 First-ever Love Score entry. No archetype calibration yet — need ≥5 entries
 in the same category (email / landing-page / component / article) before the
 per-archetype multiplier adjustments kick in.
+
+## Love Log (v1.34)
+2026-04-17 16:50 | homepage-LatestMoves | USEFUL:0.7 DELIGHT:0.5 RELIABLE:0.9 CLEAR:0.8 UNIQUE:0.6 | mean:0.70 | PASS | Fix: empty-ticker phantom rows eliminated from homepage top-8 moves. Before: 6/8 rows were broken (ticker missing, implausible 50-64% weights). After: all 8 rows show real tickers with realistic 22-49% weights. Useful+Reliable lifted materially; Delight flat (no new ornamentation); Unique unchanged (feature existed).

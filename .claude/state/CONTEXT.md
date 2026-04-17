@@ -1,5 +1,49 @@
 # HoldLens — Session context
 
+## Session Handoff (2026-04-17 16:55 sovereign auto, v1.34 phantom-ticker hotfix)
+
+**Mode:** sovereign auto
+**Last commit:** 8f1420e7e (v1.34 — empty-ticker phantom moves dropped from EDGAR merge)
+**Last deploy:** 5a3fe143.holdlens.pages.dev — LIVE on holdlens.com (cache-bust verified 0 empty `/signal/` hrefs)
+**Heartbeat:** fresh, `3,18,33,48 * * * *` active
+**Branch:** main
+**Stash:** clean
+
+### What was shipped this cycle (v1.34, hotfix)
+
+- Operator reported visible problem on homepage screenshot: 6/8 rows in `<LatestMoves>` table rendered with "?" logo and NO ticker text, all Bill Nygren / Oakmark, all at implausible 52–64% of book.
+- Root cause in `scripts/fetch-edgar-13f.ts::cusipToTicker()`: cleaned-issuer-name fallback produced `""` for certain unmapped CUSIPs. Those aggregated into `tickerMap[""]` at line 713 → one phantom 50%+ position per quarter → 6 top-ranked entries in the homepage LatestMoves sort.
+- Fix (2 files, commit 8f1420e):
+  - `lib/edgar-data.ts`: EDGAR_MOVES + getEdgarHoldings filters now require `ticker.length >= 1` (was only `<= 5`).
+  - `scripts/fetch-edgar-13f.ts:714`: skip unmapped CUSIPs at aggregation time — next `fetch-edgar` run can't re-emit.
+- Verified clean across six surfaces using same data source: biggest-buys, biggest-sells, big-bets, activity, investor/bill-nygren, new-positions — zero empty `/signal/` hrefs in built HTML.
+- Post-fix homepage top-8 moves: NVDA/Burry 49% · AAPL/Buffett 30% · GRBK/Einhorn 29% × 4 · BAC/Li Lu 26%. All real tickers, all realistic %-of-book.
+
+### Oracle projections
+
+- Revenue: **€2/wk** (bug_fix_blocking_revenue × 0.50, confidence 0.3, hypothesis: trust-repair on homepage entry).
+- Retention: **+1.5% d7** (bug_fix_blocking_core × +0.05, confidence 0.3, hypothesis: returning visitor now sees correct data).
+- Distribution: **+0** (internal fix, no new surface).
+- APS_v17.3 contribution modest × all three axes.
+
+### @craftsman self-review (pre-ship)
+
+- Love Score **0.70 PASS**: Useful 0.7 · Delight 0.5 · Reliable 0.9 · Clear 0.8 · Unique 0.6. Big Reliable lift (broken → rock-solid); Useful lift (visible data now actually correct); no new delight added; not unique (feature existed, just now works).
+
+### Deploy event
+
+- One-shot wrangler deploy succeeded first try, 2202 files / 38.55s → 5a3fe143 (production). No EPIPE.
+- Deploy-truth verified: cache-busted `holdlens.com` returned NVDA/AAPL/AAPL/GRBK/GRBK/GRBK/GRBK/BAC, zero empty hrefs.
+
+### Next cycle candidates (no P0 open)
+
+- Monday METRICS populate from Plausible + GSC
+- CSIL tick (cycle 20 approaching)
+- `/learn/concentration-vs-diversification` article (11th /learn entry)
+- Data-quality sweep on managers.ts topHoldings (hand-curated, unlikely but cheap to audit)
+
+---
+
 ## Session Handoff (2026-04-17 15:35 sovereign auto, cycle 11 close)
 
 **Mode:** sovereign auto

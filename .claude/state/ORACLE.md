@@ -60,3 +60,4 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 ## Top blocker (honest)
 
 **Distribution is the gate, not code.** All in-session projections are "assuming the user-facing Reddit / HN / Twitter launch ships." The Oracle cannot project real `actual_7d` values until **traffic** arrives. First calibration row will land after the first operator-posted campaign that actually delivers ≥200 visitors to the site.
+2026-04-17 16:50 | v1.34-moves-phantom-fix | bug_fix_blocking_revenue | 2.0 | TBD | TBD | Hypothesis: 6 broken rows on homepage LatestMoves eroded trust on entry-page. Fix removes phantom "52-64% of book" + missing-ticker visual. Projects 2/wk via reduced bounce + restored hero-section credibility. Confidence 0.4 (cold archetype, pre-revenue baseline).

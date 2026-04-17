@@ -65,3 +65,6 @@ candidate). Pre-traffic, there's no baseline to drop from.
 ## Corrections
 
 <!-- Append-only. Format: corrects: <timestamp> | reason | new_value -->
+
+## Calibration (v1.34 — data-integrity fix on homepage)
+2026-04-17 16:50 | v1.34-moves-phantom-fix | bug_fix_blocking_core | +0.015 | TBD | TBD | Hypothesis: returning visitor who saw broken Bill Nygren rows last visit now sees real data. Trust-repair on entry page = +1.5% projected 7d return rate. Confidence 0.3.

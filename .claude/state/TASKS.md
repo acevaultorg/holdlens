@@ -1,5 +1,9 @@
 # HoldLens — TASKS
 
+## Queue (v1.34 — homepage phantom-ticker fix) — SHIPPED [objective:v1.34-moves-phantom-fix]
+
+- [x] `P0` FIX homepage LatestMoves empty-ticker phantom rows — 6/8 rows (all Bill Nygren) rendered "?" logo + no ticker + implausible 52-64% of book. Root cause: `cusipToTicker()` fallback returned "" for unmapped CUSIPs whose issuer name became empty after stripping suffixes; those all aggregated into `tickerMap[""]` phantom position per quarter. Fix: (a) `lib/edgar-data.ts` EDGAR_MOVES + getEdgarHoldings filters now require `ticker.length >= 1`; (b) `scripts/fetch-edgar-13f.ts` skips unmapped CUSIPs at aggregation time. Verified live: post-fix top-8 is NVDA/Burry 49%, AAPL/Buffett 30%, GRBK/Einhorn 29% ×4, BAC/Li Lu 26% — zero empty `/signal/` hrefs on holdlens.com. [id:moves-phantom-fix] [score:10.0] [oracle:€2/wk] [ret:+1.5%] ⏱ done 2026-04-17 16:50 commit 8f1420e7e · deploy 5a3fe143.holdlens.pages.dev
+
 ## Queue (v1.10 — Plausible pageview fix + MobileNav focus fix) — SHIPPED [objective:v1.10-analytics-a11y]
 
 - [x] `P0` FIX Plausible pageview silent-loss since v0.86 — `<Script afterInteractive defer>` race killed auto-pageview trigger, zero `/api/event` POSTs for weeks. Added components/PlausiblePageView.tsx firing window.plausible("pageview") on mount + every route change. Dropped redundant `defer`. Wrapped in Suspense for useSearchParams static-export compatibility. [id:plausible-pageview-fix] [score:10.0] ⏱ done 2026-04-17 11:42 commit 2af825e3c — verified live via Chrome MCP (202 POST on holdlens.com every load). Deployed: https://e796ef00.holdlens.pages.dev

@@ -198,3 +198,15 @@ Cycle 11+ queue (from ops voice perspective):
 
 ## Cycle Times
 2026-04-17 | heartbeat-cycle-9 | micro | 60s | 120s | +100%
+
+## Behavior Log (v1.34 — empty-ticker phantom moves fix)
+2026-04-17 16:50 | task:v1.34-moves-phantom-fix | archetype:bug_fix_blocking_revenue | stack-class:next-static | scale:file-2 | tier:quick | specialist-mix:self-review | gate:AUTO(sovereign-auto) | cycle-time-sec:600 | success:true
+
+## Cycle Times
+2026-04-17 | task:v1.34-moves-phantom-fix | tier:quick | estimated-sec:900 | actual-sec:600 | delta:-33%
+
+## Gate Log
+2026-04-17 16:50 | AUTO(sovereign-auto) | bug_fix | edge-case-empty-ticker | phantom-rows-removed | correct
+
+## Specialist Log
+2026-04-17 16:50 | @self (main-session qualify) | homepage-moves-component | 1 root-cause | actionable | 100%
