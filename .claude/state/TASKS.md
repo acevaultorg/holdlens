@@ -1,5 +1,10 @@
 # HoldLens — TASKS
 
+## Queue (v1.09 — mobile menu color system) — COMMITTED, DEPLOY PENDING [objective:v1.09-mobilenav-colors]
+
+- [x] `P2` FIX MobileNav color rotation — brand/emerald group accents violated tailwind.config.ts reserved-use rule for `brand` and doubled up with pinned-primary link colors → visual noise, no hierarchy [id:mobilenav-colors] [score:4.0] ⏱ done commit fd5dd8f1f — semantic-only colors (buy/sell/info/brand), neutral eyebrow headers, typecheck clean, @craftsman Love 0.78 PASS
+- [ ] `P2` DEPLOY v1.09 via `npm run deploy` from holdlens/ (wrangler pages deploy) [id:deploy-v1.09] [score:4.0] [👤] commit fd5dd8f1f pushed to origin/main. Known `wrangler pages deploy` EPIPE at ~56MB per `rules/cloudflare-pages-epipe.md` — if 3 retries fail, use CF dashboard drag-drop of `out/` directory. Deploy-truth verify post-deploy: open mobile menu at holdlens.com on phone or /design/ → confirm section headers are muted gray (not yellow/green rotation), primary "Best stocks now" is emerald, "Biggest sells" + "Exits" are rose, "Pro features" is amber, everything else is white.
+
 ## Queue (v0.80+v0.81 UX retention pass — COMMITTED, DEPLOY PENDING) [objective:v80-v81-ux-retention]
 
 - [x] `P0` Footer 51→25 grouped links (5 semantic columns + legal strip) [id:footer-restructure] [score:15.0] ⏱ done v0.80 1bc34adb4
@@ -244,8 +249,8 @@ Priority = (revenue impact × reversibility) / effort. Top of list executed firs
 - [x] `P1` LINK GA4 ↔ Google Search Console (`holdlens.com` Domain property) — organic query data flows into GA. [id:ga4-gsc-link] [score:12.0] ⏱ done via Chrome MCP
 - [x] `P1` LINK GA4 ↔ AdSense (`pub-7449214764048186`, Revenue Data Reporting ON) — ad revenue per-page will surface in GA once Google approves AdSense. [id:ga4-adsense-link] [score:10.0] ⏱ done via Chrome MCP
 - [x] `P1` CONFIRM `purchase` auto-marked as key event (comes with Drive-sales objective pick). [id:ga4-purchase-key-event] [score:6.0] ⏱ done — cannot be unmarked ("Key event can't be unmarked" tooltip).
-- [ ] `P2` ADD explicit `gtag('event', 'begin_checkout', { currency: 'USD', value })` call in `components/StripeCheckoutButton.tsx` onClick handler. GA4 custom-event filter requires ≥1 observed `click` event before it can be created via Admin UI — code hook bypasses that. Alternatively wait for organic outbound clicks to populate the click event, then create filter via Admin UI. [id:ga4-begin-checkout-hook] [score:9.0]
-- [ ] `P2` ADD explicit `gtag('event', 'purchase', { currency, value, transaction_id })` on the Stripe thank-you page. Closes the revenue-attribution loop. [id:ga4-purchase-hook] [score:11.0]
+- [x] `P2` ADD explicit `gtag('event', 'begin_checkout', ...)` in `components/StripeCheckoutButton.tsx` onClick. ⏱ done v1.25 c9f51cc40 — EUR €9 founders / €14 standard, item_id=holdlens_pro. [id:ga4-begin-checkout-hook] [score:9.0]
+- [x] `P2` ADD explicit `gtag('event', 'purchase', ...)` on /thank-you via PurchaseTracker client component. ⏱ done v1.25 c9f51cc40 — sessionStorage dedup, reads ?session_id, defaults €9. Deployed 2631402f.holdlens.pages.dev [id:ga4-purchase-hook] [score:11.0]
 
 ## 2026-04-16 21:00 — Session close notes
 
