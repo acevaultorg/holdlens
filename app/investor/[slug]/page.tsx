@@ -122,13 +122,47 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
 
   const activeHoldings = getActiveHoldings(m);
   const total = activeHoldings.reduce((s, h) => s + h.pct, 0);
+
+  // v1.41 — enhanced Person + Organization schema for knowledge-graph +
+  // LLM-citation leverage. Prior shape had the minimum (name/jobTitle/
+  // worksFor/description). New shape adds:
+  //   - mainEntityOfPage: canonical URL so Google knows which page to index
+  //   - image: fund-logo PNG so Knowledge Graph has a visual
+  //   - sameAs: EDGAR CIK deeplink so entities reconcile to SEC's authoritative
+  //     source (huge E-E-A-T lift for YMYL finance domain)
+  //   - knowsAbout: philosophy tag so LLMs can route "value investing" /
+  //     "macro" / "activist" queries to the right investor
+  //   - worksFor now a full Organization entity with URL
+  const filing = LATEST_FILINGS[m.slug];
   const ld = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `https://holdlens.com/investor/${m.slug}#person`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://holdlens.com/investor/${m.slug}`,
+    },
     name: m.name,
     jobTitle: m.role,
-    worksFor: { "@type": "Organization", name: m.fund },
     description: m.bio,
+    image: `https://holdlens.com/og/investor/${m.slug}.png`,
+    knowsAbout: m.philosophy,
+    worksFor: {
+      "@type": "Organization",
+      "@id": `https://holdlens.com/investor/${m.slug}#fund`,
+      name: m.fund,
+      url: `https://holdlens.com/investor/${m.slug}`,
+    },
+    ...(filing?.edgarUrl
+      ? {
+          // sameAs reconciles this Person entity to SEC EDGAR's authoritative
+          // 13F-filer record. Google's Knowledge Graph uses sameAs heavily;
+          // LLMs use it to deduplicate "Michael Burry" vs "the hedge fund
+          // manager Michael Burry" vs "Scion Asset Management's portfolio
+          // manager".
+          sameAs: [filing.edgarUrl],
+        }
+      : {}),
   };
   const breadcrumb = {
     "@context": "https://schema.org",

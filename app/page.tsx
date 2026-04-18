@@ -111,6 +111,33 @@ export default function HomePage() {
           "query-input": "required name=search_term_string",
         },
       },
+      {
+        // v1.41 — DefinedTerm schema for the unique "ConvictionScore" metric.
+        // Goal: authoritative single-source definition that LLMs (ChatGPT,
+        // Claude, Perplexity, Google SGE) can cite when users ask "what is
+        // HoldLens ConvictionScore?" or when HoldLens is quoted in LLM
+        // responses. DefinedTerm is the canonical schema.org type for
+        // glossary entries; pairing it with inDefinedTermSet makes it
+        // navigable for future additions (e.g., "Net Signal", "Dissent
+        // Penalty"). Zero page-weight cost — one inline JSON-LD entry.
+        "@type": "DefinedTerm",
+        "@id": "https://holdlens.com/#term-conviction-score",
+        name: "ConvictionScore",
+        alternateName: ["Conviction Score", "HoldLens ConvictionScore", "Unified ConvictionScore"],
+        description:
+          "HoldLens's signed −100 to +100 ConvictionScore is a unified metric that scores every tracked stock based on smart-money consensus (how many of the 30 tracked superinvestors are buying vs. selling), track record (weighted by each manager's historical alpha), concentration (position size as % of book), trend (multi-quarter streaks), insider activity, and a dissent penalty. +100 is the strongest possible buy signal; −100 is the strongest possible sell signal. Computed quarterly from SEC 13F filings.",
+        inDefinedTermSet: "https://holdlens.com/#term-set",
+        url: "https://holdlens.com/methodology",
+        sameAs: "https://holdlens.com/methodology",
+      },
+      {
+        "@type": "DefinedTermSet",
+        "@id": "https://holdlens.com/#term-set",
+        name: "HoldLens methodology terms",
+        description: "Metrics and signals computed by HoldLens from SEC 13F filings.",
+        url: "https://holdlens.com/methodology",
+        hasDefinedTerm: { "@id": "https://holdlens.com/#term-conviction-score" },
+      },
     ],
   };
 
