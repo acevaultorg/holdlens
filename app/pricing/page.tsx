@@ -80,7 +80,7 @@ export default function PricingPage() {
             <Feature text="Live Yahoo Finance quotes, charts, news per ticker" />
             <Feature text="Manager leaderboard with realized 10y alpha vs S&P" />
             <Feature text="Personal portfolio + watchlist (localStorage, no signup)" />
-            <Feature text="Screener, sector heatmap, activity feed, CSV export" />
+            <Feature text="Screener, sector heatmap, activity feed, CSV export (10/month)" />
             <Feature text="cmd+K search, RSS feeds (/buys.xml, /sells.xml)" />
             <Feature text="Manager-vs-manager compare pages (all 105 pairs)" />
           </ul>
@@ -145,7 +145,7 @@ export default function PricingPage() {
             <Feature text="EDGAR automation — the full 80+ manager universe (not just 30)" />
             <Feature text="Per-ticker thesis generator — AI-drafted buy/sell rationale" />
             <Feature text="Historical score time series — see how a stock's signal evolved" />
-            <Feature text="API access (1000 calls/mo) for embeds, bots, scripts" />
+            <Feature text="API access — 10,000 req/day with private key (Free tier: 150 req/day, no key)" />
             <Feature text="Priority feature requests + direct line to the builder" />
             <Feature text="No ads, ever" />
           </ul>

@@ -193,9 +193,9 @@ export default function AiThesisCard({
           <div className="space-y-4">
             {state.pending ? (
               <div className="rounded-xl border border-border bg-bg/40 p-4 text-sm text-muted">
-                AI thesis generation is not yet active for {ticker}. The operator needs to set{" "}
-                <code className="font-mono text-xs text-brand">ANTHROPIC_API_KEY</code> in
-                Cloudflare Pages environment variables.
+                AI thesis generation is being set up for {ticker}. Check back soon — or{" "}
+                <a href="/alerts" className="text-brand hover:underline">get notified</a>{" "}
+                when it goes live.
               </div>
             ) : (
               <>

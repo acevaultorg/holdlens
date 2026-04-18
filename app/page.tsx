@@ -20,7 +20,7 @@ const HOMEPAGE_FAQ: FaqItem[] = [
   },
   {
     q: "Is HoldLens free?",
-    a: "Yes. Every page, every ConvictionScore, every manager profile, every JSON API endpoint is free. No paywall, no signup required for any feature. Ad-supported via Google AdSense and an affiliate relationship with Interactive Brokers.",
+    a: `Yes — the core product (every page, every ConvictionScore, every manager profile, 150+ JSON API endpoints, 30 tracked managers) is free and always will be. Ad-supported via Google AdSense and an affiliate relationship with Interactive Brokers. An optional Pro tier (€9/mo founders rate, first 100 subscribers) adds email alerts on every 13F filing, the full 80+ manager EDGAR universe, a 10,000 req/day API key, a per-ticker AI thesis generator, and removes ads. Free users never lose functionality.`,
   },
   {
     q: "How is HoldLens different from Dataroma?",
@@ -134,7 +134,7 @@ export default function HomePage() {
           managers — scored on a signed{" "}
           <span className="text-emerald-400 font-semibold">+100 buy</span> /{" "}
           <span className="text-rose-400 font-semibold">−100 sell</span> scale.{" "}
-          <span className="text-text font-semibold">Live prices. No signup. Free forever.</span>
+          <span className="text-text font-semibold">Live prices. New filings every quarter.</span>
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <a

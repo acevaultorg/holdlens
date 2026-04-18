@@ -240,7 +240,7 @@ export default function AdSlot({
           <div className="text-base font-bold text-text group-hover:text-brand transition">
             Email alerts + conviction scores + alpha attribution
           </div>
-          <div className="text-xs text-muted mt-1">$14/mo · cancel anytime · lock in for life</div>
+          <div className="text-xs text-muted mt-1">€9/mo founders · cancel anytime</div>
         </div>
         <div className="text-brand font-semibold text-sm">See pricing →</div>
       </div>

@@ -61,6 +61,11 @@ export default function LiveTicker({ symbols }: Props) {
           {items.map((sym, i) => {
             const q = quotes[sym.toUpperCase()];
             if (!q) {
+              // v1.38 — on a finance site the first paint matters: showing
+              // "AAPL …" as a placeholder reads as broken. Before hydration
+              // (loaded=false) we render the ticker symbol alone — clean
+              // "AAPL  MSFT  NVDA" tape — no ambiguous ellipsis. Only after
+              // a quote genuinely fails to load do we fall back to an em-dash.
               return (
                 <span
                   key={`${sym}-${i}`}
@@ -68,7 +73,7 @@ export default function LiveTicker({ symbols }: Props) {
                   aria-hidden={i >= symbols.length}
                 >
                   <span className="font-mono font-semibold">{sym}</span>
-                  <span className="tabular-nums">{loaded ? "—" : "…"}</span>
+                  {loaded && <span className="tabular-nums">—</span>}
                 </span>
               );
             }

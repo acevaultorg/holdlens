@@ -31,7 +31,7 @@ const FEATURES: Feature[] = [
   {
     title: "Custom ticker + manager alerts",
     body:
-      "Get an email the moment any of the 30 tracked managers crosses a move threshold you care about — 'Buffett adds >5%', 'Ackman exits anything', 'Any 10+ manager adds NVDA'. Filter by size, sector, conviction direction.",
+      "Get an email the moment any tracked manager crosses a move threshold you care about — 'Buffett adds >5%', 'Ackman exits anything', 'Any 10+ manager adds NVDA'. Filter by size, sector, conviction direction. Pro unlocks the full 80+ manager EDGAR universe (Free covers the core 30).",
     free: "Weekly digest only",
     pro: "Unlimited custom alerts · any rule · hourly delivery",
   },

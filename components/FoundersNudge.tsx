@@ -53,7 +53,7 @@ const STRIPE_LINK =
 
 export default function FoundersNudge({
   tone = "brand",
-  context = "You're reading premium 13F analysis.",
+  context = "You're reading 13F analysis — the data behind smart-money moves.",
 }: {
   // "rose" tone added for risk/warning contexts (/crowded-trades, /biggest-sells).
   tone?: "brand" | "emerald" | "rose";
