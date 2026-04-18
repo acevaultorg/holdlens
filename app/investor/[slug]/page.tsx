@@ -73,9 +73,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const m = getManager(slug);
   if (!m) return { title: "Investor not found" };
   const ogImage = `/og/investor/${m.slug}.png`;
-  const desc = `Track ${m.name}'s ${m.fund} portfolio. Top holdings, conviction analysis, and quarterly moves.`;
+
+  // v1.40 SEO CTR rewrite — lead with the manager's #1 current position
+  // (%-of-book, EDGAR-sourced so honest). Finance searchers scan SERPs for
+  // specific names: "warren buffett aapl", "burry pltr", "ackman nike".
+  // Title that surfaces the #1 bet captures both head-queries + branded.
+  const edgar = getEdgarHoldings(m.slug);
+  const top = edgar && edgar.holdings.length > 0 ? edgar.holdings[0] : null;
+
+  const title = top
+    ? `${m.name} portfolio — ${top.ticker} ${top.pct.toFixed(0)}% top bet (${edgar!.quarter} 13F)`
+    : `${m.name} portfolio — ${m.fund} holdings`;
+
+  const desc = top
+    ? `${m.name}'s ${m.fund} portfolio — ${top.ticker} is the #1 position at ${top.pct.toFixed(1)}% as of ${edgar!.quarter}. All top 10 holdings, 8-quarter move history, conviction breakdown, sector split. SEC-sourced 13F data.`
+    : `Track ${m.name}'s ${m.fund} portfolio. Top holdings, conviction analysis, and quarterly moves.`;
+
   return {
-    title: `${m.name} portfolio — ${m.fund} holdings`,
+    title,
     description: desc,
     openGraph: {
       title: `${m.name} · ${m.fund}`,

@@ -68,20 +68,30 @@ export async function generateMetadata({ params }: { params: Promise<{ ticker: s
   const t = getTicker(ticker);
   if (!t) return { title: "Signal not found" };
 
-  // Compute a one-line verdict from the unified signed score
+  // v1.40 SEO CTR rewrite — number-led, action-first titles outperform
+  // adjective-led by 15-25% CTR in finance SERPs. New pattern:
+  //   BUY  → "NVDA BUY +47 — 12 superinvestors hold, 8 adding | HoldLens"
+  //   SELL → "AAPL SELL −20 — Buffett trimmed, 2 exiting | HoldLens"
+  //   else → "NVDA — 12 superinvestors hold (Q4 2025 13F) | HoldLens"
+  // Description uses one quote-ready sentence up front (LLM citation fodder
+  // per Aleyda Solis's Extractable characteristic) + a promise of depth.
   const net = getNetSignal(t.symbol);
-  let verdictLine = `${t.ownerCount} of the best portfolio managers in the world hold ${t.symbol}.`;
-  if (net) {
-    if (net.direction === "BUY") {
-      verdictLine = `${t.symbol} unified signal: ${formatSignedScore(net.score)} on a −100..+100 scale (${convictionLabel(net.score).label}).`;
-    } else if (net.direction === "SELL") {
-      verdictLine = `${t.symbol} unified signal: ${formatSignedScore(net.score)} on a −100..+100 scale (${convictionLabel(net.score).label}).`;
-    }
+  const url = `https://holdlens.com/signal/${t.symbol}`;
+
+  let title: string;
+  let verdictLine: string;
+  if (net && net.direction === "BUY") {
+    title = `${t.symbol} BUY ${formatSignedScore(net.score)} — ${net.buyerCount} superinvestor${net.buyerCount === 1 ? "" : "s"} holding ${t.symbol}`;
+    verdictLine = `${t.symbol} is a ${formatSignedScore(net.score)} BUY on HoldLens's signed −100..+100 ConvictionScore — ${net.buyerCount} tracked superinvestor${net.buyerCount === 1 ? "" : "s"} buying, ${net.sellerCount} selling.`;
+  } else if (net && net.direction === "SELL") {
+    title = `${t.symbol} SELL ${formatSignedScore(net.score)} — ${net.sellerCount} superinvestor${net.sellerCount === 1 ? "" : "s"} exiting ${t.symbol}`;
+    verdictLine = `${t.symbol} is a ${formatSignedScore(net.score)} SELL on HoldLens's signed −100..+100 ConvictionScore — ${net.sellerCount} tracked superinvestor${net.sellerCount === 1 ? "" : "s"} trimming or exiting, ${net.buyerCount} still buying.`;
+  } else {
+    title = `${t.symbol} signal — ${t.ownerCount} tracked superinvestor${t.ownerCount === 1 ? "" : "s"} hold ${t.name}`;
+    verdictLine = `${t.ownerCount} of the world's top portfolio managers hold ${t.symbol} (${t.name}).`;
   }
 
-  const url = `https://holdlens.com/signal/${t.symbol}`;
-  const title = `${t.symbol} signal — what smart money is doing on ${t.name}`;
-  const description = `${verdictLine} Full buy/sell dossier: multi-quarter trend, activity, news, live chart.`;
+  const description = `${verdictLine} Full 13F dossier — 8-quarter activity chart, ownership breadth, buy/sell breakdown, live price. SEC-sourced.`;
 
   return {
     title,
@@ -212,6 +222,60 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         </div>
         <StarButton symbol={t.symbol} size="lg" />
       </div>
+
+      {/* v1.40 — "HoldLens read" extractable one-liner. Positioned above the
+          verdict card so LLM crawlers (ChatGPT, Claude, Perplexity, Google
+          SGE) hit a quote-ready sentence immediately. Hits Aleyda Solis's
+          Extractable + Differentiated + Recognizable characteristics from
+          the 10-characteristic LLM-citation checklist. Sentence structure
+          is deliberately formulaic so automated extraction identifies the
+          same pattern across all 94 signal pages: "[TICKER] is a [score]
+          [verdict] — [one data-grounded why]." */}
+      <aside
+        className="mt-6 rounded-card border border-insight/30 bg-surface-insight p-4"
+        aria-label={`HoldLens read on ${t.symbol}`}
+      >
+        <div className="text-[10px] uppercase tracking-widest text-insight font-bold mb-1.5">
+          HoldLens read
+        </div>
+        <p className="text-sm text-text leading-relaxed">
+          {net && net.direction === "BUY" && (
+            <>
+              <span className="font-semibold">{t.symbol}</span> is a{" "}
+              <span className="font-bold tabular-nums text-emerald-400">
+                {formatSignedScore(net.score)} BUY
+              </span>{" "}
+              on HoldLens's signed −100..+100 ConvictionScore —{" "}
+              <span className="font-semibold">{net.buyerCount} tracked superinvestor{net.buyerCount === 1 ? "" : "s"}</span> buying,{" "}
+              <span className="font-semibold">{net.sellerCount}</span> selling.
+              {trend.consistentBuyers.length > 0 && (
+                <>
+                  {" "}
+                  <span className="font-semibold">{trend.consistentBuyers.length}</span>{" "}
+                  on a {Math.max(...trend.consistentBuyers.map((b) => b.streak))}+ quarter streak.
+                </>
+              )}
+            </>
+          )}
+          {net && net.direction === "SELL" && (
+            <>
+              <span className="font-semibold">{t.symbol}</span> is a{" "}
+              <span className="font-bold tabular-nums text-rose-400">
+                {formatSignedScore(net.score)} SELL
+              </span>{" "}
+              on HoldLens's signed −100..+100 ConvictionScore —{" "}
+              <span className="font-semibold">{net.sellerCount} tracked superinvestor{net.sellerCount === 1 ? "" : "s"}</span> trimming or exiting,{" "}
+              <span className="font-semibold">{net.buyerCount}</span> still buying.
+            </>
+          )}
+          {!net && (
+            <>
+              <span className="font-semibold">{t.ownerCount}</span> of the world's top portfolio managers hold{" "}
+              <span className="font-semibold">{t.symbol}</span> ({t.name}). Mixed or absent signals across the tracked 13F set — smart money is not decisively moving.
+            </>
+          )}
+        </p>
+      </aside>
 
       {/* The verdict — the "should I buy or sell?" answer */}
       <div className={`mt-8 rounded-2xl border p-6 md:p-8 ${verdictColor}`}>

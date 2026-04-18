@@ -19,14 +19,22 @@ const TICKER_SCROLL = ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "BRK-B", "AMZN",
 export const metadata: Metadata = {
   metadataBase: new URL("https://holdlens.com"),
   title: {
-    default: "HoldLens — See what the smartest investors are buying",
+    // v1.40 SEO CTR lift — lead with the number. "30 superinvestors" is
+    // scannable in a SERP result; number-led titles outperform adjective-led
+    // titles in finance/data SERPs by ~15-25% CTR (Ahrefs 2024 study). Keep
+    // "HoldLens" as trailing brand for branded-search compounding.
+    default: "30 superinvestors, one ConvictionScore — HoldLens",
     template: "%s · HoldLens",
   },
   description:
-    "Track 30 of the world's best portfolio managers on a single signed −100..+100 ConvictionScore. +100 is the strongest possible buy. Live prices. Free.",
+    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers — scored on a signed +100 buy / −100 sell scale. SEC-sourced. Live prices. Updated every quarter.",
   openGraph: {
-    title: "HoldLens — Spot smart money moves before the market does",
-    description: "30 of the world's best portfolio managers, one signed −100..+100 conviction scale. Live prices. Free.",
+    // v1.40 — honest reframe. Prior "before the market does" implied an info
+    // edge that 45-day-lagged 13F data can't deliver and risked a trust break
+    // on close reading. New copy promises interpretation + aggregation, which
+    // is what the product actually does.
+    title: "HoldLens — 30 superinvestors on one −100..+100 ConvictionScore",
+    description: "Track every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers. Signed buy/sell scoring, live prices, free core.",
     url: "https://holdlens.com",
     siteName: "HoldLens",
     type: "website",
@@ -34,12 +42,12 @@ export const metadata: Metadata = {
     // its own generateMetadata will inherit /og/home.png. Prior to this, the
     // root domain shared as a blank text-only card on every social platform,
     // which is a silent distribution leak for organic referrals.
-    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — smart money signal" }],
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HoldLens — Smart money, out loud",
-    description: "Track 30 of the world's best portfolio managers on one signed −100..+100 ConvictionScore. Free.",
+    title: "HoldLens — 30 superinvestors on one ConvictionScore",
+    description: "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers — on one signed +100 buy / −100 sell scale.",
     creator: "@holdlens",
     images: ["/og/home.png"],
   },
