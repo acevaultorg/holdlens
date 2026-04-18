@@ -8,28 +8,74 @@ Baseline: **pre-traffic** (first Monday METRICS rollup once Plausible +
 GSC data accumulates will seed the baseline). First calibration rows land
 after traffic arrives.
 
-## Archetype multipliers (v17.3 cold seeds, calibrated to SEO+social funnel)
+## Archetype multipliers (v18.0 research-calibrated, 2026-04-17)
+
+Upgraded from v17.3 cold-seeds. Sources: Aleyda Solis 10-characteristic
+LLM-citation research, Semrush 2026 GEO study, Ahrefs E-E-A-T 2026 update.
 
 ```
-SEO_page_addition             × +0.050   cold   (well-executed /learn article → 20-50 organic visitors/wk at maturity)
-comparison_article_seo        × +0.070   cold   (comparison-intent queries have higher CTR + rich-result eligibility via FAQPage)
-data_backed_insight           × +0.060   cold   (unique data angle = Google E-E-A-T lift + share-worthy)
-dossier_depth_page            × +0.040   cold   (thick per-entity pages: /investor/[slug], /signal/[ticker], /sector/[slug])
-schema_addition               × +0.015   cold   (JSON-LD → rich results → CTR lift)
-internal_linking              × +0.020   cold   (graph density lifts PageRank distribution)
-og_image_generation           × +0.025   cold   (social-share CTR lift on referral traffic)
-share_button_addition         × +0.010   cold   (enables but doesn't drive shares)
-sitemap_addition              × +0.012   cold   (unblocks crawl for missing URLs)
-canonical_fix                 × +0.005   cold
-robots_txt_fix                × +0.003   cold
-core_web_vitals_improvement   × +0.018   cold   (CWV is a ranking signal)
-distribution_loop_closure     × +0.030   cold   (ShareStrip + end-of-article CTA back to product)
-thin_content_or_spam          × -0.500   HARD-NEG (penalty risk; scraped/AI-fluff content)
-cleanup_refactor              × +0.000   always
-pricing_page_change           × +0.000   cold   (conversion, not distribution)
-signup_flow_change            × +0.000   cold
-dark_pattern_anything         × -1.000   IMMUTABLE (I-23 + I-26 reject)
+# High-impact (×+65 to +90) — original-research / community-native
+original_research_with_dataset        × +90   (unique dataset → backlinks + LLM citations; HoldLens 13F composite fits)
+open_source_release_brand_prefixed    × +90   (GitHub repo named with brand; strong E-E-A-T)
+annual_report_state_of_x              × +85   (reusable compounding asset; "State of X 2026")
+embeddable_widget                     × +80   (iframe/script-embed tool; compounds on every embed)
+wikipedia_sourced_edit                × +75   (cited-in-Wikipedia stays indexed indefinitely)
+reddit_organic_helpful_comment        × +70   (substantive answer in community, cites own data naturally)
+ai_visibility_optimized_page          × +70   (10-characteristic checklist pass; schema + extractable + corroborated)
+hacker_news_show_hn                   × +70   (one-shot spike; quality-dependent)
+
+# Mid-impact (×+40 to +65)
+comparison_vs_competitor_page         × +60   (comparison-intent query + FAQ schema)  <!-- UPGRADED from +0.07 to +60 per v18 research -->
+shareable_tool_calculator             × +65   (recurring distribution; calculator as link magnet)
+linkedin_zero_click_framework_post    × +65   (operator-published framework; brand recall)
+programmatic_page_with_unique_data    × +55   (ONLY with unique data — not template pages, see HEAVY PENALTIES)
+indie_hackers_build_in_public         × +50
+podcast_guest                         × +50
+substack_guest_essay                  × +45
+haro_qwoted_featured_pitch            × +35
+
+# Low-impact (×+10 to +25) — infrastructure that enables compounding
+schema_markup_article_person_org      × +20   (Article + Person + Organization → E-E-A-T lift)
+internal_linking_hub_spoke            × +15   (graph density; PageRank redistribution)
+sitemap_addition                      × +12   (unblocks missing-URL crawl)
+distribution_loop_closure             × +30   (ShareStrip + article-end CTA back to core product)
+og_image_generation                   × +25   (social-CTR lift on referral traffic)
+core_web_vitals_improvement           × +18
+canonical_fix                         × +5
+robots_txt_fix                        × +3
+
+# Legacy archetypes (v17.3 compat — kept for queue-row backward-compat)
+SEO_page_addition                     × +50   (well-executed /learn article, thick content)
+comparison_article_seo                × +60   (alias for comparison_vs_competitor_page)
+data_backed_insight                   × +60
+dossier_depth_page                    × +40
+share_button_addition                 × +10
+schema_addition                       × +20
+
+# HARD REJECTS (×-1000 — filtered before ranking; I-26 immutable)
+cloaking_or_doorway                   × -1000  IMMUTABLE
+keyword_stuffing                      × -1000  IMMUTABLE
+
+# HEAVY PENALTIES (negative, not filtered — logged for transparency)
+ai_generated_filler_no_unique_data    × -50    (HCU risk; thin content)
+template_programmatic_pages           × -100   (pages generated from same template with no unique data per-URL)
+faq_schema_spam                       × -10    (v18 finding: per Semrush, FAQ schema on every page HURTS LLM citation when overused; use sparingly)
+thin_content_or_spam                  × -500   (aggressive HCU penalty risk)
+
+# Neutral
+pricing_page_change                   × 0      (conversion, not distribution)
+signup_flow_change                    × 0
+cleanup_refactor                      × 0
+dark_pattern_anything                 × -1.000 (I-23 + I-26 reject; different axis but logged here too)
 ```
+
+**Scale note (v18):** multipliers are now in units of **visitors/week** per
+task at steady-state (month 3+ post-ship), not percentage points. A task
+with archetype `comparison_vs_competitor_page` × channel_weight × DA_factor
+projects a raw visitors/week number. The ranking formula still caps
+distribution_weight at +1.0 — multiplier × channel × DA yields a
+visitor-count projection which is then divided by
+`current_baseline_weekly_visitors` and capped.
 
 ## Calibration
 
