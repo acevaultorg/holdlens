@@ -1,5 +1,5 @@
 import { MANAGERS } from "@/lib/managers";
-import { getAllMovesEnriched, QUARTER_LABELS, type Quarter } from "@/lib/moves";
+import { getAllMovesEnriched, QUARTER_LABELS, LATEST_QUARTER, type Quarter } from "@/lib/moves";
 import { getConviction } from "@/lib/conviction";
 import { TICKER_INDEX } from "@/lib/tickers";
 import SectorBadge from "@/components/SectorBadge";
@@ -126,8 +126,14 @@ export default function LatestMoves() {
                 className="border-b border-border last:border-0 hover:bg-bg/40 transition"
               >
                 <td className="px-4 py-3">
+                  {/* v1.39 — NEW/ADD/TRIM/EXIT badge for the freshest filed
+                      quarter gets `animate-pulse` so users instantly spot
+                      which moves happened since they last visited. Only
+                      LATEST_QUARTER pulses; prior quarters render static.
+                      Subtle opacity oscillation only — no size change, no
+                      color flash — so it reads as "alive" not "alarming". */}
                   <span
-                    className={`inline-block text-[10px] font-bold uppercase tracking-wider border rounded px-1.5 py-0.5 ${actionStyle(r.action)}`}
+                    className={`inline-block text-[10px] font-bold uppercase tracking-wider border rounded px-1.5 py-0.5 ${actionStyle(r.action)} ${r.quarter === LATEST_QUARTER ? "animate-pulse" : ""}`}
                   >
                     {actionLabel(r.action)}
                   </span>

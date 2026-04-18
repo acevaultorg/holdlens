@@ -2,12 +2,14 @@ import EmailCapture from "@/components/EmailCapture";
 import BuySellSignals from "@/components/BuySellSignals";
 import LiveStats from "@/components/LiveStats";
 import LatestMoves from "@/components/LatestMoves";
+import SinceLastVisit from "@/components/SinceLastVisit";
 import FaqSchema, { type FaqItem } from "@/components/FaqSchema";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
 import { MANAGERS } from "@/lib/managers";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { getAllConvictionScores } from "@/lib/conviction";
+import { LATEST_FILINGS } from "@/lib/filings";
 
 const HOMEPAGE_FAQ: FaqItem[] = [
   {
@@ -43,6 +45,18 @@ export default function HomePage() {
   const buySignals = allScores.filter((s) => s.score > 0).length;
   const sellSignals = allScores.filter((s) => s.score < 0).length;
   const tickerCount = Object.keys(TICKER_INDEX).length;
+
+  // v1.39 — compute the fleet-latest 13F for the "Since your last visit"
+  // return-motivator banner. Uses the EDGAR-derived LATEST_FILINGS map
+  // (v1.37) so the banner is sourced from actual ingested 13F data, never
+  // a hardcoded string. Pick the freshest filingDate across all tracked
+  // managers — that's the newest thing the site has to show a returning
+  // visitor.
+  const allFilings = Object.values(LATEST_FILINGS);
+  const fleetLatest = allFilings.reduce(
+    (best, f) => (f.latestDate > best.latestDate ? f : best),
+    allFilings[0],
+  );
 
   // v1.20 — site-wide schema.org declarations for SERP enhancements.
   // Organization + WebSite + SearchAction unlock three Google features:
@@ -127,7 +141,14 @@ export default function HomePage() {
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight">
           Understand every move by the
           <br />
-          <span className="text-brand">smartest investors in the world.</span>
+          {/* v1.39 — gradient hero text for first-paint dopamine lift. Base
+              `text-brand` stays as a fallback on browsers that don't support
+              bg-clip-text + text-transparent (Safari < 15, ancient Edge). On
+              evergreen browsers the brand amber subtly shimmers into a deeper
+              amber, reading as premium without changing brand identity. */}
+          <span className="text-brand bg-gradient-to-br from-brand to-amber-500 bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
+            smartest investors in the world.
+          </span>
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl mx-auto">
           Every 13F move from Buffett, Ackman, Burry and {MANAGERS.length - 3} other top portfolio
@@ -154,6 +175,16 @@ export default function HomePage() {
           SEC-sourced · 8 quarters of data · not investment advice
         </div>
       </section>
+
+      {/* v1.39 — returning-visitor banner. Silent on first visit; appears
+          only when the localStorage `last-visit` cursor is ≥ 48h old. Tells
+          the user the real human gap + the freshest 13F filing on file,
+          with a "see what changed" link to /activity. Dismissible. Core
+          return-motivator — honest, no fake counts, no FOMO. */}
+      <SinceLastVisit
+        latestQuarter={fleetLatest.quarter}
+        latestFilingDate={fleetLatest.latestDate}
+      />
 
       {/* Buy/Sell signal card — the headline feature. v1.07 removed
           border-y divider: the card already has its own borders per column,

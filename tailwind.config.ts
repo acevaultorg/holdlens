@@ -51,6 +51,15 @@ const config: Config = {
         // highlights that aren't buy/sell-coded.
         accent: "#a78bfa", // violet-400
 
+        // v1.39 addictive-refinement — semantic "insight" cyan.
+        // Use EXCLUSIVELY for educational callouts, /learn-article highlights,
+        // the "since your last visit" return-motivator banner, and "aha"
+        // moments. Distinct from brand (Pro/CTA), info (mixed/contrarian),
+        // and emerald (buy). Gives us a fourth meaningful color tier without
+        // muddying the buy/sell/Pro trio.
+        insight: "#22d3ee", // cyan-400
+        "surface-insight": "rgba(34, 211, 238, 0.08)",
+
         // Tinted surface helpers (for callout cards, banners, nudges) ——————
         // Use like bg-surface-buy, border-surface-sell for consistent
         // emerald/rose tinted panels across components.
