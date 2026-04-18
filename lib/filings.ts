@@ -1,14 +1,30 @@
-// Approximate latest 13F filing dates per manager. 13F filings are due 45 days
-// after quarter-end, so for Q3 2025 (ending 2025-09-30), the deadline is 2025-11-14.
-// This is a curated snapshot — production v0.2 will scrape EDGAR directly.
+// Latest 13F filing per manager.
+//
+// v1.37 — we now DERIVE latestDate + quarter from data/edgar-holdings.json so
+// the "Latest 13F: QX · Nd ago" badge on /investor/[slug] always reflects what
+// the ingested EDGAR data actually contains. Prior to v1.37 this was a
+// hand-curated snapshot that stopped being refreshed after 2025-11-14 and
+// quietly lied about filing freshness for 2+ months after Q4 2025 landed.
+//
+// The hand-curated map below (CURATED_FILINGS) is preserved as a fallback for
+// managers with no EDGAR data and as the source of truth for edgarUrl (the
+// CIK-specific SEC search URL).
+import { EDGAR_FILINGS } from "./edgar-data";
+
 export type Filing = {
   slug: string;
-  latestDate: string; // ISO YYYY-MM-DD
-  quarter: string;    // e.g. "Q3 2025"
+  latestDate: string; // ISO YYYY-MM-DD (filingDate from EDGAR, not quarter-end)
+  quarter: string;    // e.g. "Q4 2025"
   edgarUrl?: string;
 };
 
-export const LATEST_FILINGS: Record<string, Filing> = {
+function quarterToHuman(q: string): string {
+  // "2025-Q4" → "Q4 2025"
+  const m = /^(\d{4})-Q([1-4])$/.exec(q);
+  return m ? `Q${m[2]} ${m[1]}` : q;
+}
+
+const CURATED_FILINGS: Record<string, Filing> = {
   "warren-buffett": {
     slug: "warren-buffett",
     latestDate: "2025-11-14",
@@ -94,6 +110,32 @@ export const LATEST_FILINGS: Record<string, Filing> = {
     edgarUrl: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001548914&type=13F-HR",
   },
 };
+
+// Derive the per-manager latest filing from EDGAR. Keep the curated edgarUrl
+// (which encodes each manager's CIK) but overwrite latestDate + quarter with
+// whatever the ingested 13F JSON actually has.
+function buildLatestFilings(): Record<string, Filing> {
+  const latestByMgr: Record<string, { quarter: string; filingDate: string }> = {};
+  for (const f of EDGAR_FILINGS) {
+    const prev = latestByMgr[f.managerSlug];
+    if (!prev || f.quarter > prev.quarter) {
+      latestByMgr[f.managerSlug] = { quarter: f.quarter, filingDate: f.filingDate };
+    }
+  }
+  const out: Record<string, Filing> = { ...CURATED_FILINGS };
+  for (const [slug, { quarter, filingDate }] of Object.entries(latestByMgr)) {
+    const curated = CURATED_FILINGS[slug];
+    out[slug] = {
+      slug,
+      latestDate: filingDate,
+      quarter: quarterToHuman(quarter),
+      edgarUrl: curated?.edgarUrl,
+    };
+  }
+  return out;
+}
+
+export const LATEST_FILINGS: Record<string, Filing> = buildLatestFilings();
 
 /** Next expected 13F filing deadline. 13Fs are due 45 days after quarter end. */
 export function nextFilingDeadline(now = new Date()): { date: string; quarter: string } {
