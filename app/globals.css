@@ -40,7 +40,26 @@
   --hl-duration-slow: 280ms;
 }
 
-html, body { background: var(--hl-bg); color: var(--hl-text); }
+html { background: var(--hl-bg); color: var(--hl-text); }
+
+/* v1.43 — subtle warm radial-gradient at the top-center of the page.
+   Pure black bg reads clinical; a barely-perceptible amber wash at the top
+   (where the hero brand logo + CTAs live) gives the site a warmth-of-
+   attention feel without losing terminal credibility. Values tuned so the
+   gradient is invisible-until-noticed: 1.5% alpha at center, full-opaque bg
+   by 600px down. Attached to <body> so it doesn't bleed into sticky nav. */
+body {
+  background:
+    radial-gradient(
+      ellipse 800px 600px at 50% -100px,
+      rgba(251, 191, 36, 0.025) 0%,
+      rgba(251, 191, 36, 0.01) 40%,
+      transparent 70%
+    ),
+    var(--hl-bg);
+  color: var(--hl-text);
+  min-height: 100vh;
+}
 * { -webkit-font-smoothing: antialiased; }
 
 /* Smooth scroll for in-page anchors (back-to-top button, TOC links, etc.) —

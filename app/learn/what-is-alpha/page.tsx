@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import ShareStrip from "@/components/ShareStrip";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 // v1.24 — new /learn/ article. "What is alpha?" is a foundational concept
 // that every investing site promises to explain and almost every one does it
@@ -51,8 +54,8 @@ const LD = [
     headline: "What is alpha? A plain English guide to the hedge fund edge",
     description:
       "The single concept behind every hedge fund's marketing deck — explained without jargon, with real numbers from tracked superinvestors.",
-    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
-    publisher: { "@id": "https://holdlens.com/#organization" },
+    author: AUTHOR_SCHEMA,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/what-is-alpha",
     datePublished: "2026-04-16",
     dateModified: "2026-04-16",
@@ -92,6 +95,8 @@ export default function WhatIsAlphaPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <AuthorByline date="2026-04-16" />
+
         <h2 className="text-2xl font-bold mt-10 mb-3">The 10-second definition</h2>
         <p className="text-muted">
           If the S&amp;P 500 returned 10% last year and your portfolio returned
@@ -302,6 +307,8 @@ export default function WhatIsAlphaPage() {
           </p>
         </div>
       </div>
+
+      <LearnReadNext currentSlug="what-is-alpha" />
 
       <ShareStrip
         title="What is alpha? A plain English guide to the hedge fund edge — HoldLens"

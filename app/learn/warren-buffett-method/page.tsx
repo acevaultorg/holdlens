@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import ShareStrip from "@/components/ShareStrip";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 // v1.29 — new /learn article. "Warren Buffett method" gets ~6,500 monthly
 // search queries. HoldLens has authority to answer because we hold the
@@ -46,8 +49,8 @@ const LD = [
     headline: "The Warren Buffett method — what's transferable, what isn't",
     description:
       "Honest breakdown of which Buffett principles scale to a retail account and which depend on a structural advantage you don't have.",
-    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
-    publisher: { "@id": "https://holdlens.com/#organization" },
+    author: AUTHOR_SCHEMA,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/warren-buffett-method",
     datePublished: "2026-04-17",
     dateModified: "2026-04-17",
@@ -89,6 +92,8 @@ export default function WarrenBuffettMethodPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <AuthorByline date="2026-04-17" />
+
         <h2 className="text-2xl font-bold mt-10 mb-3">
           The 5 principles you actually see in the 13F
         </h2>
@@ -303,6 +308,8 @@ export default function WarrenBuffettMethodPage() {
           </p>
         </div>
       </div>
+
+      <LearnReadNext currentSlug="warren-buffett-method" />
 
       <ShareStrip
         title="The Warren Buffett method — what's transferable, what isn't — HoldLens"

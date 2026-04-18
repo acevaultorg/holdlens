@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import InvestingBooks from "@/components/InvestingBooks";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 export const metadata: Metadata = {
   title: "What is the HoldLens ConvictionScore? — The single signed −100..+100 scale",
@@ -17,8 +20,8 @@ const LD = [
     headline: "What is the HoldLens ConvictionScore?",
     description:
       "How HoldLens assigns every stock one signed conviction score on a −100..+100 scale where +100 is the strongest possible buy and −100 the strongest possible sell.",
-    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
-    publisher: { "@id": "https://holdlens.com/#organization" },
+    author: AUTHOR_SCHEMA,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/conviction-score-explained",
     datePublished: "2026-03-20",
     dateModified: "2026-04-10",
@@ -55,6 +58,8 @@ export default function ConvictionPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <AuthorByline date="2026-03-20" updated="2026-04-10" />
+
         <h2 className="text-2xl font-bold mt-8 mb-3">The problem with dual buy / sell rankings</h2>
         <p className="text-muted">
           Every 13F aggregator ranks "top buys" and "top sells" as two independent lists. The naive version counts
@@ -187,6 +192,8 @@ export default function ConvictionPage() {
           The full six-layer formula lives in the project repo and is described in detail on the{" "}
           <a href="/methodology" className="underline">methodology page</a>. Not investment advice.
         </p>
+
+        <LearnReadNext currentSlug="conviction-score-explained" />
 
         <AdSlot format="horizontal" priority="secondary" />
       </div>

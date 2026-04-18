@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import ShareStrip from "@/components/ShareStrip";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 // /learn/13f-vs-13d-vs-13g
 //
@@ -74,12 +77,8 @@ const LD = [
       "13F vs 13D vs 13G — what's the difference, and what each one tells you",
     description:
       "Three SEC filings, three signals. A plain-English comparison of Schedule 13F, Schedule 13D, and Schedule 13G — who files, when, and how to read the difference as manager intent.",
-    author: {
-      "@type": "Organization",
-      name: "HoldLens",
-      url: "https://holdlens.com/",
-    },
-    publisher: { "@id": "https://holdlens.com/#organization" },
+    author: AUTHOR_SCHEMA,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/13f-vs-13d-vs-13g",
     datePublished: "2026-04-17",
     dateModified: "2026-04-17",
@@ -211,6 +210,8 @@ export default function ThirteenFvsDvsGPage() {
             </div>
           </div>
         </div>
+
+        <AuthorByline date="2026-04-17" />
 
         {/* Section 1 */}
         <h2 className="text-2xl font-bold mt-10 mb-3">
@@ -649,6 +650,8 @@ export default function ThirteenFvsDvsGPage() {
           </p>
         </div>
       </div>
+
+      <LearnReadNext currentSlug="13f-vs-13d-vs-13g" />
 
       <ShareStrip
         url="https://holdlens.com/learn/13f-vs-13d-vs-13g"

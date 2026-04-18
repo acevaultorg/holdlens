@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import InvestingBooks from "@/components/InvestingBooks";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 export const metadata: Metadata = {
   title: "Can you actually copy Warren Buffett? — The honest answer",
@@ -16,8 +19,8 @@ const ARTICLE_LD = {
   headline: "Can you actually copy Warren Buffett? — The honest answer",
   description:
     "Why 13F-based copy-trading doesn't work the way retail investors think — and what to do instead.",
-  author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
-  publisher: { "@id": "https://holdlens.com/#organization" },
+  author: AUTHOR_SCHEMA,
+  publisher: PUBLISHER_REF,
   mainEntityOfPage: "https://holdlens.com/learn/copy-trading-myth",
   datePublished: "2026-03-15",
   dateModified: "2026-04-10",
@@ -40,6 +43,8 @@ export default function CopyMythPage() {
       <p className="text-xl text-muted mb-10">The honest answer: not the way you think.</p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <AuthorByline date="2026-03-15" updated="2026-04-10" />
+
         <h2 className="text-2xl font-bold mt-8 mb-3">The 45-day delay problem</h2>
         <p className="text-muted">
           Hedge funds file 13Fs <strong className="text-text">45 days after the quarter ends</strong>. By the time you
@@ -96,6 +101,8 @@ export default function CopyMythPage() {
         <p className="text-xs text-dim pt-8 border-t border-border mt-12">
           Not investment advice. See <a href="/methodology" className="underline">methodology</a>.
         </p>
+
+        <LearnReadNext currentSlug="copy-trading-myth" />
 
         <AdSlot format="horizontal" priority="secondary" />
       </div>

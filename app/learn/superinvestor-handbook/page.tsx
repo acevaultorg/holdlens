@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import InvestingBooks from "@/components/InvestingBooks";
 import ShareStrip from "@/components/ShareStrip";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 // /learn/superinvestor-handbook — 3000+ word evergreen SEO piece targeting
 // "how to read 13F filings", "how to track superinvestors", "13F explained",
@@ -47,12 +50,8 @@ const JSONLD = {
     "The Superinvestor Handbook — how to read 13F filings and track smart money",
   description:
     "A 10-section guide to reading SEC 13F filings and tracking the world's best portfolio managers. Free, plain English.",
-  author: { "@type": "Organization", name: "HoldLens" },
-  publisher: {
-    "@type": "Organization",
-    name: "HoldLens",
-    url: "https://holdlens.com",
-  },
+  author: AUTHOR_SCHEMA,
+  publisher: PUBLISHER_REF,
   datePublished: "2026-04-15",
   dateModified: "2026-04-15",
   mainEntityOfPage: {
@@ -186,6 +185,8 @@ export default function SuperinvestorHandbookPage() {
       </div>
 
       <AdSlot format="in-article" />
+
+      <AuthorByline date="2026-04-15" />
 
       <Section id="what-is-13f" n="1" title="What is a 13F filing?">
         <p>
@@ -605,6 +606,8 @@ export default function SuperinvestorHandbookPage() {
           ))}
         </div>
       </section>
+
+      <LearnReadNext currentSlug="superinvestor-handbook" />
 
       <ShareStrip
         title="The Superinvestor Handbook — how to read 13F filings and track smart money"

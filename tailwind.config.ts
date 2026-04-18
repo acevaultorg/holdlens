@@ -129,6 +129,17 @@ const config: Config = {
       boxShadow: {
         "rim": "inset 0 0 0 1px rgba(255, 255, 255, 0.04)",
         "rim-strong": "inset 0 0 0 1px rgba(255, 255, 255, 0.08)",
+        // v1.43 — chromatic glow presets. "brand-glow" wraps the primary CTA
+        // in a warm amber halo (dopamine signal on hero buttons, Stripe
+        // checkout). "buy-glow" / "sell-glow" scale the verdict badge with
+        // a chromatic ring matching the signal direction — the ConvictionScore
+        // moment gets visual weight commensurate with being the reason the
+        // page exists. Glow radius/opacity tuned low so it feels premium,
+        // not spammy gaming-app.
+        "brand-glow": "0 0 32px -4px rgba(251, 191, 36, 0.35), 0 0 12px -2px rgba(251, 191, 36, 0.2)",
+        "brand-glow-sm": "0 0 16px -4px rgba(251, 191, 36, 0.25)",
+        "buy-glow": "0 0 48px -8px rgba(52, 211, 153, 0.4), 0 0 16px -4px rgba(52, 211, 153, 0.25)",
+        "sell-glow": "0 0 48px -8px rgba(251, 113, 133, 0.4), 0 0 16px -4px rgba(251, 113, 133, 0.25)",
         "lift": "0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.04)",
         "float": "0 16px 48px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.06)",
       },

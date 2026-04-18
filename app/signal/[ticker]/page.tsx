@@ -277,23 +277,43 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         </p>
       </aside>
 
-      {/* The verdict — the "should I buy or sell?" answer */}
-      <div className={`mt-8 rounded-2xl border p-6 md:p-8 ${verdictColor}`}>
+      {/* The verdict — the "should I buy or sell?" answer.
+          v1.43 — the score IS the reason the page exists. Before: it sat at
+          text-2xl, smaller than the BUY/SELL word above it. After: the score
+          is the largest glyph on the page (text-6xl md:text-7xl), rendered
+          tabular-numeric so it scans instantly, and the whole verdict card
+          wears a chromatic glow matching direction (buy-glow / sell-glow)
+          so the single answer a visitor came for feels earned rather than
+          listed. Matches the strategist finding: "the score itself doesn't
+          pulse, animate, or visually escalate relative to the surrounding
+          data." Fixed here. */}
+      <div
+        className={`mt-8 rounded-2xl border p-6 md:p-8 ${verdictColor} ${
+          verdict === "BUY"
+            ? "shadow-buy-glow"
+            : verdict === "SELL"
+            ? "shadow-sell-glow"
+            : ""
+        }`}
+      >
         <div className="flex items-center justify-between gap-6 flex-wrap">
           <div>
             <div className="text-[11px] uppercase tracking-widest font-bold opacity-80">
               HoldLens verdict · single −100..+100 scale
             </div>
-            <div className="flex items-end gap-3 mt-2 flex-wrap">
-              <div className="text-5xl md:text-6xl font-bold tracking-tight">{verdict}</div>
+            <div className="flex items-baseline gap-4 mt-2 flex-wrap">
+              <div className="text-4xl md:text-5xl font-bold tracking-tight opacity-90">{verdict}</div>
+              <div className="text-6xl md:text-7xl font-black tabular-nums tracking-tighter leading-none">
+                {formatSignedScore(signedScore)}
+              </div>
               <TrendBadge ticker={t.symbol} size="md" />
             </div>
-            <div className="text-sm mt-2 opacity-80">
-              Score: <span className="font-bold tabular-nums text-2xl">{formatSignedScore(signedScore)}</span>
-              <span className="opacity-60"> / {signedScore >= 0 ? "+100" : "−100"}</span>
-            </div>
-            <div className="text-[11px] mt-1 opacity-70">
-              {convictionLabel(signedScore).label}
+            <div className="text-xs mt-2 opacity-70">
+              on a signed{" "}
+              <span className="tabular-nums">
+                {signedScore >= 0 ? "+100 buy" : "−100 sell"}
+              </span>{" "}
+              scale · {convictionLabel(signedScore).label}
             </div>
           </div>
           <div className="max-w-sm">

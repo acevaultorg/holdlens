@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import ShareStrip from "@/components/ShareStrip";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 // /learn/survivorship-bias-in-hedge-funds
 //
@@ -70,12 +73,8 @@ const LD = [
       "Survivorship Bias in Hedge Funds — Why the Dead Funds Matter",
     description:
       "Why every hedge fund performance number you read is probably wrong — and how survivorship bias distorts both track records and 13F smart-money signals.",
-    author: {
-      "@type": "Organization",
-      name: "HoldLens",
-      url: "https://holdlens.com/",
-    },
-    publisher: { "@id": "https://holdlens.com/#organization" },
+    author: AUTHOR_SCHEMA,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage:
       "https://holdlens.com/learn/survivorship-bias-in-hedge-funds",
     datePublished: "2026-04-17",
@@ -119,6 +118,8 @@ export default function SurvivorshipBiasPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <AuthorByline date="2026-04-17" />
+
         {/* Section 1 */}
         <h2 className="text-2xl font-bold mt-10 mb-3">
           What is survivorship bias?
@@ -514,6 +515,8 @@ export default function SurvivorshipBiasPage() {
           </p>
         </div>
       </div>
+
+      <LearnReadNext currentSlug="survivorship-bias-in-hedge-funds" />
 
       <ShareStrip
         url="https://holdlens.com/learn/survivorship-bias-in-hedge-funds"

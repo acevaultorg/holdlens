@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import ShareStrip from "@/components/ShareStrip";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 // v1.26 — new /learn/ article. The 45-day lag is the single most misunderstood
 // fact about 13F data, and also the one that separates honest sites from
@@ -48,8 +51,8 @@ const LD = [
     headline: "The 45-day lag problem in 13F filings — and why it's a feature, not a bug",
     description:
       "SEC 13F filings are always 45 days late. Here's why that's by design, what you CAN still learn from them, and what to ignore.",
-    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
-    publisher: { "@id": "https://holdlens.com/#organization" },
+    author: AUTHOR_SCHEMA,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/45-day-lag-explained",
     datePublished: "2026-04-16",
     dateModified: "2026-04-16",
@@ -84,6 +87,8 @@ export default function FortyFiveDayLagPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <AuthorByline date="2026-04-16" />
+
         <h2 className="text-2xl font-bold mt-10 mb-3">The timeline</h2>
         <p className="text-muted">
           The SEC&apos;s Form 13F rule (§240.13f-1 of the Securities Exchange Act)
@@ -303,6 +308,8 @@ export default function FortyFiveDayLagPage() {
           </p>
         </div>
       </div>
+
+      <LearnReadNext currentSlug="45-day-lag-explained" />
 
       <ShareStrip
         title="The 45-day lag in 13F filings — HoldLens"

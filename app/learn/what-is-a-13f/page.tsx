@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import InvestingBooks from "@/components/InvestingBooks";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 export const metadata: Metadata = {
   title: "What is a 13F filing? — Plain English guide for retail investors",
@@ -13,8 +16,8 @@ export default function What13FPage() {
     "@type": "Article",
     headline: "What is a 13F filing?",
     description: "Plain English guide to SEC Form 13F for retail investors.",
-    author: { "@type": "Organization", name: "HoldLens" },
-    publisher: { "@type": "Organization", name: "HoldLens" },
+    author: AUTHOR_SCHEMA,
+    publisher: PUBLISHER_REF,
   };
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
@@ -27,6 +30,8 @@ export default function What13FPage() {
           A 13F is an SEC form that institutional investment managers with over <strong className="text-text">$100 million</strong>
           {" "}in assets are required to file every quarter. It lists their long US equity positions.
         </p>
+
+        <AuthorByline date="2026-04-10" />
 
         <h2 className="text-2xl font-bold mt-10 mb-3">When are 13Fs filed?</h2>
         <p className="text-muted">
@@ -85,6 +90,8 @@ export default function What13FPage() {
           Not investment advice. See <a href="/methodology" className="underline">methodology</a> for how we parse
           and score every filing.
         </p>
+
+        <LearnReadNext currentSlug="what-is-a-13f" />
 
         <AdSlot format="horizontal" priority="secondary" />
       </div>

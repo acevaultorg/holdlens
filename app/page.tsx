@@ -216,16 +216,22 @@ export default function HomePage() {
           <span className="text-rose-400 font-semibold">−100 sell</span> scale.{" "}
           <span className="text-text font-semibold">Live prices. New filings every quarter.</span>
         </p>
+        {/* v1.43 — chromatic glow on hero CTAs. Primary buy CTA wears the
+            amber brand-glow (dopamine anchor), secondary sell CTA gets a
+            softer rose tint on hover. First-paint warmth + clear primary/
+            secondary hierarchy. The strategist audit called out that the
+            homepage hero needed a stronger "keep scrolling" signal — a
+            glowing primary CTA reads as the natural next action. */}
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <a
             href="/best-now"
-            className="bg-brand text-black font-semibold rounded-xl px-6 py-4 hover:opacity-90 transition"
+            className="bg-brand text-black font-semibold rounded-xl px-6 py-4 shadow-brand-glow hover:shadow-brand-glow hover:opacity-95 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
             See the top buy signals →
           </a>
           <a
             href="/biggest-sells"
-            className="border border-rose-400/40 bg-rose-400/5 text-rose-400 font-semibold rounded-xl px-6 py-4 hover:bg-rose-400/10 transition"
+            className="border border-rose-400/40 bg-rose-400/5 text-rose-400 font-semibold rounded-xl px-6 py-4 hover:bg-rose-400/10 hover:border-rose-400/60 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
             See the top sell signals →
           </a>

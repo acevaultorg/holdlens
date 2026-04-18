@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import ShareStrip from "@/components/ShareStrip";
+import AuthorByline from "@/components/AuthorByline";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import LearnReadNext from "@/components/LearnReadNext";
 
 // v1.23 — new /learn/ article. "How to read a 13F in 5 minutes" is a high-volume
 // practical query ("how to read 13f filing", "13f filing explained", "hedge fund
@@ -53,8 +56,8 @@ const LD = [
     headline: "How to read a 13F filing in 5 minutes",
     description:
       "Plain English walkthrough of SEC Form 13F — cover page, information table, share counts, value columns, CUSIPs, call/put notations, and what 13Fs don't show.",
-    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
-    publisher: { "@id": "https://holdlens.com/#organization" },
+    author: AUTHOR_SCHEMA,
+    publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/how-to-read-a-13f",
     datePublished: "2026-04-16",
     dateModified: "2026-04-16",
@@ -99,6 +102,8 @@ export default function HowToReadA13FPage() {
           before, you'll leave this page knowing exactly what to look at, what
           every column means, and what the filing deliberately doesn't tell you.
         </p>
+
+        <AuthorByline date="2026-04-16" />
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Step 1 — Find a filing</h2>
         <p className="text-muted">
@@ -341,6 +346,8 @@ export default function HowToReadA13FPage() {
           </p>
         </div>
       </div>
+
+      <LearnReadNext currentSlug="how-to-read-a-13f" />
 
       <ShareStrip
         title="How to read a 13F filing in 5 minutes — HoldLens"
