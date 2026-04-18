@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import EmailCapture from "@/components/EmailCapture";
 import BuySellSignals from "@/components/BuySellSignals";
 import LiveStats from "@/components/LiveStats";
@@ -10,6 +11,37 @@ import { MANAGERS } from "@/lib/managers";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { getAllConvictionScores } from "@/lib/conviction";
 import { LATEST_FILINGS } from "@/lib/filings";
+
+// v1.42 — explicit homepage metadata. Prior state: homepage inherited
+// layout.metadata.title.default ("30 superinvestors, one ConvictionScore —
+// HoldLens") for <title> while the LAYOUT'S own openGraph.title said
+// something DIFFERENT ("HoldLens — 30 superinvestors on one −100..+100
+// ConvictionScore"). Twitter cards on social shares and the <title> a user
+// sees in a tab pointed at the same page but didn't match. This is a
+// consistency fix, not a content change — one source of truth for the
+// homepage's three title slots.
+export const metadata: Metadata = {
+  title: "30 superinvestors, one ConvictionScore — HoldLens",
+  description:
+    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers — scored on a signed +100 buy / −100 sell scale. SEC-sourced. Live prices. New filings every quarter.",
+  alternates: { canonical: "https://holdlens.com/" },
+  openGraph: {
+    title: "30 superinvestors, one ConvictionScore — HoldLens",
+    description:
+      "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers, scored on a signed +100 buy / −100 sell scale. Live prices. Free core.",
+    url: "https://holdlens.com/",
+    siteName: "HoldLens",
+    type: "website",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "30 superinvestors, one ConvictionScore — HoldLens",
+    description:
+      "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers, on a signed +100 buy / −100 sell scale.",
+    images: ["/og/home.png"],
+  },
+};
 
 const HOMEPAGE_FAQ: FaqItem[] = [
   {

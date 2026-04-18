@@ -5,7 +5,13 @@ export const metadata: Metadata = {
   description: "Free guides to 13F filings, copy-trading, hedge fund tracking, and how superinvestors think.",
 };
 
-type Article = { slug: string; title: string; desc: string; coming?: boolean };
+// v1.42 — removed the `coming?: boolean` field. The render path below no
+// longer has a dead-card branch. Teaser cards (greyed-out, non-linked,
+// "coming soon" label) are a thin-content anti-pattern flagged by AdSense
+// reviewers and eroded trust when we had placeholder Learn entries. Going
+// forward: articles are either live (shipped to /learn/[slug]) or absent
+// from this index entirely.
+type Article = { slug: string; title: string; desc: string };
 
 const ARTICLES: Article[] = [
   { slug: "superinvestor-handbook", title: "The Superinvestor Handbook", desc: "The full 10-section guide — 13F filings, conviction signals, copy-trading myths, and the honest limits of smart-money data. ~15 min read." },
@@ -61,19 +67,12 @@ export default function LearnIndex() {
       </p>
       <div className="space-y-4">
         {ARTICLES.map((a) => (
-          a.coming ? (
-            <div key={a.slug} className="rounded-2xl border border-border bg-panel p-6 opacity-50">
-              <div className="text-xl font-bold">{a.title} <span className="text-xs text-dim font-normal">· coming soon</span></div>
-              <p className="text-sm text-muted mt-2">{a.desc}</p>
-            </div>
-          ) : (
-            <a key={a.slug} href={`/learn/${a.slug}`}
-               className="block rounded-2xl border border-border bg-panel p-6 hover:border-brand transition group">
-              <div className="text-xl font-bold group-hover:text-brand transition">{a.title}</div>
-              <p className="text-sm text-muted mt-2">{a.desc}</p>
-              <div className="text-brand text-sm mt-3">Read →</div>
-            </a>
-          )
+          <a key={a.slug} href={`/learn/${a.slug}`}
+             className="block rounded-2xl border border-border bg-panel p-6 hover:border-brand transition group">
+            <div className="text-xl font-bold group-hover:text-brand transition">{a.title}</div>
+            <p className="text-sm text-muted mt-2">{a.desc}</p>
+            <div className="text-brand text-sm mt-3">Read →</div>
+          </a>
         ))}
       </div>
     </div>

@@ -80,25 +80,15 @@ export default function AffiliateCTA({
 }) {
   const brokers = getBrokers(symbol);
 
-  // No affiliate URLs configured → render a single tasteful "Open a brokerage" placeholder
-  // that still hints at the value prop without breaking trust.
+  // v1.42 — no affiliate URLs configured → render nothing. Prior code
+  // rendered a dead "Need a brokerage account?" placeholder on all 94
+  // signal pages, which occupied hero real-estate with a CTA that went
+  // nowhere. Users who land on /signal/AAPL want the signal answer, not
+  // a brokerage ad for brokers we're not even referring. Returning null
+  // removes the noise; the component wakes up automatically the moment
+  // the operator drops any NEXT_PUBLIC_AFF_* env var into CF Pages.
   if (brokers.length === 0) {
-    return (
-      <div className="my-8 rounded-2xl border border-border bg-panel p-5">
-        <div className="flex items-center justify-between gap-4 flex-wrap">
-          <div>
-            <div className="text-[10px] uppercase tracking-widest font-bold text-brand mb-1">
-              Ready to act on this signal?
-            </div>
-            <div className="text-base font-bold text-text">Need a brokerage account?</div>
-            <div className="text-xs text-muted mt-1">
-              Open one with any major broker — Public, Robinhood, IBKR, eToro, or your bank.
-              HoldLens does not execute trades.
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   return (

@@ -61,21 +61,58 @@ export default function FoundersNudge({
 }) {
   const [visible, setVisible] = useState(false);
   const [pro, setPro] = useState(false);
+  const [engaged, setEngaged] = useState(false);
 
   useEffect(() => {
     setPro(isProUser());
-    setVisible(shouldRender());
+    // v1.42 — engagement gate. Previously the nudge fired on first render
+    // which contradicted the stated rationale ("readers who have already
+    // consumed depth"). Now we wait for ONE of:
+    //   (a) 40% scroll depth reached — the reader is engaging with content
+    //   (b) 20 seconds dwell — the reader is slow-reading above the fold
+    // Whichever fires first flips `engaged` true. The nudge then respects
+    // the existing 30-day dismissal state (shouldRender()). If neither
+    // fires (user bounced in <20s and scrolled <40%), the nudge never
+    // shows — which is the whole point: don't sell to visitors who haven't
+    // even decided if the product is worth their time yet.
     const onDismiss = () => setVisible(false);
     const onProChange = () => setPro(isProUser());
     window.addEventListener("holdlens:nudge:dismissed", onDismiss);
     window.addEventListener("holdlens:pro:activated", onProChange);
     window.addEventListener("holdlens:pro:deactivated", onProChange);
+
+    let triggered = false;
+    function onEngage() {
+      if (triggered) return;
+      triggered = true;
+      setEngaged(true);
+    }
+    function onScroll() {
+      const doc = document.documentElement;
+      const scrolled = (window.scrollY + window.innerHeight) / doc.scrollHeight;
+      if (scrolled >= 0.4) onEngage();
+    }
+    const dwellTimer = window.setTimeout(onEngage, 20_000);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Fire immediately once in case the page is already scrolled past 40%
+    // (e.g. reload with preserved scroll position, or short pages).
+    onScroll();
+
     return () => {
       window.removeEventListener("holdlens:nudge:dismissed", onDismiss);
       window.removeEventListener("holdlens:pro:activated", onProChange);
       window.removeEventListener("holdlens:pro:deactivated", onProChange);
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(dwellTimer);
     };
   }, []);
+
+  // Only flip visible AFTER the engagement gate trips AND dismissal cooldown
+  // allows it. Separate effect so the window listener above is established
+  // unconditionally on mount.
+  useEffect(() => {
+    if (engaged) setVisible(shouldRender());
+  }, [engaged]);
 
   function handleClick() {
     try {
