@@ -72,3 +72,6 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 
 ## Calibration (v1.47 — dividend-tax data expansion 10→75 verified + US→UK bug fix)
 2026-04-19 | v1.47 dividend-tax data +65 cells + correction | core_loop_improvement + data-integrity-fix | est €4/wk incremental | TBD | TBD | 7.5x data coverage leap (10→75 verified). 20 domestic (investor=payer 0% cross-border) + 18 UK-as-payer (0% ordinary portfolio, REIT-PID caveated) + 19 SG-as-payer (0% one-tier corp tax) + 9 remaining US-outbound (15% standard treaty). Plus a bug fix: cycle-1 US→UK shipped 15% (the treaty ceiling) when practical UK rate is 0% on ordinary portfolio dividends. Correction logged to data/dividend-tax.json 'corrections' array. Every new cell cites a verifiable primary source (HMRC, IRAS, IRS P901, national tax codes). Confidence 0.4 (up from 0.3 — real verified data now).
+
+## Calibration (v1.49 — Ship #8 Portfolio Similarity Scorer v1)
+2026-04-19 | v1.49 /similar-to/[investor]/ × 30 pages + cross-link | new_feature_usefulness + core_loop_improvement | est €4/wk | TBD | TBD | Ship #8 v1 from HOLDLENS_MASTER_ROADMAP. Pure algorithmic layer on existing 13F data (Jaccard on ticker-set union, 30 × 30 = 900 pairs at build time). Creates discovery loop /investor/[X] → /similar-to/[X] → /investor/[Y] → repeat. No new data pipeline. Confidence 0.3 cold.

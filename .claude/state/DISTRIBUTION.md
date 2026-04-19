@@ -128,3 +128,9 @@ there's no baseline to drop from.
 
 ## Distribution Fit Log (v1.47)
 2026-04-19 | v1.47-data-expansion | SEO:0.75 SHARE:0.65 CHANNEL:0.70 LOOP:0.60 MOAT:0.65 | mean:0.67 | PASS | Up from cycle-2 mean 0.64. SEO: 0.70→0.75 (less thin content). SHARE: 0.60→0.65 (share button fires on more cells). MOAT: 0.60→0.65 (correction audit trail + citation-first discipline is defensible moat).
+
+## Calibration (v1.49 — Ship #8 v1)
+2026-04-19 | v1.49-similar-to-programmatic | programmatic_page_with_unique_data + internal_linking_hub_spoke | +50 vis/wk peak | TBD | TBD | 30 new indexed URLs with unique Jaccard data per page × programmatic_unique_data archetype +55 × cold confidence 0.3. Targets queries "investors like Buffett / Ackman / Burry / Klarman / etc." Internal-linking hub-spoke from /investor/[X] ↔ /similar-to/[X].
+
+## Distribution Fit Log (v1.49)
+2026-04-19 | v1.49-similar-to-scorer | SEO:0.75 SHARE:0.40 CHANNEL:0.70 LOOP:0.80 MOAT:0.60 | mean:0.65 | PASS | SEO: real query pattern "investors who trade like X". SHARE: no share card v1 (follow-up). CHANNEL: finance audience fit strong. LOOP: high — bidirectional cross-link /investor/[X] ↔ /similar-to/[X]. MOAT: Jaccard on HoldLens-curated 30-manager set is distinctive.

@@ -84,3 +84,6 @@ candidate). Pre-traffic, there's no baseline to drop from.
 
 ## Calibration (v1.48 — 4 mobile-verified bug fixes)
 2026-04-19 | v1.48-mobile-verify-bug-fixes | bug_fix_blocking_core | +0.012 | TBD | TBD | Chrome MCP 375px verification surfaced 4 bugs. Fixes: domestic cells (investor=payer) no longer mislabel "0% Treaty rate" (now "Domestic"), hide misleading "Statutory non-treaty rate" paragraph, hide share button (prevented misleading "I'd keep $100/$100" viral moment), and treaty matrix mobile layout collapsed 4→3 cols with inline verified/pending badge. Hypothesis: cleaner domestic UX + no misleading share copy = marginally higher trust + small retention lift. Confidence 0.35.
+
+## Calibration (v1.49 — Ship #8 v1)
+2026-04-19 | v1.49-portfolio-similarity-scorer | new_feature_usefulness | +0.025 | TBD | TBD | Ship #8 v1. Hypothesis: every /investor/[X] page now has a compelling "see 29 peers ranked" exit path that keeps users inside HoldLens instead of bouncing to Dataroma/competitors. Core retention lever: exploration loop. Confidence 0.3.
