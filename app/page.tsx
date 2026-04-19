@@ -222,18 +222,37 @@ export default function HomePage() {
             secondary hierarchy. The strategist audit called out that the
             homepage hero needed a stronger "keep scrolling" signal — a
             glowing primary CTA reads as the natural next action. */}
+        {/* v19.2 — hero CTA prominence pass. Operator asked about swapping to
+            green; analysis concluded brand-amber is correct (semantic color
+            system reserves emerald for the BUY data-signal, not for brand
+            CTAs, and green on financial sites is generic/invisible). Instead
+            shipping the higher-leverage changes: +33% padding for more
+            visual weight, and hover-translate-x on the arrow for directional
+            momentum. Mirror treatment on sell CTA to preserve symmetry. */}
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <a
             href="/best-now"
-            className="bg-brand text-black font-semibold rounded-xl px-6 py-4 shadow-brand-glow hover:shadow-brand-glow hover:opacity-95 hover:scale-[1.02] transition-all duration-base ease-swift"
+            className="group bg-brand text-black font-semibold rounded-xl px-8 py-5 shadow-brand-glow hover:shadow-brand-glow hover:opacity-95 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
-            See the top buy signals →
+            See the top buy signals{" "}
+            <span
+              aria-hidden
+              className="inline-block transition-transform duration-base ease-swift group-hover:translate-x-1"
+            >
+              →
+            </span>
           </a>
           <a
             href="/biggest-sells"
-            className="border border-rose-400/40 bg-rose-400/5 text-rose-400 font-semibold rounded-xl px-6 py-4 hover:bg-rose-400/10 hover:border-rose-400/60 hover:scale-[1.02] transition-all duration-base ease-swift"
+            className="group border border-rose-400/40 bg-rose-400/5 text-rose-400 font-semibold rounded-xl px-8 py-5 hover:bg-rose-400/10 hover:border-rose-400/60 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
-            See the top sell signals →
+            See the top sell signals{" "}
+            <span
+              aria-hidden
+              className="inline-block transition-transform duration-base ease-swift group-hover:translate-x-1"
+            >
+              →
+            </span>
           </a>
         </div>
         <div className="mt-5 text-xs text-dim">
