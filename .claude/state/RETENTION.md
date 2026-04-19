@@ -93,3 +93,9 @@ candidate). Pre-traffic, there's no baseline to drop from.
 2026-04-19 | v1.48-signals-magnitude-tier     | delight_detail          | +0.012 | TBD | TBD | Magnitude-tiered saturation + split-color buyer/seller on homepage buy/sell cards. Encodes rank + cross-pressure visually. Reach = 1.0 (homepage). Confidence 0.3.
 2026-04-19 | v1.48.1-wcag-weak-tier-fix       | bug_fix_blocking_core   | +0.004 | TBD | TBD | WCAG 2.1 AA failure on /65 opacity caught + fixed same-session. Visible only to users reading low-magnitude signals; small absolute retention signal but accessibility floor matters for long-term user trust. Confidence 0.3.
 2026-04-19 | v1.48.3-latest-moves-palette     | craftsmanship_polish    | +0.010 | TBD | TBD | Consistent palette across BuySellSignals + LatestMoves — 4-tier bull/bear grammar. Repeated visual pattern = stronger mental model = better retention. Reach = 1.0 (both visible above-the-fold). Confidence 0.3.
+
+## Calibration (v1.50 — Ship #9 v1)
+2026-04-19 | v1.50-sectors-hub | internal_linking_hub_spoke | +0.010 | TBD | TBD | Ship #9 v1. Hypothesis: clearer sector-level navigation lets casual visitors browse sector-by-sector, increasing pages/session. Small retention lift since surface was 80% already present — this is polish + discovery not new feature.
+
+## Calibration (v1.49 palette rebalance, 2026-04-19)
+2026-04-19 | v1.49-signal-explorer-palette-rebalance | craftsmanship_polish + delight_detail | +0.015 | TBD | TBD | 19-card palette refinement on homepage signal-explorer. Scarcity-preserved amber compounds brand recognition. Reach=1.0 (every homepage visitor sees this section). Confidence 0.3.

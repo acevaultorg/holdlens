@@ -140,3 +140,12 @@ there's no baseline to drop from.
 2026-04-19 | v1.48-signals-magnitude-tier     | SEO:0.55 SHARE:0.55 CHANNEL:0.75 LOOP:0.50 MOAT:0.70 | mean:0.61 | PASS  | Visible-at-glance data encoding is share-worthy (someone might screenshot a "strong buy" signal). MOAT 0.70 — magnitude-tiered palette is a specific HoldLens visual idiom, hard-to-copy without the underlying ConvictionScore dataset.
 2026-04-19 | v1.48.1-wcag-weak-tier-fix       | SEO:0.60 SHARE:0.45 CHANNEL:0.70 LOOP:0.50 MOAT:0.55 | mean:0.56 | PASS  | Accessibility compliance weakly lifts LLM-citation fit (Aleyda Solis characteristic #1 "Accessible") + reduces risk of ADA/WCAG complaint.
 2026-04-19 | v1.48.3-latest-moves-palette     | SEO:0.55 SHARE:0.55 CHANNEL:0.75 LOOP:0.55 MOAT:0.75 | mean:0.63 | PASS  | Palette consistency across data surfaces compounds brand recognition. MOAT 0.75 — one visual grammar across BuySellSignals + LatestMoves is a compound identity asset.
+
+## Calibration (v1.50 — Ship #9 v1)
+2026-04-19 | v1.50-sectors-hub | internal_linking_hub_spoke + schema_markup_article_person_org | +20 vis/wk | TBD | TBD | 1 new indexed URL + CollectionPage schema + 11 internal links to existing /sector/[slug] pages. Boosts the /sector/* cluster's rank via hub-spoke internal linking archetype +15.
+
+## Distribution Fit Log (v1.50)
+2026-04-19 | v1.50-sectors-hub | SEO:0.60 SHARE:0.30 CHANNEL:0.70 LOOP:0.80 MOAT:0.50 | mean:0.58 | PASS | SEO: "sector rotation" / "where hedge funds are buying" queries. SHARE: no share card on hub. CHANNEL: finance audience. LOOP: strong — hub → /rotation → /sector/[X] → /investor → cycle. MOAT: modest — method is standard GICS.
+
+## Distribution Fit Log (v1.49 palette rebalance)
+2026-04-19 | v1.49-signal-explorer-palette-rebalance | SEO:0.55 SHARE:0.60 CHANNEL:0.75 LOOP:0.60 MOAT:0.80 | mean:0.66 | PASS | MOAT 0.80 — explicit 4-tone palette discipline (amber scarce / emerald bullish / rose bearish / neutral research) is a specific HoldLens visual grammar. Copying requires matching the semantic categorization, not just the colors. SHARE 0.60 — screenshots of the clean grid are more share-worthy than the prior amber-flood.

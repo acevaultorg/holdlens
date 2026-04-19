@@ -81,3 +81,9 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 2026-04-19 | v1.48-signals-magnitude-tier         | delight_detail                | est €1/wk    | TBD | TBD | Above-the-fold signals encoding rank visually; modest bounce reduction projection.
 2026-04-19 | v1.48.1-wcag-weak-tier-fix           | bug_fix_blocking_revenue      | est €0.5/wk  | TBD | TBD | WCAG compliance restored on 4 weak-tier cells. Minor revenue projection but compliance floor matters.
 2026-04-19 | v1.48.3-latest-moves-palette-fix    | craftsmanship_polish          | est €1.5/wk  | TBD | TBD | TRIM amber→rose semantic fix + score column magnitude-tiered. Brand-amber preserved for Pro/CTA. Palette discipline ship across 2 homepage components.
+
+## Calibration (v1.50 — Ship #9 Sector Rotation Analyzer v1)
+2026-04-19 | v1.50 /sectors/ unified hub | core_loop_improvement + internal_linking_hub_spoke | est €2/wk | TBD | TBD | Ship #9 v1 from roadmap. /sectors/ unifies existing /rotation + /sector/[slug] under one navigable landing. No new data pipeline. 11 sector cards + color-coded tint + cross-links to heatmap + biggest-buys/sells. Confidence 0.3 cold.
+
+## v1.49 palette rebalance (2026-04-19)
+2026-04-19 | v1.49-signal-explorer-palette-rebalance | craftsmanship_polish | est €2/wk | TBD | TBD | 19-card signal-explorer palette: 10 amber → 1 amber + 8 emerald + 3 rose + 7 neutral. Amber scarcity restored; /best-now primary-CTA now visually dominant. Compounding bet through retention delight + brand moat.
