@@ -26,10 +26,12 @@ export const metadata: Metadata = {
       "Why most professional investors don't beat the market — and what the 15% who do have in common.",
     url: "https://holdlens.com/learn/what-is-alpha",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "What is alpha?",
+    images: ["/og/home.png"],
   },
 };
 

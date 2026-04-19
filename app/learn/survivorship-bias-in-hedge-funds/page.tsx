@@ -34,10 +34,12 @@ export const metadata: Metadata = {
       "Why the funds that blew up don't show up in the average — and how that makes every hedge fund performance stat you've read an overestimate.",
     url: "https://holdlens.com/learn/survivorship-bias-in-hedge-funds",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Survivorship Bias in Hedge Funds",
+    images: ["/og/home.png"],
   },
 };
 

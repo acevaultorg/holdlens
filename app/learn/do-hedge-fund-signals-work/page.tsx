@@ -42,10 +42,16 @@ export const metadata: Metadata = {
       "We ran our own smart-money score against 14 months of realized returns. The answer was uncomfortable — and more honest than the field gets.",
     url: "https://holdlens.com/learn/do-hedge-fund-signals-work",
     type: "article",
+    // Next.js Metadata API replaces (does not merge) openGraph — so the
+    // site-wide /og/home.png fallback from layout.tsx is NOT inherited
+    // when a route overrides openGraph. Re-add explicitly or the article
+    // ships with zero og:image and every social share is text-only.
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Do 13F signals predict returns? Our backtest says no",
+    images: ["/og/home.png"],
   },
 };
 

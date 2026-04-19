@@ -23,10 +23,12 @@ export const metadata: Metadata = {
     description: "Why the SEC delays hedge fund disclosures by 45 days, and what it means for you.",
     url: "https://holdlens.com/learn/45-day-lag-explained",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "The 45-day lag in 13F filings",
+    images: ["/og/home.png"],
   },
 };
 

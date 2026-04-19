@@ -21,10 +21,12 @@ export const metadata: Metadata = {
       "Separating the folklore from the 13F data. What Buffett actually does that you can (and can't) replicate.",
     url: "https://holdlens.com/learn/warren-buffett-method",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "The Warren Buffett method — what's transferable, what isn't",
+    images: ["/og/home.png"],
   },
 };
 

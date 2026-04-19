@@ -28,10 +28,12 @@ export const metadata: Metadata = {
       "Decode the SEC form every hedge fund submits. Covers cover page, information table, share counts, value columns, and what's missing.",
     url: "https://holdlens.com/learn/how-to-read-a-13f",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "How to read a 13F filing in 5 minutes",
+    images: ["/og/home.png"],
   },
 };
 

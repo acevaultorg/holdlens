@@ -38,10 +38,12 @@ export const metadata: Metadata = {
       "Three SEC filings, three different signals. Here's how to tell them apart — and what each one actually tells you about a manager's intent.",
     url: "https://holdlens.com/learn/13f-vs-13d-vs-13g",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "13F vs 13D vs 13G — what's the difference",
+    images: ["/og/home.png"],
   },
 };
 

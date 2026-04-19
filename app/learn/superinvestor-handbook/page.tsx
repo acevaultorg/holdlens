@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     description:
       "How to read 13F filings, track smart money, and separate conviction from index padding. Free.",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };
