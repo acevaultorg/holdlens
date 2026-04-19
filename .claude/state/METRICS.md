@@ -1,92 +1,65 @@
-# METRICS.md — HoldLens weekly rollup (Layer 1: measurement)
+# METRICS.md — HoldLens live traffic (Plausible)
 
-Scaffold for "make the unique-visitors line always go up" compounding engine.
-Populated weekly from Plausible + Search Console + internal state. Kept short
-on purpose: 10 numbers, 5 minutes to eyeball, leads the Monday status loop.
+**Last updated:** 2026-04-19 via Chrome MCP inspection of logged-in dashboard.
+**Source:** https://plausible.io/holdlens.com (operator's account).
+**Lookback window:** Last 28 days (Plausible default on dashboard load).
 
-**Schema: append-only rows; never rewrite history.** One row per ISO week.
-
----
-
-## Weekly rollup
+## Current state (2026-04-19, rolling 28d)
 
 ```
-| week_start | visitors | returning_% | sessions | bounce_% | avg_dwell_s | subs_total | subs_delta | top_entry | indexed_pages | notes |
+unique_visitors:    5
+total_visits:       10
+total_pageviews:    51
+views_per_visit:    5.1
+bounce_rate:        0%
+visit_duration:     4m 27s
+current_visitors:   0
 ```
 
-Column semantics:
+## Calibration implication
 
-- **week_start** — ISO date of Monday (UTC).
-- **visitors** — Plausible "Unique Visitors" for the 7-day window ending Sunday.
-- **returning_%** — % of sessions that are return visits (Plausible `visitors` vs `visitors.new`).
-- **sessions** — Plausible total sessions.
-- **bounce_%** — single-page-session share (Plausible).
-- **avg_dwell_s** — median session seconds (Plausible Visit duration).
-- **subs_total** — running count of rows in Resend `audience_members`.
-- **subs_delta** — new subscribers this week.
-- **top_entry** — highest-traffic entry page (truncate to 30 chars).
-- **indexed_pages** — Google Search Console "Pages indexed" count.
-- **notes** — ≤40 chars, free-form: a new campaign, a big wave, a regression.
+At 5 unique/28d (~1.25/week), HoldLens is **genuinely pre-traffic**. Every
+Oracle projection this session — Revenue, Retention, Distribution — must
+stay confidence=0.3 (cold) until sessions cross ~100/week (Growing tier
+per v19.3 data-driven tiering model). The per-session 5.1 pages/visit and
+4m 27s visit duration are promising engagement signals, but 5 uniques is
+almost certainly operator-dogfooding + indexing crawlers, not organic
+users yet.
 
-### Rollup rows (append below, newest at bottom)
+## What calibrates when
 
-| week_start | visitors | returning_% | sessions | bounce_% | avg_dwell_s | subs_total | subs_delta | top_entry | indexed_pages | notes |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-04-13 | — | — | — | — | — | — | — | — | — | scaffold added (v1.13) |
+- `sessions/wk ≥ 20` → v19.3 "Maintenance Mon only" tier kicks in (trigger
+  first Monday METRICS rollup)
+- `sessions/wk ≥ 100` → v19.3 "Growing" tier (daily AceEvolve cycles)
+- `sessions/wk ≥ 500` → v19.3 "Champion" tier (4x/day cycles)
+- `D7 return rate` measurable → I-22 Retention Floor starts enforcing
+- `organic SEO clicks from GSC` measurable → I-25 Distribution Floor starts
+  enforcing
 
----
+All three are blocked on the same gate: **real organic visitors arriving**.
+Polish alone doesn't solve this — distribution work does.
 
-## Funnel snapshot (monthly — 1st of the month)
+## Real next-lever (honest)
 
-```
-| month | landing_views | signup_views | signup_submits | email_subs_activated | pro_starts | pro_retains_d30 |
-```
+Given this metrics read, the highest-leverage next action is **NOT more
+code**, it's one of:
 
-Populate after operator wires Resend + Stripe envs. Until then, this section is
-a placeholder that AcePilot leaves alone to avoid fabricated rows.
+1. **Wikipedia seeding** (distribution archetype ×+75, operator-time 1-2h
+   per page, playbook staged at `.claude/state/WIKIPEDIA_PLAYBOOK.md`)
+2. **HN Show HN launch** (one-shot ×+70 distribution spike, operator-time
+   ~6h including the day-of engagement window)
+3. **LinkedIn zero-click framework posts** (operator thought-leadership,
+   ×+65 sustained)
+4. **Reddit organic participation** (r/SecurityAnalysis, r/ValueInvesting —
+   ×+70 with 1-3h/week ongoing)
 
----
+Every one of those requires operator hands. Polish is NOT the bottleneck
+right now.
 
-## Ship impact log (retro)
+## Historical rollups
 
-Format inherited from `GROWTH_ANALYTICS.md ## Ship Impact`. Each shipped
-mutation with a measurable hypothesis lands here ≥7 days post-ship. Never
-back-filled with guesses — only actuals.
+<!-- Append-only weekly rollup rows. First row = today's inspection. -->
 
-```
-| ship_task_id | shipped_at | observed_window | metric | delta | significance |
-```
-
----
-
-## Oracle calibration tick
-
-Each Monday's AcePilot session reconciles projected vs. actual for last
-week's ships. Reads `ORACLE.md ## Calibration` + `RETENTION.md ## Calibration`,
-appends any rows whose 7-day window just closed.
-
-**Current gap:** no actuals are flowing yet (waiting for campaign traffic to
-give the Oracle real numbers to calibrate against). Rollup stays scaffold-only
-until the first post-campaign week lands ≥200 sessions.
-
----
-
-## Data sources
-
-- **Plausible dashboard** — `https://plausible.io/holdlens.com` (operator access).
-  Goals: PWA+Install, PWA+Dismiss, Share+Click, FilingBanner+Click,
-  Signal+Share+Download / Copy / X / LinkedIn, Email+Subscribe.
-- **Search Console** — `https://search.google.com/search-console` (operator).
-  Sitemap: `https://holdlens.com/sitemap.xml` (2000+ URLs).
-- **Resend dashboard** — email list size, open/click rates.
-  Activation gated on `RESEND_API_KEY` env var on Cloudflare Pages.
-- **Internal `.claude/state/HEARTBEAT.log`** — session activity as a proxy
-  for engineering throughput.
-
----
-
-## Invariant (v1.13)
-
-Rows are never deleted or rewritten. Corrections live in a dated `## Corrections`
-block at the bottom with the row they correct. Append-only keeps the history
-honest even when last week's numbers embarrass us.
+| date       | uniques_28d | visits_28d | pageviews_28d | views/visit | bounce_rate | duration |
+|------------|-------------|------------|---------------|-------------|-------------|----------|
+| 2026-04-19 | 5           | 10         | 51            | 5.1         | 0%          | 4m 27s   |
