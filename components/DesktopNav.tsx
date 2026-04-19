@@ -200,13 +200,18 @@ export default function DesktopNav() {
           the loudest element in the nav on every page; violated operator's
           "Pro ≠ harm user growth" directive. Now a plain nav link with a
           subtle amber dot — discoverable but not demanding. */}
+      {/* v19.2 — nav price disclosure. Prior bare "Pro" read as an unlabeled
+          upsell; pairing with "· €9" removes the copy contradiction operators
+          flagged between the "Free core forever" hero and the top-nav Pro link.
+          Still subdued (text-dim on the price) so it doesn't shout. */}
       <a
         href="/pricing"
         className="ml-1 inline-flex items-center gap-1.5 text-muted hover:text-text transition font-semibold"
-        aria-label="HoldLens Pro — optional subscription"
+        aria-label="HoldLens Pro — optional €9/mo subscription"
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand/70" aria-hidden />
-        Pro
+        <span>Pro</span>
+        <span className="text-dim font-normal">· €9</span>
       </a>
       <GlobalSearch />
     </nav>
