@@ -197,6 +197,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
+  // Ship #9 v1 — /sectors/ unified hub (per-sector deep dives live at
+  // /sector/[slug] already, which are registered in sectorUrls above).
+  const sectorsHubUrl: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/sectors`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    },
+  ];
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -209,5 +220,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...tickerFeedUrls,
     ...dividendTaxUrls,
     ...similarToUrls,
+    ...sectorsHubUrl,
   ];
 }
