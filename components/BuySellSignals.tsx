@@ -23,6 +23,15 @@ import TickerLogo from "@/components/TickerLogo";
 // include them in the production bundle — dynamic `text-${color}/${op}`
 // concatenation silently drops the class. These maps keep every class name
 // as a static string JIT can discover.
+//
+// v1.48.1 — WCAG fix on weak tier. Originally /65 opacity on rose-400 vs
+// bg-#0a0a0a measured ~3.5:1 contrast — fails WCAG 2.1 AA (4.5:1 required
+// for 16px bold text). Weak tier now uses `text-muted` (semantic dim
+// neutral gray) instead of color-opacity, which achieves 3 goals:
+//   1. WCAG 7.5:1 pass on gray-400 vs bg-#0a0a0a
+//   2. Semantic match: "score near dead-zone → don't over-read" reads as
+//      neutral, not as "quiet red/green"
+//   3. Three-tier gradient preserved: strong-color → mid-color → neutral
 type Tier = "strong" | "mid" | "weak";
 function magnitudeTier(score: number): Tier {
   const abs = Math.abs(score);
@@ -31,12 +40,12 @@ function magnitudeTier(score: number): Tier {
   return "weak";
 }
 const SCORE_CLASS: Record<"buy" | "sell", Record<Tier, string>> = {
-  buy:  { strong: "text-emerald-400",    mid: "text-emerald-400/85", weak: "text-emerald-400/65" },
-  sell: { strong: "text-rose-400",       mid: "text-rose-400/85",    weak: "text-rose-400/65"    },
+  buy:  { strong: "text-emerald-400",    mid: "text-emerald-400/85", weak: "text-muted" },
+  sell: { strong: "text-rose-400",       mid: "text-rose-400/85",    weak: "text-muted" },
 };
 const CHIP_CLASS: Record<"buy" | "sell", Record<Tier, string>> = {
-  buy:  { strong: "text-emerald-400/90", mid: "text-emerald-400/85", weak: "text-emerald-400/65" },
-  sell: { strong: "text-rose-400/90",    mid: "text-rose-400/85",    weak: "text-rose-400/65"    },
+  buy:  { strong: "text-emerald-400/90", mid: "text-emerald-400/85", weak: "text-muted" },
+  sell: { strong: "text-rose-400/90",    mid: "text-rose-400/85",    weak: "text-muted" },
 };
 
 // Server component — renders at build time. The data is static per build.
