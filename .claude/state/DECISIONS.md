@@ -195,3 +195,15 @@ than a placeholder number. Honest, not misleading.
 page load. Mitigated by the 60s sessionStorage cache in `lib/live.ts` — a
 second homepage view hits the cache. Cold-load adds ~2-3 seconds to stat
 population but the rest of the page renders immediately.
+
+## 2026-04-19 — HN first launch outcome + mod email
+
+**Event:** Show HN submission (item 47826167) for HoldLens was killed by HN's auto-filter within ~10 minutes of posting. Diagnosed via Chrome MCP — item page empty for logged-out viewers, submissions list empty too. Classic new-account first-submission shadowban pattern.
+
+**Operator action taken:** emailed hn@ycombinator.com requesting review with standard polite template.
+
+**Next check:** 24-48h from now, visit news.ycombinator.com/submitted?id=paulodevries from an incognito window. If HoldLens appears, mods un-killed it. If not, the kill stands — not a product quality issue, just HN's opaque filter.
+
+**Re-submission policy:** do NOT resubmit the holdlens.com URL to HN in the next 7 days — duplicate filter applies. If mod email doesn't un-kill, plan a fresh submission ≥ 7 days later with a tweaked title.
+
+**Distribution pivot:** LinkedIn + Reddit + Wikipedia remain open. Operator deferred LinkedIn push to "later" (2026-04-19). No urgency on brain side — channels stay open whenever operator is ready.
