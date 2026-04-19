@@ -28,6 +28,15 @@ export type Country = {
    * dividends they receive (foreign tax credit availability etc.).
    */
   resident_note: string;
+  /**
+   * Optional richer guide — array of paragraph strings covering the
+   * country's resident tax treatment in more depth: filing forms,
+   * account-type-specific rules (retirement vs. taxable), common
+   * pitfalls, broker workflow. Rendered on /dividend-tax/[country]
+   * pages when present. Absent for countries with only the 1-line
+   * summary available. Educational content only; NOT treaty-rate data.
+   */
+  resident_guide?: string[];
 };
 
 export type TreatyCell = {

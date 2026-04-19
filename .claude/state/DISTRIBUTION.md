@@ -116,3 +116,9 @@ there's no baseline to drop from.
 
 ## Distribution Fit Log (v1.45)
 2026-04-19 | dividend-tax-calc-architecture | SEO:0.70 SHARE:0.40 CHANNEL:0.70 LOOP:0.60 MOAT:0.55 | mean:0.59 | PASS | SEO: real searchable queries ("dividend tax [country]", "[country] withholding treaty"). SHARE: lower — per-result PNG share-cards are explicitly Phase 3 of mission and NOT shipped in v1. CHANNEL: finance/SaaS fit strong. LOOP: cross-links wire /ticker ↔ /dividend-tax ↔ /investor (internal compounding). MOAT: citation-first + original synthesis (treaty-rate → effective yield → after-tax net) is a quality moat vs generic calculator sites.
+
+## Calibration (v1.46 — share button + resident-guide content)
+2026-04-19 | v1.46-share-button-and-guides | share_by_design_result (partial — intent URLs only, no canvas) + unique-per-page editorial | +30 vis/wk peak | TBD | TBD | Archetype: share_by_design_result baseline +95 but downgraded to ~+30 peak this cycle because v1 is intent-URL-only (no canvas PNG). Canvas is deferred until treaty-data coverage crosses ~80% verified so the share moment isn't contaminated by "data pending" output. Resident-guide content adds ~1500 words of unique-per-page editorial on top-5 pages — reduces thin-content flag risk and strengthens LLM-citation fit characteristic #2 (Useful) + #4 (Extractable).
+
+## Distribution Fit Log (v1.46)
+2026-04-19 | v1.46-share-and-guides | SEO:0.70 SHARE:0.60 CHANNEL:0.70 LOOP:0.60 MOAT:0.60 | mean:0.64 | PASS | Up from cycle-1 mean 0.59. SHARE dim: 0.40 → 0.60 (share button ships; canvas PNG still deferred). MOAT dim: 0.55 → 0.60 (citation-backed pre-composed share text is a small moat vs generic calculators).

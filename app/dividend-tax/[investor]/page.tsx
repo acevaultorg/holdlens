@@ -118,6 +118,16 @@ export default async function InvestorCountryPage(
         <div className="rounded-xl border border-border bg-panel p-5 text-sm text-muted leading-relaxed">
           {country.resident_note}
         </div>
+        {country.resident_guide && country.resident_guide.length > 0 && (
+          <div className="mt-6 space-y-4 text-sm text-muted leading-relaxed">
+            {country.resident_guide.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+            <p className="text-xs text-dim pt-2 border-t border-border">
+              Educational summary only — not legal or tax advice. Tax rules change and interact with personal circumstances (account type, residency, domicile, double-tax treaty provisions). For your specific situation, consult a qualified tax professional in your country of residence.
+            </p>
+          </div>
+        )}
       </section>
 
       <section className="mt-12">

@@ -16,11 +16,71 @@
     }
   },
   "countries": [
-    { "code": "US", "name": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "statutory_dividend_wht_pct": 30, "resident_note": "U.S. persons taxed on worldwide dividend income; qualified dividends at 0/15/20%; ordinary dividends at ordinary rates; foreign tax credit may offset foreign withholding." },
-    { "code": "UK", "name": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "statutory_dividend_wht_pct": 0, "resident_note": "UK generally imposes no withholding on dividends paid to non-residents; UK residents taxed on foreign dividends at dividend rates with Foreign Tax Credit Relief for foreign withholding." },
-    { "code": "CA", "name": "Canada", "flag": "\ud83c\udde8\ud83c\udde6", "statutory_dividend_wht_pct": 25, "resident_note": "Canadian residents taxed on foreign dividends as ordinary income; foreign tax credit available up to treaty rate." },
-    { "code": "AU", "name": "Australia", "flag": "\ud83c\udde6\ud83c\uddfa", "statutory_dividend_wht_pct": 30, "resident_note": "Australian residents include foreign dividends in assessable income; foreign income tax offset (FITO) available." },
-    { "code": "DE", "name": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "statutory_dividend_wht_pct": 26.375, "resident_note": "26.375% = 25% plus 5.5% solidarity surcharge. German residents taxed under final withholding (Abgeltungsteuer); foreign tax credit up to treaty rate." },
+    {
+      "code": "US",
+      "name": "United States",
+      "flag": "\ud83c\uddfa\ud83c\uddf8",
+      "statutory_dividend_wht_pct": 30,
+      "resident_note": "U.S. persons taxed on worldwide dividend income; qualified dividends at 0/15/20%; ordinary dividends at ordinary rates; foreign tax credit may offset foreign withholding.",
+      "resident_guide": [
+        "U.S. residents include foreign dividends in gross income on Form 1040, Schedule B. A dividend is treated as 'qualified' (taxed at the preferential 0/15/20% long-term-capital-gain rates) only if the foreign payer is in a tax-treaty country AND the shares have been held for more than 60 days of the 121-day window centered on ex-dividend date. Dividends from funds in non-treaty jurisdictions generally fall to ordinary rates.",
+        "When foreign tax has been withheld at source, most U.S. investors claim the Foreign Tax Credit on Form 1116 to offset the U.S. tax on the same dividend. If total foreign tax paid is under $300 ($600 filing jointly) and all the foreign tax is passive-category, the simplified election on Schedule 3 avoids Form 1116 entirely. Above that threshold, Form 1116 is generally required and the foreign-source income basket rules matter.",
+        "To get the treaty-reduced rate at source (rather than reclaim later), file Form W-8BEN with the broker or withholding agent. Most large U.S. brokers (Schwab, Fidelity, IBKR) apply treaty rates automatically once W-8BEN is on file. Treaty claim failures often stem from missing TIN, mismatched address, or Limitation-on-Benefits clauses in newer protocols.",
+        "A common pitfall: foreign mutual funds and some foreign ETFs are Passive Foreign Investment Companies (PFICs) under U.S. tax law, which can trigger punitive tax treatment separate from dividend withholding. This is why most U.S. investors holding European equities use U.S.-domiciled funds or ADRs rather than buying Ireland-domiciled UCITS directly."
+      ]
+    },
+    {
+      "code": "UK",
+      "name": "United Kingdom",
+      "flag": "\ud83c\uddec\ud83c\udde7",
+      "statutory_dividend_wht_pct": 0,
+      "resident_note": "UK generally imposes no withholding on dividends paid to non-residents; UK residents taxed on foreign dividends at dividend rates with Foreign Tax Credit Relief for foreign withholding.",
+      "resident_guide": [
+        "UK residents pay dividend tax on total UK + foreign dividend income above the annual dividend allowance. Rates are banded at basic, higher, and additional levels; HMRC publishes current rates each tax year. The first tranche of dividends is tax-free under the allowance, then each subsequent band applies at the rate appropriate to the taxpayer's total income.",
+        "Foreign tax withheld at source is generally recoverable via Foreign Tax Credit Relief (FTCR) against the UK dividend tax on the same income. FTCR is capped at the lower of the foreign tax paid or the UK tax due on that dividend. If the foreign country's treaty rate with the UK is lower than what was withheld at source (common with Swiss statutory 35% vs treaty 15%), the excess is not recoverable from HMRC \u2014 it has to be reclaimed from the payer country's tax authority directly.",
+        "Most UK brokers will apply a W-8BEN equivalent for U.S. dividends to get the 15% treaty rate at source. Foreign dividend income over the HMRC self-assessment threshold requires filing a Self Assessment return (SA100 + SA106 foreign pages). ISA and SIPP accounts do not shelter foreign dividends from the source-country withholding \u2014 an ISA is a UK tax wrapper, not a treaty.",
+        "UK residents investing in U.S. equities via a SIPP benefit from a specific US-UK treaty provision that gives the SIPP 0% withholding on U.S. dividends (treated as a pension plan for treaty purposes). The same is NOT true for ISA accounts, which still suffer the 15% U.S. withholding."
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "flag": "\ud83c\udde8\ud83c\udde6",
+      "statutory_dividend_wht_pct": 25,
+      "resident_note": "Canadian residents taxed on foreign dividends as ordinary income; foreign tax credit available up to treaty rate.",
+      "resident_guide": [
+        "Canadian residents include foreign dividends in ordinary taxable income \u2014 the preferential dividend tax credit (gross-up + DTC) applies ONLY to dividends from Canadian corporations. Foreign dividends are taxed at the taxpayer's marginal combined federal + provincial rate.",
+        "Form T2209 claims the federal Foreign Tax Credit for foreign withholding paid, capped at the treaty rate. If the source country withheld more than the treaty rate (e.g., Swiss 35% when treaty rate is 15%), the excess must be reclaimed from the source country \u2014 Canada Revenue Agency will only credit up to the treaty maximum. File Form W-8BEN with U.S. brokers to apply the US-Canada treaty rate at source.",
+        "Registered accounts matter significantly. RRSP accounts are recognized by the U.S. under the Canada-U.S. Treaty as a pension plan, so U.S. dividends in an RRSP are subject to 0% withholding. TFSA accounts are NOT recognized \u2014 U.S. dividends in a TFSA still suffer the 15% withholding and it cannot be recovered (the account is tax-free in Canada so there's no Canadian tax to credit against).",
+        "For Canadian residents building a HoldLens-style portfolio of U.S. superinvestor picks, the standard choice is to hold U.S. equities in an RRSP for dividend-tax efficiency and use the TFSA for Canadian equities or for growth-focused U.S. equities that pay little dividend."
+      ]
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "flag": "\ud83c\udde6\ud83c\uddfa",
+      "statutory_dividend_wht_pct": 30,
+      "resident_note": "Australian residents include foreign dividends in assessable income; foreign income tax offset (FITO) available.",
+      "resident_guide": [
+        "Australian residents include foreign dividends in assessable income at gross (pre-withholding) amount and claim a Foreign Income Tax Offset (FITO) for the foreign tax paid. FITO is credited against the Australian tax due on the same income and cannot be refunded if it exceeds the Australian tax liability on foreign income.",
+        "Franking credits (imputation credits) apply only to Australian companies and do not transfer to foreign dividends. This is why foreign dividends can feel less tax-efficient than domestic fully-franked dividends for Australian investors \u2014 a franked Australian dividend effectively pays tax once (at the company level) while a foreign dividend is taxed twice unless the FITO fully covers it.",
+        "Most Australian brokers with U.S. access (CommSec International, CMC, IBKR Australia) will apply the US-Australia treaty rate of 15% at source once W-8BEN is filed. The 15% US tax becomes the FITO amount; the remaining Australian tax is paid at the investor's marginal rate.",
+        "Superannuation funds have specific foreign-income rules that differ from individual taxpayer treatment \u2014 a SMSF holding foreign dividends typically claims FITO but at fund-level tax rates (15% accumulation phase, 0% pension phase), which can make foreign dividends unusually tax-efficient inside super."
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "flag": "\ud83c\udde9\ud83c\uddea",
+      "statutory_dividend_wht_pct": 26.375,
+      "resident_note": "26.375% = 25% plus 5.5% solidarity surcharge. German residents taxed under final withholding (Abgeltungsteuer); foreign tax credit up to treaty rate.",
+      "resident_guide": [
+        "German residents pay Abgeltungsteuer \u2014 a 25% flat tax plus 5.5% solidarity surcharge (26.375% combined; 27.9819% with 8% church tax or 27.8186% with 9%). For most investors this is a final withholding tax: the broker withholds it at source on both domestic and foreign dividends, and no separate income-tax return filing is required.",
+        "The Sparer-Pauschbetrag (saver's allowance) shelters an annual amount of investment income from Abgeltungsteuer per taxpayer (doubled for married couples filing jointly). A Freistellungsauftrag (exemption order) filed with the broker directs the broker to not withhold Abgeltungsteuer up to the allowance.",
+        "Foreign dividend withholding is credited against Abgeltungsteuer via Anrechnung, capped at the bilateral treaty rate. If the source country withheld more than the treaty rate (most notably Switzerland's 35% vs treaty 15%), the excess has to be reclaimed from the foreign tax authority directly, not from Germany. German brokers typically handle Swiss and other reclaims automatically through the QI system, but the investor may need to file the Annex KAP on their Steuererklaerung to capture the credit.",
+        "For German residents investing in U.S. equities, the 15% US treaty withholding counts against Abgeltungsteuer \u2014 in effect, the total German tax burden on U.S. dividends is the full Abgeltungsteuer rate but with the US 15% already paid, so only the difference is owed to the Finanzamt. Broker statements (Steuerbescheinigung) aggregate this automatically for most large German brokers."
+      ]
+    },
     { "code": "FR", "name": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "statutory_dividend_wht_pct": 25, "resident_note": "French residents: 30% flat tax (PFU) on dividends; option for progressive rate with foreign tax credit." },
     { "code": "NL", "name": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "statutory_dividend_wht_pct": 15, "resident_note": "Dutch residents: Box 3 wealth tax on investments; foreign tax credit for treaty withholding." },
     { "code": "JP", "name": "Japan", "flag": "\ud83c\uddef\ud83c\uddf5", "statutory_dividend_wht_pct": 20.42, "resident_note": "20.42% = 20% plus 2.1% reconstruction surtax. Japanese residents can claim foreign tax credit up to treaty rate." },

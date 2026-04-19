@@ -21,6 +21,7 @@ import {
   resolveEffectiveRate,
   type CountryCode,
 } from "@/lib/dividend-tax";
+import DividendTaxShareButton from "@/components/DividendTaxShareButton";
 
 declare global {
   interface Window {
@@ -287,6 +288,21 @@ export default function DividendTaxCalc({
           </div>
         )}
       </div>
+
+      {/* Share button — only when the rate is verified (not for
+          needs_research fallbacks). Sharing a "data pending verification"
+          result is low-quality viral; gate the advocacy moment to
+          high-confidence data only. */}
+      {(resolved.kind === "verified" || resolved.kind === "derived") && (
+        <DividendTaxShareButton
+          investorCountry={investor}
+          payerCountry={payer}
+          effectiveRatePct={effectiveRatePct}
+          gross={amount}
+          net={net}
+          surface={tickerContext || investorContext || (compact ? "inline" : "hub")}
+        />
+      )}
 
       {/* Disclaimer — mandatory on every page per adsense-compliance + YMYL-adjacent */}
       <p className="mt-4 text-[11px] text-dim leading-relaxed">

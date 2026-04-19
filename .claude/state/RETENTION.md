@@ -75,3 +75,6 @@ candidate). Pre-traffic, there's no baseline to drop from.
 
 ## Calibration (v1.45 — Dividend Tax Calc, architecture + seed ship)
 2026-04-19 | v1.45-dividend-tax-architecture | core_loop_improvement | +0.045 | TBD | TBD | Primary thesis of this ship is retention. Hypothesis: HoldLens users who reach /ticker/[X] or /investor/[slug] today are mostly driven by a 13F-filing-drop news moment (quarterly cycle, ~45-day cadence). The dividend tax widget extends their reasons to return outside those moments: tax-season planning (Jan-Apr), dividend-payment checkpoints (quarterly earnings windows), and rebalancing research (rolling). Projected +4.5% Δ 7d return rate when the widget reaches full data coverage (400 verified cells). v1 (10 US-outbound cells verified) is expected to deliver +0.01 to +0.02 actual Δ until operator completes data population per handoff. Confidence 0.3 (cold archetype; no retention baseline yet for this project).
+
+## Calibration (v1.46)
+2026-04-19 | v1.46-tax-share-button-and-guides | delight_detail + core_loop_improvement | +0.008 | TBD | TBD | Hypothesis: enriched resident guides on top-5 country pages give returning visitors a reason to re-open (tax-season reference use-case) beyond the one-shot calculator. Share button adds an "explicit moment" users can act on without leaving — small delight. Confidence 0.25 cold.
