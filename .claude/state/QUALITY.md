@@ -46,3 +46,6 @@ per-archetype multiplier adjustments kick in.
 
 ## Love Log (v1.47)
 2026-04-19 | dividend-tax-data-expansion-and-uk-fix | USEFUL:0.75 DELIGHT:0.65 RELIABLE:0.70 CLEAR:0.80 UNIQUE:0.60 | mean:0.70 | PASS | Cycle-3 data expansion. Reliable +0.10 (BIG: caught + fixed US→UK directional bug from cycle 1; added corrections audit trail; 75 cells of real verified data instead of 10; practical accuracy materially improved). Useful +0.05 (more queries return real data). Unique +0.05 (correction discipline is distinctive). Mobile-verify still un-resolved this session — Reliable capped at 0.7 until operator verifies live.
+
+## Love Log (v1.48 — Chrome MCP mobile verify + 4 bug fixes)
+2026-04-19 | dividend-tax-mobile-verify-and-fixes | USEFUL:0.80 DELIGHT:0.70 RELIABLE:0.85 CLEAR:0.85 UNIQUE:0.60 | mean:0.76 | PASS | Cycle-4 follow-up: Chrome MCP mobile-375px verification across /dividend-tax/ hub + /dividend-tax/us/ + /ticker/AAPL inline surfaced 4 bugs, all fixed same-session. Reliable +0.15 (mobile-verify gap from cycles 1-3 closed; architecture matches rendered reality on 375×844 iPhone 12; 4 bugs caught before ship). Useful +0.05 (domestic cases no longer mislead). Delight +0.05 (tighter badge design on treaty matrix). Clear +0.05 (verified/pending signal visually obvious).

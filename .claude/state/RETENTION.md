@@ -81,3 +81,6 @@ candidate). Pre-traffic, there's no baseline to drop from.
 
 ## Calibration (v1.47 — data +65 cells, US→UK correction)
 2026-04-19 | v1.47-data-expansion-and-uk-fix | bug_fix_blocking_core + core_loop_improvement | +0.018 | TBD | TBD | Hypothesis: 7.5x more verified cells = 7.5x more widget interactions produce real (not "data pending") results = genuinely useful tool. Especially UK/SG-payer coverage which matters because many HoldLens-tracked tickers are held via UK ADRs or Singapore-listed. US→UK correction also materially affects every US investor who queried that cell in cycle 1-2 and may have been misled. Confidence 0.3.
+
+## Calibration (v1.48 — 4 mobile-verified bug fixes)
+2026-04-19 | v1.48-mobile-verify-bug-fixes | bug_fix_blocking_core | +0.012 | TBD | TBD | Chrome MCP 375px verification surfaced 4 bugs. Fixes: domestic cells (investor=payer) no longer mislabel "0% Treaty rate" (now "Domestic"), hide misleading "Statutory non-treaty rate" paragraph, hide share button (prevented misleading "I'd keep $100/$100" viral moment), and treaty matrix mobile layout collapsed 4→3 cols with inline verified/pending badge. Hypothesis: cleaner domestic UX + no misleading share copy = marginally higher trust + small retention lift. Confidence 0.35.

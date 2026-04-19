@@ -87,6 +87,13 @@ export default function DividendTaxCalc({
   const payerCountry = getCountry(payer);
   const resolved = resolveEffectiveRate(investor, payer);
 
+  // Domestic = investor is a resident of the same country the payer is
+  // domiciled in. Not actually a cross-border scenario. The widget still
+  // accepts it (users try it casually) but we switch labels + gate the
+  // share button so we never imply "0% dividend tax" on domestic
+  // dividends — domestic tax is covered by resident_note / resident_guide.
+  const isDomestic = investor.toUpperCase() === payer.toUpperCase();
+
   const effectiveRatePct =
     resolved.kind === "verified" || resolved.kind === "derived"
       ? resolved.rate_pct
@@ -223,11 +230,13 @@ export default function DividendTaxCalc({
           label="Withholding rate"
           value={`${effectiveRatePct.toFixed(effectiveRatePct % 1 === 0 ? 0 : 2)}%`}
           sub={
-            resolved.kind === "verified" || resolved.kind === "derived"
-              ? "Treaty rate"
-              : resolved.kind === "needs_research"
-                ? "Statutory (non-treaty)"
-                : ""
+            isDomestic
+              ? "Domestic (no cross-border)"
+              : resolved.kind === "verified" || resolved.kind === "derived"
+                ? "Treaty rate"
+                : resolved.kind === "needs_research"
+                  ? "Statutory (non-treaty)"
+                  : ""
           }
         />
         <ResultCell
@@ -260,7 +269,12 @@ export default function DividendTaxCalc({
             {resolved.notes && (
               <div className="mt-2 text-muted">{resolved.notes}</div>
             )}
-            {payerCountry && (
+            {/* Show statutory context only for genuine cross-border cases
+                where the treaty-reduced rate sits below a higher statutory
+                rate. Omit for domestic (investor=payer) because the
+                "statutory non-treaty rate" concept doesn't apply when the
+                investor is resident in the payer country. */}
+            {payerCountry && !isDomestic && payerCountry.statutory_dividend_wht_pct > effectiveRatePct && (
               <div className="mt-2 text-dim">
                 Statutory non-treaty rate in {payerCountry.name}:{" "}
                 <span className="tabular-nums">
@@ -289,11 +303,13 @@ export default function DividendTaxCalc({
         )}
       </div>
 
-      {/* Share button — only when the rate is verified (not for
-          needs_research fallbacks). Sharing a "data pending verification"
-          result is low-quality viral; gate the advocacy moment to
-          high-confidence data only. */}
-      {(resolved.kind === "verified" || resolved.kind === "derived") && (
+      {/* Share button — only for cross-border verified cells. Suppressed
+          for (a) needs_research fallbacks (low-confidence viral moment,
+          AP-3) and (b) domestic cases (investor=payer) because sharing
+          "I'd keep $100 of $100" without domestic-tax context is
+          actively misleading — domestic dividend tax applies via
+          resident return, not cross-border WHT. */}
+      {(resolved.kind === "verified" || resolved.kind === "derived") && !isDomestic && (
         <DividendTaxShareButton
           investorCountry={investor}
           payerCountry={payer}

@@ -137,6 +137,12 @@ export default async function InvestorCountryPage(
         <p className="text-muted text-sm mb-5">
           {verifiedCount} of {rows.length} payer countries have a verified treaty rate cited below. The rest ship as &ldquo;data pending verification&rdquo; — never fabricated.
         </p>
+        {/* Treaty matrix table. Mobile fits 3 columns at 375px; the
+            Status signal is folded into the country column as a small
+            badge next to the country name so the whole row stays
+            readable without horizontal overflow. The "Verified" /
+            "Data pending" title attribute + aria-label preserves the
+            information for screen readers and keyboard focus. */}
         <div className="rounded-2xl border border-border bg-panel overflow-hidden">
           <table className="w-full text-sm">
             <thead className="text-dim text-xs uppercase tracking-wider">
@@ -144,7 +150,6 @@ export default async function InvestorCountryPage(
                 <th className="text-left px-4 py-3">Company domiciled in</th>
                 <th className="text-right px-4 py-3">Treaty WHT</th>
                 <th className="text-right px-4 py-3">Statutory</th>
-                <th className="text-left px-4 py-3">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -157,9 +162,26 @@ export default async function InvestorCountryPage(
                     className="border-b border-border last:border-0 align-top"
                   >
                     <td className="px-4 py-3">
-                      <span className="inline-flex items-center gap-2">
+                      <span className="inline-flex items-center gap-2 flex-wrap">
                         <span aria-hidden>{payer.flag}</span>
                         <span className="font-semibold text-text">{payer.name}</span>
+                        {verified ? (
+                          <span
+                            className="inline-flex items-center text-[10px] font-semibold uppercase tracking-wide text-brand bg-brand/10 rounded px-1.5 py-0.5"
+                            title="Rate verified from primary source"
+                            aria-label="Verified from primary source"
+                          >
+                            <span aria-hidden>✓</span>
+                          </span>
+                        ) : (
+                          <span
+                            className="inline-flex items-center text-[10px] font-semibold uppercase tracking-wide text-dim bg-border/50 rounded px-1.5 py-0.5"
+                            title="Data pending verification — fallback to statutory rate"
+                            aria-label="Data pending verification"
+                          >
+                            pending
+                          </span>
+                        )}
                       </span>
                       {verified && cell?.treaty_reference && (
                         <div className="text-xs text-dim mt-1">
@@ -178,17 +200,6 @@ export default async function InvestorCountryPage(
                     </td>
                     <td className="px-4 py-3 text-right tabular-nums text-muted">
                       {payer.statutory_dividend_wht_pct}%
-                    </td>
-                    <td className="px-4 py-3">
-                      {verified ? (
-                        <span className="inline-flex items-center gap-1 text-xs text-brand">
-                          <span aria-hidden>✓</span> Verified
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1 text-xs text-dim">
-                          <span aria-hidden>⚠️</span> Data pending
-                        </span>
-                      )}
                     </td>
                   </tr>
                 );
