@@ -7,6 +7,12 @@ node_modules
 .data
 next-env.d.ts
 scripts/.indexnow-key
+# Static export build output — regenerated on every build.
+# Deployed via `wrangler pages deploy out/` straight from build artifacts;
+# tracking this churns 2500 files per commit and bloats PR diffs.
+out/
+# Cloudflare Wrangler temp files — ephemeral per deploy.
+.wrangler/
 # iCloud creates numbered-suffix copies during sync conflicts
 # (e.g. ".next 2", "out 3"). They can contain webpack cache .pack files
 # that exceed GitHub's 100MB per-file limit and block the push.
