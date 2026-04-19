@@ -322,6 +322,62 @@ print(r.json()["data"]["score"])`}
 
       <AdSlot format="in-article" className="mb-12" />
 
+      {/* v1.44 — embed widget docs. Pairs with the /embed/[ticker]/ route
+          (static export, 94 tickers). Referenced from FAQ "Can I embed
+          HoldLens widgets on my blog?" so the claim ships with working
+          copy-paste snippets. */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">Embed a ConvictionScore badge</h2>
+        <p className="text-sm text-muted mb-5 max-w-2xl leading-relaxed">
+          Drop the signed −100..+100 ConvictionScore for any tracked ticker
+          onto your blog, newsletter, or Notion page. Static, no JS load,
+          no API key, no rate limit. Shares the same glyph set as the live
+          site so it looks native on any dark background.
+        </p>
+        <div className="rounded-2xl border border-border bg-panel p-6 space-y-5">
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-2">
+              Basic iframe (recommended)
+            </div>
+            <pre className="text-xs bg-bg rounded-lg p-3 overflow-x-auto border border-border text-muted">
+              <code>{`<iframe
+  src="https://holdlens.com/embed/NVDA/"
+  width="200"
+  height="280"
+  loading="lazy"
+  style="border: 0; border-radius: 14px;"
+  title="NVDA ConvictionScore — HoldLens"
+></iframe>`}</code>
+            </pre>
+            <p className="text-xs text-dim mt-2">
+              Swap <span className="font-mono text-text">NVDA</span> for any tracked ticker.
+              Recommended size: 200×280 px. Responsive-safe.
+            </p>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-2">
+              Tracked tickers
+            </div>
+            <p className="text-xs text-muted leading-relaxed">
+              94 supported tickers today (every entry on the{" "}
+              <a href="/ticker" className="underline hover:text-text">ticker index</a>). Pass the
+              symbol as ALL-CAPS — <span className="font-mono text-text">/embed/AAPL/</span>,
+              not <span className="font-mono text-dim">/embed/aapl/</span>. Unknown symbols 404.
+            </p>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-2">
+              Attribution
+            </div>
+            <p className="text-xs text-muted leading-relaxed">
+              Every badge includes a <span className="font-mono text-text">holdlens.com ↗</span>{" "}
+              link at the bottom. Please don&rsquo;t strip it — it&rsquo;s how we keep the widget
+              free forever.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Data freshness */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Data freshness + licensing</h2>

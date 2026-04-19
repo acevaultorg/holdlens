@@ -53,7 +53,7 @@ const FAQS = [
   },
   {
     q: "Can I embed HoldLens widgets on my blog?",
-    a: "Embed widgets are on the roadmap for v0.4. For now, feel free to link to any HoldLens page — we love backlinks.",
+    a: 'Yes — free forever. Use an iframe pointing at holdlens.com/embed/TICKER/ (e.g. holdlens.com/embed/NVDA/). Recommended size: 200×280 px. No API key, no rate limit. See /docs for the full embed snippet.',
   },
 ];
 
