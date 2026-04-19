@@ -6,7 +6,38 @@
 - [x] `P2` BUILD v1.46 dividend-tax Phase 3 partial — DividendTaxShareButton (Twitter intent + LinkedIn intent + clipboard copy), gated to verified-rate state only (no "data pending" viral moments). Plus ~1500 words of unique educational content (resident_guide array) for top-5 countries US/UK/DE/CA/AU — reduces thin-content risk on highest-traffic-potential pages, boosts LLM-citation fit characteristics #2+#4 (Useful+Extractable). Canvas PNG share-card deferred to v1.47+ after treaty-data coverage crosses ~80% verified. [id:dividend-tax-v2] [score:7.0] [oracle:€3/wk incremental] [ret:+0.8%] [reach:+30 vis/wk] ⏱ done 2026-04-19 (cycle 2)
 - [x] `P1` BUILD v1.47 dividend-tax data expansion 10→75 verified cells + US→UK bug fix. +20 domestic cells (investor=payer 0% cross-border) + 18 UK-as-payer (0% ordinary portfolio, PID caveated) + 19 SG-as-payer (0% one-tier) + 9 remaining US-outbound (15% treaty). FIXED: cycle-1 US→UK shipped at 15% (treaty ceiling) when practical UK rate is 0% on ordinary portfolio dividends; added corrections audit trail per I-18/I-22/I-24/I-30 pattern. Coverage 2.5% → 18.8%. [id:dividend-tax-v3-data] [score:9.0] [oracle:€4/wk incremental] [ret:+1.8%] [reach:+45 vis/wk] ⏱ done 2026-04-19 (cycle 3)
 
-- [👤] 🔴 REQUIRED — Populate dividend tax treaty data (target ≥320/400 cells verified over 14 days).
+- [👤] 🔴 REQUIRED — Deploy v1.45+v1.46+v1.47 to holdlens.com (wrangler EPIPE, use dashboard fallback).
+  **WHAT:** Push the three committed cycles (310d3094b, 29f8c89bc, 1d2e79ce2) to the live holdlens.com Cloudflare Pages deployment. 21 new /dividend-tax/ routes + DividendTaxCalc widget on /ticker/[X] and /investor/[slug] + 75 verified treaty cells need to go live.
+  **WHY:** Code is committed but lives only on your laptop + GitHub. Every day not live = indexing delay. Google + LLM crawlers can't find what isn't deployed. Retention/distribution projections (+4.5% Δ 7d-return peak, +120 vis/wk peak) start accumulating only after ship.
+  **TIME:** ~3-5 min via dashboard fallback. ~2 min via wrangler when it succeeds.
+  **HOW (dashboard fallback path — RECOMMENDED right now):**
+    1. On this machine, run `cd holdlens/ && npm run build`.
+       → expected: Next.js build produces `out/` directory (~2795 files).
+    2. Open https://dash.cloudflare.com → Workers & Pages → `holdlens` project → Deployments.
+       → expected: see list of prior deployments.
+    3. Click "Create deployment" → select "Direct upload" → drag-drop the `out/` directory from Finder.
+       → expected: upload progress bar; CF's chunked uploader doesn't hit the wrangler EPIPE cap. Typical upload 1-2 min.
+    4. Wait for "Deployment complete" message.
+       → expected: a preview URL like `https://[hash].holdlens.pages.dev` appears.
+    5. Promote to production by clicking "Promote to main branch" on the deployment row, or wait for the automatic promotion if your project is configured that way.
+       → expected: holdlens.com serves the new deployment within ~30 sec.
+    6. Run `npm run indexnow` from the repo to ping Bing/Yandex/Seznam/Naver with the new URLs (IndexNow).
+       → expected: 830+ URLs pinged including the 21 new /dividend-tax/ routes.
+  **HOW (alternative — retry wrangler at a different time):**
+    On 2026-04-15 the operator observed `wrangler pages deploy` succeeded at 14:45 after multiple earlier failures. The EPIPE ~56MB cap is inconsistent — retry during off-peak CF API load. If you prefer: `cd holdlens/ && npm run deploy`. Expect 3 EPIPE attempts; stop after 3 per rules/cloudflare-pages-epipe.md; use dashboard fallback.
+  **VERIFY:**
+    `curl -sL https://holdlens.com/dividend-tax/ | grep -q "Dividend tax by country"`
+    → expected: grep matches (return code 0). If not, deploy hasn't promoted yet — wait 60 sec and retry.
+    Plus: `curl -sL https://holdlens.com/dividend-tax/us/ | grep -q "resident_guide"` — no, that's a JSON field. Instead grep the rendered text: `curl -sL https://holdlens.com/dividend-tax/us/ | grep -q "qualified dividends at the preferential"` → expected: match if cycle-2 resident_guide content is live.
+  **IF STUCK:**
+    - Wrangler EPIPE 3 strikes in a row on retry path: switch to dashboard fallback (step 1-5 above). This is the documented persistent CF Pages failure; don't burn time retrying.
+    - Dashboard upload fails: your `out/` directory may have iCloud-sync file locks. Rename `out/` → `out-backup/`, rebuild, retry.
+    - Deploy succeeds but holdlens.com still shows old content: CF's edge cache can hold up to 60 sec. Wait, then retry curl verification.
+    - IndexNow script errors: check `scripts/.indexnow-key` file exists; regenerate with `openssl rand -hex 16 > scripts/.indexnow-key` if missing.
+  **Context:** Session at 2026-04-19 attempted `npm run deploy` 3 times — all failed at ~56MB per rules/cloudflare-pages-epipe.md. Dashboard fallback recommended over further retries.
+  [id:deploy-v1.45-v1.46-v1.47] [score:12.0] [oracle:€0/wk but blocks all projections] [👤]
+
+- [👤] 🔴 REQUIRED — Populate dividend tax treaty data (target ≥320/400 cells verified over 14 days; v1.47 advanced 10→75 cells).
   **WHAT:** Extend `data/dividend-tax.json` by filling in the `treaties` array for 300+ additional (investor_country, payer_country) pairs, citing a primary source for every rate. Currently 10 US-outbound cells are verified from IRS Publication 901 Table 1. The remaining ~390 cells default to `needs_research` and the UI shows "data pending verification" — honest but thin.
   **WHY:** The `@distributor` Distribution Oracle projection for this feature (+120 vis/wk) multiplies by actual page-depth. Pages that stay `needs_research` for >30 days will be flagged by Google as thin-content and distributor_weight will drop. Each verified cell is also a unique-data page for LLM citation (Aleyda Solis characteristic #2 Useful). Skipping means Phase 1 ships but Phase 2 traffic projection never materializes.
   **TIME:** ~14 days across multiple sessions. Per cell: find primary source (KPMG WHT guide, PwC WWTS, OECD Tax Database, or national tax authority), extract treaty rate, write source_citation, set state=verified. Budget ~5 min per cell (including double-check). 300 cells × 5 min = 25 hours over 14 days = ~1.8 hours/day.
