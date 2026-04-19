@@ -2,18 +2,42 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import InvestingBooks from "@/components/InvestingBooks";
 import AuthorByline from "@/components/AuthorByline";
+import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 
 export const metadata: Metadata = {
   title: "What is the HoldLens ConvictionScore? — The single signed −100..+100 scale",
   description: "How HoldLens assigns every stock one signed conviction score on a −100..+100 scale where +100 is the strongest possible buy and −100 the strongest possible sell.",
+  alternates: { canonical: "https://holdlens.com/learn/conviction-score-explained" },
+  openGraph: {
+    title: "What is the HoldLens ConvictionScore?",
+    description: "How HoldLens assigns every stock one signed conviction score on a −100..+100 scale where +100 is the strongest possible buy and −100 the strongest possible sell.",
+    url: "https://holdlens.com/learn/conviction-score-explained",
+    type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What is the HoldLens ConvictionScore?",
+    description: "One signed score per stock: +100 strongest buy, −100 strongest sell.",
+    images: ["/og/home.png"],
+  },
 };
 
-// v1.20 — Article + DefinedTerm schema. DefinedTerm is the correct
-// schema.org type for concepts ("ConvictionScore") and Google uses it for
-// knowledge-panel-like inline definitions on related SERPs.
+// v1.21 — BreadcrumbList + Article + DefinedTerm. BreadcrumbList enables
+// sitelinks-style breadcrumbs in Google SERPs. DefinedTerm targets
+// knowledge-panel inline definitions for "ConvictionScore" queries.
 const LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://holdlens.com" },
+      { "@type": "ListItem", position: 2, name: "Learn", item: "https://holdlens.com/learn" },
+      { "@type": "ListItem", position: 3, name: "ConvictionScore explained", item: "https://holdlens.com/learn/conviction-score-explained" },
+    ],
+  },
   {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -194,6 +218,8 @@ export default function ConvictionPage() {
         </p>
 
         <LearnReadNext currentSlug="conviction-score-explained" />
+
+        <ShareStrip url="https://holdlens.com/learn/conviction-score-explained" title="What is the HoldLens ConvictionScore?" />
 
         <AdSlot format="horizontal" priority="secondary" />
       </div>

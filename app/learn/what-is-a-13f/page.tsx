@@ -2,26 +2,58 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import InvestingBooks from "@/components/InvestingBooks";
 import AuthorByline from "@/components/AuthorByline";
+import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 
 export const metadata: Metadata = {
   title: "What is a 13F filing? — Plain English guide for retail investors",
   description: "A 13F is an SEC form that hedge funds must file each quarter. Here's exactly what's in it, when it drops, and how to read one.",
+  alternates: { canonical: "https://holdlens.com/learn/what-is-a-13f" },
+  openGraph: {
+    title: "What is a 13F filing?",
+    description: "A 13F is an SEC form that hedge funds must file each quarter. Here's exactly what's in it, when it drops, and how to read one.",
+    url: "https://holdlens.com/learn/what-is-a-13f",
+    type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What is a 13F filing?",
+    description: "A 13F is an SEC form that hedge funds must file each quarter.",
+    images: ["/og/home.png"],
+  },
 };
 
-export default function What13FPage() {
-  const ld = {
+const LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://holdlens.com" },
+      { "@type": "ListItem", position: 2, name: "Learn", item: "https://holdlens.com/learn" },
+      { "@type": "ListItem", position: 3, name: "What is a 13F filing?", item: "https://holdlens.com/learn/what-is-a-13f" },
+    ],
+  },
+  {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: "What is a 13F filing?",
     description: "Plain English guide to SEC Form 13F for retail investors.",
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
-  };
+    mainEntityOfPage: "https://holdlens.com/learn/what-is-a-13f",
+    datePublished: "2026-03-15",
+    dateModified: "2026-04-10",
+    inLanguage: "en-US",
+    image: "https://holdlens.com/og/home.png",
+  },
+];
+
+export default function What13FPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
       <a href="/" className="text-xs text-muted hover:text-text">← Home</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Learn</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">What is a 13F filing?</h1>
@@ -92,6 +124,8 @@ export default function What13FPage() {
         </p>
 
         <LearnReadNext currentSlug="what-is-a-13f" />
+
+        <ShareStrip url="https://holdlens.com/learn/what-is-a-13f" title="What is a 13F filing?" />
 
         <AdSlot format="horizontal" priority="secondary" />
       </div>
