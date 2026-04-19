@@ -197,9 +197,17 @@ export default function HomePage() {
         <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-6">
           SEC-sourced · {MANAGERS.length} investors tracked · updated every quarter
         </div>
-        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-          Understand every move by the
-          <br />
+        {/* v1.48 — widow-orphan fix on hero. `text-balance` lets the browser
+            optimize line breaks so "by the" no longer orphans + "world." no
+            longer lands alone. `<br />` removed so balancer can place the
+            natural break wherever it reads best per viewport. Leading line
+            softened to `text-text/90` so the amber gradient punchline earns
+            the attention hierarchy (dim → bright → CTA flow).
+            Subhead: `text-pretty` applied to avoid tail-orphans. Bonded
+            pairs `+100 buy` and `−100 sell` get `whitespace-nowrap` so the
+            sign never splits from its label across lines. */}
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-balance">
+          <span className="text-text/90">Understand every move by the</span>{" "}
           {/* v1.39 — gradient hero text for first-paint dopamine lift. Base
               `text-brand` stays as a fallback on browsers that don't support
               bg-clip-text + text-transparent (Safari < 15, ancient Edge). On
@@ -209,11 +217,13 @@ export default function HomePage() {
             smartest investors in the world.
           </span>
         </h1>
-        <p className="mt-6 text-lg text-muted max-w-2xl mx-auto">
+        <p className="mt-6 text-lg text-muted max-w-2xl mx-auto text-pretty">
           Every 13F move from Buffett, Ackman, Burry and {MANAGERS.length - 3} other top portfolio
           managers — scored on a signed{" "}
-          <span className="text-emerald-400 font-semibold">+100 buy</span> /{" "}
-          <span className="text-rose-400 font-semibold">−100 sell</span> scale.{" "}
+          <span className="whitespace-nowrap text-emerald-400 font-semibold">+100 buy</span>{" "}
+          /{" "}
+          <span className="whitespace-nowrap text-rose-400 font-semibold">−100 sell</span>{" "}
+          scale.{" "}
           <span className="text-text font-semibold">Live prices. New filings every quarter.</span>
         </p>
         {/* v1.43 — chromatic glow on hero CTAs. Primary buy CTA wears the
