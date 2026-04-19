@@ -87,3 +87,9 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 
 ## v1.49 palette rebalance (2026-04-19)
 2026-04-19 | v1.49-signal-explorer-palette-rebalance | craftsmanship_polish | est €2/wk | TBD | TBD | 19-card signal-explorer palette: 10 amber → 1 amber + 8 emerald + 3 rose + 7 neutral. Amber scarcity restored; /best-now primary-CTA now visually dominant. Compounding bet through retention delight + brand moat.
+
+## v1.50 nav palette (2026-04-19)
+2026-04-19 | v1.50-desktop-nav-palette-rebalance | craftsmanship_polish | est €2.5/wk | TBD | TBD | Nav palette discipline extended fleet-wide. Scarcity-preserved amber across every page compounds brand recognition + hover-semantic model. Compounding bet through retention × brand.
+
+## Calibration (v1.51 — Ship #2 SEC Form 4 insider deepening v1)
+2026-04-19 | v1.51 /insiders/[insider]/ + lib/insider-conviction.ts | new_feature_usefulness + core_loop_improvement | est €5/wk | TBD | TBD | Ship #2 v1 from roadmap. Per-corporate-insider pages with logistic-scored conviction (role-weighted, 10b5-1-penalized). No new data pipeline (uses existing curated INSIDER_TX). Confidence 0.3 cold.

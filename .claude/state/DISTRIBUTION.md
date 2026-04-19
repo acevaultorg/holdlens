@@ -149,3 +149,12 @@ there's no baseline to drop from.
 
 ## Distribution Fit Log (v1.49 palette rebalance)
 2026-04-19 | v1.49-signal-explorer-palette-rebalance | SEO:0.55 SHARE:0.60 CHANNEL:0.75 LOOP:0.60 MOAT:0.80 | mean:0.66 | PASS | MOAT 0.80 — explicit 4-tone palette discipline (amber scarce / emerald bullish / rose bearish / neutral research) is a specific HoldLens visual grammar. Copying requires matching the semantic categorization, not just the colors. SHARE 0.60 — screenshots of the clean grid are more share-worthy than the prior amber-flood.
+
+## Distribution Fit Log (v1.50 nav palette)
+2026-04-19 | v1.50-nav-palette-rebalance | SEO:0.55 SHARE:0.65 CHANNEL:0.75 LOOP:0.65 MOAT:0.85 | mean:0.69 | PASS | MOAT 0.85 — consistent 4-tone palette across homepage Signal Explorer + fleet-wide nav is a distinctive brand identity asset. Generic finance sites use color decoratively; HoldLens uses it semantically. Hard-to-copy without understanding the underlying signal classification.
+
+## Calibration (v1.51 — Ship #2 v1)
+2026-04-19 | v1.51-insider-programmatic | programmatic_page_with_unique_data + schema_markup_article_person_org | +60 vis/wk | TBD | TBD | ~25-30 new indexed URLs (one per unique insider) with Person schema + Article schema + conviction score unique per page. Targets branded queries like "tim cook insider trading" "warren buffett form 4" etc. Unique-data-per-page clears thin-content bar.
+
+## Distribution Fit Log (v1.51)
+2026-04-19 | v1.51-insider-deepening | SEO:0.75 SHARE:0.40 CHANNEL:0.70 LOOP:0.70 MOAT:0.60 | mean:0.63 | PASS | SEO: branded-person queries real. SHARE: no card v1. LOOP: insider → ticker → investor → insider via cross-links. MOAT: conviction-score synthesis (role × 10b5-1 × logistic) is non-trivial to replicate.

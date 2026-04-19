@@ -65,3 +65,9 @@ per-archetype multiplier adjustments kick in.
 
 ## Love Log (v1.49 — Signal Explorer palette rebalance)
 2026-04-19 | signal-explorer-palette-rebalance | USEFUL:0.70 DELIGHT:0.80 RELIABLE:0.90 CLEAR:0.90 UNIQUE:0.75 | mean:0.81 | PASS | Rebalanced 19-card homepage signal-explorer from 10-amber/6-emerald/3-rose to 1-amber/8-emerald/3-rose/7-neutral. Added `neutral` tone to SignalCard. DELIGHT 0.80 — the single amber CTA now punches visibly where before amber was cheap. CLEAR 0.90 — "one primary → bullish group → bearish group → research group" hierarchy is readable at a glance. UNIQUE 0.75 — most finance sites throw brand color everywhere; disciplined palette is a real quality signal. RELIABLE 0.90 — verified live on preview URL (1A/8E/3R/7N exact match); prod alias propagating.
+
+## Love Log (v1.50 — DesktopNav palette discipline)
+2026-04-19 | desktop-nav-palette-rebalance | USEFUL:0.70 DELIGHT:0.80 RELIABLE:0.90 CLEAR:0.90 UNIQUE:0.80 | mean:0.82 | PASS | Extended v1.49 discipline site-wide. Every page (not just homepage) now has scarce amber in nav. Brand-amber count dropped 10→2 (/best-now + /portfolio only). UNIQUE 0.80 — palette discipline applied across surfaces is a compound brand asset. DELIGHT 0.80 — hovering a link reveals color that MEANS something. CLEAR 0.90 — 4-tone nav hierarchy is legible across every page. RELIABLE 0.90 — verified live 2 amber / 15 emerald / 4 rose / 23 neutral on preview URL.
+
+## Love Log (v1.51 — Ship #2 v1)
+2026-04-19 | insider-conviction-pages | USEFUL:0.75 DELIGHT:0.65 RELIABLE:0.70 CLEAR:0.80 UNIQUE:0.70 | mean:0.72 | PASS | Ship #2 v1 from roadmap. Strongest Unique of this session's ships (0.70) — conviction scoring synthesis with role × 10b5-1 × logistic is original. Useful high: answers "is CEO X buying lately" in one number. Delight modest — table-heavy UI could be more visually distinctive.
