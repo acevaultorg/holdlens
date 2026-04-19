@@ -268,12 +268,8 @@ export default function ThirteenFvsDvsGPage() {
                 aria-hidden="true"
               >
                 <div
-                  className="h-full rounded-full bg-info/70"
-                  style={{
-                    width: "66%",
-                    backgroundImage:
-                      "repeating-linear-gradient(45deg, rgba(0,0,0,0.18) 0 3px, transparent 3px 8px)",
-                  }}
+                  className="h-full rounded-full bg-info/70 bg-[repeating-linear-gradient(45deg,rgba(0,0,0,0.18)_0_3px,transparent_3px_8px)]"
+                  style={{ width: "66%" }}
                 />
               </div>
               <div className="text-xs text-dim mt-1">
