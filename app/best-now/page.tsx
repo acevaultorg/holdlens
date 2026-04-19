@@ -4,17 +4,24 @@ import TrendBadge from "@/components/TrendBadge";
 import CsvExportButton from "@/components/CsvExportButton";
 import FoundersNudge from "@/components/FoundersNudge";
 import SinceFilingDelta from "@/components/SinceFilingDelta";
+import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
 import { getTopBuys, getTopSells, convictionLabel } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 
+// v4.3 honest-relabel (2026-04-19): backtest showed score has no predictive
+// signal for forward returns (r = -0.12 across 221 ticker-quarter pairs).
+// Page re-positioned from "what to buy/sell right now" (implies predictive
+// advice) to "most bought / most sold by tracked managers this quarter"
+// (honest tracker framing). See .claude/state/CONVICTION_BACKTEST.md.
+
 export const metadata: Metadata = {
-  title: "Highest expected ROI right now — what to buy and sell",
-  description: `The unified ConvictionScore ranks every stock on a single signed −100..+100 scale with expected annual return projection. Built on real 10-year ROI from ${MANAGERS.length} of the best portfolio managers in the world.`,
+  title: "Most-bought + most-sold stocks by tracked superinvestors",
+  description: `What the ${MANAGERS.length} tracked portfolio managers are buying and selling most aggressively in their latest 13F filings. A smart-money positioning tracker, not a stock-picking recommendation.`,
   alternates: { canonical: "https://holdlens.com/best-now" },
   openGraph: {
-    title: "HoldLens — Best stocks right now",
-    description: "The unified −100..+100 ConvictionScore with expected annualized return projection, for the highest-conviction buy and sell signals from the best portfolio managers in the world.",
+    title: "HoldLens — What tracked superinvestors are buying + selling",
+    description: "Smart-money positioning tracker: the stocks being bought and sold most aggressively across 30 top portfolio managers' latest 13F filings.",
   },
 };
 
@@ -26,19 +33,22 @@ export default function BestNowPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
-        Highest expected ROI · {quarter}
+        Smart-money positioning · {quarter}
       </div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
-        What to buy and sell <span className="text-brand">right now</span>.
+        What tracked superinvestors <span className="text-brand">are buying and selling</span>.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-3">
-        Multi-factor ConvictionScore v3 with expected annual return projection. Ranked by
-        composite score across 6 signal layers — not just consensus.
+        The stocks with the most aggregate BUY and SELL conviction across {MANAGERS.length} tracked
+        portfolio managers&apos; latest 13F filings. Ranked by composite score across 6 signal layers.
       </p>
       <p className="text-dim text-sm max-w-2xl mb-6">
-        Each row shows the model's expected annualized return based on the buyers' realized 10-year
-        CAGRs weighted by their position size. <a href="/methodology" className="underline">Read the methodology →</a>
+        This is a smart-money tracker. Backtest against forward returns shows no predictive signal —
+        the score surfaces institutional consensus, not future alpha.{" "}
+        <a href="/methodology#predictive-validity" className="underline">Read the methodology →</a>
       </p>
+
+      <MethodologyDisclaimer />
       <div className="mb-12 flex items-center gap-2 flex-wrap">
         <CsvExportButton
           endpoint="/api/v1/best-now.json"

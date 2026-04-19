@@ -114,6 +114,70 @@ export default function MethodologyPage() {
           </p>
         </section>
 
+        <section id="predictive-validity">
+          <h2 className="text-2xl font-bold mb-3">
+            Predictive validity — what our 2026 backtest found
+          </h2>
+          <div className="rounded-xl border border-amber-400/30 bg-amber-400/5 p-5 mb-4">
+            <p className="text-text font-semibold mb-2">
+              The ConvictionScore does not predict forward stock returns.
+            </p>
+            <p className="text-muted text-sm leading-relaxed">
+              In April 2026 we ran a full backtest of the score against realized 6-14 month
+              forward returns across 221 ticker-quarter pairs (4 quarters × ~55 scored tickers
+              each). The correlation between ConvictionScore and forward alpha over SPY was{" "}
+              <strong className="text-text">r = −0.12</strong> — essentially zero, and slightly
+              negative in direction. Every single quarter in the window showed negative correlation.
+              Top-decile BUYs underperformed SPY by ~5%; bottom-decile SELLs <em>outperformed</em>{" "}
+              SPY by ~24%.
+            </p>
+          </div>
+
+          <h3 className="text-lg font-semibold mt-5 mb-2">Why the score still matters</h3>
+          <p className="text-muted leading-relaxed">
+            HoldLens is a <strong className="text-text">smart-money positioning tracker</strong>,
+            not a return predictor. The ConvictionScore is a clean composite of what the tracked
+            portfolio managers are actually doing in their most-recent 13F filings — consensus,
+            concentration, multi-quarter trends, insider alignment, dissent. That is
+            legitimately useful market intelligence (people want to know what Buffett, Ackman,
+            Burry and Druckenmiller are buying and selling).
+          </p>
+          <p className="text-muted leading-relaxed mt-3">
+            What the score is <strong className="text-text">not</strong>: a reliable guide to which
+            stocks will outperform. Three structural reasons the backtest data points at:
+          </p>
+          <ul className="mt-3 space-y-2 text-muted">
+            <li>
+              • <strong className="text-text">Contrarian inversion.</strong> When tracked managers
+              BUY a stock, it&apos;s often because the stock dropped and they&apos;re
+              bargain-hunting; the drop continues (momentum). When they SELL, they&apos;re often
+              taking profit on a winner that keeps winning.
+            </li>
+            <li>
+              • <strong className="text-text">Manager-quality drag.</strong> Several storied
+              managers tracked on HoldLens have materially underperformed the S&amp;P over the
+              recent 10-year window (see per-manager ROI panels on the investor pages). Their
+              picks drive BUY signals; their picks have underperformed.
+            </li>
+            <li>
+              • <strong className="text-text">45-day filing lag.</strong> By the time we surface
+              &ldquo;smart money buying X&rdquo;, the news is usually priced in.
+            </li>
+          </ul>
+
+          <h3 className="text-lg font-semibold mt-5 mb-2">Reproducing the backtest</h3>
+          <p className="text-muted leading-relaxed">
+            The backtest script lives at{" "}
+            <code className="text-xs px-1.5 py-0.5 bg-panel-hi rounded">scripts/backtest-conviction.ts</code>
+            . It pulls 2-year daily closes from Yahoo Finance for every tracked ticker + SPY, replays
+            the ConvictionScore at each of the last 4 historical quarters, pairs it with forward
+            return from the 13F filing date to today, and computes Pearson correlation + decile
+            alpha spreads. Full output is logged to{" "}
+            <code className="text-xs px-1.5 py-0.5 bg-panel-hi rounded">.claude/state/CONVICTION_BACKTEST.md</code>
+            . We re-run this every quarter — transparency over flattery.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-2xl font-bold mb-3">Errors and corrections</h2>
           <p className="text-muted">

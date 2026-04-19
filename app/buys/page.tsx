@@ -4,19 +4,24 @@ import SinceFilingDelta from "@/components/SinceFilingDelta";
 import CsvExportButton from "@/components/CsvExportButton";
 import TrendBadge from "@/components/TrendBadge";
 import TickerLogo from "@/components/TickerLogo";
+import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
 import { getBuySignals, ratingLabel } from "@/lib/signals";
 import { formatSignedScore } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
+// v4.3 honest-relabel (2026-04-19) — see .claude/state/CONVICTION_BACKTEST.md.
+// Page re-positioned from "what to buy" (predictive) to "what tracked
+// superinvestors are buying" (tracker).
+
 export const metadata: Metadata = {
-  title: "What to buy — recommendation model from the best investors",
+  title: "What tracked superinvestors are buying — heaviest 13F adds",
   description:
-    "HoldLens buy signals on a single signed −100..+100 scale. The same score model that ranks sells, just on the positive side. Real 13F data from the best portfolio managers in the world.",
+    "The stocks with the heaviest smart-money BUY conviction across 30 tracked portfolio managers' latest 13F filings. Smart-money positioning tracker, not investment advice.",
   openGraph: {
-    title: "What to buy — smart money signals",
-    description: "Ranked buy signals on a single signed −100..+100 scale from the best portfolio managers in the world.",
+    title: "What tracked superinvestors are buying",
+    description: "Ranked by aggregate BUY conviction across 30 of the best portfolio managers' latest 13F filings.",
   },
-  twitter: { card: "summary_large_image", title: "What to buy — HoldLens" },
+  twitter: { card: "summary_large_image", title: "Heaviest smart-money buys — HoldLens" },
 };
 
 export default function BuysPage() {
@@ -39,24 +44,27 @@ export default function BuysPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
 
       <div className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-4">
-        Buy signals · {quarterLabel}
+        Heaviest smart-money buys · {quarterLabel}
       </div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
-        What to <span className="text-emerald-400">buy</span>.
+        What tracked superinvestors <span className="text-emerald-400">are buying</span>.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-4">
-        Stocks being bought by the best portfolio managers in the world — ranked on a single
-        signed score where <span className="text-emerald-400 font-semibold">+100 is the
-        strongest possible buy</span> and <span className="text-rose-400 font-semibold">−100
-        the strongest sell</span>. This page shows the positive side of that scale.
+        The stocks with the heaviest aggregate BUY conviction across 30 tracked portfolio managers&apos;
+        latest 13F filings. Ranked on a single signed score:{" "}
+        <span className="text-emerald-400 font-semibold">+100 = strongest tracked-consensus BUY</span>,{" "}
+        <span className="text-rose-400 font-semibold">−100 = strongest tracked-consensus SELL</span>.
+        This page shows the positive side. A ticker appears on exactly one list.
       </p>
       <p className="text-dim text-sm max-w-2xl mb-6">
-        The score is the unified ConvictionScore from <a href="/methodology" className="underline">methodology</a>:
-        smart-money consensus, insider buys, manager track record, multi-quarter trend streaks,
-        position concentration, and an under-the-radar bonus — minus dissent from sellers and
-        a crowding penalty when a stock is already widely owned. A ticker can appear on EXACTLY
-        ONE list (buys or sells) — never both.
+        The score aggregates smart-money consensus, insider buys, manager track record,
+        multi-quarter trend streaks, position concentration, and an under-the-radar bonus — minus
+        dissent from sellers and a crowding penalty. Full method at{" "}
+        <a href="/methodology" className="underline">/methodology</a>, including the 2026 backtest
+        over 221 ticker-quarter pairs.
       </p>
+
+      <MethodologyDisclaimer />
       <div className="mb-10">
         <CsvExportButton
           filename={`holdlens-buys-${LATEST_QUARTER}.csv`}
