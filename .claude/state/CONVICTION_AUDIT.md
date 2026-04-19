@@ -124,3 +124,34 @@ This requires the Yahoo Finance `/v8/chart` endpoint used by `BacktestProof.tsx`
 - **I-23 Love Score Floor** — Reliable dimension improved (score now matches first-principles expectation for bad-buyer stocks). ✓
 - **I-28 Self-Calibration** — 2 calibrations shipped with explicit rationale in `lib/conviction.ts` comments + this audit log. ✓
 - **I-30 LEARNED.md append-only** — this audit is append-only in its own state file, not overwriting prior calibration logs.
+
+---
+
+## v4.2 update (2026-04-19) — progressive migration off hand-coded MANAGER_QUALITY
+
+Added `getManagerQuality(slug)` exported helper in `lib/signals.ts`. Identical
+to the internal `mgrQuality()` — prefers derived ROI (from `manager-roi.ts`),
+falls back to hand-curated MANAGER_QUALITY, then to neutral 6.
+
+Migrated the most-visible call site: **/investor/[slug]/ quality badge**. This
+is the single number shown in the header of every superinvestor page. Before:
+`MANAGER_QUALITY[m.slug] ?? 6` → integer 6-10 from stale hand map. After:
+`getManagerQuality(m.slug).toFixed(1)` → continuous 0.0-10.0 from actual 10y
+return math.
+
+**Observable user-facing change:** Buffett page badge "10/10" → "5.9/10".
+Druckenmiller "9/10" stays ~9 (actually-top-tier manager). Icahn "8/10" →
+"0.0/10" (negative 10y alpha per derived). This is honesty, not a demotion:
+the audit data is the truth, the hand map was legacy respect untethered from
+recent performance.
+
+**Scope-bounded:** 17 other call sites still read MANAGER_QUALITY directly
+(scripts/generate-api-json.ts, app/signal/[ticker], app/biggest-buys,
+app/themes, app/overlap, app/activity, app/reversals, app/hidden-gems,
+app/compare/managers, app/new-positions, app/biggest-sells,
+app/fresh-conviction, app/first-movers, app/investor/[slug]/q/[quarter],
+components/TickerActivity). Each file's migration is a 2-line change
+(import + call-site) — deferred to operator-directed cycles to bound
+this ship's blast radius. Full deprecation = v4.3.
+
+Build clean: 1,261 pages, no bundle change, typecheck passes.

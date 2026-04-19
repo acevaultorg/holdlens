@@ -84,6 +84,25 @@ function mgrQuality(slug: string): number {
   return MANAGER_QUALITY[slug] ?? 6;
 }
 
+/**
+ * v4.2 (2026-04-19) — canonical quality-score accessor.
+ *
+ * Call this instead of `MANAGER_QUALITY[slug] ?? 6` in new code. Prefers
+ * the return-derived 10y-ROI quality when available, falls back to the
+ * hand-curated MANAGER_QUALITY, then to a neutral 6.
+ *
+ * Audit (see `.claude/state/CONVICTION_AUDIT.md`) showed hand-coded
+ * MANAGER_QUALITY correlates only 0.232 with derived quality. Every
+ * UI surface that displays a quality badge via direct `MANAGER_QUALITY`
+ * access is showing a score with known >3-point mean absolute delta
+ * from the actually-calibrated one. Progressive migration: call sites
+ * that wire in this helper get accurate scores; legacy call sites
+ * stay unchanged to bound this ship's blast radius.
+ */
+export function getManagerQuality(slug: string): number {
+  return mgrQuality(slug);
+}
+
 // ---------- TYPES ----------
 export type BuyerEntry = {
   managerSlug: string;

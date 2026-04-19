@@ -14,7 +14,7 @@ import InvestorConcentration from "@/components/InvestorConcentration";
 import DividendTaxCalc from "@/components/DividendTaxCalc";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
-import { MANAGER_QUALITY } from "@/lib/signals";
+import { MANAGER_QUALITY, getManagerQuality } from "@/lib/signals";
 import { QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { getEdgarHoldings } from "@/lib/edgar-data";
 
@@ -254,7 +254,11 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           <h2 className="text-2xl font-bold">Recent moves</h2>
           <div className="text-xs text-dim">
             Manager quality score:{" "}
-            <span className="text-brand font-semibold">{MANAGER_QUALITY[m.slug] ?? 6}/10</span>
+            {/* v4.2 — derived-ROI quality. Audit showed hand-coded
+                MANAGER_QUALITY correlated only 0.232 with actual returns.
+                Shown as X.X/10 rounded to one decimal since derived is
+                continuous 0.0-10.0 (unlike hand integers 6-10). */}
+            <span className="text-brand font-semibold">{getManagerQuality(m.slug).toFixed(1)}/10</span>
           </div>
         </div>
         <p className="text-muted text-sm mb-6 max-w-2xl">
