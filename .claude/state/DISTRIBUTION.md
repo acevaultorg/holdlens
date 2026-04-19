@@ -134,3 +134,9 @@ there's no baseline to drop from.
 
 ## Distribution Fit Log (v1.49)
 2026-04-19 | v1.49-similar-to-scorer | SEO:0.75 SHARE:0.40 CHANNEL:0.70 LOOP:0.80 MOAT:0.60 | mean:0.65 | PASS | SEO: real query pattern "investors who trade like X". SHARE: no share card v1 (follow-up). CHANNEL: finance audience fit strong. LOOP: high — bidirectional cross-link /investor/[X] ↔ /similar-to/[X]. MOAT: Jaccard on HoldLens-curated 30-manager set is distinctive.
+
+## Distribution Fit Log (v1.48 palette discipline, 2026-04-19)
+2026-04-19 | v1.48-hero-widow-orphan          | SEO:0.50 SHARE:0.40 CHANNEL:0.70 LOOP:0.50 MOAT:0.40 | mean:0.50 | PASS  | Homepage polish. Does not directly move distribution Oracle archetypes but reduces first-paint bounce risk on referral traffic. SEO/LOOP neutral. MOAT 0.4 — small quality signal.
+2026-04-19 | v1.48-signals-magnitude-tier     | SEO:0.55 SHARE:0.55 CHANNEL:0.75 LOOP:0.50 MOAT:0.70 | mean:0.61 | PASS  | Visible-at-glance data encoding is share-worthy (someone might screenshot a "strong buy" signal). MOAT 0.70 — magnitude-tiered palette is a specific HoldLens visual idiom, hard-to-copy without the underlying ConvictionScore dataset.
+2026-04-19 | v1.48.1-wcag-weak-tier-fix       | SEO:0.60 SHARE:0.45 CHANNEL:0.70 LOOP:0.50 MOAT:0.55 | mean:0.56 | PASS  | Accessibility compliance weakly lifts LLM-citation fit (Aleyda Solis characteristic #1 "Accessible") + reduces risk of ADA/WCAG complaint.
+2026-04-19 | v1.48.3-latest-moves-palette     | SEO:0.55 SHARE:0.55 CHANNEL:0.75 LOOP:0.55 MOAT:0.75 | mean:0.63 | PASS  | Palette consistency across data surfaces compounds brand recognition. MOAT 0.75 — one visual grammar across BuySellSignals + LatestMoves is a compound identity asset.

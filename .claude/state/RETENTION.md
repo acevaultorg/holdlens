@@ -87,3 +87,9 @@ candidate). Pre-traffic, there's no baseline to drop from.
 
 ## Calibration (v1.49 — Ship #8 v1)
 2026-04-19 | v1.49-portfolio-similarity-scorer | new_feature_usefulness | +0.025 | TBD | TBD | Ship #8 v1. Hypothesis: every /investor/[X] page now has a compelling "see 29 peers ranked" exit path that keeps users inside HoldLens instead of bouncing to Dataroma/competitors. Core retention lever: exploration loop. Confidence 0.3.
+
+## Calibration (v1.48 palette discipline, 2026-04-19)
+2026-04-19 | v1.48-hero-widow-orphan          | craftsmanship_polish    | +0.008 | TBD | TBD | text-balance + text-pretty + whitespace-nowrap on hero + subhead. Widow-orphan fix reads as "thought about" = delight signal on first-paint. Reach = 1.0 (homepage hero). Confidence 0.3.
+2026-04-19 | v1.48-signals-magnitude-tier     | delight_detail          | +0.012 | TBD | TBD | Magnitude-tiered saturation + split-color buyer/seller on homepage buy/sell cards. Encodes rank + cross-pressure visually. Reach = 1.0 (homepage). Confidence 0.3.
+2026-04-19 | v1.48.1-wcag-weak-tier-fix       | bug_fix_blocking_core   | +0.004 | TBD | TBD | WCAG 2.1 AA failure on /65 opacity caught + fixed same-session. Visible only to users reading low-magnitude signals; small absolute retention signal but accessibility floor matters for long-term user trust. Confidence 0.3.
+2026-04-19 | v1.48.3-latest-moves-palette     | craftsmanship_polish    | +0.010 | TBD | TBD | Consistent palette across BuySellSignals + LatestMoves — 4-tier bull/bear grammar. Repeated visual pattern = stronger mental model = better retention. Reach = 1.0 (both visible above-the-fold). Confidence 0.3.

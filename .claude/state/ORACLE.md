@@ -75,3 +75,9 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 
 ## Calibration (v1.49 — Ship #8 Portfolio Similarity Scorer v1)
 2026-04-19 | v1.49 /similar-to/[investor]/ × 30 pages + cross-link | new_feature_usefulness + core_loop_improvement | est €4/wk | TBD | TBD | Ship #8 v1 from HOLDLENS_MASTER_ROADMAP. Pure algorithmic layer on existing 13F data (Jaccard on ticker-set union, 30 × 30 = 900 pairs at build time). Creates discovery loop /investor/[X] → /similar-to/[X] → /investor/[Y] → repeat. No new data pipeline. Confidence 0.3 cold.
+
+## v1.48 palette discipline (2026-04-19)
+2026-04-19 | v1.48-hero-widow-orphan              | craftsmanship_polish          | est €0.5/wk  | TBD | TBD | Hero polish. Revenue-neutral short-term, compounding bet through retention delight.
+2026-04-19 | v1.48-signals-magnitude-tier         | delight_detail                | est €1/wk    | TBD | TBD | Above-the-fold signals encoding rank visually; modest bounce reduction projection.
+2026-04-19 | v1.48.1-wcag-weak-tier-fix           | bug_fix_blocking_revenue      | est €0.5/wk  | TBD | TBD | WCAG compliance restored on 4 weak-tier cells. Minor revenue projection but compliance floor matters.
+2026-04-19 | v1.48.3-latest-moves-palette-fix    | craftsmanship_polish          | est €1.5/wk  | TBD | TBD | TRIM amber→rose semantic fix + score column magnitude-tiered. Brand-amber preserved for Pro/CTA. Palette discipline ship across 2 homepage components.
