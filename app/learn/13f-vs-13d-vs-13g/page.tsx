@@ -211,6 +211,116 @@ export default function ThirteenFvsDvsGPage() {
           </div>
         </div>
 
+        {/* v19.2 — filing-speed timeline. Turns the "10 / varies / 45
+            days" abstraction into a visual that makes the speed-hierarchy
+            obvious at a glance. Closes the deferred @craftsman Love Score
+            Delightful-dimension gap (was 0.68, projected 0.78+ with a
+            visual that fits the signal-spectrum thesis of the article).
+            Pure CSS/Tailwind — zero JS, zero dependencies, responsive.
+            Emerald = fast/activist, sky = passive/variable, amber =
+            quarterly snapshot (brand-aligned with the HoldLens core
+            product). */}
+        <div
+          className="rounded-2xl border border-border bg-panel p-6 my-6"
+          role="figure"
+          aria-label="Filing speed comparison: 13D takes 10 days, 13G varies, 13F takes 45 days"
+        >
+          <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
+            Filing speed · at a glance
+          </div>
+          <div className="space-y-4">
+            {/* 13D — fastest */}
+            <div>
+              <div className="flex items-baseline justify-between mb-1.5">
+                <span className="text-text font-semibold text-sm">
+                  13D
+                </span>
+                <span className="text-xs text-muted font-mono">
+                  10 calendar days
+                </span>
+              </div>
+              <div
+                className="h-3 rounded-full bg-border/60 overflow-hidden relative"
+                aria-hidden="true"
+              >
+                <div
+                  className="h-full rounded-full bg-signal-buy"
+                  style={{ width: "22%" }}
+                />
+              </div>
+              <div className="text-xs text-dim mt-1">
+                Activist threshold crossed · clock starts
+              </div>
+            </div>
+
+            {/* 13G — variable */}
+            <div>
+              <div className="flex items-baseline justify-between mb-1.5">
+                <span className="text-text font-semibold text-sm">
+                  13G
+                </span>
+                <span className="text-xs text-muted font-mono">
+                  varies (10–45 days)
+                </span>
+              </div>
+              <div
+                className="h-3 rounded-full bg-border/60 overflow-hidden relative"
+                aria-hidden="true"
+              >
+                <div
+                  className="h-full rounded-full bg-info/70"
+                  style={{
+                    width: "66%",
+                    backgroundImage:
+                      "repeating-linear-gradient(45deg, rgba(0,0,0,0.18) 0 3px, transparent 3px 8px)",
+                  }}
+                />
+              </div>
+              <div className="text-xs text-dim mt-1">
+                Passive · depends on filer type + ownership size
+              </div>
+            </div>
+
+            {/* 13F — slowest */}
+            <div>
+              <div className="flex items-baseline justify-between mb-1.5">
+                <span className="text-text font-semibold text-sm">
+                  13F
+                </span>
+                <span className="text-xs text-muted font-mono">
+                  45 days after quarter end
+                </span>
+              </div>
+              <div
+                className="h-3 rounded-full bg-border/60 overflow-hidden relative"
+                aria-hidden="true"
+              >
+                <div
+                  className="h-full rounded-full bg-brand"
+                  style={{ width: "100%" }}
+                />
+              </div>
+              <div className="text-xs text-dim mt-1">
+                Quarterly snapshot · portfolio already 45–135 days old when
+                it surfaces
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-border/60 mt-5 pt-4 text-xs text-muted leading-relaxed">
+            Filing speed = the difference between a live signal (13D),
+            governance paperwork (13G), and a quarterly portrait (13F).
+            Read{" "}
+            <a
+              href="/learn/45-day-lag-explained"
+              className="text-brand underline-offset-2 hover:underline"
+            >
+              the 45-day lag in 13F filings
+            </a>{" "}
+            for why the quarterly window is six weeks late by design.
+          </div>
+        </div>
+
         <AuthorByline date="2026-04-17" />
 
         {/* Section 1 */}
