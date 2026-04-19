@@ -188,6 +188,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
+  // Ship #8 v1 — /similar-to/[investor]/ per-investor portfolio
+  // similarity ranking pages. 30 new URLs (one per manager).
+  const similarToUrls: MetadataRoute.Sitemap = MANAGERS.map((m) => ({
+    url: `${base}/similar-to/${m.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -199,5 +208,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...quarterUrls,
     ...tickerFeedUrls,
     ...dividendTaxUrls,
+    ...similarToUrls,
   ];
 }

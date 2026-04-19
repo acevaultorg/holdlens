@@ -2,6 +2,7 @@ import { MANAGERS } from "@/lib/managers";
 import { getAllMovesEnriched, QUARTER_LABELS, LATEST_QUARTER, type Quarter } from "@/lib/moves";
 import { getConviction } from "@/lib/conviction";
 import { TICKER_INDEX } from "@/lib/tickers";
+import { scoreColor } from "@/lib/signal-colors";
 import SectorBadge from "@/components/SectorBadge";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
@@ -31,10 +32,22 @@ type Row = {
   convictionScore: number;
 };
 
+// v1.48.3 — TRIM badge migrated from amber → rose-soft. Amber is reserved
+// fleet-wide for brand / Pro / primary-CTA signals (the v1.05 palette
+// discipline). Using amber for TRIM conflated "HoldLens brand" with "data
+// semantic" — a sighted user scanning the page could read amber as
+// "something important" when the intended meaning is "directional bearish,
+// softer than EXIT." Rose-soft preserves the 4-tier bull/bear grammar:
+//   NEW   → bright emerald (new conviction)
+//   ADD   → soft emerald   (reinforced conviction)
+//   TRIM  → soft rose      (directional bearish, partial)
+//   EXIT  → bright rose    (full exit)
+// Text-color stays full rose-400 (matches ADD's full emerald-400) so the
+// direction reads instantly; bg + border alpha encodes magnitude.
 function actionStyle(action: Row["action"]): string {
   if (action === "new") return "bg-emerald-400/15 text-emerald-400 border-emerald-400/30";
   if (action === "add") return "bg-emerald-400/10 text-emerald-400 border-emerald-400/25";
-  if (action === "trim") return "bg-amber-400/10 text-amber-400 border-amber-400/25";
+  if (action === "trim") return "bg-rose-400/10 text-rose-400 border-rose-400/25";
   return "bg-rose-400/15 text-rose-400 border-rose-400/30";
 }
 
@@ -176,14 +189,16 @@ export default function LatestMoves() {
                 <td className="px-4 py-3 text-right tabular-nums font-bold text-text">
                   {r.impact.toFixed(1)}%
                 </td>
+                {/* v1.48.3 — magnitude-tiered score color via shared
+                    `lib/signal-colors.ts`. Before: every +X or −X painted
+                    full emerald/rose, erasing magnitude information. After:
+                    |score| ≥40 full, ≥25 /85, <25 neutral text-muted. Eye
+                    reads rank at a glance; text-muted for weak scores
+                    encodes "below meaningful threshold, don't over-read."
+                    Same helper used on BuySellSignals homepage cards for
+                    palette consistency across both data surfaces. */}
                 <td
-                  className={`px-4 py-3 text-right tabular-nums font-semibold hidden md:table-cell ${
-                    r.convictionScore > 0
-                      ? "text-emerald-400"
-                      : r.convictionScore < 0
-                        ? "text-rose-400"
-                        : "text-dim"
-                  }`}
+                  className={`px-4 py-3 text-right tabular-nums font-semibold hidden md:table-cell ${scoreColor(r.convictionScore)}`}
                 >
                   {r.convictionScore > 0 ? "+" : ""}
                   {r.convictionScore}

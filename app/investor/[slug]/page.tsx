@@ -351,6 +351,18 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
                 </a>
               ))}
             </div>
+            {/* Ship #8 v1 cross-link — full Jaccard-ranked similarity
+                for all 29 other tracked investors. Top-of-funnel for
+                retention via discovery loop: /investor/[X] → /similar-to/[X]
+                → /investor/[Y] → repeat. */}
+            <div className="mt-4">
+              <a
+                href={`/similar-to/${m.slug}`}
+                className="inline-flex items-center gap-1 text-sm text-brand hover:underline font-semibold"
+              >
+                See all 29 investors ranked by portfolio similarity →
+              </a>
+            </div>
           </section>
         );
       })()}
