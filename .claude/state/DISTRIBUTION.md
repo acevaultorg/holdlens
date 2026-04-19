@@ -122,3 +122,9 @@ there's no baseline to drop from.
 
 ## Distribution Fit Log (v1.46)
 2026-04-19 | v1.46-share-and-guides | SEO:0.70 SHARE:0.60 CHANNEL:0.70 LOOP:0.60 MOAT:0.60 | mean:0.64 | PASS | Up from cycle-1 mean 0.59. SHARE dim: 0.40 → 0.60 (share button ships; canvas PNG still deferred). MOAT dim: 0.55 → 0.60 (citation-backed pre-composed share text is a small moat vs generic calculators).
+
+## Calibration (v1.47 — data +65 cells)
+2026-04-19 | v1.47-data-expansion | programmatic_page_with_unique_data (stacking ×1.4) | +45 vis/wk incremental | TBD | TBD | 20 country pages now have real data to back the treaty matrix instead of mostly-pending. Thin-content risk materially reduced. Solis characteristic #2 (Useful) +0.2, #4 (Extractable) +0.15 across the surface.
+
+## Distribution Fit Log (v1.47)
+2026-04-19 | v1.47-data-expansion | SEO:0.75 SHARE:0.65 CHANNEL:0.70 LOOP:0.60 MOAT:0.65 | mean:0.67 | PASS | Up from cycle-2 mean 0.64. SEO: 0.70→0.75 (less thin content). SHARE: 0.60→0.65 (share button fires on more cells). MOAT: 0.60→0.65 (correction audit trail + citation-first discipline is defensible moat).

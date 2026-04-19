@@ -43,3 +43,6 @@ per-archetype multiplier adjustments kick in.
 
 ## Love Log (v1.46)
 2026-04-19 | dividend-tax-share-and-guides | USEFUL:0.70 DELIGHT:0.65 RELIABLE:0.60 CLEAR:0.80 UNIQUE:0.55 | mean:0.66 | PASS | Cycle-2 follow-up to v1.45 architecture ship. Share button + resident_guide content. Reliable still capped at 0.6 due to un-verified-in-browser session (same mobile-verify gap from cycle 1). Delight +0.05 from tighter UX (3-button share row, preview text, verified-rate gating so users never share "data pending" results). Useful +0 (core feature unchanged; content is thickening).
+
+## Love Log (v1.47)
+2026-04-19 | dividend-tax-data-expansion-and-uk-fix | USEFUL:0.75 DELIGHT:0.65 RELIABLE:0.70 CLEAR:0.80 UNIQUE:0.60 | mean:0.70 | PASS | Cycle-3 data expansion. Reliable +0.10 (BIG: caught + fixed US→UK directional bug from cycle 1; added corrections audit trail; 75 cells of real verified data instead of 10; practical accuracy materially improved). Useful +0.05 (more queries return real data). Unique +0.05 (correction discipline is distinctive). Mobile-verify still un-resolved this session — Reliable capped at 0.7 until operator verifies live.

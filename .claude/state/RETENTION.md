@@ -78,3 +78,6 @@ candidate). Pre-traffic, there's no baseline to drop from.
 
 ## Calibration (v1.46)
 2026-04-19 | v1.46-tax-share-button-and-guides | delight_detail + core_loop_improvement | +0.008 | TBD | TBD | Hypothesis: enriched resident guides on top-5 country pages give returning visitors a reason to re-open (tax-season reference use-case) beyond the one-shot calculator. Share button adds an "explicit moment" users can act on without leaving — small delight. Confidence 0.25 cold.
+
+## Calibration (v1.47 — data +65 cells, US→UK correction)
+2026-04-19 | v1.47-data-expansion-and-uk-fix | bug_fix_blocking_core + core_loop_improvement | +0.018 | TBD | TBD | Hypothesis: 7.5x more verified cells = 7.5x more widget interactions produce real (not "data pending") results = genuinely useful tool. Especially UK/SG-payer coverage which matters because many HoldLens-tracked tickers are held via UK ADRs or Singapore-listed. US→UK correction also materially affects every US investor who queried that cell in cycle 1-2 and may have been misled. Confidence 0.3.
