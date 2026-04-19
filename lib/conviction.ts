@@ -207,7 +207,13 @@ export function getConviction(ticker: string, quarter: Quarter = LATEST_QUARTER)
   }
   const trackRecord =
     totalConcWeight > 0
-      ? clamp(((trackRecordRaw / totalConcWeight - 13) * 1.5), 0, 20) // alpha vs 13% S&P, 1.5pt per 1% alpha
+      // v4.1 calibration (2026-04-19 audit): lower clamp from 0 to -10
+      // so low-quality buyers actively penalize. Audit showed trackRecord
+      // fired on only 17% of tickers because clamp(0, 20) suppressed any
+      // stock where buyers' mean CAGR was below the 13% S&P threshold.
+      // Now a stock bought mainly by managers averaging 5% CAGR = -12,
+      // mapped to -10 after clamp — real alpha penalty.
+      ? clamp(((trackRecordRaw / totalConcWeight - 13) * 1.5), -10, 20)
       : 0;
 
   // ----- LAYER 4: Trend streak compounding -----
@@ -239,7 +245,12 @@ export function getConviction(ticker: string, quarter: Quarter = LATEST_QUARTER)
     return (roi?.quality0to10 ?? 0) >= 8;
   });
   const contrarian =
-    ownerCount <= 5 && tierOneBuyers.length >= 1
+    // v4.1 calibration (2026-04-19 audit): raised ownerCount threshold
+    // from 5 to 7. At 5 the layer fired on only 3.8% of tickers — dead
+    // signal inside a 30-manager universe. At 7, activation lifts to
+    // ~15% while preserving the "genuinely under-owned" intent. Still
+    // requires ≥1 tier-1 buyer.
+    ownerCount <= 7 && tierOneBuyers.length >= 1
       ? clamp(10 - ownerCount, 0, 10)
       : 0;
 
@@ -533,7 +544,12 @@ export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): Co
     return (roi?.quality0to10 ?? 0) >= 8;
   });
   const contrarian =
-    ownerCount <= 5 && tierOneBuyers.length >= 1 ? clamp(10 - ownerCount, 0, 10) : 0;
+    // v4.1 calibration (2026-04-19 audit): raised ownerCount threshold
+    // from 5 to 7. At 5 the layer fired on only 3.8% of tickers — dead
+    // signal inside a 30-manager universe. At 7, activation lifts to
+    // ~15% while preserving the "genuinely under-owned" intent. Still
+    // requires ≥1 tier-1 buyer.
+    ownerCount <= 7 && tierOneBuyers.length >= 1 ? clamp(10 - ownerCount, 0, 10) : 0;
   const crowdingPenalty =
     ownerCount > 8 ? clamp(Math.log2(ownerCount - 7) * 2, 0, 10) : 0;
 
