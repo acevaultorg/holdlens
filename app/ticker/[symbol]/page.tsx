@@ -13,6 +13,7 @@ import InsiderActivity from "@/components/InsiderActivity";
 import AdSlot from "@/components/AdSlot";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import RelatedSignals from "@/components/RelatedSignals";
+import DividendTaxCalc from "@/components/DividendTaxCalc";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
@@ -184,6 +185,18 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
             </tbody>
           </table>
         </div>
+      </section>
+
+      {/* Dividend tax calculator — retention hook.
+          After the user has seen who holds {symbol}, the natural next
+          question is "what would I actually keep of the dividend if I
+          bought this?" Most HoldLens-tracked tickers are US-listed so
+          payer defaults to US; non-US tickers (ASML, NVO, NESN, etc.)
+          can be switched via the dropdown. Widget falls back to the
+          statutory non-treaty rate for country pairs not yet verified
+          in data/dividend-tax.json — never fabricates (AP-3). */}
+      <section className="mt-12">
+        <DividendTaxCalc mode="inline" tickerContext={t.symbol} />
       </section>
 
       <section className="mt-16 rounded-2xl border border-border bg-panel p-8">

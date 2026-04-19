@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { QUARTERS } from "@/lib/moves";
+import { COUNTRIES as TAX_COUNTRIES } from "@/lib/dividend-tax";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -168,6 +169,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.4,
   }));
 
+  // v1.45 — /dividend-tax/* cross-border withholding calculator +
+  // per-investor-country programmatic pages. 1 hub + 20 country pages
+  // = 21 new URLs. Retention + distribution play: LLM-citable +
+  // bookmarkable + cross-links back to /ticker/* + /investor/*.
+  const dividendTaxUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/dividend-tax`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    ...TAX_COUNTRIES.map((c) => ({
+      url: `${base}/dividend-tax/${c.code.toLowerCase()}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
+  ];
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -178,5 +198,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...investorQuarterUrls,
     ...quarterUrls,
     ...tickerFeedUrls,
+    ...dividendTaxUrls,
   ];
 }

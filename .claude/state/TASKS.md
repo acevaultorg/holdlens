@@ -1,5 +1,87 @@
 # HoldLens — TASKS
 
+## Queue (v1.45 — Dividend Tax Calc Phase 1, architecture + seed) — SHIPPED [objective:dividend-tax-v1]
+
+- [x] `P1` BUILD /dividend-tax/ hub + 20 per-investor-country programmatic pages + DividendTaxCalc component. Architecture complete; `data/dividend-tax.json` seeded with 10 verified US-outbound treaty cells (IRS P901 Table 1 cited) + 390 cells marked `needs_research`; fallback = statutory non-treaty rate with visible "data pending verification" disclaimer (never fabricated per AP-3). Widget integrated on /ticker/[symbol] + /investor/[slug] as inline retention hook. sitemap.xml + llms.txt updated with 21 new URLs. Build passes. [id:dividend-tax-v1] [score:10.0] [oracle:€8/wk peak after data completion] [ret:+4.5% peak] [reach:+120 vis/wk peak] ⏱ done 2026-04-19 (cycle 1 of dividend-tax multi-session mission)
+
+- [👤] 🔴 REQUIRED — Populate dividend tax treaty data (target ≥320/400 cells verified over 14 days).
+  **WHAT:** Extend `data/dividend-tax.json` by filling in the `treaties` array for 300+ additional (investor_country, payer_country) pairs, citing a primary source for every rate. Currently 10 US-outbound cells are verified from IRS Publication 901 Table 1. The remaining ~390 cells default to `needs_research` and the UI shows "data pending verification" — honest but thin.
+  **WHY:** The `@distributor` Distribution Oracle projection for this feature (+120 vis/wk) multiplies by actual page-depth. Pages that stay `needs_research` for >30 days will be flagged by Google as thin-content and distributor_weight will drop. Each verified cell is also a unique-data page for LLM citation (Aleyda Solis characteristic #2 Useful). Skipping means Phase 1 ships but Phase 2 traffic projection never materializes.
+  **TIME:** ~14 days across multiple sessions. Per cell: find primary source (KPMG WHT guide, PwC WWTS, OECD Tax Database, or national tax authority), extract treaty rate, write source_citation, set state=verified. Budget ~5 min per cell (including double-check). 300 cells × 5 min = 25 hours over 14 days = ~1.8 hours/day.
+  **HOW:**
+    1. Open `holdlens/data/dividend-tax.json` in editor.
+       → expected: see 10 existing verified US-outbound cells as template for format.
+    2. For each of the 19 non-US investor countries × 20 payer countries, look up the bilateral treaty rate for portfolio dividends at:
+       `https://taxsummaries.pwc.com/` (PwC Worldwide Tax Summaries) OR
+       `https://kpmg.com/xx/en/home/insights/2011/12/corporate-tax-rates-table.html` (KPMG annual corporate + withholding tax rates) OR
+       `https://www.oecd.org/tax/tax-policy/tax-database/` (OECD authoritative)
+       → expected: find published treaty rate + article reference (e.g. "Article 10(2)(b)").
+    3. Append a new entry per verified cell:
+       ```
+       {
+         "investor_country": "UK",
+         "payer_country": "DE",
+         "withholding_rate_pct": 15,
+         "treaty_reference": "1964 UK-Germany Tax Treaty (2010 Protocol), Article 10",
+         "source_citation": "PwC Worldwide Tax Summaries — Germany — Individual — Foreign tax relief and tax treaties (retrieved 2026-04-20)",
+         "state": "verified",
+         "last_verified": "2026-04-20",
+         "notes": "Optional — any conditions or caveats"
+       }
+       ```
+       → expected: JSON validates, app rebuilds cleanly.
+    4. Run `npm run build` after each batch.
+       → expected: no TS errors; all pages still generate.
+    5. Run `npm run dev` and open `http://localhost:3000/dividend-tax/uk` (or whatever country you populated).
+       → expected: treaty matrix table shows ✓ Verified instead of ⚠️ Data pending for new rates.
+  **VERIFY:**
+    `grep -c '"state": "verified"' data/dividend-tax.json`
+    → expected: ≥320 after 14 days (currently 10).
+  **IF STUCK:**
+    - Can't find the primary source for country pair X → skip it, leave as `needs_research`. Honest fallback > fabrication.
+    - Unsure whether a rate is "portfolio" or "substantial holding" → portfolio (≤10% ownership is the common case for retail investors). Document in `notes` field.
+    - Want to outsource data entry → `data/dividend-tax.json` schema is AI-parseable; a research intern or a one-shot Claude Project can fill it given the primary source URLs. Budget ~4 hours of AI-assisted research to reach 320 cells.
+  [id:dividend-tax-data-pop] [score:9.0] [oracle:€5/wk realized] [ret:+3% realized] [reach:+100 vis/wk realized] [👤]
+
+- [👤] 🟡 RECOMMENDED — Phase 3 polish: share-cards + cross-links (Day 5 of original mission).
+  **WHAT:** Once Phase 2 data is populated, ship (a) per-result share-cards using the `components/SignalShareCard.tsx` pattern — 1200×630 branded PNG + pre-composed tweet ("I'd keep $X of every $100 in [stock] dividends as a [country] investor"), (b) cross-linking sidebar on `/ticker/[X]` showing "Which countries' investors keep most of [X]'s dividend?" when ≥2 verified cells exist for that ticker's domicile, (c) cross-linking sidebar on `/investor/[slug]` showing "Tax-efficient picks from [investor]'s portfolio" based on the manager's top dividend-paying holdings.
+  **WHY:** Distribution Fit score for v1.45 was 0.59 (PASS) — the SHARE dimension scored 0.40 because share-cards are not in Phase 1. Without them, advocacy (AUG factor 5) stays at ~1/10. Share-cards are the single biggest advocacy lever per `rules/aceusergrowth.md` v3 Part 12 (V-F1 contributes +0.08 to k-factor). Skipping means the widget retains users (retention) but doesn't multiply them (advocacy).
+  **TIME:** ~4 hours. Canvas share-card ~90 min (template exists). Cross-link sidebars ~60 min each × 2 = 2 hours. Tests + @designer mobile pass ~30 min.
+  **HOW:**
+    1. Copy `components/SignalShareCard.tsx` to `components/DividendTaxShareCard.tsx`:
+       `cp components/SignalShareCard.tsx components/DividendTaxShareCard.tsx`
+       → expected: new file created; adapt props to (ticker, country, effectiveRate, netPer100).
+    2. Adapt the canvas-draw function to render the comparison copy + brand.
+    3. Add `<DividendTaxShareCard />` into `DividendTaxCalc` compact mode (fires on verified-rate result).
+    4. Build + test locally: `npm run dev` → open /ticker/AAPL → verify share card renders + download works.
+    5. For cross-link sidebars: in `app/ticker/[symbol]/page.tsx`, after the DividendTaxCalc section, add a `<div>` that iterates the 5 most-common investor-country rates for this ticker's (assumed US) domicile. Link each to /dividend-tax/[country]/.
+  **VERIFY:** On any /ticker/[X] page, Chrome devtools → Elements → confirm share-card canvas element present + tweet intent URL correct. Mobile 375px viewport: verify no horizontal overflow.
+  **IF STUCK:**
+    - Canvas rendering fails on some platforms → fall back to satori-based PNG generation in `scripts/generate-og-images.ts` (already used for OG).
+    - Phase 3 depends on Phase 2 data being populated; if data coverage is still <50%, defer this task and do the data population first.
+  [id:dividend-tax-phase3] [score:7.0] [reach:+45 vis/wk additional] [👤]
+
+- [👤] 🟢 OPTIONAL — Mobile browser verification (this session's mobile-verify gap).
+  **WHAT:** Run `npm run dev` on this machine, open Chrome DevTools → Device Toolbar → iPhone 12 Pro (375×844), visit /dividend-tax/, /dividend-tax/us/, /ticker/AAPL. Check touch targets, dropdown interactions, disclaimer wrapping, no horizontal overflow.
+  **WHY:** Per `rules/mobile-perfection-default.md`, Chrome MCP mobile verification is mandatory for public-facing ships. This session could not launch Chrome MCP against a live preview (no browser automation tier available), so a `[mobile-skip-documented]` tag was applied + Reliable score capped at 0.6 in QUALITY.md. Operator verification closes the gap.
+  **TIME:** ~5 min.
+  **HOW:**
+    1. `cd holdlens/ && npm run dev`
+       → expected: Next.js dev server starts on port 3000.
+    2. Open Chrome → http://localhost:3000/dividend-tax/
+       → expected: hub page renders.
+    3. DevTools → Toggle Device Toolbar → iPhone 12 Pro (375×844).
+       → expected: hub + country grid fits viewport, no horizontal scroll.
+    4. Navigate to /dividend-tax/us/ → scroll through treaty matrix.
+       → expected: table readable, no overflow, "Show citations" details-disclosure works.
+    5. Navigate to /ticker/AAPL → scroll to calculator section.
+       → expected: 3-column grid collapses to single column cleanly, selects tap-target is ≥44px.
+  **VERIFY:** no horizontal scroll on any page, all CTAs reachable without horizontal swipe, disclaimer text wraps readably.
+  **IF STUCK:**
+    - If mobile overflow visible → file specific issue + which element; I'll patch in next cycle.
+    - If dev server won't start → check iCloud sync isn't locking `.next/` — rename `.next/` → `npm run dev` to rebuild fresh.
+  [id:dividend-tax-mobile-verify] [score:3.0] [👤]
+
 ## Queue (Wikipedia citation seeding — STAGED, OPERATOR-EXECUTION) [objective:wikipedia-geo-seed]
 
 - [👤] 🟡 RECOMMENDED — Seed HoldLens into Wikipedia over 10 weeks (45 min total operator time). **WHAT:** Add HoldLens as a cited reading-aid source in 4 existing Wikipedia articles (Form 13F, Scion Asset Management, Pershing Square Capital Management, Bill Ackman), using dual SEC-primary + HoldLens-supplementary citation pattern. Each edit is pre-drafted. **WHY:** Wikipedia is the single highest-leverage distribution channel — one surviving citation propagates into LLM training corpora (ChatGPT/Claude/Gemini/Perplexity), Google Knowledge Graph, and PageRank forever. Skipping means permanent invisibility in AI-answer space. **TIME:** 45 min across 10 weeks. **FULL PLAYBOOK** with per-article edit drafts, 20 failure-mode mitigations (COI, autoconfirmed gate, RS, SELFCITE, bot-patrol, BLP, revert-war, etc.), sequenced risk tiers, survival-check schedule, second-order Wikidata chain: `.claude/state/WIKIPEDIA_PLAYBOOK.md`. **VERIFY:** T+48h / T+7d / T+30d survival checks per playbook Part 5. **IF STUCK:** see playbook Part 8 Clarity Card IF-STUCK section. [id:wikipedia-seed] [score:12.0] [oracle: €0/wk short-term] [reach: +75 × 4 edits archetype multiplier over 10 weeks, LLM-corpus compounding] [👤]

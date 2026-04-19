@@ -1,0 +1,142 @@
+{
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_verified": "2026-04-19",
+    "disclaimer": "Treaty rates shown are typical statutory withholding rates for direct portfolio investment. Actual rates depend on holding period, ownership percentage, investor type (individual vs. pension vs. mutual fund), limitation-on-benefits tests, and other factors. Consult a qualified tax professional for your specific situation.",
+    "primary_sources": {
+      "IRS_P901": "https://www.irs.gov/pub/irs-pdf/p901.pdf — IRS Publication 901: U.S. Tax Treaties (Table 1: Tax Rates on Income Other Than Personal Service Income)",
+      "OECD_Tax_Database": "https://www.oecd.org/tax/tax-policy/tax-database/",
+      "KPMG_WHT_Guide": "https://kpmg.com — KPMG annual withholding tax rate guide",
+      "PwC_WWTS": "https://taxsummaries.pwc.com — PwC Worldwide Tax Summaries"
+    },
+    "state_flags": {
+      "verified": "Rate confirmed against a primary source cited in cell.source_citation.",
+      "derived": "Rate inferred from a primary source but requires operator double-check before relying on it.",
+      "needs_research": "Rate not yet populated. Page shows 'data pending verification' message; calculator falls back to statutory non-treaty rate."
+    }
+  },
+  "countries": [
+    { "code": "US", "name": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "statutory_dividend_wht_pct": 30, "resident_note": "U.S. persons taxed on worldwide dividend income; qualified dividends at 0/15/20%; ordinary dividends at ordinary rates; foreign tax credit may offset foreign withholding." },
+    { "code": "UK", "name": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "statutory_dividend_wht_pct": 0, "resident_note": "UK generally imposes no withholding on dividends paid to non-residents; UK residents taxed on foreign dividends at dividend rates with Foreign Tax Credit Relief for foreign withholding." },
+    { "code": "CA", "name": "Canada", "flag": "\ud83c\udde8\ud83c\udde6", "statutory_dividend_wht_pct": 25, "resident_note": "Canadian residents taxed on foreign dividends as ordinary income; foreign tax credit available up to treaty rate." },
+    { "code": "AU", "name": "Australia", "flag": "\ud83c\udde6\ud83c\uddfa", "statutory_dividend_wht_pct": 30, "resident_note": "Australian residents include foreign dividends in assessable income; foreign income tax offset (FITO) available." },
+    { "code": "DE", "name": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "statutory_dividend_wht_pct": 26.375, "resident_note": "26.375% = 25% plus 5.5% solidarity surcharge. German residents taxed under final withholding (Abgeltungsteuer); foreign tax credit up to treaty rate." },
+    { "code": "FR", "name": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "statutory_dividend_wht_pct": 25, "resident_note": "French residents: 30% flat tax (PFU) on dividends; option for progressive rate with foreign tax credit." },
+    { "code": "NL", "name": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "statutory_dividend_wht_pct": 15, "resident_note": "Dutch residents: Box 3 wealth tax on investments; foreign tax credit for treaty withholding." },
+    { "code": "JP", "name": "Japan", "flag": "\ud83c\uddef\ud83c\uddf5", "statutory_dividend_wht_pct": 20.42, "resident_note": "20.42% = 20% plus 2.1% reconstruction surtax. Japanese residents can claim foreign tax credit up to treaty rate." },
+    { "code": "IE", "name": "Ireland", "flag": "\ud83c\uddee\ud83c\uddea", "statutory_dividend_wht_pct": 25, "resident_note": "Irish residents taxed on worldwide income; foreign tax credit available; note Ireland is a major fund-domicile for ETFs so this field also serves the many investors who hold Ireland-domiciled ETFs." },
+    { "code": "SG", "name": "Singapore", "flag": "\ud83c\uddf8\ud83c\uddec", "statutory_dividend_wht_pct": 0, "resident_note": "Singapore does not impose withholding tax on dividends to non-residents; Singapore residents are not taxed on foreign-source dividends received outside Singapore (subject to conditions)." },
+    { "code": "CH", "name": "Switzerland", "flag": "\ud83c\udde8\ud83c\udded", "statutory_dividend_wht_pct": 35, "resident_note": "35% statutory rate is among the highest globally but treaty rates are typically 15%. Swiss residents receive full credit for the Swiss 35% via tax return." },
+    { "code": "DK", "name": "Denmark", "flag": "\ud83c\udde9\ud83c\uddf0", "statutory_dividend_wht_pct": 27, "resident_note": "Danish residents taxed on worldwide dividend income; share income tax 27% up to threshold, 42% above." },
+    { "code": "SE", "name": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "statutory_dividend_wht_pct": 30, "resident_note": "Swedish residents: 30% flat tax on capital income including dividends; foreign tax credit up to treaty rate." },
+    { "code": "NO", "name": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "statutory_dividend_wht_pct": 25, "resident_note": "Norwegian residents: dividends taxed as general income with shareholder model adjustments." },
+    { "code": "FI", "name": "Finland", "flag": "\ud83c\uddeb\ud83c\uddee", "statutory_dividend_wht_pct": 30, "resident_note": "Finnish residents: capital income tax 30% up to threshold, 34% above." },
+    { "code": "IT", "name": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "statutory_dividend_wht_pct": 26, "resident_note": "Italian residents: 26% flat tax on dividends; foreign tax credit up to treaty rate." },
+    { "code": "ES", "name": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "statutory_dividend_wht_pct": 19, "resident_note": "Spanish residents: savings income tax 19-28% depending on amount; foreign tax credit available." },
+    { "code": "BE", "name": "Belgium", "flag": "\ud83c\udde7\ud83c\uddea", "statutory_dividend_wht_pct": 30, "resident_note": "Belgian residents: 30% withholding is typically final for dividends; foreign tax credit available under treaties." },
+    { "code": "LU", "name": "Luxembourg", "flag": "\ud83c\uddf1\ud83c\uddfa", "statutory_dividend_wht_pct": 15, "resident_note": "Luxembourg residents taxed on worldwide income; common fund-domicile jurisdiction (SICAV/SICAF structures)." },
+    { "code": "NZ", "name": "New Zealand", "flag": "\ud83c\uddf3\ud83c\uddff", "statutory_dividend_wht_pct": 30, "resident_note": "New Zealand residents taxed on worldwide income; foreign investment fund (FIF) rules may apply; foreign tax credit available." }
+  ],
+  "treaties": [
+    {
+      "investor_country": "US",
+      "payer_country": "UK",
+      "withholding_rate_pct": 15,
+      "treaty_reference": "2001 US-UK Tax Treaty, Article 10 (Dividends)",
+      "source_citation": "IRS Publication 901 Table 1 (United Kingdom row, Dividends Paid by U.S. Corporations column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "15% on ordinary portfolio dividends. Pension funds may qualify for 0% under Article 10(3). Treaty must be claimed on Form W-8BEN."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "CA",
+      "withholding_rate_pct": 15,
+      "treaty_reference": "1980 US-Canada Tax Convention, Article X (Dividends)",
+      "source_citation": "IRS Publication 901 Table 1 (Canada row, Dividends column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "15% on direct portfolio investment. 5% available to corporate shareholders with \u226510% ownership."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "DE",
+      "withholding_rate_pct": 15,
+      "treaty_reference": "1989 US-Germany Tax Treaty (as amended 2006 Protocol), Article 10 (Dividends)",
+      "source_citation": "IRS Publication 901 Table 1 (Germany row, Dividends column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "15% on portfolio dividends. Germany's statutory 26.375% is reduced via refund claim (Erstattung) or at-source certification."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "NL",
+      "withholding_rate_pct": 15,
+      "treaty_reference": "1992 US-Netherlands Tax Treaty, Article 10",
+      "source_citation": "IRS Publication 901 Table 1 (Netherlands row, Dividends column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "15% on portfolio dividends."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "CH",
+      "withholding_rate_pct": 15,
+      "treaty_reference": "1996 US-Switzerland Tax Treaty, Article 10",
+      "source_citation": "IRS Publication 901 Table 1 (Switzerland row, Dividends column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "15% on portfolio dividends. Switzerland's statutory 35% is reduced via refund (Form 82 series) or at-source with a qualified intermediary."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "JP",
+      "withholding_rate_pct": 10,
+      "treaty_reference": "2003 US-Japan Tax Treaty (as amended 2013 Protocol), Article 10",
+      "source_citation": "IRS Publication 901 Table 1 (Japan row, Dividends column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "10% on portfolio dividends; 0% for pension funds under Article 10(3)."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "AU",
+      "withholding_rate_pct": 15,
+      "treaty_reference": "1982 US-Australia Tax Treaty (as amended 2001 Protocol), Article 10",
+      "source_citation": "IRS Publication 901 Table 1 (Australia row, Dividends column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "15% on franked or unfranked portfolio dividends."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "IE",
+      "withholding_rate_pct": 15,
+      "treaty_reference": "1997 US-Ireland Tax Treaty, Article 10",
+      "source_citation": "IRS Publication 901 Table 1 (Ireland row, Dividends column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "15% on portfolio dividends. Ireland is also a major fund-domicile jurisdiction; Irish-domiciled ETFs are subject to separate fund-level tax mechanics."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "FR",
+      "withholding_rate_pct": 15,
+      "treaty_reference": "1994 US-France Tax Treaty (as amended 2009 Protocol), Article 10",
+      "source_citation": "IRS Publication 901 Table 1 (France row, Dividends column)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "15% on portfolio dividends."
+    },
+    {
+      "investor_country": "US",
+      "payer_country": "US",
+      "withholding_rate_pct": 0,
+      "treaty_reference": "Domestic \u2014 no cross-border withholding",
+      "source_citation": "IRC \u00a7\u00a7 1441\u20131446 (withholding applies to foreign persons; US residents not subject to WHT on US-source dividends)",
+      "state": "verified",
+      "last_verified": "2026-04-19",
+      "notes": "U.S. residents receiving U.S.-source dividends: no cross-border withholding; taxed on return at qualified (0/15/20%) or ordinary rates."
+    }
+  ]
+}

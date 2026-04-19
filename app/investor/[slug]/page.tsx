@@ -11,6 +11,7 @@ import FoundersNudge from "@/components/FoundersNudge";
 import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
 import InvestorConcentration from "@/components/InvestorConcentration";
+import DividendTaxCalc from "@/components/DividendTaxCalc";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -309,6 +310,17 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
 
       <FoundersNudge context={`You're reading ${m.name}'s full 13F portfolio and conviction signals.`} />
       <AdSlot format="horizontal" />
+
+      {/* Dividend tax calculator — retention hook on investor pages.
+          After reading the full portfolio, investors commonly ask
+          "if I replicated the top positions, what tax would I actually
+          pay on the dividends?" This widget lets them model that
+          instantly. payer defaults to US (most HoldLens-tracked
+          positions). Never fabricates — needs_research cells fall
+          back to statutory rate with a clear disclaimer (AP-3). */}
+      <section className="mt-12">
+        <DividendTaxCalc mode="inline" investorContext={m.slug} />
+      </section>
 
       <section className="mt-16 rounded-2xl border border-border bg-panel p-8">
         <h2 className="text-2xl font-bold mb-3">Want {m.name.split(" ")[0]} move-alerts?</h2>

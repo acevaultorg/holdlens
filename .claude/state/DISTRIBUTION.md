@@ -110,3 +110,9 @@ there's no baseline to drop from.
 ## Corrections
 
 <!-- Append-only. Format: corrects: <timestamp> | reason | new_value -->
+
+## Calibration (v1.45 — Dividend Tax Calc, architecture + seed ship)
+2026-04-19 | v1.45-dividend-tax-architecture | programmatic_page_with_unique_data (stacking ×1.4) | +120 vis/wk peak | TBD | TBD | Adds 21 new indexed URLs (1 hub + 20 country pages) × archetype multiplier +55 × stacking bonus ×1.4 (three archetypes per page: comparison_vs_competitor + SEO_page_addition + ai_visibility_optimized × schema_markup) × confidence 0.3 cold. Note: cold-start projection. v1 data coverage is 10 cells verified out of 400 target — Google (+ LLMs for citation) prefer to surface pages with unique-data-per-URL. Distribution WILL drop if cells stay needs_research long-term (thin-content signal). Operator handoff queues a data-completion task to reach ≥80% verified coverage within 30 days — that's when this projection calibrates upward.
+
+## Distribution Fit Log (v1.45)
+2026-04-19 | dividend-tax-calc-architecture | SEO:0.70 SHARE:0.40 CHANNEL:0.70 LOOP:0.60 MOAT:0.55 | mean:0.59 | PASS | SEO: real searchable queries ("dividend tax [country]", "[country] withholding treaty"). SHARE: lower — per-result PNG share-cards are explicitly Phase 3 of mission and NOT shipped in v1. CHANNEL: finance/SaaS fit strong. LOOP: cross-links wire /ticker ↔ /dividend-tax ↔ /investor (internal compounding). MOAT: citation-first + original synthesis (treaty-rate → effective yield → after-tax net) is a quality moat vs generic calculator sites.

@@ -41,6 +41,7 @@ Every signal is sourced directly from SEC filings. Data current: **Q4 2025**. Ne
 - [Per-signal pages](https://holdlens.com/signal/AAPL) — `/signal/[ticker]` for any of ~100 tracked tickers
 - [Per-manager pages](https://holdlens.com/investor/warren-buffett) — `/investor/[slug]` for each of 30 managers
 - [Per-quarter pages](https://holdlens.com/quarterly/2025-q4) — full quarter digests
+- [Dividend tax by country](https://holdlens.com/dividend-tax) — cross-border withholding calculator + per-investor-country pages for 20 residence countries (US, UK, CA, AU, DE, FR, NL, JP, IE, SG, CH, DK, SE, NO, FI, IT, ES, BE, LU, NZ). Every verified treaty rate cites its primary source (IRS Publication 901, OECD Tax Database, or KPMG/PwC annual guide). Cells without a verified primary source ship as "data pending verification" — we never fabricate.
 
 ## Public JSON API
 
