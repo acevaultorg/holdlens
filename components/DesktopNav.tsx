@@ -23,8 +23,12 @@ type NavGroup = {
 const PRIMARY: NavLink[] = [
   { href: "/best-now", label: "Best now", color: "brand" },
   { href: "/value", label: "Value", color: "emerald" },
-  { href: "/big-bets", label: "Big bets", color: "brand" },
-  { href: "/rotation", label: "Rotation", color: "brand" },
+  // v1.50 — palette discipline across nav (parallel to homepage v1.49
+  // Signal Explorer rebalance): amber is reserved for primary-CTA / Pro
+  // signals; mixed-direction overviews (big-bets is both bullish + bearish,
+  // rotation is sector flow) drop to neutral to avoid diluting amber.
+  { href: "/big-bets", label: "Big bets" },
+  { href: "/rotation", label: "Rotation" },
 ];
 
 // Grouped — collapsed into dropdowns.
@@ -35,13 +39,16 @@ const SIGNALS: NavGroup = {
     { href: "/conviction-leaders", label: "Conviction leaders", desc: "Weighted top picks", color: "emerald" },
     { href: "/consensus", label: "Consensus picks", desc: "≥5 tier-1 managers agree", color: "emerald" },
     { href: "/crowded-trades", label: "Crowded trades", desc: "Consensus risk", color: "rose" },
-    { href: "/contrarian-bets", label: "Contrarian bets", desc: "Smart money split", color: "brand" },
+    // /contrarian-bets: split direction by definition — neutral, not amber.
+    { href: "/contrarian-bets", label: "Contrarian bets", desc: "Smart money split" },
     { href: "/hidden-gems", label: "Hidden gems", desc: "Quiet conviction", color: "emerald" },
-    { href: "/fresh-conviction", label: "Fresh conviction", desc: "Lonely new trades", color: "brand" },
-    { href: "/first-movers", label: "First movers", desc: "Before the crowd", color: "brand" },
+    // /fresh-conviction + /accelerators: both directionally bullish →
+    // promote to emerald (was amber pre-v1.50).
+    { href: "/fresh-conviction", label: "Fresh conviction", desc: "Lonely new trades", color: "emerald" },
+    { href: "/first-movers", label: "First movers", desc: "Before the crowd" },
     { href: "/reversals", label: "Reversals", desc: "Smart money changes mind", color: "emerald" },
     { href: "/trend-streak", label: "Trend streaks", desc: "Multi-quarter compounding", color: "emerald" },
-    { href: "/accelerators", label: "Accelerators", desc: "Crowd forming", color: "brand" },
+    { href: "/accelerators", label: "Accelerators", desc: "Crowd forming", color: "emerald" },
   ],
 };
 
@@ -64,11 +71,13 @@ const MANAGERS: NavGroup = {
   label: "Managers",
   links: [
     { href: "/leaderboard", label: "Leaderboard", desc: "Top managers by activity" },
-    { href: "/manager-rankings", label: "Rankings", desc: "Skill × activity × CAGR", color: "brand" },
+    // /manager-rankings, /overlap, /concentration — research/lookup pages,
+    // not directional signals. v1.50 drops brand-amber for neutral default.
+    { href: "/manager-rankings", label: "Rankings", desc: "Skill × activity × CAGR" },
     { href: "/by-philosophy", label: "By philosophy", desc: "Value, growth, macro…", color: "emerald" },
-    { href: "/overlap", label: "Overlap", desc: "Who thinks alike", color: "brand" },
+    { href: "/overlap", label: "Overlap", desc: "Who thinks alike" },
     { href: "/compare/managers", label: "Compare" },
-    { href: "/concentration", label: "Concentration", desc: "All-in vs diversified", color: "brand" },
+    { href: "/concentration", label: "Concentration", desc: "All-in vs diversified" },
     { href: "/investor", label: "All investors" },
   ],
 };
@@ -76,10 +85,12 @@ const MANAGERS: NavGroup = {
 const MORE: NavGroup = {
   label: "More",
   links: [
+    // /portfolio stays brand — personal-Pro feature hook, matches scarcity rule.
     { href: "/portfolio", label: "My portfolio", color: "brand" },
     { href: "/proof", label: "Proof — does it work?", color: "emerald" },
-    { href: "/vs/dataroma", label: "vs Dataroma", color: "brand" },
-    { href: "/themes", label: "Themes — AI, Energy…", color: "brand" },
+    // /vs/dataroma, /themes — comparison/clustering lookups, not directional.
+    { href: "/vs/dataroma", label: "vs Dataroma" },
+    { href: "/themes", label: "Themes — AI, Energy…" },
     { href: "/quarter/2025-q4", label: "Quarterly digests" },
     { href: "/screener", label: "Screener" },
     { href: "/top-picks", label: "Top picks" },
