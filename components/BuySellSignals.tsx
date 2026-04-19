@@ -4,9 +4,40 @@
 // one signed score and we filter cleanly on its sign. The number shown is
 // the actual signed value (+42 for buys, −18 for sells), not a separate
 // per-list rating.
+//
+// v1.48 — MAGNITUDE-TIERED SATURATION (UX audit): scores of +41 / +35 /
+// +33 / +32 / +27 were all painted full `emerald-400`, erasing visual
+// differentiation. The eye read them as equally-strong signals. Tiered
+// opacity now encodes magnitude AT A GLANCE:
+//   |score| ≥ 40 → full opacity (strongest — visual "loud")
+//   |score| ≥ 25 → /85 opacity (moderate)
+//   |score| <  25 → /65 opacity (weakest — visual "quiet")
+// Applied to BOTH the number AND the verdict chip. Also: buyer/seller
+// counts now split-color (emerald for "buying", rose for "selling") so
+// cross-pressure is visible at a glance on the detail line.
 import { getAllConvictionScores, convictionLabel, formatSignedScore, DEAD_ZONE } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import TickerLogo from "@/components/TickerLogo";
+
+// Tiered-saturation helpers. Tailwind JIT needs LITERAL class strings to
+// include them in the production bundle — dynamic `text-${color}/${op}`
+// concatenation silently drops the class. These maps keep every class name
+// as a static string JIT can discover.
+type Tier = "strong" | "mid" | "weak";
+function magnitudeTier(score: number): Tier {
+  const abs = Math.abs(score);
+  if (abs >= 40) return "strong";
+  if (abs >= 25) return "mid";
+  return "weak";
+}
+const SCORE_CLASS: Record<"buy" | "sell", Record<Tier, string>> = {
+  buy:  { strong: "text-emerald-400",    mid: "text-emerald-400/85", weak: "text-emerald-400/65" },
+  sell: { strong: "text-rose-400",       mid: "text-rose-400/85",    weak: "text-rose-400/65"    },
+};
+const CHIP_CLASS: Record<"buy" | "sell", Record<Tier, string>> = {
+  buy:  { strong: "text-emerald-400/90", mid: "text-emerald-400/85", weak: "text-emerald-400/65" },
+  sell: { strong: "text-rose-400/90",    mid: "text-rose-400/85",    weak: "text-rose-400/65"    },
+};
 
 // Server component — renders at build time. The data is static per build.
 export default function BuySellSignals() {
@@ -33,10 +64,8 @@ export default function BuySellSignals() {
           ticker: c.ticker,
           name: c.name,
           score: c.score,
-          detail:
-            c.buyerCount > 0
-              ? `${c.buyerCount} manager${c.buyerCount > 1 ? "s" : ""} buying${c.sellerCount > 0 ? ` · ${c.sellerCount} selling` : ""}`
-              : `Strong historical conviction`,
+          buyerCount: c.buyerCount,
+          sellerCount: c.sellerCount,
         }))}
         linkHref="/buys"
         linkLabel="See full ranking →"
@@ -51,10 +80,8 @@ export default function BuySellSignals() {
           ticker: c.ticker,
           name: c.name,
           score: c.score,
-          detail:
-            c.sellerCount > 0
-              ? `${c.sellerCount} manager${c.sellerCount > 1 ? "s" : ""} selling${c.buyerCount > 0 ? ` · ${c.buyerCount} buying` : ""}`
-              : `Strong historical exit pressure`,
+          buyerCount: c.buyerCount,
+          sellerCount: c.sellerCount,
         }))}
         linkHref="/sells"
         linkLabel="See full ranking →"
@@ -76,12 +103,19 @@ function SignalColumn({
   kind: "buy" | "sell";
   title: string;
   subtitle: string;
-  items: { ticker: string; name: string; score: number; detail: string }[];
+  items: {
+    ticker: string;
+    name: string;
+    score: number;
+    buyerCount: number;
+    sellerCount: number;
+  }[];
   linkHref: string;
   linkLabel: string;
   quarterHref?: string;
   quarterLabel?: string;
 }) {
+  // Static class literals — Tailwind JIT picks them up at build time.
   const accent = kind === "buy" ? "text-emerald-400" : "text-rose-400";
   const accentBg = kind === "buy" ? "bg-emerald-400/5" : "bg-rose-400/5";
   const accentBorder = kind === "buy" ? "border-emerald-400/20" : "border-rose-400/20";
@@ -116,6 +150,18 @@ function SignalColumn({
         <ul className="space-y-2">
           {items.map((it, i) => {
             const label = convictionLabel(it.score);
+            // v1.48 — magnitude-tiered opacity: strongest scores punch full,
+            // weaker ones recede. Eye reads rank at a glance without having
+            // to compare numbers digit-by-digit.
+            const tier = magnitudeTier(it.score);
+            const scoreColor = SCORE_CLASS[kind][tier];
+            const chipColor = CHIP_CLASS[kind][tier];
+            // v1.48 — split-color detail: "buying" gets emerald, "selling"
+            // gets rose, separators stay dim. Visible cross-pressure at a
+            // glance — a buy with managers also selling is now obviously
+            // contested vs. a clean buy with zero sellers.
+            const hasBuyers = it.buyerCount > 0;
+            const hasSellers = it.sellerCount > 0;
             return (
               <li key={it.ticker}>
                 <a
@@ -133,15 +179,35 @@ function SignalColumn({
                       <div className="font-mono font-bold text-text">{it.ticker}</div>
                       <div className="text-xs text-muted truncate">{it.name}</div>
                     </div>
-                    <div className="text-[11px] text-dim flex items-center gap-2">
-                      <span className={`${accent} opacity-80 font-semibold uppercase tracking-wider text-[9px]`}>
+                    <div className="text-[11px] text-dim flex items-center gap-1.5 flex-wrap">
+                      <span className={`${chipColor} font-semibold uppercase tracking-wider text-[9px]`}>
                         {label.label}
                       </span>
-                      <span>·</span>
-                      <span>{it.detail}</span>
+                      <span className="text-dim">·</span>
+                      {hasBuyers || hasSellers ? (
+                        <>
+                          {hasBuyers && (
+                            <span className="text-emerald-400/80 font-semibold">
+                              {it.buyerCount} buying
+                            </span>
+                          )}
+                          {hasBuyers && hasSellers && <span className="text-dim">·</span>}
+                          {hasSellers && (
+                            <span className="text-rose-400/80 font-semibold">
+                              {it.sellerCount} selling
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        <span>
+                          {kind === "buy"
+                            ? "Strong historical conviction"
+                            : "Strong historical exit pressure"}
+                        </span>
+                      )}
                     </div>
                   </div>
-                  <div className={`text-base font-bold tabular-nums ${accent}`}>
+                  <div className={`text-base font-bold tabular-nums ${scoreColor}`}>
                     {formatSignedScore(it.score)}
                   </div>
                 </a>
