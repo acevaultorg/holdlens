@@ -3,6 +3,7 @@ import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { QUARTERS } from "@/lib/moves";
 import { COUNTRIES as TAX_COUNTRIES } from "@/lib/dividend-tax";
+import { computeInsiderSummaries } from "@/lib/insider-conviction";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -208,6 +209,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Ship #2 v1 — /insiders/[insider]/ per-corporate-insider pages
+  // with conviction scoring. One page per unique insider in the
+  // curated Form 4 dataset.
+  const insiderSlugs = [...computeInsiderSummaries().keys()];
+  const insidersUrls: MetadataRoute.Sitemap = insiderSlugs.map((slug) => ({
+    url: `${base}/insiders/${slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -221,5 +233,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...dividendTaxUrls,
     ...similarToUrls,
     ...sectorsHubUrl,
+    ...insidersUrls,
   ];
 }
