@@ -207,3 +207,29 @@ population but the rest of the page renders immediately.
 **Re-submission policy:** do NOT resubmit the holdlens.com URL to HN in the next 7 days — duplicate filter applies. If mod email doesn't un-kill, plan a fresh submission ≥ 7 days later with a tweaked title.
 
 **Distribution pivot:** LinkedIn + Reddit + Wikipedia remain open. Operator deferred LinkedIn push to "later" (2026-04-19). No urgency on brain side — channels stay open whenever operator is ready.
+
+## 2026-04-19 — Wikipedia distribution seeding (session 1 of ~5)
+
+**Status:** foundation complete · edit count = 2 of 10 required for autoconfirmed gate
+
+**Account:** `PmdVries` (personal handle, not brand-resembling per WP:ROLE)
+**Email:** contact@acevault.org
+**User page:** https://en.wikipedia.org/wiki/User:PmdVries — COI disclosure published per WP:COI.
+
+**Edits so far:**
+1. User page creation with COI disclosure
+2. Correction: `[[SEC EDGAR]]` → `[[EDGAR|SEC EDGAR]]` (fixed red wikilink)
+
+**Playbook reference:** `.claude/state/WIKIPEDIA_PLAYBOOK.md` (staged 2026-04-17)
+
+**Autoconfirmed gate remaining:** 8 more edits + ~4 more calendar days.
+Recommended schedule: 2 warmup edits/day on Mon 04-20, Tue 04-21, Wed 04-22, Thu 04-23.
+
+**First HoldLens-adjacent edit (unlocks ~Fri 04-24):** Target 2A per playbook —
+add External Links section to `Form 13F` article with SEC FAQ + Harvard Dataverse +
+HoldLens. Predicted 75-85% survival rate. Distribution Oracle archetype:
+`wikipedia_sourced_edit × +75` (highest-leverage durable citation).
+
+**Pickup instruction for next session:** operator types any /acepilot variant
+and "Wikipedia" or "warmup" — brain will surface the 2-edit-per-day warmup
+checklist.
