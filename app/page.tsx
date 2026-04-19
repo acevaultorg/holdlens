@@ -345,7 +345,7 @@ export default function HomePage() {
           />
           <SignalCard
             href="/contrarian-bets"
-            tone="brand"
+            tone="neutral"
             label="Split"
             title="Contrarian bets"
             body="Managers buying while others sell. The disagreement signal."
@@ -366,7 +366,7 @@ export default function HomePage() {
           />
           <SignalCard
             href="/concentration"
-            tone="brand"
+            tone="neutral"
             label="Conviction"
             title="Concentration"
             body="Who's all-in vs diversified — top-1, top-3, top-5 weights."
@@ -380,14 +380,14 @@ export default function HomePage() {
           />
           <SignalCard
             href="/accelerators"
-            tone="brand"
+            tone="emerald"
             label="Crowd forming"
             title="Accelerators"
             body="Tickers where aggregate ownership has grown 3+ quarters in a row."
           />
           <SignalCard
             href="/overlap"
-            tone="brand"
+            tone="neutral"
             label="Consensus"
             title="Manager overlap"
             body="Which pairs of superinvestors own the same stocks."
@@ -401,14 +401,14 @@ export default function HomePage() {
           />
           <SignalCard
             href="/quarter/2025-q4"
-            tone="brand"
+            tone="neutral"
             label="Archive"
             title="Quarter digest"
             body="Historical 13F recap — 8 quarters deep, like Dataroma archive."
           />
           <SignalCard
             href="/first-movers"
-            tone="brand"
+            tone="neutral"
             label="Who was early"
             title="First movers"
             body="The managers who opened a position first, before the crowd arrived."
@@ -422,7 +422,7 @@ export default function HomePage() {
           />
           <SignalCard
             href="/themes"
-            tone="brand"
+            tone="neutral"
             label="Baskets"
             title="Themes"
             body="AI, Mag 7, Energy, Banks, China, Healthcare. Smart money by sector bet."
@@ -436,14 +436,14 @@ export default function HomePage() {
           />
           <SignalCard
             href="/fresh-conviction"
-            tone="brand"
+            tone="emerald"
             label="Rarest"
             title="Fresh conviction"
             body="New positions in tickers nobody else in the fleet holds. Contrarian by construction."
           />
           <SignalCard
             href="/investor/bill-ackman/q/2025-q4"
-            tone="brand"
+            tone="neutral"
             label="Quarter"
             title="Per-manager quarter digest"
             body="What did your favorite manager do in Q4? Every buy, sell, new, exit — scored."
@@ -718,6 +718,18 @@ function BacktestCard({ slug, name, fund, desc }: { slug: string; name: string; 
   );
 }
 
+// v1.49 — 4-tone palette for signal-explorer cards. Prior 3-tone mix
+// (brand/emerald/rose) landed 10 of 19 cards on brand-amber, which
+// violated the v1.05 palette discipline ("amber is earned, not free —
+// reserved for Pro / primary CTA / trust signal"). Amber-on-52% dilutes
+// the brand signal; the single "Buy now" primary CTA should be the
+// ONLY card with amber. Other previously-amber cards split into:
+//   - `emerald` if the page is directionally bullish (accelerators,
+//     fresh-conviction)
+//   - `neutral` if the page is a research/lookup/drill-down surface
+//     without a direction (contrarian, concentration, overlap, quarter
+//     archive, first-movers, themes, per-manager quarter)
+// Result: 1 amber · 8 emerald · 3 rose · 7 neutral. Amber now punches.
 function SignalCard({
   href,
   tone,
@@ -726,7 +738,7 @@ function SignalCard({
   body,
 }: {
   href: string;
-  tone: "brand" | "emerald" | "rose";
+  tone: "brand" | "emerald" | "rose" | "neutral";
   label: string;
   title: string;
   body: string;
@@ -736,12 +748,16 @@ function SignalCard({
       ? "border-emerald-400/25 hover:border-emerald-400/60 hover:bg-emerald-400/5"
       : tone === "rose"
       ? "border-rose-400/25 hover:border-rose-400/60 hover:bg-rose-400/5"
+      : tone === "neutral"
+      ? "border-border hover:border-muted hover:bg-bg/40"
       : "border-brand/25 hover:border-brand hover:bg-brand/5";
   const labelClass =
     tone === "emerald"
       ? "text-emerald-400"
       : tone === "rose"
       ? "text-rose-400"
+      : tone === "neutral"
+      ? "text-muted"
       : "text-brand";
   return (
     <a
