@@ -13,6 +13,13 @@ scripts/.indexnow-key
 out/
 # Cloudflare Wrangler temp files — ephemeral per deploy.
 .wrangler/
+# prebuild-regenerated artifacts. package.json prebuild runs
+# generate-og-images.ts + generate-api-json.ts before every build;
+# tracking these produces only timestamp/byte churn per deploy.
+public/og/
+public/api/v1/
+# TypeScript incremental build cache.
+tsconfig.tsbuildinfo
 # iCloud creates numbered-suffix copies during sync conflicts
 # (e.g. ".next 2", "out 3"). They can contain webpack cache .pack files
 # that exceed GitHub's 100MB per-file limit and block the push.

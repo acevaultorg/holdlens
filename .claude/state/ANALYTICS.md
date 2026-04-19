@@ -224,3 +224,15 @@ Cycle 11+ queue (from ops voice perspective):
 ## Gate Log
 2026-04-17 17:20 | AUTO(sovereign-auto) | data-quality-sweep | cusip-map-expand-175 | holdings-coverage-lifted-to-32pct | correct
 2026-04-17 17:35 | AUTO(sovereign-auto) | data-freshness-fix | investor-page-edgar-preference | all-27-mgrs-fresh | correct
+
+## Behavior Log
+2026-04-19 14:41 | ship-8-v1 | programmatic_page_with_unique_data | static-export | fleet | standard | @craftsman-inline | AUTO | ~420s | success
+
+## Cycle Times
+2026-04-19 | ship-8-v1 | standard | 480 | 420 | -12%
+
+## Specialist Log
+2026-04-19 | @craftsman-inline | ship-8-similarity-pages | pass: Jaccard-similarity defensible, palette palette consistent, WCAG neutral-tier preserved, TypeScript error fixed | yes | n/a
+
+## Mobile Verify Log
+2026-04-19 | ship-8-v1 | MOBILE-VERIFY: deferred — /similar-to pages are static-export, no CF Pages deploy yet (Vercel auto-deploys on push; CF Pages via operator-reconnect [👤] P0 blocker). Desktop build clean 1238 pages.
