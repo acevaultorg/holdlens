@@ -11,8 +11,8 @@ import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 export const metadata: Metadata = {
   title: "Top hedge fund stock picks 2026 — most-owned by superinvestors",
   description: "The 25 most-owned stocks across 10 tracked superinvestors. Updated quarterly. Free.",
-  twitter: { card: "summary_large_image", title: "Top hedge fund stock picks 2026" },
-  openGraph: { title: "Top hedge fund stock picks 2026" },
+  twitter: { card: "summary_large_image", title: "Top hedge fund stock picks 2026" , images: ["/og/home.png"]},
+  openGraph: { title: "Top hedge fund stock picks 2026" , images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }]},
 };
 
 export default function TopPicksPage() {

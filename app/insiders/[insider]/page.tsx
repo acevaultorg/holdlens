@@ -37,10 +37,12 @@ export async function generateMetadata(
       description,
       url: `https://holdlens.com/insiders/${s.slug}`,
       type: "article",
+      images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${s.name} — insider trading history`,
+      images: ["/og/home.png"],
     },
   };
 }

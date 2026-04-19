@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "This week on HoldLens",
     description: "Top signals at a glance.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

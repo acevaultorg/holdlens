@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "HoldLens Leaderboard — Manager ROI Rankings",
     description: "Real returns, real alpha, real ranking. Click any column to sort.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

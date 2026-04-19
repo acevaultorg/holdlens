@@ -31,6 +31,7 @@ export const metadata: Metadata = {
       "Tickers where tier-1 managers are actively arguing: ≥2 buying, ≥2 selling, last 4 quarters.",
     url: "https://holdlens.com/contrarian-bets",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

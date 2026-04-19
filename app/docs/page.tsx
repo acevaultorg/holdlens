@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "HoldLens Public JSON API",
     description: "Free conviction scores, signals, and manager data. No auth. JSON.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

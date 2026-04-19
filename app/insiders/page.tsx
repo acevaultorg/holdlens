@@ -19,6 +19,7 @@ export const metadata: Metadata = {
       "Curated Form 4 insider transactions. Buys are rare and bullish — see which CEOs are backing their own companies with real money.",
     url: "https://holdlens.com/insiders/",
     type: "website",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

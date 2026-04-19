@@ -33,6 +33,7 @@ export const metadata: Metadata = {
       "Tickers where aggregate smart-money ownership keeps growing, quarter after quarter.",
     url: "https://holdlens.com/accelerators",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

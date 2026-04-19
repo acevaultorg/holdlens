@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     description: "Smart money's underowned picks — single-digit ownership, double-digit conviction.",
     url: "https://holdlens.com/hidden-gems",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

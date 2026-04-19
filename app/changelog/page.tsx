@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: "What's new in HoldLens. Every ship, every version.",
     url: "https://holdlens.com/changelog/",
     type: "website",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

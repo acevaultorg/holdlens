@@ -13,11 +13,13 @@ export const metadata: Metadata = {
       "Free calculator. Pick your country, pick the company's domicile, see what you keep per $100. Treaty-cited.",
     url: "https://holdlens.com/dividend-tax",
     type: "website",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Dividend tax by country",
     description: "Cross-border withholding on dividends, cited from primary sources. Free.",
+    images: ["/og/home.png"],
   },
 };
 

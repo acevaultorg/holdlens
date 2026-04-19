@@ -32,6 +32,7 @@ export const metadata: Metadata = {
       "Highest-ownership tickers ranked by owners × conviction, split by recent buyer vs seller activity.",
     url: "https://holdlens.com/crowded-trades",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

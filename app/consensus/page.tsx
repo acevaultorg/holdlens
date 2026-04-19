@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       "The stocks smart money agrees on RIGHT NOW — high owner count, positive conviction, net buying.",
     url: "https://holdlens.com/consensus",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

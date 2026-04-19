@@ -37,10 +37,12 @@ export async function generateMetadata(
       description,
       url: `https://holdlens.com/dividend-tax/${country.code.toLowerCase()}`,
       type: "article",
+      images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
     },
     twitter: {
       card: "summary_large_image",
       title,
+      images: ["/og/home.png"],
     },
   };
 }

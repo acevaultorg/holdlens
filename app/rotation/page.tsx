@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sector rotation heatmap · HoldLens",
     description: "Where smart money is moving, one quarter at a time.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

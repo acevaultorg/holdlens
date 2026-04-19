@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     title: "HoldLens Brand Guide",
     description: "The complete design system — colors, type, components, tokens, rules.",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

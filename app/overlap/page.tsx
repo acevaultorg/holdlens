@@ -31,6 +31,7 @@ export const metadata: Metadata = {
       "Superinvestor pair rankings: shared top holdings, Jaccard overlap, and joint conviction.",
     url: "https://holdlens.com/overlap",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

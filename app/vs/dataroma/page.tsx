@@ -23,6 +23,7 @@ export const metadata: Metadata = {
       "Honest comparison: where HoldLens adds forward-looking signals Dataroma can't show, and where Dataroma still wins.",
     url: "https://holdlens.com/vs/dataroma",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

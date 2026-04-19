@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: "Big Bets · HoldLens",
     description:
       "Where smart money bets biggest AND the data agrees. Position size × ConvictionScore, ranked.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

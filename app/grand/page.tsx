@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Grand Portfolio — consensus holdings weighted by manager quality",
   description:
     "The consensus portfolio of the best portfolio managers in the world. Not just who owns what — weighted by manager track record so signal beats noise.",
-  openGraph: { title: "Grand Portfolio — HoldLens" },
+  openGraph: { title: "Grand Portfolio — HoldLens" , images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }]},
 };
 
 export default function GrandPortfolioPage() {

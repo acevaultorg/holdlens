@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     description:
       "Keep HoldLens free. Ko-fi, Buy Me a Coffee, Liberapay, GitHub Sponsors — pick what works.",
     type: "website",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

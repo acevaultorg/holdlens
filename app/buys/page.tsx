@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "What tracked superinvestors are buying",
     description: "Ranked by aggregate BUY conviction across 30 of the best portfolio managers' latest 13F filings.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: { card: "summary_large_image", title: "Heaviest smart-money buys — HoldLens" },
 };

@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       "8 quarters of the loudest exit trades from 30 tracked superinvestors.",
     url: "https://holdlens.com/biggest-sells",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

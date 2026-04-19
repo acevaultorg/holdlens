@@ -43,6 +43,7 @@ export const metadata: Metadata = {
       "8 quarters of 13F history. The managers who were early on the names that matter.",
     url: "https://holdlens.com/first-movers",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

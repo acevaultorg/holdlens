@@ -19,10 +19,12 @@ export const metadata: Metadata = {
       "Quarterly institutional sector flows + per-sector superinvestor positioning. Free.",
     url: "https://holdlens.com/sectors",
     type: "website",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sector rotation by quarter",
+    images: ["/og/home.png"],
   },
 };
 

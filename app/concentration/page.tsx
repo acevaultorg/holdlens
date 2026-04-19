@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     description: "Managers ranked by top-1/top-3/top-5 portfolio concentration.",
     url: "https://holdlens.com/concentration",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

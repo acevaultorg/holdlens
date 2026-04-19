@@ -31,6 +31,7 @@ export const metadata: Metadata = {
       "Managers ranked by average ConvictionScore across their top holdings. Forward-looking signal, not just track record.",
     url: "https://holdlens.com/conviction-leaders",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

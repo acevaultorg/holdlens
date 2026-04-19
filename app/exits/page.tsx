@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     description: "Every full exit by a superinvestor, newest first, with current conviction.",
     url: "https://holdlens.com/exits",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };

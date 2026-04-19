@@ -7,7 +7,7 @@ import { MANAGER_QUALITY } from "@/lib/signals";
 export const metadata: Metadata = {
   title: "Compare portfolio managers — side-by-side holdings",
   description: "Side-by-side comparisons of the best portfolio managers in the world. Shared convictions, overlap matrix heatmap, live portfolio values, recent moves.",
-  openGraph: { title: "Compare portfolio managers — HoldLens" },
+  openGraph: { title: "Compare portfolio managers — HoldLens" , images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }]},
 };
 
 // Count shared tickers between two managers' topHoldings.

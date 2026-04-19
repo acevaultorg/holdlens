@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "New positions · HoldLens",
     description: "Fresh money from the best investors this quarter, ranked.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

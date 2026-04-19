@@ -54,6 +54,7 @@ export async function generateMetadata({
       description: `Smart-money 13F recap for ${label}: what they bought, sold, and exited.`,
       url: `https://holdlens.com/quarter/${slug}`,
       type: "article",
+      images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
     },
     robots: { index: true, follow: true },
   };

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     title: "What to buy — HoldLens",
     description: "Stocks the best portfolio managers in the world are buying.",
     url: "https://holdlens.com/what-to-buy",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

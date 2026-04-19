@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "HoldLens — Smart money × 52-week low",
     description: "The only screen that combines conviction scoring with 52-week-low proximity. Cheap stocks the best investors are already buying.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

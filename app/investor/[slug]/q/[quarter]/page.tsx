@@ -66,6 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: `Every move, scored. ${m.name}'s ${label} 13F on HoldLens.`,
       url: `https://holdlens.com/investor/${m.slug}/q/${p.quarter}`,
       type: "article",
+      images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
     },
   };
 }

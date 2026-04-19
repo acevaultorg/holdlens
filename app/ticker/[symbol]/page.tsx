@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ symbol: s
     openGraph: {
       title: `${t.symbol} · Hedge fund ownership`,
       description: `${t.ownerCount} superinvestors hold ${t.name}. See full ownership.`,
+      images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
     },
     // v1.15 — per-ticker RSS discovery. Feed readers (NetNewsWire, Feedly,
     // Inoreader) auto-discover via <link rel="alternate" type="application/rss+xml">.

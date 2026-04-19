@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "HoldLens — What tracked superinvestors are buying + selling",
     description: "Smart-money positioning tracker: the stocks being bought and sold most aggressively across 30 top portfolio managers' latest 13F filings.",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
 };
 

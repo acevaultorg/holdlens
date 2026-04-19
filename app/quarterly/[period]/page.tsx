@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: { params: Promise<{ period: s
   return {
     title: `${p.title} — Hedge fund holdings recap`,
     description: p.intro,
-    twitter: { card: "summary_large_image", title: p.title },
-    openGraph: { title: p.title, description: p.intro },
+    twitter: { card: "summary_large_image", title: p.title , images: ["/og/home.png"]},
+    openGraph: { title: p.title, description: p.intro , images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }]},
   };
 }
 

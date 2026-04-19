@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     description: "Big names vs quiet alpha. The active-skill ranking Dataroma can't show.",
     url: "https://holdlens.com/manager-rankings",
     type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   robots: { index: true, follow: true },
 };
