@@ -50,3 +50,5 @@ export const QUARTER_FILED: Record<Quarter, string> = {
   "2024-Q2": "2024-08-14",
   "2024-Q1": "2024-05-15",
 };
+
+export const LATEST_QUARTER: Quarter = "2025-Q4";

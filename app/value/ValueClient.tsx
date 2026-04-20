@@ -12,7 +12,7 @@ import LiveQuote from "@/components/LiveQuote";
 import SinceFilingDelta from "@/components/SinceFilingDelta";
 import CsvExportButton from "@/components/CsvExportButton";
 import { getQuotes, type LiveQuote as LiveQuoteData } from "@/lib/live";
-import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
+import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves-types";
 
 export type ValueCandidate = {
   ticker: string;

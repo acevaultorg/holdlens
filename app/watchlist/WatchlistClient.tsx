@@ -5,7 +5,7 @@ import SinceFilingDelta from "@/components/SinceFilingDelta";
 import StarButton from "@/components/StarButton";
 import { getWatchlist, subscribeWatchlist } from "@/lib/watchlist";
 import { TICKER_INDEX } from "@/lib/tickers";
-import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
+import { LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves-types";
 
 export default function WatchlistClient() {
   const [list, setList] = useState<string[]>([]);
