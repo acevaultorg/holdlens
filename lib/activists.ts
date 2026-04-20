@@ -248,6 +248,12 @@ export function getCampaign(slug: string): ActivistCampaign | undefined {
   return ACTIVIST_CAMPAIGNS.find((c) => c.slug === slug);
 }
 
+export function getCampaignsByTicker(ticker: string): ActivistCampaign[] {
+  const sym = ticker.toUpperCase();
+  return ACTIVIST_CAMPAIGNS.filter((c) => c.targetTicker.toUpperCase() === sym)
+    .sort((a, b) => b.filingDate.localeCompare(a.filingDate));
+}
+
 export function ongoingCampaigns(): ActivistCampaign[] {
   return ACTIVIST_CAMPAIGNS
     .filter((c) => c.outcome === "ongoing")

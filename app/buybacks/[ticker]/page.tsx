@@ -9,6 +9,7 @@ import {
   formatBuybackAmount,
   topBuybackYields,
 } from "@/lib/buybacks";
+import { getTicker } from "@/lib/tickers";
 
 // /buybacks/[ticker] — per-company deep-dive on a single buyback program.
 // Pulls the full detail row + adjacent comparisons (rank in top dollar,
@@ -128,13 +129,18 @@ export default async function BuybackTickerPage({
             <span className="text-muted">buyback program</span>
           </h1>
           <p className="text-muted mt-1">
-            {p.companyName} · {p.sector} ·{" "}
-            <a
-              href={`/ticker/${p.ticker}`}
-              className="hover:text-brand transition"
-            >
-              See full ticker page
-            </a>
+            {p.companyName} · {p.sector}
+            {getTicker(p.ticker) && (
+              <>
+                {" · "}
+                <a
+                  href={`/ticker/${p.ticker}/`}
+                  className="hover:text-brand transition"
+                >
+                  See full ticker page
+                </a>
+              </>
+            )}
           </p>
         </div>
       </div>

@@ -584,6 +584,24 @@ export function getMember(slug: string): CongressMember | undefined {
   return CONGRESS_MEMBERS.find((m) => m.slug === slug);
 }
 
+/** Returns members who have traded a given ticker, with their trades on it. */
+export function getTradersByTicker(ticker: string): Array<{
+  member: CongressMember;
+  trades: CongressTrade[];
+}> {
+  const sym = ticker.toUpperCase();
+  const out: Array<{ member: CongressMember; trades: CongressTrade[] }> = [];
+  for (const m of CONGRESS_MEMBERS) {
+    const trades = m.recentTrades.filter(
+      (t) => t.ticker.toUpperCase() === sym,
+    );
+    if (trades.length > 0) out.push({ member: m, trades });
+  }
+  return out.sort((a, b) =>
+    b.trades[0].transactionDate.localeCompare(a.trades[0].transactionDate),
+  );
+}
+
 /** All members ranked by total disclosed trading activity (buys + sells low end). */
 export function topByActivity(limit?: number): CongressMember[] {
   const sorted = [...CONGRESS_MEMBERS].sort(

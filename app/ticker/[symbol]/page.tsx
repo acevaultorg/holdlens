@@ -11,6 +11,9 @@ import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
 import InsiderActivity from "@/components/InsiderActivity";
 import BuybackSummary from "@/components/BuybackSummary";
+import ShortInterestSummary from "@/components/ShortInterestSummary";
+import ActivistSummary from "@/components/ActivistSummary";
+import CongressSummary from "@/components/CongressSummary";
 import AdSlot from "@/components/AdSlot";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import RelatedSignals from "@/components/RelatedSignals";
@@ -153,6 +156,21 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
           alongside 13F (institutional) + Form 4 (insider). Renders nothing
           for tickers without a tracked program. */}
       <BuybackSummary symbol={t.symbol} />
+
+      {/* Activist 13D/13G campaigns targeting this company (when tracked).
+          Renders nothing for tickers not on the activist target list. */}
+      <ActivistSummary symbol={t.symbol} />
+
+      {/* Short interest disclosure (when tracked). FINRA bi-monthly data —
+          the bear-side conviction signal. Renders nothing for tickers not
+          in the most-shorted seed. */}
+      <ShortInterestSummary symbol={t.symbol} />
+
+      {/* Congressional disclosed trades in this ticker (when present).
+          Closes the smart-money loop with the political-disclosure layer
+          alongside 13F (institutional) + Form 4 (insider) + 13D/G (activist)
+          + buybacks (company-as-buyer) + short interest (bear conviction). */}
+      <CongressSummary symbol={t.symbol} />
 
       {/* Latest news */}
       <section className="mt-12">

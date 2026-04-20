@@ -8,6 +8,7 @@ import {
   byIntent,
   formatStake,
 } from "@/lib/activists";
+import { getTicker } from "@/lib/tickers";
 
 // /activist/ — landing for the 13D/13G activist tracker. The retail-investor
 // question this answers: "which companies are about to get shaken up?"
@@ -133,13 +134,20 @@ export default function ActivistLanding() {
                     <div className="text-[11px] text-dim">{c.activistName}</div>
                   </td>
                   <td className="px-4 py-3">
-                    <a
-                      href={`/ticker/${c.targetTicker}/`}
-                      className="inline-flex items-center gap-2 font-mono font-bold text-brand hover:underline"
-                    >
-                      <TickerLogo symbol={c.targetTicker} size={20} />
-                      {c.targetTicker}
-                    </a>
+                    {getTicker(c.targetTicker) ? (
+                      <a
+                        href={`/ticker/${c.targetTicker}/`}
+                        className="inline-flex items-center gap-2 font-mono font-bold text-brand hover:underline"
+                      >
+                        <TickerLogo symbol={c.targetTicker} size={20} />
+                        {c.targetTicker}
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-2 font-mono font-bold text-text">
+                        <TickerLogo symbol={c.targetTicker} size={20} />
+                        {c.targetTicker}
+                      </span>
+                    )}
                     <div className="text-[11px] text-dim">{c.targetCompany}</div>
                   </td>
                   <td className="px-4 py-3 text-right tabular-nums font-semibold hidden sm:table-cell">

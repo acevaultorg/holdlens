@@ -7,6 +7,7 @@ import {
   getCampaign,
   formatStake,
 } from "@/lib/activists";
+import { getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
   return ACTIVIST_CAMPAIGNS.map((c) => ({ slug: c.slug }));
@@ -164,30 +165,32 @@ export default async function ActivistDetailPage({
         </a>
       </section>
 
-      {/* Cross-link to ticker page */}
-      <section className="mt-10 mb-12">
-        <h2 className="text-xl font-bold mb-3">More on {c.targetTicker}</h2>
-        <a
-          href={`/ticker/${c.targetTicker}/`}
-          className="block rounded-2xl border border-brand/40 bg-brand/5 p-5 hover:bg-brand/10 transition group"
-        >
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div>
-              <div className="text-[10px] uppercase tracking-widest font-bold text-brand mb-1">
-                Hedge fund ownership
+      {/* Cross-link to ticker page — only when target ticker has a page */}
+      {getTicker(c.targetTicker) && (
+        <section className="mt-10 mb-12">
+          <h2 className="text-xl font-bold mb-3">More on {c.targetTicker}</h2>
+          <a
+            href={`/ticker/${c.targetTicker}/`}
+            className="block rounded-2xl border border-brand/40 bg-brand/5 p-5 hover:bg-brand/10 transition group"
+          >
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <div className="text-[10px] uppercase tracking-widest font-bold text-brand mb-1">
+                  Hedge fund ownership
+                </div>
+                <div className="text-lg font-bold group-hover:text-brand transition flex items-center gap-2">
+                  <TickerLogo symbol={c.targetTicker} size={22} />
+                  Who else owns {c.targetTicker}
+                </div>
+                <div className="text-xs text-muted mt-1">
+                  Tracked superinvestor positions, live quote, smart-money activity
+                </div>
               </div>
-              <div className="text-lg font-bold group-hover:text-brand transition flex items-center gap-2">
-                <TickerLogo symbol={c.targetTicker} size={22} />
-                Who else owns {c.targetTicker}
-              </div>
-              <div className="text-xs text-muted mt-1">
-                Tracked superinvestor positions, live quote, smart-money activity
-              </div>
+              <div className="text-brand text-sm font-semibold">View →</div>
             </div>
-            <div className="text-brand text-sm font-semibold">View →</div>
-          </div>
-        </a>
-      </section>
+          </a>
+        </section>
+      )}
 
       <p className="text-xs text-dim mt-16">
         Data sourced from SEC EDGAR 13D / 13G filings. Activist intent and

@@ -1,5 +1,6 @@
 # Cloudflare Pages redirect rules (Next.js static export copies public/ to out/).
 # Syntax: /from /to STATUS. 301 = permanent (transfers SEO link equity).
+# v2026-04-20a — added 404-catch-all rules for non-indexed slugs.
 #
 # SEO aliases — users Google "AAPL stock" far more than "AAPL signal", so
 # /stock/* 301s to the canonical /signal/* page. No duplicate-content penalty,
@@ -20,3 +21,11 @@
 /stocks            /ticker/            301
 /stock/            /ticker/            301
 /stocks/           /ticker/            301
+
+# 404 RECOVERY removed 2026-04-20 — the catch-all `/section/:slug 302`
+# pattern was over-matching real static-file paths in CF Pages, breaking
+# production. CF Pages did NOT serve `out/ticker/AAPL/index.html` first
+# as the docs implied. The right fix is per-page conditional rendering of
+# cross-links (only link to `/ticker/X/` when X is in TICKER_INDEX) — see
+# components/{Activist,ShortInterest,Congress}Summary.tsx for the pattern.
+# That route prevents 404s at the source instead of papering over them.

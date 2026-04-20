@@ -8,6 +8,7 @@ import {
   formatRange,
   formatAmount,
 } from "@/lib/congress";
+import { getTicker } from "@/lib/tickers";
 
 export async function generateStaticParams() {
   return CONGRESS_MEMBERS.map((m) => ({ slug: m.slug }));
@@ -199,13 +200,20 @@ export default async function CongressDetailPage({
                   className="border-b border-border last:border-0 hover:bg-bg/30 transition"
                 >
                   <td className="px-4 py-3">
-                    <a
-                      href={`/ticker/${t.ticker}/`}
-                      className="inline-flex items-center gap-2 font-mono font-bold text-brand hover:underline"
-                    >
-                      <TickerLogo symbol={t.ticker} size={20} />
-                      {t.ticker}
-                    </a>
+                    {getTicker(t.ticker) ? (
+                      <a
+                        href={`/ticker/${t.ticker}/`}
+                        className="inline-flex items-center gap-2 font-mono font-bold text-brand hover:underline"
+                      >
+                        <TickerLogo symbol={t.ticker} size={20} />
+                        {t.ticker}
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-2 font-mono font-bold text-text">
+                        <TickerLogo symbol={t.ticker} size={20} />
+                        {t.ticker}
+                      </span>
+                    )}
                     <div className="text-[11px] text-dim">{t.companyName}</div>
                   </td>
                   <td className="px-4 py-3">
