@@ -33,3 +33,14 @@
 # cross-links (only link to `/ticker/X/` when X is in TICKER_INDEX) — see
 # components/{Activist,ShortInterest,Congress}Summary.tsx for the pattern.
 # That route prevents 404s at the source instead of papering over them.
+#
+# v2026-04-20b — specific-path redirects (NOT wildcards over section roots).
+# These only fire on paths containing /q/ or the exact /sector/other, so
+# they can't collide with real static pages at /investor/:slug/ or /ticker/:X/.
+# Bot-harvest 4xx recovery for ~1.5% of weekly leak (AI crawlers hallucinate
+# quarterly archive URLs). Soft-404 for /signal/[X] + /ticker/[X] handled in
+# functions/_middleware.ts — middleware runs AFTER asset lookup, unlike _redirects.
+
+/investor/:slug/q/*  /investor/:slug/  301
+/sector/other        /sectors/         301
+/sector/other/       /sectors/         301

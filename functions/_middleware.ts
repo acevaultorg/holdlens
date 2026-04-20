@@ -1,23 +1,66 @@
-// CF Pages Function — content-type negotiation for AI agents.
-// When a client sends `Accept: text/markdown`, we strip the site chrome
-// and return a markdown representation of the page. Humans still get the
-// full static HTML (default). No change for requests without the header.
+// CF Pages Function — content-type negotiation for AI agents + soft-404 recovery.
 //
-// Closes "Markdown for Agents" on isitagentready.com.
-// Zero impact on human traffic — only fires when Accept explicitly asks.
+// 1. `Accept: text/markdown` → strip site chrome, return markdown representation
+//    (closes "Markdown for Agents" on isitagentready.com).
+// 2. 404 on /signal/[X] or /ticker/[X] → render soft-200 "not tracked" page that
+//    explains coverage + links to what IS tracked. Stops ~15,000/wk of wasted AI
+//    crawler 4xx (SNAP, KR, MRK, PG, DHR etc. — plausible tickers outside our
+//    30-investor coverage). CF Pages middleware runs AFTER static-asset lookup,
+//    so AAPL/NVDA/etc pages still serve their real content — only missing paths
+//    hit this fallback. Documented constraint: we do NOT use _redirects wildcards
+//    (v2026-04-20a broke production by matching before static assets).
 
 interface PagesContext {
   request: Request;
   next: () => Promise<Response>;
 }
 
+const TRACKED_SAMPLE = [
+  "AAPL", "MSFT", "NVDA", "GOOG", "META", "AMZN", "TSLA", "BRK.B",
+  "JPM", "V", "KO", "MA", "SPGI", "NFLX", "LLY", "SHOP",
+] as const;
+
+const SOFT_404_HEADERS = {
+  "x-robots-tag": "noindex, follow",
+  "cache-control": "public, max-age=3600, s-maxage=7200",
+  "x-commercial-license": "https://holdlens.com/api-terms",
+};
+
 export const onRequest = async ({ request, next }: PagesContext): Promise<Response> => {
-  const accept = request.headers.get("accept") || "";
-  const wantsMarkdown = accept.toLowerCase().includes("text/markdown");
-
-  if (!wantsMarkdown) return next();
-
   const response = await next();
+
+  // Soft-404 recovery for missing signal/ticker pages (81% of weekly 4xx leak).
+  if (response.status === 404) {
+    const url = new URL(request.url);
+    const path = url.pathname.replace(/\/+$/, "");
+    const match = path.match(/^\/(signal|ticker)\/([^/]+)$/);
+    if (match) {
+      const type = match[1] as "signal" | "ticker";
+      const raw = decodeURIComponent(match[2] || "").toUpperCase();
+      // Validate ticker shape — letters/digits/dot/hyphen, 1-10 chars — rejects
+      // garbage paths + defence-in-depth against injection into rendered HTML.
+      if (/^[A-Z0-9.\-_]{1,10}$/.test(raw)) {
+        const accept = request.headers.get("accept") || "";
+        const wantsMarkdown = accept.toLowerCase().includes("text/markdown");
+        const body = wantsMarkdown
+          ? renderNotTrackedMarkdown(type, raw)
+          : renderNotTrackedHTML(type, raw);
+        return new Response(body, {
+          status: 200,
+          headers: {
+            ...SOFT_404_HEADERS,
+            "content-type": wantsMarkdown
+              ? "text/markdown; charset=utf-8"
+              : "text/html; charset=utf-8",
+          },
+        });
+      }
+    }
+  }
+
+  // Markdown-for-Agents content negotiation (existing behaviour).
+  const accept = request.headers.get("accept") || "";
+  if (!accept.toLowerCase().includes("text/markdown")) return response;
   const contentType = response.headers.get("content-type") || "";
   if (!contentType.includes("text/html")) return response;
 
@@ -35,6 +78,100 @@ export const onRequest = async ({ request, next }: PagesContext): Promise<Respon
     },
   });
 };
+
+function escapeHTML(s: string): string {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
+}
+
+function renderNotTrackedHTML(type: "signal" | "ticker", ticker: string): string {
+  const t = escapeHTML(ticker);
+  const typeLabel = type === "signal" ? "Signal" : "Ticker";
+  const hubPath = type === "signal" ? "/signals/" : "/tickers/";
+  const hubLabel = type === "signal" ? "Signal Explorer" : "Ticker Directory";
+  const sampleLinks = TRACKED_SAMPLE
+    .map((s) => `<li><a href="/${type}/${encodeURIComponent(s)}/">${escapeHTML(s)}</a></li>`)
+    .join("");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>${t} not tracked — HoldLens ${typeLabel}</title>
+<meta name="description" content="${t} is not currently held by the 30 superinvestors HoldLens tracks. See tracked ${type}s and recent 13F filings.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://holdlens.com${hubPath}">
+<meta name="theme-color" content="#0b0f14">
+<style>
+:root{--bg:#0b0f14;--fg:#e4e7eb;--mu:#8892a0;--ac:#facc15;--bd:#1e2530;--card:#151c27}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;padding:2rem 1rem;min-height:100vh}
+.w{max-width:42rem;margin:0 auto}
+.crumbs{color:var(--mu);font-size:.875rem;margin-bottom:2rem}
+.crumbs a{color:var(--mu)}
+h1{font-size:1.75rem;margin-bottom:1rem;font-weight:600}
+h2{font-size:1.125rem;margin:2rem 0 .75rem;color:var(--fg);font-weight:600}
+p{color:var(--mu);margin-bottom:1rem}
+p.lead{color:var(--fg)}
+a{color:var(--ac);text-decoration:none}
+a:hover{text-decoration:underline}
+ul.tickers{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+ul.tickers li a{display:inline-block;padding:.375rem .75rem;background:var(--card);border:1px solid var(--bd);border-radius:.375rem;font-size:.875rem;color:var(--fg)}
+ul.tickers li a:hover{border-color:var(--ac);text-decoration:none}
+.cta{display:inline-block;padding:.625rem 1.25rem;background:var(--ac);color:var(--bg);border-radius:.5rem;font-weight:600;margin-top:.5rem}
+.cta:hover{text-decoration:none;opacity:.9}
+strong{color:var(--fg)}
+</style>
+</head>
+<body>
+<main class="w">
+<nav class="crumbs"><a href="/">HoldLens</a> › <a href="${hubPath}">${hubLabel}</a> › ${t}</nav>
+<h1>${t} is not currently tracked</h1>
+<p class="lead">HoldLens tracks the 13F holdings of <strong>30 tier-1 superinvestors</strong> — Warren Buffett, Bill Ackman, Michael Burry, Seth Klarman, Stanley Druckenmiller, and others. <strong>${t}</strong> is not currently held by any of them, or it's held below our significance threshold.</p>
+<h2>What happens when coverage changes</h2>
+<p>If a tracked superinvestor buys ${t} in an upcoming 13F filing, this page will automatically populate with their conviction score, position size, and entry quarter within hours of the filing going live on SEC EDGAR.</p>
+<h2>Tickers currently tracked</h2>
+<p>Click any ticker to see which superinvestors hold it and their multi-quarter conviction trend:</p>
+<ul class="tickers">${sampleLinks}</ul>
+<p><a class="cta" href="${hubPath}">Browse all ${hubLabel.toLowerCase()} →</a></p>
+<h2>Related</h2>
+<p><a href="/investor/">All 30 superinvestors</a> · <a href="/methodology/">How conviction scoring works</a> · <a href="/api/">API access</a></p>
+</main>
+<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${ticker} — Not Currently Tracked`,
+    description: `${ticker} is not currently in HoldLens' tracked 13F coverage of 30 superinvestors.`,
+    isPartOf: { "@type": "WebSite", name: "HoldLens", url: "https://holdlens.com/" },
+    publisher: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+  })}</script>
+</body>
+</html>`;
+}
+
+function renderNotTrackedMarkdown(type: "signal" | "ticker", ticker: string): string {
+  const typeLabel = type === "signal" ? "signal" : "ticker";
+  const hubPath = type === "signal" ? "/signals/" : "/tickers/";
+  const sampleLines = TRACKED_SAMPLE.map((s) => `- [${s}](https://holdlens.com/${type}/${encodeURIComponent(s)}/)`).join("\n");
+  return `# ${ticker} — not currently tracked
+
+> ${ticker} is not held by the 30 superinvestors HoldLens tracks. Below: what's covered and how coverage updates.
+
+HoldLens tracks the 13F holdings of 30 tier-1 superinvestors — Warren Buffett, Bill Ackman, Michael Burry, Seth Klarman, Stanley Druckenmiller, and others. **${ticker}** is not currently held by any of them, or is held below our significance threshold.
+
+If a tracked superinvestor buys ${ticker} in an upcoming 13F filing, this page will populate with their conviction score, position size, and entry quarter within hours of the filing going live on SEC EDGAR.
+
+## Sample tickers currently tracked
+
+${sampleLines}
+
+Browse all tracked ${typeLabel}s: https://holdlens.com${hubPath}
+
+---
+
+Full HTML at the same URL without \`Accept: text/markdown\`. Data licensed under [HoldLens API terms](https://holdlens.com/api-terms).
+`;
+}
+
 
 function htmlToMarkdown(html: string): string {
   const mainMatch = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
