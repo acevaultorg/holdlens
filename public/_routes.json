@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Route /api/* to CF Pages Functions (all methods). Everything else serves from the static /out directory.",
-  "include": ["/api/*"],
-  "exclude": ["/api/v1/*"]
+  "description": "All routes pass through Functions so _middleware.ts can content-negotiate text/markdown for AI agents. /api/v1/* stays static (pre-generated JSON). _next static assets bypass for performance.",
+  "include": ["/*"],
+  "exclude": ["/api/v1/*", "/_next/static/*", "/og/*", "/.well-known/*", "/favicon.ico", "/robots.txt", "/sitemap.xml", "/llms.txt", "/feed.xml", "/ads.txt", "/manifest.webmanifest"]
 }
