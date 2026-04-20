@@ -199,7 +199,7 @@ export default function ExitsPage() {
                 <div className="text-xs text-dim">{items.length} exits</div>
               </div>
               <div className="grid sm:grid-cols-2 gap-3">
-                {items.map((r, i) => (
+                {items.slice(0, 60).map((r, i) => (
                   <a
                     key={`${r.ticker}-${r.managerSlug}-${quarter}-${i}`}
                     href={`/signal/${r.ticker}`}

@@ -26,6 +26,12 @@ import { getConviction, formatSignedScore } from "@/lib/conviction";
 // Warren Buffett uses his own hard-coded /investor/warren-buffett page
 // and is excluded from dynamic generation to avoid a route collision.
 
+// Cap per-section rendered rows. Greenblatt's Magic Formula filings have
+// ~3,000 positions (polen-capital ~240, howard-marks ~158), which at ~5-8
+// KB per MoveCard would blow the static HTML past 4 MB/page. Top 50 by
+// position-change magnitude shows all the signal.
+const MAX_MOVES_PER_SECTION = 50;
+
 type Props = {
   params: Promise<{ slug: string; quarter: string }>;
 };
@@ -241,10 +247,15 @@ export default async function ManagerQuarterPage({ params }: Props) {
               </div>
               <h2 className="text-2xl font-bold mb-4">Fresh money</h2>
               <div className="space-y-3">
-                {news.map((mv) => (
+                {news.slice(0, MAX_MOVES_PER_SECTION).map((mv) => (
                   <MoveCard key={`n-${mv.ticker}`} mv={mv} tone="emerald" />
                 ))}
               </div>
+              {news.length > MAX_MOVES_PER_SECTION && (
+                <div className="mt-3 text-[11px] text-dim">
+                  Showing top {MAX_MOVES_PER_SECTION} · {(news.length - MAX_MOVES_PER_SECTION).toLocaleString()} smaller positions hidden
+                </div>
+              )}
             </section>
           )}
 
@@ -255,10 +266,15 @@ export default async function ManagerQuarterPage({ params }: Props) {
               </div>
               <h2 className="text-2xl font-bold mb-4">Adding to conviction</h2>
               <div className="space-y-3">
-                {adds.map((mv) => (
+                {adds.slice(0, MAX_MOVES_PER_SECTION).map((mv) => (
                   <MoveCard key={`a-${mv.ticker}`} mv={mv} tone="emerald" />
                 ))}
               </div>
+              {adds.length > MAX_MOVES_PER_SECTION && (
+                <div className="mt-3 text-[11px] text-dim">
+                  Showing top {MAX_MOVES_PER_SECTION} · {(adds.length - MAX_MOVES_PER_SECTION).toLocaleString()} smaller adds hidden
+                </div>
+              )}
             </section>
           )}
 
@@ -271,10 +287,15 @@ export default async function ManagerQuarterPage({ params }: Props) {
               </div>
               <h2 className="text-2xl font-bold mb-4">Taking chips off</h2>
               <div className="space-y-3">
-                {trims.map((mv) => (
+                {trims.slice(0, MAX_MOVES_PER_SECTION).map((mv) => (
                   <MoveCard key={`t-${mv.ticker}`} mv={mv} tone="rose" />
                 ))}
               </div>
+              {trims.length > MAX_MOVES_PER_SECTION && (
+                <div className="mt-3 text-[11px] text-dim">
+                  Showing top {MAX_MOVES_PER_SECTION} · {(trims.length - MAX_MOVES_PER_SECTION).toLocaleString()} smaller trims hidden
+                </div>
+              )}
             </section>
           )}
 
@@ -285,10 +306,15 @@ export default async function ManagerQuarterPage({ params }: Props) {
               </div>
               <h2 className="text-2xl font-bold mb-4">Closed positions</h2>
               <div className="space-y-3">
-                {exits.map((mv) => (
+                {exits.slice(0, MAX_MOVES_PER_SECTION).map((mv) => (
                   <MoveCard key={`e-${mv.ticker}`} mv={mv} tone="rose" />
                 ))}
               </div>
+              {exits.length > MAX_MOVES_PER_SECTION && (
+                <div className="mt-3 text-[11px] text-dim">
+                  Showing top {MAX_MOVES_PER_SECTION} · {(exits.length - MAX_MOVES_PER_SECTION).toLocaleString()} smaller exits hidden
+                </div>
+              )}
             </section>
           )}
         </>

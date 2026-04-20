@@ -1,6 +1,15 @@
 import { getMovesByManager, QUARTER_LABELS, QUARTERS, type Quarter, type Move } from "@/lib/moves";
 import SinceFilingDelta from "@/components/SinceFilingDelta";
 
+// Cap per-quarter rows rendered. Broad-portfolio managers (Greenblatt's
+// Magic Formula = ~3,000 positions/filing, polen-capital ~240) otherwise
+// blow the static export HTML past 4 MB per page, which then fails CF Pages
+// wrangler upload (~56 MB EPIPE cap batched across files) AND hurts LCP/CLS
+// for users who just want to see the significant moves. Top-50-by-magnitude
+// covers the actual signal — tiny positions with rounding-error delta are
+// noise for a retail reader.
+const MAX_MOVES_PER_QUARTER = 50;
+
 export default function InvestorMoves({ slug }: { slug: string }) {
   const all = getMovesByManager(slug);
   if (all.length === 0) {
@@ -25,6 +34,14 @@ export default function InvestorMoves({ slug }: { slug: string }) {
         const moves = byQuarter[q];
         const buys = moves.filter((m) => m.action === "new" || m.action === "add");
         const sells = moves.filter((m) => m.action === "trim" || m.action === "exit");
+        // Take top N by absolute deltaPct magnitude, buys-first via the
+        // downstream sort. The card header still shows the TRUE total buy/
+        // sell counts above so the cap is explicit, not hidden.
+        const visibleMoves = moves
+          .slice()
+          .sort((a, b) => Math.abs(b.deltaPct ?? 0) - Math.abs(a.deltaPct ?? 0))
+          .slice(0, MAX_MOVES_PER_QUARTER);
+        const hiddenCount = moves.length - visibleMoves.length;
         return (
           <div key={q} className="rounded-2xl border border-border bg-panel overflow-hidden">
             <div className="flex items-baseline justify-between px-5 py-4 border-b border-border">
@@ -46,7 +63,7 @@ export default function InvestorMoves({ slug }: { slug: string }) {
                 </tr>
               </thead>
               <tbody>
-                {moves
+                {visibleMoves
                   .slice()
                   .sort((a, b) => {
                     // Buys first, then by |deltaPct| desc
@@ -108,6 +125,11 @@ export default function InvestorMoves({ slug }: { slug: string }) {
                   })}
               </tbody>
             </table>
+            {hiddenCount > 0 && (
+              <div className="px-5 py-3 border-t border-border text-[11px] text-dim">
+                Showing top {MAX_MOVES_PER_QUARTER} by position change · {hiddenCount.toLocaleString()} smaller moves hidden
+              </div>
+            )}
           </div>
         );
       })}
