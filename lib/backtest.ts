@@ -17,11 +17,16 @@
 import { getHistoricalTopBuys, type ConvictionScore } from "./conviction";
 import { QUARTER_LABELS, QUARTER_FILED, type Quarter } from "./moves";
 
+// Pure math helpers + client-safe types live in backtest-math.ts so client
+// bundles (BacktestProof) don't pull the 12MB conviction/moves/managers graph.
+export { computeRealizedReturn, annualizedReturn } from "./backtest-math";
+export type { RealizedReturn } from "./backtest-math";
+
 export type BacktestQuarter = {
   quarter: Quarter;
   label: string;
-  filedAt: string; // ISO date
-  filedAtEpoch: number; // unix seconds
+  filedAt: string;
+  filedAtEpoch: number;
   topBuys: ConvictionScore[];
 };
 
@@ -51,54 +56,5 @@ export function getBacktestQuarters(topN = 5): BacktestQuarter[] {
   });
 }
 
-export type RealizedReturn = {
-  ticker: string;
-  startPrice: number;
-  currentPrice: number;
-  returnPct: number;
-  daysHeld: number;
-  beatBenchmark: boolean;
-};
-
-/** Compute realized return from a chart series + a target start epoch. */
-export function computeRealizedReturn(
-  chart: { t: number; c: number }[],
-  startEpoch: number
-): { startPrice: number; currentPrice: number; returnPct: number; daysHeld: number } | null {
-  if (!chart || chart.length === 0) return null;
-
-  // Find close price closest to startEpoch (chart is daily, sorted by time)
-  let startIdx = 0;
-  let minDiff = Math.abs(chart[0].t - startEpoch);
-  for (let i = 1; i < chart.length; i++) {
-    const diff = Math.abs(chart[i].t - startEpoch);
-    if (diff < minDiff) {
-      minDiff = diff;
-      startIdx = i;
-    }
-  }
-
-  // If the closest point is more than 14 days away, we don't have data for that period
-  if (minDiff > 14 * 86400) return null;
-
-  const startPrice = chart[startIdx].c;
-  const currentPrice = chart[chart.length - 1].c;
-  if (!startPrice || !currentPrice) return null;
-
-  const returnPct = ((currentPrice - startPrice) / startPrice) * 100;
-  const daysHeld = Math.round((chart[chart.length - 1].t - chart[startIdx].t) / 86400);
-
-  return {
-    startPrice,
-    currentPrice,
-    returnPct,
-    daysHeld,
-  };
-}
-
-/** Annualize a return given days held. */
-export function annualizedReturn(returnPct: number, daysHeld: number): number {
-  if (daysHeld <= 0) return 0;
-  const years = daysHeld / 365;
-  return (Math.pow(1 + returnPct / 100, 1 / years) - 1) * 100;
-}
+// computeRealizedReturn + annualizedReturn + RealizedReturn live in
+// ./backtest-math and are re-exported above.

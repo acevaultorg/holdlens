@@ -15,7 +15,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { getQuote } from "@/lib/live";
-import { computeRealizedReturn, annualizedReturn, type BacktestQuarter } from "@/lib/backtest";
+import { computeRealizedReturn, annualizedReturn } from "@/lib/backtest-math";
+import type { BacktestQuarter } from "@/lib/backtest";
 import type { ConvictionScore } from "@/lib/conviction";
 
 type TickerResult = {
