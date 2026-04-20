@@ -9,6 +9,7 @@
     "generate-api": "npx tsx scripts/generate-api-json.ts",
     "prebuild": "npx tsx scripts/generate-og-images.ts && npx tsx scripts/generate-api-json.ts",
     "build": "next build",
+    "postbuild": "npx tsx scripts/strip-broken-links.ts",
     "start": "next start",
     "lint": "next lint",
     "indexnow": "npx tsx scripts/ping-indexnow.ts",
