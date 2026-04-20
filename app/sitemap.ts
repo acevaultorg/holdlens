@@ -7,6 +7,7 @@ import { computeInsiderSummaries } from "@/lib/insider-conviction";
 import { BUYBACK_PROGRAMS } from "@/lib/buybacks";
 import { ACTIVIST_CAMPAIGNS } from "@/lib/activists";
 import { SHORT_POSITIONS } from "@/lib/short-interest";
+import { CONGRESS_MEMBERS } from "@/lib/congress";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -86,6 +87,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Support
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/methodology`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    // v1.54 — commercial routing for AI/LLM/fintech bot traffic
+    { url: `${base}/api-terms`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
+    { url: `${base}/for-ai`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/press`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     // Legal + contact (required for AdSense + GDPR compliance)
@@ -264,6 +268,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // v1.56 — Congressional stock trades tracker (/congress/*).
+  const congressStaticUrls: MetadataRoute.Sitemap = [
+    { url: `${base}/congress`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/learn/congressional-stock-trading-stock-act`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+  ];
+  const congressMemberUrls: MetadataRoute.Sitemap = CONGRESS_MEMBERS.map((m) => ({
+    url: `${base}/congress/${m.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.85,
+  }));
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -284,5 +300,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...activistDetailUrls,
     ...shortStaticUrls,
     ...shortTickerUrls,
+    ...congressStaticUrls,
+    ...congressMemberUrls,
   ];
 }

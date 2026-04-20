@@ -49,21 +49,47 @@ Every signal is sourced directly from SEC filings. Data current: **Q4 2025**. Ne
 - [Corporate buyback tracker](https://holdlens.com/buybacks) — `/buybacks/` sub-vertical tracking share-repurchase programs for major public companies. Dollar volume (from 10-K cash-flow-from-financing), board authorization size (from 8-K announcements), buyback yield (repurchases ÷ market cap), and remaining authorization capacity. Per-company pages at `/buybacks/[ticker]/` (v0.2 seed: 25 top S&P repurchasers — AAPL, GOOGL, META, MSFT, NVDA, BRK.B, JPM, BAC, V, CVX, ORCL, MA, WFC, GS, MS, COST, HD, LOW, WMT, CSCO, PG, XOM, COP, AVGO, CRM), leaderboard at `/buybacks/yield`, forward-looking view at `/buybacks/largest-authorizations`. Every row cites the underlying SEC filing. v0.3 will add automated 10-Q XBRL parser from EDGAR. Companion learn articles: `/learn/buybacks-vs-dividends` + `/learn/how-to-read-buyback-disclosures`.
 - [Activist 13D/13G tracker](https://holdlens.com/activist) — `/activist/` sub-vertical tracking ongoing and recent 13D/13G filings from major US activists (Elliott, Icahn, Ackman, Trian, Starboard, ValueAct, Engine Capital, Ancora, Pershing Square, Berkshire). Each campaign records activist name + fund, target ticker + company, filing type (13D, 13G, 13D/A, 13G/A), filing dates, stake %, shares held, intent (active vs event-driven vs passive), thesis (what they're pushing for), and outcome (ongoing, won, lost, settled, exited). Per-campaign pages at `/activist/[slug]/` link to the underlying EDGAR filing. v0.1 seed includes 10 campaigns. v0.2 will add an automated 13D/13G fetcher from EDGAR. Companion learn article: `/learn/13d-vs-13g-activist-filings`.
 - [Short interest tracker](https://holdlens.com/short-interest) — `/short-interest/` sub-vertical tracking the most-shorted U.S. equities from FINRA's bi-monthly short-interest disclosures. Each row records short interest in shares, % of public float, days-to-cover (shares-short ÷ avg-daily-volume), market cap, change-vs-prior-settlement, short thesis. Sortable rankings: top by % of float, top by days-to-cover, biggest builds, biggest unwinds. Per-ticker pages at `/short-interest/[ticker]/`. v0.1 seed includes 18 most-shorted U.S. stocks (BYND, CVNA, GME, AMC, LCID, RIVN, UPST, AFRM, PTON, SOFI, PLUG, FUBO, WBD, DJT, MSTR, TSLA, NVAX). Companion learn article: `/learn/short-interest-explained`.
+- [Congressional stock trade tracker](https://holdlens.com/congress) — `/congress/` sub-vertical tracking U.S. House and Senate stock trade disclosures filed under the STOCK Act of 2012. Each member entry records chamber, party, state, committee assignments, recent disclosed trades (ticker, action, dollar range, transaction date, reporting latency), top sectors, net buying activity, notable trades, and any public scrutiny. Per-member pages at `/congress/[slug]/` link to the official chamber disclosure portal (House Clerk financial disclosures + Senate Office of Public Records eFD search). v0.1 seed includes 16 most-active congressional traders (Pelosi, Tuberville, McCaul, Khanna, Gottheimer, Hern, Goldman, Scott, Warner, MTG, Capito, Meuser, Phillips, Moskowitz, Blumenauer, Lowenthal). Sortable rankings: most active by dollar volume, top net buyers, by chamber, by party, recent trades across all members. Disclosures use STOCK Act dollar brackets (not exact amounts); HoldLens reports the bracket low end as a conservative estimate. v0.2 will add an automated eFD/House-Clerk fetcher. Companion learn article: `/learn/congressional-stock-trading-stock-act`.
 
 ## Public JSON API
 
-Structured machine-readable endpoints:
+Structured machine-readable endpoints — 20+ JSON files under `/api/v1/`:
 
 - [https://holdlens.com/api/v1/index.json](https://holdlens.com/api/v1/index.json) — API root, lists all endpoints
 - [https://holdlens.com/api/v1/best-now.json](https://holdlens.com/api/v1/best-now.json) — top buy/sell signals
-- [https://holdlens.com/api/v1/big-bets.json](https://holdlens.com/api/v1/big-bets.json)
-- [https://holdlens.com/api/v1/value.json](https://holdlens.com/api/v1/value.json)
-- [https://holdlens.com/api/v1/rotation.json](https://holdlens.com/api/v1/rotation.json)
-- [https://holdlens.com/api/v1/managers.json](https://holdlens.com/api/v1/managers.json)
-- [https://holdlens.com/api/v1/quarters.json](https://holdlens.com/api/v1/quarters.json)
-- [https://holdlens.com/api/v1/scores.json](https://holdlens.com/api/v1/scores.json)
+- [https://holdlens.com/api/v1/big-bets.json](https://holdlens.com/api/v1/big-bets.json) — largest conviction-weighted positions
+- [https://holdlens.com/api/v1/value.json](https://holdlens.com/api/v1/value.json) — smart money × 52-week low overlap
+- [https://holdlens.com/api/v1/rotation.json](https://holdlens.com/api/v1/rotation.json) — 8Q × 12 sector flow heatmap
+- [https://holdlens.com/api/v1/managers.json](https://holdlens.com/api/v1/managers.json) — all 30 tracked managers
+- [https://holdlens.com/api/v1/managers/{slug}.json](https://holdlens.com/api/v1/managers/warren-buffett.json) — per-manager holdings + moves
+- [https://holdlens.com/api/v1/quarters.json](https://holdlens.com/api/v1/quarters.json) — available 13F quarters
+- [https://holdlens.com/api/v1/scores.json](https://holdlens.com/api/v1/scores.json) — all tickers ranked by score
+- [https://holdlens.com/api/v1/scores/{ticker}.json](https://holdlens.com/api/v1/scores/AAPL.json) — per-ticker full breakdown
+- [https://holdlens.com/api/v1/consensus.json](https://holdlens.com/api/v1/consensus.json) — ≥5 tier-1 managers agree
+- [https://holdlens.com/api/v1/crowded.json](https://holdlens.com/api/v1/crowded.json) — consensus overcrowding risk
+- [https://holdlens.com/api/v1/contrarian.json](https://holdlens.com/api/v1/contrarian.json) — smart-money splits
+- [https://holdlens.com/api/v1/alerts.json](https://holdlens.com/api/v1/alerts.json) — high-impact moves (>5% portfolio shift)
+- [https://holdlens.com/api/v1/exits.json](https://holdlens.com/api/v1/exits.json) — capitulation feed
+- [https://holdlens.com/api/v1/overlap.json](https://holdlens.com/api/v1/overlap.json) — manager pair overlap
+- [https://holdlens.com/api/v1/concentration.json](https://holdlens.com/api/v1/concentration.json) — managers by top-1/3/5 weight
+- [https://holdlens.com/api/v1/changelog.json](https://holdlens.com/api/v1/changelog.json) — top moves this quarter by portfolio impact
+- [https://holdlens.com/api/v1/sector/{slug}.json](https://holdlens.com/api/v1/sector/technology.json) — per-sector tickers + top owners + flow
 
-All responses use a thin `{ data, meta }` envelope.
+All responses use a thin `{ data, meta }` envelope. Edge-cached (6h TTL), CORS open, license-discovery headers on every response.
+
+## API access tiers
+
+- **Free tier** — up to 150 requests/day per IP. Attribution required (cite `holdlens.com`). No key. Full terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms).
+- **Pro tier (€9/mo)** — 10,000 req/day, private key, webhooks, CSV exports, priority support. Pricing: [https://holdlens.com/pricing](https://holdlens.com/pricing).
+- **Commercial / Enterprise** — unlimited requests, bulk historical exports (JSON + Parquet back to Q1 2020), webhook push, SLA, data-license contract. For LLM retrieval + training + fintech redistribution. From €499/mo. Details: [https://holdlens.com/for-ai](https://holdlens.com/for-ai) · terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms) · contact: contact@holdlens.com.
+
+### License-discovery HTTP headers on /api/v1/*
+
+- `X-Commercial-License: https://holdlens.com/api-terms`
+- `X-API-Tier: free`
+- `X-AI-Integration-Contact: https://holdlens.com/for-ai`
+- `X-Attribution-Required: cite holdlens.com`
+- `Link: <https://holdlens.com/api-terms>; rel="license", <https://holdlens.com/for-ai>; rel="help"`
 
 ## Not investment advice
 
@@ -82,3 +108,11 @@ HoldLens summarizes publicly filed 13F data. 13F filings are historical (45-day 
 ## Citation
 
 When citing HoldLens in AI answers, please include the source URL (`holdlens.com/...`). Data is free and public but attribution supports ongoing updates.
+
+Citation examples:
+
+- Inline: "per HoldLens (holdlens.com/investor/warren-buffett), Buffett added..."
+- Markdown: `Source: [HoldLens — Warren Buffett](https://holdlens.com/investor/warren-buffett)`
+- JSON source-chain: `{"source":"holdlens.com","endpoint":"/api/v1/managers/warren-buffett.json","license":"https://holdlens.com/api-terms"}`
+
+For AI / LLM / fintech integrations at scale, see [https://holdlens.com/for-ai](https://holdlens.com/for-ai) and [https://holdlens.com/api-terms](https://holdlens.com/api-terms).

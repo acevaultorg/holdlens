@@ -29,6 +29,7 @@ const ARTICLES: Article[] = [
   { slug: "how-to-read-buyback-disclosures", title: "How to read buyback disclosures", desc: "Where the real buyback numbers live in SEC 10-K, 10-Q, and 8-K filings — plus how to spot debt-funded financial engineering and stock-based-comp distortions." },
   { slug: "13d-vs-13g-activist-filings", title: "13D vs 13G — what the difference actually means", desc: "Plain-English guide: when an investor crosses 5%, which filing they pick reveals their intent. Activist (13D) means board fights. Passive (13G) means index hold." },
   { slug: "short-interest-explained", title: "Short interest, days-to-cover, and squeeze setups", desc: "What short interest actually measures, how days-to-cover is calculated, and why high short interest is BOTH a squeeze setup AND a smart-money signal." },
+  { slug: "congressional-stock-trading-stock-act", title: "How the STOCK Act works — Congressional stock trading", desc: "What the STOCK Act of 2012 actually requires, why disclosures show ranges (not exact amounts), how late filings are penalized, and how to read the disclosures." },
 ];
 
 // v1.20 — CollectionPage + ItemList schema. Google prefers CollectionPage
@@ -62,6 +63,7 @@ const LD = {
       { "@type": "ListItem", position: 13, url: "https://holdlens.com/learn/how-to-read-buyback-disclosures", name: "How to read buyback disclosures" },
       { "@type": "ListItem", position: 14, url: "https://holdlens.com/learn/13d-vs-13g-activist-filings", name: "13D vs 13G — what the difference actually means" },
       { "@type": "ListItem", position: 15, url: "https://holdlens.com/learn/short-interest-explained", name: "Short interest, days-to-cover, and squeeze setups" },
+      { "@type": "ListItem", position: 16, url: "https://holdlens.com/learn/congressional-stock-trading-stock-act", name: "How the STOCK Act works — Congressional stock trading" },
     ],
   },
 };
