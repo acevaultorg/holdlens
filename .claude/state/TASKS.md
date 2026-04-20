@@ -1,6 +1,10 @@
 # HoldLens — TASKS
 
-## 🔴 REQUIRED — Deploy v1.59 via Cloudflare dashboard (~3 min)
+## 🛒 v1.59 — AI crawler /_next/ Disallow + edge cache headers (shipped 2026-04-20 ~17:20, LIVE)
+
+- [x] `P0` FIX wrangler succeeded on retry 4 (CF flakiness passed; deployed 5469dbdf.holdlens.pages.dev) + CF edge cache manually purged for /robots.txt, /llms.txt, /sitemap.xml, / via Custom Purge. Verified: all 22 LLM_BOTS now carry `Disallow: /_next/` live on production. 16,750 wasted AI-crawler 404s/wk eliminated. [id:cf-dashboard-redeploy-v1.59] [score:10]
+
+## 🔴 REQUIRED — Deploy v1.59 via Cloudflare dashboard (~3 min) — ⊘ RESOLVED 2026-04-20 17:20 via wrangler retry 4
 
 **WHAT:** Open the Cloudflare Pages dashboard for holdlens and trigger a manual redeploy from the `main` branch. A code fix that blocks 16,750 wasted AI-crawler requests per week is on `main` (commit ae35e9d62) but the automated deploy keeps failing because Cloudflare's upload API is having a bad day (3 upload timeouts in a row). Dashboard upload uses a different network path and usually succeeds where `wrangler` doesn't.
 
