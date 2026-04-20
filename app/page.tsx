@@ -306,13 +306,10 @@ export default function HomePage() {
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Nineteen ways to read smart money</h2>
             <p className="text-muted mt-2 max-w-xl">
-              Every card below answers a different question Dataroma can&rsquo;t.
-              Pick the angle, not the ticker.
+              Pick the angle, not the ticker. Every card answers a different question
+              smart-money data usually buries.
             </p>
           </div>
-          <a href="/vs/dataroma" className="text-sm text-brand hover:text-text font-semibold">
-            vs Dataroma →
-          </a>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <SignalCard

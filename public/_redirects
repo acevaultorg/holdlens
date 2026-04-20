@@ -16,6 +16,10 @@
 /investors/:slug   /investor/:slug/    301
 /investors/:slug/  /investor/:slug/    301
 
+# /vs/dataroma deprecated 2026-04-20 — authority positioning; don't link competitor.
+/vs/dataroma       /methodology/       301
+/vs/dataroma/      /methodology/       301
+
 # Common typos & alternate paths
 /stock             /ticker/            301
 /stocks            /ticker/            301

@@ -303,7 +303,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ul className="space-y-2">
                   <li><a href="/rotation" className="text-dim hover:text-text transition">Sector rotation</a></li>
                   <li><a href="/proof" className="text-dim hover:text-text transition">Proof</a></li>
-                  <li><a href="/vs/dataroma" className="text-dim hover:text-text transition">vs Dataroma</a></li>
+                  <li><a href="/methodology" className="text-dim hover:text-text transition">Methodology</a></li>
                   <li><a href="/learn/superinvestor-handbook" className="text-dim hover:text-text transition">Handbook</a></li>
                   <li><a href="/themes" className="text-dim hover:text-text transition">Themes</a></li>
                 </ul>

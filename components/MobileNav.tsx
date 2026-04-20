@@ -52,56 +52,109 @@ const POPULAR_TICKERS = ["AAPL", "MSFT", "NVDA", "META", "TSLA", "BRK-B"];
 // Pro link. Neutral default for tool/rankings links. Visual hierarchy comes
 // from position + weight (pinned primary vs collapsed secondary), not from
 // color rotation.
+// v1.60 — 7-item entity-centric groups per "ultimate HoldLens" spec
+// (2026-04-20). Mirrors DesktopNav's Investors · Stocks · Insiders ·
+// Markets · Signals · Research · About so desktop + mobile have one
+// mental model. Pinned primary (first link) is the highest-intent
+// entry for each entity; remaining items collapsed into the <details>
+// accordion per existing v1.08 pattern.
 const GROUPS: MGroup[] = [
   {
-    title: "Signals",
+    title: "Investors",
     links: [
-      { href: "/best-now", label: "Best stocks now", color: "buy" },
-      { href: "/value", label: "Value · smart money × cheap", color: "buy" },
-      { href: "/big-bets", label: "Big bets · size × conviction" },
-      { href: "/consensus", label: "Consensus picks", color: "buy" },
-      { href: "/contrarian-bets", label: "Contrarian bets", color: "info" },
-      { href: "/hidden-gems", label: "Hidden gems", color: "buy" },
+      { href: "/investor", label: "All 30 superinvestors" },
+      { href: "/leaderboard", label: "Leaderboard" },
+      { href: "/manager-rankings", label: "Manager rankings" },
+      { href: "/conviction-leaders", label: "Conviction leaders", color: "buy" },
+      { href: "/by-philosophy", label: "By philosophy", color: "buy" },
+      { href: "/overlap", label: "Overlap matrix" },
+      { href: "/compare/managers", label: "Compare side-by-side" },
+      { href: "/similar-to", label: "Similar portfolios" },
+      { href: "/activist", label: "Activist funds (13D/G)" },
     ],
   },
   {
-    title: "Moves",
+    title: "Stocks",
     links: [
+      { href: "/top-picks", label: "Top picks · most-owned" },
       { href: "/biggest-buys", label: "Biggest buys", color: "buy" },
       { href: "/biggest-sells", label: "Biggest sells", color: "sell" },
       { href: "/new-positions", label: "New positions", color: "buy" },
       { href: "/exits", label: "Exits", color: "sell" },
+      { href: "/crowded-trades", label: "Crowded trades" },
+      { href: "/consensus", label: "Consensus picks", color: "buy" },
+      { href: "/screener", label: "Stock screener" },
+      { href: "/watchlist", label: "My watchlist", color: "brand" },
+    ],
+  },
+  {
+    title: "Insiders",
+    links: [
+      { href: "/insiders", label: "Form 4 firehose", color: "buy" },
+      { href: "/congress", label: "Congressional trades" },
+      { href: "/insiders?filter=buys", label: "Recent insider buys", color: "buy" },
+      { href: "/insiders?filter=sells", label: "Recent insider sells", color: "sell" },
+      { href: "/insiders?filter=cluster", label: "Cluster insider buys", color: "buy" },
+      { href: "/congress?view=leaderboard", label: "STOCK Act leaderboard" },
+    ],
+  },
+  {
+    title: "Markets",
+    links: [
+      { href: "/etf", label: "ETFs · holdings + flows" },
+      { href: "/overlap", label: "ETF / fund overlap" },
+      { href: "/rotation", label: "Sector rotation heatmap", color: "info" },
+      { href: "/sectors", label: "Sector breakdown" },
+      { href: "/short-interest", label: "Short interest + squeeze" },
+      { href: "/buybacks", label: "Corporate buybacks" },
+      { href: "/dividend-tax", label: "Dividend tax by country" },
+      { href: "/activist", label: "Activist campaigns" },
+      { href: "/themes", label: "AI · Mag 7 · Energy themes" },
+      { href: "/quarter/2025-q4", label: "Quarterly digest" },
+    ],
+  },
+  {
+    title: "Signals",
+    links: [
+      { href: "/best-now", label: "Best stocks now", color: "brand" },
+      { href: "/value", label: "Value · cheap × smart money", color: "buy" },
+      { href: "/big-bets", label: "Big bets · size × conviction" },
+      { href: "/hidden-gems", label: "Hidden gems", color: "buy" },
+      { href: "/contrarian-bets", label: "Contrarian bets", color: "info" },
+      { href: "/fresh-conviction", label: "Fresh conviction", color: "buy" },
+      { href: "/first-movers", label: "First movers" },
+      { href: "/reversals", label: "Reversals", color: "buy" },
+      { href: "/trend-streak", label: "Trend streaks", color: "buy" },
+      { href: "/accelerators", label: "Accelerators", color: "buy" },
+      { href: "/activity", label: "Activity feed" },
       { href: "/this-week", label: "This week · fresh filings" },
     ],
   },
   {
-    title: "Investors",
+    title: "Research",
     links: [
-      { href: "/leaderboard", label: "Leaderboard" },
-      { href: "/manager-rankings", label: "Manager rankings" },
-      { href: "/conviction-leaders", label: "Conviction leaders" },
-      { href: "/compare/managers", label: "Compare side-by-side" },
-      { href: "/overlap", label: "Overlap matrix" },
+      { href: "/learn", label: "Learning center" },
+      { href: "/learn/superinvestor-handbook", label: "Superinvestor handbook", color: "buy" },
+      { href: "/methodology", label: "Methodology" },
+      { href: "/proof", label: "Proof — does it work?", color: "buy" },
+      { href: "/simulate", label: "Backtests", color: "buy" },
+      { href: "/quarterly", label: "Quarterly State" },
+      { href: "/press-kit", label: "Press kit + media" },
+      { href: "/changelog", label: "Changelog" },
     ],
   },
   {
-    title: "Discover",
+    title: "About",
     links: [
-      { href: "/rotation", label: "Sector rotation heatmap", color: "info" },
-      { href: "/themes", label: "AI · Mag 7 · Energy themes" },
-      { href: "/learn/superinvestor-handbook", label: "Superinvestor handbook" },
-      { href: "/vs/dataroma", label: "vs Dataroma" },
-      { href: "/proof", label: "Proof — does it work?" },
-    ],
-  },
-  {
-    title: "Your tools",
-    links: [
-      { href: "/watchlist", label: "Watchlist" },
-      { href: "/portfolio", label: "My portfolio" },
+      { href: "/about", label: "About HoldLens" },
+      { href: "/contact", label: "Contact" },
+      { href: "/faq", label: "FAQ" },
       { href: "/alerts", label: "Email alerts" },
-      { href: "/premium", label: "Pro features", color: "brand" },
       { href: "/docs", label: "API docs" },
+      { href: "/for-ai", label: "For AI / LLM agents", color: "info" },
+      { href: "/api-terms", label: "API terms" },
+      { href: "/pricing", label: "Pricing", color: "brand" },
+      { href: "/premium", label: "Pro features", color: "brand" },
     ],
   },
 ];

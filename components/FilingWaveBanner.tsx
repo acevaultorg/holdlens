@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { nextFilingDeadline } from "@/lib/filings";
+import { nextFilingDeadline } from "@/lib/filings-calendar";
 
 // <FilingWaveBanner /> — thin site-wide band that surfaces the next 13F
 // filing wave as a live countdown + funnel into /alerts email capture.

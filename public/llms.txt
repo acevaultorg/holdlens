@@ -77,7 +77,6 @@ Every signal is sourced directly from SEC filings. Data current: **Q4 2025**. Ne
 - [Overlap](https://holdlens.com/overlap) — who thinks alike
 - [Themes](https://holdlens.com/themes) — AI, Energy, Banks, Mag 7
 - [Proof](https://holdlens.com/proof) — does this actually work? (backtest)
-- [vs Dataroma](https://holdlens.com/vs/dataroma) — honest feature comparison
 - [Per-signal pages](https://holdlens.com/signal/AAPL) — `/signal/[ticker]` for any of ~100 tracked tickers
 - [Per-manager pages](https://holdlens.com/investor/warren-buffett) — `/investor/[slug]` for each of 30 managers
 - [Per-quarter pages](https://holdlens.com/quarterly/2025-q4) — full quarter digests
