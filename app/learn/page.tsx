@@ -27,6 +27,8 @@ const ARTICLES: Article[] = [
   { slug: "do-hedge-fund-signals-work", title: "Do 13F signals actually predict returns? We ran the backtest", desc: "Original research — April 2026. We backtested our own ConvictionScore over 221 ticker-quarter pairs across 4 quarters. Result: r = −0.12, no predictive signal. Top-decile BUYs underperformed SPY by 5 pts; bottom-decile SELLs beat it by 24 pts. Why, and what to use 13F data for instead." },
   { slug: "buybacks-vs-dividends", title: "Buybacks vs dividends — what's the real difference?", desc: "Both return capital. One is flashier; the other is more tax-efficient. The honest tradeoffs on tax, flexibility, and long-term compounding." },
   { slug: "how-to-read-buyback-disclosures", title: "How to read buyback disclosures", desc: "Where the real buyback numbers live in SEC 10-K, 10-Q, and 8-K filings — plus how to spot debt-funded financial engineering and stock-based-comp distortions." },
+  { slug: "13d-vs-13g-activist-filings", title: "13D vs 13G — what the difference actually means", desc: "Plain-English guide: when an investor crosses 5%, which filing they pick reveals their intent. Activist (13D) means board fights. Passive (13G) means index hold." },
+  { slug: "short-interest-explained", title: "Short interest, days-to-cover, and squeeze setups", desc: "What short interest actually measures, how days-to-cover is calculated, and why high short interest is BOTH a squeeze setup AND a smart-money signal." },
 ];
 
 // v1.20 — CollectionPage + ItemList schema. Google prefers CollectionPage
@@ -56,6 +58,10 @@ const LD = {
       { "@type": "ListItem", position: 9, url: "https://holdlens.com/learn/survivorship-bias-in-hedge-funds", name: "Survivorship bias in hedge funds" },
       { "@type": "ListItem", position: 10, url: "https://holdlens.com/learn/13f-vs-13d-vs-13g", name: "13F vs 13D vs 13G" },
       { "@type": "ListItem", position: 11, url: "https://holdlens.com/learn/do-hedge-fund-signals-work", name: "Do 13F signals actually predict returns? We ran the backtest" },
+      { "@type": "ListItem", position: 12, url: "https://holdlens.com/learn/buybacks-vs-dividends", name: "Buybacks vs dividends — what's the real difference?" },
+      { "@type": "ListItem", position: 13, url: "https://holdlens.com/learn/how-to-read-buyback-disclosures", name: "How to read buyback disclosures" },
+      { "@type": "ListItem", position: 14, url: "https://holdlens.com/learn/13d-vs-13g-activist-filings", name: "13D vs 13G — what the difference actually means" },
+      { "@type": "ListItem", position: 15, url: "https://holdlens.com/learn/short-interest-explained", name: "Short interest, days-to-cover, and squeeze setups" },
     ],
   },
 };

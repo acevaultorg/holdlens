@@ -5,6 +5,8 @@ import { QUARTERS } from "@/lib/moves";
 import { COUNTRIES as TAX_COUNTRIES } from "@/lib/dividend-tax";
 import { computeInsiderSummaries } from "@/lib/insider-conviction";
 import { BUYBACK_PROGRAMS } from "@/lib/buybacks";
+import { ACTIVIST_CAMPAIGNS } from "@/lib/activists";
+import { SHORT_POSITIONS } from "@/lib/short-interest";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -238,6 +240,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // v1.54 — Activist 13D/13G tracker (/activist/*).
+  const activistStaticUrls: MetadataRoute.Sitemap = [
+    { url: `${base}/activist`, lastModified: now, changeFrequency: "weekly", priority: 0.88 },
+    { url: `${base}/learn/13d-vs-13g-activist-filings`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+  ];
+  const activistDetailUrls: MetadataRoute.Sitemap = ACTIVIST_CAMPAIGNS.map((c) => ({
+    url: `${base}/activist/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  // v1.55 — Short Interest tracker (/short-interest/*).
+  const shortStaticUrls: MetadataRoute.Sitemap = [
+    { url: `${base}/short-interest`, lastModified: now, changeFrequency: "weekly", priority: 0.88 },
+    { url: `${base}/learn/short-interest-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+  ];
+  const shortTickerUrls: MetadataRoute.Sitemap = SHORT_POSITIONS.map((p) => ({
+    url: `${base}/short-interest/${p.ticker}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -254,5 +280,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...insidersUrls,
     ...buybackStaticUrls,
     ...buybackTickerUrls,
+    ...activistStaticUrls,
+    ...activistDetailUrls,
+    ...shortStaticUrls,
+    ...shortTickerUrls,
   ];
 }
