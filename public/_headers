@@ -50,7 +50,40 @@
   Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
 
 # ─────────────────────────────────────────────────────────────────
-# Security headers — all pages
+# Static HTML pages — edge cache so repeat visits hit CF instead of
+# origin. 5-min edge + 1-hour stale-while-revalidate = cheap safety
+# net (stale served while CF revalidates in the background). Content
+# is rebuilt on every deploy so max 5 min between deploy + fresh html.
+# Dynamic feeds (/activity, /this-week, /biggest-*) override below
+# with tighter TTLs.
+# ─────────────────────────────────────────────────────────────────
+
+/
+  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+
+/signal/*
+  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+
+/investor/*
+  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+
+/ticker/*
+  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+
+/learn/*
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800
+
+/api/
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400
+
+/for-ai/
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400
+
+/api-terms/
+  Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400
+
+# ─────────────────────────────────────────────────────────────────
+# Security + commercial-license headers — all pages
 # ─────────────────────────────────────────────────────────────────
 
 /*
@@ -59,3 +92,5 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   X-DNS-Prefetch-Control: on
+  X-Commercial-License: https://holdlens.com/api-terms
+  Link: <https://holdlens.com/api-terms>; rel="license"

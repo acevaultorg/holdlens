@@ -33,11 +33,21 @@ const LLM_BOTS = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // IMPORTANT: never disallow /_next/ — Googlebot must fetch the CSS +
-      // JS chunks under /_next/static/ to render pages, or rankings suffer.
-      // /admin/ is the only real secret surface; everything else is indexable.
+      // IMPORTANT: never disallow /_next/ for the wildcard — Googlebot /
+      // Bingbot must fetch CSS + JS chunks under /_next/static/ to render
+      // pages for ranking. /admin/ is the only real secret surface.
       { userAgent: "*", allow: "/", disallow: ["/admin/"] },
-      ...LLM_BOTS.map((ua) => ({ userAgent: ua, allow: "/" })),
+      // AI crawlers (LLM_BOTS) do NOT execute JS — the static export puts
+      // all content in HTML, so /_next/static/* is pure waste for them.
+      // CF AI Crawl Control 2026-04-20 observed 16.75k 404s (55% of 7d
+      // crawler traffic) from AI bots chasing stale chunk hashes. Explicit
+      // Disallow: /_next/ on LLM_BOTS stops the waste without affecting
+      // Googlebot/Bingbot rendering (they're not in LLM_BOTS).
+      ...LLM_BOTS.map((ua) => ({
+        userAgent: ua,
+        allow: "/",
+        disallow: ["/_next/", "/admin/"],
+      })),
     ],
     sitemap: [
       "https://holdlens.com/sitemap.xml",
