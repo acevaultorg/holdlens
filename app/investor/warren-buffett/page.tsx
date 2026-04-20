@@ -14,6 +14,50 @@ import TickerLink from "@/components/TickerLink";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
+// Build-time timestamp for dateModified — v19.4 freshness_per_page archetype.
+// Static export means BUILD_ISO is the honest rebuild marker for LLM crawlers
+// deciding which version to cite.
+const BUILD_ISO = new Date().toISOString();
+
+// Schema trio mirroring app/investor/[slug]/page.tsx so warren-buffett —
+// the single highest-traffic investor page — carries the same Person +
+// ProfilePage + BreadcrumbList structured data as all 29 other investors.
+// Values hardcoded because this is a dedicated per-investor page (no slug).
+const BUFFETT_PERSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://holdlens.com/investor/warren-buffett#person",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://holdlens.com/investor/warren-buffett",
+  },
+  name: "Warren Buffett",
+  jobTitle: "Chairman and CEO of Berkshire Hathaway",
+  description:
+    "Chairman and CEO of Berkshire Hathaway — the world's most widely-tracked value investor and one of the most influential capital allocators of the modern era.",
+  image: "https://holdlens.com/og/investor/warren-buffett.png",
+  knowsAbout: "Value investing · moat businesses · insurance float · long-term compounding",
+  worksFor: {
+    "@type": "Organization",
+    "@id": "https://holdlens.com/investor/warren-buffett#fund",
+    name: "Berkshire Hathaway",
+    url: "https://holdlens.com/investor/warren-buffett",
+  },
+  sameAs: [
+    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001067983&type=13F-HR",
+  ],
+};
+
+const BUFFETT_BREADCRUMB_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+    { "@type": "ListItem", position: 2, name: "Investors", item: "https://holdlens.com/investor" },
+    { "@type": "ListItem", position: 3, name: "Warren Buffett", item: "https://holdlens.com/investor/warren-buffett" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "Warren Buffett portfolio — what Berkshire Hathaway holds",
   description:
@@ -42,8 +86,24 @@ export const metadata: Metadata = {
 
 export default function BuffettPage() {
   const total = BUFFETT_TOP.reduce((s, h) => s + h.pctPortfolio, 0);
+  const buffettFiling = LATEST_FILINGS["warren-buffett"];
+  const profilePageLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": "https://holdlens.com/investor/warren-buffett",
+    url: "https://holdlens.com/investor/warren-buffett",
+    name: "Warren Buffett — holdings, 13F filings, and smart-money signal",
+    description:
+      "Warren Buffett's latest Berkshire Hathaway 13F positions, moves, and ConvictionScore from HoldLens.",
+    mainEntity: { "@id": "https://holdlens.com/investor/warren-buffett#person" },
+    ...(buffettFiling?.latestDate ? { datePublished: `${buffettFiling.latestDate}T00:00:00Z` } : {}),
+    dateModified: BUILD_ISO,
+  };
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BUFFETT_PERSON_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BUFFETT_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Investor profile
       </div>
