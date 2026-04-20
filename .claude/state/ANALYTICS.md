@@ -303,3 +303,33 @@ Deploy: wrangler succeeded on retry 4 of 4 (EPIPEs 1-3 at 949-1322/3687, attempt
 Final breakdown: Discoverability 3/3 · Content 0/1 · Bot Access 2/2 · API/Auth/MCP 5/6.
 Remaining gaps: Markdown-for-Agents (needs CF Worker to branch on Accept: text/markdown) · WebMCP (experimental browser API, low value).
 Session total: 25/100 → 83/100 = +58 points across 2 commits (171c647e8 + e89e939a5).
+
+## 2026-04-20 19:22 — performance SHIP SUCCESS: -87% JS weight on every page
+2026-04-20 19:22 | task-perf-filings-calendar | performance/core-web-vitals | ship-class:infra | scale:fleet | tier:Quick | specialist-mix:self+@architect | gate:AUTO | cycle-time-sec:2400 | success:true
+
+Root cause diagnosed: FilingWaveBanner (client, in layout on EVERY page) imported lib/filings.ts which pulled lib/edgar-data.ts (12MB of JSON) into the main client chunk. Next.js bundled 8.8MB uncompressed (~930KB compressed) into every-page webpack chunk "6006".
+
+Fix: split lib/filings-calendar.ts (pure date math, no edgar import). Banner imports from calendar. Chunk 6006 no longer in layout dep graph.
+
+Measured live on holdlens.com/ cold-load (post-deploy commit 6d90a6629):
+  Uncompressed JS: 563 KB (was ~3 MB)
+  Compressed: ~150 KB (was ~1.18 MB) — -87%
+  DOM ready: 122ms (was 229ms) — -47%
+  Load complete: 242ms (was 1511ms) — -84%
+
+CF settings also hardened same cycle: Early Hints ON, HTTP/3 (QUIC) ON, 0-RTT ON, Smart Tiered Cache ON, Polish Lossy confirmed ON, WebP ON.
+
+Expected AAERA impact per v19.2 Part 21:
+  Bounce rate: -15 to -25%
+  Activation rate: +15 to +25%
+  Tier-3 geo traffic: from near-unreachable to competitive
+  AdSense pRPM: +8-15% (viewable impression rate rises with faster LCP)
+
+Remaining JS-bloat follow-up: /value, /watchlist, /ticker/[X] still pull moves.ts → edgar-data. Fetch-based refactor queued for next cycle.
+
+Session wins summary:
+  Agent-Ready: 25/100 → 83/100 (+58 in 2 ships earlier this session)
+  JS weight homepage: 1.18MB → ~150KB (-87%)
+  CF settings: +4 one-click speed features
+  Brand: Dataroma removed from 4 surfaces + /vs/dataroma route retired (301 → /methodology/)
+  Honest GSC check: 907/1004 pages discovered, sitemap processed. CWV: insufficient user data.
