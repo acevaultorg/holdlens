@@ -1,0 +1,15 @@
+{
+  "$comment": "HoldLens publishes no protected APIs — all /api/v1/ endpoints are free-with-attribution (see /api-terms). This stub exists so RFC 8414-aware agents can discover our 'no OAuth required' posture rather than 404ing. If HoldLens later gates an endpoint, this file gains issuer/authorization_endpoint/token_endpoint.",
+  "issuer": "https://holdlens.com",
+  "authentication_required": false,
+  "grant_types_supported": [],
+  "response_types_supported": [],
+  "scopes_supported": [],
+  "publisher": {
+    "name": "HoldLens",
+    "url": "https://holdlens.com",
+    "contact": "contact@editnative.com"
+  },
+  "public_api_documentation": "https://holdlens.com/api",
+  "license": "https://holdlens.com/api-terms"
+}

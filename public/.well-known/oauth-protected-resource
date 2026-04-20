@@ -1,0 +1,15 @@
+{
+  "$comment": "HoldLens publishes no protected APIs — all /api/v1/ endpoints are free-with-attribution (see /api-terms). This stub declares a public-resource posture for RFC 9728-aware agents.",
+  "resource": "https://holdlens.com",
+  "authentication_required": false,
+  "authorization_servers": [],
+  "scopes_supported": [],
+  "bearer_methods_supported": [],
+  "publisher": {
+    "name": "HoldLens",
+    "url": "https://holdlens.com",
+    "contact": "contact@editnative.com"
+  },
+  "public_api_documentation": "https://holdlens.com/api",
+  "license": "https://holdlens.com/api-terms"
+}
