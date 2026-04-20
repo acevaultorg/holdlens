@@ -30,6 +30,7 @@ const ARTICLES: Article[] = [
   { slug: "13d-vs-13g-activist-filings", title: "13D vs 13G — what the difference actually means", desc: "Plain-English guide: when an investor crosses 5%, which filing they pick reveals their intent. Activist (13D) means board fights. Passive (13G) means index hold." },
   { slug: "short-interest-explained", title: "Short interest, days-to-cover, and squeeze setups", desc: "What short interest actually measures, how days-to-cover is calculated, and why high short interest is BOTH a squeeze setup AND a smart-money signal." },
   { slug: "congressional-stock-trading-stock-act", title: "How the STOCK Act works — Congressional stock trading", desc: "What the STOCK Act of 2012 actually requires, why disclosures show ranges (not exact amounts), how late filings are penalized, and how to read the disclosures." },
+  { slug: "etf-overlap-explained", title: "ETF overlap — why owning multiple ETFs doesn't diversify", desc: "What overlap actually means, how to measure it, and why owning VOO + VTI + QQQ + SPY delivers far less diversification than you think." },
 ];
 
 // v1.20 — CollectionPage + ItemList schema. Google prefers CollectionPage

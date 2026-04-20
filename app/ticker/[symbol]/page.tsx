@@ -14,6 +14,7 @@ import BuybackSummary from "@/components/BuybackSummary";
 import ShortInterestSummary from "@/components/ShortInterestSummary";
 import ActivistSummary from "@/components/ActivistSummary";
 import CongressSummary from "@/components/CongressSummary";
+import EtfSummary from "@/components/EtfSummary";
 import AdSlot from "@/components/AdSlot";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import RelatedSignals from "@/components/RelatedSignals";
@@ -171,6 +172,10 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
           alongside 13F (institutional) + Form 4 (insider) + 13D/G (activist)
           + buybacks (company-as-buyer) + short interest (bear conviction). */}
       <CongressSummary symbol={t.symbol} />
+
+      {/* ETFs holding this stock (when present). Passive-flow signal —
+          complements the active-manager 13F layer. */}
+      <EtfSummary symbol={t.symbol} />
 
       {/* Latest news */}
       <section className="mt-12">

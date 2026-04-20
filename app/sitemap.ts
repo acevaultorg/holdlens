@@ -8,6 +8,7 @@ import { BUYBACK_PROGRAMS } from "@/lib/buybacks";
 import { ACTIVIST_CAMPAIGNS } from "@/lib/activists";
 import { SHORT_POSITIONS } from "@/lib/short-interest";
 import { CONGRESS_MEMBERS } from "@/lib/congress";
+import { ETFS } from "@/lib/etfs";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -284,6 +285,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  // v1.58 — ETF Holdings Tracker (/etf/*). Daily-disclosed top holdings
+  // for 12 major US ETFs. Cross-links into every /ticker/ page that any
+  // tracked ETF holds.
+  const etfStaticUrls: MetadataRoute.Sitemap = [
+    { url: `${base}/etf`, lastModified: now, changeFrequency: "weekly", priority: 0.88 },
+    { url: `${base}/learn/etf-overlap-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+  ];
+  const etfTickerUrls: MetadataRoute.Sitemap = ETFS.map((e) => ({
+    url: `${base}/etf/${e.ticker}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.82,
+  }));
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -306,5 +321,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...shortTickerUrls,
     ...congressStaticUrls,
     ...congressMemberUrls,
+    ...etfStaticUrls,
+    ...etfTickerUrls,
   ];
 }
