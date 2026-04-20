@@ -1,5 +1,34 @@
 # HoldLens — TASKS
 
+## 🔴 REQUIRED — Deploy v1.59 via Cloudflare dashboard (~3 min)
+
+**WHAT:** Open the Cloudflare Pages dashboard for holdlens and trigger a manual redeploy from the `main` branch. A code fix that blocks 16,750 wasted AI-crawler requests per week is on `main` (commit ae35e9d62) but the automated deploy keeps failing because Cloudflare's upload API is having a bad day (3 upload timeouts in a row). Dashboard upload uses a different network path and usually succeeds where `wrangler` doesn't.
+
+**WHY:** Right now 55% of every AI crawler request to the site gets a 404 — they're fetching old JavaScript chunks that AI bots can't use anyway. That wasted crawl budget is "stolen" from real pages, so LLMs cite us less. The fix is already committed, just not live. Cost of skipping: the 404 bleed continues at ~2,400 wasted requests per day until the next successful deploy.
+
+**TIME:** ~3 minutes.
+
+**HOW:**
+  1. Open https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/pages/view/holdlens
+     → expected: the "holdlens" Cloudflare Pages project page with a Deployments list.
+  2. Click the **"Create a new deployment"** button (top right) OR find the most recent deployment and click **"⋯" → Retry deployment**
+     → expected: a dialog or new deployment appears showing "Queued" → "Building" → "Deploying" status.
+  3. Wait for status to show **"Success"** and note the new preview URL (format `abc123de.holdlens.pages.dev`)
+     → expected: green check + URL in ~2 min.
+
+**VERIFY:**
+  `curl -sL https://holdlens.com/robots.txt | grep -A1 "User-Agent: GPTBot"`
+  → expected: `Allow: /` followed by `Disallow: /_next/` on the next line (this is the fix we need live).
+
+**IF STUCK:**
+  - Dashboard shows "Deployment limit reached": wait 1 min + retry; CF Pages has a rolling window limit.
+  - "Create new deployment" button disabled: verify main branch has commits ahead of last deployed — run `git log --oneline -3 origin/main` in Terminal to confirm ae35e9d62 is the tip.
+  - Verify command still shows old robots.txt after dashboard deploy completes: wait 2 min for CF edge propagation + retry the curl.
+
+[id:cf-dashboard-redeploy-v1.59] [archetype:robots_txt_ai_allowlist +40] [score:10]
+
+## 🛒 v1.58 — buffett-schema-parity (shipped 2026-04-20 ~16:00)
+
 ## 🛒 v1.58 — buffett-schema-parity (shipped 2026-04-20 ~16:00)
 
 - [x] `P2` FIX `app/investor/warren-buffett/page.tsx` — all three JSON-LD schemas added: Person (hardcoded buffett entity + EDGAR CIK sameAs) + ProfilePage (datePublished from LATEST_FILINGS, dateModified from BUILD_ISO) + BreadcrumbList. Shipped via commit 09c9ae9fa, deployed 92766fae.holdlens.pages.dev, live-verified on production. Closes v1.57 queued gap. [id:buffett-schema-parity] [score:6]
