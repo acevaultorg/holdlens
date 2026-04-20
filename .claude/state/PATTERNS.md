@@ -21,3 +21,10 @@ deploy-truth-void | 0 (pre-ship-verified) | — | rules/deploy-truth.md
 ## Last 10 Ships (cross-reference from ANALYTICS.md ## Behavior Log)
 
 See `.claude/state/ANALYTICS.md ## Behavior Log` — keep PATTERNS.md focused on mistakes + failure modes, not success flow.
+
+## 2026-04-20 wrangler EPIPE pattern — third occurrence today
+- Session cycle 1: 4 EPIPEs, succeeded on retry 5 (v1.59 earlier)
+- Session cycle 2: 1 EPIPE, succeeded on retry 2 (agent-ready-v1)
+- Session cycle 3: 3 EPIPEs, BLOCKED on retry 3 (agent-ready-v2 OAuth stubs)
+
+Observation: retry 1 and retry 2 fail at near-identical file counts (~949-1322/3687), suggesting persistent state in CF's upload API. Retrying further today unlikely to help; better to resume session 60+ min later.
