@@ -87,3 +87,65 @@ first session that has cross-site AUG data).
 ## Corrections
 
 <!-- Append-only. Format: corrects: <timestamp> | reason | new_value -->
+
+---
+
+## Weekly Score · 2026-04-20 (first real audit)
+
+```
+2026-04-20 | 0.10 | 0.15 | 0.20 | 0.10 | 0.10 | 0.10 | 0.80 | 1.58 | n/a | acquisition | First scored row. Baseline starts I-35 clock (I-35 breach requires 2 consecutive <5.0 weeks; this row is week 1).
+```
+
+### Per-dimension evidence
+
+| Dim | Score | Evidence | Confidence |
+|---|---:|---|---|
+| **Acquisition (0.10)** | 1/10 | CF 7d: 6,315 unique IPs, 23,850 pageviews. Plausible (human-only JS beacon): ~12 humans/30d ≈ 3-20 humans/week. CF:human ratio ≈ 300:1 (the 6,315 "uniques" is 99%+ bots). Rubric: <500 humans/mo = tier 1. | High — Plausible sample small but CF/Plausible ratio consistent |
+| **Activation (0.15)** | 1.5/10 | No explicit activation event defined in Plausible goals or GA4 events. Proxy via pages/session (~1.2 per earlier session) suggests most visitors bounce before any meaningful action. | Low — no direct instrumentation; placeholder |
+| **Engagement (0.20)** | 2/10 | CF 7d avg: 3.78 pageviews per unique (but includes bots fetching N pages). Human-filtered: likely <1.5 pages/session + bounce >65%. Scroll depth + time-on-page not instrumented yet. Rubric composite = bounce 0.75 + pages 0.75 + time 0 + scroll 0 = 2/10. | Low — composite approximated from partial data |
+| **Retention (0.10)** | 1/10 | D7 return rate is statistically undefined with 3-20 humans/week. No returning-session event fires yet. | Cold — insufficient data |
+| **Advocacy (0.10)** | 1/10 | Zero shares, zero embeds, zero k-factor. Share cards shipped per-result but no share events logged. | High — verified absence |
+| **Monetization (0.10)** | 1/10 | €0/wk. AdSense application pending. Pro tier €9/mo live on page but no Stripe env vars in production (operator-gated). Pay-Per-Crawl waitlist pending. | High — verified |
+| **Performance (0.80)** | 8/10 | Lab estimates after v1.60-1.64 perf ships: LCP ~1.5s, INP <200ms, CLS ~0, TTFB ~100ms (CF edge). Composite 4×2.5 ≈ 8. Field data (CrUX) insufficient — needs more human traffic to populate. | Medium — lab-clean, field-unverified |
+
+### Computation
+
+```
+AUG_v3 = 10 × (0.10 × 0.15 × 0.20 × 0.10 × 0.10 × 0.10 × 0.80)^(1/7)
+       = 10 × (2.4e-6)^(1/7)
+       = 10 × 0.158
+       = 1.58
+```
+
+### Top weakness — acquisition (0.10)
+
+**Why it matters most:** acquisition is multiplicative with every other stage. Moving from 20 humans/wk → 500 humans/wk would:
+- Move acq score 1 → 3 (×3 on AUG)
+- Produce enough sample for honest activation/engagement/retention scoring (ending cold-start confidence floor)
+- Enable CrUX to populate field-data (currently "insufficient data")
+- Give monetization a chance (AdSense RPM needs ~10k monthly views to be meaningful)
+
+All other dimensions are downstream of having humans to measure.
+
+### Why technical fixes alone won't move acquisition
+
+The technical acquisition infrastructure is already in place:
+- ✅ Sitemap + sitemap-ai + robots.txt + llms.txt (v1.56-59)
+- ✅ Schema.org saturation (v1.57 Article/Person/ProfilePage)
+- ✅ freshness signals (v1.57 datePublished/dateModified)
+- ✅ IndexNow ping in every deploy (auto-scheduled)
+- ✅ Canonical set, duplicate-content clean
+- ✅ OG images on every page (v1.5x OG fleet-wide fix)
+- ✅ WP scanner noise silenced (v1.65)
+- ✅ Agent-ready score 100/100 (v1.60)
+
+Remaining levers are **operator-time** per `rules/aceusergrowth.md` Part 2:
+- HN Show HN (one-shot launch, 48h spike)
+- LinkedIn zero-click framework posts (×+65 archetype, weekly cadence)
+- Reddit organic comments in r/SecurityAnalysis, r/ValueInvesting (×+70)
+- HARO/Qwoted journalist pitches (×+35, 3/week)
+- Wikipedia citations on 13F-related pages (×+75, highest durability)
+- One podcast guest slot per quarter (×+50)
+
+See Clarity Cards queued in TASKS.md for operator sequencing.
+

@@ -1,6 +1,155 @@
 # HoldLens — TASKS
 
-## 🛒 v1.59 — AI crawler /_next/ Disallow + edge cache headers (shipped 2026-04-20 ~17:20, LIVE)
+## 📊 AUG v3 baseline 2026-04-20 — score 1.58 (first real audit; I-35 clock starts)
+
+7-factor: acq 0.10 · act 0.15 · eng 0.20 · ret 0.10 · adv 0.10 · mon 0.10 · perf 0.80. **Top weakness: acquisition (20 humans/wk).** Technical acquisition infra already shipped (sitemap-ai, schema, IndexNow, agent-ready 100/100, v1.63 soft-404, v1.65 WP 410). Remaining levers are operator-time — three Clarity Cards below.
+
+## 🔴 REQUIRED — HN Show HN launch (one-shot, ~4h day-of, +2-50k visitors 48h) — [id:aug-acquisition-hn]
+
+**WHAT:** Post HoldLens to the Hacker News front page as a "Show HN" link with an intentionally honest, data-rich first comment. One-shot per site — it can never be repeated, so timing + framing decide whether this is a 5k-visitor spike or a 50k-visitor breakthrough.
+
+**WHY:** HN is the highest-ROI single-action channel for a finance/data site with a real product — audience is skeptical but respectful of transparency (we already have the honest backtest at /proof, r=-0.12 anti-predictive notice). A successful front page = 5-50k visitors in 48h + permanent backlink from news.ycombinator.com + a wave of LLM crawling that keeps citing the post for months. Cost of skipping: we stay at 20 humans/wk and every other AAERA dimension stays statistically invisible. Cost of timing wrong: HN has a 24h visibility window, a missed peak = dud.
+
+**TIME:** ~4h day-of (30 min submit + 3-4h replying to every comment in first 6 hours — the algorithm rewards engagement).
+
+**HOW:**
+  1. Pick the day: Tuesday or Wednesday between 6:00 and 9:00 AM PT (13:00-16:00 UTC, 14:00-17:00 CEST). Avoid Monday (dominated by newsletters) and weekends (low engagement).
+     → expected: best-of-the-week engagement windows.
+  2. Open https://news.ycombinator.com/submit
+     → expected: HN submit form.
+  3. Title (exact): `Show HN: HoldLens – What 30 superinvestors bought this quarter` (≤70 chars). URL: `https://holdlens.com/`. Text: leave blank.
+     → expected: preview shows title as linked; no text box content means it's a classic Show HN link post.
+  4. Click "submit". Take note of the URL of the new post (https://news.ycombinator.com/item?id=XXXXXX).
+     → expected: you land on the post page with a "no comments" view.
+  5. Immediately post the first comment as OP (REQUIRED — this seeds the discussion). Template:
+     ```
+     I built HoldLens to answer "what did smart money buy this quarter"
+     without wading through 30 separate SEC 13F filings. The stack:
+     Next.js static export on Cloudflare Pages, raw 13F XML → normalized
+     JSON → composite ConvictionScore across 8 quarters.
+     
+     Honest caveat I'm proud of: /proof runs a live backtest against S&P
+     500 and shows r=-0.12 (model is currently anti-predictive over the
+     2024-2025 window). I could hide that. I don't. Happy to discuss.
+     
+     All 13F data, conviction scoring, and the full investor list are
+     free. Commercial API at /api-terms for fintech/AI integrations.
+     
+     What I'd love feedback on: (1) is the anti-predictive result a
+     dealbreaker, (2) which signal adjustments would you try next, (3)
+     what metadata would make this more useful for your workflow.
+     ```
+     → expected: your comment shows with a "[OP]" tag.
+  6. For the next 4-6h: reply to EVERY top-level comment. Short, honest, data-backed. Don't argue, don't defend, acknowledge every valid criticism. The HN algorithm weighs your engagement heavily.
+     → expected: karma climbs; post moves up front page.
+  7. Note the final 24h stats (upvotes, comments, position peak).
+     → expected: data for the DECISIONS.md post-mortem.
+
+**VERIFY:**
+  ```
+  curl -s "https://hn.algolia.com/api/v1/items/POST_ID" | head -5
+  ```
+  → expected: post metadata showing points count + comment count. Replace POST_ID with the numeric id from step 4.
+
+  Human verify: visit the post URL + confirm your OP comment is at top and reached ≥100 upvotes (good) / ≥500 upvotes (front page) / ≥2000 upvotes (top of front page, rare).
+
+**IF STUCK:**
+  - Shadowbanned on first submit ("dead" after 5 minutes, no traffic): your account may be too new. Email hn@ycombinator.com briefly explaining the project is real + non-spam. Expect 24-48h resolution.
+  - Title gets auto-rewritten by dang: fine. The auto-edits are usually improvements.
+  - Post never leaves /newest (no front-page visibility): the algorithm decided. One-shot per project per year — don't resubmit same URL. Iterate the product + try in 6 months with a significantly changed pitch.
+  - First comment gets flagged: review CoC at https://news.ycombinator.com/newsguidelines.html, rewrite without marketing language.
+
+[archetype:hacker_news_show_hn ×+70] [score:10] [blocker:none] [depends:nothing]
+
+## 🟡 RECOMMENDED — Weekly LinkedIn framework post (operator identity, ~45 min/post) — [id:aug-acquisition-linkedin]
+
+**WHAT:** Write + publish ONE 400-800 word native LinkedIn article per week in your operator voice (Marcus Quinn profile per prior session). Topic: a specific framework or insight holdlens' data reveals. Zero links to holdlens in article body — your byline's profile link does the work.
+
+**WHY:** LinkedIn's algorithm rewards native long-form posts ~10× more than brand/company-page posts. Finance audience is heavy on LinkedIn. LLMs index LinkedIn Articles as high-authority sources and increasingly cite them. One weekly post compounds over months — by week 12 your profile is ranked in branded + topic search, and audience grows independently of HN spikes. Cost of skipping: zero organic distribution in finance/investing LinkedIn communities; we miss the B2B API-buyer audience (Alpaca, Polygon, quant shops).
+
+**TIME:** ~45 min per post. ~3 hours/month total for weekly cadence.
+
+**HOW:**
+  1. Pick a topic from the holdlens data. Format: `X did Y this quarter, here's why it matters`. Example titles:
+     - "14 of 30 superinvestors bought OXY this quarter. Only 3 bought NVDA."
+     - "What the quiet contrarian trade in this quarter's 13F filings tells us about 2026 positioning."
+     - "8-quarter ConvictionScore: the metric that says 'they're adding' vs 'they're exiting'."
+     → expected: a specific data-anchored hook, not a general "what is 13F" explainer.
+  2. Go to https://www.linkedin.com/article/new/ (NOT a regular post — a native LinkedIn Article).
+     → expected: the LinkedIn Article editor loads.
+  3. Paste your topic as the title. Write the article body in 4 sections:
+     - Hook (50 words): one specific surprising data point
+     - Framework (250 words): the pattern, with numbers
+     - The takeaway (150 words): how the reader should think about 13F filings generally
+     - Closing (50 words): "I'll share the next quarter's analysis when new filings land." (zero holdlens link)
+     → expected: final text is 450-500 words total.
+  4. Add 3-5 hashtags at the bottom: #ValueInvesting #13F #PortfolioManagement #SuperInvestors.
+     → expected: hashtag chip suggestions appear.
+  5. Click **Publish**.
+     → expected: article is live at linkedin.com/pulse/[slug].
+
+**VERIFY:**
+  - Within 1 hour: check notifications. ≥3 reactions = article cleared the algorithm's initial floor.
+  - After 24h: ≥50 views = decent; ≥500 views = strong; ≥5,000 views = viral.
+  - Save the URL. Track follower growth week-over-week in your LinkedIn profile stats.
+
+**IF STUCK:**
+  - Blank-page paralysis: open https://holdlens.com/biggest-buys or /biggest-sells — the top-3 surprising entries become your data hook. Build the essay around explaining WHY those trades make sense.
+  - Don't have a Marcus Quinn profile yet: follow the "Step 1a" instructions earlier in this session to create one (~10 min).
+  - LinkedIn suggests "Article or Post?": always pick Article. Posts < 600 chars don't rank in Google; Articles do.
+  - Can't think of topic: use "Things nobody else is saying about [stock]" as template.
+
+[archetype:linkedin_zero_click_framework_post ×+65] [score:8] [cadence:weekly] [depends:linkedin-account-marcus-quinn]
+
+## 🟡 RECOMMENDED — Seed 5 Wikipedia citations on 13F-related pages (~90 min, highest durability) — [id:aug-acquisition-wikipedia]
+
+**WHAT:** Add holdlens.com as a citation source on 5 Wikipedia articles where it's the best available reference. NOT creating your own Wikipedia page (that's COI). Just citing our data on existing topical pages (13F filing, Warren Buffett portfolio, SEC form types, etc.).
+
+**WHY:** Wikipedia citations are the most durable distribution channel in existence. Once accepted, they stay indexed indefinitely and feed every LLM's training set + retrieval pipeline. One successful citation = permanent tier-1 backlink + LLM citation authority. Cost of skipping: we stay invisible to the Wikipedia→LLM pipeline, which is increasingly the top citation source for finance queries. Warning: COI violations get reverted + damage account — do it carefully.
+
+**TIME:** ~90 min total (60 min account credibility warmup + 30 min per citation, staggered over a week).
+
+**HOW:**
+  1. **Account warmup** (if you don't have a 10+ edit history Wikipedia account):
+     - Register at https://en.wikipedia.org/wiki/Special:CreateAccount using Marcus Quinn identity (same pseudonym as LinkedIn for cross-reference credibility).
+     - Make 10 unrelated constructive edits to Wikipedia articles over 3-5 days. Fix typos, add citations to existing unreferenced claims, improve formatting. Topics: anything you genuinely know about. This builds account trust so later citations aren't auto-reverted.
+     → expected: by day 5, your account has 10+ clean edits visible in contribution history.
+  2. **Identify target pages** — 5 Wikipedia pages where holdlens.com is the BEST available reference for a specific claim. Candidates:
+     - https://en.wikipedia.org/wiki/Form_13F (SEC 13F filing — add citation to "Superinvestor aggregation" or "Filing delay" section with holdlens data)
+     - https://en.wikipedia.org/wiki/Berkshire_Hathaway#Portfolio (Berkshire portfolio — cite holdlens conviction trend)
+     - https://en.wikipedia.org/wiki/Bill_Ackman (Pershing Square holdings)
+     - https://en.wikipedia.org/wiki/Michael_Burry (Scion Asset Management holdings)
+     - https://en.wikipedia.org/wiki/Value_investing (superinvestor composite analysis)
+     → expected: 5 specific URL targets, each with a specific "claim to cite" identified.
+  3. **Add the citation** (per page, spaced 1 day apart):
+     - Click "Edit" on the target Wikipedia page.
+     - Find the specific sentence/claim where holdlens data is the best source.
+     - Add a citation using `<ref>[https://holdlens.com/investor/warren-buffett HoldLens – Warren Buffett's 13F portfolio composite (2026-Q4)]</ref>`.
+     - In the edit summary: describe the edit ("Added citation to holdlens.com for the 2025-Q4 portfolio composite data"). Do NOT mention it's your site.
+     - Click Publish changes.
+     → expected: your edit appears in the page's history.
+  4. **Monitor** — check each page 48h later. If reverted, the reverting editor's edit summary explains why. Don't edit-war; learn from the reversion.
+     → expected: citations stable; low revert rate if targeting was precise.
+  5. **Disclose COI on your talk page** (optional but strongly recommended): add `{{UserboxCOI|holdlens.com}}` to your Wikipedia user talk page. Reduces revert probability dramatically.
+     → expected: your profile shows a "This user has a COI with holdlens.com" notice.
+
+**VERIFY:**
+  - Open https://en.wikipedia.org/wiki/Special:Contributions/YOUR_USERNAME
+  - Verify 5 holdlens.com citations are live on 5 pages.
+  - After 7 days, re-check each page — count how many citations survived.
+  → expected: ≥3/5 citations persist after 7 days.
+
+**IF STUCK:**
+  - Account immediately flagged for COI: add `{{COI}}` template to your user page; comply with Wikipedia:Conflict_of_interest guidance; declare the COI proactively on each edit's talk page.
+  - Citation auto-reverted: the reverting editor's summary will cite either "primary source concern" (holdlens is primary data; acceptable in SOME contexts) or "self-promotion." Engage via the article's Talk page, not by re-editing.
+  - Can't find 5 suitable target pages: expand search to SEC filing topics, individual fund manager articles, or value-investing methodology pages. Use Wikipedia's "What links here" tool on Form_13F to find related articles.
+  - You accidentally created a holdlens.com Wikipedia article: immediately tag for speedy deletion `{{db-author}}`. Don't create an article about your own company — it will be deleted + flagged on your account.
+
+[archetype:wikipedia_sourced_edit ×+75] [score:9] [cadence:once-setup-then-quarterly-refresh] [risk:medium] [depends:wikipedia-account-marcus-quinn]
+
+---
+
+
 
 - [x] `P0` FIX wrangler succeeded on retry 4 (CF flakiness passed; deployed 5469dbdf.holdlens.pages.dev) + CF edge cache manually purged for /robots.txt, /llms.txt, /sitemap.xml, / via Custom Purge. Verified: all 22 LLM_BOTS now carry `Disallow: /_next/` live on production. 16,750 wasted AI-crawler 404s/wk eliminated. [id:cf-dashboard-redeploy-v1.59] [score:10]
 
