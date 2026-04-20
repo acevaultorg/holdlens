@@ -96,7 +96,7 @@ export default function InsidersPage() {
         Most sells are 10b5-1 scheduled plans (pre-committed months in advance to avoid
         insider-trading liability) and carry far less signal than buys. This dataset folds
         directly into the per-ticker{" "}
-        <Link href="/signal/" className="underline hover:text-text">
+        <Link href="/best-now" className="underline hover:text-text">
           ConvictionScore
         </Link>{" "}
         via the insider-activity layer.

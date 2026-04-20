@@ -180,12 +180,16 @@ export default function FreshConvictionPage() {
                     </span>
                   </div>
                   <div className="flex items-baseline gap-3 text-[11px] tabular-nums">
-                    <a
-                      href={`/investor/${t.slug}/q/${t.quarter.toLowerCase()}`}
-                      className="text-text hover:text-brand transition"
-                    >
-                      {t.quarterLabel}
-                    </a>
+                    {t.slug === "warren-buffett" ? (
+                      <span className="text-text">{t.quarterLabel}</span>
+                    ) : (
+                      <a
+                        href={`/investor/${t.slug}/q/${t.quarter.toLowerCase()}`}
+                        className="text-text hover:text-brand transition"
+                      >
+                        {t.quarterLabel}
+                      </a>
+                    )}
                     <span className="text-dim">·</span>
                     <span className="font-semibold text-emerald-400">NEW</span>
                   </div>
@@ -300,12 +304,16 @@ export default function FreshConvictionPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3 text-[11px] text-text whitespace-nowrap">
-                    <a
-                      href={`/investor/${t.slug}/q/${t.quarter.toLowerCase()}`}
-                      className="hover:text-brand transition"
-                    >
-                      {t.quarterLabel}
-                    </a>
+                    {t.slug === "warren-buffett" ? (
+                      <span>{t.quarterLabel}</span>
+                    ) : (
+                      <a
+                        href={`/investor/${t.slug}/q/${t.quarter.toLowerCase()}`}
+                        className="hover:text-brand transition"
+                      >
+                        {t.quarterLabel}
+                      </a>
+                    )}
                   </td>
                   <td className="px-4 py-3 text-right tabular-nums text-[11px]">
                     <span

@@ -22,6 +22,10 @@ const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
   "Consumer Discretionary", "Consumer Staples", "Industrials",
   "Materials", "Real Estate", "Communication", "Utilities",
+  // "Other" is the fallback bucket for tickers not mapped in SECTOR_MAP.
+  // Must be rendered so internal links from homepage + /ticker/[X] (when
+  // X has no SECTOR_MAP entry) resolve to a real page instead of 404.
+  "Other",
 ];
 
 function slugify(s: string) { return s.toLowerCase().replace(/\s+/g, "-"); }

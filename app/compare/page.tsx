@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { MANAGERS } from "@/lib/managers";
+import { MANAGER_QUALITY } from "@/lib/signals";
 
 // /compare — directory landing (v0.87). The parent `/compare` route
 // previously 404'd even though `/compare/aapl-vs-googl` and
@@ -18,21 +19,33 @@ export const metadata: Metadata = {
 
 export default function CompareIndex() {
   const topTix = topTickers(8);
-  const topMgrs = MANAGERS.slice(0, 8);
 
-  // Seed curated pairs so users have a one-click entry point for both modes.
-  const stockPairs = [
+  // Match `/compare/[pair]/page.tsx` TOP_N=15 so every curated stock pair
+  // renders a link to a pre-rendered page (no 404 from a ticker outside the
+  // generated top-15 × top-15 = 210 grid).
+  const top15Symbols = new Set(topTickers(15).map((t) => t.symbol));
+  const rawStockPairs: Array<[string, string]> = [
     ["AAPL", "GOOGL"],
     ["META", "AMZN"],
     ["NVDA", "MSFT"],
     ["JPM", "BAC"],
-  ] as const;
+    ["V", "MA"],
+    ["BRK.B", "AAPL"],
+  ];
+  const stockPairs = rawStockPairs.filter(
+    ([a, b]) => top15Symbols.has(a) && top15Symbols.has(b),
+  ).slice(0, 4);
 
+  // Match `/compare/managers/[pair]/page.tsx` generateStaticParams — top 15
+  // managers by quality ≥8. Anything else won't have a pre-rendered detail
+  // page, so we never render a link outside that set.
+  const top15Mgrs = MANAGERS
+    .filter((m) => (MANAGER_QUALITY[m.slug] ?? 6) >= 8)
+    .slice(0, 15);
   const managerPairs: [string, string][] = [];
-  // Generate pairs from the top 4 quality managers for discovery.
-  for (let i = 0; i < 4 && i < topMgrs.length; i++) {
-    for (let j = i + 1; j < 4 && j < topMgrs.length; j++) {
-      managerPairs.push([topMgrs[i].slug, topMgrs[j].slug]);
+  for (let i = 0; i < top15Mgrs.length && managerPairs.length < 8; i++) {
+    for (let j = i + 1; j < top15Mgrs.length && managerPairs.length < 8; j++) {
+      managerPairs.push([top15Mgrs[i].slug, top15Mgrs[j].slug]);
     }
   }
   const curatedMgrPairs = managerPairs.slice(0, 4);

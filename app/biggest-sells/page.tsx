@@ -185,12 +185,16 @@ export default function BiggestSellsPage() {
                     </span>
                   </div>
                   <div className="flex items-baseline gap-3 text-[11px] tabular-nums">
-                    <a
-                      href={`/investor/${b.slug}/q/${b.quarter.toLowerCase()}`}
-                      className="text-text hover:text-brand transition"
-                    >
-                      {b.quarterLabel}
-                    </a>
+                    {b.slug === "warren-buffett" ? (
+                      <span className="text-text">{b.quarterLabel}</span>
+                    ) : (
+                      <a
+                        href={`/investor/${b.slug}/q/${b.quarter.toLowerCase()}`}
+                        className="text-text hover:text-brand transition"
+                      >
+                        {b.quarterLabel}
+                      </a>
+                    )}
                     <span className="text-dim">·</span>
                     <span className="font-semibold text-rose-400">
                       {b.action === "exit" ? "EXIT" : `TRIM ${b.deltaPct}%`}
@@ -313,12 +317,16 @@ export default function BiggestSellsPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3 text-[11px] text-text whitespace-nowrap">
-                    <a
-                      href={`/investor/${b.slug}/q/${b.quarter.toLowerCase()}`}
-                      className="hover:text-brand transition"
-                    >
-                      {b.quarterLabel}
-                    </a>
+                    {b.slug === "warren-buffett" ? (
+                      <span>{b.quarterLabel}</span>
+                    ) : (
+                      <a
+                        href={`/investor/${b.slug}/q/${b.quarter.toLowerCase()}`}
+                        className="hover:text-brand transition"
+                      >
+                        {b.quarterLabel}
+                      </a>
+                    )}
                   </td>
                   <td className="px-4 py-3 text-[11px]">
                     <span className="font-semibold text-rose-400">

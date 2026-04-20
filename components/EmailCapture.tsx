@@ -33,7 +33,6 @@ export default function EmailCapture({
       const existing = JSON.parse(localStorage.getItem("holdlens_subs") || "[]");
       existing.push({ email, ts: new Date().toISOString(), source });
       localStorage.setItem("holdlens_subs", JSON.stringify(existing));
-      console.log("[holdlens:subscribe]", email);
     } catch {
       // storage blocked — keep going, backend is the source of truth
     }

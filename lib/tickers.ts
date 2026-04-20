@@ -117,3 +117,10 @@ export function topTickers(limit = 25): TickerData[] {
 export function getTicker(symbol: string): TickerData | undefined {
   return TICKER_INDEX[symbol.toUpperCase()];
 }
+
+// True if the ticker has a pre-rendered /signal/[ticker] + /ticker/[symbol] page.
+// Use to gate internal links — rendering a link to a ticker without a page
+// produces a 404, which leaks PageRank and frustrates users.
+export function hasTickerPage(symbol: string): boolean {
+  return symbol.toUpperCase() in TICKER_INDEX;
+}

@@ -636,13 +636,22 @@ export function getMovesByAction(action: MoveAction, quarter?: Quarter): Move[] 
 export const LATEST_QUARTER: Quarter = "2025-Q4";
 
 /** All moves with manager display name + fund joined in. */
+// Module-level memo — MERGED_MOVES is thousands of rows and getConviction
+// calls this per ticker. With 649 pages and RelatedSignals walking the
+// full ticker set per page, a cold rebuild touched this tens of thousands
+// of times.
+let _enrichedMovesCache: Array<Move & { managerName: string; managerFund: string }> | null = null;
 export function getAllMovesEnriched(): Array<Move & { managerName: string; managerFund: string }> {
-  return MERGED_MOVES.map((mv) => {
-    const mgr = MANAGERS.find((m) => m.slug === mv.managerSlug);
+  if (_enrichedMovesCache) return _enrichedMovesCache;
+  // Pre-index managers by slug so the join is O(1) per move instead of O(n).
+  const mgrBySlug = new Map(MANAGERS.map((m) => [m.slug, m]));
+  _enrichedMovesCache = MERGED_MOVES.map((mv) => {
+    const mgr = mgrBySlug.get(mv.managerSlug);
     return {
       ...mv,
       managerName: mgr?.name || mv.managerSlug,
       managerFund: mgr?.fund || "",
     };
   });
+  return _enrichedMovesCache;
 }

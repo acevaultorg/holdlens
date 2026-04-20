@@ -47,7 +47,7 @@ export default function WhatToBuyPage() {
           Full ranking (all signals) →
         </a>
         <a
-          href="/signal"
+          href="/ticker"
           className="inline-block border border-border bg-panel rounded-xl px-5 py-3 hover:border-brand transition"
         >
           Browse signal dossiers →

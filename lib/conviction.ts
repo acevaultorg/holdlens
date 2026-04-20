@@ -115,7 +115,24 @@ function clamp(n: number, lo: number, hi: number): number {
 
 // ---------- CONVICTION COMPUTATION ----------
 
+// Module-level memo so static export of 600+ signal pages doesn't
+// recompute identical conviction scores thousands of times. RelatedSignals
+// (and other components) call getConviction for every sibling ticker per
+// page; without this cache the build fell into O(n²) territory and timed
+// out individual pages at 60s.
+const _convictionCache = new Map<string, ConvictionScore>();
+
 export function getConviction(ticker: string, quarter: Quarter = LATEST_QUARTER): ConvictionScore {
+  const sym = ticker.toUpperCase();
+  const cacheKey = `${sym}|${quarter}`;
+  const cached = _convictionCache.get(cacheKey);
+  if (cached) return cached;
+  const result = computeConviction(sym, quarter);
+  _convictionCache.set(cacheKey, result);
+  return result;
+}
+
+function computeConviction(ticker: string, quarter: Quarter): ConvictionScore {
   const sym = ticker.toUpperCase();
   const tickerData = TICKER_INDEX[sym];
 
