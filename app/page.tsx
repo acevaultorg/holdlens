@@ -23,7 +23,7 @@ import { LATEST_FILINGS } from "@/lib/filings";
 export const metadata: Metadata = {
   title: "30 superinvestors, one ConvictionScore — HoldLens",
   description:
-    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers — scored on a signed +100 buy / −100 sell scale. SEC-sourced. Live prices. New filings every quarter.",
+    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers on a signed +100 buy / −100 sell scale. SEC-sourced. Updated quarterly.",
   alternates: { canonical: "https://holdlens.com/" },
   openGraph: {
     title: "30 superinvestors, one ConvictionScore — HoldLens",
@@ -218,8 +218,8 @@ export default function HomePage() {
           </span>
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl mx-auto text-pretty">
-          Every 13F move from Buffett, Ackman, Burry and {MANAGERS.length - 3} other top portfolio
-          managers — scored on a signed{" "}
+          Understand every 13F move by the smartest investors in the world — Buffett, Ackman, Burry
+          and {MANAGERS.length - 3} other top portfolio managers — scored on a signed{" "}
           <span className="whitespace-nowrap text-emerald-400 font-semibold">+100 buy</span>{" "}
           /{" "}
           <span className="whitespace-nowrap text-rose-400 font-semibold">−100 sell</span>{" "}

@@ -28,7 +28,11 @@ export const metadata: Metadata = {
     template: "%s · HoldLens",
   },
   description:
-    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers — scored on a signed +100 buy / −100 sell scale. SEC-sourced. Live prices. Updated every quarter.",
+    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers on a signed +100 buy / −100 sell scale. SEC-sourced. Updated every quarter.",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.svg",
+  },
   openGraph: {
     // v1.40 — honest reframe. Prior "before the market does" implied an info
     // edge that 45-day-lagged 13F data can't deliver and risked a trust break
