@@ -33,7 +33,10 @@ const LLM_BOTS = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/admin/", "/_next/"] },
+      // IMPORTANT: never disallow /_next/ — Googlebot must fetch the CSS +
+      // JS chunks under /_next/static/ to render pages, or rankings suffer.
+      // /admin/ is the only real secret surface; everything else is indexable.
+      { userAgent: "*", allow: "/", disallow: ["/admin/"] },
       ...LLM_BOTS.map((ua) => ({ userAgent: ua, allow: "/" })),
     ],
     sitemap: [
