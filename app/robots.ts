@@ -51,6 +51,7 @@ export default function robots(): MetadataRoute.Robots {
     ],
     sitemap: [
       "https://holdlens.com/sitemap.xml",
+      "https://holdlens.com/sitemap-ai.xml",
       "https://holdlens.com/feed.xml",
     ],
     host: "https://holdlens.com",

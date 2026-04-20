@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import ScreenerClient from "./ScreenerClient";
+import { getGrandPortfolio } from "@/lib/signals";
 
 export const metadata: Metadata = {
   title: "Screener — filter smart money holdings by live metrics",
@@ -22,7 +23,7 @@ export default function ScreenerPage() {
         Every stock held by the best portfolio managers in the world — filtered by
         sector, conviction, ownership, and live day change.
       </p>
-      <ScreenerClient />
+      <ScreenerClient rows={getGrandPortfolio()} />
 
       <AdSlot format="horizontal" />
     </div>

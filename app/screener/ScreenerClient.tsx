@@ -1,11 +1,20 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useEffect, useState } from "react";
 import LiveQuote from "@/components/LiveQuote";
 import CsvExportButton from "@/components/CsvExportButton";
 import { getQuotes, type LiveQuote as LiveQuoteData } from "@/lib/live";
-import { getGrandPortfolio } from "@/lib/signals";
 
-type Row = ReturnType<typeof getGrandPortfolio>[number];
+export type GrandRow = {
+  ticker: string;
+  name: string;
+  sector?: string;
+  ownerCount: number;
+  aggregatePct: number;
+  weightedScore: number;
+  topOwners: { slug: string; name: string; pct: number; quality: number }[];
+};
+
+type Row = GrandRow;
 
 type SortKey = "score" | "owners" | "dayChange" | "ticker" | "above52wLow";
 type DirectionFilter = "all" | "up" | "down";
@@ -37,7 +46,7 @@ const SECTORS = [
   "Utilities",
 ];
 
-export default function ScreenerClient() {
+export default function ScreenerClient({ rows }: { rows: GrandRow[] }) {
   const [sector, setSector] = useState<string>("All sectors");
   const [minOwners, setMinOwners] = useState<number>(1);
   const [minScore, setMinScore] = useState<number>(0);
@@ -100,8 +109,9 @@ export default function ScreenerClient() {
     return ((q.price - q.weekLow52) / q.weekLow52) * 100;
   }
 
-  // Base dataset from the grand portfolio (deterministic, built at render time)
-  const allRows = useMemo(() => getGrandPortfolio(), []);
+  // Base dataset from the grand portfolio — pre-computed server-side and
+  // passed as prop so client bundle doesn't pull edgar-data JSON.
+  const allRows = rows;
 
   // Live quotes for all screener rows
   const [quotes, setQuotes] = useState<Record<string, LiveQuoteData | null>>({});
