@@ -10,6 +10,7 @@ import TickerActivity from "@/components/TickerActivity";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
 import InsiderActivity from "@/components/InsiderActivity";
+import BuybackSummary from "@/components/BuybackSummary";
 import AdSlot from "@/components/AdSlot";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import RelatedSignals from "@/components/RelatedSignals";
@@ -147,6 +148,11 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         </p>
         <InsiderActivity symbol={t.symbol} />
       </section>
+
+      {/* Buyback program (when tracked) — the company-itself-as-buyer signal,
+          alongside 13F (institutional) + Form 4 (insider). Renders nothing
+          for tickers without a tracked program. */}
+      <BuybackSummary symbol={t.symbol} />
 
       {/* Latest news */}
       <section className="mt-12">
