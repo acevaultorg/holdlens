@@ -26,7 +26,28 @@ const SOFT_404_HEADERS = {
   "x-commercial-license": "https://holdlens.com/api-terms",
 };
 
+// Vulnerability scanner probes — WordPress admin, env file, git config, xmlrpc.
+// These aren't AI bots, they're script kiddies sweeping for misconfigured hosts.
+// Return 410 Gone (RFC 9110: "intentionally and permanently gone") so scanners
+// tagged the path as dead and slow their retry rate. Saves ~2,834/wk edge 404s
+// + stops the noise cluttering CF analytics. Single-slash-normalized path to
+// catch `//shop/wp-includes/wlwmanifest.xml` style double-slash probes.
+const ATTACK_PATH_RE = /\/(?:wp-(?:admin|includes|login|content|config)|wordpress|xmlrpc\.php|wp-login\.php|wp-config\.php|\.env(?:\.bak)?|\.git\/config)(?:$|\/)/i;
+
 export const onRequest = async ({ request, next }: PagesContext): Promise<Response> => {
+  const url = new URL(request.url);
+  const normalizedPath = url.pathname.replace(/\/+/g, "/");
+  if (ATTACK_PATH_RE.test(normalizedPath)) {
+    return new Response("410 Gone. Not a WordPress site.", {
+      status: 410,
+      headers: {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "public, max-age=86400, s-maxage=604800",
+        "x-robots-tag": "noindex",
+      },
+    });
+  }
+
   const response = await next();
 
   // Soft-404 recovery for missing signal/ticker pages (81% of weekly 4xx leak).
