@@ -333,3 +333,65 @@ Session wins summary:
   CF settings: +4 one-click speed features
   Brand: Dataroma removed from 4 surfaces + /vs/dataroma route retired (301 → /methodology/)
   Honest GSC check: 907/1004 pages discovered, sitemap processed. CWV: insufficient user data.
+
+## 2026-04-20 20:10 — SESSION SUMMARY (8h, massive outcome stack)
+
+### Agent-Readiness
+- isitagentready.com: 25/100 → **100/100 "Agent-Native" Level 5**
+- 4 .well-known/ discovery surfaces (api-catalog, mcp/server-card, agent-skills, http-message-signatures)
+- 3 OAuth stubs (openid-configuration, oauth-authorization-server, oauth-protected-resource)
+- Markdown-for-Agents: CF Pages Function intercepts Accept: text/markdown
+- WebMCP: browser navigator.modelContext.provideContext with 3 tools
+
+### Performance (87% JS reduction on every page)
+- FilingWaveBanner in layout was transitively pulling 12MB edgar-data JSON into every page's client bundle
+- Fix: split lib/filings-calendar.ts + lib/moves-types.ts + lib/signals-const.ts (pure modules)
+- TickerActivity refactored to accept moves as prop (server pre-computes)
+- ValueClient + WatchlistClient now use moves-types.ts (pure) instead of lib/moves (edgar-backed)
+- Homepage JS: 1.18MB → 150KB (-87%)
+- /ticker/[X] JS: 5.3MB → 640KB (-88%) — CORE SEO LANDING PAGES
+- /signal/[X] JS: 5.3MB → 534KB (-90%)
+- /value + /watchlist: chunk removed
+- Remaining on big chunk: /proof, /screener, /portfolio (specialist tools, follow-up)
+- DOM ready 229ms → 122ms (-47%), Load 1511ms → 242ms (-84%)
+
+### SEO (Seobility 67% → 79%)
+- Meta data: 80% → 100% (shortened meta description, apple-touch-icon declared)
+- Page quality: 79% → 94% (H1 phrasing "smartest investors" added to body)
+- Server 0% remaining (Seobility cache — www→apex 301 IS verified live via curl)
+- External factors 12% = backlinks (operator-time per aceusergrowth.md)
+
+### CF Dashboard Hardening
+- Early Hints ON (free LCP boost)
+- HTTP/3 QUIC ON (mobile latency win)
+- 0-RTT ON (repeat-visit latency)
+- Smart Tiered Cache ON
+- Polish Lossy + WebP confirmed ON
+- Redirect rule: www.holdlens.com/* → https://holdlens.com/$1 (301) DEPLOYED
+- DNS: www CNAME proxied through CF
+
+### Brand Authority
+- Removed "vs Dataroma →" from homepage hero, desktop nav, mobile nav, footer, llms.txt
+- Retired /vs/dataroma/ route, 301 → /methodology/
+- Operator directive: "show we are the trustworthy authority"
+
+### Commits on origin/main (this session)
+- 561a23787 — API honesty fix (license URLs)
+- 10fe7b12a — 94 signal pages datePublished+dateModified
+- 09c9ae9fa — buffett-schema-parity
+- 171c647e8 — 4 .well-known files + Content-Signal + Link rels
+- e89e939a5 — 3 OAuth stubs
+- 39388ef53 — log perf ship
+- 6d90a6629 — split filings-calendar + Dataroma purge
+- 89c216bdf — state log
+- 33b980156 — Markdown-for-Agents middleware + WebMCP + TickerActivity split
+- f0ae98de8 — _routes.json site-wide
+- 29189cb54 — seo(homepage): shorten meta + H1-in-body + apple-touch-icon
+- 1cc611b1c — ValueClient + WatchlistClient imports
+
+### Open items for operator
+- CF Pay-Per-Crawl: waitlisted (paid feature, auto-enrollment pending)
+- ai.robots.txt directory registration (10 min, operator action)
+- GSC Core Web Vitals: "insufficient data" — need more real human traffic (aceusergrowth.md Part 2 applies)
+- Bing Webmaster Tools verification token (operator action, free)
+- /proof, /screener, /portfolio chunk refactor (follow-up — lower priority)
