@@ -1,35 +1,22 @@
 # HoldLens — TASKS
 
-## 🔴 REQUIRED — Deploy v1.51 cleanup via Cloudflare dashboard (wrangler EPIPE)
+## ✅ SHIPPED 2026-04-20 11:15 — v1.51/52/53 cleanup sweep LIVE
 
-**WHAT:** The cleanup fixes that kill 12 broken internal links and strip a user-email console.log are committed to git (commit `d9edd8d16` on main) but Cloudflare's upload API is rejecting wrangler deploys right now — four attempts in a row all failed at the same file 359 of 3464. Use Cloudflare's web dashboard drag-drop flow instead. ~4 minutes.
+Wrangler attempt #9 succeeded after 8 EPIPE failures (CF API cleared). Deploy: `787abb73.holdlens.pages.dev` · 3,105 files / 38.38s · IndexNow ping 907 URLs HTTP 200. All 6 commits LIVE + verified:
 
-**WHY:** The 12 broken links leak PageRank to 404s (bad for SEO) and the `console.log` leaks subscriber emails to the visitor's browser console (mild privacy + code-quality issue). Skipping leaves both live until the next successful deploy — could be hours or days if CF's API stays flaky.
+- `/sector/other/` → 200 (was 404) ✓
+- `/fresh-conviction/` → 0 warren-buffett/q/ refs (was 6) ✓
+- `/compare/` → 0 jpm-vs-bac + 0 einhorn-vs-buffett refs ✓
+- 3 /learn articles → BreadcrumbList live (ship ecfee45a9 confirmed) ✓
+- `/investor/joel-greenblatt/` → 636 KB (was 4.5 MB — 86% reduction) ✓
+- `/first-movers/` + others → 0 `href="/signal/FLUT"` refs (broken-link stripper worked) ✓
 
-**TIME:** ~4 minutes.
-
-**HOW:**
-1. Zip the build output:
-   `cd "/Users/paulodevries/Library/Mobile Documents/com~apple~CloudDocs/AceVault/ CLUSTER01-AceVault/VAULT01-Paulo Projects/holdlens-com/holdlens" && zip -rq /tmp/holdlens-v1.51.zip out`
-   → expected: silent success, creates `/tmp/holdlens-v1.51.zip` (~180MB gzipped)
-2. Open Cloudflare dashboard → Workers & Pages → **holdlens**:
-   Go to `https://dash.cloudflare.com/` in any browser. Sign in with the `acevaultorg` account. Click **Workers & Pages** in the sidebar → click **holdlens** project.
-   → expected: holdlens project overview page with "Deployments" tab visible
-3. Create a new deployment:
-   Click **Create deployment** (top right) → choose **Upload assets** → drag `/tmp/holdlens-v1.51.zip` onto the drop zone → target branch: `main` → click **Save and Deploy**.
-   → expected: progress bar, then "Deployment successful" with preview URL like `https://XXXXXXXX.holdlens.pages.dev`
-4. Let the custom domain re-point (usually 30-60 seconds):
-   Browse to `https://holdlens.com/sector/other` in a private window.
-   → expected: 200 OK, renders "Other" sector page (this route did not exist before v1.51)
-
-**VERIFY:**
-`curl -sI "https://holdlens.com/sector/other/"` → expected: `HTTP/2 200`
-Also: `curl -sL "https://holdlens.com/fresh-conviction/" | grep -c "/investor/warren-buffett/q/"` → expected: `0`
-
-**IF STUCK:**
-- Zip exceeds dashboard's 200MB drag-drop cap: split into two deploys by removing the `out/_next/static/` folder from the zip (it's cacheable and already served from the prior deploy). Or `cd out && zip -rq /tmp/holdlens-v1.51.zip *` to skip the hidden `.*` files.
-- Dashboard doesn't have "Upload assets" option: the project is linked to Git; disconnect Git integration (project → Settings → Builds → Disconnect) or push `main` and wait for auto-deploy (may still fail via CF's own Pages build using same wrangler internally — if so, same failure mode).
-- Wrangler deploy starts working again in 30-60 min: run `npm run deploy` from the holdlens/ directory. That's the original path; the dashboard workflow is only needed while CF's upload API is rejecting.
+Cumulative SEO/UX wins:
+- 1,120 broken internal links → 0
+- 41,098 href anchors auto-stripped per build
+- `console.log("[holdlens:subscribe]", email)` removed (subscriber privacy)
+- Build hot-path memoized (future-proof against widening)
+- Greenblatt root page 7x smaller — LCP/CLS win + faster CF Pages serving
 
 ---
 
