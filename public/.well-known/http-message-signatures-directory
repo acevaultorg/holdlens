@@ -1,0 +1,9 @@
+{
+  "keys": [],
+  "note": "HoldLens currently does NOT sign outbound bot requests (we are a content-publisher, not a crawler). This empty JWKS is served to satisfy Web Bot Auth discovery per IETF draft-ietf-webbotauth. If HoldLens later deploys its own crawler (e.g. for competitive-intelligence ingestion), signing keys will be added here with kid + kty + key material.",
+  "publisher": {
+    "name": "HoldLens",
+    "url": "https://holdlens.com",
+    "contact": "contact@editnative.com"
+  }
+}

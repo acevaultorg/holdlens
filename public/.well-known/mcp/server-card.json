@@ -1,0 +1,41 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/server-card/v0.1.json",
+  "serverInfo": {
+    "name": "holdlens",
+    "version": "1.0.0",
+    "title": "HoldLens — SEC 13F superinvestor signal API",
+    "description": "Normalized 13F filings from 30 tier-1 portfolio managers (Buffett, Ackman, Burry, Klarman, Druckenmiller, et al.) with a composite −100..+100 ConvictionScore. Read-only discovery server — data is served via the public REST+JSON API at /api/v1/*, not via MCP tool calls.",
+    "vendor": {
+      "name": "HoldLens",
+      "url": "https://holdlens.com",
+      "contact": "contact@editnative.com"
+    },
+    "license": {
+      "url": "https://holdlens.com/api-terms",
+      "summary": "3-tier model: free-for-humans · Pay-Per-Crawl for AI-crawlers · Enterprise monthly for bulk programmatic access"
+    }
+  },
+  "transport": {
+    "kind": "http",
+    "endpoint": "https://holdlens.com/api/v1/",
+    "note": "REST+JSON. Not an MCP streaming transport; this card advertises the REST surface as MCP-discoverable for LLM clients that support HTTP resource enumeration."
+  },
+  "capabilities": {
+    "resources": {
+      "listable": true,
+      "catalog": "https://holdlens.com/api/v1/index.json"
+    },
+    "tools": {
+      "supported": false,
+      "note": "Read-only dataset. Future: paid-tier write endpoints (webhook subscriptions) will be exposed here when launched."
+    },
+    "prompts": { "supported": false },
+    "sampling": { "supported": false }
+  },
+  "related": {
+    "openapi": null,
+    "api_catalog": "https://holdlens.com/.well-known/api-catalog",
+    "llms_txt": "https://holdlens.com/llms.txt",
+    "agent_skills": "https://holdlens.com/.well-known/agent-skills/index.json"
+  }
+}

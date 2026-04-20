@@ -86,6 +86,31 @@
 # Security + commercial-license headers — all pages
 # ─────────────────────────────────────────────────────────────────
 
+# ─────────────────────────────────────────────────────────────────
+# Agent-discovery .well-known surfaces — serve correct Content-Type
+# so RFC 9727 / MCP / Agent Skills scanners parse them as JSON/JWKS.
+# ─────────────────────────────────────────────────────────────────
+
+/.well-known/api-catalog
+  Content-Type: application/linkset+json; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+
+/.well-known/mcp/server-card.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+
+/.well-known/agent-skills/index.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+
+/.well-known/http-message-signatures-directory
+  Content-Type: application/http-message-signatures-directory; charset=utf-8
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
@@ -93,4 +118,4 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   X-DNS-Prefetch-Control: on
   X-Commercial-License: https://holdlens.com/api-terms
-  Link: <https://holdlens.com/api-terms>; rel="license"
+  Link: <https://holdlens.com/api-terms>; rel="license", </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </api>; rel="service-doc"; type="text/html", </api/v1/index.json>; rel="service-desc"; type="application/json", </.well-known/mcp/server-card.json>; rel="mcp-server-card"; type="application/json", </.well-known/agent-skills/index.json>; rel="agent-skills"; type="application/json", </llms.txt>; rel="llms"; type="text/plain"

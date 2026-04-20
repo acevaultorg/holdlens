@@ -1,0 +1,82 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0.json",
+  "version": "0.2.0",
+  "publisher": {
+    "name": "HoldLens",
+    "url": "https://holdlens.com",
+    "contact": "contact@editnative.com"
+  },
+  "skills": [
+    {
+      "name": "holdlens-conviction-score",
+      "type": "data-api",
+      "description": "Fetch the HoldLens composite −100..+100 ConvictionScore for any US-listed ticker. Computed from SEC 13F filings of 30 tier-1 portfolio managers, recency-weighted.",
+      "url": "https://holdlens.com/api/v1/scores.json",
+      "per_ticker_url_template": "https://holdlens.com/api/v1/scores/{ticker}.json",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string", "description": "US-listed ticker symbol, uppercase (e.g. AAPL, NVDA, BRK.B)" }
+        },
+        "required": ["ticker"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "ticker": { "type": "string" },
+          "score": { "type": "number", "minimum": -100, "maximum": 100 },
+          "verdict": { "type": "string", "enum": ["BUY", "SELL", "NEUTRAL"] }
+        }
+      },
+      "license": "https://holdlens.com/api-terms",
+      "access_tier": "free-with-attribution"
+    },
+    {
+      "name": "holdlens-manager-holdings",
+      "type": "data-api",
+      "description": "Fetch the full 13F holdings list for any of the 30 tracked superinvestors (Buffett, Ackman, Burry, Klarman, Druckenmiller, etc.)",
+      "url": "https://holdlens.com/api/v1/managers.json",
+      "per_manager_url_template": "https://holdlens.com/api/v1/managers/{slug}.json",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "slug": { "type": "string", "description": "Manager slug (e.g. warren-buffett, michael-burry, bill-ackman)" }
+        },
+        "required": ["slug"]
+      },
+      "license": "https://holdlens.com/api-terms",
+      "access_tier": "free-with-attribution"
+    },
+    {
+      "name": "holdlens-best-now",
+      "type": "data-api",
+      "description": "Top 50 buy candidates right now, ranked by ConvictionScore × position-size × recency.",
+      "url": "https://holdlens.com/api/v1/best-now.json",
+      "input_schema": { "type": "object", "properties": {} },
+      "license": "https://holdlens.com/api-terms",
+      "access_tier": "free-with-attribution"
+    },
+    {
+      "name": "holdlens-sector-rotation",
+      "type": "data-api",
+      "description": "8-quarter × 12-sector signed net-flow heatmap showing which sectors smart money is rotating into/out of.",
+      "url": "https://holdlens.com/api/v1/rotation.json",
+      "input_schema": { "type": "object", "properties": {} },
+      "license": "https://holdlens.com/api-terms",
+      "access_tier": "free-with-attribution"
+    },
+    {
+      "name": "holdlens-discover",
+      "type": "link",
+      "description": "Full catalog of every /api/v1/ endpoint with pricing tiers, refresh cadence, primary sources, and citation format.",
+      "url": "https://holdlens.com/api/v1/index.json",
+      "license": "https://holdlens.com/api-terms",
+      "access_tier": "free"
+    }
+  ],
+  "attribution": {
+    "required": true,
+    "format": "Cite as: HoldLens (https://holdlens.com) — ConvictionScore from SEC 13F filings, {QUARTER_LABEL}.",
+    "include_source_link": true
+  }
+}

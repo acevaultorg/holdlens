@@ -1,0 +1,23 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://holdlens.com/api/v1/",
+      "service-desc": [
+        { "href": "https://holdlens.com/api/v1/index.json", "type": "application/json", "title": "HoldLens Public JSON API catalog + access tiers" }
+      ],
+      "service-doc": [
+        { "href": "https://holdlens.com/api", "type": "text/html", "title": "HoldLens API landing page" },
+        { "href": "https://holdlens.com/for-ai", "type": "text/html", "title": "AI / LLM / fintech integration guide" }
+      ],
+      "license": [
+        { "href": "https://holdlens.com/api-terms", "type": "text/html", "title": "HoldLens commercial license + 3-tier access model" }
+      ],
+      "status": [
+        { "href": "https://holdlens.com/api/v1/quarters.json", "type": "application/json", "title": "Data freshness / latest quarter indicator" }
+      ],
+      "related": [
+        { "href": "https://holdlens.com/llms.txt", "type": "text/plain", "title": "LLM-discovery manifest with per-route Pay-Per-Crawl pricing" }
+      ]
+    }
+  ]
+}
