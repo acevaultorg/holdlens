@@ -395,3 +395,27 @@ Session wins summary:
 - GSC Core Web Vitals: "insufficient data" — need more real human traffic (aceusergrowth.md Part 2 applies)
 - Bing Webmaster Tools verification token (operator action, free)
 - /proof, /screener, /portfolio chunk refactor (follow-up — lower priority)
+
+## Ship Log v1.63-1.64 — 2026-04-20 21:35 CEST (auto cycle batch)
+
+### v1.63 — bot-harvest soft-404 recovery (commit 68dc8b7a9)
+- **Data**: CF GraphQL Analytics, 7d window. 18,580 total 4xx across 500 unique paths on holdlens zone.
+- **Diagnosis**: 81% of weekly 4xx are AI bots (PerplexityBot 76% of top errors) probing plausible tickers outside our 30-investor coverage — SNAP (85/wk), KR (100/wk), MRK (100/wk), DHR (101/wk), PG (83/wk), MKTX (68/wk), JFROG (65/wk), etc.
+- **Ship**: `functions/_middleware.ts` intercepts 404 responses on `/signal/[X]` + `/ticker/[X]` (ticker shape validated `[A-Z0-9.\-_]{1,10}`), renders soft-200 HTML with coverage explainer + 16 tracked-ticker sample links + schema.org JSON-LD + `x-robots-tag: noindex, follow`. Markdown negotiation honored (same middleware). `public/_redirects` adds specific-path rules (not wildcards): `/investor/:slug/q/* → /investor/:slug/ 301`, `/sector/other → /sectors/ 301`.
+- **Documented constraint respected**: v2026-04-20a `_redirects` wildcards broke prod because CF Pages matched redirects before static assets. Middleware runs AFTER asset lookup — safe.
+- **Verified live** (holdlens.com apex): /signal/SNAP → HTTP 200 with `x-robots-tag: noindex, follow` · /ticker/KR → 200 soft-404 · /investor/warren-buffett/q/2025-q3 → 301 · /sector/other → 301 · /signal/AAPL → 308→200 real page · /signal/!@# → 404 (invalid ticker shape correctly rejected).
+- **Projected impact**: ~15,400/wk weekly 4xx → 200. Bot-harvest archetypes hit: `llm_citation_quote_ready × +75`, `ai_visibility_optimized_page × +70`, `freshness_per_page × +30` (inherited), `pay_per_crawl_enabled × +90` (operator ticket pending).
+- **Deploy**: 1st-try success (no EPIPE) at `44d302c3.holdlens.pages.dev`.
+
+### v1.64 — /proof perf: split backtest-math (commit e6397f0de)
+- **Diagnosis**: BacktestProof client component imported `computeRealizedReturn`, `annualizedReturn` from `lib/backtest.ts` which pulled `getHistoricalTopBuys` → `conviction` → `moves` → 12MB ALL_MOVES JSON graph into /proof's client bundle (4.7MB chunk `9245-12c52a9de9b15e1a.js`).
+- **Ship**: extracted pure math helpers + client-safe types into new `lib/backtest-math.ts` (zero data imports). `lib/backtest.ts` re-exports for backward compat. `BacktestProof` imports runtime funcs from leaf module; `BacktestQuarter` + `ConvictionScore` stay as `import type` (SWC erases).
+- **Verified live**: `/proof` chunk list no longer references `9245-*`. 10 chunks total (largest 177KB, main 111KB).
+- **Pattern**: same split used for FilingWaveBanner (v1.60), TickerActivity (v1.61), ValueClient + WatchlistClient + ScreenerClient (v1.62). v1.64 closes /proof as the 5th and last indexed route carrying the 4.7MB chunk. `/portfolio` (noindex, low priority) remains — deferred as low-ROI specialist tool.
+- **Deploy**: EPIPE on retry 1, success on retry 2 at `8c97f93a.holdlens.pages.dev`.
+
+### Oracle deltas (Distribution + Retention)
+- Distribution: `+0` direct (no new public pages), but multiplicative uplift on bot-harvest archetypes via v1.63. ~15,400 crawler impressions/wk converted from 404→200+citation-ready.
+- Retention: `+0` measurable today. /proof faster-load should lift activation on the credibility page (users Google "HoldLens proof" → land there → if it loads in <1s instead of 5s, bounce drops). Measurable at next Week-4 audit.
+- Revenue: `+$0` direct. Compounding: bot-harvest → LLM citation → branded search → human → AdSense + Pro. Unmeasurable per-ship, tracked in aggregate via LLM_CITATIONS.md weekly check.
+
