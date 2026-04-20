@@ -1,5 +1,14 @@
 # HoldLens — TASKS
 
+## 🛒 v1.58 — buffett-schema-parity (shipped 2026-04-20 ~16:00)
+
+- [x] `P2` FIX `app/investor/warren-buffett/page.tsx` — all three JSON-LD schemas added: Person (hardcoded buffett entity + EDGAR CIK sameAs) + ProfilePage (datePublished from LATEST_FILINGS, dateModified from BUILD_ISO) + BreadcrumbList. Shipped via commit 09c9ae9fa, deployed 92766fae.holdlens.pages.dev, live-verified on production. Closes v1.57 queued gap. [id:buffett-schema-parity] [score:6]
+
+## 🛒 v1.57 — freshness_per_page for /signal + /investor (shipped 2026-04-20 ~15:30)
+
+- [x] `P1` FEAT `app/signal/[ticker]/page.tsx` — Article schema gains `datePublished` (QUARTER_FILED[LATEST_QUARTER], 2026-02-14 for Q4 2025) + `dateModified` (build timestamp). All 94 signal pages now carry explicit freshness for LLM citation decisions. Commit 10fe7b12a. [id:v1.57-signal-freshness] [archetype:freshness_per_page +30] [score:7]
+- [x] `P1` FEAT `app/investor/[slug]/page.tsx` — new ProfilePage schema (3rd JSON-LD script) with per-investor `datePublished` from `filing.latestDate` + build-timestamp `dateModified`. Person + BreadcrumbList untouched. 29/30 investors covered (warren-buffett exclusion noted above). Commit 10fe7b12a. [id:v1.57-investor-freshness] [archetype:freshness_per_page +30] [score:7]
+
 ## 🛒 v1.55 — robots.txt /_next/ fix (shipped 2026-04-20 ~13:55)
 
 - [x] `P0` FIX `app/robots.ts` — removed `Disallow: /_next/` that blocked Googlebot from CSS+JS rendering. 156 CF AI Crawl Control violations logged pre-fix. Deploy `1d5771c2.holdlens.pages.dev` live; live curl on holdlens.com confirms only `Disallow: /admin/` remains. Commit d574b6f03 on main. [id:v1.55-robots-fix] [score:10]
