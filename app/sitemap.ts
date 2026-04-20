@@ -4,6 +4,7 @@ import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { QUARTERS } from "@/lib/moves";
 import { COUNTRIES as TAX_COUNTRIES } from "@/lib/dividend-tax";
 import { computeInsiderSummaries } from "@/lib/insider-conviction";
+import { BUYBACK_PROGRAMS } from "@/lib/buybacks";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -221,6 +222,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // v1.53 — Corporate Buyback Tracker sub-vertical (/buybacks/*).
+  // 4 static landing/leaderboard surfaces + 10 per-company pages + 2 learn.
+  const buybackStaticUrls: MetadataRoute.Sitemap = [
+    { url: `${base}/buybacks`, lastModified: now, changeFrequency: "weekly", priority: 0.88 },
+    { url: `${base}/buybacks/yield`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${base}/buybacks/largest-authorizations`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${base}/learn/buybacks-vs-dividends`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/learn/how-to-read-buyback-disclosures`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+  ];
+  const buybackTickerUrls: MetadataRoute.Sitemap = BUYBACK_PROGRAMS.map((p) => ({
+    url: `${base}/buybacks/${p.ticker}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticUrls,
     ...sectorUrls,
@@ -235,5 +252,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...similarToUrls,
     ...sectorsHubUrl,
     ...insidersUrls,
+    ...buybackStaticUrls,
+    ...buybackTickerUrls,
   ];
 }

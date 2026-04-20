@@ -25,6 +25,8 @@ const ARTICLES: Article[] = [
   { slug: "survivorship-bias-in-hedge-funds", title: "Survivorship bias in hedge funds", desc: "Why every hedge fund performance number you read is probably an overestimate — and how missing dead funds distorts 13F signals." },
   { slug: "13f-vs-13d-vs-13g", title: "13F vs 13D vs 13G", desc: "Three SEC filings, three signals. The difference between a quarterly portfolio snapshot, an activist disclosure, and a passive big-stake filing — and how to read each one." },
   { slug: "do-hedge-fund-signals-work", title: "Do 13F signals actually predict returns? We ran the backtest", desc: "Original research — April 2026. We backtested our own ConvictionScore over 221 ticker-quarter pairs across 4 quarters. Result: r = −0.12, no predictive signal. Top-decile BUYs underperformed SPY by 5 pts; bottom-decile SELLs beat it by 24 pts. Why, and what to use 13F data for instead." },
+  { slug: "buybacks-vs-dividends", title: "Buybacks vs dividends — what's the real difference?", desc: "Both return capital. One is flashier; the other is more tax-efficient. The honest tradeoffs on tax, flexibility, and long-term compounding." },
+  { slug: "how-to-read-buyback-disclosures", title: "How to read buyback disclosures", desc: "Where the real buyback numbers live in SEC 10-K, 10-Q, and 8-K filings — plus how to spot debt-funded financial engineering and stock-based-comp distortions." },
 ];
 
 // v1.20 — CollectionPage + ItemList schema. Google prefers CollectionPage
