@@ -1,8 +1,8 @@
 "use client";
 import { useMemo, useState } from "react";
-import { getMovesByTicker, QUARTER_LABELS, QUARTERS, type Move, type Quarter, type MoveAction } from "@/lib/moves";
+import { QUARTER_LABELS, QUARTERS, type Move, type Quarter, type MoveAction } from "@/lib/moves-types";
 import { MANAGERS } from "@/lib/managers";
-import { MANAGER_QUALITY } from "@/lib/signals";
+import { MANAGER_QUALITY } from "@/lib/signals-const";
 import SinceFilingDelta from "@/components/SinceFilingDelta";
 
 type Tab = "activity" | "buys" | "sells";
@@ -13,10 +13,10 @@ const TAB_LABELS: Record<Tab, string> = {
   sells: "Sells only",
 };
 
-export default function TickerActivity({ symbol }: { symbol: string }) {
+export default function TickerActivity({ symbol, moves }: { symbol: string; moves: Move[] }) {
   const [tab, setTab] = useState<Tab>("activity");
 
-  const allMoves = useMemo(() => getMovesByTicker(symbol), [symbol]);
+  const allMoves = moves;
 
   const filtered = useMemo(() => {
     if (tab === "buys") return allMoves.filter((m) => m.action === "new" || m.action === "add");

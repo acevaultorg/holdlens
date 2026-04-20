@@ -6,6 +6,7 @@ import Signal52wRange from "@/components/Signal52wRange";
 import SignalQuarterlyActivity from "@/components/SignalQuarterlyActivity";
 import OwnerCountSparkline from "@/components/OwnerCountSparkline";
 import TickerActivity from "@/components/TickerActivity";
+import { getMovesByTicker } from "@/lib/moves";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
 import InsiderActivity from "@/components/InsiderActivity";
@@ -473,7 +474,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         <p className="text-muted text-sm mb-6 max-w-2xl">
           Every tracked 13F move on {t.symbol} — grouped by quarter, ranked by manager quality.
         </p>
-        <TickerActivity symbol={t.symbol} />
+        <TickerActivity symbol={t.symbol} moves={getMovesByTicker(t.symbol)} />
       </section>
 
       {/* Insider activity */}

@@ -7,6 +7,7 @@ import StarButton from "@/components/StarButton";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
 import TickerActivity from "@/components/TickerActivity";
+import { getMovesByTicker } from "@/lib/moves";
 import TickerNews from "@/components/TickerNews";
 import TickerEarnings from "@/components/TickerEarnings";
 import InsiderActivity from "@/components/InsiderActivity";
@@ -141,7 +142,7 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         <p className="text-muted text-sm mb-6">
           Every tracked buy, add, trim, and exit on {t.symbol} by the best portfolio managers in the world. Ranked by manager quality inside each quarter.
         </p>
-        <TickerActivity symbol={t.symbol} />
+        <TickerActivity symbol={t.symbol} moves={getMovesByTicker(t.symbol)} />
       </section>
 
       {/* Insider activity (Form 4) */}
