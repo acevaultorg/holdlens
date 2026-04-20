@@ -1,5 +1,6 @@
 import { getMovesByManager, QUARTER_LABELS, QUARTERS, type Quarter, type Move } from "@/lib/moves";
 import SinceFilingDelta from "@/components/SinceFilingDelta";
+import TickerLink from "@/components/TickerLink";
 
 // Cap per-quarter rows rendered. Broad-portfolio managers (Greenblatt's
 // Magic Formula = ~3,000 positions/filing, polen-capital ~240) otherwise
@@ -90,9 +91,9 @@ export default function InvestorMoves({ slug }: { slug: string }) {
                     return (
                       <tr key={`${mv.ticker}-${i}`} className="border-b border-border last:border-0 align-top">
                         <td className="px-5 py-3 font-mono font-semibold">
-                          <a href={`/ticker/${mv.ticker}`} className="text-brand hover:underline">
+                          <TickerLink symbol={mv.ticker} className="text-brand hover:underline">
                             {mv.ticker}
-                          </a>
+                          </TickerLink>
                         </td>
                         <td className={`px-5 py-3 font-semibold ${color}`}>
                           {label}

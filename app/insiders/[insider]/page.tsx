@@ -5,6 +5,7 @@ import {
   getInsiderSummary,
 } from "@/lib/insider-conviction";
 import { fmtInsiderValue, fmtInsiderDate } from "@/lib/insiders";
+import TickerLink from "@/components/TickerLink";
 
 // Ship #2 v1 — /insiders/[insider]/ per-corporate-insider programmatic
 // pages. Each page answers "What has [CEO name] been buying or selling?"
@@ -165,9 +166,9 @@ export default async function InsiderPage(
                     {fmtInsiderDate(tx.date)}
                   </td>
                   <td className="px-4 py-3">
-                    <a href={`/ticker/${tx.ticker}`} className="font-semibold text-brand hover:underline">
+                    <TickerLink symbol={tx.ticker} className="font-semibold text-brand hover:underline">
                       {tx.ticker}
-                    </a>
+                    </TickerLink>
                   </td>
                   <td className="px-4 py-3">
                     <span className={tx.action === "buy"
@@ -215,13 +216,13 @@ export default async function InsiderPage(
           <h2 className="text-2xl font-bold mb-3">Tickers {s.name.split(" ")[0]} has traded</h2>
           <div className="flex flex-wrap gap-2">
             {s.tickers.map((t) => (
-              <a
+              <TickerLink
                 key={t}
-                href={`/ticker/${t}`}
+                symbol={t}
                 className="inline-flex items-center rounded-lg bg-panel border border-border hover:border-brand hover:text-brand text-text px-3 py-2 text-sm font-semibold transition"
               >
                 {t}
-              </a>
+              </TickerLink>
             ))}
           </div>
         </section>

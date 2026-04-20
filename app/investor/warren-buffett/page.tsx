@@ -10,6 +10,7 @@ import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
 import InvestorConcentration from "@/components/InvestorConcentration";
 import FoundersNudge from "@/components/FoundersNudge";
+import TickerLink from "@/components/TickerLink";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
@@ -145,10 +146,10 @@ export default function BuffettPage() {
               {BUFFETT_TOP.map((h) => (
                 <tr key={h.ticker} className="border-b border-border last:border-0 align-top">
                   <td className="px-5 py-4 font-mono font-semibold">
-                    <a href={`/ticker/${h.ticker}`} className="inline-flex items-center gap-2 text-brand hover:underline">
+                    <TickerLink symbol={h.ticker} className="inline-flex items-center gap-2 text-brand hover:underline">
                       <TickerLogo symbol={h.ticker} size={22} />
                       {h.ticker}
-                    </a>
+                    </TickerLink>
                   </td>
                   <td className="px-5 py-4">
                     <div className="text-text">{h.name}</div>
