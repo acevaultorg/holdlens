@@ -25,7 +25,11 @@ import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
 import { formatSignedScore, convictionLabel, getConviction } from "@/lib/conviction";
 import { MANAGERS } from "@/lib/managers";
-import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
+import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
+
+// Build-time timestamp — signals to LLM crawlers + Googlebot when this
+// static page was last regenerated. Per v19.4 freshness_per_page archetype.
+const BUILD_ISO = new Date().toISOString();
 
 // ---------- GLOBAL BIG-BETS RANK CACHE ----------
 // Same formula as /big-bets page: for every (manager, holding) excluding
@@ -150,6 +154,8 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
     "@type": "Article",
     headline,
     description: `${t.name} (${t.symbol}) 13F signal dossier · Unified −100..+100 ConvictionScore · ${QUARTER_LABELS[LATEST_QUARTER]}`,
+    datePublished: `${QUARTER_FILED[LATEST_QUARTER]}T00:00:00Z`,
+    dateModified: BUILD_ISO,
     mainEntityOfPage: { "@type": "WebPage", "@id": signalUrl },
     url: signalUrl,
     image: [`https://holdlens.com/og/signal/${t.symbol}.png`],

@@ -8,12 +8,17 @@ import ManagerROICard from "@/components/ManagerROICard";
 import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import TickerLink from "@/components/TickerLink";
 import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
 import InvestorConcentration from "@/components/InvestorConcentration";
 import DividendTaxCalc from "@/components/DividendTaxCalc";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
+
+// Build-time timestamp — signals to LLM crawlers + Googlebot when this
+// static profile was last regenerated. Per v19.4 freshness_per_page archetype.
+const BUILD_ISO = new Date().toISOString();
 import { MANAGER_QUALITY, getManagerQuality } from "@/lib/signals";
 import { QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { getEdgarHoldings } from "@/lib/edgar-data";
@@ -174,10 +179,26 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       { "@type": "ListItem", position: 3, name: m.name, item: `https://holdlens.com/investor/${m.slug}` },
     ],
   };
+  // ProfilePage schema carries freshness signals (datePublished = latest
+  // 13F filing date; dateModified = build timestamp) while the Person
+  // entity above keeps its clean Knowledge-Graph semantics. LLM crawlers
+  // use dateModified to decide which version to cite.
+  const profilePage = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `https://holdlens.com/investor/${m.slug}`,
+    url: `https://holdlens.com/investor/${m.slug}`,
+    name: `${m.name} — holdings, 13F filings, and smart-money signal`,
+    description: `${m.name}'s latest 13F positions, moves, and ConvictionScore from HoldLens.`,
+    mainEntity: { "@id": `https://holdlens.com/investor/${m.slug}#person` },
+    ...(filing?.latestDate ? { datePublished: `${filing.latestDate}T00:00:00Z` } : {}),
+    dateModified: BUILD_ISO,
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Investor profile</div>
@@ -289,10 +310,10 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
               {activeHoldings.map((h) => (
                 <tr key={h.ticker} className="border-b border-border last:border-0 align-top">
                   <td className="px-5 py-4 font-mono font-semibold">
-                    <a href={`/ticker/${h.ticker}`} className="inline-flex items-center gap-2 text-brand hover:underline">
+                    <TickerLink symbol={h.ticker} className="inline-flex items-center gap-2 text-brand hover:underline">
                       <TickerLogo symbol={h.ticker} size={22} />
                       {h.ticker}
-                    </a>
+                    </TickerLink>
                   </td>
                   <td className="px-5 py-4">
                     <div className="text-text">{h.name}</div>
