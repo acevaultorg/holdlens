@@ -1,0 +1,21 @@
+# security.txt — security vulnerability disclosure contact
+# RFC 9116: https://www.rfc-editor.org/rfc/rfc9116
+# Closes Cloudflare Security Insights finding: "Security.txt not configured".
+
+Contact: mailto:contact@editnative.com
+Expires: 2027-04-20T00:00:00Z
+Preferred-Languages: en
+Canonical: https://holdlens.com/.well-known/security.txt
+
+# HoldLens is a static-export Next.js site deployed on Cloudflare Pages.
+# No authentication, no user-submitted data, no backend database — attack
+# surface is limited to client-side concerns (XSS in structured-data
+# fields, supply-chain deps, misconfigured redirects).
+#
+# If you find a security issue, please email contact@editnative.com with:
+# - A clear description
+# - Steps to reproduce
+# - Your preferred disclosure timeline
+#
+# We'll acknowledge within 48 hours and aim to remediate within 7 days
+# for confirmed high-severity issues.
