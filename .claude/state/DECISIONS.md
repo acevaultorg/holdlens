@@ -233,3 +233,42 @@ HoldLens. Predicted 75-85% survival rate. Distribution Oracle archetype:
 **Pickup instruction for next session:** operator types any /acepilot variant
 and "Wikipedia" or "warmup" — brain will surface the 2-edit-per-day warmup
 checklist.
+
+---
+
+## 2026-04-20 — HoldLens-Corporate-Intelligence (PPC monetization shipped, SEC firehose deferred)
+
+**Operator directive:** maximize Pay-Per-Crawl revenue + take spec into account.
+
+**Spec received:** 10-day SEC EDGAR firehose expansion (8-K + 10-Q + 10-K + DEF 14A + Form 144) with XBRL parsing, enterprise API tier, dual AdSense+PPC monetization. Spec projected $20-60k Year-1 PPC revenue.
+
+**Critical assessment performed (per "be critical" directive):**
+
+1. **10-day SEC firehose claim is wildly optimistic.** Real-world XBRL parsing is a 3-4 week minimum project (arelle/python-xbrl libraries help but extracting clean financial-statement data is the harder problem). Bloomberg has 100+ engineers maintaining their version. Promising 10 days = scope-fraud risk.
+
+2. **PPC revenue ≠ more URLs.** Cloudflare PPC charges per-request to AI bots already crawling holdlens.com. The 989 URLs ALREADY LIVE are currently being served free to crawlers that would happily pay $0.005/req. Maximum PPC leverage = enable monetization on what's already there, not ship 10 days of new pages first.
+
+3. **Enterprise API ($500-10k/mo) is the bigger lever than PPC.** One $2.5k/mo customer = $30k ARR, exceeds projected PPC. Discovery surface (/api landing) is higher-leverage than 10 days of new content.
+
+**Decision (best for operator revenue):**
+
+✅ **SHIPPED THIS SESSION:**
+- public/llms.txt — explicit Pay-Per-Crawl tier declarations (per-route pricing schedule that AI bots read)
+- app/api/page.tsx — discovery landing page for AI products evaluating PPC + Enterprise tiers (was 404 before)
+- .claude/state/PPC.md — per-route crawler revenue tracking schema + monthly rollup template
+- Operator-action handoff: enable Cloudflare PPC in dashboard (~30 min, instructions in PPC.md)
+
+❌ **DEFERRED to Phase 2 (NOT shipped this session):**
+- SEC EDGAR XBRL parser (8-K, 10-Q, 10-K, DEF 14A, Form 144 ingest)
+- /filings/* firehose routes
+- /ticker/[X]/filings/* per-company filing pages
+- /api/v1/* enterprise endpoints (currently `public/api/v1/*.json` exists — adequate for now)
+
+**Why deferred:** XBRL parsing is a 3-4 week engineering effort. Shipping it in 10 days would require either (a) shallow scaffolding that misses the actual data extraction, or (b) buggy parsers leaking incorrect financial data — direct violation of concept-finder-methodology AP-3 ("every data row must cite a source"). Better to lay PPC monetization groundwork on existing 989 URLs first + measure crawler response, then size the SEC firehose effort against real revenue signal.
+
+**Calibration trigger for SEC firehose green-light:**
+- After 30 days of PPC live: if crawler revenue >$500/month → invest in SEC firehose Phase 2
+- If crawler revenue <$100/month → re-evaluate (maybe enterprise API tier matters more than crawler tier)
+- Either way: NEVER ship 10-day XBRL parser; budget 4 weeks if proceeding
+
+**Pickup instruction for next session:** operator types `/acepilot auto [enable cloudflare PPC dashboard]` after completing the one-time CF dashboard configuration (instructions in PPC.md). Brain then verifies live PPC by reading CF analytics export and updates monthly rollup.

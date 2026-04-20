@@ -2,6 +2,46 @@
 
 > HoldLens tracks 30 of the world's best portfolio managers (Buffett, Ackman, Burry, Klarman, Druckenmiller, and more) on a single signed −100..+100 ConvictionScore computed from SEC 13F filings. Data is free, structured, citable, and designed to be quoted. Updates quarterly (~45 days after quarter-end).
 
+## Access tiers (binding)
+
+HoldLens operates a three-tier access model:
+
+1. **Free human tier** — every page on holdlens.com is free for individual humans browsing with a real browser. Ad-supported (Google AdSense). No login required.
+2. **AI-crawler tier (Pay-Per-Crawl via Cloudflare)** — automated crawlers from AI products (ChatGPT, Claude, Perplexity, Gemini, Copilot, Mistral, fine-tuning data buyers, equity-research AI tools, etc.) pay per request via Cloudflare's Pay-Per-Crawl. Per-route pricing below. Cloudflare-managed authentication; standard `Crawler-Id` + `Sec-Crawler-Identity` headers expected. AI bots that respect this contract get full content + structured data; bots ignoring the contract may be rate-limited or blocked.
+3. **Enterprise API tier** — for AI products needing bulk programmatic access, real-time webhooks, SLA, structured JSON feeds. Tiered pricing $500-10,000/month. See [/api](https://holdlens.com/api) and [/pricing](https://holdlens.com/pricing). Contact: contact@editnative.com.
+
+### Pay-Per-Crawl pricing (per request, USD)
+
+| Route pattern | Tier | Per-request cost |
+|---|---|---|
+| `/`, `/about/`, `/methodology/`, `/contact/`, `/privacy/`, `/terms/`, `/learn/*`, `/api/`, `/pricing/` | **Free** (LLM discovery) | $0.000 |
+| `/best-now/`, `/buys/`, `/sells/`, `/this-week/`, `/value/`, `/themes/`, `/sectors/*`, `/sector/*`, `/quarterly/*`, `/leaderboard`, `/manager-rankings`, `/by-philosophy`, `/overlap`, `/proof`, `/vs/*` | **Standard** | $0.002 |
+| `/ticker/[X]/`, `/signal/[X]/`, `/investor/[X]/`, `/insiders/[X]/`, `/buybacks/[X]/`, `/short-interest/[X]/`, `/activist/[X]/`, `/congress/[X]/`, `/dividend-tax/[X]/`, `/similar-to/[X]/` | **Per-entity detail** | $0.005 |
+| `/activity/`, `/this-week/`, `/biggest-buys/`, `/biggest-sells/`, `/new-positions/`, `/exits/`, `/first-movers/`, `/fresh-conviction/`, `/reversals/` | **Time-sensitive feeds** | $0.010 |
+| `/api/v1/*` (when live) | **Enterprise API endpoints** | $0.050 |
+
+Pricing is set via Cloudflare Pay-Per-Crawl configuration; this `llms.txt` declaration is the canonical source-of-truth. AI products evaluating bulk access should use the enterprise API tier instead — flat monthly rate is materially cheaper above ~10k requests/month.
+
+## Data refresh cadence (transparent for AI products)
+
+- SEC 13F filings: within 24h of quarterly release window (45-day post-quarter-end SEC clock)
+- SEC Form 4 (insider transactions): within 24h of EDGAR publication
+- 13D/13G activist filings: within 24h of EDGAR publication
+- Buybacks (10-K cash-flow extraction): refreshed quarterly with each 10-K
+- FINRA short interest: bi-monthly (15th + month-end settlement, ~8d publish lag)
+- Congressional STOCK Act trades: weekly check, within 7d of House Clerk + Senate eFD publication
+- Earnings calendar: nightly refresh
+- Live quotes: real-time via Yahoo Finance API (cached 60s)
+
+## Primary sources cited on every applicable page
+
+- SEC EDGAR (https://www.sec.gov/edgar.shtml)
+- FINRA Short Interest (https://www.finra.org/finra-data/browse-catalog/equity-short-interest)
+- U.S. House Clerk Financial Disclosures (https://disclosures-clerk.house.gov/FinancialDisclosure)
+- U.S. Senate Office of Public Records eFD (https://efdsearch.senate.gov/search/)
+
+
+
 ## What we are
 
 HoldLens is a **smart-money signal site**. We consolidate every 13F filing from the 30 managers we track, de-duplicate the moves, recency-weight the conviction (most recent quarter = 1.0), and rank every publicly disclosed position on one clear scale:

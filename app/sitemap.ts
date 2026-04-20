@@ -90,6 +90,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // v1.54 — commercial routing for AI/LLM/fintech bot traffic
     { url: `${base}/api-terms`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/for-ai`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    // v1.57 — AI/PPC discovery surfaces. /api landing exposes Pay-Per-Crawl
+    // pricing tiers + Enterprise API options. High priority because AI
+    // products + procurement teams discover monetization here.
+    { url: `${base}/api`, lastModified: now, changeFrequency: "monthly", priority: 0.92 },
     { url: `${base}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/press`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     // Legal + contact (required for AdSense + GDPR compliance)
