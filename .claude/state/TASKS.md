@@ -1,5 +1,163 @@
 # HoldLens — TASKS
 
+## 🛒 v1.55 — robots.txt /_next/ fix (shipped 2026-04-20 ~13:55)
+
+- [x] `P0` FIX `app/robots.ts` — removed `Disallow: /_next/` that blocked Googlebot from CSS+JS rendering. 156 CF AI Crawl Control violations logged pre-fix. Deploy `1d5771c2.holdlens.pages.dev` live; live curl on holdlens.com confirms only `Disallow: /admin/` remains. Commit d574b6f03 on main. [id:v1.55-robots-fix] [score:10]
+
+## 🟡 RECOMMENDED — Enable 3 Cloudflare Pro features (~10 min, three 1-click toggles you just unlocked)
+
+**Context:** Pro upgrade succeeded (2026-04-20) but Pay-Per-Crawl is private-beta gated separately. Pro DID unlock Image Optimization + 225 CF Rules + WAF. These three configs below squeeze real value out of the $25/mo.
+
+### Sub-step 1 of 3 — Enable Image Optimization (Polish + Mirage)
+
+**WHAT:** Turn on Cloudflare's Polish (auto WebP/AVIF conversion + lossless/lossy compression) and Mirage (lazy-load + prioritization). Both are one-toggle on Pro.
+
+**WHY:** Every OG image, signal share card, manager photo auto-compresses at the edge = faster LCP (Core Web Vital ranking signal) + lower CF bandwidth (cost saver) + higher AdSense viewability (pRPM +8-15%). Cost of skipping: $25/mo Pro half-wasted.
+
+**TIME:** ~2 min.
+
+**HOW:**
+  1. Open https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/speed/optimization/content
+     → expected: Speed → Optimization → Content Optimization page loads. If Cloudflare UI changed the URL structure, navigate: left sidebar → **Speed** → **Optimization** → **Content Optimization**.
+  2. Find **Polish** card → click the mode selector → choose **Lossy** (slightly better compression; lossless is the safer choice if you're worried about chart-detail quality, but Lossy is recommended for this site).
+     → expected: dropdown saves. "Polish: Lossy" displayed. Polish applies to JPEG + PNG.
+  3. Find **WebP** toggle under Polish → turn **ON**.
+     → expected: Polish now also converts PNG/JPEG to WebP for supporting browsers (~30% smaller).
+  4. Scroll to **Mirage** card → toggle **ON**.
+     → expected: Mirage active. Mobile image loading improves.
+
+**VERIFY (run after ~5 min for edge propagation):**
+  `curl -sI "https://holdlens.com/og/home.png" | grep -iE "cf-polished|content-type"`
+  → expected: Content-Type shows `image/webp` (was `image/png`) AND a `cf-polished: ...` header appears.
+
+**IF STUCK:**
+  - Can't find Polish: on Free this is hidden; you're on Pro now so it should be visible. If still hidden, hard-refresh (cmd-shift-R) — plan upgrade propagation can take ~1 min.
+  - Polish causes visible quality degradation on chart pages: switch from Lossy to Lossless (same menu).
+  - Mirage toggle missing: it may be under a different card. Search page for "Mirage" (cmd-F).
+
+[id:clarity-cf-polish] [priority:P1] [👤] [score:7]
+
+### Sub-step 2 of 3 — Create a Cache Rule for `/api/v1/*` (6-hour edge cache)
+
+**WHAT:** Make Cloudflare aggressively edge-cache your public JSON API responses so crawlers hitting `/api/v1/scores.json` etc. get served entirely from CF's edge (no bandwidth on your side).
+
+**WHY:** You have 3,200 AI crawler hits/week, many hitting the JSON API. Cached at edge = your origin (CF Pages static assets) never touched = near-zero bandwidth cost. Also: the cache ensures all crawlers see the same snapshot → consistent LLM citations. Cost of skipping: each non-cached crawler hit counts against free-tier CF Pages quotas.
+
+**TIME:** ~3 min.
+
+**HOW:**
+  1. Open https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/caching/cache-rules
+     → expected: Caching → Cache Rules page.
+  2. Click **Create rule** (top right).
+  3. Rule name: `API v1 aggressive edge cache`
+  4. Under **When incoming requests match** → click **Edit expression**, paste:
+     ```
+     (http.request.uri.path wildcard r"/api/v1/*")
+     ```
+     → expected: expression validates green.
+  5. Under **Then** → **Cache eligibility**: select **Eligible for cache**.
+  6. **Edge TTL**: select **Override origin** → set to **6 hours** (21600 seconds).
+  7. **Browser TTL**: select **Respect origin**.
+  8. Click **Deploy**.
+
+**VERIFY:**
+  ```
+  curl -sI "https://holdlens.com/api/v1/scores.json?cachebust=$(date +%s)"
+  curl -sI "https://holdlens.com/api/v1/scores.json"
+  ```
+  → expected: second call shows `cf-cache-status: HIT` within a minute of the first call.
+
+**IF STUCK:**
+  - "Edit expression" missing: newer CF UI may label it "Edit raw expression" or have a visual builder — toggle to "Raw" mode.
+  - "Eligible for cache" not visible: ensure rule scope is "Cache Rules" not "Transform Rules" (they look similar).
+  - Rule conflicts with existing rule: look at existing rules in the list — you may need to increase priority of this one (drag up).
+
+[id:clarity-cf-cache-api] [priority:P1] [👤] [score:6]
+
+### Sub-step 3 of 3 — Create a Rate Limit Rule for unidentified bot User-Agents
+
+**WHAT:** Throttle crawlers that don't declare themselves (no UA match to GPTBot/ClaudeBot/PerplexityBot/Googlebot/Bingbot) to 60 requests/minute. Pro tier includes 1 rate-limiting rule free.
+
+**WHY:** 3k+ weekly bot hits on your site; CF Overview tab showed 4.28k requests from unidentified "AI Crawlers" (summary stat). Some fraction are malicious scrapers mining your data without license. Rate-limiting them (a) protects bandwidth, (b) pushes serious buyers toward `/api-terms` (the 402 response includes your license URL via `X-Commercial-License` header), (c) signals to enterprise buyers your data is professionally managed. Cost of skipping: bandwidth burn + no filtering pressure.
+
+**TIME:** ~4 min.
+
+**HOW:**
+  1. Open https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/security/waf/rate-limiting-rules
+     → expected: Security → WAF → Rate limiting rules page.
+  2. Click **Create rule**.
+  3. Rule name: `Throttle unidentified bot user-agents`
+  4. Under **If incoming requests match** → **Edit expression** (switch to raw mode if needed), paste:
+     ```
+     (not http.user_agent contains "Googlebot" and not http.user_agent contains "Bingbot" and not http.user_agent contains "GPTBot" and not http.user_agent contains "ClaudeBot" and not http.user_agent contains "PerplexityBot" and not http.user_agent contains "Applebot" and not http.user_agent contains "DuckDuck" and not http.user_agent contains "Mozilla" and not http.user_agent contains "Slurp")
+     ```
+     (The `Mozilla` match catches real browsers — you want to exempt them too.)
+  5. **When rate exceeds**: 60 requests per 1 minute.
+  6. **Then**: select **Block** (or **Managed Challenge** if you want to be gentler).
+  7. **Duration**: 10 seconds (bot retries can resume after this).
+  8. Click **Deploy**.
+
+**VERIFY (test with a fake bot UA):**
+  ```
+  for i in $(seq 1 70); do
+    curl -s -o /dev/null -w "%{http_code} " -A "WeirdBot/1.0" "https://holdlens.com/api/v1/scores.json"
+  done; echo
+  ```
+  → expected: first ~60 return `200`, then `429` (rate-limited) kicks in. Real browsers + known bots unaffected.
+
+**IF STUCK:**
+  - "Mozilla" exemption too broad (exempts scraper spoofing as Firefox): tighten by requiring `not http.user_agent contains "(KHTML, like Gecko)"` — full UA string match — but this also excludes legitimate browsers spoofing. Trade-off.
+  - Free tier only allows 1 rate rule: that's fine, this is the one you need. More rules require Business plan.
+  - Too many 429s on real users: switch action to **Managed Challenge** instead of Block. Users pass a CAPTCHA; bots fail.
+
+[id:clarity-cf-rate-limit] [priority:P2] [👤] [score:5]
+
+### Sub-step 4 of 4 — 🔴 CRITICAL: Submit Pay-Per-Crawl beta waitlist to CF Support
+
+**WHAT:** Open a CF support ticket requesting Pay-Per-Crawl beta access for holdlens.com.
+
+**WHY:** You upgraded to Pro ($25/mo) partly for Pay-Per-Crawl. Confirmed empirically: it's private-beta gated separately from plan tier. Submitting the waitlist is the only path to enablement. Cost of skipping: $25/mo Pro with Pay-Per-Crawl feature locked out indefinitely.
+
+**TIME:** ~3 min.
+
+**HOW:**
+  1. Open https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/support
+     → expected: Support / Contact Support page.
+  2. Click **Create a case** or **Contact Support**.
+  3. Category: **Sales / Features** (NOT "Billing" or "Technical" — Features queue handles beta requests).
+  4. Subject: `Request: Pay-Per-Crawl beta access for holdlens.com`
+  5. Body:
+     ```
+     Hello — I just upgraded holdlens.com to Pro plan
+     specifically to access Pay-Per-Crawl.
+
+     Context: we receive ~3,200 AI crawler hits/week
+     (GPTBot, ClaudeBot, PerplexityBot, Googlebot-Extended,
+     CCBot, Amazonbot, Meta-ExternalAgent) and want to
+     monetize this traffic via Pay-Per-Crawl. We have
+     public API at /api/v1/* with commercial license page
+     at holdlens.com/api-terms.
+
+     Could you please enable Pay-Per-Crawl for
+     holdlens.com or add us to the beta waitlist?
+
+     Thank you,
+     Paulo
+     paulomdevries@gmail.com
+     ```
+  6. Submit.
+
+**VERIFY:**
+  Within 5 min you'll receive an email confirmation with a case number. Save that number.
+
+**IF STUCK:**
+  - Support form only accepts Technical / Billing categories: choose Technical → Issue type "Other / Feature request". CF's support routing sometimes reshuffles; the body text matters more than the category.
+  - Response takes >5 days: follow up via same case. Mention you're on Pro + expect beta access.
+
+[id:clarity-cf-ppc-waitlist] [priority:P0] [👤] [score:9]
+
+---
+
 ## 🛒 v1.54 — Bot-traffic monetization layer (shipped in sovereign auto 2026-04-20 ~12:30)
 
 Context: Plausible shows 12 humans/wk · Cloudflare shows 3.16k requests/wk. 99%+ of traffic is LLM crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider, Amazonbot, Meta-ExternalAgent). Validated B2B demand for 13F data — but no commercial routing existed: empty `public/robots.txt`, no `_headers` file, no AI-buyer landing page, no commercial license page. Shipped the 4-layer routing surface so bot operators can discover + pay.
