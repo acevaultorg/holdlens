@@ -93,3 +93,6 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 
 ## Calibration (v1.51 — Ship #2 SEC Form 4 insider deepening v1)
 2026-04-19 | v1.51 /insiders/[insider]/ + lib/insider-conviction.ts | new_feature_usefulness + core_loop_improvement | est €5/wk | TBD | TBD | Ship #2 v1 from roadmap. Per-corporate-insider pages with logistic-scored conviction (role-weighted, 10b5-1-penalized). No new data pipeline (uses existing curated INSIDER_TX). Confidence 0.3 cold.
+
+## Calibration
+2026-04-20 12:39 | v1.54-monetization-layer | ai_visibility_optimized_page+programmatic_page_with_unique_data | projected: €500-3000/mo peak Y1 (1-3 enterprise API licenses from /for-ai inbound + /api-terms commercial tier discovery) | actual_7d: TBD | actual_30d: TBD | confidence: 0.4 | hypothesis: bot traffic (3.16k/wk) × commercial-routing headers × AI-buyer landing page converts ≥1 enterprise conversation in Q2 2026

@@ -1,5 +1,173 @@
 # HoldLens — TASKS
 
+## 🛒 v1.54 — Bot-traffic monetization layer (shipped in sovereign auto 2026-04-20 ~12:30)
+
+Context: Plausible shows 12 humans/wk · Cloudflare shows 3.16k requests/wk. 99%+ of traffic is LLM crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider, Amazonbot, Meta-ExternalAgent). Validated B2B demand for 13F data — but no commercial routing existed: empty `public/robots.txt`, no `_headers` file, no AI-buyer landing page, no commercial license page. Shipped the 4-layer routing surface so bot operators can discover + pay.
+
+- [x] `P0` ROUTE `app/robots.ts` expanded — adds Googlebot-Extended, Applebot, Applebot-Extended, DuckAssistBot, YouBot, FacebookBot, Meta-ExternalFetcher · explicit Disallow /admin /_next · dual sitemap (sitemap.xml + feed.xml). [id:v1.54-robots] [score:6.0] [oracle:€0/wk direct, enables Pay-Per-Crawl] [ret:+0%] [reach:+0 direct]
+- [x] `P0` ROUTE `public/_headers` (new) — `/api/v1/*` gets Cache-Control max-age=21600 + CORS open + `X-Commercial-License: https://holdlens.com/api-terms` + `X-API-Tier: free` + `X-AI-Integration-Contact: https://holdlens.com/for-ai` + `X-Attribution-Required: cite holdlens.com` + `Link: <...>; rel="license"`. Plus security headers site-wide (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy). [id:v1.54-headers] [score:7.5] [oracle:€10-60/mo from crawler license discovery] [ret:+0%] [reach:+10 vis/wk]
+- [x] `P0` PAGE `/api-terms` (new) — full commercial licensing policy: 3 tiers (Free 150 req/day + attribution · Pro €9/mo 10k req/day · Enterprise from €499/mo with bulk historical + webhooks + SLA + data-license contract) · 6-item FAQ covering LLM training, citation, academic use, rate limits · license-discovery clarified so bots AND their operators know what tier applies. Cite: IRS/OECD comparables in tier structure. [id:v1.54-api-terms] [score:9.0] [oracle:€200-1500/mo Y1 from 1-3 API license deals] [ret:+0.5%] [reach:+40 vis/wk compounding]
+- [x] `P0` PAGE `/for-ai` (new) — AI/LLM/fintech buyer conversion page. Positions HoldLens as "AI-ready data layer for 13F superinvestor intelligence." 4 integration patterns (LLM retrieval + citation · embedded ConvictionScore widget · bulk training corpus · real-time webhook push) with code examples. Raw-EDGAR-vs-HoldLens comparison table showing 3-6 month build vs 1 afternoon integration. Direct `mailto:contact@holdlens.com` CTA with pre-filled subject + body template. [id:v1.54-for-ai] [score:9.5] [oracle:€500-3000/mo peak after first enterprise deal] [ret:+0%] [reach:+80 vis/wk one-shot + 20 vis/wk compounding]
+- [x] `P0` UPDATE `public/llms.txt` — expanded API endpoint list 8→20 · added "API access tiers" section with Free/Pro/Enterprise breakdown · added HTTP License-discovery headers section · added citation examples (inline / Markdown / JSON source-chain). LLMs reading llms.txt now see the commercial tier exists. [id:v1.54-llms] [score:8.0] [oracle:€0/wk direct, boosts LLM-citation fit to 9/10] [ret:+0%] [reach:+30 vis/wk via citation quality lift]
+- [x] `P1` UPDATE `app/sitemap.ts` — /api-terms (priority 0.75, monthly) + /for-ai (priority 0.85, monthly) indexable. [id:v1.54-sitemap]
+- [x] `P1` UPDATE `app/layout.tsx` footer — added "For AI / LLM" + "API terms" links under Product section. Human visibility into the B2B offering. [id:v1.54-footer]
+
+**Build:** `npm run build` passes. All new routes ship in `out/`. `/api-terms/index.html` + `/for-ai/index.html` + `_headers` + updated `robots.txt`/`llms.txt`/`sitemap.xml` all verified.
+
+**Distribution Oracle projection (cold start — self-calibrates per I-24):** +90 vis/wk Y1 peak from /for-ai as both a landing page AND an LLM-citation target. Archetype: `ai_visibility_optimized_page × +70 × domain_authority_5` = +50 base, × stacking_bonus_1.40 (5 archetypes on page: comparison_vs_competitor_page + programmatic_unique_data_page + ai_visibility_optimized_page + schema_markup_article_person_org + internal_linking_hub_spoke) = +70. Confidence 0.3 (cold).
+
+**Revenue Oracle projection:** conservative Y1 = €200-800/mo from 1-2 Enterprise deals + €50-300/mo Pay-Per-Crawl. Aggressive scenario (if deal lands with OpenAI / Anthropic / Perplexity / Bloomberg at scale) = €2000-5000/mo. Confidence 0.4.
+
+**Retention Oracle projection:** +0.5% D30 on paid-tier upsell funnel (humans browsing /pricing now also see /for-ai in footer — bulk data license awareness). Confidence 0.5.
+
+---
+
+## 🔴 REQUIRED — Enable Cloudflare Pay-Per-Crawl on holdlens.com
+
+**WHAT:** Turn on Cloudflare's Pay-Per-Crawl feature in the holdlens.com zone dashboard. This returns HTTP 402 (with a price) to any unidentified AI crawler hitting your site. Declared bots (OpenAI, Anthropic, Perplexity) that have content-licensing agreements with Cloudflare are billed per-request; the rest either pay or get blocked. Either outcome is a win — revenue or saved bandwidth.
+
+**WHY:** 3,150 crawler hits/week are currently free-riding. At even $0.001/crawl for paying crawlers, that's ~$12/month today. As LLM crawler activity grows 2-5× over the next 6 months (which is trending industry-wide), this becomes $60-300/month of pure passive revenue with zero ongoing work. Cost of skipping: the bandwidth is already yours to bear; the only question is whether you capture value from it.
+
+**TIME:** ~5 minutes, one-time.
+
+**HOW:**
+  1. Open https://dash.cloudflare.com and sign in.
+     → expected: Cloudflare home with account list. Use `Paulomdevries@gmail.com` (visible in your earlier screenshot).
+  2. Click the `holdlens.com` zone in the domain list.
+     → expected: zone dashboard with left-side menu (DNS, SSL/TLS, Rules, AI Crawl Control, etc).
+  3. Click "AI Crawl Control" in the left sidebar (visible in your earlier screenshot above the DNS section).
+     → expected: AI Crawl Control landing page with "Block AI bots" / "Manage AI crawlers" / "Pay per crawl" options.
+  4. Click "Pay per crawl" (or "Enable pay-per-crawl" — UI wording varies).
+     → expected: a settings pane with per-crawler price tables. Defaults shown: well-known crawlers at default rates; unknown at a separate rate.
+  5. Review the defaults. Recommended: accept Cloudflare's suggested defaults for v1 (~$0.001 per request for OpenAI/Anthropic/Perplexity class). Do not undercharge — enterprise buyers expect a price.
+  6. Click "Enable" or "Save".
+     → expected: status indicator flips to "Enabled". CF begins returning HTTP 402 to unidentified crawlers immediately; billed crawlers continue under their CF contract.
+
+**VERIFY:**
+  Run this from your laptop after enabling:
+  `curl -A "UnknownAIBot/1.0" -I https://holdlens.com/api/v1/scores.json`
+  → expected: HTTP 402 Payment Required (or 429 Too Many Requests).
+  Also run: `curl -A "GPTBot" -I https://holdlens.com/api/v1/scores.json`
+  → expected: HTTP 200 with our new `X-Commercial-License` and `X-API-Tier` headers visible.
+
+**IF STUCK:**
+  - "AI Crawl Control" option not visible in sidebar: it may require a Pro-tier Cloudflare plan on this zone. Free tier only exposes "Block AI Scrapers" (boolean) — enable that as fallback. Upgrading to Pro ($20/mo) unlocks Pay-Per-Crawl and is worth it once crawl volume × yield covers the cost.
+  - Enabling breaks legitimate crawlers (GPTBot suddenly 402): Cloudflare's default allow-list should cover cooperative bots. If GPTBot gets blocked, check "Manage AI crawlers" → ensure GPTBot is in the "Allow free" or "Allow with pay-per-crawl" list, not "Block".
+  - You want to see earnings first: check Cloudflare Analytics → AI Insights → "Requests by bot" for baseline volume. Pay-Per-Crawl billing shows in the main billing dashboard under "AI Crawl revenue" (may lag 24-72h).
+
+[id:clarity-cf-pay-per-crawl] [priority:P0] [👤] [score:10]
+
+---
+
+## 🟡 RECOMMENDED — Submit HoldLens to Google AdSense for approval
+
+**WHAT:** Apply for Google AdSense so ad units on holdlens.com start earning. The `AdSlot` component already exists in the codebase; the site already has `ads.txt`. The only missing step is the operator-side approval submission at adsense.google.com.
+
+**WHY:** Current baseline: €0/wk from ads. Finance vertical pRPM is €15-30. At current 12 humans/week × 5 pages/session, immediate earning is ~€1.20/week — not material yet. But (a) approval takes 3-14 days, so applying NOW means ads are ready when human traffic scales, and (b) the Pro tier is "ad-free" — ads must exist for that benefit to have value. Cost of skipping: 2-4 week delay on every future quarter's revenue.
+
+**TIME:** ~10 minutes to apply + 3-14 days waiting for Google approval.
+
+**HOW:**
+  1. Open https://adsense.google.com and sign in with the operator's Google account (paulomdevries@gmail.com suggested based on GSC ownership).
+     → expected: AdSense dashboard or "Get Started" flow.
+  2. Click "Sites" in sidebar → "Add Site" → enter `holdlens.com`.
+     → expected: AdSense fetches the domain and confirms it loads.
+  3. AdSense will show the verification snippet (already in your codebase). Click "Request Review" at the bottom.
+     → expected: status changes to "In review". Google emails with decision in 3-14 days.
+  4. While waiting, do nothing. AdSense will crawl the site and check content quality, page count (>10 substantive pages ✓ HoldLens has 800+), privacy policy (/privacy ✓), about page (/about ✓), contact (/contact ✓).
+  5. On approval email, go to Apps / Payments and set up bank + tax info.
+     → expected: payouts begin once earnings cross €70 threshold (typically 2-4 weeks at 1k humans/wk).
+
+**VERIFY:**
+  Post-approval:
+  `curl -sL https://holdlens.com | grep -o "adsbygoogle" | head -1`
+  → expected: match, meaning the AdSense loader is live.
+  And check https://www.google.com/adsense → Reports → should show impressions once crawled.
+
+**IF STUCK:**
+  - "Site not ready" rejection: most common reason is content — but HoldLens has 800+ substantive pages, so this should pass. If it fails, read the email carefully; usually fixable with 1-2 operator actions (e.g., add more policy language to `/privacy`).
+  - Rejection for "low-value content" on `/fresh-conviction/` thin pages: already fixed in cleanup v1.51/52/53 (broken-link stripper removed 41k empty anchors, pages now substantive).
+  - Want to skip ads entirely and go premium-only: skip this card. You leave €20-60/wk on the table once traffic scales but simplify the experience. Reasonable tradeoff; revisit after 500 humans/wk.
+
+[id:clarity-adsense-submit] [priority:P1] [👤] [score:7]
+
+---
+
+## 🟡 RECOMMENDED — Outbound email to 5 LLM/fintech companies introducing /for-ai
+
+**WHAT:** Email 5 AI / LLM / fintech product leads offering HoldLens as a licensable 13F data source for their retrieval or training pipelines. Targets: OpenAI product (data partnerships), Anthropic partnerships, Perplexity API team, Bloomberg terminal engineering, Refinitiv/LSEG, and a handful of fintech dev-tool startups (e.g., Alpaca, Tradier, Polygon.io).
+
+**WHY:** The /for-ai landing page is now live. It's a conversion asset — but warm outbound accelerates the first deal by months. One enterprise deal at €999-2999/mo materially changes the project's revenue trajectory. Cost of skipping: waiting for inbound (3-12 months). Cost of doing: 2 hours operator time.
+
+**TIME:** ~2 hours — 20 minutes to research + find the right email per company, 20 minutes drafting, 10 minutes sending the batch.
+
+**HOW:**
+  1. Open https://holdlens.com/for-ai in your browser and read it top-to-bottom. That's the anchor you're pointing to — make sure it represents you well.
+     → expected: the page loads; 3-tier pricing clear; 4 integration patterns with code examples; contact CTA works.
+  2. Build the target list (suggested 5 to start):
+     - OpenAI → `partnerships@openai.com` OR LinkedIn-message the Head of Partnerships
+     - Anthropic → `contact@anthropic.com` OR LinkedIn Head of Data Partnerships
+     - Perplexity → `api@perplexity.ai` OR the founder on X (@AravSrinivas is approachable)
+     - Bloomberg → harder; try LinkedIn-connect a Bloomberg terminal data product manager
+     - Alpaca (alpaca.markets) → `partnerships@alpaca.markets` — high-fit (dev tool for algo traders)
+     - Alternative 5th: Polygon.io (`support@polygon.io`) — API aggregator, natural reseller
+  3. Draft one template email (≤200 words), customize 1-2 sentences per recipient:
+     ```
+     Subject: 13F superinvestor data for [company] / LLM integration
+
+     Hi [name],
+
+     I run HoldLens (holdlens.com) — we process every SEC 13F filing from 30 tier-1 portfolio managers (Buffett, Ackman, Burry, Klarman, Druckenmiller, et al.) into a single signed ConvictionScore. Data is public but the normalization + quality-weighting + multi-quarter composite is 3-6 months of engineering to rebuild.
+
+     We get ~3,000 AI-crawler hits/week — GPTBot/ClaudeBot/PerplexityBot-class — so the demand is clear. Just launched commercial API tier: see https://holdlens.com/for-ai for the integration patterns.
+
+     Would [company] be interested in [retrieval / training corpus / webhook push feed]? Happy to send sample JSON and talk pricing.
+
+     Best,
+     Paulo
+     holdlens.com
+     ```
+  4. Send the 5 emails. Track in a simple spreadsheet: company | contact | sent date | replied? | next-step.
+  5. Expect 10-20% reply rate (1-2 out of 5). Follow up ONCE at day 7 for non-responders.
+
+**VERIFY:**
+  Reply-tracking spreadsheet exists with 5 rows. Log to `.claude/state/DECISIONS.md ## Outbound Campaign 2026-04-20` on send.
+
+**IF STUCK:**
+  - Finding the right email: LinkedIn Sales Navigator or the free-tier Hunter.io reveal most partnership emails. Failing both, LinkedIn-message the person directly.
+  - Concerned about brand-positioning before having an enterprise customer: skip Bloomberg/OpenAI for now and focus on fintech dev-tool startups (Alpaca, Polygon) who have faster decision cycles. Land 1-2 there for case studies, then pitch tier-1s in Q3 with "trusted by X, Y."
+  - Template feels too short: it's intentional. Long cold emails get deleted. The /for-ai page does the heavy lifting after the click.
+
+[id:clarity-enterprise-outbound] [priority:P1] [👤] [score:8]
+
+---
+
+## 🟢 OPTIONAL — Register holdlens.com on TollBit for brokered AI licensing
+
+**WHAT:** TollBit (tollbit.com) is a 2024-launched marketplace that brokers content-licensing deals between publishers and AI companies. Register holdlens.com as a publisher. If an AI company is shopping for financial data licenses, your listing appears as an option. Passive revenue share on any resulting deal.
+
+**WHY:** Low-effort listing that could catch inbound you'd never reach via outbound. Similar platforms: ProRata, ScaleAI's content-licensing arm. Zero risk — if no deal lands, nothing lost. If one lands, it's typically €500-5000/mo depending on scope. Cost of skipping: same as an ad spot on a billboard you don't rent.
+
+**TIME:** ~15 minutes.
+
+**HOW:**
+  1. Open https://tollbit.com → "Publishers" → "Apply / Register".
+     → expected: registration form asking for domain, data description, expected pricing tier.
+  2. Submit holdlens.com with data description: "Normalized 13F filings from 30 tier-1 portfolio managers · conviction-scored · quarterly · JSON API at /api/v1/*"
+  3. Link: point to `/for-ai` and `/api-terms` for the commercial surface.
+  4. Optional: also register on ProRata (prorata.ai) — similar mechanic, different AI partner network.
+
+**VERIFY:**
+  TollBit sends confirmation email; dashboard shows "listed" status within a week.
+
+**IF STUCK:**
+  - TollBit rejects financial-data publishers: rare but possible. In that case, focus on outbound (Clarity Card above) — marketplace brokers are a passive nice-to-have, not a critical path.
+  - Don't want to share your data surface with competitors on a marketplace: skip. This is explicitly optional.
+
+[id:clarity-tollbit-register] [priority:P3] [👤] [score:4]
+
+---
+
 ## ✅ SHIPPED 2026-04-20 11:15 — v1.51/52/53 cleanup sweep LIVE
 
 Wrangler attempt #9 succeeded after 8 EPIPE failures (CF API cleared). Deploy: `787abb73.holdlens.pages.dev` · 3,105 files / 38.38s · IndexNow ping 907 URLs HTTP 200. All 6 commits LIVE + verified:

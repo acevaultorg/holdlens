@@ -1,0 +1,61 @@
+# HoldLens — Cloudflare Pages _headers
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+# ─────────────────────────────────────────────────────────────────
+# Public JSON API — free tier with commercial license discovery
+# ─────────────────────────────────────────────────────────────────
+
+/api/v1/*
+  Cache-Control: public, max-age=21600, s-maxage=21600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Access-Control-Allow-Headers: Content-Type
+  Access-Control-Max-Age: 86400
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-Data-License-URL: https://holdlens.com/api-terms
+  X-API-Tier: free
+  X-AI-Integration-Contact: https://holdlens.com/for-ai
+  X-Attribution-Required: cite holdlens.com
+  Link: <https://holdlens.com/api-terms>; rel="license", <https://holdlens.com/for-ai>; rel="help"
+
+# ─────────────────────────────────────────────────────────────────
+# llms.txt + robots.txt — discovery surfaces
+# ─────────────────────────────────────────────────────────────────
+
+/llms.txt
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: text/plain; charset=utf-8
+  X-Commercial-License: https://holdlens.com/api-terms
+
+/robots.txt
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: text/plain; charset=utf-8
+
+/ads.txt
+  Cache-Control: public, max-age=86400, s-maxage=86400
+  Content-Type: text/plain; charset=utf-8
+
+/feed.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: application/rss+xml; charset=utf-8
+
+# ─────────────────────────────────────────────────────────────────
+# OG images — long cache
+# ─────────────────────────────────────────────────────────────────
+
+/og/*
+  Cache-Control: public, max-age=604800, s-maxage=604800, immutable
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+
+# ─────────────────────────────────────────────────────────────────
+# Security headers — all pages
+# ─────────────────────────────────────────────────────────────────
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  X-DNS-Prefetch-Control: on

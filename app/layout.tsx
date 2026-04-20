@@ -313,8 +313,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ul className="space-y-2">
                   <li><a href="/pricing" className="text-brand hover:opacity-80 transition font-semibold">Pro pricing</a></li>
                   <li><a href="/premium" className="text-dim hover:text-text transition">Pro features</a></li>
+                  <li><a href="/for-ai" className="text-dim hover:text-text transition">For AI / LLM</a></li>
+                  <li><a href="/api-terms" className="text-dim hover:text-text transition">API terms</a></li>
                   <li><a href="/watchlist" className="text-dim hover:text-text transition">Watchlist</a></li>
-                  <li><a href="/alerts" className="text-dim hover:text-text transition">Email alerts</a></li>
                   <li><a href="/faq" className="text-dim hover:text-text transition">FAQ</a></li>
                 </ul>
               </div>

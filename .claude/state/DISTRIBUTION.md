@@ -158,3 +158,6 @@ there's no baseline to drop from.
 
 ## Distribution Fit Log (v1.51)
 2026-04-19 | v1.51-insider-deepening | SEO:0.75 SHARE:0.40 CHANNEL:0.70 LOOP:0.70 MOAT:0.60 | mean:0.63 | PASS | SEO: branded-person queries real. SHARE: no card v1. LOOP: insider → ticker → investor → insider via cross-links. MOAT: conviction-score synthesis (role × 10b5-1 × logistic) is non-trivial to replicate.
+
+## Calibration
+2026-04-20 12:39 | v1.54-monetization-layer | ai_visibility_optimized_page+programmatic_page_with_unique_data+schema_markup_article_person_org+internal_linking_hub_spoke+comparison_vs_competitor_page | archetypes_stacked:5 stacking_bonus:×1.40 | projected_weekly_vis_delta: +90 (Y1 peak from /for-ai ranking for "13F API" "hedge fund API" queries + LLM citations crediting /api-terms as license source) | actual_7d: TBD | actual_28d: TBD | confidence: 0.3 (cold) | hypothesis: +70 base (ai_visibility_optimized_page × +70) × domain_authority_5 × stacking_bonus_1.40 + 20 vis/wk from inbound email tail after /for-ai lands in AI-buyer searches

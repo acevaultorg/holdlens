@@ -105,3 +105,6 @@ candidate). Pre-traffic, there's no baseline to drop from.
 
 ## Calibration (v1.51 — Ship #2 v1)
 2026-04-19 | v1.51-insider-deepening | new_feature_usefulness | +0.030 | TBD | TBD | Ship #2 v1. Hypothesis: named-person landing pages (e.g. /insiders/tim-cook) capture branded-search traffic that tracks individual CEOs. Tax-season-like recurring use-case for investors following specific insiders. Confidence 0.3.
+
+## Calibration
+2026-04-20 12:39 | v1.54-monetization-layer | delight_detail+copy_clarity | projected_d7_delta: +0.5% (paid-tier awareness via footer /for-ai link + clearer API tier structure) | actual_7d: TBD | actual_30d: TBD | confidence: 0.5 | hypothesis: humans browsing /pricing now also see commercial tier → cross-segment premium consideration
