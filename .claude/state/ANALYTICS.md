@@ -245,3 +245,18 @@ Cycle 11+ queue (from ops voice perspective):
 
 ## Mobile Verify Log
 2026-04-19 | ship-8-v1 | MOBILE-VERIFY: deferred — /similar-to pages are static-export, no CF Pages deploy yet (Vercel auto-deploys on push; CF Pages via operator-reconnect [👤] P0 blocker). Desktop build clean 1238 pages.
+
+## Behavior Log
+2026-04-20 12:00 | ship-11-activist | finite_public_dataset_programmatic+share_by_design | new sub-vertical (/activist/) | standard | self-qualify+@craftsman-inline | AUTO | 1450 | success
+2026-04-20 12:05 | ship-buybacks-v0.2 | content-bundle expand | seed expansion 10→25 | micro | self-qualify | AUTO | 380 | success
+2026-04-20 12:15 | ship-12-short-interest | finite_public_dataset_programmatic+share_by_design | new sub-vertical (/short-interest/) | standard | self-qualify+@craftsman-inline | AUTO | 1620 | success
+2026-04-20 12:25 | combined-build-deploy | wrangler-pages-deploy | 3 ships in 1 build/deploy pass | quick | self-qualify | AUTO | 95 | success — first attempt no EPIPE
+
+## Cycle Times
+2026-04-20 | ship-11-activist | standard | est:1500 | actual:1450 | -3.3%
+2026-04-20 | ship-buybacks-v0.2 | micro | est:300 | actual:380 | +26.7%
+2026-04-20 | ship-12-short-interest | standard | est:1500 | actual:1620 | +8.0%
+2026-04-20 | combined-build-deploy | quick | est:120 | actual:95 | -20.8%
+
+## Gate Log
+2026-04-20 | AUTO | three-ships-batched | predicted: build clean + first-deploy success + 8/8 routes 200 | actual: build clean + first-deploy success + 8/8 routes 200 + content fingerprints match | correct
