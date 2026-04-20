@@ -1,5 +1,38 @@
 # HoldLens — TASKS
 
+## 🔴 REQUIRED — Deploy v1.51 cleanup via Cloudflare dashboard (wrangler EPIPE)
+
+**WHAT:** The cleanup fixes that kill 12 broken internal links and strip a user-email console.log are committed to git (commit `d9edd8d16` on main) but Cloudflare's upload API is rejecting wrangler deploys right now — four attempts in a row all failed at the same file 359 of 3464. Use Cloudflare's web dashboard drag-drop flow instead. ~4 minutes.
+
+**WHY:** The 12 broken links leak PageRank to 404s (bad for SEO) and the `console.log` leaks subscriber emails to the visitor's browser console (mild privacy + code-quality issue). Skipping leaves both live until the next successful deploy — could be hours or days if CF's API stays flaky.
+
+**TIME:** ~4 minutes.
+
+**HOW:**
+1. Zip the build output:
+   `cd "/Users/paulodevries/Library/Mobile Documents/com~apple~CloudDocs/AceVault/ CLUSTER01-AceVault/VAULT01-Paulo Projects/holdlens-com/holdlens" && zip -rq /tmp/holdlens-v1.51.zip out`
+   → expected: silent success, creates `/tmp/holdlens-v1.51.zip` (~180MB gzipped)
+2. Open Cloudflare dashboard → Workers & Pages → **holdlens**:
+   Go to `https://dash.cloudflare.com/` in any browser. Sign in with the `acevaultorg` account. Click **Workers & Pages** in the sidebar → click **holdlens** project.
+   → expected: holdlens project overview page with "Deployments" tab visible
+3. Create a new deployment:
+   Click **Create deployment** (top right) → choose **Upload assets** → drag `/tmp/holdlens-v1.51.zip` onto the drop zone → target branch: `main` → click **Save and Deploy**.
+   → expected: progress bar, then "Deployment successful" with preview URL like `https://XXXXXXXX.holdlens.pages.dev`
+4. Let the custom domain re-point (usually 30-60 seconds):
+   Browse to `https://holdlens.com/sector/other` in a private window.
+   → expected: 200 OK, renders "Other" sector page (this route did not exist before v1.51)
+
+**VERIFY:**
+`curl -sI "https://holdlens.com/sector/other/"` → expected: `HTTP/2 200`
+Also: `curl -sL "https://holdlens.com/fresh-conviction/" | grep -c "/investor/warren-buffett/q/"` → expected: `0`
+
+**IF STUCK:**
+- Zip exceeds dashboard's 200MB drag-drop cap: split into two deploys by removing the `out/_next/static/` folder from the zip (it's cacheable and already served from the prior deploy). Or `cd out && zip -rq /tmp/holdlens-v1.51.zip *` to skip the hidden `.*` files.
+- Dashboard doesn't have "Upload assets" option: the project is linked to Git; disconnect Git integration (project → Settings → Builds → Disconnect) or push `main` and wait for auto-deploy (may still fail via CF's own Pages build using same wrangler internally — if so, same failure mode).
+- Wrangler deploy starts working again in 30-60 min: run `npm run deploy` from the holdlens/ directory. That's the original path; the dashboard workflow is only needed while CF's upload API is rejecting.
+
+---
+
 ## Queue (v1.45 — Dividend Tax Calc Phase 1, architecture + seed) — SHIPPED [objective:dividend-tax-v1]
 
 - [x] `P1` BUILD /dividend-tax/ hub + 20 per-investor-country programmatic pages + DividendTaxCalc component. Architecture complete; `data/dividend-tax.json` seeded with 10 verified US-outbound treaty cells (IRS P901 Table 1 cited) + 390 cells marked `needs_research`; fallback = statutory non-treaty rate with visible "data pending verification" disclaimer (never fabricated per AP-3). Widget integrated on /ticker/[symbol] + /investor/[slug] as inline retention hook. sitemap.xml + llms.txt updated with 21 new URLs. Build passes. [id:dividend-tax-v1] [score:10.0] [oracle:€8/wk peak after data completion] [ret:+4.5% peak] [reach:+120 vis/wk peak] ⏱ done 2026-04-19 (cycle 1)
