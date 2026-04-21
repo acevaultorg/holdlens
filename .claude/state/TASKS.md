@@ -1,5 +1,70 @@
 # HoldLens — TASKS
 
+## 🔴 REQUIRED — Unblock Bingbot in Cloudflare WAF — ~2 min — [id:waf-allow-bingbot]
+
+**WHAT:** Bingbot currently receives HTTP 403 from the Cloudflare Managed WAF on holdlens.com. This blocks Bing search visibility AND DuckDuckGo AI (uses Bing's index) AND Microsoft Copilot citations. Add one WAF Skip rule allowlisting verified search crawlers.
+
+**WHY:** Benefit — restores Bing SEO (~5-10% of desktop search traffic), DuckDuckGo AI citations, and Copilot answer inclusion. Cost of skipping — silent traffic leak: every Bing/DDG/Copilot searcher for "13F filings" / "superinvestor tracker" never finds holdlens.com.
+
+**TIME:** ~2 minutes.
+
+**HOW:**
+
+  1. Open: `https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/security/waf/custom-rules`
+     → expected: "Custom rules" page with "Create rule" button
+  2. Click **+ Create rule**
+  3. **Rule name:** `Skip managed rules for verified search bots`
+  4. Click **Edit expression**
+  5. Paste: `(cf.verified_bot_category in {"Search Engine Crawler" "Search Engine Optimization"})`
+     → expected: green "Expression is valid"
+  6. Action dropdown → **Skip**
+  7. Skip options → check all three: custom rules, rate limiting rules, managed rules
+  8. "Place at": **First**
+  9. Click **Deploy**
+
+**VERIFY:**
+
+  ```
+  curl -sI -A "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)" "https://holdlens.com/" | head -1
+  ```
+  → expected: `HTTP/2 200`
+
+**IF STUCK:**
+
+  - `cf.verified_bot_category` unrecognized → use field builder: `User Agent` contains `bingbot` OR contains `Googlebot` OR contains `DuckDuckBot` OR contains `Applebot`
+  - Skip action missing → use **Allow** instead (same effect on Pro plan)
+  - Still 403 after 2 min → also disable "Bot Fight Mode" at `https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/security/bots` (keep "Verified Bots" toggle on)
+
+---
+
+## 🟡 RECOMMENDED — Click "Verify setup" on TollBit — ~10 sec — [id:tollbit-verify-setup]
+
+**WHAT:** TollBit Bot paywall shows "Set up bot forwarding" orange button + yellow "0 forwarded bots" warning. Click Verify setup to confirm the integration on TollBit's side.
+
+**WHY:** Benefit — flips property status to verified; TollBit's business-development team begins pitching HoldLens to their AI partner network (OpenAI/Anthropic/Perplexity/Google). Cost of skipping — HoldLens stays out of TollBit's outbound partner-acquisition queue; first revenue slips 1-2 weeks.
+
+**TIME:** ~10 seconds.
+
+**HOW:**
+
+  1. Open: `https://app.tollbit.com/property/an434uon3o4hanz02cliq90q`
+     → expected: Bot paywall tab with "Bot forwarding" section
+  2. Click **Set up bot forwarding** (orange, right side)
+     → expected: wizard with 3 checks
+  3. Bot dropdown → select **PerplexityBot** (known-good)
+  4. Click **Test**
+     → expected: green on "Request Received" + "Forwarded to TollBit"; red triangle on "Destination Success" is EXPECTED (simulated bot has no valid token)
+  5. Click **Verify setup** (bottom-right orange)
+
+**VERIFY:** "Set up bot forwarding" button changes to completed state / greys out.
+
+**IF STUCK:**
+
+  - Verify button greyed → re-run Test with ClaudeBot instead
+  - "Destination Success" red for every bot → not your config; confirmed via curl that Worker correctly 302s all 15 AI bots. Proceed with Verify setup anyway.
+
+---
+
 ## 💰 EARN-ASAP — 9-layer revenue stack
 
 5 independent revenue sources below, ordered by time-to-first-dollar. Sign up for ALL 5 today — they run in parallel, compound, and only Source #5 requires a beta gate.
