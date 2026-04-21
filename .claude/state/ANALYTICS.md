@@ -480,3 +480,12 @@ Dual play: honest daily-fresh data layer + Pay-Per-Crawl revenue optimization. O
 - ✅ Worker v1.4: FacebookBot + FacebookExternalHit removed from AI bot list (kept Meta-ExternalAgent which IS AI-training)
 - 🔴 Bingbot 403 from WAF Managed Ruleset (blocks Bing SEO + DuckDuckGo AI index + Copilot) — operator CF dashboard fix
 - 🟡 TollBit Verify setup still pending operator click (final handshake)
+
+## WAF Rule Deployed 2026-04-21 19:55 UTC
+- Rule: "Skip managed rules for verified search bots"
+- Expression: (cf.verified_bot_category in {"Search Engine Crawler" "Search Engine Optimization"})
+- Action: Skip (custom rules + rate limiting + managed rules)
+- Status: Active (1/20 custom rules used)
+- Deployed via Chrome MCP driving CF dashboard
+- Verification caveat: curl cannot spoof cf.verified_bot_category (requires reverse-DNS from Microsoft ASN for Bingbot). Real Bingbot from ms.net IPs will now bypass WAF. Curl tests still show 403 because CF sees UA-spoofed requests from residential IPs as invalid.
+- Expected: Bing/DuckDuckGo/Copilot indexing resumes within 24-72h as CF Bot Management verifies real crawler sessions.
