@@ -90,7 +90,11 @@
   X-Attribution-Required: cite holdlens.com
 
 # ─────────────────────────────────────────────────────────────────
-# Public JSON API — free-core tier (catch-all, lowest PPC pricing)
+# Public JSON API — catch-all for shared non-tier headers.
+# Tier-specific headers (X-API-Tier, X-PPC-Suggested-Price) live on the
+# specific rules above so we don't stack duplicate values. Endpoints with
+# no specific rule fall through to this catch-all and default to free-core
+# (documented in llms.txt and /api-terms).
 # ─────────────────────────────────────────────────────────────────
 
 /api/v1/*
@@ -101,8 +105,6 @@
   Access-Control-Max-Age: 86400
   X-Commercial-License: https://holdlens.com/api-terms
   X-Data-License-URL: https://holdlens.com/api-terms
-  X-API-Tier: free-core
-  X-PPC-Suggested-Price: 0.001
   X-AI-Integration-Contact: https://holdlens.com/for-ai
   X-Attribution-Required: cite holdlens.com
   Link: <https://holdlens.com/api-terms>; rel="license", <https://holdlens.com/for-ai>; rel="help"
