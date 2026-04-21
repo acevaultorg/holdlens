@@ -18,9 +18,11 @@ HoldLens operates a three-tier access model:
 | `/best-now/`, `/buys/`, `/sells/`, `/this-week/`, `/value/`, `/themes/`, `/sectors/*`, `/sector/*`, `/quarterly/*`, `/leaderboard`, `/manager-rankings`, `/by-philosophy`, `/overlap`, `/proof`, `/vs/*` | **Standard** | $0.002 |
 | `/ticker/[X]/`, `/signal/[X]/`, `/investor/[X]/`, `/insiders/[X]/`, `/buybacks/[X]/`, `/short-interest/[X]/`, `/activist/[X]/`, `/congress/[X]/`, `/dividend-tax/[X]/`, `/similar-to/[X]/` | **Per-entity detail** | $0.005 |
 | `/activity/`, `/this-week/`, `/biggest-buys/`, `/biggest-sells/`, `/new-positions/`, `/exits/`, `/first-movers/`, `/fresh-conviction/`, `/reversals/` | **Time-sensitive feeds** | $0.010 |
-| `/today/`, `/api/v1/daily.json`, `/api/v1/movers.json` | **Daily-fresh EOD data** (refreshed every trading day 22:00 UTC) | $0.010 |
-| `/api/v1/consensus.json`, `/crowded.json`, `/contrarian.json`, `/best-now.json`, `/alerts.json`, `/index.json` | **Derived analytics API** (pre-computed signals) | $0.005 |
+| `/today/`, `/api/v1/daily.json`, `/api/v1/movers.json` | **Daily-fresh EOD data** (refreshed every trading day 22:00 UTC) | $0.003 |
+| `/api/v1/consensus.json`, `/crowded.json`, `/contrarian.json`, `/best-now.json`, `/alerts.json`, `/index.json` | **Derived analytics API** (pre-computed signals) | $0.002 |
 | `/api/v1/*` (other) | **Public JSON API — free-core tier** | $0.001 |
+
+*Pricing calibrated intentionally low — per Stack Overflow + Cloudflare 2026 PPC launch learnings, "bots may abandon rather than pay" at high per-crawl costs. HoldLens targets high-volume × low-per-crawl over the alternative. Per-tier prices may adjust upward after 30 days of observed bot-willingness-to-pay data; AI platforms preferring predictable rates should use the enterprise monthly tier below.*
 | Enterprise bulk access / webhooks / SLA | Contact: contact@editnative.com | $500–10,000 / month |
 
 Pricing is set via Cloudflare Pay-Per-Crawl configuration; this `llms.txt` declaration is the canonical source-of-truth. AI products evaluating bulk access should use the enterprise API tier instead — flat monthly rate is materially cheaper above ~10k requests/month.

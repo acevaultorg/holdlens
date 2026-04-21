@@ -66,21 +66,26 @@ export default function ApiTermsPage() {
             (managers, rotation, scores). Caches well, lowest refresh cost.
           </li>
           <li>
-            • <code className="text-text">paid-training</code> — $0.005/crawl — API catalog +
+            • <code className="text-text">paid-training</code> — $0.002/crawl — API catalog +
             manifest (<code className="text-text">/api/v1/index.json</code>). Discovery tier.
           </li>
           <li>
-            • <code className="text-text">paid-premium</code> — $0.005/crawl — derived analytics
+            • <code className="text-text">paid-premium</code> — $0.002/crawl — derived analytics
             (<code className="text-text">consensus.json, crowded.json, contrarian.json,
             best-now.json, alerts.json</code>). Pre-computed signals worth more than the raw data.
           </li>
           <li>
-            • <code className="text-text">paid-daily</code> — $0.010/crawl — daily EOD snapshots
+            • <code className="text-text">paid-daily</code> — $0.003/crawl — daily EOD snapshots
             (<code className="text-text">/today/, /api/v1/daily.json, /api/v1/movers.json</code>).
             Refreshed every US trading day 22:00 UTC with honest <code className="text-text">dateModified</code>.
-            Premium price reflects fresh-data value to AI answer engines citing today&apos;s moves.
           </li>
         </ul>
+        <p className="text-muted text-sm italic mb-5">
+          Pricing is deliberately calibrated low — per Stack Overflow + Cloudflare 2026 launch
+          learnings, bots often abandon rather than pay high per-crawl costs. HoldLens targets
+          high-volume × low-per-crawl economics. Predictable monthly rates for bulk / unlimited
+          access are available via the enterprise tier below.
+        </p>
         <h3 className="text-sm font-bold text-text mb-2 mt-6">Conditions</h3>
         <ul className="space-y-2 text-muted text-sm mb-5">
           <li>

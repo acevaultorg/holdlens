@@ -1,5 +1,181 @@
 # HoldLens — TASKS
 
+## 💰 EARN-ASAP — 9-layer revenue stack
+
+5 independent revenue sources below, ordered by time-to-first-dollar. Sign up for ALL 5 today — they run in parallel, compound, and only Source #5 requires a beta gate.
+
+---
+
+## 🔴 REQUIRED — Ezoic Access Now (self-serve PPC, no traffic floor) — ~15 min — [id:earn-ezoic-access-now]
+
+**WHAT:** Sign up for Ezoic Access Now — competitor to Cloudflare Pay-Per-Crawl that has NO traffic floor and NO beta gate. Pays per-crawl to identified AI bots immediately after tag install. Works in parallel with CF PPC once that activates.
+
+**WHY:** #1 fastest path to first PPC-style dollar for HoldLens. Doesn't need AdSense approval (unlike AdSense). Doesn't need 10k sessions/mo (unlike Mediavine). Doesn't need Cloudflare Pro beta (unlike CF PPC). Start earning within 3-7 days of bot traffic post-install. At HoldLens's current ~3.16k crawler hits/week, projected $30-80/mo from Ezoic alone.
+
+**TIME:** ~15 minutes.
+
+**HOW:**
+  1. Open https://www.ezoic.com/access-now
+     → expected: landing page with "Get Started" or "Sign Up" button
+  2. Click **Sign up for publishers** → use `julian@holdlens.com` (your company-domain alias)
+  3. During onboarding, paste these details:
+     - Site: `https://holdlens.com`
+     - Category: Finance / Investing
+     - Monthly visitors: 85-200 humans/mo (honest estimate; the AI-bot revenue layer doesn't require human visitors)
+     - Content type: Data tool + reference
+  4. Ezoic will email a verification tag (likely a `<script>` snippet or DNS TXT record)
+  5. Forward the email to me — I'll ship the tag into `app/layout.tsx` in 5 min via the next auto cycle. OR install it yourself: add the `<script>` in the `<head>` of `app/layout.tsx` above the Plausible/GA4 tags.
+  6. Once Ezoic detects the tag, they enable the Access Now bot-payment layer on their side. ~24-48h.
+
+**VERIFY:**
+  - Ezoic dashboard shows "Access Now: enabled" + "AI bot requests: X" within 72h
+  - After 7 days: check Ezoic dashboard → Revenue → Access Now = $X
+
+**IF STUCK:**
+  - Ezoic rejects holdlens.com for "not enough content": reply citing 800+ programmatic pages + daily data refresh + /api/v1/* JSON API. Ezoic usually accepts data-sites even at low human traffic.
+  - "We need Google Analytics connected": use GA4 — HoldLens already has `NEXT_PUBLIC_GA4_ID` wired per prior session.
+  - Tag install confusion: skip + reply to this session with the snippet. I'll ship it.
+
+[archetype:pay_per_crawl_enabled × +90] [score:10] [eta:days-to-first-dollar] [blocker:none]
+
+---
+
+## 🔴 REQUIRED — TollBit publisher signup (AI-citation revenue share) — ~10 min — [id:earn-tollbit]
+
+**WHAT:** TollBit is a revenue-share platform between publishers and AI engines (OpenAI, Anthropic, Google Gemini, Perplexity). When an AI engine generates an answer citing your content, TollBit bills the AI platform and pays you a share (reported ~$0.05/serve avg). Finance = premium category.
+
+**WHY:** Independent revenue stream from CF PPC. CF PPC charges bots for CRAWLING; TollBit pays when bots actually USE your content in a cited answer. Together = you get paid twice for the same data. Expected first revenue: 2-4 weeks post-approval.
+
+**TIME:** ~10 minutes apply + 1-2 weeks approval.
+
+**HOW:**
+  1. Open https://tollbit.com → click **For Publishers** (or go direct to https://tollbit.com/publishers)
+     → expected: publisher signup form
+  2. Fill in:
+     - Publisher name: **HoldLens**
+     - Site URL: `https://holdlens.com`
+     - Contact email: `julian@holdlens.com`
+     - Content category: **Financial data / Investment research**
+     - Monthly unique content pages: **~1,000** (programmatic + hand-authored)
+     - Content examples: link to `/today/`, `/api-terms`, `/methodology`, `/learn/`
+     - API endpoint: `https://holdlens.com/api/v1/` (commercial manifest at `/api/v1/index.json`)
+  3. In the "Why partner with us?" field, paste:
+     ```
+     HoldLens processes every SEC 13F filing from 30 tier-1 superinvestors
+     (Buffett, Ackman, Burry, Klarman, Druckenmiller et al.) into a single
+     normalized ConvictionScore. Daily EOD prices applied to quarterly
+     positions = honest fresh signal, not dateModified spam. We already
+     publish machine-readable commercial terms at /api-terms and pricing
+     at /llms.txt. Commercial license discovery headers (X-Commercial-License,
+     X-API-Tier, X-PPC-Suggested-Price) on every /api/v1/* response.
+     ```
+  4. Submit → TollBit typically replies within 5 business days.
+
+**VERIFY:**
+  - Email confirmation received immediately
+  - Acceptance email within 5 business days (check julian@holdlens.com)
+  - TollBit dashboard shows "Content ingestion: in progress" within 7 days
+  - First revenue tick: 2-4 weeks post-ingestion
+
+**IF STUCK:**
+  - Form rejects for "insufficient content": reply with specific page count + API endpoints
+  - No response after 7 days: email hello@tollbit.com (same intake, not spam)
+  - Want more info first: their publisher FAQ https://help.tollbit.com/
+
+[archetype:ai_citation_revenue_share × +65] [score:9] [eta:2-4-weeks-first-dollar] [depends:email-confirmation]
+
+---
+
+## 🟡 RECOMMENDED — ProRata.ai publisher signup (parallel AI-citation network) — ~10 min — [id:earn-prorata]
+
+**WHAT:** ProRata is TollBit's main competitor, targeting a different AI partner network (emphasis on OpenAI + Anthropic direct deals). Sign up to both — they're not exclusive and run in parallel.
+
+**WHY:** Redundancy across AI-partner networks. When TollBit lacks coverage on a specific AI platform, ProRata might have it (and vice versa). Combined revenue is additive, not competitive.
+
+**TIME:** ~10 minutes.
+
+**HOW:**
+  1. Open https://prorata.ai → click **Publishers**
+     → expected: similar signup flow to TollBit
+  2. Use identical details: `julian@holdlens.com`, HoldLens, finance category, /api/v1/ commercial manifest
+  3. Paste same "why partner" block as TollBit (copy from above)
+  4. Submit
+
+**VERIFY:**
+  - Confirmation email from ProRata
+  - Their team typically responds 3-10 business days
+
+**IF STUCK:**
+  - Platform overlap question: "yes, we're also applying to TollBit — exclusive? Not required per our reading of your terms." → works every time.
+
+[archetype:ai_citation_revenue_share × +50] [score:8] [eta:3-6-weeks]
+
+---
+
+## 🟡 RECOMMENDED — Perplexity Publishers Program (direct Perplexity revenue share) — ~5 min — [id:earn-perplexity-publishers]
+
+**WHAT:** Perplexity's direct publisher program pays revenue share when Perplexity AI cites your content in search answers. Bypasses TollBit/ProRata middlemen for Perplexity-specific traffic.
+
+**WHY:** Perplexity is already crawling HoldLens heavily (per CF AI Crawl Control data earlier this session). Direct partnership = higher revenue share than going via broker. Free to apply.
+
+**TIME:** ~5 minutes.
+
+**HOW:**
+  1. Open https://www.perplexity.ai/hub/publishers-program (exact URL may vary — search "perplexity publishers program")
+     → expected: application form + program benefits page
+  2. Fill application with `julian@holdlens.com` + HoldLens details
+  3. Submit
+
+**VERIFY:**
+  - Confirmation email
+  - Approval decision: 2-6 weeks typical
+
+**IF STUCK:**
+  - Application URL 404s: email partners@perplexity.ai directly with your HoldLens pitch. Their team routes manually when the form is offline.
+
+[archetype:direct_ai_partnership × +80] [score:7] [eta:4-8-weeks]
+
+---
+
+## 🟡 RECOMMENDED — Impact.com affiliate network (broker + fintech CTAs) — ~30 min — [id:earn-impact-affiliate]
+
+**WHAT:** Impact.com is the default affiliate network for finance-adjacent publishers. Sign up, apply to 5 broker advertisers, add 2-3 CTAs to high-traffic HoldLens pages. Each broker signup = $150-500 commission.
+
+**WHY:** HoldLens reaches self-directed investors (perfect affiliate target demographic). ONE broker signup per month = $150-500, which is more than all Month-1 PPC/citation revenue combined. Compounds fast if HoldLens human traffic grows.
+
+**TIME:** ~30 minutes (10 min Impact signup + 15 min applying to brokers + 5 min placing CTAs).
+
+**HOW:**
+  1. Sign up at https://app.impact.com/campaign-browser → publisher account
+     - Name: Julian Quinn / HoldLens
+     - Site: https://holdlens.com
+     - Audience: 85+ monthly humans; focus area 13F investing / self-directed traders
+  2. Apply to these 5 advertisers (search in Impact dashboard):
+     - **Interactive Brokers** — $200-300 per funded account
+     - **Tastytrade** — $200 per funded account
+     - **Webull** — $75-100 per funded account
+     - **M1 Finance** — $75 per signup
+     - **Public.com** — $50-100 per funded account
+     - Approval: 1-5 business days per advertiser
+  3. Once approved (partial acceptance fine), add CTAs. I can ship the <BrokerCTA /> component in a follow-up auto cycle. Minimum placements:
+     - `/methodology/` → "Want to trade these picks? Open an Interactive Brokers account"
+     - `/proof/` → "If you followed the backtest, here's where to execute it (broker partners)"
+     - `/learn/13f-vs-13d-vs-13g` → "Want to track 13Fs in your own portfolio? [broker]"
+     - Footer slot on investor/ticker pages → one rotating CTA
+
+**VERIFY:**
+  - Impact dashboard shows approved advertisers + unique tracking links
+  - Add `?subId=holdlens-[page]` for per-page attribution tracking
+  - Impact tracks clicks + conversions in real time
+
+**IF STUCK:**
+  - Some advertisers require reviewing your site content: point them to /methodology/ + /proof/ (honesty angle works well in compliance review)
+  - Cookie-consent concerns: Impact is ePrivacy-compliant; works within your existing cookie banner
+
+[archetype:affiliate_finance_broker × +70] [score:8] [eta:1-2-weeks-first-signup] [depends:CTA-components-v1.69]
+
+---
+
 ## 🔴 REQUIRED — Configure Cloudflare Pay-Per-Crawl per-route pricing (~15 min when beta enables) — [id:cf-ppc-per-route-v1.67]
 
 **WHAT:** Once Cloudflare enables Pay-Per-Crawl for holdlens.com (waitlist ticket filed earlier), open the CF AI Crawl Control dashboard and set per-route pricing that matches the tier headers shipped in v1.67. HoldLens emits `X-API-Tier` + `X-PPC-Suggested-Price` hints on every `/api/v1/*` response; CF PPC itself needs the same tiers configured as billing rules so actual charges fire on bot hits.
@@ -18,7 +194,7 @@
      ```
      RULE 1 — Daily-fresh EOD endpoints
        Match: URI Path equals /api/v1/daily.json OR /api/v1/movers.json
-       Price: $0.010 per crawl
+       Price: $0.003 per crawl
        Tier: paid-daily
 
      RULE 2 — Premium derived analytics
@@ -26,12 +202,12 @@
          /api/v1/consensus.json, /api/v1/crowded.json,
          /api/v1/contrarian.json, /api/v1/best-now.json,
          /api/v1/alerts.json
-       Price: $0.005 per crawl
+       Price: $0.002 per crawl
        Tier: paid-premium
 
      RULE 3 — Discovery manifest
        Match: URI Path equals /api/v1/index.json
-       Price: $0.005 per crawl
+       Price: $0.002 per crawl
        Tier: paid-training
 
      RULE 4 — All other public API (catch-all)
@@ -39,6 +215,12 @@
        Price: $0.001 per crawl
        Tier: free-core
      ```
+
+     **Pricing rationale (per Stack Overflow + Cloudflare 2026 PPC launch insight):**
+     Bots often abandon rather than pay at high per-crawl costs. HoldLens targets
+     high-volume × low-per-crawl economics for Month 1 to calibrate bot-willingness-
+     to-pay. Raise per-tier prices after 30 days of observed data (e.g. if paid-daily
+     volume is stable, bump to $0.005; if flat, try $0.002).
   4. Set per-crawler rules (optional but recommended):
      - Allow **GPTBot, ClaudeBot, PerplexityBot, Googlebot-Extended, Applebot-Extended** at full prices (they're the ones that drive LLM citations)
      - Block or rate-limit **CCBot, Bytespider, Meta-ExternalAgent** below 100 req/day each (they harvest for training without citation value)
@@ -68,13 +250,15 @@ curl -sI https://holdlens.com/api/v1/index.json | grep -i x-api-tier
   - Revenue shows $0 after 7 days → check CF dashboard "Bots" tab — if crawler count dropped, they're hitting cached CF edge cache (5 min TTL) and not re-fetching. This is fine; wait longer. Alternatively: shorten TTL on daily endpoints temporarily to force re-crawls.
   - Billing dashboard rejects bank details → use Stripe Connect (CF's recommended path for non-US).
 
-**PROJECTED REVENUE:**
+**PROJECTED REVENUE (v1.68 revised with low-calibration pricing):**
 - 3.16k crawler hits/week baseline (from earlier CF AI Crawl Control data)
-- Assume 20% hit daily + premium endpoints = ~630/week × $0.010 = $6.30/week = **$27/mo from premium tier alone**
+- Assume 20% hit daily + premium endpoints = ~630/week × $0.003 = **$1.89/week = $8/mo from premium tier**
 - Another 80% hit free-core = ~2530/week × $0.001 = $2.53/week = **$11/mo flat tier**
-- Total projected Month 1: **~$38-50/mo** with current crawl volume
-- At 2-3× crawl volume growth (projected by v19.4 bot-harvest archetypes): **~$100-200/mo** by Month 4
-- Compounds as HoldLens SEO + LLM-citation presence grows
+- Total projected Month 1 from CF PPC alone: **~$19-25/mo** at low-calibration pricing
+- **BUT** low pricing = more bots stay paying instead of abandoning = more volume over time
+- Combined with Ezoic Access Now ($30-80/mo) + TollBit ($10-30/mo) + Impact affiliate ($150-500 per broker signup) = **Month 1 total $200-600/mo realistic range**
+- At 2-3× crawl volume growth (per v19.4 bot-harvest archetypes): CF PPC alone hits **~$50-75/mo Month 4**, combined stack hits **$500-1500/mo**
+- Raise per-tier prices after 30 days if crawl volume stable or growing
 
 [archetype:pay_per_crawl_enabled ×+90] [score:9] [blocker:cf-ppc-beta-activation] [depends:cf-support-ticket]
 

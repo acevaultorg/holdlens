@@ -3,9 +3,12 @@
 #
 # PPC tier taxonomy (X-API-Tier + X-PPC-Suggested-Price):
 #   free-core           $0.001 / crawl   — stable endpoints (managers, scores, rotation)
-#   paid-daily          $0.010 / crawl   — daily.json, movers.json (fresh each trading day)
-#   paid-premium        $0.005 / crawl   — derived analytics (consensus, crowded, contrarian)
-#   paid-training       $0.005 / crawl   — structured catalog + manifest (index.json)
+#   paid-daily          $0.003 / crawl   — daily.json, movers.json (fresh each trading day)
+#   paid-premium        $0.002 / crawl   — derived analytics (consensus, crowded, contrarian)
+#   paid-training       $0.002 / crawl   — structured catalog + manifest (index.json)
+# Pricing calibrated per Stack Overflow + Cloudflare 2026 PPC launch learnings:
+# "bots may abandon rather than pay" — low enough price = higher crawl volume ×
+# long tail > high price × zero volume. Raise per-tier after 30 days of data.
 # These headers are hints — actual billing configured per-route in Cloudflare
 # AI Crawl Control → Pay-Per-Crawl (operator-gated, payment required).
 
@@ -20,7 +23,7 @@
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS
   X-Commercial-License: https://holdlens.com/api-terms
   X-API-Tier: paid-daily
-  X-PPC-Suggested-Price: 0.010
+  X-PPC-Suggested-Price: 0.003
   X-Content-Revision: daily-eod
   X-AI-Integration-Contact: https://holdlens.com/for-ai
   X-Attribution-Required: cite holdlens.com
@@ -32,7 +35,7 @@
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS
   X-Commercial-License: https://holdlens.com/api-terms
   X-API-Tier: paid-daily
-  X-PPC-Suggested-Price: 0.010
+  X-PPC-Suggested-Price: 0.003
   X-Content-Revision: daily-eod
   X-Attribution-Required: cite holdlens.com
   Link: <https://holdlens.com/api-terms>; rel="license"
@@ -46,7 +49,7 @@
   Access-Control-Allow-Origin: *
   X-Commercial-License: https://holdlens.com/api-terms
   X-API-Tier: paid-premium
-  X-PPC-Suggested-Price: 0.005
+  X-PPC-Suggested-Price: 0.002
   X-Attribution-Required: cite holdlens.com
 
 /api/v1/crowded.json
@@ -54,7 +57,7 @@
   Access-Control-Allow-Origin: *
   X-Commercial-License: https://holdlens.com/api-terms
   X-API-Tier: paid-premium
-  X-PPC-Suggested-Price: 0.005
+  X-PPC-Suggested-Price: 0.002
   X-Attribution-Required: cite holdlens.com
 
 /api/v1/contrarian.json
@@ -62,7 +65,7 @@
   Access-Control-Allow-Origin: *
   X-Commercial-License: https://holdlens.com/api-terms
   X-API-Tier: paid-premium
-  X-PPC-Suggested-Price: 0.005
+  X-PPC-Suggested-Price: 0.002
   X-Attribution-Required: cite holdlens.com
 
 /api/v1/best-now.json
@@ -70,7 +73,7 @@
   Access-Control-Allow-Origin: *
   X-Commercial-License: https://holdlens.com/api-terms
   X-API-Tier: paid-premium
-  X-PPC-Suggested-Price: 0.005
+  X-PPC-Suggested-Price: 0.002
   X-Attribution-Required: cite holdlens.com
 
 /api/v1/alerts.json
@@ -78,7 +81,7 @@
   Access-Control-Allow-Origin: *
   X-Commercial-License: https://holdlens.com/api-terms
   X-API-Tier: paid-premium
-  X-PPC-Suggested-Price: 0.005
+  X-PPC-Suggested-Price: 0.002
   X-Attribution-Required: cite holdlens.com
 
 /api/v1/index.json
@@ -86,7 +89,7 @@
   Access-Control-Allow-Origin: *
   X-Commercial-License: https://holdlens.com/api-terms
   X-API-Tier: paid-training
-  X-PPC-Suggested-Price: 0.005
+  X-PPC-Suggested-Price: 0.002
   X-Attribution-Required: cite holdlens.com
 
 # ─────────────────────────────────────────────────────────────────
