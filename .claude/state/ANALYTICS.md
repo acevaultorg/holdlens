@@ -465,3 +465,18 @@ Dual play: honest daily-fresh data layer + Pay-Per-Crawl revenue optimization. O
 - Success on retry 2 after 30s cooldown (56.91 sec, 2752 files)
 - Header-only follow-up deployed cleanly on retry 1 (1.14 sec, 0 new files)
 
+
+## Behavior Log (2026-04-21)
+2026-04-21 19:40 | tollbit-deep-check | bot_harvest_audit | infra | 3 | Standard | @self | AUTO | 900s | success | worker v1.3 → v1.4 (removed FB previews from bot list) + 10-dim deep check + 2 operator findings (Bingbot WAF + TollBit Verify setup)
+
+## Deep Check Findings 2026-04-21
+- ✅ Worker route *holdlens.com/* → tollbit-log-forwarder active (last modified 17:17 UTC)
+- ✅ 15/15 AI bot UAs (GPT/ChatGPT/OAI/Claude/Anthropic/Perplexity/CCBot/Apple/Amazon/Bytespider/Meta/Cohere/You) all 302 to tollbit.holdlens.com
+- ✅ Path preservation (/signal/AAPL, /api/v1/daily.json, /investor/warren-buffett) works
+- ✅ 12/12 human + SEO + social-preview bots pass through 200 (including Safari, Chrome, Googlebot, DuckDuckBot, WhatsApp, Discord, Twitter, LinkedIn, Slack)
+- ✅ DNS: TXT verification live, 4 NS records delegated to AWS Route53, A records resolve
+- ✅ robots.txt allowlist covers 20+ AI bots with Allow: /
+- ✅ 302 redirects not cached (no cache-control / cf-cache-status on redirect response)
+- ✅ Worker v1.4: FacebookBot + FacebookExternalHit removed from AI bot list (kept Meta-ExternalAgent which IS AI-training)
+- 🔴 Bingbot 403 from WAF Managed Ruleset (blocks Bing SEO + DuckDuckGo AI index + Copilot) — operator CF dashboard fix
+- 🟡 TollBit Verify setup still pending operator click (final handshake)
