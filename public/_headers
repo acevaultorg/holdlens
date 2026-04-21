@@ -1,8 +1,96 @@
 # HoldLens — Cloudflare Pages _headers
 # Docs: https://developers.cloudflare.com/pages/configuration/headers/
+#
+# PPC tier taxonomy (X-API-Tier + X-PPC-Suggested-Price):
+#   free-core           $0.001 / crawl   — stable endpoints (managers, scores, rotation)
+#   paid-daily          $0.010 / crawl   — daily.json, movers.json (fresh each trading day)
+#   paid-premium        $0.005 / crawl   — derived analytics (consensus, crowded, contrarian)
+#   paid-training       $0.005 / crawl   — structured catalog + manifest (index.json)
+# These headers are hints — actual billing configured per-route in Cloudflare
+# AI Crawl Control → Pay-Per-Crawl (operator-gated, payment required).
 
 # ─────────────────────────────────────────────────────────────────
-# Public JSON API — free tier with commercial license discovery
+# Daily-fresh endpoints — premium PPC tier, short cache so bots re-crawl
+# every trading day + SEO crawlers treat as legitimate freshness signal
+# ─────────────────────────────────────────────────────────────────
+
+/api/v1/daily.json
+  Cache-Control: public, max-age=300, s-maxage=300, stale-while-revalidate=3600
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-API-Tier: paid-daily
+  X-PPC-Suggested-Price: 0.010
+  X-Content-Revision: daily-eod
+  X-AI-Integration-Contact: https://holdlens.com/for-ai
+  X-Attribution-Required: cite holdlens.com
+  Link: <https://holdlens.com/api-terms>; rel="license", <https://holdlens.com/for-ai>; rel="help"
+
+/api/v1/movers.json
+  Cache-Control: public, max-age=300, s-maxage=300, stale-while-revalidate=3600
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-API-Tier: paid-daily
+  X-PPC-Suggested-Price: 0.010
+  X-Content-Revision: daily-eod
+  X-Attribution-Required: cite holdlens.com
+  Link: <https://holdlens.com/api-terms>; rel="license"
+
+# ─────────────────────────────────────────────────────────────────
+# Premium analytics endpoints — derived insights PPC priced higher
+# ─────────────────────────────────────────────────────────────────
+
+/api/v1/consensus.json
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-API-Tier: paid-premium
+  X-PPC-Suggested-Price: 0.005
+  X-Attribution-Required: cite holdlens.com
+
+/api/v1/crowded.json
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-API-Tier: paid-premium
+  X-PPC-Suggested-Price: 0.005
+  X-Attribution-Required: cite holdlens.com
+
+/api/v1/contrarian.json
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-API-Tier: paid-premium
+  X-PPC-Suggested-Price: 0.005
+  X-Attribution-Required: cite holdlens.com
+
+/api/v1/best-now.json
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-API-Tier: paid-premium
+  X-PPC-Suggested-Price: 0.005
+  X-Attribution-Required: cite holdlens.com
+
+/api/v1/alerts.json
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-API-Tier: paid-premium
+  X-PPC-Suggested-Price: 0.005
+  X-Attribution-Required: cite holdlens.com
+
+/api/v1/index.json
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Access-Control-Allow-Origin: *
+  X-Commercial-License: https://holdlens.com/api-terms
+  X-API-Tier: paid-training
+  X-PPC-Suggested-Price: 0.005
+  X-Attribution-Required: cite holdlens.com
+
+# ─────────────────────────────────────────────────────────────────
+# Public JSON API — free-core tier (catch-all, lowest PPC pricing)
 # ─────────────────────────────────────────────────────────────────
 
 /api/v1/*
@@ -13,7 +101,8 @@
   Access-Control-Max-Age: 86400
   X-Commercial-License: https://holdlens.com/api-terms
   X-Data-License-URL: https://holdlens.com/api-terms
-  X-API-Tier: free
+  X-API-Tier: free-core
+  X-PPC-Suggested-Price: 0.001
   X-AI-Integration-Contact: https://holdlens.com/for-ai
   X-Attribution-Required: cite holdlens.com
   Link: <https://holdlens.com/api-terms>; rel="license", <https://holdlens.com/for-ai>; rel="help"
@@ -81,6 +170,10 @@
 
 /api-terms/
   Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400
+
+/today/
+  Cache-Control: public, max-age=300, s-maxage=300, stale-while-revalidate=3600
+  X-Content-Revision: daily-eod
 
 # ─────────────────────────────────────────────────────────────────
 # Security + commercial-license headers — all pages

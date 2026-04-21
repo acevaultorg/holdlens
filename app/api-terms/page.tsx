@@ -55,6 +55,32 @@ export default function ApiTermsPage() {
           <li>• LLM / chatbot answers that link to <code className="text-text">holdlens.com</code> in their citation</li>
           <li>• Journalism + editorial coverage (credit HoldLens inline)</li>
         </ul>
+        <h3 className="text-sm font-bold text-text mb-2 mt-6">Pay-Per-Crawl tiers (for AI bots via Cloudflare)</h3>
+        <p className="text-muted text-sm mb-3">
+          When Cloudflare Pay-Per-Crawl is enabled for HoldLens, AI crawler requests are
+          billed per-route by our Cloudflare zone. Route tiers + suggested per-crawl pricing:
+        </p>
+        <ul className="space-y-1.5 text-muted text-sm mb-5">
+          <li>
+            • <code className="text-text">free-core</code> — $0.001/crawl — stable static endpoints
+            (managers, rotation, scores). Caches well, lowest refresh cost.
+          </li>
+          <li>
+            • <code className="text-text">paid-training</code> — $0.005/crawl — API catalog +
+            manifest (<code className="text-text">/api/v1/index.json</code>). Discovery tier.
+          </li>
+          <li>
+            • <code className="text-text">paid-premium</code> — $0.005/crawl — derived analytics
+            (<code className="text-text">consensus.json, crowded.json, contrarian.json,
+            best-now.json, alerts.json</code>). Pre-computed signals worth more than the raw data.
+          </li>
+          <li>
+            • <code className="text-text">paid-daily</code> — $0.010/crawl — daily EOD snapshots
+            (<code className="text-text">/today/, /api/v1/daily.json, /api/v1/movers.json</code>).
+            Refreshed every US trading day 22:00 UTC with honest <code className="text-text">dateModified</code>.
+            Premium price reflects fresh-data value to AI answer engines citing today&apos;s moves.
+          </li>
+        </ul>
         <h3 className="text-sm font-bold text-text mb-2 mt-6">Conditions</h3>
         <ul className="space-y-2 text-muted text-sm mb-5">
           <li>

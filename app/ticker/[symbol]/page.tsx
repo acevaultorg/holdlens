@@ -16,6 +16,7 @@ import ShortInterestSummary from "@/components/ShortInterestSummary";
 import ActivistSummary from "@/components/ActivistSummary";
 import CongressSummary from "@/components/CongressSummary";
 import EtfSummary from "@/components/EtfSummary";
+import { DailyMoveForTicker } from "@/components/DailyMove";
 import AdSlot from "@/components/AdSlot";
 import AffiliateCTA from "@/components/AffiliateCTA";
 import RelatedSignals from "@/components/RelatedSignals";
@@ -94,6 +95,9 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
       <section className="mt-8">
         <LiveQuote symbol={t.symbol} size="xl" />
       </section>
+
+      {/* Daily snapshot — build-time freshness signal for LLM crawlers */}
+      <DailyMoveForTicker ticker={t.symbol} />
 
       {/* Live price chart */}
       <section className="mt-8">

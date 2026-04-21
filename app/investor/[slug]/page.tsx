@@ -13,12 +13,15 @@ import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
 import InvestorConcentration from "@/components/InvestorConcentration";
 import DividendTaxCalc from "@/components/DividendTaxCalc";
+import { DailyMoveForInvestor, getDailySnapshotTimestamp } from "@/components/DailyMove";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
 // Build-time timestamp — signals to LLM crawlers + Googlebot when this
 // static profile was last regenerated. Per v19.4 freshness_per_page archetype.
-const BUILD_ISO = new Date().toISOString();
+// Prefer the daily snapshot timestamp over the build timestamp when available —
+// that's the honest dateModified for LLM crawlers: a real price refresh occurred.
+const BUILD_ISO = getDailySnapshotTimestamp() ?? new Date().toISOString();
 import { MANAGER_QUALITY, getManagerQuality } from "@/lib/signals";
 import { QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
 import { getEdgarHoldings } from "@/lib/edgar-data";
@@ -209,6 +212,8 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       <p className="text-muted text-lg">{m.fund} · {m.role} · Net worth: {m.netWorth}</p>
       <p className="mt-4 text-text leading-relaxed max-w-2xl">{m.bio}</p>
       <div className="mt-3 text-sm text-muted italic">"{m.philosophy}"</div>
+
+      <DailyMoveForInvestor slug={m.slug} />
 
       {(() => {
         const filing = LATEST_FILINGS[m.slug];

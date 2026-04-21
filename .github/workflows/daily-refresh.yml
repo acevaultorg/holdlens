@@ -1,0 +1,81 @@
+name: Daily snapshot + deploy
+
+# Honest freshness for LLM crawlers + PPC revenue lift.
+#
+# Runs 22:00 UTC Mon-Fri = 17:00 ET weekdays = ~90 min after US market close.
+# Pulls EOD prices for all tracked tickers, regenerates daily.json + movers.json,
+# rebuilds the site (so every page gets a new dateModified with real data changes),
+# deploys to Cloudflare Pages, and pings IndexNow.
+#
+# Weekend skip: no new EOD prices on Sat/Sun, so no honest freshness signal to emit.
+
+on:
+  schedule:
+    - cron: '0 22 * * 1-5'   # Mon-Fri 22:00 UTC
+  workflow_dispatch:          # Manual trigger for testing
+
+concurrency:
+  group: daily-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Generate daily snapshot
+        run: npx tsx scripts/generate-daily-snapshot.ts
+
+      - name: Commit snapshot to repo
+        env:
+          GIT_AUTHOR_NAME: HoldLens Daily Bot
+          GIT_AUTHOR_EMAIL: bot@holdlens.com
+          GIT_COMMITTER_NAME: HoldLens Daily Bot
+          GIT_COMMITTER_EMAIL: bot@holdlens.com
+        run: |
+          git config user.name "HoldLens Daily Bot"
+          git config user.email "bot@holdlens.com"
+          git add public/api/v1/daily.json public/api/v1/movers.json data/last-refresh.json || true
+          if git diff --cached --quiet; then
+            echo "No snapshot changes — skipping commit."
+            exit 0
+          fi
+          git commit -m "chore(daily): refresh snapshot $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        if: ${{ success() }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx wrangler pages deploy out \
+            --project-name=holdlens \
+            --branch=main \
+            --commit-dirty=true \
+            --commit-message "daily snapshot $(date -u +%Y-%m-%d)"
+
+      - name: Ping IndexNow (Bing + Yandex etc.)
+        if: ${{ success() }}
+        run: npx tsx scripts/ping-indexnow.ts
+        continue-on-error: true  # don't fail the run on transient IndexNow 5xx
