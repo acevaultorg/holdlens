@@ -489,3 +489,6 @@ Dual play: honest daily-fresh data layer + Pay-Per-Crawl revenue optimization. O
 - Deployed via Chrome MCP driving CF dashboard
 - Verification caveat: curl cannot spoof cf.verified_bot_category (requires reverse-DNS from Microsoft ASN for Bingbot). Real Bingbot from ms.net IPs will now bypass WAF. Curl tests still show 403 because CF sees UA-spoofed requests from residential IPs as invalid.
 - Expected: Bing/DuckDuckGo/Copilot indexing resumes within 24-72h as CF Bot Management verifies real crawler sessions.
+
+## Acquisition Log (2026-04-21)
+2026-04-21 20:10 | operator_action | perplexity_publishers_email_sent | holdlens.com | contact@holdlens.com → publishers@perplexity.ai | onboarding clock: 1-2wk
