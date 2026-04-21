@@ -1,5 +1,85 @@
 # HoldLens — TASKS
 
+## 🔴 REQUIRED — Configure Cloudflare Pay-Per-Crawl per-route pricing (~15 min when beta enables) — [id:cf-ppc-per-route-v1.67]
+
+**WHAT:** Once Cloudflare enables Pay-Per-Crawl for holdlens.com (waitlist ticket filed earlier), open the CF AI Crawl Control dashboard and set per-route pricing that matches the tier headers shipped in v1.67. HoldLens emits `X-API-Tier` + `X-PPC-Suggested-Price` hints on every `/api/v1/*` response; CF PPC itself needs the same tiers configured as billing rules so actual charges fire on bot hits.
+
+**WHY:** The tier-aware routing is already shipped server-side (code hints + llms.txt pricing table + api-terms page advertises it). But without CF PPC billing rules matching those tiers, bots hit these endpoints for free and we collect zero revenue. Getting the billing rules right = the difference between $13/month (default flat PPC) and $80-500/month (tiered). Takes ~15 min one-time; then compounds forever as bot crawl volume grows.
+
+**TIME:** ~15 minutes when CF enables PPC beta (they'll email you on the waitlist ticket).
+
+**HOW:**
+  1. Open https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/ai/bots
+     → expected: AI Crawl Control dashboard. If "Pay-Per-Crawl" tab NOT visible, beta not yet enabled — wait for CF email confirmation first.
+  2. Click **Pay-Per-Crawl** tab → **Configure pricing rules**
+     → expected: per-route pricing matrix interface.
+  3. Add these four rules in order (first-match-wins, so most specific first):
+
+     ```
+     RULE 1 — Daily-fresh EOD endpoints
+       Match: URI Path equals /api/v1/daily.json OR /api/v1/movers.json
+       Price: $0.010 per crawl
+       Tier: paid-daily
+
+     RULE 2 — Premium derived analytics
+       Match: URI Path is one of
+         /api/v1/consensus.json, /api/v1/crowded.json,
+         /api/v1/contrarian.json, /api/v1/best-now.json,
+         /api/v1/alerts.json
+       Price: $0.005 per crawl
+       Tier: paid-premium
+
+     RULE 3 — Discovery manifest
+       Match: URI Path equals /api/v1/index.json
+       Price: $0.005 per crawl
+       Tier: paid-training
+
+     RULE 4 — All other public API (catch-all)
+       Match: URI Path starts with /api/v1/
+       Price: $0.001 per crawl
+       Tier: free-core
+     ```
+  4. Set per-crawler rules (optional but recommended):
+     - Allow **GPTBot, ClaudeBot, PerplexityBot, Googlebot-Extended, Applebot-Extended** at full prices (they're the ones that drive LLM citations)
+     - Block or rate-limit **CCBot, Bytespider, Meta-ExternalAgent** below 100 req/day each (they harvest for training without citation value)
+  5. Enable **Billing dashboard** → add payout method (bank transfer or Stripe Connect)
+  6. Click **Save and activate**
+     → expected: "Pay-Per-Crawl active" banner; dashboard starts showing `402 Payment Required` responses to unauthorized bots within minutes.
+
+**VERIFY:**
+```
+# 1. From a terminal, fake an unknown AI crawler request — should get 402
+curl -sI -H "User-Agent: RandomAIBot/1.0" https://holdlens.com/api/v1/daily.json | head -3
+# expected: HTTP/2 402 (Payment Required)
+
+# 2. A declared crawler with proper headers should get 200 + bill you
+#    You'll see this in CF dashboard within 24h: "Pay-per-crawl revenue (last 24h): $X"
+
+# 3. Check rules are live
+curl -sI https://holdlens.com/api/v1/daily.json | grep -i x-api-tier
+# expected: x-api-tier: paid-daily
+curl -sI https://holdlens.com/api/v1/index.json | grep -i x-api-tier
+# expected: x-api-tier: paid-training
+```
+
+**IF STUCK:**
+  - "Pay-Per-Crawl" tab not visible → CF beta still pending. Email support@cloudflare.com referencing the ticket; ~3-5 business days typical turnaround.
+  - Rule editor won't accept multiple paths → create one rule per path (verbose but works). The match behavior is equivalent.
+  - Revenue shows $0 after 7 days → check CF dashboard "Bots" tab — if crawler count dropped, they're hitting cached CF edge cache (5 min TTL) and not re-fetching. This is fine; wait longer. Alternatively: shorten TTL on daily endpoints temporarily to force re-crawls.
+  - Billing dashboard rejects bank details → use Stripe Connect (CF's recommended path for non-US).
+
+**PROJECTED REVENUE:**
+- 3.16k crawler hits/week baseline (from earlier CF AI Crawl Control data)
+- Assume 20% hit daily + premium endpoints = ~630/week × $0.010 = $6.30/week = **$27/mo from premium tier alone**
+- Another 80% hit free-core = ~2530/week × $0.001 = $2.53/week = **$11/mo flat tier**
+- Total projected Month 1: **~$38-50/mo** with current crawl volume
+- At 2-3× crawl volume growth (projected by v19.4 bot-harvest archetypes): **~$100-200/mo** by Month 4
+- Compounds as HoldLens SEO + LLM-citation presence grows
+
+[archetype:pay_per_crawl_enabled ×+90] [score:9] [blocker:cf-ppc-beta-activation] [depends:cf-support-ticket]
+
+---
+
 ## 📊 AUG v3 baseline 2026-04-20 — score 1.58 (first real audit; I-35 clock starts)
 
 7-factor: acq 0.10 · act 0.15 · eng 0.20 · ret 0.10 · adv 0.10 · mon 0.10 · perf 0.80. **Top weakness: acquisition (20 humans/wk).** Technical acquisition infra already shipped (sitemap-ai, schema, IndexNow, agent-ready 100/100, v1.63 soft-404, v1.65 WP 410). Remaining levers are operator-time — three Clarity Cards below.

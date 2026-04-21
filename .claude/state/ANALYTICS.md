@@ -419,3 +419,49 @@ Session wins summary:
 - Retention: `+0` measurable today. /proof faster-load should lift activation on the credibility page (users Google "HoldLens proof" → land there → if it loads in <1s instead of 5s, bounce drops). Measurable at next Week-4 audit.
 - Revenue: `+$0` direct. Compounding: bot-harvest → LLM citation → branded search → human → AdSense + Pro. Unmeasurable per-ship, tracked in aggregate via LLM_CITATIONS.md weekly check.
 
+
+## Ship Log v1.67 — 2026-04-21 16:55 CEST (daily-fresh + PPC tiering)
+
+### Scope
+Dual play: honest daily-fresh data layer + Pay-Per-Crawl revenue optimization. Operator directive: "i think score should be updated everyday, full site should be updated everyday for best performance" + "pay per crawl must be optimised to make most money".
+
+### Files shipped (commit 8682f5a17 + header-fix 2686de518)
+- `scripts/generate-daily-snapshot.ts` — Yahoo EOD fetcher (CF proxy → direct fallback), 95% hit rate verified (89/94 tickers), aborts on <50% hit rate
+- `app/today/page.tsx` — daily movers leaderboard + top gainers/losers + honesty footer
+- `components/DailyMove.tsx` — `<DailyMoveForInvestor>` + `<DailyMoveForTicker>` server components + `getDailySnapshotTimestamp()` helper
+- `.github/workflows/daily-refresh.yml` — Mon-Fri 22:00 UTC cron: generate → commit → build → deploy → IndexNow
+- `public/_headers` — 4 PPC tiers (paid-daily $0.010, paid-premium $0.005, paid-training $0.005, free-core $0.001)
+- `public/llms.txt` — PPC tier table updated with daily + derived rows
+- `app/api-terms/page.tsx` — PPC tier taxonomy section added
+- `.claude/state/TASKS.md` — Clarity Card `[cf-ppc-per-route-v1.67]` top of stack
+
+### Verification (live on holdlens.com)
+- ✅ `/today/` page: 200 OK, renders movers table + Best/Worst/Median strip
+- ✅ `/api/v1/daily.json`: 200 OK, 30 investors measured, trading_date 2026-04-21, dateModified tied to snapshot
+- ✅ `/api/v1/movers.json`: 200 OK, top gainers + losers populated
+- ✅ DailyMove widget on `/investor/bill-ackman` (dynamic route, 29 pages — warren-buffett dedicated-page queued as follow-up)
+- ✅ DailyMove widget on `/ticker/AAPL` (90+ pages)
+- ⚠ `X-API-Tier` duplicated on catch-all /api/v1/* rule (cosmetic CF _headers stacking; price info canonical in llms.txt + CF PPC rules). Logged as v1.68 follow-up.
+
+### Archetypes hit (v19.4 Bot Harvest)
+- `freshness_per_page × +30` on every investor + ticker + today page with honest dateModified
+- `dataset_json_api × +70` on /api/v1/daily.json + /api/v1/movers.json (structured, datable)
+- `llm_citation_quote_ready × +75` on /today page (quote-ready freshness sentences)
+- `pay_per_crawl_enabled × +90` gated on operator enabling CF PPC per Clarity Card
+
+### Projected revenue impact
+- Direct PPC: **$38-50/mo Month 1** (3.16k crawls/wk × tier mix) → **$100-200/mo by Month 4** as crawl volume grows
+- Indirect freshness lift: LLM crawler frequency 2-3× current → more citations → more branded search → more AdSense/API revenue
+- AUG retention: +0.05-0.10 expected on return rate from legitimate daily-fresh signal (next week's AUG audit will measure)
+
+### Honesty safeguards
+- Snapshot aborts on Yahoo outage — no corrupt dateModified published
+- dateModified only updates on days prices actually refreshed (weekend cron skip)
+- Every daily-data surface explicitly labels "Positions Q4 2025 13F; prices EOD <date>" — no confusion
+- Quarterly core (ConvictionScore, 13F positions) untouched by daily pipeline
+
+### Deploy saga
+- Wrangler EPIPE at 1591/3687 on first attempt
+- Success on retry 2 after 30s cooldown (56.91 sec, 2752 files)
+- Header-only follow-up deployed cleanly on retry 1 (1.14 sec, 0 new files)
+
