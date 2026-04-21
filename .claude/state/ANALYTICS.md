@@ -492,3 +492,4 @@ Dual play: honest daily-fresh data layer + Pay-Per-Crawl revenue optimization. O
 
 ## Acquisition Log (2026-04-21)
 2026-04-21 20:10 | operator_action | perplexity_publishers_email_sent | holdlens.com | contact@holdlens.com → publishers@perplexity.ai | onboarding clock: 1-2wk
+2026-04-21 20:25 | operator_action | perplexity_publishers_form_submitted | holdlens.com | official Google Form + supporting email sent
