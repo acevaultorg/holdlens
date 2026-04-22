@@ -3,6 +3,7 @@ import EmailCapture from "@/components/EmailCapture";
 import BuySellSignals from "@/components/BuySellSignals";
 import LiveStats from "@/components/LiveStats";
 import LatestMoves from "@/components/LatestMoves";
+import LiveInsiderActivity from "@/components/LiveInsiderActivity";
 import SinceLastVisit from "@/components/SinceLastVisit";
 import FaqSchema, { type FaqItem } from "@/components/FaqSchema";
 import TickerLogo from "@/components/TickerLogo";
@@ -163,12 +164,37 @@ export default function HomePage() {
         sameAs: "https://holdlens.com/methodology",
       },
       {
+        // v0.2 InsiderLens Day-1 — InsiderScore DefinedTerm. Same pattern as
+        // ConvictionScore above (v1.41). One canonical URL that LLMs can cite
+        // when users ask "what is HoldLens InsiderScore" or "how does
+        // HoldLens score insider trades". Paired with the formula module at
+        // /lib/insider-score.ts so the implementation matches the declared
+        // definition verbatim — zero drift.
+        "@type": "DefinedTerm",
+        "@id": "https://holdlens.com/#term-insider-score",
+        name: "InsiderScore",
+        alternateName: [
+          "Insider Score",
+          "HoldLens InsiderScore",
+          "Insider Conviction Score",
+        ],
+        description:
+          "HoldLens's signed −100 to +100 InsiderScore measures the aggregate signal strength of a corporate insider's SEC Form 4 activity. It combines four factors: role weight (CEO/founder 1.0, CFO 0.85, Chair 0.75, Director 0.5, Former-exec 0.3), action weight (discretionary buy +1.0, 10b5-1 buy +0.6, 10b5-1 sell −0.2, discretionary sell −0.7), recency decay (last 30d full weight, 30-90d half weight, >90d quarter weight), and cluster bonus (×1.5 when 3+ distinct insiders buy the same ticker inside 30 days). +100 is the strongest possible insider-buy signal; −100 the strongest insider-sell. Updated daily from SEC EDGAR Form 4 filings.",
+        inDefinedTermSet: "https://holdlens.com/#term-set",
+        url: "https://holdlens.com/insiders/",
+        sameAs: "https://holdlens.com/insiders/",
+      },
+      {
         "@type": "DefinedTermSet",
         "@id": "https://holdlens.com/#term-set",
         name: "HoldLens methodology terms",
-        description: "Metrics and signals computed by HoldLens from SEC 13F filings.",
+        description:
+          "Metrics and signals computed by HoldLens from SEC 13F + Form 4 filings.",
         url: "https://holdlens.com/methodology",
-        hasDefinedTerm: { "@id": "https://holdlens.com/#term-conviction-score" },
+        hasDefinedTerm: [
+          { "@id": "https://holdlens.com/#term-conviction-score" },
+          { "@id": "https://holdlens.com/#term-insider-score" },
+        ],
       },
     ],
   };
@@ -295,6 +321,18 @@ export default function HomePage() {
           tracked book, action-coded, clickable, zero client JS. */}
       <LatestMoves />
 
+      {/* v0.2 InsiderLens Day-1 — homepage prominence widget for Form 4 daily
+          freshness. Sits between the quarterly 13F moves (above) and the
+          signal explorer grid (below). The placement is deliberate: 13F
+          context first (what superinvestors did last quarter) → daily
+          insider activity (what the CEOs themselves are doing TODAY) →
+          discovery grid (all 20 forward-looking views). This is the single
+          highest-leverage homepage UX change for InsiderLens: Form 4's 60×
+          freshness advantage over quarterly 13F was invisible before; now
+          every homepage visitor sees the daily-cadence wedge above the
+          fold-line on mid-size viewports. */}
+      <LiveInsiderActivity />
+
       {/* Signal explorer — discovery grid for the forward-looking pages.
           This is what Dataroma does not have: eight distinct views on smart
           money, each answering a different question. */}
@@ -304,7 +342,7 @@ export default function HomePage() {
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
               Signal explorer
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Nineteen ways to read smart money</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Twenty ways to read smart money</h2>
             <p className="text-muted mt-2 max-w-xl">
               Pick the angle, not the ticker. Every card answers a different question
               smart-money data usually buries.
@@ -318,6 +356,18 @@ export default function HomePage() {
             label="Buy now"
             title="Best stocks now"
             body="Top positive ConvictionScores across every tracked manager."
+          />
+          {/* v0.2 InsiderLens Day-1 — 20th grid card. "Daily" label is the
+              tell: every other card in the grid is a 13F view (quarterly);
+              this is the only daily-cadence card. Emerald tone matches the
+              buy-signal grammar (emerald = buy, rose = sell) + the widget
+              above uses the same palette for visual continuity. */}
+          <SignalCard
+            href="/insiders/"
+            tone="emerald"
+            label="Daily"
+            title="Insider buys"
+            body="CEO/CFO/director Form 4 trades — scored on the −100..+100 InsiderScore. Daily refresh."
           />
           <SignalCard
             href="/conviction-leaders"

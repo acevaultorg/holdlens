@@ -1,5 +1,63 @@
 # HoldLens — TASKS
 
+## 🟡 RECOMMENDED — InsiderLens Day 2 — EDGAR Form 4 scraper + 10k seed + JSON API — ~4h — [id:insiderlens-day2]
+
+**WHAT:** Day 1 shipped the foundation — routes scaffolded, InsiderScore formula, homepage prominence widget, llms.txt + DefinedTerm schema all live. Day 2 wires the data pipeline: real SEC EDGAR Form 4 XML scraper replacing the curated 22-row dataset, seed ingest of ~10k historical filings, and JSON API endpoints per route so LLMs + third parties can consume the data directly.
+
+**WHY:** Day-1 pages currently read from `lib/insiders.ts` (hand-curated 22 rows). Day-2 swap = live daily freshness → 4.4× AI-visitor multiplier, 60× recrawl frequency vs quarterly 13F, measurable Cloudflare PPC revenue lift, TollBit eligibility at Month 6. Cost of skipping: pages look fine but stay forever-stale; operator's 60× freshness claim becomes aspirational only.
+
+**TIME:** ~4 hours (operator-validated estimate — one "Day 2" block).
+
+**HOW:**
+
+  1. **EDGAR Form 4 fetcher:**
+     Create `scripts/fetch-edgar-form4.ts`. Use SEC EDGAR bulk Form 4 XML feed (https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=4...). Rate-limit 5 req/sec (SEC cap 10/sec, buffer 50%). Set `User-Agent: "HoldLens contact@holdlens.com"` header (SEC enforces this). Parse XML per SEC Form 4 Table I. Map `transactionCode` → `action` (P→buy, S→sell). Preserve filing accession + issuer CIK + reporter CIK in the extended `InsiderTx` fields shipped Day 1. Mirror `scripts/fetch-edgar-13f.ts` rate-limit + retry pattern.
+     → expected: `data/edgar-form4.json` with ≥10k historical rows covering last 12 months
+
+  2. **Swap data source:**
+     Edit `lib/insiders.ts`. Replace hardcoded `INSIDER_TX` with a build-time import of `data/edgar-form4.json`. Keep the 22 curated rows merged in as a `CURATED_INSIDER_TX` const so hand-written notes survive. All routes already use the shape — no route edits needed.
+     → expected: `npm run build` succeeds, per-company + per-officer pages generate for ~500+ tickers + ~2000+ officers
+
+  3. **JSON API endpoints:**
+     Add to `scripts/generate-api-json.ts`:
+     - `/api/v1/insiders/live.json` — last 100 Form 4 transactions
+     - `/api/v1/insiders/company/{ticker}.json` — per-ticker aggregate + list
+     - `/api/v1/insiders/officer/{slug}.json` — per-officer InsiderScore + history
+     - `/api/v1/insiders/cluster.json` — detected cluster-buy tickers (3+ officers 30d)
+     - `/api/v1/insiders/index.json` — lists the 5 new endpoints
+     Update `public/llms.txt` Public JSON API section to list them.
+     → expected: pre-build writes to `public/api/v1/insiders/*`
+
+  4. **IndexNow + sitemap-ai.xml:**
+     After deploy, `npm run indexnow` picks up the new URLs via the existing postbuild script. Confirm `scripts/generate-sitemap-ai.mjs` includes `/insiders/company/*` and `/insiders/officer/*` patterns (Day 1 added them to `app/sitemap.ts` which the AI sitemap mirrors).
+     → expected: Bing + Yandex + CF get notified within minutes
+
+  5. **Email alerts (Pro-tier stretch):**
+     Create `scripts/insider-alerts.ts` — daily cron scanning yesterday's Form 4 set for (a) discretionary CEO/founder buys ≥$1M, (b) detected cluster buys. Push to existing Pro-tier broadcast pipeline.
+
+**VERIFY:**
+
+  ```
+  # dateModified on /insiders/live/ should be yesterday or today
+  curl -sL https://holdlens.com/insiders/live/ | grep -o '"dateModified":"[^"]*"' | head -1
+
+  # AAPL company page has >2 transactions after seed
+  curl -sL https://holdlens.com/insiders/company/aapl/ | grep -c 'BUY\|SELL\|10b5-1'
+
+  # JSON API live
+  curl -sL https://holdlens.com/api/v1/insiders/live.json | head -c 200
+  ```
+  → expected: dateModified within last 2 days; ≥5 action badges for AAPL; JSON payload with `{ data, meta }` envelope
+
+**IF STUCK:**
+
+  - SEC rate limits (429): enforce 5 req/sec + exponential backoff per existing pattern. User-Agent header is required.
+  - Form 4 XML edge cases (amended filings, derivative, multi-owner): start with `transactionCode="P"|"S"` non-derivative only. Expand Week 4.
+  - Build times balloon past 5 min: enable ISR on `/insiders/officer/[slug]/` for cold paths (keep `/insiders/company/[ticker]/` static).
+  - "Feels too similar to HoldLens 13F": that IS the differentiator — Day-1 InsiderScore DefinedTerm alongside ConvictionScore makes the split explicit.
+
+---
+
 ## 🔴 REQUIRED — Unblock Bingbot in Cloudflare WAF — ~2 min — [id:waf-allow-bingbot]
 
 **WHAT:** Bingbot currently receives HTTP 403 from the Cloudflare Managed WAF on holdlens.com. This blocks Bing search visibility AND DuckDuckGo AI (uses Bing's index) AND Microsoft Copilot citations. Add one WAF Skip rule allowlisting verified search crawlers.

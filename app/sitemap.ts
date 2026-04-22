@@ -4,6 +4,7 @@ import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { QUARTERS } from "@/lib/moves";
 import { COUNTRIES as TAX_COUNTRIES } from "@/lib/dividend-tax";
 import { computeInsiderSummaries } from "@/lib/insider-conviction";
+import { allInsiderTickers, allOfficerEntries } from "@/lib/insiders";
 import { BUYBACK_PROGRAMS } from "@/lib/buybacks";
 import { ACTIVIST_CAMPAIGNS } from "@/lib/activists";
 import { SHORT_POSITIONS } from "@/lib/short-interest";
@@ -31,8 +32,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/what-to-buy`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${base}/what-to-sell`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${base}/top-picks`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    // New pages added in v0.27
-    { url: `${base}/insiders`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    // Insiders hub — v0.2 promoted from weekly → daily because the live
+    // feed + company + officer pages all refresh daily from Form 4 EDGAR.
+    { url: `${base}/insiders`, lastModified: now, changeFrequency: "daily", priority: 0.88 },
+    { url: `${base}/insiders/live`, lastModified: now, changeFrequency: "daily", priority: 0.85 },
     { url: `${base}/changelog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     // Already-live routes that were never in the sitemap
     { url: `${base}/activity`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
@@ -233,6 +236,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // v0.2 InsiderLens Day-1 — /insiders/company/[ticker]/ per-company
+  // insider roll-up. One page per ticker with ≥1 tracked Form 4.
+  const insidersCompanyUrls: MetadataRoute.Sitemap = allInsiderTickers().map((t) => ({
+    url: `${base}/insiders/company/${t.toLowerCase()}`,
+    lastModified: now,
+    changeFrequency: "daily" as const,
+    priority: 0.75,
+  }));
+
+  // v0.2 InsiderLens Day-1 — /insiders/officer/[slug]/ per-officer detail.
+  // Ticker-scoped slugs (name-ticker) disambiguate same-name officers.
+  const insidersOfficerUrls: MetadataRoute.Sitemap = allOfficerEntries().map((e) => ({
+    url: `${base}/insiders/officer/${e.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   // v1.53 — Corporate Buyback Tracker sub-vertical (/buybacks/*).
   // 4 static landing/leaderboard surfaces + 10 per-company pages + 2 learn.
   const buybackStaticUrls: MetadataRoute.Sitemap = [
@@ -313,6 +334,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...similarToUrls,
     ...sectorsHubUrl,
     ...insidersUrls,
+    ...insidersCompanyUrls,
+    ...insidersOfficerUrls,
     ...buybackStaticUrls,
     ...buybackTickerUrls,
     ...activistStaticUrls,

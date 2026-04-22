@@ -272,3 +272,58 @@ checklist.
 - Either way: NEVER ship 10-day XBRL parser; budget 4 weeks if proceeding
 
 **Pickup instruction for next session:** operator types `/acepilot auto [enable cloudflare PPC dashboard]` after completing the one-time CF dashboard configuration (instructions in PPC.md). Brain then verifies live PPC by reading CF analytics export and updates monthly rollup.
+
+---
+
+## 2026-04-22 — InsiderLens: extend HoldLens /insiders/ with Form 4 firehose (Day-1 foundation)
+
+**Operator directive:** "🟡 RECOMMENDED — Ship InsiderLens (extend HoldLens → Form 4)". Build a daily insider-trading tracker using SEC Form 4 filings with a branded InsiderScore metric. Two-day build. "Think how to do this best in the UX. how prominent should it be in UX? give 10/10 UX implementation. and make 10/10 for bots."
+
+**Decision 1 — EXTEND over standalone.** Picked `holdlens.com/insiders/` over new `insiderlens.com`:
+- Domain authority compounds immediately (HoldLens already indexed + bot-crawled + in LLM citation pools per llms.txt)
+- Audience overlap ~100% — 13F investors ARE Form 4 watchers
+- Saves ~1 day of infra setup (no new Cloudflare Pages project, no new DNS, no new analytics setup, no new AdSense application)
+- Solves HoldLens's structural freshness weakness: quarterly 13F homepage → daily Form 4-powered homepage
+- Shared monetization stack (Ads + PPC tier + Interactive Brokers affiliate + Pro tier) — one wallet, no splitting
+- Standalone brand `insiderlens.com` only beats extension if planning future separate sale — operator did not indicate that
+
+**Decision 2 — UX prominence (the 10/10 target):**
+
+Observed problem: /insiders/ currently gets ZERO homepage prominence. Homepage is 100% 13F / ConvictionScore / superinvestors. Form 4's 60× freshness advantage is invisible to visitors. This is a structural wedge HoldLens is leaving on the table — a quarterly-data homepage feels stale to a returning visitor, while a daily-refreshing LiveInsiderActivity feels alive.
+
+Three prominence surfaces landing this session:
+
+1. **Above-the-fold homepage widget** — new `<LiveInsiderActivity />` server component, placed directly after `<LatestMoves />` (existing 13F headline section) and before the signal explorer grid. Shows the 5 most recent Form 4 buys + sells count with a "LIVE · updated daily" badge. Single highest-leverage UX change: every homepage visitor now sees the daily-freshness wedge in the first 1-2 screens.
+
+2. **20th SignalCard** — signal explorer grid (currently "Nineteen ways to read smart money") gets a 20th card "Insider buys · DAILY" with `tone="emerald"` + `label="Daily"`. Only daily-freshness card in the grid — visual tell that something here updates more often.
+
+3. **Nav already elevated** — DesktopNav.tsx has "Insiders" as nav group #3 of 7 with subnav: All insider activity · Recent insider buys · Recent insider sells · Cluster buys · Congressional trades. No change needed — existing v1.60 entity-centric nav surfaces it at the right altitude.
+
+**Decision 3 — bot-readiness (the 10/10 target):**
+
+1. **DefinedTerm: InsiderScore** added to /insiders/ hub alongside site-wide ConvictionScore DefinedTerm. Same pattern. One canonical URL for LLM citation when users ask "what is HoldLens InsiderScore".
+2. **InsiderScore formula module** at `/lib/insider-score.ts` — deterministic 0-100 score. Role-weighted (CEO/founder 1.0, CFO 0.85, Chair 0.75, Director 0.5, Former-exec 0.3), action-weighted (discretionary-buy 1.0, 10b5-1-buy 0.6, discretionary-sell 0.7 negative, 10b5-1-sell 0.2 negative), cluster-bonus (3+ distinct insiders same-ticker same-30-days = ×1.5), recency-weighted (last 30d = 1.0, 30-90d = 0.6, >90d = 0.3). Transparent, citable, not ML.
+3. **llms.txt upgrade** — new section "Insider Activity surface" declaring URL patterns: `/insiders/live/`, `/insiders/company/[ticker]/`, `/insiders/officer/[slug]/`, InsiderScore definition + formula link + refresh cadence (daily). PPC per-crawl: $0.005 per-entity-detail tier + $0.010 for `/insiders/live/` (time-sensitive-feed tier).
+4. **Extended Form 4 types** in `/lib/insiders.ts` — add optional fields: `derivative` (bool), `form4AccessionNumber` (SEC filing ID), `transactionCode` ("P"=open-market purchase, "S"=open-market sale, "A"=grant, "M"=option exercise, per SEC Form 4 Table I), `isClusterBuy` (computed). Backward-compatible — all new fields optional, existing 22 curated rows keep working unchanged.
+5. **Sitemap entries** — hub + 3 new route patterns added to `app/sitemap.ts`: priority 0.8 hub, 0.7 live-feed, 0.6 per-company/per-officer (programmatic). sitemap-ai.xml generator picks up these patterns post-build.
+6. **Day-1 scaffolded routes** (programmatic templates, seeded with current curated data, ready to swap to EDGAR output):
+   - `/insiders/live/` — daily-refresh feed of most-recent Form 4s, chronological
+   - `/insiders/company/[ticker]/` — per-company insider roll-up with aggregate InsiderScore
+   - `/insiders/officer/[slug]/` — per-officer detail on clean `officer/` namespace (existing `/insiders/[insider]/` stays for link inertia)
+
+**Deferred to Day 2 (TASKS.md next-session):**
+- EDGAR Form 4 XML scraper (`/scripts/fetch-edgar-form4.ts`)
+- 10k historical Form 4 seed ingest
+- Email alerts wiring (Pro tier)
+- JSON API endpoints per /insiders/ route (`/api/v1/insiders/*.json`)
+- TollBit license-header configuration (enrollment ~Month 6 per rules/revenue-maximizer.md Layer 8)
+- OG image templates for per-officer + per-company pages
+
+**Why the split:** operator's own estimation is "two 4-hour days." This session realistically ships Day 1 foundation (UX + schema + routes + formula); Day 2 ships the data pipeline (parser + seed + live-data swap) + API expansion. The seam is clean — Day-1 routes read curated data today, swap to scraped data tomorrow without any UX or SEO regression.
+
+**Calibration triggers:**
+- Week 4 post-ship: GSC impressions on /insiders/live/ + /insiders/company/[ticker]/* (target ≥500 impressions/wk)
+- Month 2 post-ship: Cloudflare bot crawls to /insiders/* (target ≥3× pre-launch baseline)
+- Month 6: TollBit application eligibility check (if total bot-crawl ≥5k/day across fleet, apply)
+
+**Pickup instruction for next session:** operator types `/acepilot auto Day 2: Form 4 EDGAR scraper + 10k seed + JSON API` — brain reads TASKS.md InsiderLens-Day-2 block and executes the scraper build.

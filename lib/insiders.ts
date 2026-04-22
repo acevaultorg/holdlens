@@ -10,17 +10,48 @@
 
 export type InsiderTxAction = "buy" | "sell";
 
+// SEC Form 4 Table I transaction codes — canonical per SEC's Form 4 filing
+// guide (https://www.sec.gov/about/forms/form4data.pdf). Full set is larger;
+// these are the codes that appear in ≥99% of real filings.
+//
+//   P = Open-market purchase (the strongest positive signal)
+//   S = Open-market sale
+//   A = Grant / award (comp, not a conviction signal)
+//   M = Option exercise
+//   F = Tax withholding on vesting (mechanical, zero signal)
+//   D = Disposition to the issuer
+//   G = Bona-fide gift
+//   V = Voluntary report (non-mandatory)
+//   J = Other (catch-all — requires note to interpret)
+export type Form4TransactionCode = "P" | "S" | "A" | "M" | "F" | "D" | "G" | "V" | "J";
+
 export type InsiderTx = {
   ticker: string;
   insiderName: string;
   insiderTitle: string;
   action: InsiderTxAction;
-  date: string;       // ISO YYYY-MM-DD
+  date: string;       // ISO YYYY-MM-DD (transaction date; filing date usually +1-2 biz days)
   shares: number;
   pricePerShare: number;
   value: number;      // shares * pricePerShare
   remainingShares?: number;
   note?: string;
+
+  // --- v0.2 Form 4 extension fields (all optional, backward-compatible) ---
+  // Populated when data comes from EDGAR scraper; absent on curated pre-v0.2 rows.
+
+  /** SEC Form 4 accession number — canonical filing identifier, links to SEC.gov */
+  form4AccessionNumber?: string;
+  /** Transaction code from SEC Form 4 Table I (P/S/A/M/F/D/G/V/J) */
+  transactionCode?: Form4TransactionCode;
+  /** True if derivative security (option, warrant, convertible) — weaker signal than non-derivative */
+  derivative?: boolean;
+  /** Filing date (ISO) — usually 1-2 business days after transaction date */
+  filedAt?: string;
+  /** Issuer CIK — SEC entity identifier for the company */
+  issuerCik?: string;
+  /** Reporter CIK — SEC entity identifier for the insider (for consolidating multi-ticker insiders) */
+  reporterCik?: string;
 };
 
 export const INSIDER_TX: InsiderTx[] = [
@@ -107,4 +138,70 @@ export function fmtInsiderValue(n: number): string {
 export function fmtInsiderDate(iso: string): string {
   const d = new Date(iso);
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+// --- v0.2 route helpers (Day-1 foundation for /insiders/company/[ticker]/
+//     and /insiders/officer/[slug]/ programmatic pages) -------------------
+
+/** All distinct tickers that have at least one tracked Form 4 transaction. */
+export function allInsiderTickers(): string[] {
+  const set = new Set<string>();
+  for (const tx of INSIDER_TX) set.add(tx.ticker.toUpperCase());
+  return Array.from(set).sort();
+}
+
+/**
+ * All distinct officers keyed by slug ("ticker-scoped slug" so same-named
+ * officers at different companies stay disambiguated — e.g., two CEOs named
+ * John Smith at different issuers get distinct URLs).
+ */
+export function allOfficerEntries(): Array<{
+  slug: string;
+  name: string;
+  title: string;
+  ticker: string;
+  transactions: InsiderTx[];
+}> {
+  const byKey: Record<
+    string,
+    { slug: string; name: string; title: string; ticker: string; transactions: InsiderTx[] }
+  > = {};
+  for (const tx of INSIDER_TX) {
+    const slug = officerSlugLocal(tx.insiderName, tx.ticker);
+    if (!byKey[slug]) {
+      byKey[slug] = {
+        slug,
+        name: tx.insiderName,
+        title: tx.insiderTitle,
+        ticker: tx.ticker.toUpperCase(),
+        transactions: [],
+      };
+    }
+    byKey[slug].transactions.push(tx);
+  }
+  // Most-recent transaction first inside each officer entry.
+  for (const entry of Object.values(byKey)) {
+    entry.transactions.sort((a, b) => (a.date < b.date ? 1 : -1));
+  }
+  return Object.values(byKey).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * Local mirror of lib/insider-score.officerSlug — inlined here so this
+ * module has zero import dependency (avoids circular import if score
+ * module imports types from this file).
+ */
+function officerSlugLocal(name: string, ticker?: string): string {
+  const base = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return ticker ? `${base}-${ticker.toLowerCase()}` : base;
+}
+
+/** Most recent N transactions across all tickers, chronological desc. Used by the live feed + homepage widget. */
+export function getRecentInsiderTx(limit = 10): InsiderTx[] {
+  return [...INSIDER_TX]
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, limit);
 }
