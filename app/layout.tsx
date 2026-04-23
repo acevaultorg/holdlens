@@ -337,6 +337,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a href="/contact" className="hover:text-text transition">Contact</a>
                 <a href="/docs" className="hover:text-text transition">API</a>
                 <a href="/changelog" className="hover:text-text transition">Changelog</a>
+                <a href="/glossary" className="hover:text-text transition">Glossary</a>
+                <a href="/disclaimer" className="hover:text-text transition">Disclaimer</a>
                 <a href="/privacy" className="hover:text-text transition">Privacy</a>
                 <a href="/terms" className="hover:text-text transition">Terms</a>
               </div>
