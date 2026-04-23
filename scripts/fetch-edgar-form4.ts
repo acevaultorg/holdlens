@@ -176,15 +176,31 @@ function parseDailyIndex(text: string): IndexRow[] {
       continue;
     }
     if (raw.length < 50) continue;
-    // Fixed-width-ish columns: Form Type | Company Name | CIK | Date Filed | File Name
-    // Use a loose column split — Form Type starts at col 0, CIK is digits, file name at end.
-    const formType = raw.slice(0, 12).trim();
-    const companyName = raw.slice(12, 74).trim();
-    const cik = raw.slice(74, 86).trim();
-    const filingDate = raw.slice(86, 98).trim();
-    const filename = raw.slice(98).trim();
+    // SEC's form.YYYYMMDD.idx column widths drift across years. Anchor on
+    // the filename (always ends `edgar/data/...`) and parse backward:
+    //   <FormType>  <CompanyName>  <CIK>  <YYYYMMDD>  edgar/data/CIK/ACC.txt
+    const fnMatch = raw.match(/(edgar\/data\/\S+)\s*$/);
+    if (!fnMatch) continue;
+    const filename = fnMatch[1];
+    const headPart = raw.slice(0, fnMatch.index).trimEnd();
+    // Parse from the end of headPart: ... <CIK> <YYYYMMDD>
+    const tailMatch = headPart.match(/(\d{1,10})\s+(\d{8})\s*$/);
+    if (!tailMatch) continue;
+    const [tail, cik, filingDate] = tailMatch;
+    const beforeTail = headPart.slice(0, headPart.length - tail.length).trimEnd();
+    // beforeTail = "<FormType>  <CompanyName>"
+    // Form type is the first whitespace-bounded token
+    const formMatch = beforeTail.match(/^(\S+)\s+(.+)$/);
+    if (!formMatch) continue;
+    const [, formType, companyName] = formMatch;
     if (!formType || !cik) continue;
-    rows.push({ formType, companyName, cik, filingDate, filename });
+    rows.push({
+      formType,
+      companyName: companyName.trim(),
+      cik,
+      filingDate,
+      filename,
+    });
   }
   return rows;
 }
@@ -193,48 +209,34 @@ function parseDailyIndex(text: string): IndexRow[] {
 // Form 4 fetch + parse
 // ---------------------------------------------------------------------------
 
-// From a daily-index "filename" path like edgar/data/CIK/ACC-NUMBER-index.htm,
-// derive the accession-folder URL and the canonical Form 4 XML file inside.
-function form4XmlUrlFromIndex(indexPath: string): string | null {
-  const m = indexPath.match(/^edgar\/data\/(\d+)\/([\d-]+)-index\.htm$/);
+// EDGAR daily-index "filename" column comes as
+//   edgar/data/{CIK}/{ACC-NUM-WITH-DASHES}.txt
+// The .txt is the full filing as a single MIME-concatenated text doc with the
+// Form 4 ownership XML embedded inside <XML> ... </XML> tags. Single fetch =
+// half the SEC rate-limit pressure vs the older index.json + xml two-step.
+function form4TxtUrlFromIndex(indexPath: string): string | null {
+  const m =
+    indexPath.match(/^edgar\/data\/(\d+)\/([\d-]+)\.txt$/) ||
+    // Defensive: -index.htm form (older EDGAR), derive .txt from it
+    indexPath.match(/^edgar\/data\/(\d+)\/([\d-]+)-index\.htm$/);
   if (!m) return null;
   const [, cik, accDashed] = m;
-  const accNoDash = accDashed.replace(/-/g, "");
-  // Per EDGAR layout, the primary Form 4 XML lives at:
-  //   /Archives/edgar/data/{cik}/{accNoDash}/{accDashed}-index.json
-  // We'll fetch the index.json which lists all files in the filing.
-  return `https://www.sec.gov/Archives/edgar/data/${cik}/${accNoDash}/${accDashed}-index.json`;
+  return `https://www.sec.gov/Archives/edgar/data/${cik}/${accDashed}.txt`;
 }
 
-type FilingFileMeta = { name: string; type?: string; size?: number };
-
-async function findForm4XmlPath(indexJsonUrl: string): Promise<string | null> {
-  await sleep(RATE_LIMIT_MS);
-  const res = await fetchWithRetry(indexJsonUrl);
-  if (!res.ok) return null;
-  const body = (await res.json()) as {
-    directory?: { item?: FilingFileMeta[]; name?: string };
-  };
-  const items = body.directory?.item ?? [];
-  // Form 4 primary XML file is typically named edgar-style:
-  //   ownership.xml | wf-form4_*.xml | wk-form4_*.xml | primary_doc.xml
-  const candidates = items
-    .filter((f) => /\.xml$/i.test(f.name) && !/^R\d+\.xml$/i.test(f.name))
-    .filter(
-      (f) =>
-        /ownership/i.test(f.name) ||
-        /form4/i.test(f.name) ||
-        /primary_doc/i.test(f.name)
-    );
-  if (candidates.length === 0) return null;
-  // Prefer ownership > form4 > primary_doc
-  candidates.sort((a, b) => {
-    const score = (n: string) =>
-      /ownership/i.test(n) ? 3 : /form4/i.test(n) ? 2 : /primary_doc/i.test(n) ? 1 : 0;
-    return score(b.name) - score(a.name);
-  });
-  const directory = body.directory?.name ?? "";
-  return `https://www.sec.gov${directory}/${candidates[0].name}`;
+// Extract the embedded Form 4 ownership XML from the EDGAR .txt submission.
+// The .txt wraps each attached file in <DOCUMENT>...</DOCUMENT> blocks. The
+// Form 4 XML is inside <XML>...</XML> within the TYPE=4 document section.
+function extractOwnershipXmlFromTxt(txt: string): string | null {
+  // Try the most-specific pattern first: <ownershipDocument> ... </ownershipDocument>
+  const ownership = txt.match(
+    /<ownershipDocument>([\s\S]*?)<\/ownershipDocument>/i
+  );
+  if (ownership) return `<ownershipDocument>${ownership[1]}</ownershipDocument>`;
+  // Fallback: <XML> ... </XML> block
+  const xmlBlock = txt.match(/<XML>\s*([\s\S]*?)\s*<\/XML>/i);
+  if (xmlBlock) return xmlBlock[1];
+  return null;
 }
 
 // Form 4 ownership XML structure (simplified):
@@ -502,30 +504,33 @@ async function main() {
 
     for (const row of form4s) {
       if (max != null && allTx.length >= max) break outer;
-      const indexJson = form4XmlUrlFromIndex(row.filename);
-      if (!indexJson) {
+      const txtUrl = form4TxtUrlFromIndex(row.filename);
+      if (!txtUrl) {
         dayStat.skipped++;
         dayStat.skipReasons["bad_index_path"] =
           (dayStat.skipReasons["bad_index_path"] ?? 0) + 1;
         continue;
       }
-      const xmlUrl = await findForm4XmlPath(indexJson);
-      if (!xmlUrl) {
-        dayStat.skipped++;
-        dayStat.skipReasons["no_xml_in_filing"] =
-          (dayStat.skipReasons["no_xml_in_filing"] ?? 0) + 1;
-        continue;
-      }
       await sleep(RATE_LIMIT_MS);
-      const xmlRes = await fetchWithRetry(xmlUrl);
-      if (!xmlRes.ok) {
+      const txtRes = await fetchWithRetry(txtUrl);
+      if (!txtRes.ok) {
         dayStat.skipped++;
-        dayStat.skipReasons["xml_http_err"] =
-          (dayStat.skipReasons["xml_http_err"] ?? 0) + 1;
+        dayStat.skipReasons["txt_http_err"] =
+          (dayStat.skipReasons["txt_http_err"] ?? 0) + 1;
         continue;
       }
-      const xml = await xmlRes.text();
-      const accession = (row.filename.match(/([\d-]+)-index\.htm$/)?.[1]) ?? "";
+      const txt = await txtRes.text();
+      const xml = extractOwnershipXmlFromTxt(txt);
+      if (!xml) {
+        dayStat.skipped++;
+        dayStat.skipReasons["no_ownership_xml"] =
+          (dayStat.skipReasons["no_ownership_xml"] ?? 0) + 1;
+        continue;
+      }
+      const accession =
+        row.filename.match(/([\d-]+)\.txt$/)?.[1] ??
+        row.filename.match(/([\d-]+)-index\.htm$/)?.[1] ??
+        "";
       const parsed = parseForm4Xml(xml, accession, row.filingDate);
       if (!parsed) {
         dayStat.skipped++;
