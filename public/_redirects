@@ -44,3 +44,44 @@
 /investor/:slug/q/*  /investor/:slug/  301
 /sector/other        /sectors/         301
 /sector/other/       /sectors/         301
+
+# v2026-04-23 — short-form investor name redirects.
+# Retail investors Google "warren buffett 13F" but type "/investor/buffett" — the
+# canonical slug is full-name (per lib/managers.ts MANAGERS). Catch the natural
+# short forms with explicit 301s. SEO-safe: PageRank transfers; no
+# duplicate-content. Only the most-searched names — narrow scope per the v2026-
+# 04-20 lesson (catch-alls over-match and break static pages).
+/investor/buffett        /investor/warren-buffett/        301
+/investor/buffett/       /investor/warren-buffett/        301
+/investor/ackman         /investor/bill-ackman/           301
+/investor/ackman/        /investor/bill-ackman/           301
+/investor/icahn          /investor/carl-icahn/            301
+/investor/icahn/         /investor/carl-icahn/            301
+/investor/burry          /investor/michael-burry/         301
+/investor/burry/         /investor/michael-burry/         301
+/investor/klarman        /investor/seth-klarman/          301
+/investor/klarman/       /investor/seth-klarman/          301
+/investor/druckenmiller  /investor/stanley-druckenmiller/ 301
+/investor/druckenmiller/ /investor/stanley-druckenmiller/ 301
+/investor/einhorn        /investor/david-einhorn/         301
+/investor/einhorn/       /investor/david-einhorn/         301
+/investor/tepper         /investor/david-tepper/          301
+/investor/tepper/        /investor/david-tepper/          301
+/investor/greenblatt     /investor/joel-greenblatt/       301
+/investor/greenblatt/    /investor/joel-greenblatt/       301
+/investor/marks          /investor/howard-marks/          301
+/investor/marks/         /investor/howard-marks/          301
+/investor/ainslie        /investor/lee-ainslie/           301
+/investor/ainslie/       /investor/lee-ainslie/           301
+/investor/mandel         /investor/stephen-mandel/        301
+/investor/mandel/        /investor/stephen-mandel/        301
+/investor/coleman        /investor/chase-coleman/         301
+/investor/coleman/       /investor/chase-coleman/         301
+/investor/halvorsen      /investor/andreas-halvorsen/     301
+/investor/halvorsen/     /investor/andreas-halvorsen/     301
+/investor/akre           /investor/chuck-akre/            301
+/investor/akre/          /investor/chuck-akre/            301
+/investor/li             /investor/li-lu/                 301
+/investor/li/            /investor/li-lu/                 301
+/investor/pabrai         /investor/monish-pabrai/         301
+/investor/pabrai/        /investor/monish-pabrai/         301
