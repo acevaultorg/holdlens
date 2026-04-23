@@ -921,7 +921,7 @@ async function main(): Promise<void> {
   // ---------- /events/ family (Events Day-1 — 8-K material events) ----------
   // Five JSON endpoints over the curated 8-K dataset.
   const eventsMod = await import("../lib/events");
-  const allEvents = eventsMod.CURATED_EVENTS;
+  const allEvents = eventsMod.ALL_EVENTS;
   const eventItems = eventsMod.EVENT_ITEMS;
 
   // /events/live.json — last 100 events across all tickers (newest first)
@@ -1122,9 +1122,9 @@ async function main(): Promise<void> {
   fileCount += 1 /* insiders/index */ + 1 /* insiders/live */ + 1 /* insiders/cluster */;
   fileCount += tickFn().length /* insiders/company/[X] */ + offFn().length /* insiders/officer/[X] */;
   void insidersForCount;
-  // Events Day-1 — endpoint count
+  // Events — endpoint count (curated + EDGAR combined)
   const evMod = await import("../lib/events");
-  const evTickerCount = new Set(evMod.CURATED_EVENTS.map((e) => e.ticker)).size;
+  const evTickerCount = new Set(evMod.ALL_EVENTS.map((e) => e.ticker)).size;
   fileCount += 1 /* events/index */ + 1 /* events/live */ + evTickerCount /* events/company/[X] */;
   fileCount += evMod.EVENT_ITEMS.length /* events/type/[slug] */;
   console.log(`  Wrote ${fileCount} JSON files under public/api/v1/`);

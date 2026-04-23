@@ -334,15 +334,29 @@ export const CURATED_EVENTS: Form8KEvent[] = [
   },
 ];
 
-// --- Accessors ------------------------------------------------------------
+// --- EDGAR-sourced events (Day-2 ship) -----------------------------------
+//
+// EDGAR_EVENTS comes from scripts/fetch-edgar-8k.ts → data/edgar-8k.json.
+// On a fresh repo without an EDGAR run this resolves to []. The fetcher only
+// emits rows with TRACKED_ITEMS, so the shape is safe to cast.
+//
+// ALL_EVENTS = [...CURATED_EVENTS, ...EDGAR_EVENTS]. Curated rows come first
+// (preferred when same event is also in EDGAR). Downstream accessors filter the
+// combined set so per-ticker + per-item-type pages get both editorial curation
+// AND EDGAR firehose breadth.
+import edgar8kRaw from "../data/edgar-8k.json";
+export const EDGAR_EVENTS: Form8KEvent[] = (edgar8kRaw as Form8KEvent[]) ?? [];
+export const ALL_EVENTS: Form8KEvent[] = [...CURATED_EVENTS, ...EDGAR_EVENTS];
+
+// --- Accessors (read from combined set) -----------------------------------
 
 export function getRecentEvents(limit = 10): Form8KEvent[] {
-  return [...CURATED_EVENTS].sort((a, b) => (a.filedAt < b.filedAt ? 1 : -1)).slice(0, limit);
+  return [...ALL_EVENTS].sort((a, b) => (a.filedAt < b.filedAt ? 1 : -1)).slice(0, limit);
 }
 
 export function getEventsForTicker(ticker: string): Form8KEvent[] {
   const sym = ticker.toUpperCase();
-  return CURATED_EVENTS
+  return ALL_EVENTS
     .filter((e) => e.ticker.toUpperCase() === sym)
     .sort((a, b) => (a.filedAt < b.filedAt ? 1 : -1));
 }
@@ -350,14 +364,14 @@ export function getEventsForTicker(ticker: string): Form8KEvent[] {
 export function getEventsForItemSlug(slug: string): Form8KEvent[] {
   const meta = EVENT_ITEMS_BY_SLUG[slug];
   if (!meta) return [];
-  return CURATED_EVENTS
+  return ALL_EVENTS
     .filter((e) => e.itemCode === meta.code)
     .sort((a, b) => (a.filedAt < b.filedAt ? 1 : -1));
 }
 
 export function allEventTickers(): string[] {
   const set = new Set<string>();
-  for (const e of CURATED_EVENTS) set.add(e.ticker.toUpperCase());
+  for (const e of ALL_EVENTS) set.add(e.ticker.toUpperCase());
   return Array.from(set).sort();
 }
 
