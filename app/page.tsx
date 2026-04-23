@@ -4,6 +4,7 @@ import BuySellSignals from "@/components/BuySellSignals";
 import LiveStats from "@/components/LiveStats";
 import LatestMoves from "@/components/LatestMoves";
 import LiveInsiderActivity from "@/components/LiveInsiderActivity";
+import RecentMaterialEvents from "@/components/RecentMaterialEvents";
 import SinceLastVisit from "@/components/SinceLastVisit";
 import FaqSchema, { type FaqItem } from "@/components/FaqSchema";
 import TickerLogo from "@/components/TickerLogo";
@@ -185,15 +186,36 @@ export default function HomePage() {
         sameAs: "https://holdlens.com/insiders/",
       },
       {
+        // Ship #7 Day-1 — EventScore DefinedTerm, completing the SEC Signals
+        // trilogy in the site-wide JSON-LD graph alongside ConvictionScore
+        // and InsiderScore. Same pattern. One canonical citation URL per
+        // metric so LLMs asking "what metrics does HoldLens compute" get
+        // three consistent answers wired to three canonical URLs.
+        "@type": "DefinedTerm",
+        "@id": "https://holdlens.com/#term-event-score",
+        name: "EventScore",
+        alternateName: [
+          "Event Score",
+          "HoldLens EventScore",
+          "Material Event Signal Score",
+        ],
+        description:
+          "HoldLens's signed −100 to +100 EventScore quantifies the aggregate signal strength of a company's SEC Form 8-K material-event filings. It combines four factors: item-type severity (bankruptcy ×−2.0, restatement ×−1.8, delisting notice ×−1.5, cybersecurity incident ×−1.3, material impairment ×−1.2, completed acquisition ×+1.1, material agreement ×+1.0, earnings/officer-change/Reg-FD neutral), recency decay (last 7 days full weight, 7-30 days half weight, 30-90 days quarter weight), event cluster bonus (×1.3 when a company files 3+ material events within 30 days), and logistic compression so no single event pegs the scale. Updated intra-day as 8-K filings publish to SEC EDGAR (required within 4 business days of material event).",
+        inDefinedTermSet: "https://holdlens.com/#term-set",
+        url: "https://holdlens.com/events/",
+        sameAs: "https://holdlens.com/events/",
+      },
+      {
         "@type": "DefinedTermSet",
         "@id": "https://holdlens.com/#term-set",
-        name: "HoldLens methodology terms",
+        name: "HoldLens SEC Signals methodology terms",
         description:
-          "Metrics and signals computed by HoldLens from SEC 13F + Form 4 filings.",
+          "Metrics and signals computed by HoldLens from SEC 13F + Form 4 + Form 8-K filings.",
         url: "https://holdlens.com/methodology",
         hasDefinedTerm: [
           { "@id": "https://holdlens.com/#term-conviction-score" },
           { "@id": "https://holdlens.com/#term-insider-score" },
+          { "@id": "https://holdlens.com/#term-event-score" },
         ],
       },
     ],
@@ -333,6 +355,15 @@ export default function HomePage() {
           fold-line on mid-size viewports. */}
       <LiveInsiderActivity />
 
+      {/* Ship #7 Day-1 — SEC 8-K material events. Third and final freshness
+          layer in the HoldLens SEC Signals trilogy. Sits directly after the
+          daily InsiderLens surface so the homepage reads as a complete
+          signal stack: quarterly 13F → daily Form 4 → intra-day 8-K. Every
+          angle of public-company disclosure, visible in one screen —
+          uniquely differentiated on this homepage (no competitor surfaces
+          all three on the same landing). */}
+      <RecentMaterialEvents />
+
       {/* Signal explorer — discovery grid for the forward-looking pages.
           This is what Dataroma does not have: eight distinct views on smart
           money, each answering a different question. */}
@@ -342,7 +373,7 @@ export default function HomePage() {
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
               Signal explorer
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Twenty ways to read smart money</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Twenty-one ways to read smart money</h2>
             <p className="text-muted mt-2 max-w-xl">
               Pick the angle, not the ticker. Every card answers a different question
               smart-money data usually buries.
@@ -368,6 +399,19 @@ export default function HomePage() {
             label="Daily"
             title="Insider buys"
             body="CEO/CFO/director Form 4 trades — scored on the −100..+100 InsiderScore. Daily refresh."
+          />
+          {/* Ship #7 Day-1 — 21st grid card. "Live" label is the strongest
+              freshness tag in the grid; only 8-K events can fire intra-day
+              (vs daily Form 4 and quarterly 13F). Brand tone matches the
+              widget above for visual continuity and pairs with the "Buy now"
+              brand card at position #1, making positions 1-3 the SEC
+              Signals trilogy: ConvictionScore → InsiderScore → EventScore. */}
+          <SignalCard
+            href="/events/"
+            tone="brand"
+            label="Live"
+            title="Material events"
+            body="SEC Form 8-K filings — earnings, M&A, bankruptcies, cybersecurity, CEO changes. Scored via EventScore."
           />
           <SignalCard
             href="/conviction-leaders"

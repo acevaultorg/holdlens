@@ -327,3 +327,73 @@ Three prominence surfaces landing this session:
 - Month 6: TollBit application eligibility check (if total bot-crawl ≥5k/day across fleet, apply)
 
 **Pickup instruction for next session:** operator types `/acepilot auto Day 2: Form 4 EDGAR scraper + 10k seed + JSON API` — brain reads TASKS.md InsiderLens-Day-2 block and executes the scraper build.
+
+---
+
+## 2026-04-22 — Events Tracker (Ship #7): extend HoldLens /events/ with SEC 8-K material events (Day-1 foundation)
+
+**Operator directive 2026-04-22:** "🥇 My explicit pick for your next build: SEC 8-K Material Events Tracker… extend HoldLens → holdlens.com/events/. Same 2-day playbook. Shares parser, shares domain authority, shares Cloudflare zone… this has to be studied and executed in the best way."
+
+**Research findings (fleet audit):**
+- Ship #7 is explicit pending entry in HOLDLENS_MASTER_ROADMAP.md (line 23): `| 7 | 2 | 8-K material events tracker | /events/ | pending | SEC 8-K item-number categorization. New pipeline. Projected APS 36-42.`
+- Zero existing code to overwrite. 8-K references exist only in `lib/buybacks.ts` (as metadata — "authorization announced via 8-K") + 14 learn-article mentions. No `lib/events.ts`, no `/events/` route, no 8-K types, no EDGAR 8-K parser.
+- InsiderLens (Ship #2) pattern is the proven playbook — mirror it for 8-K exactly: types + score formula + 3 programmatic routes + homepage widget + DefinedTerm + llms.txt + sitemap + deploy.
+
+**Strategic framing — "SEC Signals trilogy":**
+- HoldLens is no longer "13F tracker with insider side-product." It is the unified **SEC Signals platform**:
+  1. **ConvictionScore** (13F) — what superinvestors did last quarter
+  2. **InsiderScore** (Form 4) — what corporate officers are doing daily
+  3. **EventScore** (8-K) — what companies themselves are announcing, minute-to-minute
+- Three coupled metrics, three DefinedTerms, three freshness cadences (quarterly / daily / intra-day). LLM answers about "what's happening at [company]" cite all three.
+- TollBit / Cloudflare PPC / AdSense revenue compounds across the trilogy — one bot-crawl pulls three entity angles, three citation surfaces, three per-ticker pages. Fleet monetization depth scales multiplicatively, not additively.
+
+**Decision 1 — EXTEND over standalone.** Same logic as InsiderLens: `holdlens.com/events/` over `filinglens.com`/`eventlens.com`/`8kwatch.com`:
+- Shared parser infrastructure (extends `scripts/fetch-edgar-13f.ts` patterns)
+- Shared DA + LLM citation pools
+- Shared monetization (one AdSense account, one Cloudflare PPC zone, one TollBit contract at Month 6)
+- Shared audience (13F + Form 4 + 8-K = same investor persona)
+- Saves ~1 day of infra setup per the InsiderLens Day-1 precedent
+
+**Decision 2 — UX prominence (10/10 target — three-slot visible trilogy):**
+
+1. **Third homepage widget** — new `<RecentMaterialEvents />` server component, placed directly after `<LiveInsiderActivity />`. The homepage now has three freshness layers stacked visibly:
+   - `<LatestMoves />` — quarterly 13F headlines (existing)
+   - `<LiveInsiderActivity />` — daily Form 4 insider trades (InsiderLens Day-1)
+   - `<RecentMaterialEvents />` — latest 8-K material events (this ship)
+   A visitor sees the complete SEC-signals trilogy above the signal-explorer grid. Unprecedented for HoldLens — no single-page competitor (Dataroma, Whalewisdom, etc.) surfaces 13F + Form 4 + 8-K on one screen.
+
+2. **21st SignalCard** — signal explorer grid (currently "Twenty ways to read smart money" after InsiderLens Day-1) gets a 21st card "Material events · LIVE" with `tone="brand"` + `label="Live"`. Grid header updated to "Twenty-one ways to read smart money." The `LIVE` label is the strongest freshness signal in the grid — only 8-K events fire intra-day (vs daily Form 4 and quarterly 13F).
+
+3. **Nav** — add `/events/` to DesktopNav "Stocks" group OR create a new top-level "Filings" group combining `/insiders/` + `/events/`. Decision: add as 4th subnav item under existing "Insiders" group renamed to "Insiders & Events" — the trilogy lives under one nav group, minimizing structural churn.
+
+**Decision 3 — bot-readiness (10/10 target):**
+
+1. **DefinedTerm: EventScore** added to homepage site-wide JSON-LD graph alongside ConvictionScore + InsiderScore. Three terms in one graph = canonical citation surface for LLMs asking "what metrics does HoldLens compute."
+2. **EventScore formula module** at `/lib/event-score.ts` — deterministic −100..+100 signed score per 8-K filing + per-ticker aggregate. Based on item-type severity, market-cap weight, recency decay, and event-cluster bonus (multiple material events at same company within 30 days).
+3. **8-K item-number taxonomy** canonically in `/lib/events.ts`. Each of the 9 sections (1.xx through 9.xx) gets TypeScript enum + human-readable label + signal-direction hint. This is the "data source schema" for all downstream pages.
+4. **llms.txt upgrade** — new section "SEC Material Events surface" declaring `/events/`, `/events/live/`, `/events/company/[ticker]/`, `/events/type/[item]/` URL patterns. Advertises intra-day refresh cadence. Extends core-pages section to position HoldLens as "unified SEC signals platform" (trilogy framing).
+5. **Four scaffolded routes** (programmatic, reads curated seed today, swaps to EDGAR scraper Day 2):
+   - `/events/` — hub page with EventScore DefinedTerm + item-type taxonomy reference
+   - `/events/live/` — chronological firehose, all filings newest first
+   - `/events/company/[ticker]/` — per-company 8-K timeline + aggregate EventScore + per-item-type breakdown
+   - `/events/type/[item-slug]/` — per-item-type pages (/cybersecurity/, /bankruptcy/, /ma/, /ceo-change/, /impairment/, /restatement/) — high-intent SEO/GEO surfaces for "is [company] under SEC investigation" / "what companies had cybersecurity incidents 2025" style queries
+6. **Item-type DefinedTerm expansion (Day 2)** — additional DefinedTerms for the 8 tracked item types (Cybersecurity Incident, Bankruptcy, Material Agreement, Material Acquisition, Earnings Result, Material Impairment, Financial Restatement, Officer Change). Defer until Day-2 scraper seed provides real per-type pages with substance.
+
+**Day-1 data approach — honest curated seed:**
+
+Following AP-3 ("every data row must cite a source") + AP-10 ("content generation over dataset curation"): Day-1 ships a small curated seed of 6-8 well-documented 2024-2026 8-K filings where each row is citable to a specific SEC accession number + filing date. Each row annotated `source: "curated pre-scraper"` + `form8kAccessionNumber` preserved so the honesty trail is baked in. Day-2 scraper REPLACES the curated seed with live EDGAR data; curated rows kept as `CURATED_EVENTS` const for hand-verified reference events.
+
+**Deferred to Day 2 (TASKS.md next-session, ~4h):**
+- EDGAR 8-K full-text search endpoint integration (`scripts/fetch-edgar-8k.ts` — SEC's full-text 8-K search + XML item-number extraction)
+- 10-day 8-K backfill seed (~5000 filings across ~500 tickers)
+- JSON API endpoints per /events/ route
+- Event classification layer (ML-free NLP: regex + keyword matching for cybersecurity, bankruptcy, etc.)
+- Email alerts (Pro tier — daily digest of high-signal item types)
+- OG image templates for per-event + per-type pages
+
+**Calibration triggers:**
+- Week 4 post-ship: GSC impressions on `/events/type/cybersecurity/` + `/events/type/bankruptcy/` (high-intent niche queries). Target ≥500 impressions/wk combined.
+- Week 8 post-ship: Cloudflare bot crawls to `/events/*` (target ≥5× pre-ship baseline — 8-K volume exceeds 13F + Form 4 combined).
+- Month 6 post-ship: TollBit eligibility re-check with full trilogy deployed (8-K + Form 4 + 13F should push fleet crawl density materially past the TollBit application threshold).
+
+**Pickup instruction for next session:** operator types `/acepilot auto Day 2: 8-K EDGAR scraper + backfill + API + type-specific pages` — brain reads TASKS.md Events-Day-2 block and executes the scraper build.
