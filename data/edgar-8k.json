@@ -1,0 +1,112 @@
+[
+  {
+    "ticker": "_CIK_0000794619",
+    "companyName": "AMERICAN WOODMARK CORP",
+    "itemCode": "8.01",
+    "eventDate": "2026-04-17",
+    "filedAt": "2026-04-22",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000794619-26-000011",
+    "issuerCik": "0000794619"
+  },
+  {
+    "ticker": "_CIK_0001018979",
+    "companyName": "AMERISAFE INC",
+    "itemCode": "2.02",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001193125-26-168712",
+    "issuerCik": "0001018979"
+  },
+  {
+    "ticker": "_CIK_0000318154",
+    "companyName": "AMGEN INC",
+    "itemCode": "5.02",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Officer / director change",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000318154-26-000048",
+    "issuerCik": "0000318154"
+  },
+  {
+    "ticker": "_CIK_0000890564",
+    "companyName": "ASGN Inc",
+    "itemCode": "2.02",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000890564-26-000020",
+    "issuerCik": "0000890564"
+  },
+  {
+    "ticker": "_CIK_0000732717",
+    "companyName": "AT&T INC.",
+    "itemCode": "8.01",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000732717-26-000201",
+    "issuerCik": "0000732717"
+  },
+  {
+    "ticker": "_CIK_0000732717",
+    "companyName": "AT&T INC.",
+    "itemCode": "2.02",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000732717-26-000203",
+    "issuerCik": "0000732717"
+  },
+  {
+    "ticker": "_CIK_0000008947",
+    "companyName": "AZZ INC",
+    "itemCode": "2.02",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000008947-26-000069",
+    "issuerCik": "0000008947"
+  },
+  {
+    "ticker": "_CIK_0001635077",
+    "companyName": "Aclarion, Inc.",
+    "itemCode": "8.01",
+    "eventDate": "2026-04-21",
+    "filedAt": "2026-04-22",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001683168-26-003124",
+    "issuerCik": "0001635077"
+  },
+  {
+    "ticker": "_CIK_0001860657",
+    "companyName": "Allarity Therapeutics, Inc.",
+    "itemCode": "8.01",
+    "eventDate": "2026-04-21",
+    "filedAt": "2026-04-22",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001213900-26-046411",
+    "issuerCik": "0001860657"
+  },
+  {
+    "ticker": "_CIK_0001720025",
+    "companyName": "Allegro Merger Corp.",
+    "itemCode": "1.01",
+    "eventDate": "2026-01-16",
+    "filedAt": "2026-04-22",
+    "headline": "Material agreement entered",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001213900-26-046657",
+    "issuerCik": "0001720025"
+  }
+]
