@@ -918,6 +918,94 @@ async function main(): Promise<void> {
     }),
   });
 
+  // ---------- /events/ family (Events Day-1 — 8-K material events) ----------
+  // Five JSON endpoints over the curated 8-K dataset.
+  const eventsMod = await import("../lib/events");
+  const allEvents = eventsMod.CURATED_EVENTS;
+  const eventItems = eventsMod.EVENT_ITEMS;
+
+  // /events/live.json — last 100 events across all tickers (newest first)
+  await writeJson("events/live.json", {
+    data: [...allEvents]
+      .sort((a, b) => (a.filedAt < b.filedAt ? 1 : -1))
+      .slice(0, 100),
+    meta: meta({
+      count: Math.min(100, allEvents.length),
+      total_events: allEvents.length,
+      description:
+        "Last 100 SEC Form 8-K material events across all tracked tickers, newest first. Curated v0.1 seed; EDGAR scraper backfill pending.",
+    }),
+  });
+
+  // /events/company/{ticker}.json — per-ticker event timeline
+  const eventTickers = Array.from(new Set(allEvents.map((e) => e.ticker))).sort();
+  for (const ticker of eventTickers) {
+    const tEvents = allEvents
+      .filter((e) => e.ticker === ticker)
+      .sort((a, b) => (a.filedAt < b.filedAt ? 1 : -1));
+    await writeJson(`events/company/${ticker}.json`, {
+      data: {
+        ticker,
+        event_count: tEvents.length,
+        most_recent: tEvents[0]?.filedAt ?? null,
+        events: tEvents,
+      },
+      meta: meta({
+        description: `All known SEC Form 8-K material events for ${ticker}, newest first.`,
+      }),
+    });
+  }
+
+  // /events/type/{slug}.json — per-item-type event aggregations
+  for (const item of eventItems) {
+    const slug = item.slug;
+    const typeEvents = allEvents
+      .filter((e) => e.itemCode === item.code)
+      .sort((a, b) => (a.filedAt < b.filedAt ? 1 : -1));
+    await writeJson(`events/type/${slug}.json`, {
+      data: {
+        item_code: item.code,
+        item_label: item.label,
+        item_group: item.group,
+        signal_direction: item.signalDirection,
+        event_count: typeEvents.length,
+        events: typeEvents,
+      },
+      meta: meta({
+        description: `All SEC Form 8-K Item ${item.code} (${item.label}) events across tracked tickers.`,
+      }),
+    });
+  }
+
+  // /events/index.json — sub-catalog of the events endpoints
+  await writeJson("events/index.json", {
+    data: {
+      endpoints: [
+        { path: "/events/live.json", desc: "Last 100 SEC Form 8-K events across all tracked tickers" },
+        {
+          path: "/events/company/{ticker}.json",
+          desc: "Per-ticker event timeline + count",
+        },
+        {
+          path: "/events/type/{item-slug}.json",
+          desc: "Per-item-type events (cybersecurity, bankruptcy, m-and-a, etc.)",
+        },
+      ],
+      ticker_count: eventTickers.length,
+      item_type_count: eventItems.length,
+      total_events: allEvents.length,
+      tracked_item_codes: eventItems.map((i) => ({
+        code: i.code,
+        slug: i.slug,
+        label: i.label,
+        group: i.group,
+      })),
+    },
+    meta: meta({
+      description: "Sub-catalog of /api/v1/events/* endpoints (SEC Form 8-K material events).",
+    }),
+  });
+
   // ---------- /index.json ----------
   const catalog = {
     name: "HoldLens Public JSON API",
@@ -1012,6 +1100,10 @@ async function main(): Promise<void> {
       { path: "/insiders/company/{ticker}.json", desc: "Per-ticker insider-trade aggregate + transaction list" },
       { path: "/insiders/officer/{slug}.json", desc: "Per-officer transaction history + InsiderScore" },
       { path: "/insiders/cluster.json", desc: "Cluster-buy detection: ≥3 same-direction insiders within 30 days at same company" },
+      { path: "/events/index.json", desc: "Sub-catalog: /events/* family (SEC Form 8-K material events)" },
+      { path: "/events/live.json", desc: "Last 100 SEC Form 8-K material events across all tracked tickers" },
+      { path: "/events/company/{ticker}.json", desc: "Per-ticker 8-K event timeline + EventScore-rankable list" },
+      { path: "/events/type/{slug}.json", desc: "Per-item-type 8-K events (cybersecurity, bankruptcy, m-and-a, restatement, etc.)" },
     ],
     meta: meta(),
   };
@@ -1030,6 +1122,11 @@ async function main(): Promise<void> {
   fileCount += 1 /* insiders/index */ + 1 /* insiders/live */ + 1 /* insiders/cluster */;
   fileCount += tickFn().length /* insiders/company/[X] */ + offFn().length /* insiders/officer/[X] */;
   void insidersForCount;
+  // Events Day-1 — endpoint count
+  const evMod = await import("../lib/events");
+  const evTickerCount = new Set(evMod.CURATED_EVENTS.map((e) => e.ticker)).size;
+  fileCount += 1 /* events/index */ + 1 /* events/live */ + evTickerCount /* events/company/[X] */;
+  fileCount += evMod.EVENT_ITEMS.length /* events/type/[slug] */;
   console.log(`  Wrote ${fileCount} JSON files under public/api/v1/`);
 }
 
