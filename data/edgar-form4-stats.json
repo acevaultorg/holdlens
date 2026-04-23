@@ -1,5 +1,16 @@
 {
-  "generatedAt": "2026-04-23T22:31:03.800Z",
-  "totalRows": 13,
-  "days": []
+  "generatedAt": "2026-04-23T23:08:23.685Z",
+  "totalRows": 3001,
+  "days": [
+    {
+      "date": "2026-04-20",
+      "formsListed": 3577,
+      "form4sFound": 701,
+      "parsed": 1696,
+      "skipped": 4,
+      "skipReasons": {
+        "parse_failed": 4
+      }
+    }
+  ]
 }
