@@ -789,6 +789,135 @@ async function main(): Promise<void> {
     meta: meta({ count: QUARTERS.length }),
   });
 
+  // ---------- /insiders/ family (v0.2 — Day-2 ship) ----------
+  // Five JSON endpoints over the combined CURATED + EDGAR Form 4 data.
+  // Imported lazily so a project without the EDGAR file still builds.
+  const { INSIDER_TX, getRecentInsiderTx, allInsiderTickers, allOfficerEntries } =
+    await import("../lib/insiders");
+
+  // /insiders/live.json — last 100 transactions across all tickers
+  await writeJson("insiders/live.json", {
+    data: getRecentInsiderTx(100),
+    meta: meta({
+      count: Math.min(100, INSIDER_TX.length),
+      total_transactions: INSIDER_TX.length,
+      description:
+        "Last 100 SEC Form 4 transactions across all tracked tickers. Combined source: editorial-curated notable trades + EDGAR daily-index scrape.",
+    }),
+  });
+
+  // /insiders/company/{ticker}.json — per-ticker aggregate + transaction list
+  const insiderTickers = allInsiderTickers();
+  for (const ticker of insiderTickers) {
+    const txs = INSIDER_TX.filter((t) => t.ticker === ticker).sort((a, b) =>
+      a.date < b.date ? 1 : -1
+    );
+    const buys = txs.filter((t) => t.action === "buy");
+    const sells = txs.filter((t) => t.action === "sell");
+    const buyValue = buys.reduce((s, t) => s + t.value, 0);
+    const sellValue = sells.reduce((s, t) => s + t.value, 0);
+    await writeJson(`insiders/company/${ticker}.json`, {
+      data: {
+        ticker,
+        transaction_count: txs.length,
+        buy_count: buys.length,
+        sell_count: sells.length,
+        buy_value: buyValue,
+        sell_value: sellValue,
+        net_value: buyValue - sellValue,
+        most_recent_date: txs[0]?.date ?? null,
+        transactions: txs,
+      },
+      meta: meta({
+        description: `All known SEC Form 4 transactions for ${ticker}, newest first.`,
+      }),
+    });
+  }
+
+  // /insiders/officer/{slug}.json — per-officer transaction history + InsiderScore
+  const officerEntries = allOfficerEntries();
+  for (const officer of officerEntries) {
+    await writeJson(`insiders/officer/${officer.slug}.json`, {
+      data: officer,
+      meta: meta({
+        description: `Per-officer SEC Form 4 transaction history (${officer.transactions.length} trades).`,
+      }),
+    });
+  }
+
+  // /insiders/cluster.json — companies with ≥3 same-direction insider trades within 30 days
+  // (cluster-buy detection is the highest-signal pattern in insider data)
+  type ClusterRow = {
+    ticker: string;
+    direction: "buy" | "sell";
+    officer_count: number;
+    total_value: number;
+    most_recent: string;
+    officers: string[];
+  };
+  const clustersByKey = new Map<string, ClusterRow>();
+  for (const ticker of insiderTickers) {
+    const txs = INSIDER_TX.filter((t) => t.ticker === ticker);
+    for (const dir of ["buy", "sell"] as const) {
+      const dirTxs = txs.filter((t) => t.action === dir);
+      if (dirTxs.length < 3) continue;
+      // Bucket by 30-day rolling window — simplified: pick most recent date,
+      // include trades within 30d of it.
+      dirTxs.sort((a, b) => (a.date < b.date ? 1 : -1));
+      const anchor = new Date(dirTxs[0].date);
+      const cutoff = new Date(anchor.getTime() - 30 * 86_400_000);
+      const recent = dirTxs.filter((t) => new Date(t.date) >= cutoff);
+      const uniqueOfficers = Array.from(new Set(recent.map((t) => t.insiderName)));
+      if (uniqueOfficers.length >= 3) {
+        clustersByKey.set(`${ticker}:${dir}`, {
+          ticker,
+          direction: dir,
+          officer_count: uniqueOfficers.length,
+          total_value: recent.reduce((s, t) => s + t.value, 0),
+          most_recent: dirTxs[0].date,
+          officers: uniqueOfficers,
+        });
+      }
+    }
+  }
+  await writeJson("insiders/cluster.json", {
+    data: [...clustersByKey.values()].sort(
+      (a, b) => b.officer_count - a.officer_count || b.total_value - a.total_value
+    ),
+    meta: meta({
+      count: clustersByKey.size,
+      description:
+        "Cluster trades: ≥3 unique insiders trading the same direction within 30 days at the same company. Highest-signal pattern in Form 4 data.",
+    }),
+  });
+
+  // /insiders/index.json — sub-catalog of the insider endpoints
+  await writeJson("insiders/index.json", {
+    data: {
+      endpoints: [
+        { path: "/insiders/live.json", desc: "Last 100 transactions across all tickers" },
+        {
+          path: "/insiders/company/{ticker}.json",
+          desc: "Per-ticker aggregate + full transaction list",
+        },
+        {
+          path: "/insiders/officer/{slug}.json",
+          desc: "Per-officer transaction history + InsiderScore",
+        },
+        {
+          path: "/insiders/cluster.json",
+          desc: "Companies with ≥3 same-direction insider trades within 30 days",
+        },
+      ],
+      ticker_count: insiderTickers.length,
+      officer_count: officerEntries.length,
+      total_transactions: INSIDER_TX.length,
+    },
+    meta: meta({
+      description: "Sub-catalog of /api/v1/insiders/* endpoints.",
+    }),
+  });
+
   // ---------- /index.json ----------
   const catalog = {
     name: "HoldLens Public JSON API",
@@ -878,6 +1007,11 @@ async function main(): Promise<void> {
       { path: "/value.json", desc: "Top 50 smart-money buy signals for value overlays" },
       { path: "/changelog.json", desc: `Top 200 moves filed in ${LATEST_QUARTER} ranked by portfolio impact — the quarter's biggest changes` },
       { path: "/quarters.json", desc: "Available 13F quarters" },
+      { path: "/insiders/index.json", desc: "Sub-catalog: /insiders/* family (Form 4 insider trading)" },
+      { path: "/insiders/live.json", desc: "Last 100 SEC Form 4 transactions across all tickers" },
+      { path: "/insiders/company/{ticker}.json", desc: "Per-ticker insider-trade aggregate + transaction list" },
+      { path: "/insiders/officer/{slug}.json", desc: "Per-officer transaction history + InsiderScore" },
+      { path: "/insiders/cluster.json", desc: "Cluster-buy detection: ≥3 same-direction insiders within 30 days at same company" },
     ],
     meta: meta(),
   };
@@ -890,6 +1024,12 @@ async function main(): Promise<void> {
   fileCount += 1 /* alerts */ + 1 /* consensus */ + 1 /* crowded */ + 1 /* contrarian */;
   fileCount += 1 /* concentration */ + 1 /* exits */ + 1 /* overlap */;
   fileCount += 1 /* best-now */ + 1 /* value */ + 1 /* changelog */ + 1 /* quarters */;
+  // Insiders v0.2 Day-2 ship — endpoint count read after generation
+  const { INSIDER_TX: insidersForCount, allInsiderTickers: tickFn, allOfficerEntries: offFn } =
+    await import("../lib/insiders");
+  fileCount += 1 /* insiders/index */ + 1 /* insiders/live */ + 1 /* insiders/cluster */;
+  fileCount += tickFn().length /* insiders/company/[X] */ + offFn().length /* insiders/officer/[X] */;
+  void insidersForCount;
   console.log(`  Wrote ${fileCount} JSON files under public/api/v1/`);
 }
 
