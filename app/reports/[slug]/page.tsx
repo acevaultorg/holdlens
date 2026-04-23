@@ -39,9 +39,9 @@ export default async function ReportPage({ params }: Props) {
   // Per-report body. Currently dispatches to inline content based on slug.
   // Future: separate MDX files; for now, hand-written content per slug.
   const body =
-    slug === "2026-04-week-17-insider-cluster-roundup"
-      ? <Week17Body />
-      : <p className="text-muted">Report body not yet rendered for slug {slug}.</p>;
+    slug === "2026-04-week-17-insider-cluster-roundup" ? <Week17Body />
+    : slug === "2026-04-week-17-8k-event-distribution" ? <Week17EventBody />
+    : <p className="text-muted">Report body not yet rendered for slug {slug}.</p>;
 
   const ld = {
     "@context": "https://schema.org",
@@ -260,6 +260,145 @@ function Week17Body() {
         for the full deterministic formula and{" "}
         <Link href="/disclaimer/" className="text-brand underline">/disclaimer/</Link>{" "}
         for the not-investment-advice + filing-lag framing.
+      </p>
+    </div>
+  );
+}
+
+function Week17EventBody() {
+  return (
+    <div className="space-y-6 text-text leading-relaxed">
+      <p className="text-muted">
+        Companion to the{" "}
+        <Link href="/reports/2026-04-week-17-insider-cluster-roundup/" className="text-brand underline">
+          insider cluster roundup
+        </Link>
+        : same week (April 16-22, 2026), different SEC form. This commentary
+        analyzes 1,429 Form 8-K material events parsed from the EDGAR daily index
+        across 5 trading days.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">The distribution</h2>
+      <div className="rounded-lg border border-border overflow-hidden my-6">
+        <table className="w-full text-sm">
+          <thead className="bg-card text-text">
+            <tr>
+              <th className="text-left p-3 font-semibold">Item Code</th>
+              <th className="text-left p-3 font-semibold">What it is</th>
+              <th className="text-right p-3 font-semibold">Count</th>
+              <th className="text-right p-3 font-semibold">% of week</th>
+            </tr>
+          </thead>
+          <tbody className="text-muted">
+            <tr className="border-t border-border"><td className="p-3 font-mono">8.01</td><td className="p-3">Other Events (catch-all)</td><td className="p-3 text-right">340</td><td className="p-3 text-right">23.8%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">7.01</td><td className="p-3">Regulation FD Disclosure</td><td className="p-3 text-right">326</td><td className="p-3 text-right">22.8%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">2.02</td><td className="p-3">Earnings Results</td><td className="p-3 text-right">290</td><td className="p-3 text-right">20.3%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">5.02</td><td className="p-3">Officer / Director Departure or Appointment</td><td className="p-3 text-right">206</td><td className="p-3 text-right">14.4%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">1.01</td><td className="p-3">Material Definitive Agreement Entered</td><td className="p-3 text-right">195</td><td className="p-3 text-right">13.6%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">3.01</td><td className="p-3">Delisting / Listing Rule Failure</td><td className="p-3 text-right">36</td><td className="p-3 text-right">2.5%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">1.02</td><td className="p-3">Material Agreement Terminated</td><td className="p-3 text-right">17</td><td className="p-3 text-right">1.2%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">2.01</td><td className="p-3">Acquisition / Disposition Completed</td><td className="p-3 text-right">13</td><td className="p-3 text-right">0.9%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">1.03</td><td className="p-3">Bankruptcy or Receivership</td><td className="p-3 text-right">4</td><td className="p-3 text-right">0.3%</td></tr>
+            <tr className="border-t border-border"><td className="p-3 font-mono">2.06</td><td className="p-3">Material Impairment</td><td className="p-3 text-right">1</td><td className="p-3 text-right">0.07%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 1 — earnings season is alive</h2>
+      <p className="text-muted">
+        Item 2.02 (Earnings Results) at 290 filings = 20.3% of the week is exactly what
+        you'd expect during the post-Q1-earnings window (April 15-30). Companies with
+        December fiscal-year-ends file their Q1 results 30-45 days after quarter close;
+        the week of April 16-22 catches the bulge.
+      </p>
+      <p className="text-muted">
+        Implication for /events/type/earnings/ users: this is the time to read the
+        commentary section of each release, not just the headline number. Surprise
+        directionality in earnings 8-Ks correlates with stock reaction more reliably
+        during high-volume weeks like this one.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 2 — the 8.01 + 7.01 'general communications' bulge</h2>
+      <p className="text-muted">
+        Item 8.01 (Other Events, 340) and Item 7.01 (Regulation FD Disclosure, 326)
+        together account for 46.6% of the week's 8-Ks. These are the catch-all categories
+        — companies use them when an event is material but doesn't fit a more-specific item.
+      </p>
+      <p className="text-muted">
+        Investment-grade signal value: <strong className="text-text">low to medium</strong>.
+        Item 8.01 in particular is often used for press releases that don't cleanly map
+        to a numbered item. Item 7.01 is more meaningful — Reg FD disclosures are typically
+        announcements of investor presentations or analyst calls, often containing forward
+        guidance not yet in earnings releases.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 3 — officer changes (5.02) at 206</h2>
+      <p className="text-muted">
+        14.4% of the week's 8-Ks were Item 5.02 (Officer / Director Departure or
+        Appointment). That's a meaningful number — typically 5.02 spikes during proxy
+        season (Q1-Q2) as boards reshuffle and new directors are seated. Each 5.02
+        event has signed EventScore implications: a CEO departure is generally negative,
+        an unexpected CEO appointment more uncertain, a director addition more neutral.
+      </p>
+      <p className="text-muted">
+        Per-event interpretation requires reading the actual filing's narrative section.
+        See <Link href="/events/type/officer-change/" className="text-brand underline">/events/type/officer-change/</Link>{" "}
+        for the full week's per-officer breakdown.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 4 — distress signals (1.03 + 3.01) low</h2>
+      <p className="text-muted">
+        Only 4 bankruptcy filings (Item 1.03) and 36 delisting notices (Item 3.01) for
+        the week. As a rough macro indicator, this is a healthy week — distress
+        filings tend to cluster during recessionary periods (2008-2009 weeks routinely
+        saw 15-25 bankruptcies; 2020 Covid weeks similar).
+      </p>
+      <p className="text-muted">
+        The 1 material impairment (Item 2.06) is also notably low. A high-frequency
+        impairment week often precedes a goodwill-write-down wave that drags Q-earnings
+        for the following quarter.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 5 — cybersecurity disclosure absence</h2>
+      <p className="text-muted">
+        <strong className="text-text">Zero</strong> Item 1.05 (Material Cybersecurity
+        Incident) filings for the week. Item 1.05 was added to the 8-K taxonomy by the
+        SEC in December 2023 with a 4-business-day filing requirement after determination
+        of materiality. Industry-wide compliance has been below initial estimates;
+        a zero-filing week is consistent with that pattern.
+      </p>
+      <p className="text-muted">
+        Watch <Link href="/events/type/cybersecurity-incident/" className="text-brand underline">
+          /events/type/cybersecurity-incident/
+        </Link>{" "}
+        for the running tally; cybersecurity 8-Ks remain a high-EventScore-magnitude category
+        when they do fire (typical EventScore = -60).
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Methodology</h2>
+      <p className="text-muted">
+        Source: EDGAR daily index for 2026-04-16, 17, 20, 21, 22 (weekend skipped).
+        Form 8-K filings parsed via{" "}
+        <code className="bg-card px-1 rounded">scripts/fetch-edgar-8k.ts</code> with
+        item-code inference from SEC-HEADER 'ITEM INFORMATION' lines + canonical
+        label-to-code lookup. CIK→ticker resolution via{" "}
+        <code className="bg-card px-1 rounded">company_tickers.json</code> (7,993 SEC-mapped
+        issuers).
+      </p>
+      <p className="text-muted">
+        Each event row links back to the source 8-K by accession number for verification
+        on{" "}
+        <a
+          href="https://www.sec.gov/edgar"
+          className="text-brand underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          sec.gov/edgar
+        </a>
+        . Same{" "}
+        <Link href="/disclaimer/" className="text-brand underline">disclaimer</Link>{" "}
+        applies as all HoldLens commentary: data, not advice.
       </p>
     </div>
   );

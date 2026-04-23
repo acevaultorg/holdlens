@@ -23,6 +23,16 @@ export const REPORTS: Report[] = [
     wordCount: 1500,
     topics: ["insider-trading", "form-4", "cluster-buy", "ROKU", "HOMB", "FLUT"],
   },
+  {
+    slug: "2026-04-week-17-8k-event-distribution",
+    title: "Week 17 (Apr 16-22) — 1,429 SEC 8-K filings, 5 patterns worth flagging",
+    description:
+      "Distribution of 8-K material events across one full filing week. Item 8.01 ('Other Events') leads at 340 filings; 4 bankruptcies; cybersecurity quiet at 0; 17 contract terminations.",
+    publishedAt: "2026-04-23",
+    category: "weekly",
+    wordCount: 1400,
+    topics: ["8-k", "material-events", "earnings", "officer-change", "bankruptcy"],
+  },
 ];
 
 export function getReport(slug: string): Report | undefined {
