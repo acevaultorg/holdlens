@@ -1,12 +1,22 @@
-// Curated SEC Form 4 insider transactions per ticker. Hand-maintained snapshot
-// of recent notable trades by company insiders (CEOs, CFOs, directors, 10%+ owners).
+// SEC Form 4 insider transactions — combined source-of-truth.
 //
-// v0.2 will replace this with a Form 4 EDGAR scraper. Until then, this is the
-// best-effort dataset that powers the InsiderActivity component on ticker pages.
+// Composition (v0.2 onward):
+//   1. CURATED_INSIDER_TX — hand-maintained notable trades (CEOs, CFOs, 10%+
+//      owners; large $ amounts; 10b5-1 deviations). Annotated with editorial
+//      notes ("First open-market buy in 18 months", "Discretionary, no plan",
+//      etc.) that EDGAR scrape can't produce.
+//   2. EDGAR_INSIDER_TX — all Form 4 transactions parsed from SEC EDGAR daily
+//      indexes by scripts/fetch-edgar-form4.ts → data/edgar-form4.json.
+//      Refreshed manually (run `npx tsx scripts/fetch-edgar-form4.ts --days 30`)
+//      or via the daily-refresh.yml workflow when configured.
 //
-// We intentionally curate the most NOTABLE transactions (large $ amounts,
-// CEO/CFO purchases, 10b5-1 deviations) rather than every Form 4 filing —
-// signal beats noise.
+// Deduplication: EDGAR rows have form4AccessionNumber. Curated rows do not.
+// We treat them as distinct universes; EDGAR rows are the firehose, curated
+// rows are the editorial overlay. Both flow through INSIDER_TX without dedup
+// because the curated rows are intentionally NOTABLE versions of trades that
+// also appear in EDGAR — same trade, two perspectives. Downstream UIs (e.g.,
+// per-ticker pages) prefer curated when annotation exists, fall back to EDGAR
+// for breadth.
 
 export type InsiderTxAction = "buy" | "sell";
 
@@ -54,7 +64,14 @@ export type InsiderTx = {
   reporterCik?: string;
 };
 
-export const INSIDER_TX: InsiderTx[] = [
+// EDGAR-sourced Form 4 transactions — refreshed by scripts/fetch-edgar-form4.ts.
+// JSON shape matches InsiderTx (with v0.2 EDGAR fields populated). On a fresh
+// repo without an EDGAR run, this resolves to []. Cast asserts shape; the
+// fetcher script writes only validated rows.
+import edgarRaw from "../data/edgar-form4.json";
+export const EDGAR_INSIDER_TX: InsiderTx[] = (edgarRaw as InsiderTx[]) ?? [];
+
+export const CURATED_INSIDER_TX: InsiderTx[] = [
   // META
   { ticker: "META", insiderName: "Mark Zuckerberg", insiderTitle: "CEO & Chairman", action: "sell", date: "2026-02-08", shares: 230000, pricePerShare: 615, value: 141_450_000, remainingShares: 350_000_000, note: "10b5-1 plan sale — quarterly schedule." },
   { ticker: "META", insiderName: "Susan Li", insiderTitle: "CFO", action: "sell", date: "2026-01-22", shares: 12500, pricePerShare: 590, value: 7_375_000, note: "Routine 10b5-1." },
@@ -113,6 +130,14 @@ export const INSIDER_TX: InsiderTx[] = [
   // GE
   { ticker: "GE", insiderName: "Larry Culp", insiderTitle: "CEO & Chairman", action: "sell", date: "2026-01-10", shares: 50000, pricePerShare: 195, value: 9_750_000, note: "10b5-1 plan." },
 ];
+
+/**
+ * Combined transaction set: curated editorial + EDGAR firehose.
+ * Curated rows come first (preferred when same trade is also in EDGAR);
+ * downstream code that needs deduplication can match on
+ * (ticker, insiderName, date, shares).
+ */
+export const INSIDER_TX: InsiderTx[] = [...CURATED_INSIDER_TX, ...EDGAR_INSIDER_TX];
 
 export function getInsiderTx(ticker: string): InsiderTx[] {
   const sym = ticker.toUpperCase();
