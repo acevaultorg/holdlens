@@ -41,6 +41,9 @@ const USER_AGENT = "HoldLens/0.2 (contact@acevault.org)";
 const RATE_LIMIT_MS = 220; // ~4.5 req/sec, well within SEC 10/sec cap
 const DEFAULT_DAYS = 7;
 const DATA_DIR = resolve(import.meta.dirname ?? __dirname, "../data");
+const TICKER_MAP_URL = "https://www.sec.gov/files/company_tickers.json";
+const TICKER_MAP_CACHE = resolve(DATA_DIR, "sec-ticker-map.json");
+const TICKER_MAP_TTL_DAYS = 7;
 
 // SEC Form 8-K item codes we surface (canonical taxonomy, matches lib/events.ts EVENT_ITEMS)
 const TRACKED_ITEMS = new Set([
@@ -237,11 +240,44 @@ function inferItemCode(label: string): string | null {
 }
 
 function extractTickerFromHeader(header: string): string | null {
-  // EDGAR sometimes embeds <TRADING-SYMBOL> or matches a known ticker via
-  // company name. Without a XBRL parse, we rely on a regex over the SEC-HEADER
-  // for "TRADING SYMBOL:" or fall through to "" (downstream join fails ok).
+  // EDGAR sometimes embeds TRADING SYMBOL in the SEC-HEADER. Many 8-Ks omit
+  // it; for those we fall through to CIK-lookup via SEC's company_tickers map.
   const ts = header.match(/TRADING SYMBOL:\s*([A-Z][A-Z0-9.\-]{0,9})/i);
   return ts ? ts[1].toUpperCase() : null;
+}
+
+// SEC publishes a free, single-file CIK→ticker map at company_tickers.json
+// (~10k rows). Cached locally with 7-day TTL to avoid re-fetching every run.
+type CikTickerMap = Record<string, { ticker: string; name: string }>;
+
+async function loadCikTickerMap(): Promise<CikTickerMap> {
+  if (existsSync(TICKER_MAP_CACHE)) {
+    const stat = require("fs").statSync(TICKER_MAP_CACHE);
+    const ageDays = (Date.now() - stat.mtimeMs) / 86_400_000;
+    if (ageDays < TICKER_MAP_TTL_DAYS) {
+      try {
+        return JSON.parse(require("fs").readFileSync(TICKER_MAP_CACHE, "utf-8"));
+      } catch {
+        /* fall through to re-fetch */
+      }
+    }
+  }
+  console.log("  Refreshing SEC company_tickers.json map ...");
+  const res = await fetchWithRetry(TICKER_MAP_URL);
+  if (!res.ok) {
+    console.warn("  CIK map fetch failed; continuing with empty map");
+    return {};
+  }
+  // Format: { "0": { cik_str: 320193, ticker: "AAPL", title: "Apple Inc." }, ... }
+  const raw = (await res.json()) as Record<string, { cik_str: number; ticker: string; title: string }>;
+  const map: CikTickerMap = {};
+  for (const v of Object.values(raw)) {
+    const cikPadded = String(v.cik_str).padStart(10, "0");
+    map[cikPadded] = { ticker: v.ticker.toUpperCase(), name: v.title };
+  }
+  writeFileSync(TICKER_MAP_CACHE, JSON.stringify(map, null, 0));
+  console.log(`  Cached ${Object.keys(map).length.toLocaleString()} CIK→ticker entries`);
+  return map;
 }
 
 type ParsedForm8K = {
@@ -330,6 +366,10 @@ async function main() {
     )}${max ? `, max=${max} rows` : ""}\n`
   );
 
+  // Load CIK→ticker map first (single fetch, then cached 7d). Used to resolve
+  // tickers when 8-K SEC-HEADER lacks TRADING SYMBOL.
+  const cikTickerMap = await loadCikTickerMap();
+
   const allEvents: ScrapedForm8KEvent[] = [];
   const stats: DayStats[] = [];
 
@@ -393,10 +433,15 @@ async function main() {
       const filedAtIso = row.filingDate.length === 8
         ? `${row.filingDate.slice(0, 4)}-${row.filingDate.slice(4, 6)}-${row.filingDate.slice(6, 8)}`
         : row.filingDate;
+      // Resolve ticker: SEC-HEADER first, then CIK→ticker map fallback
+      const resolvedTicker =
+        parsed.ticker ||
+        cikTickerMap[parsed.issuerCik]?.ticker ||
+        `_CIK_${parsed.issuerCik}`;
       // Emit one event row per item code (an 8-K can have multiple)
       for (const itemCode of parsed.itemCodes) {
         allEvents.push({
-          ticker: parsed.ticker || `_CIK_${parsed.issuerCik}`,
+          ticker: resolvedTicker,
           companyName: parsed.companyName,
           itemCode,
           eventDate: parsed.eventDate,

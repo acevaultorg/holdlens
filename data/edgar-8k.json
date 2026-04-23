@@ -1,6 +1,6 @@
 [
   {
-    "ticker": "_CIK_0000794619",
+    "ticker": "AMWD",
     "companyName": "AMERICAN WOODMARK CORP",
     "itemCode": "8.01",
     "eventDate": "2026-04-17",
@@ -11,7 +11,7 @@
     "issuerCik": "0000794619"
   },
   {
-    "ticker": "_CIK_0001018979",
+    "ticker": "AMSF",
     "companyName": "AMERISAFE INC",
     "itemCode": "2.02",
     "eventDate": "2026-04-22",
@@ -22,7 +22,7 @@
     "issuerCik": "0001018979"
   },
   {
-    "ticker": "_CIK_0000318154",
+    "ticker": "AMGN",
     "companyName": "AMGEN INC",
     "itemCode": "5.02",
     "eventDate": "2026-04-22",
@@ -33,7 +33,7 @@
     "issuerCik": "0000318154"
   },
   {
-    "ticker": "_CIK_0000890564",
+    "ticker": "ASGN",
     "companyName": "ASGN Inc",
     "itemCode": "2.02",
     "eventDate": "2026-04-22",
@@ -44,7 +44,7 @@
     "issuerCik": "0000890564"
   },
   {
-    "ticker": "_CIK_0000732717",
+    "ticker": "T-PC",
     "companyName": "AT&T INC.",
     "itemCode": "8.01",
     "eventDate": "2026-04-22",
@@ -55,7 +55,7 @@
     "issuerCik": "0000732717"
   },
   {
-    "ticker": "_CIK_0000732717",
+    "ticker": "T-PC",
     "companyName": "AT&T INC.",
     "itemCode": "2.02",
     "eventDate": "2026-04-22",
@@ -66,7 +66,7 @@
     "issuerCik": "0000732717"
   },
   {
-    "ticker": "_CIK_0000008947",
+    "ticker": "AZZ",
     "companyName": "AZZ INC",
     "itemCode": "2.02",
     "eventDate": "2026-04-22",
@@ -77,7 +77,7 @@
     "issuerCik": "0000008947"
   },
   {
-    "ticker": "_CIK_0001635077",
+    "ticker": "ACONW",
     "companyName": "Aclarion, Inc.",
     "itemCode": "8.01",
     "eventDate": "2026-04-21",
@@ -88,7 +88,7 @@
     "issuerCik": "0001635077"
   },
   {
-    "ticker": "_CIK_0001860657",
+    "ticker": "ALLR",
     "companyName": "Allarity Therapeutics, Inc.",
     "itemCode": "8.01",
     "eventDate": "2026-04-21",
@@ -108,5 +108,60 @@
     "source": "edgar",
     "form8kAccessionNumber": "0001213900-26-046657",
     "issuerCik": "0001720025"
+  },
+  {
+    "ticker": "AMRX",
+    "companyName": "Amneal Pharmaceuticals, Inc.",
+    "itemCode": "1.01",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Material agreement entered",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001193125-26-168231",
+    "issuerCik": "0001723128"
+  },
+  {
+    "ticker": "AMRX",
+    "companyName": "Amneal Pharmaceuticals, Inc.",
+    "itemCode": "2.02",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001193125-26-168231",
+    "issuerCik": "0001723128"
+  },
+  {
+    "ticker": "AMRX",
+    "companyName": "Amneal Pharmaceuticals, Inc.",
+    "itemCode": "7.01",
+    "eventDate": "2026-04-22",
+    "filedAt": "2026-04-22",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001193125-26-168231",
+    "issuerCik": "0001723128"
+  },
+  {
+    "ticker": "APUS",
+    "companyName": "Apimeds Pharmaceuticals US, Inc.",
+    "itemCode": "3.01",
+    "eventDate": "2026-04-17",
+    "filedAt": "2026-04-22",
+    "headline": "Delisting notice",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001213900-26-046671",
+    "issuerCik": "0001894525"
+  },
+  {
+    "ticker": "ATIIW",
+    "companyName": "Archimedes Tech SPAC Partners II Co.",
+    "itemCode": "7.01",
+    "eventDate": "2026-04-21",
+    "filedAt": "2026-04-22",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001437749-26-012949",
+    "issuerCik": "0002028516"
   }
 ]
