@@ -13,7 +13,7 @@
 | 3 | llms.txt + schema + AI allowlist | active | 2026-04-15 | — (indirect) | — | v19.4 autowired. Feeds 4.4× AI-visitor multiplier. |
 | 4 | Perplexity Publishers Program | pending_review | 2026-04-21 | $10-30 | - | Email + Google Form submitted from contact@holdlens.com. 80/20 rev share. Expected onboarding 1-2 weeks. |
 | 5 | Ezoic Access Now | not_started | — | $30-80 | - | No traffic floor, no beta gate. Operator Clarity Card queued. 15-min signup. |
-| 6 | Affiliate (Impact.com, NOT Amazon per I-38) | not_started | — | $150-500/signup | - | Operator Clarity Card queued. 5 brokers: IB, Tastytrade, Webull, M1, Public. |
+| 6 | Affiliate (Impact.com, NOT Amazon per I-38) | not_started | — | $150-500/signup | - | Operator Clarity Card queued. **Spec brokers: Interactive Brokers + Charles Schwab** (operator-specified 2026-04-23). Optional secondaries: Tastytrade, Webull, M1, Public. |
 | 7 | Mediavine Journey | not_eligible | — | $12-19 RPM × traffic | - | Sessions <1k/mo (~12 humans/30d). `mediavine-promotion-detector` scheduled task auto-fires Clarity Card at 1k threshold. I-37 atomic swap enforced. |
 | 8 | TollBit | partially_active | 2026-04-23 | $0.005/scrape | $0.005 (1 PerplexityBot successful scrape, week of 4/16-4/22) | 2 licenses active (Summarization + Full Display). 61 bot attempts, 46 forwarded, 1 successful. BDev pipeline to convert ChatGPT-User (43 forwards, 0 paid) is TollBit-side. CF Snippet deploy Clarity Card pending to close synthetic-test sanity check. |
 | 9 | ProRata.ai Gist Answers | not_started | — | $10 CPM floor | - | Defer to Month 6+ per rules/revenue-maximizer.md Part 3. |

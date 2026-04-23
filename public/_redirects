@@ -85,3 +85,11 @@
 /investor/li/            /investor/li-lu/                 301
 /investor/pabrai         /investor/monish-pabrai/         301
 /investor/pabrai/        /investor/monish-pabrai/         301
+
+# v2026-04-23 — spec-naming alignment: /activism/ → existing /activist/ tracker.
+# Spec uses 'activism' as the surface name; canonical implementation is /activist/.
+# 301 preserves SEO equity + makes both URLs work.
+/activism                /activist                        301
+/activism/               /activist/                       301
+/activists               /activist                        301
+/activists/              /activist/                       301

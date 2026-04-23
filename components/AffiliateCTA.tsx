@@ -5,9 +5,10 @@
 // the corresponding Cloudflare Pages env var. Each link tracks via referral cookie + pays
 // per funded account.
 //
+//   Interactive Bkrs:  $200 per funded account       → NEXT_PUBLIC_AFF_IBKR     (spec primary)
+//   Charles Schwab:    $100-300 per funded account   → NEXT_PUBLIC_AFF_SCHWAB   (spec primary)
 //   Public.com:        $25-50 per funded account     → NEXT_PUBLIC_AFF_PUBLIC
 //   Robinhood:         $5-10 per funded account      → NEXT_PUBLIC_AFF_ROBINHOOD
-//   Interactive Bkrs:  $200 per funded account       → NEXT_PUBLIC_AFF_IBKR
 //   eToro:             $50-200 per funded account    → NEXT_PUBLIC_AFF_ETORO
 //   Moomoo:            $20-100 per funded account    → NEXT_PUBLIC_AFF_MOOMOO
 //
@@ -20,6 +21,7 @@
 const AFF_PUBLIC = process.env.NEXT_PUBLIC_AFF_PUBLIC || "";
 const AFF_ROBINHOOD = process.env.NEXT_PUBLIC_AFF_ROBINHOOD || "";
 const AFF_IBKR = process.env.NEXT_PUBLIC_AFF_IBKR || "";
+const AFF_SCHWAB = process.env.NEXT_PUBLIC_AFF_SCHWAB || "";
 const AFF_ETORO = process.env.NEXT_PUBLIC_AFF_ETORO || "";
 const AFF_MOOMOO = process.env.NEXT_PUBLIC_AFF_MOOMOO || "";
 
@@ -46,6 +48,13 @@ function getBrokers(symbol: string): Broker[] {
       url: AFF_IBKR.replace("{SYMBOL}", sym),
       tagline: "Lowest commissions, global markets, pro-grade",
       payout: "Open IBKR account",
+    });
+  if (AFF_SCHWAB)
+    out.push({
+      name: "Charles Schwab",
+      url: AFF_SCHWAB.replace("{SYMBOL}", sym),
+      tagline: "Full-service US broker, $0 trades, deep research",
+      payout: "Open Schwab account",
     });
   if (AFF_ROBINHOOD)
     out.push({
