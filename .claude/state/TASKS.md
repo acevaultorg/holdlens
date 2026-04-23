@@ -1,5 +1,62 @@
 # HoldLens — TASKS
 
+## 🔴 REQUIRED — Ship CF Snippet `redirect_to_tollbit` — ~5 min — [id:tollbit-cf-snippet]
+
+**WHAT:** Deploy TollBit's canonical 19-UA bot-forwarding Snippet in CloudFlare dashboard → Rules → Snippets. This is the missing piece that closes the TollBit onboarding synthetic Test. Without it, the Test tool fails at "Forwarded to TollBit" even though real-world forwarding is partially happening (46 bots forwarded week of 4/16-4/22 per TollBit Analytics).
+
+**WHY:** Benefit — unblocks the "Verify setup" flow on TollBit onboarding → property flips to verified state → HoldLens enters TollBit's outbound partner-acquisition queue (their BDev pitches OpenAI/Anthropic/Google directly). Real revenue conversion (not just scrapes) happens after partners sign licenses. Cost of skipping — TollBit dashboard stays in "pre-verified" limbo indefinitely; OpenAI's 43 weekly ChatGPT-User forwards continue generating $0 instead of $0.005/scrape.
+
+**TIME:** ~5 min. Payment gate: none (CF Pro plan already active).
+
+**HOW:**
+
+  1. Open [Cloudflare Snippets for holdlens.com](https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/rules/snippets)
+     → expected: Snippets page with **+ Create Snippet** button
+  2. Click **+ Create Snippet** · Name: `redirect_to_tollbit`
+  3. Paste this exact code (TollBit's canonical 19-UA official list from docs.tollbit.com/docs/cloudflare):
+     ```javascript
+     const botList = [
+       'ChatGPT-User','PerplexityBot','GPTBot','anthropic-ai','CCBot',
+       'Claude-Web','ClaudeBot','cohere-ai','YouBot','Diffbot',
+       'OAI-SearchBot','meta-externalagent','Timpibot','Amazonbot','Bytespider',
+       'Perplexity-User','Claude-SearchBot','Meta-Webindexer','Amzn-SearchBot',
+     ];
+     export default {
+       async fetch(request) {
+         const userAgent = request.headers.get('User-Agent') || '';
+         const isBot = botList.some(b => userAgent.toLowerCase().includes(b.toLowerCase()));
+         if (isBot) {
+           const path = request.url.replace('https://' + request.headers.get('host'), '');
+           let host = request.headers.get('host') || '';
+           if (host.startsWith('www.')) host = host.slice(4);
+           return Response.redirect('https://tollbit.' + host + path, 302);
+         }
+         return fetch(request);
+       },
+     };
+     ```
+  4. Click **Snippet rule** (top right) → select **All incoming requests**
+  5. Click **Deploy**
+
+**VERIFY:**
+  ```
+  curl -sI -A "PerplexityBot" "https://holdlens.com/" | grep -iE "^(HTTP|location)"
+  ```
+  → expected: `HTTP/2 302` + `location: https://tollbit.holdlens.com/`
+  Then: back to [TollBit onboarding](https://app.tollbit.com/property/an434uon3o4hanz02cliq90q/agent-site/bot-paywall/onboard) → Test with PerplexityBot → **all 3 checks green** → click **Verify setup**.
+
+**IF STUCK:**
+  - Snippet editor rejects `export default` syntax: use `addEventListener('fetch', event => event.respondWith(...))` pattern instead
+  - Snippets feature not visible: CF Pro plan only. Fallback: extend `functions/_middleware.ts` to add bot-UA 302 at top (brain can ship this — say the word).
+  - Curl returns 200 not 302: check Snippet rule scope is "All incoming requests" not a scoped path
+  - GoogleBot / BingBot broken (catastrophe): they're NOT in the bot list — discovery intact
+
+**SUPERSEDES:** `[id:tollbit-verify-setup]` IF STUCK advice (was wrong — suggested clicking Verify setup anyway even when forwarding broken; corrected here).
+
+[archetype:pay_per_crawl_enabled × +90] [score:9] [eta:instant]
+
+---
+
 ## 🟡 RECOMMENDED — InsiderLens Day 2 — EDGAR Form 4 scraper + 10k seed + JSON API — ~4h — [id:insiderlens-day2]
 
 **WHAT:** Day 1 shipped the foundation — routes scaffolded, InsiderScore formula, homepage prominence widget, llms.txt + DefinedTerm schema all live. Day 2 wires the data pipeline: real SEC EDGAR Form 4 XML scraper replacing the curated 22-row dataset, seed ingest of ~10k historical filings, and JSON API endpoints per route so LLMs + third parties can consume the data directly.
