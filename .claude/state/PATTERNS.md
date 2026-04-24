@@ -28,3 +28,12 @@ See `.claude/state/ANALYTICS.md ## Behavior Log` — keep PATTERNS.md focused on
 - Session cycle 3: 3 EPIPEs, BLOCKED on retry 3 (agent-ready-v2 OAuth stubs)
 
 Observation: retry 1 and retry 2 fail at near-identical file counts (~949-1322/3687), suggesting persistent state in CF's upload API. Retrying further today unlikely to help; better to resume session 60+ min later.
+
+### unverified_deploy_blocked_conclusion (2026-04-24)
+
+**Category:** assumption-without-read · deploy-truth-violation
+**Trigger count:** 1 (single incident; trip-wire on recurrence)
+**Detection:** session concluded "deploy blocked, exhausted all paths, operator must take over manually" without running `curl -s https://[live-url] | grep [fingerprint]` to confirm the change wasn't already live.
+**Root cause:** trusted client-side wrangler EPIPE error as authoritative; did NOT fingerprint-match per `~/.claude/rules/deploy-truth.md`. Burned 12+ wrangler retries (violating `~/.claude/rules/cloudflare-pages-epipe.md` 3-retry cap) + 1+ operator hour + emitted a Clarity Card asking operator to manually deploy — while all 4 new LLM bots (Claude-SearchBot, Timpibot, Amzn-SearchBot, Meta-Webindexer) were ALREADY live in holdlens.com/robots.txt.
+**Fix:** save feedback memory `feedback_verify_deploy_before_declaring_blocked.md`. Next session: curl+grep is the FIRST step before any deploy retry, and the PENULTIMATE step before any "deploy blocked" conclusion. Client-side tool errors are hypotheses, not facts.
+**Trip-wire:** if the same session does >3 deploy retries of any kind (wrangler, dashboard, GH Actions, rsync, etc.) without a live-URL fingerprint check in between, log `deploy_retry_without_verify` to this section + halt retry loop.
