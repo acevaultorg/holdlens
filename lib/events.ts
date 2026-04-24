@@ -214,10 +214,15 @@ export type Form8KEvent = {
   accessionNumber?: string;
   /** Direct link to the filing on SEC.gov */
   secUrl?: string;
-  /** Source tag — "curated" (Day-1 seed) or "edgar-scraper" (Day-2+) */
-  source: "curated" | "edgar-scraper";
+  /** Source tag — "curated" (Day-1 seed) or "edgar-scraper" (Day-2+) or "edgar" (legacy fetcher output) */
+  source: "curated" | "edgar-scraper" | "edgar";
   /** Optional operator note (curated rows only) */
   note?: string;
+  // --- EDGAR fetcher fields (Day-2 scraper, kept distinct so runtime + type match) ---
+  /** Alias from raw EDGAR fetcher output — same as accessionNumber */
+  form8kAccessionNumber?: string;
+  /** Issuer CIK (10-digit padded) — EDGAR-only enrichment */
+  issuerCik?: string;
 };
 
 // --- Curated Day-1 seed ---------------------------------------------------
