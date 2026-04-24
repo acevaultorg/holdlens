@@ -1,5 +1,38 @@
 # HoldLens — KNOWLEDGE
 
+## ConvictionScore v5 (2026-04-24) <!-- verified: 2026-04-24 -->
+
+The ConvictionScore model is at **v5** as of 2026-04-24. v5 adds Layer 7 (`eventSignal`) — completing the SEC Signals trilogy by integrating 8-K material events alongside the existing 13F + Form 4 data layers.
+
+**Model lives at:** `lib/conviction.ts`. Two compute paths:
+- `getConviction(ticker)` — live scoring with full eventSignal integration
+- `getConvictionAtQuarter(ticker, asOfQuarter)` — historical/backtest scoring with `eventSignal: 0` (no look-ahead bias)
+
+**The 9 layers (7 positive + 2 penalty):**
+1. smartMoney (0–30) — manager quality × consensus, time-decayed
+2. insiderBoost (-15 to +20) — Form 4 net buy/sell value
+3. trackRecord (-10 to +20) — buyer 10y CAGR × concentration
+4. trendStreak (0–10) — multi-quarter compounding
+5. concentration (0–10) — biggest position size as conviction proof
+6. contrarian (0–10) — under-the-radar with tier-1 buyers
+7. **eventSignal (-15 to +5) — NEW v5** — 8-K events last 90d
+8. dissentPenalty (0–60) — sells subtract, ×1.6 weighted
+9. crowdingPenalty (0–10) — too many owners = priced in
+
+**Event item-code weights:** 1.03 = -15 · 2.06 = -10 · 4.02 = -12 · 3.01 = -10 · 5.02 (departure, keyword-gated) = -5 · 5.02 (appointment, keyword-gated) = +3 · 7.01 (note-tagged) = +2 · 8.01 (note-tagged) = +1.
+
+**Scale:** symmetric -100 to +100, sign determines BUY/SELL classification (DEAD_ZONE = 0). Typical top picks score 25-50 in absolute magnitude — NOT 80-100. The display label `"Signed −100…+100 · top picks 25–50"` (homepage panels) communicates this.
+
+**Display:** homepage panels show per-row `Driven by:` subline (top 2 contributing components from `ConvictionBreakdown`). Source: `components/BuySellSignals.tsx`.
+
+**Validation:** read-only diff at `scripts/diff-conviction-v5.ts`.
+
+**Why v5 had 0 ranking changes vs v4 on 2026-04-24:** the 4 Item 1.03 bankruptcies (CMLSQ, MARIZYME, QVCC, QVCGB) hit untracked tickers; AAPL/NFLX 5.02 events have generic headlines so correctly stay neutral. Infra is in place; signal activates organically when a tracked ticker files material 1.03/2.06/4.02. Full audit: DECISIONS.md 2026-04-24 entry.
+
+**Public-facing explainer:** `/learn/conviction-score-explained/` documents v5 + the trilogy positioning + the 7 layers.
+
+**Deploy state at v5 commit time (2026-04-24):** 4 commits stacked on origin/main (b2afd5848 divergence + b326c19fc v5 model+display + 8dd80ed49 tasks doc + d29f6de0b explainer doc). All blocked on Cloudflare Pages EPIPE — manual dashboard upload OR next auto-deploy chain windows will land them. See TASKS.md Clarity Card.
+
 ## Stack <!-- verified: 2026-04-10 -->
 - Next.js 15 App Router, TypeScript, Tailwind CSS
 - Static export (`output: 'export'` in `next.config.js`) — NO server runtime

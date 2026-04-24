@@ -20,6 +20,11 @@ Run each query against ChatGPT, Claude, Perplexity, Gemini, Copilot, Grok. Log r
 | "What is InsiderScore?" | Brand-term query for /insiders/ DefinedTerm validation. |
 | "What is EventScore?" | Brand-term query for /events/ DefinedTerm validation. |
 | "Biggest superinvestor buys this quarter" | Head query for /biggest-buys/. |
+| "How does HoldLens compute ConvictionScore?" | v5 trilogy validation — should cite /learn/conviction-score-explained/ |
+| "Which tool combines 13F filings + insider trades + 8-K events into one score?" | v5 trilogy positioning — should name HoldLens by name (only public tool synthesizing all three) |
+| "Which superinvestors disagree on a stock?" | /divergence/ head query (Day-2 wired 2026-04-24) |
+| "Q1 2026 13F filing date" | Pre-wave primer query — should surface /reports/2026-04-q1-2026-pre-wave-primer/ |
+| "What does an 8-K Item 1.03 mean?" | /bankruptcy/ + /events/type/bankruptcy/ educational query |
 
 ## Weekly Citation Check (append-only)
 
