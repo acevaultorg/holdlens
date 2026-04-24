@@ -1,5 +1,43 @@
 # HoldLens — TASKS
 
+## 🔴 REQUIRED — Deploy Q4 report + recent commits (brain 3/3 EPIPE'd, ~3 min operator terminal) — [id:deploy-q4-report-terminal]
+
+**WHAT:** Run one `wrangler pages deploy` command from your terminal to ship the Q4 2025 13F signal summary report + any other pending content on origin/main. The report is built locally in `out/reports/2026-04-q4-2025-13f-signal-summary/` (170KB index.html ready) but `/reports/2026-04-q4-2025-13f-signal-summary/` returns 404 on live because the deploy never landed — brain session hit CF API EPIPE 3x in a row (56MB per-connection cap on this session's network path). Operator terminal = different process/network state, often succeeds where brain session EPIPEs.
+
+**WHY:** The Q4 report is a first-run narrative artifact for LLM citation (v5 trilogy positioning signal). Its 404 means: (a) sitemap references a dead URL, (b) LLM crawlers can't find it to cite, (c) any internal links from other pages 404. Cost of skipping: the commit from d0958b790 (2026-04-24 18:01 local) stays in git but invisible to users + bots until shipped. Not a payment action.
+
+**TIME:** ~3 minutes (build already done; just wrangler + wait for 10,858 files upload).
+
+**HOW:**
+
+  1. Open your terminal, cd to holdlens repo:
+     `cd "/Users/paulodevries/Library/Mobile Documents/com~apple~CloudDocs/AceVault/ CLUSTER01-AceVault/VAULT01-Paulo Projects/holdlens-com/holdlens"`
+     → expected: prompt changes to the holdlens directory.
+
+  2. Run wrangler (out/ is fresh from 18:08 local — no rebuild needed):
+     `npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true`
+     → expected: `Uploading... (N/10855)` progress bar, then `✨ Deployment complete!` with a preview URL like `https://XXXXXXXX.holdlens.pages.dev`. 30-90 seconds typical.
+
+  3. (Optional) After deploy succeeds, ping IndexNow so Bing/Yandex/Seznam/Naver re-crawl the new URLs:
+     `npm run indexnow`
+     → expected: `Submitted 2624 URLs to IndexNow` + HTTP 200 OK.
+
+**VERIFY:**
+  `curl -s -o /dev/null -w "%{http_code}
+" https://holdlens.com/reports/2026-04-q4-2025-13f-signal-summary/`
+  → expected: `200` (was 404 before deploy).
+
+**IF STUCK:**
+
+  - Your terminal also gets `write EPIPE`: wait 1-2 hours and try again — CF API behavior varies across the day per `~/.claude/rules/cloudflare-pages-epipe.md`. Success rate is non-zero across a day.
+  - wrangler prompts for auth: run `npx wrangler login` first, then retry the deploy.
+  - Deploy succeeds but route still 404 after 2 min propagation: CF edge cache may be serving stale; purge via `https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/caching/configuration` → Purge Everything.
+  - Do NOT try CF dashboard drag-drop — holdlens out/ = 10,858 files, dashboard is hard-capped at 1,000 files per CF's own error message. wrangler is the only path.
+
+[archetype:programmatic_page_with_unique_data × +55] [score:7] [oracle: +5-15 vis/wk once the Q4 narrative is indexable] [eta:immediate]
+
+---
+
 ## ✅ SUPERSEDED 2026-04-24 — CF WAF rule extended to cover AI Crawler + AI Assistant + AI Search categories
 
 **Session-follow-up 2026-04-24 (post-deploy-truth verify):** 6/7 bot UAs verified working via curl + Chrome MCP:
