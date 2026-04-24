@@ -2,6 +2,15 @@
 
 ## ✅ SUPERSEDED 2026-04-24 — CF WAF rule extended to cover AI Crawler + AI Assistant + AI Search categories
 
+**Session-follow-up 2026-04-24 (post-deploy-truth verify):** 6/7 bot UAs verified working via curl + Chrome MCP:
+- ✓ PerplexityBot / GPTBot / Applebot / OAI-SearchBot / Claude-SearchBot → HTTP 302 to tollbit.holdlens.com (TollBit Snippet firing, correct)
+- ✓ Googlebot → HTTP 200 (direct access, correct)
+- ⚠ curl-spoofed Bingbot → HTTP 403 — EXPECTED: CF bot verification is reverse-DNS-based; curl from operator laptop is not a Microsoft Bingbot IP. Real Bingbot from Microsoft IPs hits the Skip-managed-rules rule (id 246239907b594109ba3833b11e7688d6) and passes through. Validation is the CF AI Crawl Control dashboard Unsuccessful trend over 24-72h propagation window.
+
+**Also fired 2026-04-24 in same session:** IndexNow ping (2624 URLs → Bing/Yandex/Seznam/Naver, HTTP 200 OK). Pushes the new 4-LLM-bot robots.txt + Content-Signal directive + all current URLs to non-Google indexes within hours. Compounds the deploy-ship value.
+
+**Next calibration:** re-open CF AI Crawl Control → Crawlers tab ~2026-04-27 and compare Unsuccessful counts to pre-fix baseline (PerplexityBot 73%, BingBot 89%, GPTBot 35%). Append result to BOT_TRAFFIC.md ## Calibration.
+
 Both [id:cf-ai-crawl-allow-per-bot] (below) and [id:bingbot-waf-skip] (further below) are SUPERSEDED. The Cloudflare custom rule "Skip managed rules for verified search + AI bots" (rule id `246239907b594109ba3833b11e7688d6`, edited via Chrome MCP earlier same day) was extended from 2 categories (Search Engine Crawler + Search Engine Optimization) to 5 categories adding AI Crawler + AI Assistant + AI Search. Action: Skip (managed rules + rate limiting + custom rules). Status: Active.
 
 **Verification 2026-04-24 11:55 UTC:** `curl -A "PerplexityBot" https://holdlens.com/` returns `HTTP/2 302 → tollbit.holdlens.com/` (was `HTTP/2 403` before the rule edit). The single-rule solution is structurally cleaner than 7 individual per-bot Allow clicks, applies to every CF-verified bot in those 5 categories automatically, and persists across all future crawler categories CF adds. Propagation 24-72h per CF Bot Management. Re-measure CF AI Crawl Control "Unsuccessful" rates on the Crawlers page in ~3 days for the calibration row in BOT_TRAFFIC.md.
