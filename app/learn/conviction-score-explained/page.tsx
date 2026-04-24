@@ -98,10 +98,17 @@ export default function ConvictionPage() {
           contested nature of the stock.
         </p>
 
-        <h2 className="text-2xl font-bold mt-8 mb-3">The six signal layers</h2>
+        <h2 className="text-2xl font-bold mt-8 mb-3">The seven signal layers</h2>
         <p className="text-muted">
-          Every stock is scored by six positive layers minus two penalty layers. All components are time-decayed
-          across 8 quarters of 13F data — recent moves count more than older ones.
+          Every stock is scored by seven positive layers minus two penalty layers. The first six are time-decayed
+          across 8 quarters of 13F data; the seventh reads SEC 8-K material events from the last 90 days. Recent
+          moves count more than older ones at every layer.
+        </p>
+        <p className="text-muted">
+          As of <strong className="text-text">v5 (April 2026)</strong>, the model reads from all three SEC filing
+          surfaces — 13F holdings (45-day lag), Form 4 insider trades (T+2 lag), and 8-K material events
+          (T+4 lag) — completing the SEC Signals trilogy. No other public investing tool synthesizes all three
+          into a single score.
         </p>
         <ul className="text-muted space-y-2 list-disc list-inside">
           <li>
@@ -110,7 +117,9 @@ export default function ConvictionPage() {
           </li>
           <li>
             <strong className="text-text">Insider activity.</strong> CEO or CFO open-market buys — the strongest single
-            equity signal there is. Routine 10b5-1 sells don&apos;t count against.
+            equity signal there is. Routine 10b5-1 sells don&apos;t count against. Reads from{" "}
+            <a href="/insiders/" className="text-brand underline">/insiders/</a>{" "}
+            (curated + 3,001 EDGAR Form 4 transactions).
           </li>
           <li>
             <strong className="text-text">Track record.</strong> Each buyer&apos;s realized 10-year CAGR weighted by their
@@ -127,6 +136,14 @@ export default function ConvictionPage() {
           <li>
             <strong className="text-text">Contrarian bonus.</strong> Under-the-radar stocks with tier-1 buyers get
             extra credit — that&apos;s where alpha lives, not in the already-crowded names.
+          </li>
+          <li>
+            <strong className="text-text">Event signal (v5).</strong> SEC 8-K material events from the last 90 days
+            adjust the score asymmetrically: bankruptcy (Item 1.03) subtracts 15 points, restatement (Item 4.02)
+            subtracts 12, impairment (Item 2.06) subtracts 10, delisting (Item 3.01) subtracts 10. Positive events
+            (officer promotion, positive Reg FD disclosure) add up to 5 points. The asymmetry is intentional — one
+            bankruptcy correctly overrides 30 superinvestor buy signals. Reads from{" "}
+            <a href="/events/" className="text-brand underline">/events/</a>.
           </li>
           <li>
             <strong className="text-text">− Dissent penalty.</strong> Every seller subtracts from the score,
@@ -213,7 +230,7 @@ export default function ConvictionPage() {
         />
 
         <p className="text-xs text-dim pt-8 border-t border-border mt-12">
-          The full six-layer formula lives in the project repo and is described in detail on the{" "}
+          The full seven-layer formula lives in the project repo and is described in detail on the{" "}
           <a href="/methodology" className="underline">methodology page</a>. Not investment advice.
         </p>
 
