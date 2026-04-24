@@ -368,8 +368,8 @@ function Week17EventBody() {
         a zero-filing week is consistent with that pattern.
       </p>
       <p className="text-muted">
-        Watch <Link href="/events/type/cybersecurity-incident/" className="text-brand underline">
-          /events/type/cybersecurity-incident/
+        Watch <Link href="/events/type/cybersecurity/" className="text-brand underline">
+          /events/type/cybersecurity/
         </Link>{" "}
         for the running tally; cybersecurity 8-Ks remain a high-EventScore-magnitude category
         when they do fire (typical EventScore = -60).
