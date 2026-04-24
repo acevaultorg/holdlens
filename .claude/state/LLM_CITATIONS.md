@@ -31,6 +31,8 @@ Run each query against ChatGPT, Claude, Perplexity, Gemini, Copilot, Grok. Log r
 | week | engine | query | cited_as_source | url_cited | position | notes |
 |---|---|---|---|---|---|---|
 | 2026-04-23 | — | (baseline week — no checks run yet) | — | — | — | First-time baseline. Operator runs weekly. Automation out of scope (brain cannot sign in to all LLM engines). |
+| 2026-04-24 | Google Web | "HoldLens ConvictionScore SEC trilogy 13F Form 4 8-K combined score" | NO | — | — | Day-0 v5 baseline (~3 hr post-deploy). Top 10 results all SEC primary sources + APIs (StockTitan, sec-api.io, edgartools, 13F.info, SEC.gov). HoldLens not yet indexed by Google. IndexNow only pings Bing/Yandex/Seznam/Naver — Google crawl typically 7-14 days. Re-test scheduled. |
+| 2026-04-24 | Google Web | "holdlens.com superinvestor 13F tracker" | NO | — | — | Day-0 v5 baseline. Returned competitive landscape: Valuesider, WhaleWisdom, Dataroma, HedgeFollow, Super-Investor.com, Unusual Whales, InsiderSet, MineSafetyDisclosures. None of these combine 13F+Form 4+8-K into one score per v5 trilogy positioning. HoldLens uniqueness intact, just not indexed yet. |
 
 ## Citation Fingerprints
 
