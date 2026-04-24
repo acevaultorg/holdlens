@@ -27,14 +27,28 @@ export default function ForAiPage() {
         For AI · LLM · Fintech
       </div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
-        The AI-ready data layer for <span className="text-brand">13F superinvestor</span> intelligence.
+        The AI-ready data layer for <span className="text-brand">SEC trilogy</span> intelligence.
       </h1>
-      <p className="text-muted text-lg mb-12">
+      <p className="text-muted text-lg mb-6">
         If you're building an LLM-powered investing tool, a research chatbot, a fintech
         dashboard, or a retrieval pipeline that needs to answer "what are hedge funds
         doing?" — this is the page for you. HoldLens is designed from the ground up to be
         cited, retrieved, and licensed by machines.
       </p>
+      <div className="rounded-lg border border-emerald-400/30 bg-emerald-400/5 p-4 mb-12 text-sm">
+        <strong className="text-emerald-400">ConvictionScore v5 (2026-04-24) — the SEC trilogy as one number.</strong>{" "}
+        <span className="text-muted">No other public investing tool combines all three SEC filing surfaces
+        — 13F superinvestor moves (45-day lag) + Form 4 insider trades (T+2 lag) + 8-K material events
+        (T+4 lag) — into a single signed −100 to +100 score per ticker. Every score is exposed via{" "}
+        <code className="text-text bg-bg px-1 rounded">/api/v1/scores/[ticker].json</code> with the full
+        9-layer breakdown:{" "}
+        <code className="text-text bg-bg px-1 rounded">smartMoney + insiderBoost + trackRecord + trendStreak + concentration + contrarian + eventSignal − dissentPenalty − crowdingPenalty</code>.
+        Asymmetric eventSignal (range −15 to +5) means one bankruptcy correctly overrides 30 superinvestor buys.
+        Backtests stay clean (look-ahead-bias-free).</span>{" "}
+        <a className="text-brand underline" href="/learn/conviction-score-explained/">v5 model spec</a>{" · "}
+        <a className="text-brand underline" href="/learn/sec-signals-trilogy/">trilogy explainer</a>{" · "}
+        <a className="text-brand underline" href="/api/v1/scores/AAPL.json">live JSON sample (AAPL)</a>
+      </div>
 
       {/* ─── The pitch ─────────────────────────────────── */}
       <div className="grid md:grid-cols-3 gap-4 mb-14">
