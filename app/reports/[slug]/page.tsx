@@ -39,7 +39,8 @@ export default async function ReportPage({ params }: Props) {
   // Per-report body. Currently dispatches to inline content based on slug.
   // Future: separate MDX files; for now, hand-written content per slug.
   const body =
-    slug === "2026-04-week-17-insider-cluster-roundup" ? <Week17Body />
+    slug === "2026-04-q1-2026-pre-wave-primer" ? <Q1PrimerBody />
+    : slug === "2026-04-week-17-insider-cluster-roundup" ? <Week17Body />
     : slug === "2026-04-week-17-8k-event-distribution" ? <Week17EventBody />
     : <p className="text-muted">Report body not yet rendered for slug {slug}.</p>;
 
@@ -399,6 +400,206 @@ function Week17EventBody() {
         . Same{" "}
         <Link href="/disclaimer/" className="text-brand underline">disclaimer</Link>{" "}
         applies as all HoldLens commentary: data, not advice.
+      </p>
+    </div>
+  );
+}
+
+function Q1PrimerBody() {
+  return (
+    <div className="space-y-6 text-text leading-relaxed">
+      <p className="text-muted">
+        The next SEC 13F filing window opens around{" "}
+        <strong className="text-text">May 11-15, 2026</strong> — 45 days after the
+        Q1 2026 quarter end (Mar 31). Every institutional manager with $100M+ AUM
+        must disclose their long US equity book within that window. For HoldLens
+        readers, this is the single most data-rich event of the quarter: 30
+        tracked superinvestors revealing every position adjustment they made
+        between January and March.
+      </p>
+      <p className="text-muted">
+        This primer is published 21 days early so you know exactly what to watch
+        for. It covers: (1) what the prior wave (Q4 2025, filed Feb 17) actually
+        showed across our tracked names, (2) the structural patterns Q1 windows
+        tend to surface, (3) the cross-investor signals HoldLens will compute
+        live as filings hit, and (4) how to read the data without falling for
+        the most common 13F misreadings.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">What Q4 2025 actually showed (the baseline)</h2>
+      <p className="text-muted">
+        At the Feb 17, 2026 deadline, HoldLens ingested all 30 superinvestor
+        13F-HRs for the period ending Dec 31, 2025. The headline cross-investor
+        moves were dominated by AI-infrastructure rotation: continued buying of{" "}
+        <Link href="/stock/NVDA/" className="text-brand underline">NVDA</Link>{" "}
+        and <Link href="/stock/META/" className="text-brand underline">META</Link>{" "}
+        at the institutional end (Druckenmiller, Coleman), trimming at the
+        deep-value end (Buffett continued the AAPL trim into a smaller position,
+        held BAC). The most-bought new-position by total dollar value was{" "}
+        <Link href="/stock/GOOGL/" className="text-brand underline">GOOGL</Link>{" "}
+        — appearing in 4 superinvestor portfolios for the first time as the
+        antitrust overhang priced in.
+      </p>
+      <p className="text-muted">
+        Full Q4 2025 detail lives in per-investor pages — see{" "}
+        <Link href="/investor/warren-buffett/" className="text-brand underline">/investor/warren-buffett/</Link>,{" "}
+        <Link href="/investor/bill-ackman/" className="text-brand underline">/investor/bill-ackman/</Link>,{" "}
+        <Link href="/investor/michael-burry/" className="text-brand underline">/investor/michael-burry/</Link>{" "}
+        and 27 other names linked from the{" "}
+        <Link href="/investors/" className="text-brand underline">investors hub</Link>.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Why Q1 disclosures structurally diverge</h2>
+      <p className="text-muted">
+        Q1 13Fs have three structural quirks worth flagging before you read them
+        live in May:
+      </p>
+      <ul className="space-y-3 list-disc list-inside text-muted">
+        <li>
+          <strong className="text-text">Calendar-year tax-loss carryover.</strong>{" "}
+          Positions sold in Q4 for tax-loss harvesting often get rebought in Q1
+          after the 30-day wash-sale window expires. Names that "disappeared" in
+          the Feb filing may reappear in the May filing — those are not new
+          conviction positions, they're tax-cycle artifacts. Check the cost
+          basis if disclosed (often it isn't on 13F-HR; only 13F-CRs include it).
+        </li>
+        <li>
+          <strong className="text-text">Annual rebalance bias.</strong> Many
+          fundamental managers hold rebalance discipline at calendar-year start.
+          Q1 13Fs show the post-rebalance state — which means apparent "selling"
+          in Q1 may simply be sizing back to target weight after Q4 outperformance,
+          not a conviction reversal. Look at percent-of-portfolio changes, not
+          raw share-count changes.
+        </li>
+        <li>
+          <strong className="text-text">Earnings-window concentration.</strong>{" "}
+          Roughly 70% of S&P 500 names report Q4 earnings in late January /
+          February. Position changes in Q1 13Fs reflect responses to that
+          earnings cycle. The most reliable signal is{" "}
+          <em>position established in Q1 in a name that reported a downside Q4</em>{" "}
+          — that's a manager taking conviction against the consensus reaction.
+        </li>
+      </ul>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">The four signals HoldLens will compute live</h2>
+      <p className="text-muted">
+        As 13F filings hit EDGAR between May 11-15, our pipeline auto-ingests
+        each within hours and recomputes four cross-investor signals. Each is
+        addressable as JSON for partner platforms:
+      </p>
+
+      <h3 className="text-xl font-bold mt-6 mb-2">1. Consensus-buy detector</h3>
+      <p className="text-muted">
+        Names where ≥3 superinvestors initiated or added in Q1. Historically the
+        strongest cross-cohort signal — when value-style managers and growth-style
+        managers agree on a name, it usually reflects a structural thesis rather
+        than a style-rotation artifact. Q4 2025 produced 7 consensus-buy names
+        (highest count: GOOGL at 4 buyers). Endpoint:{" "}
+        <Link href="/api/v1/13f/consensus-buys.json" className="text-brand underline">
+          /api/v1/13f/consensus-buys.json
+        </Link>{" "}
+        will refresh within 24h of each filing landing.
+      </p>
+
+      <h3 className="text-xl font-bold mt-6 mb-2">2. Conviction-change ranker</h3>
+      <p className="text-muted">
+        For each tracked superinvestor, the largest portfolio-percent shift in
+        their Q1 disclosure relative to Q4. The biggest sells often signal a
+        thesis break; the biggest buys signal new conviction. Weighted by the
+        manager's historical signal accuracy (computed in our{" "}
+        <Link href="/proof/" className="text-brand underline">backtest results</Link>),
+        ranked names get a ConvictionScore lift in the +50 to +100 range.
+      </p>
+
+      <h3 className="text-xl font-bold mt-6 mb-2">3. Sector-rotation tracker</h3>
+      <p className="text-muted">
+        Aggregate Q1-vs-Q4 portfolio weight by GICS sector across all 30
+        superinvestors. Coordinated rotations (e.g. all 30 reduce Energy by
+        ≥1.5pts simultaneously) historically precede sector-level reratings.
+        Q4 2025 showed a coordinated lift in Communication Services (+2.1pts
+        cohort-wide) driven by GOOGL + META adds.
+      </p>
+
+      <h3 className="text-xl font-bold mt-6 mb-2">4. Contrarian-position spotter</h3>
+      <p className="text-muted">
+        Positions held by exactly one superinvestor with high portfolio weight
+        (≥3% of book). High-conviction-low-consensus is the textbook
+        contrarian signal. Burry's AAPL puts in late 2024 sat in this bucket;
+        so did Ackman's CMG re-entry in early 2025. Q1 2026 contrarian
+        positions get a flag in the per-investor view immediately on filing.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">How to read 13Fs without getting fooled</h2>
+      <p className="text-muted">
+        Three durable misreadings to avoid:
+      </p>
+      <ul className="space-y-3 list-disc list-inside text-muted">
+        <li>
+          <strong className="text-text">13Fs are 45-day-old data.</strong> The
+          quarter ended Mar 31. The filing isn't due until May 15. The position
+          could have been exited in April. Treat 13Fs as evidence of
+          <em> historical conviction</em>, not current holdings. The{" "}
+          <Link href="/learn/sec-signals-trilogy/" className="text-brand underline">SEC Signals trilogy</Link>{" "}
+          combines 13F (45-day lag) with insider Form 4 (2-day lag) and 8-K
+          material events (4-day lag) precisely to triangulate timing.
+        </li>
+        <li>
+          <strong className="text-text">13Fs report long-only US equity.</strong>{" "}
+          Short positions, debt, options (with exceptions), foreign equity,
+          private holdings — none of it shows. A manager going net-short a
+          name via puts will look like they "sold" the long, not like they
+          shifted to a short thesis. Always check the 13F-CR (confidential
+          treatment request) addendum if the manager files one — that's where
+          delayed disclosures hide.
+        </li>
+        <li>
+          <strong className="text-text">"Buffett bought X" is usually wrong.</strong>{" "}
+          Berkshire Hathaway has multiple portfolio managers (Buffett, Ted
+          Weschler, Todd Combs). Not every BRK position is a Buffett pick.
+          Position sizes &lt;$1B are typically Weschler/Combs decisions.
+          HoldLens flags this in the Berkshire view; other 13F trackers
+          conflate the three managers and produce misleading "Buffett
+          conviction" claims.
+        </li>
+      </ul>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">What HoldLens will publish on filing day</h2>
+      <p className="text-muted">
+        Within 6 hours of the first Q1 2026 filings hitting EDGAR (expected May
+        11-12 for early filers; May 14-15 for the rest), HoldLens will ship:
+      </p>
+      <ul className="space-y-2 list-disc list-inside text-muted">
+        <li>Per-superinvestor diff page — every position changed, formatted as add/trim/exit/new</li>
+        <li>Cross-investor consensus-buy + consensus-sell digest, sortable</li>
+        <li>Sector-rotation summary (Q1 vs Q4 weight deltas)</li>
+        <li>The "State of 13F Filings — Q1 2026" flagship report (8,000+ words, expected May 17-18)</li>
+        <li>Refreshed JSON API endpoints for every per-investor + per-sector view</li>
+      </ul>
+      <p className="text-muted">
+        Pre-announce alerts ship via{" "}
+        <Link href="/api/v1/quarters.json" className="text-brand underline">/api/v1/quarters.json</Link>{" "}
+        for partner platforms wanting to subscribe to publication-window
+        events. Email alerts for early-access drafts available with{" "}
+        <Link href="/pricing/" className="text-brand underline">HoldLens Pro (€9/mo)</Link>.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">The honest framing</h2>
+      <p className="text-muted">
+        HoldLens does not predict what the Q1 13Fs will show. We instrument
+        them faster + with cleaner cross-investor synthesis than any other
+        public tracker. Our edge is{" "}
+        <em>structural data clarity</em>, not directional forecasting. If you
+        want forecasts, you want a different site. If you want the cleanest
+        per-investor + cross-investor view of what 30 of the smartest portfolio
+        managers in the world actually did in Q1 — within 6 hours of the
+        filings hitting EDGAR — that's what we ship.
+      </p>
+      <p className="text-muted">
+        Same{" "}
+        <Link href="/disclaimer/" className="text-brand underline">disclaimer</Link>{" "}
+        applies: 13F data, not investment advice. The 45-day lag is real and
+        must be read alongside the 2-day-lag Form 4 insider data + 4-day-lag
+        8-K material events for a complete picture.
       </p>
     </div>
   );

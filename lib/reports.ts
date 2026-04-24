@@ -14,6 +14,16 @@ export type Report = {
 
 export const REPORTS: Report[] = [
   {
+    slug: "2026-04-q1-2026-pre-wave-primer",
+    title: "Q1 2026 13F pre-wave primer — what to watch May 11-15",
+    description:
+      "21 days before the next 13F filing window. What 30 superinvestors filed at the Q4 2025 deadline (Feb 17), how Q1 disclosures typically diverge from prior quarters, and the cross-investor patterns HoldLens will be tracking live as filings hit.",
+    publishedAt: "2026-04-24",
+    category: "monthly-special",
+    wordCount: 1800,
+    topics: ["13f", "filings-window", "buffett", "ackman", "burry", "q1-2026", "superinvestors"],
+  },
+  {
     slug: "2026-04-week-17-insider-cluster-roundup",
     title: "Week 17 (Apr 16-22) — what 3,001 insider trades told us",
     description:
