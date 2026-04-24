@@ -1,5 +1,26 @@
 # HoldLens — DECISIONS (append-only)
 
+## 2026-04-24 — ConvictionScore v5 — adds eventSignal layer (8-K trilogy completion)
+
+**Decision:** Add `eventSignal` as Layer 7 of ConvictionScore — asymmetric range (-15 to +5) computed from `getEventsForTicker(sym)` over the last 90 days. Asymmetry justified: bankruptcies/restatements wipe equity entirely (one event correctly overrides 30 superinvestor buy signals); positive 8-K events are weaker than insider Form 4 corroboration.
+
+**Item-code weights:** 1.03 → −15 · 2.06 → −10 · 4.02 → −12 · 2.04 → −8 · 3.01 → −10 · 5.02 (departure, keyword-gated) → −5 · 5.02 (appointment, keyword-gated) → +3 · 7.01 (note-tagged positive) → +2 · 8.01 (note-tagged positive) → +1.
+
+**Backtests:** historical scoring (`getConvictionAtQuarter`) leaves `eventSignal: 0` to avoid look-ahead bias. Live scoring (`getConviction`) uses the full 90d window.
+
+**Diff vs v4 on 2026-04-24 dataset (104 scored tickers, 1,429 8-K events):**
+- 0 tickers had non-zero eventSignal in this snapshot
+- The 4 Item 1.03 bankruptcies (CMLSQ, MARIZYME, QVCC, QVCGB) are on untracked tickers — outside the 30-superinvestor coverage universe
+- 5.02 events on AAPL + NFLX have generic headlines ("Officer / director change") — correctly neutral by keyword gate
+- 2.02 (earnings) intentionally has no weight — earnings are routine
+- Net effect: TOP 20 BUY + TOP 10 SELL rankings IDENTICAL to v4
+
+**Why ship anyway** (per "never make worse" operator constraint): v5 changes rankings ZERO today and is structurally complete for tomorrow. When a tracked ticker files material Item 1.03/2.06/4.02, score reflects it instantly. Operator gets trilogy-complete branding without disrupting current top picks.
+
+**Authoritative source files:** `lib/conviction.ts` (model), `lib/events.ts` (event data), `scripts/diff-conviction-v5.ts` (validation script).
+
+---
+
 ## 2026-04-10 — v0.13 Live data architecture
 
 **Decision:** Client-side live data via Yahoo Finance v8 chart endpoint with

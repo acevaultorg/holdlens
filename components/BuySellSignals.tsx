@@ -15,7 +15,7 @@
 // Applied to BOTH the number AND the verdict chip. Also: buyer/seller
 // counts now split-color (emerald for "buying", rose for "selling") so
 // cross-pressure is visible at a glance on the detail line.
-import { getAllConvictionScores, convictionLabel, formatSignedScore, DEAD_ZONE } from "@/lib/conviction";
+import { getAllConvictionScores, convictionLabel, formatSignedScore, DEAD_ZONE, type ConvictionBreakdown } from "@/lib/conviction";
 import { QUARTER_LABELS, LATEST_QUARTER } from "@/lib/moves";
 import { magnitudeTier, SCORE_CLASS, CHIP_CLASS } from "@/lib/signal-colors";
 import TickerLogo from "@/components/TickerLogo";
@@ -24,6 +24,35 @@ import TickerLogo from "@/components/TickerLogo";
 // LatestMoves (homepage table) can share the same palette + tier logic.
 // Rationale, WCAG analysis, and Tailwind JIT trap notes moved to that
 // file's header so there's one source of truth.
+
+// v5 — drivenBy: read the ConvictionBreakdown and surface the top 2
+// contributing components so the headline score isn't a black box. Buy
+// rows surface positive contributors; sell rows surface negative ones.
+// Returns labeled {label, value} pairs ready for inline display.
+function drivenBy(b: ConvictionBreakdown, kind: "buy" | "sell"): { label: string; value: number }[] {
+  const positives: { label: string; value: number }[] = [
+    { label: "Smart money", value: b.smartMoney },
+    { label: "Insider buys", value: b.insiderBoost > 0 ? b.insiderBoost : 0 },
+    { label: "Track record", value: b.trackRecord > 0 ? b.trackRecord : 0 },
+    { label: "Trend streak", value: b.trendStreak },
+    { label: "Concentration", value: b.concentration },
+    { label: "Contrarian", value: b.contrarian },
+    { label: "Event signal", value: b.eventSignal > 0 ? b.eventSignal : 0 },
+  ];
+  const negatives: { label: string; value: number }[] = [
+    { label: "Dissent", value: b.dissentPenalty },
+    { label: "Crowding", value: b.crowdingPenalty },
+    { label: "Insider sells", value: b.insiderBoost < 0 ? -b.insiderBoost : 0 },
+    { label: "Track record drag", value: b.trackRecord < 0 ? -b.trackRecord : 0 },
+    { label: "Event risk", value: b.eventSignal < 0 ? -b.eventSignal : 0 },
+  ];
+  const pool = kind === "buy" ? positives : negatives;
+  return pool
+    .filter((d) => d.value > 0)
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 2)
+    .map((d) => ({ label: d.label, value: kind === "buy" ? d.value : -d.value }));
+}
 
 // Server component — renders at build time. The data is static per build.
 export default function BuySellSignals() {
@@ -52,6 +81,7 @@ export default function BuySellSignals() {
           score: c.score,
           buyerCount: c.buyerCount,
           sellerCount: c.sellerCount,
+          breakdown: c.breakdown,
         }))}
         linkHref="/buys"
         linkLabel="See full ranking →"
@@ -68,6 +98,7 @@ export default function BuySellSignals() {
           score: c.score,
           buyerCount: c.buyerCount,
           sellerCount: c.sellerCount,
+          breakdown: c.breakdown,
         }))}
         linkHref="/sells"
         linkLabel="See full ranking →"
@@ -95,6 +126,7 @@ function SignalColumn({
     score: number;
     buyerCount: number;
     sellerCount: number;
+    breakdown: ConvictionBreakdown;
   }[];
   linkHref: string;
   linkLabel: string;
@@ -123,7 +155,7 @@ function SignalColumn({
         >
           <div>ConvictionScore →</div>
           <div className="opacity-70 normal-case tracking-normal mt-0.5">
-            {kind === "buy" ? "0 → +100" : "0 → −100"}
+            Signed −100…+100 · top picks 25–50
           </div>
         </a>
       </div>
@@ -191,6 +223,19 @@ function SignalColumn({
                             : "Strong historical exit pressure"}
                         </span>
                       )}
+                    </div>
+                    {/* v5 — "Driven by" subline: surface the top 2 breakdown
+                        components so the score isn't a black box. Built from
+                        ConvictionBreakdown which already exists per row. */}
+                    <div className="text-[10px] text-dim/80 mt-0.5 truncate">
+                      Driven by:{" "}
+                      {drivenBy(it.breakdown, kind).map((d, j, arr) => (
+                        <span key={d.label}>
+                          <span className="text-muted">{d.label}</span>
+                          <span className="text-dim/60"> {d.value > 0 ? "+" : ""}{d.value}</span>
+                          {j < arr.length - 1 && <span className="text-dim/40"> · </span>}
+                        </span>
+                      ))}
                     </div>
                   </div>
                   <div className={`text-base font-bold tabular-nums ${scoreColor}`}>

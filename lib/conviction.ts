@@ -32,6 +32,7 @@ import { TICKER_INDEX } from "./tickers";
 import { getInsiderTx } from "./insiders";
 import { getManagerROI } from "./manager-roi";
 import { getManagerTickerTrend } from "./signals";
+import { getEventsForTicker } from "./events";
 
 // ---------- TYPES ----------
 
@@ -42,6 +43,7 @@ export type ConvictionBreakdown = {
   trendStreak: number;         // 0–10 — multi-quarter compounding
   concentration: number;       // 0–10 — position-size as conviction proof
   contrarian: number;          // 0–10 — anti-crowding bonus for under-the-radar
+  eventSignal: number;         // -15 to +5 — 8-K material events (v5 trilogy completion)
   dissentPenalty: number;      // 0–40 — sells subtract
   crowdingPenalty: number;     // 0–10 — too many owners = priced in
   raw: number;                 // pre-clamp
@@ -275,6 +277,83 @@ function computeConviction(ticker: string, quarter: Quarter): ConvictionScore {
   const crowdingPenalty =
     ownerCount > 8 ? clamp(Math.log2(ownerCount - 7) * 2, 0, 10) : 0;
 
+  // ----- LAYER 7: 8-K event signal (v5 — trilogy completion) -----
+  // Material SEC events from the last 90 days. Asymmetric range (-15 to +5)
+  // because bankruptcies/restatements wipe equity entirely while positive
+  // 8-K events are weaker than insider Form 4 buys. One bankruptcy can
+  // override 30 superinvestor buy signals — that's the correct behavior.
+  //
+  // Item code weights:
+  //   1.03 (bankruptcy/receivership) ............ -15
+  //   2.06 (material impairment) ................. -10
+  //   4.02 (non-reliance / restatement) .......... -12
+  //   3.01 (delisting notice) .................... -10
+  //   5.02 (officer departure — UNEXPECTED) ......  -5
+  //   5.02 (officer appointment / promotion) .....  +3
+  //   7.01 (Reg FD positive disclosure) ..........  +2
+  //   8.01 (operator-tagged positive event) ......  +1
+  // Net result clamped to [-15, +5].
+  const events = getEventsForTicker(sym);
+  const ninetyDaysAgo = new Date();
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+  const cutoff = ninetyDaysAgo.toISOString().slice(0, 10);
+  let eventSignalRaw = 0;
+  for (const ev of events) {
+    if (ev.filedAt < cutoff) continue;
+    const note = (ev.note || "").toLowerCase();
+    const headline = (ev.headline || "").toLowerCase();
+    switch (ev.itemCode) {
+      case "1.03":
+        eventSignalRaw -= 15;
+        break;
+      case "2.06":
+        eventSignalRaw -= 10;
+        break;
+      case "4.02":
+        eventSignalRaw -= 12;
+        break;
+      case "3.01":
+        eventSignalRaw -= 10;
+        break;
+      case "5.02":
+        // Departure vs appointment heuristic from headline
+        if (
+          headline.includes("appoint") ||
+          headline.includes("promot") ||
+          headline.includes("elect") ||
+          note.includes("appointment") ||
+          note.includes("promotion")
+        ) {
+          eventSignalRaw += 3;
+        } else if (
+          // Skip routine retirements (no signal); only flag unexpected departures
+          !headline.includes("retire") &&
+          !headline.includes("retirement") &&
+          (headline.includes("resign") ||
+            headline.includes("depart") ||
+            headline.includes("terminate"))
+        ) {
+          eventSignalRaw -= 5;
+        }
+        break;
+      case "7.01":
+        // Reg FD — only positive if note flags it; default neutral
+        if (note.includes("positive") || note.includes("upgrade")) {
+          eventSignalRaw += 2;
+        }
+        break;
+      case "8.01":
+        // Other Events — only count if operator-curated as positive (note-tagged)
+        if (note.includes("positive")) {
+          eventSignalRaw += 1;
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  const eventSignal = clamp(eventSignalRaw, -15, 5);
+
   // ----- COMPOSITE SCORE -----
   const raw =
     smartMoney +
@@ -282,7 +361,8 @@ function computeConviction(ticker: string, quarter: Quarter): ConvictionScore {
     trackRecord +
     trendStreak +
     concentration +
-    contrarian -
+    contrarian +
+    eventSignal -
     dissentPenalty -
     crowdingPenalty;
 
@@ -352,6 +432,7 @@ function computeConviction(ticker: string, quarter: Quarter): ConvictionScore {
       trendStreak: Math.round(trendStreak),
       concentration: Math.round(concentration),
       contrarian: Math.round(contrarian),
+      eventSignal: Math.round(eventSignal),
       dissentPenalty: Math.round(dissentPenalty),
       crowdingPenalty: Math.round(crowdingPenalty),
       raw: Math.round(raw),
@@ -615,6 +696,9 @@ export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): Co
       trendStreak: Math.round(trendStreak),
       concentration: Math.round(concentration),
       contrarian: Math.round(contrarian),
+      // v5: historical scoring doesn't apply 8-K events to avoid look-ahead bias.
+      // Backtests stay clean; live scores show the trilogy-completed signal.
+      eventSignal: 0,
       dissentPenalty: Math.round(dissentPenalty),
       crowdingPenalty: Math.round(crowdingPenalty),
       raw: Math.round(raw),
