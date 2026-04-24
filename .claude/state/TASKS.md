@@ -1,5 +1,62 @@
 # HoldLens — TASKS
 
+## 📋 7-Day Extension Sprint — status map (2026-04-24 audit)
+
+Operator spec: 12 extensions, €45k Y1 target. Audit per "only improves, never breaks" constraint.
+
+| # | Path | Live state | Action |
+|---|------|------------|--------|
+| 1 | `/events/` | ✅ live, 333-line page, real-data wiring | Maintain — no change needed |
+| 2 | `/enforcement/` | ✅ live, 148-line page, real-data wiring | Maintain |
+| 3 | `/activism/` (`/activist/`) | ✅ live, 319-line page + [slug] route, real-data wiring | Maintain |
+| 4 | `/forecasts/` | ⚠️ 135-line placeholder (no data wiring) | Day 3 — needs analyst targets data source |
+| 5 | `/proxies/` | ✅ live, 80-line hub, has data wiring | Maintain |
+| 6 | `/bankruptcy/` | ✅ live (just shipped 06:42 UTC) — real EDGAR Item 1.03 table (4 filings) | Maintain |
+| 7 | `/filings/` | ✅ live, 95-line page, has data wiring | Maintain |
+| 8 | `/advisers/` | ⚠️ 80-line placeholder (no data wiring) | Day 5 — needs SEC Form ADV scraper |
+| 9 | `/consensus/` | ✅ live, 276-line page, real-data wiring | Maintain |
+| 10 | `/divergence/` | 🟡 wired in commit b2afd5848 — 238 events, **awaiting deploy** (see below) | DEPLOY (Clarity Card below) |
+| 11 | Chrome extension | ❌ not started | Day 7 |
+| 12 | `@holdlens/mcp` npm package | ❌ not started | Day 7 |
+
+**Bot-readiness infra:** ✅ llms.txt present · ✅ robots.ts (Next.js dynamic) · ✅ sitemap.ts (Next.js dynamic) · ✅ sitemap-ai.xml (postbuild script) · ✅ datePublished/dateModified per page · ✅ /api/[slug].json twin endpoints · ✅ Organization + Article + Person schema · ✅ /for-ai/ machine-readable hub.
+
+**Reports surface (bonus this session):** /reports/ archive listing live · 3 commentaries published (Q1 2026 pre-wave primer + Week 17 insider cluster roundup + Week 17 8-K event distribution).
+
+**Net status:** 9/12 spec routes already real-data live. 1 wired + awaiting deploy (this session). 2 placeholders need new data-source infrastructure (forecasts + advisers — Day 3 + Day 5 work). 2 not started (Chrome extension + MCP npm — Day 7 work).
+
+---
+
+## 🟡 RECOMMENDED — Deploy `b2afd5848` (divergence wire-up) to production
+
+**WHAT:** Push the latest git commit (divergence page now showing 238 real-data divergence events) to live `holdlens.com`. Code is committed + pushed to origin/main but the production site still serves the previous deploy.
+
+**WHY:** The /divergence/ page on the live site currently shows the placeholder "Phase 3 Fork B (Y2 candidate). Day-1 hub shipped." — visitors who click the existing nav link get a TODO page. The committed code shows real data: 238 divergence events across 30 superinvestors with the latest Q4 2025 quarter rendering 12 cards (top: AMZN with 11 buyers vs 7 sellers). Cost of skipping: this work sits in git, invisible to LLMs + humans. Distribution Oracle projects +30-80 visitors/wk (journalist-bait pattern, viral share-card potential).
+
+**TIME:** ~3 minutes via dashboard.
+
+**HOW:**
+  1. Open Cloudflare Pages dashboard:
+     `https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/pages/view/holdlens/deployments/new`
+     → expected: "Create new deployment" page with drag-drop zone.
+  2. Open Finder to the local build directory:
+     `/Users/paulodevries/Library/Mobile Documents/com~apple~CloudDocs/AceVault/ CLUSTER01-AceVault/VAULT01-Paulo Projects/holdlens-com/holdlens/out`
+     → expected: directory with 10,853 files including `divergence/index.html`.
+  3. Drag the `out` folder onto the dashboard upload zone.
+     → expected: progress bar advances to 100%; "Deployment complete" green badge.
+  4. Wait ~30s for production cutover.
+     → expected: `https://holdlens.com/divergence/` shows "Currently 238 divergence events across all tracked quarters".
+
+**VERIFY:**
+  `curl -s https://holdlens.com/divergence/ | grep -o "Currently <strong[^<]*</strong> divergence" | head -1`
+  → expected: `Currently <strong class="text-text">238</strong> divergence` (or similar).
+
+**IF STUCK:**
+  - Dashboard upload also fails (CF UI also has 25MB-per-file limits): wait for the auto-deploy-chain.sh script to expire its 60-min deadline at ~07:14 UTC and idempotently redeploy via wrangler (success rate non-zero per cloudflare-pages-epipe.md). Check with `curl -sI https://holdlens.com/divergence/` 30 min later.
+  - Wrangler EPIPE keeps blocking: this is a stable Cloudflare API behavior, not a local issue. The 3-attempt-retry pattern just exhausted (07:05 / 07:07 / 07:09 UTC). Try again in a few hours — success rate is non-zero across the day.
+
+---
+
 ## ✅ RESOLVED 2026-04-23 — TollBit bot forwarding already live fleet-wide (supersedes tollbit-cf-snippet + tollbit-verify-setup)
 
 **Deploy-truth verification** via curl — all 19 TollBit-canonical AI bot UAs return `HTTP/2 302 location: https://tollbit.holdlens.com/`:
@@ -1401,3 +1458,62 @@ Priority = (revenue impact × reversibility) / effort. Top of list executed firs
 - Oracle projections appended to ORACLE.md (analytics_wiring archetype ×0.10 × 4 rows = ~€5/wk cumulative, awaiting traffic calibration).
 - KNOWLEDGE.md Analytics section added documenting full stack.
 - Remaining [👤] activation blockers unchanged: Stripe env vars, Amazon Associates, AdSense approval (submitted + awaiting Google), affiliate signups.
+
+---
+
+## 🎯 Monday Revenue Activation — 2026-04-27 (cluster strategy 2026-04-24)
+
+**Context:** HoldLens is Tier-1 "anchor" per cluster strategy 2026-04-24 (Y1 midpoint €45k, 51% of fleet revenue). Many layers already activated (see `MONETIZATION_STACK.md`). Below cards are the 2 TRULY NEW Monday actions + a pointer to the 5 already-logged pending Clarity Cards in MONETIZATION_STACK.md.
+
+### 🔴 REQUIRED — Cloudflare Pay-Per-Crawl: payout method + toggle ON
+
+**WHAT:** Complete CF Pay-Per-Crawl payout method setup (bank IBAN + SWIFT + tax info) and toggle AI Audit > Pay-Per-Crawl ON for holdlens.com zone. Operator's cluster plan assumes CF Pro beta invitation has arrived. If still waitlisted, skip this card and log blocker.
+
+**WHY:** HoldLens current bot-traffic 2,500+ crawls/day. At default PPC pricing, projected €200-500/mo direct revenue — largest non-extension monetization lever. Skipping leaves bot traffic unmonetized. Payout method setup is one-time; carries to all 4 Tier-1 zones upgraded this week.
+
+**TIME:** ~15 min.
+
+**HOW:**
+   1. Cloudflare dashboard → holdlens.com → AI Audit → Pay-Per-Crawl
+      → expected: either "Enable" button (Pro beta invited) OR "Waitlisted" banner (not yet)
+   2. IF waitlisted → log `LAYER 2 WAITLIST STILL ACTIVE` to MONETIZATION_STACK.md Layer Activations + abort this card. Retry monthly.
+   3. IF enable available → click "Set up payout method" → enter bank IBAN + SWIFT + tax info (fills once, shared across all 4 Tier-1 zones)
+   4. Choose default pricing tier per `~/.claude/acepilot-19.7/templates/cloudflare-ppc-setup-guide.md` "Pricing Strategy" section
+   5. Click "Enable Pay-Per-Crawl"
+
+**VERIFY:** Cloudflare dashboard → AI Audit shows "Pay-Per-Crawl: Enabled" + pricing tier visible. Thursday 10:02 UTC `cloudflare-ppc-revenue-pull` cron appends first revenue row to `REVENUE_CALIBRATION.md` within 24h of enable.
+
+**IF STUCK:**
+   - Still waitlisted → log the state, set calendar reminder for 2026-05-05 to re-check
+   - Payout setup rejects bank → try alt European bank or bump to CF support ticket
+   - Pricing tier confusing → start at default; refine after 4 weeks of actual data (LEARNED.md self-calibrates)
+
+---
+
+### 🔴 REQUIRED — Pre-emptive Mediavine Journey application
+
+**WHAT:** Submit Mediavine Journey ad-network application for holdlens.com. Pre-emptive — HoldLens currently <1,000 sessions/mo (~12 humans/30d per MONETIZATION_STACK.md). Mediavine likely rejects for traffic floor today; application starts the clock on re-review.
+
+**WHY:** Once HoldLens crosses 1k sessions/mo (Finance RPM tier = €15-30/mo Mediavine), atomic I-37 swap from AdSense → Mediavine yields 2-5× ad revenue. Applying now lets `mediavine-promotion-detector` Wednesday-09:08-UTC cron fire the promotion Clarity Card immediately at threshold-crossing, not after 5-10-day application delay.
+
+**TIME:** ~15 min.
+
+**HOW:**
+   Open: `~/.claude/acepilot-19.7/templates/mediavine-application-checklist.md`
+   Run checklist for holdlens.com. Vertical: "Finance / Investing". Flag that current sessions <1k/mo in application notes (honesty builds reviewer trust — mention projected trajectory).
+
+**VERIFY:** Mediavine email confirmation + "Under Review" OR "Not Yet Eligible — Reapply at 1,000 sessions" dashboard status.
+
+**IF STUCK:**
+   - Rejected for traffic → stays on waitlist; re-review automatically on traffic crossing (Mediavine monitors registered sites)
+   - Form field "Average Monthly Sessions" → honestly enter <1k; do NOT inflate (gets permanent ban)
+   - Vertical options limit → choose "Finance & Investing" or closest; elaborate in free-text field
+
+---
+
+### 🟡 See MONETIZATION_STACK.md — 5 other pending Clarity Cards
+
+Ezoic signup · Impact.com + 5 broker applications · ProRata.ai signup · Bingbot WAF skip rule · TollBit CF Snippet (already fleet-wide, can be deprioritized per existing state).
+
+Open: `holdlens-com/holdlens/.claude/state/MONETIZATION_STACK.md ## Pending Operator Clarity Cards` — full steps already in prior-session logs.
+
