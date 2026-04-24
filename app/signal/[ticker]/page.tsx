@@ -129,6 +129,8 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
   const { buy, sell } = getTickerSignals(t.symbol);
   const trend = getTickerTrend(t.symbol);
   const net = getNetSignal(t.symbol);
+  // v5 — full ConvictionScore for the per-ticker 9-layer breakdown panel
+  const conv = getConviction(t.symbol);
 
   const buyRating = buy ? ratingLabel(buy.score) : null;
   const sellRating = sell ? ratingLabel(sell.score) : null;
@@ -390,6 +392,91 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           </div>
         </section>
       )}
+
+      {/* v5 — ConvictionScore 9-layer breakdown — the SEC trilogy detail.
+          Shows every component contribution from the score so the user can see
+          WHAT the verdict is built from. Companion to the homepage "Driven by:"
+          subline; this is the full drill-down. */}
+      <section className="mt-4 rounded-2xl border border-border bg-panel p-5">
+        <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-1">
+              ConvictionScore v5 · 9-layer breakdown
+            </div>
+            <div className="text-xs text-muted">
+              13F superinvestor moves + Form 4 insider trades + 8-K material events. The SEC Signals trilogy.
+            </div>
+          </div>
+          <div className={`text-2xl font-bold tabular-nums ${conv.direction === "BUY" ? "text-emerald-400" : conv.direction === "SELL" ? "text-rose-400" : "text-muted"}`}>
+            {formatSignedScore(conv.score)}
+          </div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 text-xs">
+          <BreakdownStat
+            label="Smart money (13F)"
+            value={`+${conv.breakdown.smartMoney}`}
+            positive={conv.breakdown.smartMoney > 0}
+          />
+          <BreakdownStat
+            label="Insider activity (Form 4)"
+            value={`${conv.breakdown.insiderBoost >= 0 ? "+" : ""}${conv.breakdown.insiderBoost}`}
+            positive={conv.breakdown.insiderBoost > 0}
+            negative={conv.breakdown.insiderBoost < 0}
+          />
+          <BreakdownStat
+            label="Track record (CAGR)"
+            value={`${conv.breakdown.trackRecord >= 0 ? "+" : ""}${conv.breakdown.trackRecord}`}
+            positive={conv.breakdown.trackRecord > 0}
+            negative={conv.breakdown.trackRecord < 0}
+          />
+          <BreakdownStat
+            label="Trend streak"
+            value={`+${conv.breakdown.trendStreak}`}
+            positive={conv.breakdown.trendStreak > 0}
+          />
+          <BreakdownStat
+            label="Concentration"
+            value={`+${conv.breakdown.concentration}`}
+            positive={conv.breakdown.concentration > 0}
+          />
+          <BreakdownStat
+            label="Contrarian bonus"
+            value={`+${conv.breakdown.contrarian}`}
+            positive={conv.breakdown.contrarian > 0}
+          />
+          <BreakdownStat
+            label="Event signal (8-K)"
+            value={`${conv.breakdown.eventSignal >= 0 ? "+" : ""}${conv.breakdown.eventSignal}`}
+            positive={conv.breakdown.eventSignal > 0}
+            negative={conv.breakdown.eventSignal < 0}
+          />
+          <BreakdownStat
+            label="− Dissent penalty"
+            value={`−${conv.breakdown.dissentPenalty}`}
+            negative={conv.breakdown.dissentPenalty > 0}
+          />
+          <BreakdownStat
+            label="− Crowding penalty"
+            value={`−${conv.breakdown.crowdingPenalty}`}
+            negative={conv.breakdown.crowdingPenalty > 0}
+          />
+        </div>
+        <div className="mt-3 pt-3 border-t border-border text-[11px] text-dim flex flex-wrap gap-x-3 gap-y-1">
+          <span>Owners: <strong className="text-text">{conv.ownerCount}</strong></span>
+          <span>·</span>
+          <span>Buyers: <strong className="text-emerald-400/80">{conv.buyerCount}</strong></span>
+          <span>·</span>
+          <span>Sellers: <strong className="text-rose-400/80">{conv.sellerCount}</strong></span>
+          {conv.expectedReturnPct != null && (
+            <>
+              <span>·</span>
+              <span>Buyer-CAGR-weighted expected return: <strong className="text-text">{conv.expectedReturnPct >= 0 ? "+" : ""}{conv.expectedReturnPct}%</strong>{conv.confidenceIntervalPct != null && <span className="text-dim/60"> ±{conv.confidenceIntervalPct}%</span>}</span>
+            </>
+          )}
+          <span>·</span>
+          <a href="/learn/conviction-score-explained" className="text-brand underline">How this is computed</a>
+        </div>
+      </section>
 
       {/* Viral share card — the single-click "tweet this verdict" unlock.
           Placed here (after verdict + score breakdown, before the chart) so
