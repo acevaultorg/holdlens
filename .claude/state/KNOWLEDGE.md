@@ -1,5 +1,23 @@
 # HoldLens — KNOWLEDGE
 
+## Deploy lessons learned (2026-04-24) <!-- verified: 2026-04-24 -->
+
+When wrangler EPIPEs repeatedly (>3 retries) and the Clarity Card-style "go to dashboard" path comes up, two gotchas to remember:
+
+**(1) CF Pages dashboard ZIP upload expects files at the ARCHIVE ROOT, not under a parent directory.**
+- ❌ `zip -rq /tmp/x.zip out/` — files appear as `out/index.html` inside the zip → CF unpacks but routes 404 because it serves from root
+- ✅ `cd out && zip -rq /tmp/x.zip .` — files appear as `index.html` at root → CF serves correctly
+
+If you upload a wrongly-structured zip, the deploy completes "Success!" but every URL serves the OLD content (because nothing matched the routing table). Diagnose with `unzip -l /tmp/x.zip | head` — first entries should be `buybacks/` `signal/` etc. NOT `out/buybacks/`.
+
+**(2) `grep -c "string"` counts MATCHING LINES, not occurrences.**
+Minified HTML often puts thousands of elements on one line. `grep -c "Driven by"` returning 1 doesn't mean one render — it means all renders are on one line. Use `grep -oE "pattern" | wc -l` for true occurrence counts when verifying production fingerprints on minified HTML.
+
+**(3) Chrome MCP `left_click` may report CDP timeout but the click still registers.**
+Don't immediately retry — take a screenshot first, the UI usually shows the click did fire. Two clicks deploys twice (idempotent for CF Pages but still wasteful).
+
+**The path that actually worked for 2026-04-24 v5 ship after wrangler EPIPE×6 + GH Actions 422:** zip from inside out/ → upload via Chrome MCP `file_upload` to dashboard file input ref → click Save and deploy → wait 90s → curl-verify with `?_v=$(date +%s%N)` cache-bust. Total time ~10 min once the ZIP structure was right.
+
 ## ConvictionScore v5 (2026-04-24) <!-- verified: 2026-04-24 -->
 
 The ConvictionScore model is at **v5** as of 2026-04-24. v5 adds Layer 7 (`eventSignal`) — completing the SEC Signals trilogy by integrating 8-K material events alongside the existing 13F + Form 4 data layers.
