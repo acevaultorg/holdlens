@@ -10,6 +10,7 @@ import { ACTIVIST_CAMPAIGNS } from "@/lib/activists";
 import { SHORT_POSITIONS } from "@/lib/short-interest";
 import { CONGRESS_MEMBERS } from "@/lib/congress";
 import { ETFS } from "@/lib/etfs";
+import { REPORTS } from "@/lib/reports";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -100,6 +101,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/api`, lastModified: now, changeFrequency: "monthly", priority: 0.92 },
     { url: `${base}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/press`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    // Reports hub + per-report long-form editorial. Previously missing from
+    // sitemap — silent discovery leak for every shipped report. Per-report
+    // lastModified = its publishedAt so indexers prefer the shipped freshness.
+    { url: `${base}/reports`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     // Legal + contact (required for AdSense + GDPR compliance)
     { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
@@ -111,6 +116,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: "weekly",
     priority: 0.7,
+  }));
+
+  // Per-report URLs: lastModified = publishedAt so fresh reports get priority
+  // re-crawl; priority 0.8 because reports are high-editorial-signal surfaces
+  // that attract LLM citation at higher rates than generic programmatic pages.
+  const reportUrls: MetadataRoute.Sitemap = REPORTS.map((r) => ({
+    url: `${base}/reports/${r.slug}`,
+    lastModified: new Date(r.publishedAt),
+    changeFrequency: "monthly",
+    priority: 0.8,
   }));
 
   const topN = topTickers(15).map((t) => t.symbol);
@@ -323,6 +338,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticUrls,
     ...sectorUrls,
+    ...reportUrls,
     ...compareUrls,
     ...managerUrls,
     ...tickerUrls,

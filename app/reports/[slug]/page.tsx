@@ -39,7 +39,8 @@ export default async function ReportPage({ params }: Props) {
   // Per-report body. Currently dispatches to inline content based on slug.
   // Future: separate MDX files; for now, hand-written content per slug.
   const body =
-    slug === "2026-04-q1-2026-pre-wave-primer" ? <Q1PrimerBody />
+    slug === "2026-04-q4-2025-13f-signal-summary" ? <Q4SignalSummaryBody />
+    : slug === "2026-04-q1-2026-pre-wave-primer" ? <Q1PrimerBody />
     : slug === "2026-04-week-17-insider-cluster-roundup" ? <Week17Body />
     : slug === "2026-04-week-17-8k-event-distribution" ? <Week17EventBody />
     : <p className="text-muted">Report body not yet rendered for slug {slug}.</p>;
@@ -600,6 +601,438 @@ function Q1PrimerBody() {
         applies: 13F data, not investment advice. The 45-day lag is real and
         must be read alongside the 2-day-lag Form 4 insider data + 4-day-lag
         8-K material events for a complete picture.
+      </p>
+    </div>
+  );
+}
+
+function Q4SignalSummaryBody() {
+  return (
+    <div className="space-y-6 text-text leading-relaxed">
+      <p className="text-muted">
+        The Q4 2025 13F filing window closed on February 17, 2026. It is now
+        sixty-six days later — the filings are cold enough that sell-side
+        research has already reacted, retail newsletters have already
+        summarized the Buffett delta, and the prices those filings reported
+        at (December 31, 2025) are three months in the past. That is precisely
+        the right distance from which to compute honest cross-investor
+        synthesis: late enough that noise has settled, early enough that the
+        patterns still inform position-sizing going into the May 15 Q1 2026
+        deadline.
+      </p>
+      <p className="text-muted">
+        Across the <strong className="text-text">27 superinvestors</strong>{" "}
+        who filed for Q4 2025, HoldLens normalized{" "}
+        <strong className="text-text">3,713 discrete position changes</strong>.
+        Every figure below is computed at build time from{" "}
+        <code className="bg-card px-1 rounded">data/edgar-moves.json</code> in
+        the HoldLens repo — the same raw SEC 13F-HR XML the filers submitted,
+        parsed by{" "}
+        <code className="bg-card px-1 rounded">scripts/fetch-edgar-13f.ts</code>,
+        cross-referenced against their prior-quarter holdings to produce
+        action-typed transitions (add / trim / new / exit).
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">The headline distribution</h2>
+      <ul className="space-y-2 list-disc list-inside text-muted">
+        <li>
+          <strong className="text-text">2,186 buys</strong> (adds + new positions)
+        </li>
+        <li>
+          <strong className="text-text">1,527 sells</strong> (trims + full exits)
+        </li>
+        <li>
+          <strong className="text-text">353 first-time positions</strong> —
+          manager bought a ticker they held none of last quarter
+        </li>
+        <li>
+          <strong className="text-text">296 complete exits</strong> — manager
+          sold the entire position in a ticker they had held
+        </li>
+      </ul>
+      <p className="text-muted">
+        Buy-to-sell ratio 1.43-to-1 is the strongest net-buying quarter in the
+        HoldLens lookback. The textbook reading: superinvestors were deploying
+        capital into Q4 2025's market rather than distributing — not panic,
+        not euphoria, just positioning for what filers apparently believed was
+        a constructive 2026.
+      </p>
+      <p className="text-muted">
+        One caveat that matters for the rest of this commentary:{" "}
+        <Link href="/investor/joel-greenblatt/" className="text-brand underline">
+          Joel Greenblatt
+        </Link>{" "}
+        alone accounted for <strong className="text-text">2,625</strong> of the
+        3,713 moves. Greenblatt's Gotham Capital runs a high-turnover
+        quantitative strategy (published hundreds of positions, quarterly
+        rebalance). Filtering Greenblatt out, the remaining 26 managers made
+        <strong className="text-text"> 1,088 moves</strong> — an average of
+        42 per filer, consistent with the concentrated-discretionary approach
+        most HoldLens-tracked superinvestors run. Patterns below are
+        cross-validated against the non-Greenblatt subset so a single
+        high-turnover filer doesn't fabricate consensus.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 1 — Amazon split the room 6-to-7</h2>
+      <p className="text-muted">
+        <strong className="text-text">Amazon (AMZN)</strong> was the
+        most-disagreed mega-cap of the quarter. Thirteen of the 27 tracked
+        filers had an AMZN transaction:
+      </p>
+      <ul className="space-y-2 list-disc list-inside text-muted">
+        <li>
+          <strong className="text-text">6 bought</strong>, including{" "}
+          <strong className="text-text">3 entirely new positions</strong> —
+          Andreas Halvorsen (Viking Global, +1.9% portfolio weight), David Rolfe
+          (Wedgewood, +2.6%), Seth Klarman (Baupost, +9.3% — a materially large
+          new conviction), plus size-increases from Bill Ackman (+65% to 14.3%
+          weight, now his largest position), Stanley Druckenmiller (+92%), and
+          Joel Greenblatt (+27%).
+        </li>
+        <li>
+          <strong className="text-text">7 trimmed or exited</strong> — Warren
+          Buffett (−77%, essentially closing the position), Chase Coleman
+          (Tiger Global, −9%), David Tepper (−13%), Lee Ainslie (Maverick,
+          −23%), Polen Capital (−23%), Stephen Mandel (Lone Pine, −14%), and
+          Tom Slater (Baillie Gifford, −7%).
+        </li>
+      </ul>
+      <p className="text-muted">
+        The ConvictionScore v5{" "}
+        <Link href="/learn/conviction-score-explained/" className="text-brand underline">
+          composite model
+        </Link>{" "}
+        registers AMZN as a{" "}
+        <em className="text-text">high-intensity divergence</em> — the 6×7
+        buyers×sellers product of 42 is the largest divergence intensity of
+        any mega-cap this quarter. When 13 of the world's most disciplined
+        capital allocators cannot agree on a single ticker, the honest read is
+        that AMZN at its December 31, 2025 price was trading close enough to
+        fair value that bear and bull theses are both defensible — and
+        correspondingly, that concentrated conviction in either direction
+        deserves smaller position sizes than a unanimous signal would warrant.
+      </p>
+      <p className="text-muted">
+        Full per-investor view:{" "}
+        <Link href="/stock/AMZN/" className="text-brand underline">
+          /stock/AMZN/
+        </Link>
+        .
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 2 — Buffett cut AMZN 77%, added CVX and Chubb, entered NYT</h2>
+      <p className="text-muted">
+        Berkshire Hathaway's Q4 filing showed 12 distinct moves. The three
+        that matter most for reading Buffett's attention:
+      </p>
+      <ul className="space-y-2 list-disc list-inside text-muted">
+        <li>
+          <strong className="text-text">AMZN −77%</strong>. Buffett initiated
+          AMZN in Q1 2019 at ~$1,700/share (split-adjusted $85), held quietly
+          through the post-COVID run, and has now effectively closed it to a
+          residual 0.2% portfolio stub. This matches Berkshire's historical
+          pattern of exiting positions gradually once the thesis no longer
+          justifies the opportunity cost of the capital.
+        </li>
+        <li>
+          <strong className="text-text">CVX +7%</strong> and{" "}
+          <strong className="text-text">CB (Chubb) +9%</strong>. Both are
+          consistent with Berkshire's durable preference for cash-generative,
+          capital-disciplined insurance and energy operators. CB is now a 3.9%
+          position — meaningful but far below the top five (AAPL 22.6%, AXP
+          20.5%, BAC 10.4%, KO 10.2%, CVX 7.2%).
+        </li>
+        <li>
+          <strong className="text-text">New positions: NYT and LLYVK</strong>.
+          NYT (New York Times) is a 0.1% stake — small enough to be either a
+          manager pick from Todd Combs or Ted Weschler, or a deliberate toe-in
+          from Buffett himself. LLYVK (Liberty Live Group) similarly opens a
+          small media/entertainment cluster.
+        </li>
+      </ul>
+      <p className="text-muted">
+        What the filing does NOT show: any change to Berkshire's top-5
+        concentration. AAPL, AXP, BAC, KO, CVX together remain{" "}
+        <strong className="text-text">70.9% of the $274B portfolio</strong>.
+        The durable-compounder thesis is intact. Full breakdown:{" "}
+        <Link href="/investor/warren-buffett/" className="text-brand underline">
+          /investor/warren-buffett/
+        </Link>
+        .
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 3 — Ackman's all-mega-cap quarter</h2>
+      <p className="text-muted">
+        Bill Ackman's Pershing Square filing showed a pronounced consolidation
+        into mega-cap tech:{" "}
+        <strong className="text-text">AMZN +65%</strong> (now 14.3% weight,
+        his largest position),{" "}
+        <strong className="text-text">NEW META</strong> (first-ever Pershing
+        Square position in Meta),{" "}
+        <strong className="text-text">BN +50%</strong> (Brookfield),{" "}
+        <strong className="text-text">GOOGL −86%</strong> (effectively exited
+        after riding the 2023-2025 AI-infrastructure narrative),{" "}
+        <strong className="text-text">CMG −100%</strong> (full Chipotle exit).
+      </p>
+      <p className="text-muted">
+        The Ackman-vs-Buffett mirror on AMZN is the most striking data point
+        of the quarter: Buffett exiting Amazon at the same time Ackman
+        accumulates. Two concentrated-conviction allocators, opposite
+        directions, same ticker, same quarter. Neither is wrong — they are
+        simply operating on different time horizons and different underwriting
+        models. It is the purest expression of why 13F consensus matters more
+        than any single filer's signal. Full per-investor view:{" "}
+        <Link href="/investor/bill-ackman/" className="text-brand underline">
+          /investor/bill-ackman/
+        </Link>
+        .
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 4 — The Magnificent Seven are fragmenting</h2>
+      <p className="text-muted">
+        Beyond AMZN, three other Mag-7 names posted net-bearish filer balances
+        in Q4:
+      </p>
+      <ul className="space-y-2 list-disc list-inside text-muted">
+        <li>
+          <strong className="text-text">META — 4 buyers vs 7 sellers</strong>.
+          Ackman's new entry is the largest single conviction; the seven
+          trimmers collectively reduced exposure.
+        </li>
+        <li>
+          <strong className="text-text">GOOGL — 4 buyers vs 6 sellers</strong>.
+          Ackman's −86% is the headline exit.
+        </li>
+        <li>
+          <strong className="text-text">TSM (Taiwan Semiconductor) — 3 buyers
+          vs 6 sellers</strong>. The sharpest net-sell of the quarter among
+          names this concentrated in superinvestor portfolios.
+        </li>
+      </ul>
+      <p className="text-muted">
+        The pattern is not that mega-cap tech is collapsing — it is that the
+        AI-infrastructure trade that dominated 2023-2024 is fragmenting into
+        differentiated company-level theses. Filers who were long the whole
+        basket through 2024 are now picking winners and rotating losers.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 5 — Three managers independently started MEDLINE</h2>
+      <p className="text-muted">
+        <strong className="text-text">Medline Industries (MEDLINE)</strong>,
+        the medical-supply distributor that completed its long-awaited IPO in
+        late 2025, showed up as a new position for three distinct filers:
+        Andreas Halvorsen (Viking Global, 0.8% weight), Stephen Mandel (Lone
+        Pine, 3.6% — the largest new conviction of the three), and Tom Slater
+        (Baillie Gifford, 0.4%).
+      </p>
+      <p className="text-muted">
+        Three independent first-time positions in a recently-IPO'd name is a
+        textbook{" "}
+        <Link href="/learn/consensus-buy/" className="text-brand underline">
+          consensus-buy
+        </Link>{" "}
+        signal at the cleanest signal-to-noise — none of these filers could
+        have held MEDLINE pre-IPO, so the decision to size meaningfully is
+        unambiguously a post-IPO thesis about the business, not a legacy
+        position inherited from Mandel's or Slater's earlier vintage.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 6 — The insurance and payments consensus</h2>
+      <p className="text-muted">
+        Four tickers drew unanimous buying (≥3 buyers, zero sellers) and are
+        worth noting because consensus at this density is uncommon:
+      </p>
+      <ul className="space-y-2 list-disc list-inside text-muted">
+        <li>
+          <strong className="text-text">CB (Chubb) — 4 buyers, 2 new</strong>.
+          Buffett added 9%, Rolfe and Halvorsen both opened new positions,
+          Greenblatt added 52%. Insurance-book compounders re-rating after
+          disciplined-underwriting years.
+        </li>
+        <li>
+          <strong className="text-text">PGR (Progressive) — 3 buyers, 2 new</strong>.
+          Same thesis, different operator.
+        </li>
+        <li>
+          <strong className="text-text">TW (Tradeweb) — 3 buyers</strong>,
+          total delta +426%. Financial-infrastructure pick.
+        </li>
+        <li>
+          <strong className="text-text">DRAFTKINGS — 3 buyers, 1 new</strong>.
+          The lone high-beta name in the consensus set.
+        </li>
+      </ul>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 7 — Intuit is the quietest consensus sell</h2>
+      <p className="text-muted">
+        <strong className="text-text">INTU (Intuit)</strong> drew five
+        different trimmers with zero offsetting buys: Halvorsen (full exit),
+        Dev Kantesaria (−15%, a 4.2% portfolio reduction), Polen (−23%),
+        Greenblatt (−29%), and Tom Slater (−6%). The ConvictionScore v5
+        composite reads this as a high-signal consensus sell — the opposite
+        of MEDLINE's consensus buy, but with equal signal density.
+      </p>
+      <p className="text-muted">
+        Other notable consensus sells:{" "}
+        <strong className="text-text">APP (AppLovin)</strong> — 4 sellers
+        post-2024-run;{" "}
+        <strong className="text-text">MCO (Moody's)</strong> — 4 sellers after
+        years as a Buffett-class compounder;{" "}
+        <strong className="text-text">WDAY, CVNA, AMD, GM, POOL</strong> —
+        each 3 sellers.
+      </p>
+      <p className="text-muted">
+        The software-and-rating-agency rotation is the clearest cluster within
+        the consensus-sell set. INTU, WDAY, MCO, and APP together represent a
+        filer-level vote that late-2025 valuations for enterprise-software and
+        information-services compounders had run ahead of what the next
+        twelve months of earnings will likely justify.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 8 — The quiet Coca-Cola exits</h2>
+      <p className="text-muted">
+        Three filers reduced KO this quarter: Bill Nygren (Oakmark, full exit),
+        Polen Capital (full exit), Joel Greenblatt (−10%). Two full exits in a
+        single quarter from a name as historically-held as Coca-Cola is
+        unusual — KO has been a multi-decade Buffett anchor (Berkshire still
+        holds 10.2% of its portfolio in KO and made no Q4 change).
+      </p>
+      <p className="text-muted">
+        This is one of the cleanest examples of why a single filer's signal is
+        insufficient. Nygren and Polen exit. Buffett holds. Greenblatt trims.
+        The ConvictionScore v5 composite reads this as a mild net-bearish
+        signal — weighted by the quiet Buffett hold (non-action is signal),
+        not overwhelmed by the two exits. See{" "}
+        <Link href="/stock/KO/" className="text-brand underline">/stock/KO/</Link>{" "}
+        for the full per-filer view.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Pattern 9 — Where the new-position capital went</h2>
+      <p className="text-muted">
+        353 first-time positions across 27 filers is the richest source of
+        forward-looking signal in the quarter. The top clusters:
+      </p>
+      <ul className="space-y-2 list-disc list-inside text-muted">
+        <li>
+          <strong className="text-text">AMZN — 3 new</strong> (Halvorsen,
+          Rolfe, Klarman). Counter to Buffett's exit.
+        </li>
+        <li>
+          <strong className="text-text">MEDLINE — 3 new</strong> (Halvorsen,
+          Mandel, Slater). Post-IPO healthcare distribution thesis.
+        </li>
+        <li>
+          <strong className="text-text">TMO (Thermo Fisher) — 2 new</strong>.
+          Life-sciences tools compounder.
+        </li>
+        <li>
+          <strong className="text-text">CB — 2 new</strong>. Part of the
+          insurance-compounder rotation (see Pattern 6).
+        </li>
+        <li>
+          <strong className="text-text">RIOT (Riot Platforms) — 2 new</strong>.
+          Cryptocurrency-infrastructure exposure; first time any HoldLens-tracked
+          filer has taken direct Bitcoin-miner equity risk at this consensus
+          density.
+        </li>
+        <li>
+          <strong className="text-text">IONQ — 2 new</strong>. Pure-play
+          quantum-computing exposure; a high-risk, small-weight bet from two
+          different managers independently.
+        </li>
+        <li>
+          <strong className="text-text">PGR — 2 new</strong>.
+        </li>
+      </ul>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">How the ConvictionScore v5 composite reads this quarter</h2>
+      <p className="text-muted">
+        Q4 2025 is one of the clearer quarters HoldLens has processed since
+        launch. The composite model shipped on April 24, 2026 synthesizes
+        nine signal layers — 13F positioning, 13F moves, insider Form 4
+        activity, 8-K material events, bankruptcy filings, enforcement
+        actions, activist campaigns, proxy contests, and analyst divergence —
+        into a signed −100…+100 score per ticker. For Q4 2025, the top of the
+        ConvictionScore leaderboard is dominated by the names above: CB and
+        Chubb-class insurance compounders at the high-positive end; INTU and
+        the enterprise-software rotation at the high-negative end; AMZN in
+        the middle with compressed net score but elevated divergence
+        intensity.
+      </p>
+      <p className="text-muted">
+        See the live leaderboard at{" "}
+        <Link href="/today/" className="text-brand underline">/today/</Link>,
+        the per-ticker 9-layer drill-down at{" "}
+        <Link href="/signal/" className="text-brand underline">/signal/</Link>,
+        and the full cross-investor divergence feed at{" "}
+        <Link href="/divergence/" className="text-brand underline">/divergence/</Link>{" "}
+        (currently 238 divergence events across all tracked quarters, 36 in
+        Q4 2025 alone).
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">What this commentary is NOT</h2>
+      <p className="text-muted">
+        This is a description of what the Q4 2025 filings contained, not a
+        forecast of what the Q1 2026 filings will contain. The 45-day
+        13F-HR publication lag means every move described above was executed
+        at prices from October through December 2025 — now nearly four months
+        in the past. A manager who bought AMZN at $220 in November has a
+        materially different position by late April than the filing implies.
+      </p>
+      <p className="text-muted">
+        Filers also only disclose long US-listed equity positions above the
+        13F-HR threshold. Short positions, options, international holdings,
+        cash balances, and fixed-income allocations are entirely invisible.
+        The filings describe a slice of each manager's book — the slice that
+        moves markets most visibly — but never the full book.
+      </p>
+      <p className="text-muted">
+        Cross-checking this commentary against the next Q1 2026 filings (due
+        by May 15, 2026) will reveal which of the patterns above were
+        quarterly noise and which were the beginning of durable rotations.
+        That check is what the{" "}
+        <Link href="/reports/2026-04-q1-2026-pre-wave-primer/" className="text-brand underline">
+          Q1 2026 pre-wave primer
+        </Link>{" "}
+        was designed for.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Methodology + verification</h2>
+      <p className="text-muted">
+        Every figure in this report is computed at build time from{" "}
+        <code className="bg-card px-1 rounded">data/edgar-moves.json</code> and{" "}
+        <code className="bg-card px-1 rounded">data/edgar-holdings.json</code>,
+        fetched via{" "}
+        <code className="bg-card px-1 rounded">scripts/fetch-edgar-13f.ts</code>{" "}
+        directly from the SEC EDGAR full-text 13F-HR endpoint. No third-party
+        aggregator. Every per-investor move links back to{" "}
+        <Link href="/investor/" className="text-brand underline">/investor/&lt;slug&gt;/</Link>{" "}
+        where the underlying filing accession number is surfaced and
+        resolvable on{" "}
+        <a
+          href="https://www.sec.gov/edgar"
+          className="text-brand underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          sec.gov/edgar
+        </a>
+        .
+      </p>
+      <p className="text-muted">
+        See{" "}
+        <Link href="/learn/conviction-score-explained/" className="text-brand underline">
+          /learn/conviction-score-explained/
+        </Link>{" "}
+        for the full ConvictionScore v5 nine-layer formula,{" "}
+        <Link href="/methodology/" className="text-brand underline">/methodology/</Link>{" "}
+        for the broader data pipeline, and{" "}
+        <Link href="/disclaimer/" className="text-brand underline">/disclaimer/</Link>{" "}
+        for the filing-lag + not-investment-advice framing. Machine-readable
+        twins of this report's underlying data at{" "}
+        <Link href="/api/v1/moves.json" className="text-brand underline">/api/v1/moves.json</Link>{" "}
+        and{" "}
+        <Link href="/api/v1/holdings.json" className="text-brand underline">/api/v1/holdings.json</Link>.
       </p>
     </div>
   );

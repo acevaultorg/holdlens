@@ -14,6 +14,30 @@ export type Report = {
 
 export const REPORTS: Report[] = [
   {
+    slug: "2026-04-q4-2025-13f-signal-summary",
+    title: "Q4 2025 13F signal summary — 3,713 moves, 27 managers, the 9 patterns that mattered",
+    description:
+      "The Q4 2025 filing cycle closed February 17, 2026. Across the 27 superinvestors who filed, HoldLens normalized 3,713 position changes: 2,186 buys, 1,527 sells, 353 first-time positions, 296 full exits. One ticker (AMZN) split the room 6-to-7. Buffett cut AMZN 77%. Ackman bought AMZN 65% and opened META. Three managers independently started MEDLINE. Here's what the ConvictionScore v5 inputs told us.",
+    publishedAt: "2026-04-24",
+    category: "quarterly",
+    wordCount: 2100,
+    topics: [
+      "13f",
+      "q4-2025",
+      "superinvestors",
+      "buffett",
+      "ackman",
+      "amzn",
+      "meta",
+      "medline",
+      "intu",
+      "cb",
+      "consensus-buy",
+      "divergence",
+      "convictionscore",
+    ],
+  },
+  {
     slug: "2026-04-q1-2026-pre-wave-primer",
     title: "Q1 2026 13F pre-wave primer — what to watch May 11-15",
     description:
