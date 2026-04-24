@@ -83,8 +83,19 @@ export default function SecSignalsTrilogyArticle() {
         Three SEC filings. Three freshness cadences. Three branded scores. Read together, they give you a
         more complete picture of any public company than any single filing can.
       </p>
+      <div className="rounded-lg border border-emerald-400/30 bg-emerald-400/5 p-4 mb-6 text-sm">
+        <strong className="text-emerald-400">Trilogy completed (2026-04-24).</strong>{" "}
+        <span className="text-muted">As of ConvictionScore v5, all three SEC filing surfaces feed a single
+        unified score per ticker. 13F superinvestor moves (45-day lag) + Form 4 insider trades (T+2 lag) +
+        8-K material events (T+4 lag) — synthesized into one signed −100 to +100 verdict. No other public
+        investing tool reads from all three filing types live.</span>{" "}
+        <Link href="/learn/conviction-score-explained/" className="text-brand underline">
+          See how the v5 model computes it
+        </Link>
+        .
+      </div>
 
-      <AuthorByline date="2026-04-23" />
+      <AuthorByline date="2026-04-24" />
 
       <div className="space-y-6 text-text leading-relaxed mt-8">
         <h2 className="text-2xl font-bold mt-10 mb-3">The problem with reading SEC filings in isolation</h2>
