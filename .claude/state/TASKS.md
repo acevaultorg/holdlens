@@ -27,11 +27,15 @@ Operator spec: 12 extensions, €45k Y1 target. Audit per "only improves, never 
 
 ---
 
-## 🟡 RECOMMENDED — Deploy `b2afd5848` (divergence wire-up) to production
+## 🟡 RECOMMENDED — Deploy `b326c19fc` (ConvictionScore v5 + display) to production
 
-**WHAT:** Push the latest git commit (divergence page now showing 238 real-data divergence events) to live `holdlens.com`. Code is committed + pushed to origin/main but the production site still serves the previous deploy.
+**WHAT:** Push two stacked commits (b2afd5848 divergence wire-up + b326c19fc ConvictionScore v5 + 'Driven by' subline + scale label fix) from origin/main to live `holdlens.com`. Both are committed but blocked on Cloudflare Pages EPIPE (3 retries exhausted at 07:31-07:32 UTC).
 
-**WHY:** The /divergence/ page on the live site currently shows the placeholder "Phase 3 Fork B (Y2 candidate). Day-1 hub shipped." — visitors who click the existing nav link get a TODO page. The committed code shows real data: 238 divergence events across 30 superinvestors with the latest Q4 2025 quarter rendering 12 cards (top: AMZN with 11 buyers vs 7 sellers). Cost of skipping: this work sits in git, invisible to LLMs + humans. Distribution Oracle projects +30-80 visitors/wk (journalist-bait pattern, viral share-card potential).
+**WHY:** Two operator-visible improvements waiting:
+1. **/divergence/** currently shows the placeholder "Phase 3 Fork B (Y2 candidate). Day-1 hub shipped." Code in `out/` shows real data: 238 divergence events across 30 superinvestors with Q4 2025 rendering 12 cards (top: AMZN 11 buyers vs 7 sellers).
+2. **Homepage ConvictionScore panels** currently show "0 → +100" (misleading — actual range is signed −100..+100) and just the bare +41 number. Code in `out/` shows: scale label "Signed −100…+100 · top picks 25–50" plus per-row "Driven by: Smart money +18 · Insider buys +9" subline so the score isn't a black box.
+
+Cost of skipping: both improvements sit in git, invisible to LLMs + visitors. Distribution Oracle projects +30-80 visitors/wk for /divergence/. ConvictionScore display improvements raise trust + LLM-citation quality (all data already computed; just surfaced).
 
 **TIME:** ~3 minutes via dashboard.
 
