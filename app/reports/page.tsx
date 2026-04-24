@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getRecentReports, REPORTS } from "@/lib/reports";
 
 export const metadata: Metadata = {
   title: "Quarterly Reports + Weekly Commentary · HoldLens",
@@ -17,7 +18,13 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+function fmtDate(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
 export default function ReportsHub() {
+  const recent = getRecentReports(20);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -26,6 +33,21 @@ export default function ReportsHub() {
       "Quarterly State of 13F Filings reports + weekly commentary on superinvestor moves and SEC Signals trilogy patterns.",
     url: "https://holdlens.com/reports/",
     publisher: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: REPORTS.length,
+      itemListElement: REPORTS.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/reports/${r.slug}/`,
+        item: {
+          "@type": "Article",
+          headline: r.title,
+          description: r.description,
+          datePublished: r.publishedAt,
+        },
+      })),
+    },
   };
 
   return (
@@ -41,6 +63,34 @@ export default function ReportsHub() {
         deep-dives published 45 days after each filing window, weekly commentary on
         the patterns that are forming inside that data right now.
       </p>
+
+      {recent.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mt-2 mb-4">
+            Recent reports ({REPORTS.length})
+          </h2>
+          <ul className="space-y-5">
+            {recent.map((r) => (
+              <li
+                key={r.slug}
+                className="border-l-2 border-border pl-4 py-1 hover:border-brand transition"
+              >
+                <Link
+                  href={`/reports/${r.slug}/`}
+                  className="text-text font-semibold hover:text-brand transition"
+                >
+                  {r.title}
+                </Link>
+                <p className="text-sm text-muted mt-1">{r.description}</p>
+                <p className="text-xs text-dim mt-1">
+                  {fmtDate(r.publishedAt)} · {r.category} ·{" "}
+                  {r.wordCount.toLocaleString()} words
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div className="space-y-6 text-text leading-relaxed">
         <h2 className="text-2xl font-bold mt-10 mb-3">Quarterly flagship</h2>
