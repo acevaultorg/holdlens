@@ -11,6 +11,7 @@ const LLM_BOTS = [
   "OAI-SearchBot",
   "ClaudeBot",
   "Claude-Web",
+  "Claude-SearchBot",
   "anthropic-ai",
   "PerplexityBot",
   "Perplexity-User",
@@ -22,12 +23,15 @@ const LLM_BOTS = [
   "cohere-ai",
   "Bytespider",
   "Amazonbot",
+  "Amzn-SearchBot",
   "Meta-ExternalAgent",
   "Meta-ExternalFetcher",
+  "Meta-Webindexer",
   "Diffbot",
   "DuckAssistBot",
   "YouBot",
   "FacebookBot",
+  "Timpibot",
 ];
 
 export default function robots(): MetadataRoute.Robots {

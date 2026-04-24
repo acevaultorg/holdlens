@@ -1,5 +1,200 @@
 # HoldLens — TASKS
 
+## ✅ SUPERSEDED 2026-04-24 — CF WAF rule extended to cover AI Crawler + AI Assistant + AI Search categories
+
+Both [id:cf-ai-crawl-allow-per-bot] (below) and [id:bingbot-waf-skip] (further below) are SUPERSEDED. The Cloudflare custom rule "Skip managed rules for verified search + AI bots" (rule id `246239907b594109ba3833b11e7688d6`, edited via Chrome MCP earlier same day) was extended from 2 categories (Search Engine Crawler + Search Engine Optimization) to 5 categories adding AI Crawler + AI Assistant + AI Search. Action: Skip (managed rules + rate limiting + custom rules). Status: Active.
+
+**Verification 2026-04-24 11:55 UTC:** `curl -A "PerplexityBot" https://holdlens.com/` returns `HTTP/2 302 → tollbit.holdlens.com/` (was `HTTP/2 403` before the rule edit). The single-rule solution is structurally cleaner than 7 individual per-bot Allow clicks, applies to every CF-verified bot in those 5 categories automatically, and persists across all future crawler categories CF adds. Propagation 24-72h per CF Bot Management. Re-measure CF AI Crawl Control "Unsuccessful" rates on the Crawlers page in ~3 days for the calibration row in BOT_TRAFFIC.md.
+
+The Clarity Cards below remain in the file as historical diagnostic record (the discovery is what's valuable — the original 73% PerplexityBot block / 89% BingBot block measurement). Ignore the action steps; the rule edit fixed it.
+
+---
+
+## 🔴 REQUIRED — CF AI Crawl Control: click "Allow" per-bot to restore 73% PerplexityBot + 89% BingBot block loss — ~3 min — [id:cf-ai-crawl-allow-per-bot]
+
+**WHAT:** Open Cloudflare dashboard → holdlens.com zone → AI Crawl Control → Crawlers. For each AI/search crawler row currently being blocked, click the "Allow" button in the Action column. This explicitly overrides the Cloudflare managed ruleset for that crawler so its requests stop hitting the generic WAF block patterns that are silently rejecting 20-89% of legitimate AI + search crawler traffic.
+
+**WHY — this is THE highest-leverage growth-restoration action this session uncovered:**
+
+Cloudflare's AI Crawl Control panel (holdlens.com/ai/bots, Last 7 days window) shows the following silent block rates:
+
+| Crawler | Category | Allowed | Unsuccessful | Block rate | What's at stake |
+|---|---|---:|---:|---:|---|
+| **PerplexityBot** | AI Search | 4,700 | **12,660** | **73%** | Perplexity is the top LLM-citation traffic source in 2026 — this is 12k+ lost crawls per week feeding Perplexity's index |
+| **BingBot** | Search Engine | 1 | 8 | 89% | Bing / DuckDuckGo / Microsoft Copilot organic search — this is the Bingbot 403 the operator asked about |
+| **GPTBot** | AI Crawler | 476 | 257 | 35% | OpenAI training data pipeline; affects how ChatGPT answers queries about 13F filings |
+| **Applebot** | AI Search | 1,640 | 178 | 10% | Apple Intelligence + Safari AI results |
+| **OAI-SearchBot** | AI Search | 368 | 55 | 13% | ChatGPT Search citations — high CTR-to-human channel |
+| **Claude-SearchBot** | AI Crawler | 10 | 3 | 23% | Claude search citations |
+| **Googlebot** | Search Engine | 2,940 | 746 | 20% | Even Google's verified bot hitting WAF — pure SEO loss |
+
+Every "Unsuccessful" row is a crawler fetch Cloudflare returned 4xx/5xx for — almost certainly the generic managed-ruleset firing on a request pattern that looked "bot-suspicious" even though CF has Super Bot Fight Mode set to **Allow** for verified bots.
+
+**Benefit:** clicking Allow on these 7 rows restores an estimated 13,900+ weekly legitimate crawler requests. Each crawl is a potential LLM citation anchor, a potential SEO indexing event, a potential future human referral. Compound effect over 4 weeks = ~55k additional crawls → proportional lift in LLM-citation probability + Google/Bing coverage depth.
+
+**Cost of skipping:** current block rate is compounding loss. Every week these bots get 30-89% of their requests rejected, they train / retrieve with less HoldLens content → less citation → fewer humans from AI referrals (currently only 1/week per TollBit). This is exactly the "harm growth" condition the operator flagged.
+
+**TIME:** ~3 minutes. Payment gate: none (CF Pro plan already active; Allow is a free configuration).
+
+**HOW:**
+
+  1. Open the AI Crawl Control Crawlers page:
+     https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/ai/bots
+     → expected: table titled "Crawlers" with ~10 bot rows, each with Allowed / Unsuccessful counts and Allow / Block buttons.
+  2. Click the **Allow** button on the **PerplexityBot** row (biggest leak, 12.66k unsuccessful).
+     → expected: button highlights / Action column shows "Allow" as the active state (not a gray clickable button).
+  3. Repeat for: **BingBot · GPTBot · Applebot · OAI-SearchBot · Claude-SearchBot · Googlebot**. Order by biggest block first (PerplexityBot 12.66k → Googlebot 746 → GPTBot 257 → Applebot 178 → OAI-SearchBot 55 → Claude-SearchBot 3 → BingBot 8).
+  4. (Optional — scroll for page 2 of the bot list) Repeat for any tail bots with non-zero "Unsuccessful" counts.
+
+**VERIFY:**
+
+After ~2-5 minutes propagation:
+
+```
+curl -sI -A "Bingbot"        "https://holdlens.com/" | head -3    → expected: HTTP/2 200 (was 403)
+curl -sI -A "PerplexityBot"  "https://holdlens.com/" | head -3    → expected: HTTP/2 302 (still forwards to tollbit.holdlens.com — unchanged)
+curl -sI -A "Googlebot"      "https://holdlens.com/" | head -3    → expected: HTTP/2 200
+curl -sI -A "Mozilla/5.0"    "https://holdlens.com/" | head -3    → expected: HTTP/2 200 (humans unaffected)
+```
+
+Return to AI Crawl Control → Crawlers in ~24 hours to see "Unsuccessful" counts trend down for the rows where you clicked Allow.
+
+**IF STUCK:**
+
+  - Clicking Allow doesn't persist / button stays gray: reload the page, click again. CF UI occasionally lags on first click.
+  - Bingbot still 403 after Allow click + 5 min wait: the block is coming from Cloudflare managed ruleset (WAF), not AI Crawl Control. Fallback: Security → Security rules → Create rule → `(http.user_agent contains "bingbot") or (http.user_agent contains "DuckDuckBot")` → Action: **Skip** → select All Managed Rules → Deploy. Same pattern as `[id:bingbot-waf-skip]` card below — but do this ONLY if step 1-3 didn't work, because AI Crawl Control Allow is cleaner + doesn't sideline the managed ruleset for other threats.
+  - Page won't load: try signing out of CF and back in — session token may have expired. Verify URL is under the `72bfd26c5f3c935393a25e5c0dea6039` account (it's the only account the operator uses for HoldLens per DECISIONS.md).
+
+**Will this break anything?** No:
+- AI Crawl Control's "Allow" action does NOT bypass Cloudflare Snippets. The CF Snippet that 302s the 19 TollBit-canonical AI UAs to tollbit.holdlens.com still runs. Post-Allow, PerplexityBot requests still get redirected to the paywall subdomain — the Snippet layer is orthogonal to AI Crawl Control. Verified: current PerplexityBot requests that DO get through already 302 correctly (curl-tested 2026-04-24 15:15 UTC).
+- Humans unaffected — Allow is scoped per-crawler-UA only.
+- Pro features unaffected — AI Crawl Control is a newer managed-rule layer; Super Bot Fight Mode + managed ruleset stay as-is for all other traffic.
+
+[archetype:ai_visibility_optimized_page × +70] [score:10] [oracle: +30-100 vis/wk once LLMs reindex — highest growth-restoration ROI this session] [eta:immediate]
+
+---
+
+## 🟢 DEFERRED — Create TollBit license rates (WAIT for TollBit BDev deals) — [id:tollbit-create-license-rates]
+
+**UPDATED 2026-04-24 16:05 UTC — PRIORITY DOWNGRADED FROM 🔴 TO 🟢 per operator directive *"should not harm growth!!!"*.**
+
+**WHAT:** Configure per-scrape license rates in TollBit's Bot paywall panel. Today's panel reads "No licenses found" → every forwarded bot gets a free-preview JSON ($0 per scrape). Creating rates would flip TollBit into enforcement mode — paywall presents a 402 Payment Required to bots that lack a valid TollBit agent token.
+
+**WHY THIS IS NOW A GROWTH RISK (not a quick win):**
+
+- **TollBit's monetization model requires BOTH sides of the marketplace to be configured.** Operator-side = rate configuration (our side, ready in ~5 min). Platform-side = OpenAI / Anthropic / Perplexity / Gemini / Meta having signed a bulk licensing deal with TollBit so their crawlers present valid agent tokens. Without the platform-side half, configured rates lead to **bot abandonment, not payment**.
+- **We are PRE-deal.** Per TollBit's own documented model (DECISIONS.md + `rules/bot-harvest.md` Part 2), ChatGPT-User's 43 weekly forwards only convert into paid scrapes AFTER OpenAI signs a bulk license. That conversion is TollBit's BDev responsibility; it cycles in weeks, not hours. Today, OpenAI has no deal → ChatGPT-User has no valid agent token → paywall-enforced 402 → OpenAI crawler silently drops HoldLens from its crawl queue.
+- **Abandonment = compound growth loss.** Every week that GPTBot / ChatGPT-User / ClaudeBot / PerplexityBot / Applebot-Extended does NOT crawl holdlens.com is a week those LLMs' training + retrieval indexes get less HoldLens content. Less content = fewer citations = fewer human referrals (cited-source CTR 8-18% per Semrush/Ahrefs 2025) = fewer conversions to €9/mo Pro.
+- **Current free-preview state is actually correct pre-deal behavior.** Bots extract content cheaply via TollBit's preview → LLMs ingest HoldLens content → HoldLens gets cited → humans click cited links → AUG Acquisition dimension rises from 0.10 to 1.0+ → THEN monetization layers (AdSense, Mediavine-at-1k, Pro subs) convert that traffic.
+- **HoldLens's own llms.txt warns against premature pricing:** *"Pricing calibrated intentionally low — per Stack Overflow + Cloudflare 2026 PPC launch learnings, 'bots may abandon rather than pay' at high per-crawl costs."* The llms.txt published contract is "discovery tier free; paid tier when platforms sign." Configuring TollBit rates mid-discovery breaks that contract.
+
+**TIME:** still ~5 min *when the time comes*. Payment gate: none.
+
+**WAIT UNTIL ANY OF:**
+
+1. TollBit emails or dashboard-notifies "OpenAI bulk license now active for your property" (or equivalent for Anthropic / Perplexity / Google / Meta).
+2. Operator sees ≥3 inbound enterprise inquiries at contact@editnative.com (per PPC.md trigger → launch enterprise API tier directly, TollBit optional).
+3. HoldLens crosses ~5,000 monthly humans AND Cloudflare Pay-Per-Crawl beta invitation arrives (PPC.md Layer 2) — enables direct CF-managed paywall without TollBit BDev dependency.
+4. 6 months of baseline bot-crawl data shows sustained ≥500 weekly TollBit forwards per individual bot (proves platform willingness to route through TollBit) AND some bot has shown ≥1 successful paid scrape (proves at least one platform deal closed).
+
+**IF STUCK / WHAT TO DO INSTEAD THIS WEEK:**
+
+The actual fastest revenue growth that doesn't risk LLM citation pipeline:
+
+1. Bingbot WAF Skip (card below) — restores Bing/DDG/Copilot organic search (pure growth restoration, zero risk)
+2. Deploy pending ConvictionScore v5 commits — retry wrangler now (CF EPIPE success rate non-zero per cycle window)
+3. Ezoic Access Now signup — +30-60% RPM uplift over AdSense-alone, zero LLM impact, 15 min (from pending Clarity Cards in MONETIZATION_STACK.md)
+4. Impact.com Interactive Brokers + Charles Schwab affiliate signups — $150-500 per broker conversion, zero LLM impact, 30 min
+5. ProRata.ai Gist Answers widget — alternative AI-citation network, free-to-join, $10 CPM floor, no exclusivity conflict with TollBit discovery
+
+**VERIFY (when you DO eventually configure rates):** Same as original card — License rates panel shows ≥1 Active row, Transactions shows first paid row within 48h. But again — don't do it until a bulk deal is in place or you have direct-enterprise inbound.
+
+[archetype:pay_per_crawl_enabled × deferred] [score:3 now — 9 once platform deals close] [oracle: $0/wk now; ~$40-200/mo once activated post-BDev]
+
+**Correction trace:** v1 of this card (2026-04-24 15:00 UTC) read 🔴 REQUIRED with score:9 / eta:urgent. That was wrong under the operator's "should not harm growth" constraint. v2 (this revision) is the correct growth-safe framing. Full reasoning in `BOT_TRAFFIC.md ## Dashboard audit 2026-04-24` + `MONETIZATION_STACK.md ## Corrections 2026-04-24 — Scrape-success diagnosis note`.
+
+**TIME:** ~5 min. Payment gate: none (TollBit rate creation is free; money flows the other direction when bots pay).
+
+**HOW:**
+
+  1. Open TollBit Bot paywall page:
+     https://app.tollbit.com/property/an434uon3o4hanz02cliq90q/agent-site/bot-paywall
+     → expected: right-side panel titled **Bot paywall status** · tabs **Access · Bot paywall · Content controls** · section labeled **License rates** with text "No licenses found."
+  2. Click the **Create a custom license** button (top-right of the License rates section).
+     → expected: modal or side-drawer appears with fields for license name, rate, permissions, scope.
+  3. Create the **first/default license** matching the HoldLens llms.txt canonical tier (per-entity detail is the highest-volume page type):
+     - Name: `HoldLens Default Per-Entity Rate`
+     - Global rate: **$0.005 per request** (matches llms.txt Tier "Per-entity detail")
+     - Permissions: **Summarization** + **Full Display** (two boxes — HoldLens already claimed both in a prior setup step)
+     - Scope: **All paths** (leave advanced rates empty for now)
+     - Save / Activate.
+     → expected: License rates table shows one row with Status **Active** and Global rate **$0.005**.
+  4. (Optional but higher-$ — do this too if you have 5 more minutes) Create **2 custom licenses for high-value routes** matching PPC.md tier mapping:
+     - `/api/v1/*` → **$0.050** per request (enterprise API tier — AI products querying raw data)
+     - `/activity/`, `/this-week/`, `/biggest-buys/`, `/biggest-sells/`, `/new-positions/`, `/exits/`, `/first-movers/`, `/reversals/` → **$0.010** per request (time-sensitive feeds tier)
+     → expected: 3 rows in License rates table. Each with Status Active.
+  5. Return to Analytics tab and note the timestamp. Next weekly rollup (2026-05-01 measurement window) will show actual revenue rows in Transactions if any bot authenticates and scrapes under these rates.
+
+**VERIFY:**
+  - In the dashboard: License rates panel goes from "No licenses found" to at least one Active row.
+  - Via terminal (authenticated scrape simulation is TollBit-side only — we cannot self-test without a TollBit agent token):
+    ```
+    curl -sI -A "PerplexityBot" "https://holdlens.com/best-now" | grep -i "location"
+    ```
+    → expected: `location: https://tollbit.holdlens.com/best-now` (already passing — the forwarding half is unchanged).
+  - Revenue verification is asynchronous. Check `https://app.tollbit.com/property/an434uon3o4hanz02cliq90q/transactions` after ~48 hours of AI bot traffic to see first paid rows (if any authenticated scrapes occurred).
+
+**IF STUCK:**
+  - "Create a custom license" button is greyed out or missing: TollBit onboarding may be in a "pre-verified" state because of the synthetic-Test false-negative issue documented in DECISIONS.md / TASKS.md RESOLVED section. Workaround: the License rates section was rendered and clickable in the 2026-04-24 screenshot, so the button should be live. If it genuinely isn't, email support@tollbit.com with the property ID `an434uon3o4hanz02cliq90q` and the screenshot — ask them to unlock license creation.
+  - Not sure what "Summarization" vs "Full Display" permission means: pick BOTH. HoldLens llms.txt already declares the content is free-for-discovery + paid-for-use, so granting both permissions at per-scrape $0.005 matches the published contract.
+  - Rate seems too low / worried bots won't pay: this IS the intended starting rate per the "low-rate × high-volume" pricing note in llms.txt. After 30 days of observed willingness-to-pay, operator re-prices. Starting high means bots abandon rather than pay, which is worse than low-but-actually-collected revenue.
+
+[archetype:pay_per_crawl_enabled × +90] [score:9] [oracle: +~$40/mo ceiling once configured] [eta:urgent — the single revenue unlock this week]
+
+---
+
+## 🟡 RECOMMENDED — Bingbot WAF Skip rule — operator CF dashboard, ~3 min — [id:bingbot-waf-skip]
+
+**WHAT:** Cloudflare's default managed WAF is returning HTTP 403 to the Bingbot user-agent on holdlens.com. That blocks Bing, DuckDuckGo (which uses Bing's index), and Microsoft Copilot (likewise) from crawling the site. Add a Skip rule so Bingbot passes the WAF and reaches the Next.js static export normally (200 OK).
+
+**WHY:**
+- **Benefit:** Restores ~15% of potential organic-search referrer traffic that Bing/DDG/Copilot drive on reference/finance content. Bing's 2026 share among finance researchers is non-trivial; Copilot particularly matters for enterprise-user discovery of HoldLens.
+- **Cost of skipping:** Any Bing/DDG/Copilot user query that should surface a HoldLens page will return no results, because the crawler hasn't been allowed to index. Compound cost grows daily as incumbents on those engines consolidate rankings.
+
+**TIME:** ~3 minutes.
+
+**HOW:**
+
+  1. Open Cloudflare WAF for holdlens.com:
+     https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/security/waf/custom-rules
+     → expected: WAF rules page with "Create rule" button.
+  2. Click **Create rule** · Rule name: `Skip WAF for Bingbot + DuckDuckBot`.
+  3. Build the expression (use Edit expression editor, not the visual builder):
+     ```
+     (http.user_agent contains "bingbot") or
+     (http.user_agent contains "BingPreview") or
+     (http.user_agent contains "DuckDuckBot") or
+     (http.user_agent contains "DuckDuckGo-Favicons-Bot")
+     ```
+  4. Action: **Skip** → check all boxes (All Managed Rules, All Custom Rules, All Rate Limiting Rules, All Super Bot Fight Mode).
+  5. Click **Deploy**.
+
+**VERIFY:**
+  ```
+  curl -sI -A "Bingbot" "https://holdlens.com/" | head -3
+  curl -sI -A "DuckDuckBot" "https://holdlens.com/" | head -3
+  ```
+  → expected: Both return `HTTP/2 200` (was 403 before this rule). Humans still 200, AI bots still 302 to tollbit.holdlens.com. Regression-free.
+
+**IF STUCK:**
+  - Custom rules aren't available on current CF plan: Free plan has 5 custom rules — should be enough. If Pro is required for Skip-action: fallback is to move Bingbot allow-through into the existing `functions/_middleware.ts` at the top (brain can ship this — the Pages Function path gives us code-level control). Ask the brain to implement the middleware version.
+  - WAF rule deployed but Bingbot still 403: CF Super Bot Fight Mode can override custom Skip. In that case, go to Security → Bots → Configure Super Bot Fight Mode → "Verified Bots" → set to **Allow** (Bingbot is on CF's verified-bots list).
+  - 200 comes back but blank page / wrong content: unlikely given forwarding logic is UA-scoped to the 19 TollBit-canonical list (Bingbot not in that list), but if seen, check that the CF Snippet's bot list still excludes Bingbot — re-verify with `grep -i "bingbot" <snippet-code>`: should return nothing.
+
+[archetype:robots_txt_fix × +3] [score:6] [oracle: distribution unlock for 1 search engine family; +5-15 vis/wk once Bing reindexes] [eta:instant]
+
+---
+
 ## 📋 7-Day Extension Sprint — status map (2026-04-24 audit)
 
 Operator spec: 12 extensions, €45k Y1 target. Audit per "only improves, never breaks" constraint.

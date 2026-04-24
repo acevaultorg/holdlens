@@ -56,4 +56,23 @@
 
 (timestamp-anchored per I-39 append-only pattern)
 
-None yet.
+### 2026-04-24 — TollBit Layer 8 license count overstated
+
+**corrects:** `2026-04-23 | 8 | partial_activation` row above (the phrase *"2 licenses active at $0.005"*).
+
+**Reality per TollBit dashboard (verified via Chrome MCP 2026-04-24):**
+
+- `agent-site/bot-paywall` panel → License rates section shows literal text: **"No licenses found."**
+- `transactions` panel → "Recent transactions" empty; chart empty (no data plotted).
+- `analytics?tab=bots` top-card reads: **61 Attempted · 0 Successful · 46 Forwarded · 46 Blocked · 47:1 ratio · 1 AI referral**.
+- Per-bot table shows 3 "successful scrapes" rows (PerplexityBot 1, FacebookBot 2) that do NOT appear in Transactions → they are $0 free-preview scrapes, not revenue events.
+
+**What's really happening:** TollBit property exists, subdomain `tollbit.holdlens.com` is live, 19-UA forwarding at CF edge is verified (all bots 302 to tollbit.holdlens.com, curl-confirmed 2026-04-23 + 2026-04-24). But with **zero configured license rates**, TollBit serves every forwarded bot an empty-license JSON preview (`rate.price.priceMicros: 0`, `license.licenseType: ""`) containing the full page content. Bots extract content for free. No revenue can flow until the operator creates at least one license rate.
+
+**Layer 8 status corrected:** `partially_active` → `forwarding_live_but_no_rates_configured`. Projected $/mo held (still $0.005/scrape × ChatGPT-User 43 forwards/wk = ~$40/mo ceiling IF licenses configured AND TollBit BDev closes platform deal). Actual $/mo corrected to **$0** (was incorrectly stated as $0.005).
+
+**Next action:** operator creates ≥1 license rate in TollBit → forwarded bots pay per-scrape. See new 🔴 REQUIRED Clarity Card in TASKS.md `[id:tollbit-create-license-rates]` (shipped 2026-04-24).
+
+### 2026-04-24 — Scrape-success diagnosis note
+
+Operator flagged 2026-04-24: *"i think scrape success is a big problem. check"*. Investigation confirms the concern is real but the proximate cause is "no license rates" (above), not "paywall broken." Every bot forwarded to TollBit succeeds at content extraction because no paywall is enforced on the bot → content never costs them anything → zero dollar conversion. Fix is operator-only (TollBit dashboard; ~2 min per license rate creation).
