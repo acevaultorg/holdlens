@@ -24,14 +24,30 @@
 // URLs in seconds, so newly-shipped pages (e.g. v0.55..v0.60 SEO
 // surface) get into Bing's index in hours instead of days.
 
-import { readFileSync, existsSync } from "node:fs";
-import { resolve } from "node:path";
+import { readFileSync, existsSync, appendFileSync, mkdirSync } from "node:fs";
+import { resolve, join, dirname } from "node:path";
+import { homedir } from "node:os";
 
 const HOST = "holdlens.com";
 const KEY_FILE = resolve(__dirname, ".indexnow-key");
 const SITEMAP_PATH = resolve(__dirname, "..", "out", "sitemap.xml");
 const ENDPOINT = "https://api.indexnow.org/indexnow";
 const CHUNK_SIZE = 10000;
+const FLEET_LOG = join(homedir(), ".claude", "fleet", "ACQUISITION_LOG.md");
+
+// Fleet acquisition logger per Invariant I-33 (autonomous acquisition actions
+// MUST log to ~/.claude/fleet/ACQUISITION_LOG.md). Best-effort — never fail
+// the deploy because of a log write.
+function logFleet(action: string, urls: number, outcome: string): void {
+  const ts = new Date().toISOString();
+  const row = `${ts} | holdlens | indexnow_ping | ${action} | ${outcome} | urls=${urls}\n`;
+  try {
+    mkdirSync(dirname(FLEET_LOG), { recursive: true });
+    appendFileSync(FLEET_LOG, row, "utf8");
+  } catch {
+    // ignore — fleet log is best-effort
+  }
+}
 
 function loadKey(): string {
   if (!existsSync(KEY_FILE)) {
@@ -121,6 +137,7 @@ async function main() {
   console.log(`Found ${urls.length} URLs in out/sitemap.xml`);
   if (urls.length === 0) {
     console.error("No URLs to submit. Exiting.");
+    logFleet("skip", 0, "empty_sitemap");
     process.exit(0);
   }
 
@@ -133,9 +150,11 @@ async function main() {
   console.log(
     "Bing, Yandex, Seznam, and Naver will pick these up within hours. Google does not participate in IndexNow."
   );
+  logFleet("ping", urls.length, "ok");
 }
 
 main().catch((err) => {
   console.error("ping-indexnow failed:", err);
+  logFleet("error", 0, "fatal");
   process.exit(1);
 });
