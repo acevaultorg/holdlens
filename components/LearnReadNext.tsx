@@ -31,6 +31,7 @@ const LEARN_SEQUENCE: Article[] = [
   { slug: "conviction-score-explained", title: "What is a Conviction Score?", desc: "How to tell a real bet from index padding." },
   { slug: "survivorship-bias-in-hedge-funds", title: "Survivorship bias in hedge funds", desc: "Why every hedge fund performance number you read is probably an overestimate." },
   { slug: "13f-vs-13d-vs-13g", title: "13F vs 13D vs 13G", desc: "Three SEC filings, three signals." },
+  { slug: "form-4-vs-13f", title: "Form 4 vs 13F", desc: "Insider trades vs institutional portfolios — two SEC filings, two different signals." },
 ];
 
 export default function LearnReadNext({ currentSlug }: { currentSlug: string }) {
