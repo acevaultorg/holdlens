@@ -118,7 +118,13 @@ The Clarity Cards below remain in the file as historical diagnostic record (the 
 
 ---
 
-## 🔴 REQUIRED — CF AI Crawl Control: click "Allow" per-bot to restore 73% PerplexityBot + 89% BingBot block loss — ~3 min — [id:cf-ai-crawl-allow-per-bot]
+## ✅ SUPERSEDED 2026-04-24 (HISTORICAL — see resolution at top) — CF AI Crawl Control: click "Allow" per-bot to restore 73% PerplexityBot + 89% BingBot block loss — ~3 min — [id:cf-ai-crawl-allow-per-bot]
+
+> Resolved 2026-04-24 by single WAF rule extension covering 5 bot categories
+> (AI Crawler + AI Assistant + AI Search + Search Engine Crawler + Search
+> Engine Optimization). See `✅ SUPERSEDED 2026-04-24 — CF WAF rule extended`
+> section at top of this file. Card body preserved below as historical
+> diagnostic record.
 
 **WHAT:** Open Cloudflare dashboard → holdlens.com zone → AI Crawl Control → Crawlers. For each AI/search crawler row currently being blocked, click the "Allow" button in the Action column. This explicitly overrides the Cloudflare managed ruleset for that crawler so its requests stop hitting the generic WAF block patterns that are silently rejecting 20-89% of legitimate AI + search crawler traffic.
 
@@ -399,7 +405,7 @@ $ curl -sI -A "Mozilla/5.0"    https://holdlens.com/  → 200 (humans unaffected
 
 ---
 
-## 🔴 REQUIRED — Ship CF Snippet `redirect_to_tollbit` — ~5 min — [id:tollbit-cf-snippet] — ✅ SUPERSEDED
+## ✅ SUPERSEDED — Ship CF Snippet `redirect_to_tollbit` — ~5 min — [id:tollbit-cf-snippet]
 
 **WHAT:** Deploy TollBit's canonical 19-UA bot-forwarding Snippet in CloudFlare dashboard → Rules → Snippets. This is the missing piece that closes the TollBit onboarding synthetic Test. Without it, the Test tool fails at "Forwarded to TollBit" even though real-world forwarding is partially happening (46 bots forwarded week of 4/16-4/22 per TollBit Analytics).
 
@@ -514,7 +520,13 @@ $ curl -sI -A "Mozilla/5.0"    https://holdlens.com/  → 200 (humans unaffected
 
 ---
 
-## 🔴 REQUIRED — Unblock Bingbot in Cloudflare WAF — ~2 min — [id:waf-allow-bingbot]
+## ✅ SUPERSEDED 2026-04-24 (HISTORICAL — see resolution at top) — Unblock Bingbot in Cloudflare WAF — ~2 min — [id:waf-allow-bingbot]
+
+> Resolved 2026-04-24 by single WAF rule extension covering Search Engine
+> Crawler category (Bingbot is in this category). Same rule that resolved
+> [id:cf-ai-crawl-allow-per-bot]. See `✅ SUPERSEDED 2026-04-24 — CF WAF
+> rule extended` section at top of this file. Card body preserved below
+> as historical diagnostic record.
 
 **WHAT:** Bingbot currently receives HTTP 403 from the Cloudflare Managed WAF on holdlens.com. This blocks Bing search visibility AND DuckDuckGo AI (uses Bing's index) AND Microsoft Copilot citations. Add one WAF Skip rule allowlisting verified search crawlers.
 
@@ -619,7 +631,11 @@ $ curl -sI -A "Mozilla/5.0"    https://holdlens.com/  → 200 (humans unaffected
 
 ---
 
-## 🔴 REQUIRED — TollBit publisher signup (AI-citation revenue share) — ~10 min — [id:earn-tollbit]
+## ✅ RESOLVED 2026-04-23 (HISTORICAL — see MONETIZATION_STACK.md) — TollBit publisher signup (AI-citation revenue share) — ~10 min — [id:earn-tollbit]
+
+> Resolved 2026-04-23 — TollBit property created (org=acevault, id=an434uon3o4hanz02cliq90q). 19-UA bot forwarding verified live via curl (302 → tollbit.holdlens.com). Layer 8 status `partially_active` per MONETIZATION_STACK.md. **Next step is `[id:tollbit-create-license-rates]` which is currently 🟢 DEFERRED per growth-not-harm rule** — DO NOT create rates until at least one platform deal closes (OpenAI/Anthropic/Perplexity bulk license) or 6 months baseline data justifies. Publisher signup itself is complete; no further action on this card.
+
+**Original card body preserved below as historical context.**
 
 **WHAT:** TollBit is a revenue-share platform between publishers and AI engines (OpenAI, Anthropic, Google Gemini, Perplexity). When an AI engine generates an answer citing your content, TollBit bills the AI platform and pays you a share (reported ~$0.05/serve avg). Finance = premium category.
 
@@ -996,7 +1012,7 @@ curl -sI https://holdlens.com/api/v1/index.json | grep -i x-api-tier
 
 - [x] `P0` FIX wrangler succeeded on retry 4 (CF flakiness passed; deployed 5469dbdf.holdlens.pages.dev) + CF edge cache manually purged for /robots.txt, /llms.txt, /sitemap.xml, / via Custom Purge. Verified: all 22 LLM_BOTS now carry `Disallow: /_next/` live on production. 16,750 wasted AI-crawler 404s/wk eliminated. [id:cf-dashboard-redeploy-v1.59] [score:10]
 
-## 🔴 REQUIRED — Deploy v1.59 via Cloudflare dashboard (~3 min) — ⊘ RESOLVED 2026-04-20 17:20 via wrangler retry 4
+## ✅ RESOLVED 2026-04-20 17:20 via wrangler retry 4 (HISTORICAL) — Deploy v1.59 via Cloudflare dashboard (~3 min) — [id:cf-dashboard-redeploy-v1.59]
 
 **WHAT:** Open the Cloudflare Pages dashboard for holdlens and trigger a manual redeploy from the `main` branch. A code fix that blocks 16,750 wasted AI-crawler requests per week is on `main` (commit ae35e9d62) but the automated deploy keeps failing because Cloudflare's upload API is having a bad day (3 upload timeouts in a row). Dashboard upload uses a different network path and usually succeeds where `wrangler` doesn't.
 
