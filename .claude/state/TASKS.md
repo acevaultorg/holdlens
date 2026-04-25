@@ -269,7 +269,17 @@ Operator spec: 12 extensions, €45k Y1 target. Audit per "only improves, never 
 
 ---
 
-## 🟡 RECOMMENDED — Deploy `b326c19fc` (ConvictionScore v5 + display) to production
+## ✅ RESOLVED 2026-04-25 — Deploy `b326c19fc` (ConvictionScore v5 + display) — LIVE-VERIFIED
+
+**Resolution trace 2026-04-25 10:15 UTC:** curl-fingerprinted both surfaces; both shipped.
+- `curl https://holdlens.com/divergence/` → contains "divergence events" (real-data wiring, not "Day-1 hub shipped" placeholder). b2afd5848 LIVE.
+- `curl https://holdlens.com/` → contains "Signed −100" + "top picks 25" (scale label + driven-by subline). b326c19fc LIVE.
+
+Per `~/.claude/memory/feedback_verify_deploy_before_declaring_blocked.md` + just-logged PATTERNS.md `unverified_deploy_blocked_conclusion` — TASKS.md was carrying a stale "blocked" card while the deploy landed (presumably operator wrangler later in the day). Live URL fingerprint check is FIRST step before any deploy retry, and PENULTIMATE step before any "deploy blocked" conclusion. Original card preserved below as historical record; no action needed.
+
+---
+
+## 🟡 (HISTORICAL — see resolution above) Deploy `b326c19fc` (ConvictionScore v5 + display) to production
 
 **WHAT:** Push two stacked commits (b2afd5848 divergence wire-up + b326c19fc ConvictionScore v5 + 'Driven by' subline + scale label fix) from origin/main to live `holdlens.com`. Both are committed but blocked on Cloudflare Pages EPIPE (3 retries exhausted at 07:31-07:32 UTC).
 
