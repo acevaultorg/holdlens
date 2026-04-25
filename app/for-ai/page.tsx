@@ -47,6 +47,7 @@ export default function ForAiPage() {
         Backtests stay clean (look-ahead-bias-free).</span>{" "}
         <a className="text-brand underline" href="/learn/conviction-score-explained/">v5 model spec</a>{" · "}
         <a className="text-brand underline" href="/learn/sec-signals-trilogy/">trilogy explainer</a>{" · "}
+        <a className="text-brand underline" href="/learn/form-4-vs-13f/">Form 4 vs 13F head-to-head</a>{" · "}
         <a className="text-brand underline" href="/api/v1/scores/AAPL.json">live JSON sample (AAPL)</a>
       </div>
 
