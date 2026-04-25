@@ -91,6 +91,9 @@ visitor-count projection which is then divided by
 2026-04-17 | v1.33 /learn/13f-vs-13d-vs-13g            | comparison_article_seo  | +3 visitors/wk  | TBD | TBD | ~5,200 monthly-search target keyword cluster × 0.5% CTR × 12 months maturity curve → ~3 visitors/wk steady-state once ranked (mo 3+); zero in first 7d window
 2026-04-17 | v1.33 sitemap backfill (2 articles)       | sitemap_addition        | +1 visitors/wk  | TBD | TBD | unblocks Google crawl of two previously-missing URLs; impact compounds once indexed
 2026-04-17 | v1.33 FAQPage schema on /learn article    | schema_addition         | +0.5 visitors/wk| TBD | TBD | 4 FAQ entities enable rich-result eligibility on FAQ SERPs
+2026-04-25 | v1.67 EngagementTracker (analytics-only)   | analytics_wiring        | +0 visitors/wk    | TBD | TBD | no direct distribution lift; closes measurement gap so future archetype calibration is honest per learn-from-data.md
+2026-04-25 | v1.68 /learn/form-4-vs-13f                 | comparison_article_seo  | +30-50 visitors/wk| TBD | TBD | archetype stack: programmatic_unique_data +55, comparison_vs_competitor +60, ai_visibility_optimized +70, schema_markup +20, internal_linking_hub_spoke +15 = stack-count 5 × ×1.50 bonus per concept-finder-methodology v2.1. Target keywords ~3-5k/mo. Indexing maturity 4-12 weeks. Calibrates 2026-05-25 + 2026-06-25 vs GSC + Plausible referrals
+2026-04-25 | v1.68 cross-links from 6 internal surfaces | internal_linking_hub_spoke | +5-10 visitors/wk | TBD | TBD | × +15 × 6 surfaces = ~+90 weighted signal lift on form-4-vs-13f indexing AND bounce-rate reduction on /insiders/ /for-ai/ /learn/insider-score-explained /learn/sec-signals-trilogy. Pure depth ship; compounds existing high-traffic pages
 ```
 
 ## Top blocker (honest)

@@ -177,6 +177,7 @@ AFTER:  (cf.verified_bot_category in {"Search Engine Crawler" "Search Engine Opt
 ```
 2026-04-17 | CF Pages EPIPE at ~56MB upload — retry 1-2 succeeds (known class). Rule: rules/cloudflare-pages-epipe.md (max 3 retries then [👤]).
 2026-04-15 | 4-day deploy gap — CF Pages project NOT git-integrated. Rule: always manual wrangler deploy post-build. Documented in KNOWLEDGE.md.
+2026-04-25 | CF Pages EPIPE — progressive cache fill confirmed empirically. Operator ran 3 attempts: (1) 1369/10858 EPIPE, (2) 2192→2496/10858 EPIPE, (3) 2511/10858 EPIPE. Each retry's "already-uploaded" baseline grew (~600 files/attempt) AND the connection still hit ~56MB cap and disconnected. Per-attempt yield decays. New finding: at ~600 files/retry × 10,858 total = ~14 retries to land all files. Rule's 3-cap holds — would violate retry_cap_violation_under_endless_loop_directive. Empirical fix per cloudflare-pages-epipe.md: WAIT 1-2h, retry once. CF API stuck-state self-resolves across the day. Pattern: progressive cache fill is REAL but per-retry yield insufficient to overcome cap; only time-window change unblocks.
 ```
 
 ## Corrections
