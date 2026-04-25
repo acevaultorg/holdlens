@@ -20,6 +20,7 @@ import { useEffect, useRef } from "react";
 //   time_on_page_90s        { seconds: 90 }      — active time only
 //   returning_session_d7    { days_since: N }    — last seen ≤7 days ago
 //   returning_session_d30   { days_since: N }    — last seen 8-30 days ago
+//   activated               { method, pages_viewed } — first non-bouncer signal
 //
 // Ad-blocker safe: every fire is `window.plausible?.(...)` — if the script is
 // blocked the call is a no-op. No fallback tracker, privacy-first.
@@ -46,12 +47,34 @@ const D30_MS = 30 * 24 * 60 * 60 * 1000;
 const ACTIVE_TIME_THRESHOLD_SEC = 90;
 const SCROLL_THRESHOLDS = [25, 50, 75, 100] as const;
 
+// Activation: HoldLens is a database/calculator hybrid (per AUG rubric);
+// canonical activation signal is "user viewed ≥3 data pages in session".
+// Time-on-page 90s is treated as a parallel activation signal — a user who
+// reads one page deeply has activated even without browsing more.
+const ACTIVATION_PAGES_THRESHOLD = 3;
+const SESSION_PAGES_KEY = "holdlens_session_pages";
+const SESSION_ACTIVATED_KEY = "holdlens_session_activated";
+
+function fireActivation(method: string, pagesViewed: number): void {
+  try {
+    if (sessionStorage.getItem(SESSION_ACTIVATED_KEY)) return;
+    window.plausible?.("activated", {
+      props: { method, pages_viewed: pagesViewed },
+    });
+    sessionStorage.setItem(SESSION_ACTIVATED_KEY, "1");
+  } catch {
+    // sessionStorage blocked — non-fatal.
+  }
+}
+
 export default function EngagementTracker() {
   const pathname = usePathname();
   const firedScroll = useRef<Set<number>>(new Set());
   const firedActiveTime = useRef(false);
 
   // Returning-session detection — fires once per pathname load.
+  // Also increments per-session pageview counter and fires `activated` when
+  // the database-archetype threshold (≥3 pages/session) is crossed.
   useEffect(() => {
     try {
       const last = localStorage.getItem(STORAGE_KEY);
@@ -72,6 +95,18 @@ export default function EngagementTracker() {
       localStorage.setItem(STORAGE_KEY, String(now));
     } catch {
       // localStorage blocked (private mode, third-party-cookie restrictions) — non-fatal.
+    }
+
+    // Per-session pageview counter + activation trigger.
+    try {
+      const prev = parseInt(sessionStorage.getItem(SESSION_PAGES_KEY) || "0", 10);
+      const next = prev + 1;
+      sessionStorage.setItem(SESSION_PAGES_KEY, String(next));
+      if (next >= ACTIVATION_PAGES_THRESHOLD) {
+        fireActivation("pages_viewed_threshold", next);
+      }
+    } catch {
+      // sessionStorage blocked — non-fatal.
     }
   }, [pathname]);
 
@@ -117,6 +152,18 @@ export default function EngagementTracker() {
           window.plausible?.("time_on_page_90s", {
             props: { seconds: ACTIVE_TIME_THRESHOLD_SEC },
           });
+          // Parallel activation signal — deep single-page reading also
+          // activates a user who hasn't crossed the 3-page threshold yet.
+          let pagesSoFar = 1;
+          try {
+            pagesSoFar = parseInt(
+              sessionStorage.getItem(SESSION_PAGES_KEY) || "1",
+              10
+            );
+          } catch {
+            // sessionStorage blocked — fall back to 1.
+          }
+          fireActivation("time_on_page_90s", pagesSoFar);
         }
       }
     }, 1000);
