@@ -326,7 +326,12 @@ export default function InsidersPage() {
             Every insider transaction at a US public company must be reported to the SEC on{" "}
             <strong className="text-text">Form 4</strong> within two business days. The
             filings are public. We curate the most notable — large dollar amounts, CEO/CFO
-            purchases, deviations from 10b5-1 plans — rather than every routine disclosure.
+            purchases, deviations from 10b5-1 plans — rather than every routine disclosure.{" "}
+            <Link href="/learn/form-4-vs-13f/" className="underline hover:text-text">
+              How Form 4 differs from 13F
+            </Link>{" "}
+            — speed (2 days vs 45 days), scope (single trade vs portfolio), and per-dollar
+            signal strength side by side.
           </p>
           <p>
             <strong className="text-text">Signal beats noise.</strong> A CEO putting fresh
@@ -352,7 +357,7 @@ export default function InsidersPage() {
       {/* Related */}
       <section className="border-t border-border pt-12">
         <h2 className="text-xl font-bold text-text mb-6">Related</h2>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/buys/"
             className="rounded-xl border border-border bg-panel p-5 hover:border-emerald-400/40 transition block"
@@ -383,6 +388,18 @@ export default function InsidersPage() {
             <div className="text-xs text-muted">
               Full breakdown of the six-layer signal model — including why insider buys
               are the strongest single equity signal.
+            </div>
+          </Link>
+          <Link
+            href="/learn/form-4-vs-13f/"
+            className="rounded-xl border border-border bg-panel p-5 hover:border-brand/40 transition block"
+          >
+            <div className="text-sm font-semibold text-text mb-1">
+              Form 4 vs 13F
+            </div>
+            <div className="text-xs text-muted">
+              Insider trades vs institutional portfolios — two SEC filings, two timelines,
+              two different signals about the same company.
             </div>
           </Link>
         </div>
