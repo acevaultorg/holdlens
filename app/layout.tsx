@@ -4,6 +4,7 @@ import Script from "next/script";
 import LiveTicker from "@/components/LiveTicker";
 import MobileNav from "@/components/MobileNav";
 import PlausiblePageView from "@/components/PlausiblePageView";
+import EngagementTracker from "@/components/EngagementTracker";
 import DesktopNav from "@/components/DesktopNav";
 import DataFreshness from "@/components/DataFreshness";
 import SupportBar from "@/components/SupportBar";
@@ -198,6 +199,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             boundary and breaks Next.js 15 static export. */}
         <Suspense fallback={null}>
           <PlausiblePageView />
+        </Suspense>
+        {/* v1.67 — fires the three AAERA signals AUG audit 2026-04-20 flagged
+            as missing (engagement 0.20, retention 0.10): scroll-depth (25/
+            50/75/100), 90s active time, returning-session d7/d30. Closes
+            the Oracle calibration gap per `~/.claude/rules/learn-from-data.md`
+            so weekly AUG drift monitoring (CSIL #13) gets real signal. */}
+        <Suspense fallback={null}>
+          <EngagementTracker />
         </Suspense>
         {/* Skip to main content — keyboard-only users land here on Tab.
             Shows only when focused; invisible otherwise. Critical for a11y
