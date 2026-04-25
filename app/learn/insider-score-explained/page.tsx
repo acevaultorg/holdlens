@@ -266,6 +266,11 @@ export default function InsiderScoreExplainedArticle() {
             <Link href="/learn/sec-signals-trilogy/" className="text-brand underline">
               The SEC Signals Trilogy
             </Link>
+            . For the head-to-head between Form 4 and 13F specifically — speed, scope, signal strength —
+            see{" "}
+            <Link href="/learn/form-4-vs-13f/" className="text-brand underline">
+              Form 4 vs 13F
+            </Link>
             .
           </li>
         </ul>

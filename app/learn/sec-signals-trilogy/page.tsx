@@ -92,7 +92,11 @@ export default function SecSignalsTrilogyArticle() {
         <Link href="/learn/conviction-score-explained/" className="text-brand underline">
           See how the v5 model computes it
         </Link>
-        .
+        . For the head-to-head between two of the three —{" "}
+        <Link href="/learn/form-4-vs-13f/" className="text-brand underline">
+          Form 4 vs 13F
+        </Link>
+        {" "}— covers speed, scope, and per-dollar signal strength side by side.
       </div>
 
       <AuthorByline date="2026-04-24" />
