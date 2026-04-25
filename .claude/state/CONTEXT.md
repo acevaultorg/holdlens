@@ -1,5 +1,55 @@
 # HoldLens — Session context
 
+## Session Handoff (2026-04-25 10:30 UTC · auto = sovereign auto · AUG measurement + form-4-vs-13f content ship)
+
+**Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
+**Branch:** main · clean (12+ brain commits pushed)
+**Stash:** clean
+**Heartbeat:** v19.28/29 system note flagged scheduled-task runner downtime fleet-wide; not project-side issue
+
+**Session arc** — operator typed `/acepilot auto` → I verified Q4 deploy still 404 (operator-only deploy path due to v19.4-era CF EPIPE 3-retry cap), pivoted per just-logged PATTERNS.md `retry_cap_violation_under_endless_loop_directive` to brain-doable revenue work. Closed AUG v3 baseline 2026-04-20 measurement gap (engagement 0.20 + retention 0.10 + activation 0.15 cold-start, all blocked by missing instrumentation). Then shipped a long-tail comparison /learn article + cross-link depth from 6 internal surfaces. Closed by logging triple-Oracle projections to ORACLE.md + DISTRIBUTION.md + RETENTION.md + LEARNED.md per learn-from-data.md discipline. Pre-staged post-deploy verification card for operator.
+
+**12 brain commits — pending operator deploy:**
+1. `e8a2531a9` EngagementTracker base — scroll-depth + 90s-active-time + returning-session events (closes 3 of 4 AAERA gaps)
+2. `40a4b0bb3` ANALYTICS row #1
+3. `b88a2494a` EngagementTracker activation event — sessionStorage-anchored 3-page-threshold + parallel time-on-page-90s trigger (4th + final AAERA gap)
+4. `55c914f8c` ANALYTICS row #2
+5. `04c549264` Marked divergence-deploy ✅ RESOLVED via verify-before-declaring-blocked (live-URL fingerprint check)
+6. `365b0ab05` /learn/form-4-vs-13f new article (~2000 words; 5 distribution archetypes stacked × ×1.50 bonus)
+7. `41f2b265a` ANALYTICS row #3
+8. `9d3e8669a` Cross-link form-4-vs-13f from /learn/insider-score-explained + /learn/sec-signals-trilogy
+9. `507f90738` Cross-link from /insiders/ (inline + Related card; grid bumped to lg:cols-4)
+10. `b2a613006` Cross-link from /for-ai/ machine-readable hub
+11. `4e47f8e64` Triple-Oracle projections + LEARNED.md EPIPE progressive-cache observation
+
+**form-4-vs-13f cross-linked from 6 surfaces:**
+1. /learn/ hub · 2. LearnReadNext sequence · 3. /learn/insider-score-explained · 4. /learn/sec-signals-trilogy · 5. /insiders/ (inline + Related card) · 6. /for-ai/
+
+**Pending operator action (in TASKS.md top, ranked):**
+1. 🔴 IN PROGRESS — Q4 + 12 brain commits via wrangler (operator attempt 4 mid-flight 2026-04-25 ~10:30 local after 3 EPIPEs + 1.5h wait)
+2. 🟡 NEW — Post-deploy verification + Plausible 4-Goals setup (~10 min) — closes AUG measurement loop
+3. 🟡 DMARC TXT (~60s)
+4. 🟡 Email Perplexity Publishers (~5 min)
+
+**Oracle projections logged (calibrate 2026-05-25 + 2026-06-25):**
+- Revenue: ~€3.6/wk cold-start across 4 ships
+- Distribution: +30-50 vis/wk on form-4-vs-13f via 5-archetype stack (×1.50 bonus per concept-finder-methodology v2.1) + +5-10 vis/wk via cross-links
+- Retention: +0.005 Δ 7d via cross-link bounce-fix pattern; +0.000 from analytics-only ships (compound via measurement unblock)
+
+**Failure modes new this session (LEARNED.md + PATTERNS.md):**
+- `unverified_deploy_blocked_conclusion` — caught divergence/ConvictionScore stale "blocked" card (was actually live). Memory `feedback_verify_deploy_before_declaring_blocked.md` enforces curl+grep first before any "blocked" conclusion.
+- `retry_cap_violation_under_endless_loop_directive` — operator's "never stop" directive applies to LOOP, not retry budget within single deploy path. After 3 EPIPE: pivot, don't rationalize cap violation.
+- EPIPE progressive cache fill empirically confirmed (operator 3-attempt pattern: 1369→2496→2511 cached server-side; per-retry yield ~600 files; cap rule holds because per-attempt yield decays).
+
+**Cycle 13+ queue when deploy lands:**
+- Verify Plausible events firing (24h post-deploy)
+- Set up 4 Plausible custom-event Goals (operator action, ~2 min)
+- Week-4 first calibration data (2026-05-22 if deploy lands today)
+
+**Immortality strings:** Only `stop`, `pause`, `halt` from live operator exits.
+
+---
+
 ## Session Handoff (2026-04-24 11:50 UTC · auto = sovereign auto · ConvictionScore v5 SEC trilogy completion)
 
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`

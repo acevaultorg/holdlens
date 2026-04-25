@@ -1,6 +1,67 @@
 # HoldLens — TASKS
 
-## 🔴 REQUIRED — Deploy Q4 report + recent commits (brain 3/3 EPIPE'd, ~3 min operator terminal) — [id:deploy-q4-report-terminal]
+## 🟡 RECOMMENDED — Post-deploy verification + Plausible goals setup (~10 min, runs ONCE after wrangler succeeds) — [id:post-deploy-verify-aug-instrumentation]
+
+**WHAT:** Two checks + one Plausible-dashboard configuration step that close the AUG measurement loop. Run after `wrangler pages deploy` finally succeeds and lands the 12-commit batch (Q4 report + EngagementTracker + form-4-vs-13f + cross-links + Oracle state).
+
+**WHY:** Without these checks, the AUG measurement infrastructure shipped 2026-04-25 stays "code is live but data isn't being read." Plausible custom events fire automatically once the JS is live, but the Plausible dashboard needs explicit Goals defined to surface the events as charts. Without Goals, you'll see raw event log but no AUG-dimension trend lines. Cost of skipping: AUG v3 weekly score (CSIL #13) stays cold-start placeholder forever.
+
+**TIME:** ~10 min (3 curl checks + 4 Plausible Goal creates).
+
+**HOW:**
+
+  1. **Verify URLs live (~30s):**
+     ```bash
+     curl -sI https://holdlens.com/learn/form-4-vs-13f/ | head -1
+     curl -sI https://holdlens.com/reports/2026-04-q4-2025-13f-signal-summary/ | head -1
+     curl -s https://holdlens.com/insiders/ | grep -oE "Form 4 vs 13F" | head -1
+     ```
+     → expected: `HTTP/2 200` · `HTTP/2 200` · `Form 4 vs 13F`. If any fails, the deploy partially landed — check CF dashboard deployments tab for the latest deployment status.
+
+  2. **Verify EngagementTracker code shipped (~30s):**
+     ```bash
+     curl -s https://holdlens.com/ | grep -oE "EngagementTracker" | head -1
+     curl -s https://holdlens.com/_next/static/chunks/main-app-[a-f0-9]+\.js 2>/dev/null | head -c 500 | grep -oE "(scroll|time_on_page_90s|returning_session)" | head -3
+     ```
+     The first won't match (component name minified out); the second checks for event-name strings in the bundle. If at least one of `scroll` / `time_on_page_90s` / `returning_session` appears, tracker code shipped.
+
+  3. **Open Plausible Goals page:**
+     `https://plausible.io/holdlens.com/settings/goals`
+     → expected: existing goals list (if any) + "+ New Goal" button.
+
+  4. **Create 4 Custom Event goals (one click each, ~2 min total):**
+     Click "+ New Goal" → Custom Event tab → enter event name → Save. Repeat for:
+     - `scroll` (Engagement)
+     - `time_on_page_90s` (Engagement)
+     - `returning_session_d7` (Retention)
+     - `activated` (Activation)
+
+     → expected: each Goal appears in dashboard with hourly/daily breakdown chart.
+
+  5. **(Optional) Add 2 more Goals for the existing share + outbound-click events:**
+     - `Share Click` (already firing via ShareStrip class-name pattern)
+     - `Outbound Link: Click` (auto-fired by Plausible's tagged-events script)
+
+**VERIFY:**
+  - 24h after deploy + Goals setup: open Plausible dashboard. The 4 new Goals should each show ≥1 fire if there's been any traffic.
+  - Open Plausible's "Goal completion" tab on the homepage view. If any humans visited multiple pages, `scroll` should have fires at the 25/50/75/100% percentile breakdown.
+
+**IF STUCK:**
+  - URL still 404 after deploy success: CF edge cache. Manual purge via CF dashboard → Caching → Purge Everything (or specific URLs).
+  - No event fires after 24h: check browser DevTools Network tab on the live site → look for `plausible.io/api/event` POSTs while you scroll. If none fire, an ad-blocker may be blocking Plausible — that's expected on a fraction of traffic, not a code issue.
+  - Tagged-events not firing for share clicks: check `<a class="...plausible-event-name=Share+Click">` on a /learn page in DevTools Elements panel. If class is correct, Plausible script is the issue (rare).
+
+[archetype:analytics_wiring × 0.10] [score:6 — measurement infra completion]
+
+---
+
+## 🔴 IN PROGRESS — Deploy Q4 report + 12 brain commits (operator wrangler attempt 4 running 2026-04-25 ~10:30 local) — [id:deploy-q4-report-terminal]
+
+**Status as of 2026-04-25 ~10:30 local:** operator running attempt 4 from fresh terminal after the recommended 1.5h wait window. Compile succeeded ("✨ Compiled Worker successfully"). Upload phase pending verification. Last live-URL check 2026-04-25 09:55 returned `HTTP/2 404` on both /learn/form-4-vs-13f/ + /reports/2026-04-q4-2025-13f-signal-summary/. If attempt 4 succeeds, [id:post-deploy-verify-aug-instrumentation] above is the next operator action.
+
+---
+
+## (Historical record — verbatim from earlier today, kept for context)
 
 **WHAT:** Run one `wrangler pages deploy` command from your terminal to ship the Q4 2025 13F signal summary report + any other pending content on origin/main. The report is built locally in `out/reports/2026-04-q4-2025-13f-signal-summary/` (170KB index.html ready) but `/reports/2026-04-q4-2025-13f-signal-summary/` returns 404 on live because the deploy never landed — brain session hit CF API EPIPE 3x in a row (56MB per-connection cap on this session's network path). Operator terminal = different process/network state, often succeeds where brain session EPIPEs.
 
