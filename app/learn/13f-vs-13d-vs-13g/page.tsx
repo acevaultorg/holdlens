@@ -722,6 +722,14 @@ export default function ThirteenFvsDvsGPage() {
             — why the quarterly window is six weeks late by design.
           </li>
           <li>
+            <a href="/learn/form-4-vs-13f" className="text-brand underline">
+              Form 4 vs 13F
+            </a>{" "}
+            — the fourth SEC filing in the family. Form 4 is the 2-business-day
+            insider-trade ticker; 13F is the 45-day institutional snapshot.
+            Used together they cover both micro and macro signals.
+          </li>
+          <li>
             <a
               href="/learn/conviction-score-explained"
               className="text-brand underline"

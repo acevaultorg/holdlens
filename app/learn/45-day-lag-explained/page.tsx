@@ -300,6 +300,14 @@ export default function FortyFiveDayLagPage() {
             </a>{" "}
             — the concept that makes 13F analysis worthwhile despite the lag.
           </li>
+          <li>
+            <a href="/learn/form-4-vs-13f" className="text-brand underline">
+              Form 4 vs 13F
+            </a>{" "}
+            — when a 45-day lag is too slow, Form 4 fills the gap: insider
+            trades land within 2 business days. Different filing, different
+            signal, different timing.
+          </li>
         </ul>
 
         <div className="border-t border-border pt-6 mt-12">
