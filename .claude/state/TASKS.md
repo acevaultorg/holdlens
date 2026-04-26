@@ -55,9 +55,54 @@
 
 ---
 
-## 🔴 IN PROGRESS — Deploy Q4 report + 12 brain commits (operator wrangler attempt 4 running 2026-04-25 ~10:30 local) — [id:deploy-q4-report-terminal]
+## 🔴 REQUIRED — Deploy Q4 report + 12 brain commits from LOCAL path (iCloud→Local migration test) — [id:deploy-q4-report-from-local]
 
-**Status as of 2026-04-25 ~10:30 local:** operator running attempt 4 from fresh terminal after the recommended 1.5h wait window. Compile succeeded ("✨ Compiled Worker successfully"). Upload phase pending verification. Last live-URL check 2026-04-25 09:55 returned `HTTP/2 404` on both /learn/form-4-vs-13f/ + /reports/2026-04-q4-2025-13f-signal-summary/. If attempt 4 succeeds, [id:post-deploy-verify-aug-instrumentation] above is the next operator action.
+**WHAT:** Operator hypothesizes prior wrangler EPIPEs were caused by iCloud sync interfering with file reads during upload. Operator moved repo from iCloud to `/Users/paulodevries/Local/...`. Brain verified local copy is git-clean + state-files-restored + HEAD matches iCloud (73c96e5e1) + TypeScript clean. Run `npm run deploy` from local path. If it succeeds, hypothesis confirmed + 12 commits land + Q4 report goes live.
+
+**WHY:** Same 12 brain commits as before — Q4 report (was 2026-04-24 ship), EngagementTracker AAERA instrumentation, /learn/form-4-vs-13f (~2000-word comparison article + 5 distribution archetypes stacked), 6 internal cross-links, Oracle calibration logs. Last 4 wrangler attempts from iCloud all EPIPE'd at ~56MB. Local path = different file-system process; no iCloud lazy-sync, no `kCFURLPlaceholderNotificationKey` filesystem locks during upload. Cost of skipping: 12 commits stay invisible to bots/users; AUG measurement loop stays open.
+
+**TIME:** ~5 min (build ~2 min + wrangler upload ~90s + IndexNow ~10s).
+
+**HOW:**
+
+  1. Open Terminal, cd to **LOCAL** path (not iCloud):
+     `cd "/Users/paulodevries/Local/holdlens-com 26 apr/holdlens"`
+     → expected: prompt changes to local holdlens directory.
+
+  2. Verify you're at the right HEAD:
+     `git log --oneline -1`
+     → expected: `73c96e5e1 data(quality): @craftsman Love Score for v1.68 form-4-vs-13f (mean 0.73, PASS)`
+
+  3. Run full deploy (build → wrangler → IndexNow):
+     `npm run deploy`
+     → expected:
+        - Phase 1 (~2 min): `▲ Next.js 14.2.16` build · `Generating static pages (XXX/XXX)` · `Export successful`.
+        - Phase 2 (~90s): `Uploading... (N/10855)` progress bar · `✨ Deployment complete!` · preview URL like `https://XXXXXXXX.holdlens.pages.dev`.
+        - Phase 3 (~10s): `Submitted XXXX URLs to IndexNow` · HTTP 200 OK.
+
+**VERIFY (paste both lines):**
+```
+curl -s -o /dev/null -w "%{http_code}\n" https://holdlens.com/reports/2026-04-q4-2025-13f-signal-summary/
+curl -s -o /dev/null -w "%{http_code}\n" https://holdlens.com/learn/form-4-vs-13f/
+```
+→ expected: `200` and `200` (both were `404` before this deploy).
+
+**IF STUCK:**
+- **Build fails on prebuild scripts (generate-og-images / fetch-edgar):** these may need network. If failing on stale-data or missing source, tell the brain (next session) the exact error — usually a stale upstream API or missing env var.
+- **Local also gets `write EPIPE`:** the iCloud hypothesis is disproved. Per `~/.claude/rules/cloudflare-pages-epipe.md`, this is a CF-side per-connection cap (~56MB), not iCloud. Wait 1-2h and retry, or split deploy across sessions.
+- **wrangler prompts for auth:** run `npx wrangler login` first, then retry `npm run deploy`.
+- **Deploy succeeds but route still 404 after 2 min:** CF edge cache — purge via `https://dash.cloudflare.com/72bfd26c5f3c935393a25e5c0dea6039/holdlens.com/caching/configuration` → Purge Everything.
+- **out/ ends up empty after build:** `next build` may have failed silently between phases. Check `npm run build` output for any red errors. If `out/` has only ~5 files post-build, build failed — share the error output for diagnosis.
+
+**Note on iCloud original:** the iCloud copy (`~/Library/Mobile Documents/com~apple~CloudDocs/.../holdlens-com/holdlens/`) is now STALE. After this deploy, all future work happens in `/Users/paulodevries/Local/holdlens-com 26 apr/holdlens`. Don't edit iCloud version anymore — it'll just diverge.
+
+[archetype:programmatic_page_with_unique_data × +55] [score:9 — unblocks 12-commit batch + tests iCloud-cause hypothesis] [oracle: +5-15 vis/wk Q4 narrative + measurement infrastructure live]
+
+---
+
+## ⊘ SUPERSEDED 2026-04-26 — Deploy Q4 (operator wrangler attempt 4 running 2026-04-25 ~10:30 local) — [id:deploy-q4-report-terminal]
+
+**Status as of 2026-04-26 12:25 UTC:** attempt 4 from iCloud ended with no live deploy (live still 404). Operator pivoted to test iCloud-as-cause hypothesis by moving repo to `/Users/paulodevries/Local/holdlens-com 26 apr/holdlens`. New active card: [id:deploy-q4-report-from-local] above.
 
 ---
 

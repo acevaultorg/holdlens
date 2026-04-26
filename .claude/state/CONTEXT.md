@@ -1,5 +1,62 @@
 # HoldLens — Session context
 
+## Session Handoff (2026-04-26 12:25 UTC · auto = sovereign auto · iCloud→Local migration verification)
+
+**Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
+**Branch:** main · clean · 73c96e5e1 (matches iCloud)
+**Stash:** clean
+**Working dir:** **`/Users/paulodevries/Local/holdlens-com 26 apr/holdlens`** ← canonical from now on
+**iCloud original:** `~/Library/Mobile Documents/com~apple~CloudDocs/AceVault/ CLUSTER01-AceVault/VAULT01-Paulo Projects/holdlens-com/holdlens` ← STALE after this point; do not edit
+
+**Session arc** — operator typed `/acepilot auto [this was the previous chat. i think problems where might caused by icloud. i now put all files local. check if it works now]`. ABSORB found new working dir missing `.git` + `.claude` (Finder copy excluded hidden dirs). Detected `incomplete_finder_copy_missing_dotfiles` failure class. Recovered via `rsync -a` from iCloud source for 6 critical hidden items. Verified HEAD match (73c96e5e1) + 12 brain commits intact + TypeScript clean. Logged failure mode + recovery to PATTERNS.md.
+
+**12 brain commits — STILL pending operator deploy** (unchanged from prior session, now in local copy):
+1. `e8a2531a9` EngagementTracker base
+2. `40a4b0bb3` ANALYTICS row #1
+3. `b88a2494a` EngagementTracker activation event
+4. `55c914f8c` ANALYTICS row #2
+5. `04c549264` divergence-deploy ✅ RESOLVED
+6. `365b0ab05` /learn/form-4-vs-13f new article
+7. `41f2b265a` ANALYTICS row #3
+8. `9d3e8669a` Cross-link form-4-vs-13f from /learn/insider-score-explained + /learn/sec-signals-trilogy
+9. `507f90738` Cross-link from /insiders/
+10. `b2a613006` Cross-link from /for-ai/
+11. `4e47f8e64` Triple-Oracle projections
+12. `73c96e5e1` @craftsman Love Score for v1.68 form-4-vs-13f (mean 0.73, PASS)
+
+**Live check (2026-04-26 12:25 UTC):**
+- `/reports/2026-04-q4-2025-13f-signal-summary/` → 404 (still pending deploy)
+- `/learn/form-4-vs-13f/` → 404 (still pending deploy)
+- `/divergence/` → 200 (deployed earlier)
+
+**Operator hypothesis being tested:** does running wrangler from `/Users/paulodevries/Local/...` (no iCloud sync interference) succeed where iCloud-pathed wrangler EPIPE'd repeatedly?
+**Status:** ready to test. Run `npm run deploy` from local path. See top Clarity Card in TASKS.md.
+
+**Pending operator action (in TASKS.md top, ranked):**
+1. 🔴 IN PROGRESS — Q4 + 12 brain commits via wrangler from LOCAL path (this session's operator test)
+2. 🟡 NEW — Post-deploy verification + Plausible 4-Goals setup (~10 min)
+3. 🟡 DMARC TXT (~60s)
+4. 🟡 Email Perplexity Publishers (~5 min)
+
+**Migration audit:**
+- ✅ `.git` rsync'd (HEAD 73c96e5e1 matches iCloud)
+- ✅ `.claude/` rsync'd (24 state files restored)
+- ✅ `.gitignore` rsync'd
+- ✅ `.env.production.local` rsync'd (deploy secrets present)
+- ✅ `.github/` rsync'd (workflows)
+- ✅ `.data/` rsync'd
+- ❌ `.next/` skipped (regeneratable via `npm run build`)
+- ❌ `.wrangler/` skipped (regeneratable on first wrangler invoke)
+- ✅ `node_modules/` was already in local (Finder copies non-hidden by default)
+- ✅ `out/` already in local from yesterday's build (will rebuild during `npm run deploy`)
+
+**Failure modes new this session (PATTERNS.md):**
+- `incomplete_finder_copy_missing_dotfiles` — Finder cp default excludes dotfiles. Detected at ABSORB step 1 (no `.git` → fatal). Recovered via rsync from iCloud source. Trip-wire: if working dir lacks `.git` AND a known sibling fleet-vault has `.git` for same project → attempt rsync recovery before declaring repo dead.
+
+**Immortality strings:** Only `stop`, `pause`, `halt` from live operator exits.
+
+---
+
 ## Session Handoff (2026-04-25 10:30 UTC · auto = sovereign auto · AUG measurement + form-4-vs-13f content ship)
 
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
