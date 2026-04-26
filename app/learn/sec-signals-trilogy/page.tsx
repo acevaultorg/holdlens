@@ -55,7 +55,7 @@ const LD = [
     description:
       "Three SEC filings, three freshness cadences, three branded scores. How quarterly 13F (ConvictionScore), daily Form 4 (InsiderScore), and intra-day 8-K (EventScore) work together to give a full picture of what's happening at any public company.",
     datePublished: "2026-04-23",
-    dateModified: "2026-04-23",
+    dateModified: "2026-04-26",
     inLanguage: "en-US",
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -68,6 +68,60 @@ const LD = [
       { "@type": "Thing", name: "SEC Form 13F", url: "https://holdlens.com/glossary/#13f" },
       { "@type": "Thing", name: "SEC Form 4", url: "https://holdlens.com/glossary/#form-4" },
       { "@type": "Thing", name: "SEC Form 8-K", url: "https://holdlens.com/glossary/#form-8k" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is the SEC signals trilogy?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Three SEC filings read as one coordinated system: 13F (institutional holdings, 45-day quarterly lag), Form 4 (insider trades, T+2 business-day lag), and 8-K (material events, T+4 day lag). Each filing covers a different cadence and a different signer; together they answer who is positioned (13F), who is trading right now (Form 4), and what is happening to the company (8-K). Reading any one in isolation misses 2/3 of the picture.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are the three filing cadences in the trilogy?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "13F = quarterly institutional snapshot, 45 days after quarter-end. Form 4 = individual insider trade disclosure, 2 business days after the trade. 8-K = material event disclosure, 4 days after the event. The cadences span quarterly, daily, and intra-day — covering long-horizon institutional positioning to real-time corporate developments.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are the three scores HoldLens computes from the trilogy?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "ConvictionScore (from 13F) = how strongly tracked institutional managers are buying or selling. InsiderScore (from Form 4) = how strongly insiders at a company are buying or selling their own stock, weighted by role and discretion. EventScore (from 8-K) = severity-weighted score of recent material corporate events (bankruptcy, restatement, impairment, delisting deduct heavily; positive disclosures add modestly). All three are signed −100 to +100 for direct comparability.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do you read the trilogy together?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Look for alignment or contradiction across the three. Aligned signals (ConvictionScore +60 + InsiderScore +50 + EventScore +5) compound conviction. Contradictions are the highest-information signal — institutional buying (13F +) but insider selling (Form 4 −) at the same company suggests timing risk. A bankruptcy 8-K (Item 1.03) overrides positive ConvictionScore regardless of how many superinvestors are buying, because the asymmetric event-score weighting reflects real-world catastrophic outcomes.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What can the SEC trilogy NOT do?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Predict the future. The trilogy is a freshness-graded factual record of who has positioned, traded, and disclosed what — not a forecast. Educational signal only; not investment advice. Foreign equities, bonds, derivatives, short positions, and pre-trade intent are all OUT of scope. The trilogy is the most-complete US-equity disclosure pipeline available to retail investors but it is not a complete portfolio view.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where do the three trilogy signals live on HoldLens?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "ConvictionScore lives on /signal/[ticker] and aggregated across /best-now and /investor/[name]. InsiderScore lives on /insiders/ and per-ticker pages with insider activity. EventScore lives on /events/ and per-ticker /signal/ pages with recent 8-K activity. The unified per-ticker view at /signal/[ticker] shows all three layered with a 9-layer breakdown panel.",
+        },
+      },
     ],
   },
 ];

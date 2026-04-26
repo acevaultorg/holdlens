@@ -50,7 +50,7 @@ const LD = [
     description:
       "The deterministic formula behind HoldLens's InsiderScore. How officer role, action type, transaction size, cluster detection, and recency decay combine into a signed −100 to +100 score for every insider transaction.",
     datePublished: "2026-04-23",
-    dateModified: "2026-04-23",
+    dateModified: "2026-04-26",
     inLanguage: "en-US",
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -69,6 +69,60 @@ const LD = [
       { "@type": "Thing", name: "SEC Form 4", url: "https://holdlens.com/glossary/#form-4" },
       { "@type": "Thing", name: "Cluster buy", url: "https://holdlens.com/glossary/#cluster-buy" },
       { "@type": "Thing", name: "Rule 10b5-1 plan", url: "https://holdlens.com/glossary/#10b5-1" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is InsiderScore?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A signed number from −100 to +100 that HoldLens assigns to every SEC Form 4 transaction. It separates discretionary insider buys (which historically carry predictive value) from routine compensation noise (10b5-1 sales, vesting grants, tax withholding). Deterministic formula, no machine learning, fully reproducible from public SEC data.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How is InsiderScore calculated?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "InsiderScore = role_weight(officer_title) × action_weight(transaction_code) × size_weight(value / officer_historical_avg) × cluster_bonus × recency_decay, clamped to [−100, +100]. The action_weight (transaction code P/S/A/M/F/G/D) is the most powerful filter: open-market buys score +1.00, discretionary sells −0.70, 10b5-1 pre-scheduled sales only −0.15, grants/awards/tax-withholding all 0.00.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why are insider sells weighted less than insider buys?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Insiders sell for many reasons; they buy for one. Sells can be diversification, tax planning, divorce, planned spending — any of a hundred non-thesis reasons. Discretionary buys (transaction code P) require putting personal cash at risk, which carries the strongest signal. That's why open-market buys are weighted +1.00 vs −0.70 for discretionary sells.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is a cluster buy?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Multiple officers at the same company trading the same direction within a 30-day window. This is the single highest-signal pattern in insider data. HoldLens applies a cluster bonus multiplier of 1.5× when ≥3 officers act in the same direction within 30 days, capped at 2.0× for ≥5 officers. Coordinated buying across the C-suite is rare and informative.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does InsiderScore decay over time?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Recency decay halves the score over 90 days and zeros it out after 240 days. A trade made yesterday carries more signal than one made 3 months ago, and trades from 8+ months back contribute zero to per-ticker InsiderScore aggregates. This keeps stale data from polluting current signal.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What does InsiderScore NOT measure?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Not a prediction. A high positive InsiderScore means 'this insider, in this role, made this discretionary trade at this size, and historically that pattern has carried information.' It does NOT mean 'the stock will go up.' Educational signal only; not investment advice. Cluster buys + size outliers + senior roles compound the signal but don't guarantee outcomes.",
+        },
+      },
     ],
   },
 ];

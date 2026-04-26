@@ -48,7 +48,7 @@ const LD = [
     publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/conviction-score-explained",
     datePublished: "2026-03-20",
-    dateModified: "2026-04-10",
+    dateModified: "2026-04-26",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
   },
@@ -64,6 +64,52 @@ const LD = [
       name: "HoldLens Glossary",
       url: "https://holdlens.com/learn",
     },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is HoldLens ConvictionScore?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A signed number from −100 to +100 per stock. +100 is the strongest possible buy, −100 the strongest possible sell. Every ticker appears on exactly one list (buys if score >0, sells if <0) — fixing the contradiction in dual buy/sell rankings where the same stock can rank #1 on both lists when both buyers and sellers are active.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are the seven signal layers in ConvictionScore?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Seven positive layers + two penalties. Layers: (1) Smart money (manager quality × consensus), (2) Insider activity (CEO/CFO open-market buys; 10b5-1 sells filtered out), (3) Track record (each buyer's realized 10-year CAGR weighted by position size), (4) Trend streak (3 quarters of adding ≠ single-quarter buy), (5) Concentration (15% position vs 1% portfolio filler), (6) Contrarian bonus (under-the-radar with tier-1 buyers), (7) Event signal v5 (SEC 8-K bankruptcy −15, restatement −12, impairment −10, delisting −10). Penalties: dissent (sellers, weighted ×1.6) + crowding (15+ owners → discount).",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What does a ConvictionScore of +70 mean vs +40 vs −40?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "+70 to +100 = STRONG BUY (unambiguous tier-1 consensus with trend + insider support). +40 to +70 = BUY (clear positive, solid manager backing). +10 to +40 = WEAK BUY (positive but muted by dissent or crowding). −10 to +10 = NEUTRAL. −10 to −40 = WEAK SELL. −40 to −70 = SELL (clear distribution from tracked managers). −70 to −100 = STRONG SELL (multi-quarter exit pressure from elite managers).",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why does Buffett's quality score equal 5.9 not 10?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "ConvictionScore uses Berkshire Hathaway's realized 10-year CAGR (2015-2024) as the quality input instead of a hand-curated number. Over that decade Berkshire trailed the S&P 500, computing to a quality score of 5.9. A Buffett buy now weighs less than a Kantesaria buy (quality 8.2) because the last decade of numbers warrant it. Track-record-driven, not legend-driven.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How is ConvictionScore different from other 13F aggregators?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Three differences: (1) signed unified score (single list per stock vs dual buy/sell lists where the same ticker ranks #1 on both); (2) seven-layer composite, not just buyer-count; (3) reads from all three SEC filing surfaces — 13F holdings (45-day lag), Form 4 insider trades (T+2), and 8-K material events (T+4). Per v5 (April 2026), no other public investing tool synthesizes all three into one score.",
+        },
+      },
+    ],
   },
 ];
 

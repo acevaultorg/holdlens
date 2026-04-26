@@ -86,6 +86,23 @@
 /investor/pabrai         /investor/monish-pabrai/         301
 /investor/pabrai/        /investor/monish-pabrai/         301
 
+# v2026-04-26 — dual-class ticker recovery: BRK.A → BRK.B.
+# Berkshire's A-class shares ($700k+ each) are rarely held by 13F filers; the
+# tracked-manager dataset only has BRK.B exposure. But Google + LLM crawlers
+# routinely reference BRK.A as the canonical Berkshire ticker, sending search
+# traffic to /signal/BRK.A which 404'd hard. 301 to BRK.B preserves the
+# search intent ("Berkshire conviction signal") + transfers any incoming
+# link equity. Same B-class ConvictionScore is the correct answer to the
+# question "what does superinvestor flow look like for Berkshire?" since
+# A and B track 1:1 in fundamentals. No other dual-class ticker in the
+# current dataset (HEI / BF / LEN / MOG / JW / RDS etc. all single-class).
+/signal/BRK.A            /signal/BRK.B/                   301
+/signal/BRK.A/           /signal/BRK.B/                   301
+/signal/brk.a            /signal/BRK.B/                   301
+/signal/brk.a/           /signal/BRK.B/                   301
+/signal/BRK-A            /signal/BRK.B/                   301
+/signal/BRK-A/           /signal/BRK.B/                   301
+
 # v2026-04-23 — spec-naming alignment: /activism/ → existing /activist/ tracker.
 # Spec uses 'activism' as the surface name; canonical implementation is /activist/.
 # 301 preserves SEO equity + makes both URLs work.

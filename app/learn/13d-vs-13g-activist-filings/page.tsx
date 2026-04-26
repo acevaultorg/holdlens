@@ -15,7 +15,7 @@ export default function Article() {
     "@type": "Article",
     headline: "13D vs 13G — what the difference actually means",
     datePublished: "2026-04-20",
-    dateModified: "2026-04-20",
+    dateModified: "2026-04-26",
     author: { "@type": "Organization", name: "HoldLens" },
     publisher: {
       "@type": "Organization",
@@ -26,6 +26,60 @@ export default function Article() {
       "https://holdlens.com/learn/13d-vs-13g-activist-filings",
     description:
       "When an investor crosses 5% of a public company they file 13D or 13G. The difference reveals intent.",
+  };
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is the 5% ownership threshold for SEC 13D and 13G filings?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Section 13(d) of the Securities Exchange Act (1934) requires anyone beneficially owning more than 5% of a public company's voting shares to disclose the position within 10 calendar days. The point is to give the market and company management early warning of large accumulations that could change control.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is a Schedule 13D filing?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Schedule 13D is filed when the investor reserves the right to influence the company. The filing must include identity of the filer, source and amount of funds, purpose of the transaction, plans for the company (board changes, breakup, sale), and any contracts or understandings with other holders. Item 4 (Purpose of Transaction) is where every activist thesis lives.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is a Schedule 13G filing?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Schedule 13G is the short-form version. The filer certifies they have no intent to influence the company. Three categories can file 13G instead of 13D: qualified institutional investors (banks, broker-dealers, insurance companies, registered pension funds), passive investors who own less than 20% with no intent to influence, and exempt investors who acquired their stake before the company went public. Most index funds (Vanguard, BlackRock, State Street) file 13G on thousands of holdings.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What's the difference between 13D and 13G?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Intent. 13D = activist with right to influence (board changes, breakup, sale). 13G = passive holder explicitly disclaiming influence. 13D is detailed (Items 1-7 including Plans). 13G is short-form. 13D amendments must file within 1 business day of material changes; 13G amendments within 10 days. A 13G holder switching to 13D is itself a high-signal event — it means intent shifted.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is a 13D/A or 13G/A amendment?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The /A suffix means amendment. Filers must amend when position changes by 1% or more of outstanding shares, intent shifts (e.g., a 13G holder decides to engage and switches to 13D), or plans materially change. Amendment cadence is the highest-signal data on EDGAR — a series of 13D/A filings from a known activist usually precedes a board fight by weeks.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why does 13D matter more than 13F for tracking smart money?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "13F is a 45-day-lagged quarterly snapshot of a portfolio. 13D/13G filings drop within 10 days of crossing 5%, and 13D/A amendments file within 1 business day of material changes. They are the closest thing to real-time smart-money disclosure in the US market. For activist or large-position situations, 13D beats 13F by 35+ days.",
+        },
+      },
+    ],
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -46,6 +100,7 @@ export default function Article() {
     <article className="max-w-2xl mx-auto px-6 py-16 prose prose-invert">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
 
       <a href="/learn" className="text-xs text-muted hover:text-text no-underline">
         ← All learn articles
