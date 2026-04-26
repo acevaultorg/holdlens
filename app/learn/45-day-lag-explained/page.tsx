@@ -57,9 +57,63 @@ const LD = [
     publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/45-day-lag-explained",
     datePublished: "2026-04-16",
-    dateModified: "2026-04-16",
+    dateModified: "2026-04-26",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Why are 13F filings delayed by 45 days?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "SEC Rule 13f-1 gives institutional investment managers 45 calendar days after each quarter's end to file. The window is a negotiated compromise: funds get time to accumulate or unwind positions without broadcasting intent in real time, the SEC gets structured disclosure of institutional exposure, and retail investors get a lagged but honest view of smart-money positioning. Without the lag, front-runners would trade against funds the moment a new position appeared.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When is the next 13F filing deadline?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Q1 (March 31 quarter end) filings are due by May 15. Q2 (June 30) by August 14. Q3 (September 30) by November 14. Q4 (December 31) by February 14. Most funds file on the last possible day, so the bulk of new disclosures lands in the final 24-48 hours before each deadline.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is 13F data useful given the 45-day lag?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, for long-horizon and pattern-based analysis. The lag destroys front-running, swing trading, and catalyst-driven plays. What survives: conviction clustering (when 5-8 tracked managers buy the same name in the same quarter), long-horizon theses (Buffett holding Coca-Cola since 1988), manager fingerprinting (style is stable across quarters), sector rotation (direction of aggregate flow), and idea generation (research starting points, not trade signals).",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What signal arrives faster than 45 days for hedge fund activity?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "SEC Form 4 — when an insider (officer, director, or 10%+ shareholder) at a public company trades that company's stock, the trade must be disclosed within 2 business days. Form 4 covers individual insider transactions; 13F covers full institutional portfolios. They are complementary signals: Form 4 for the micro 2-day insider tick, 13F for the macro quarterly snapshot.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does HoldLens handle the 45-day lag?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "HoldLens makes the lag visible, not hidden. Every move row shows the actual filing date inline (not just the quarter), price delta since filing (e.g., +18.3%), and ConvictionScore positions are framed as 'what tracked managers believe as of the most recent filings' — never 'what they believe right now.' Every quarter digest page shows the next filing deadline prominently.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is there a way to get real-time hedge fund holdings data?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No legal way. Sites that promise 'real-time hedge fund signals' are either reselling press-release coverage of voluntary disclosures or violating SEC rules. The SEC framework provides 13F (45-day quarterly), 13D/13G (10-day activist threshold), and Form 4 (2-day insider) — these are the only sanctioned disclosure channels. Anything faster requires private fund relationships, which retail investors don't have.",
+        },
+      },
+    ],
   },
 ];
 
