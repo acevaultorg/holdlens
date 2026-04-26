@@ -13,7 +13,8 @@
     "start": "next start",
     "lint": "next lint",
     "indexnow": "npx tsx scripts/ping-indexnow.ts",
-    "deploy": "npm run build && npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true && npm run indexnow"
+    "clean": "rm -rf .stale-out-trash .next 2>/dev/null; mv out .stale-out-trash 2>/dev/null && rm -rf .stale-out-trash 2>/dev/null; find . -name '.DS_Store' -not -path './node_modules/*' -not -path './.git/*' -delete 2>/dev/null; find . -type d -name '* 2' -not -path './node_modules/*' -not -path './.git/*' -exec rm -rf {} + 2>/dev/null; true",
+    "deploy": "npm run clean && npm run build && npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true && npm run indexnow"
   },
   "dependencies": {
     "next": "15.0.3",

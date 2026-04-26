@@ -13,6 +13,10 @@ scripts/.indexnow-key
 out/
 # Cloudflare Wrangler temp files — ephemeral per deploy.
 .wrangler/
+# `npm run clean` rename-target — atomic move-then-remove pattern works
+# around macOS Finder recreating .DS_Store mid-rmdir (incomplete_finder_copy
+# failure-mode in PATTERNS.md). Should never persist past one clean cycle.
+.stale-out-trash/
 # prebuild-regenerated artifacts. package.json prebuild runs
 # generate-og-images.ts + generate-api-json.ts before every build;
 # tracking these produces only timestamp/byte churn per deploy.
