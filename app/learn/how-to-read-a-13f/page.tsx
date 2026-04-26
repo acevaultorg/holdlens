@@ -62,7 +62,7 @@ const LD = [
     publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/how-to-read-a-13f",
     datePublished: "2026-04-16",
-    dateModified: "2026-04-16",
+    dateModified: "2026-04-26",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
     about: {
@@ -71,6 +71,68 @@ const LD = [
       description:
         "Quarterly filing by institutional investment managers with $100M+ in US equity assets under discretion.",
     },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Where do I find a 13F filing?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "On SEC EDGAR full-text search (efts.sec.gov), search the manager name, filter the Filing type dropdown to '13F-HR' (the 'HR' means 'Holdings Report'), and click the most recent entry. The filing index page contains primary_doc.xml (cover page) and infotable.xml (the holdings list) — those are the two files that matter.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What does 13F-HR mean?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "13F-HR is the 'Holdings Report' variant of the 13F — the full disclosure of an institutional manager's US equity positions for the quarter. The other variant is 13F-NT (Notice), filed when a manager has no holdings to report or is referencing another manager's filing. Retail investors read 13F-HR for the actual portfolio data.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What columns matter in the 13F information table?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Six of the ten columns matter: Name of Issuer (company), Title of Class (COM for common, CL A/CL C for share classes), CUSIP (9-char unique security ID), Value (in thousands of dollars — 84,293,740 means $84.29 billion), SSH PRNAMT (share count), and Put/Call (blank for long stock; non-blank indicates options position). The other four are regulatory metadata, skippable for investment analysis.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I tell if a hedge fund added or trimmed a position?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Compare the share count column quarter-over-quarter. NEW = security appears this quarter but not previous (real conviction signal). ADD = share count grew (note percentage; 3% add on 12% position differs from 300% add on starter). TRIM = share count shrunk (rebalancing or loss of conviction). EXIT = zero shares now (strong signal — the manager had a reason to sell the full position).",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What does a 13F NOT show?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "13Fs hide more than they reveal. No short positions (long Apple in the 13F + short Apple via swap off-filing = net exposure unknown). No foreign equities (US-listed only — a global fund's 13F is a fraction of their book). No bonds, cash, derivatives, or commodities (Druckenmiller runs 60%+ in things that never touch a 13F). 45-day lag means positions may already be closed by the time you read. No options strike or expiry detail (Put/Call column flags existence but not terms).",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I just copy a hedge fund's 13F to invest like them?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No, mechanical copy-trading of 13Fs underperforms. Three reasons: (1) the 45-day lag means you enter at a price the manager didn't pay, (2) 13Fs hide shorts and derivatives so you replicate only the long-only fragment of their net exposure, (3) position-sizing matters — a 0.1% starter has different conviction than a 12% concentrated bet. Use 13Fs as research starting points, not trade signals.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does this differ from Form 4?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Form 13F covers institutional portfolios at quarterly snapshots with 45-day lag. Form 4 covers individual insider trades (officers, directors, 10%+ shareholders at a public company) with 2-business-day lag. They are complementary: 13F for macro institutional positioning over quarters, Form 4 for micro insider conviction within days. Used together they triangulate the full insider+institutional picture.",
+        },
+      },
+    ],
   },
 ];
 
