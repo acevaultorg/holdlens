@@ -50,6 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ pair: str
       description: `Portfolio comparison on HoldLens.`,
       images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
     },
+    alternates: { canonical: `https://holdlens.com/compare/managers/${pair}/` },
   };
 }
 
