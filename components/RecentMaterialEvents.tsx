@@ -24,8 +24,21 @@ import TickerLogo from "@/components/TickerLogo";
 // Form8KEvent shape flows through.
 
 export default function RecentMaterialEvents() {
-  // Most-recent 5 material events across all tracked tickers.
-  const events = getRecentEvents(5);
+  // Most-recent 5 material events, deduped to 5 DIFFERENT tickers. Same
+  // reasoning as LiveInsiderActivity: a cluster-event day (e.g. OFAL
+  // filing 4 separate 8-Ks on the same day) collapses the homepage widget
+  // to one ticker repeated. Dedupe → broader homepage deep-linking into
+  // /events/company/* (the per-issuer roll-up) + better visible breadth.
+  // Cluster signal is preserved on each /events/company/[ticker]/ page.
+  const newestEventPerTicker = new Map<string, ReturnType<typeof getRecentEvents>[number]>();
+  // getRecentEvents already returns sorted-newest-first, so the first
+  // occurrence per ticker IS the freshest. Pull more than 5 to guarantee
+  // we have ≥5 distinct tickers in the typical case.
+  for (const e of getRecentEvents(50)) {
+    if (!newestEventPerTicker.has(e.ticker)) newestEventPerTicker.set(e.ticker, e);
+    if (newestEventPerTicker.size >= 5) break;
+  }
+  const events = [...newestEventPerTicker.values()];
 
   const totalEvents = CURATED_EVENTS.length;
   const distinctTickers = new Set(CURATED_EVENTS.map((e) => e.ticker.toUpperCase())).size;
