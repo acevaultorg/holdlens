@@ -186,3 +186,25 @@ AFTER:  (cf.verified_bot_category in {"Search Engine Crawler" "Search Engine Opt
 ## Corrections
 
 <!-- Append-only. Format: corrects: <timestamp> | reason | new_value -->
+
+---
+
+## CF Pages outage workaround — Vercel fallback (proven 2026-04-27 12:47)
+
+**Pattern:** when CF Pages wrangler deploys EPIPE consistently (status `minor`/`major`/`critical` per CloudflareStatus API), `vercel deploy out --prod --yes --scope <team>` deploys a Next.js `output: 'export'` build to *.vercel.app in ~6 min for a 854MB / 10,853-file site.
+
+**Verified end-to-end this session:**
+- 855/10858 EPIPE on wrangler from 2 different processes (operator terminal + brain session) at 2026-04-27 10:32 + 12:45 UTC
+- `vercel deploy out --prod --yes --scope paulomdevries-6397s-projects` at 12:47 UTC succeeded
+- Deploy ID `dpl_ESaDFBKQdFzHrUf8zWvKHJqa23KS`
+- Live URL: https://out-lac-delta.vercel.app (alias) + https://out-1l6tzwzym-paulomdevries-6397s-projects.vercel.app (primary, 401 Vercel deployment-protection)
+- All commits' content fingerprint-verified: Q4 report 200, form-4-vs-13f 200, canonicals correct, sitemap pruned, etfETFs URL leak gone
+
+**Rule update candidate:** `rules/cloudflare-pages-epipe.md` should add a Step 3 — "If CF outage persists >24h AND operator authorizes one-time fallback, deploy to Vercel under personal team using `vercel deploy out --prod --yes --scope <team>`. Live URL becomes operational within 6 min. holdlens.com DNS update is optional second step (CNAME → cname.vercel-dns.com)."
+
+**Why this works while CF is broken:** Vercel uses entirely different upload infrastructure than CF Pages. The 56MB-per-connection EPIPE pattern is CF-API-specific; Vercel's edge/build network is unaffected by CF status.
+
+**Cost:** Vercel hobby tier free (100GB bandwidth/mo). Current site traffic ~12 UV/30d (per state files) is well within free tier. No payment gate triggered.
+
+**Rule conflict acknowledgment:** `rules/accounts-prefer-acevaultorg.md` says "Always use `acevaultorg`. Never use `pmdevries-rgb` / personal team." This deploy violates that rule because acevaultorg Vercel team didn't exist + operator authorized one-time exception. Proper long-term fix: operator creates acevaultorg Vercel team (vercel.com/teams/new), invites self, switches scope, redeploys. ~5 min operator action.
+
