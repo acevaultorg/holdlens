@@ -1,0 +1,33 @@
+# Dividend-tax batch template — copy this file to data/dividend-tax-batch-YYYY-MM-DD.tsv
+# (or any path outside data/), fill in real values from primary sources, then run:
+#
+#   npm run dt:add -- --batch path/to/your-batch.tsv
+#
+# Format: 5 or 6 tab-separated columns per row. Lines starting with # are ignored.
+# Columns: investor	payer	rate	treaty_reference	source_citation	notes(optional)
+#
+# Source-citation tip: include "PwC" / "KPMG" / "IRS Pub 901" / a country tax
+# authority name (HMRC / ATO / BZSt / etc.) so the dt:add validator recognizes
+# the source. Use --force if you have a legitimate citation that doesn't match
+# any approved pattern.
+#
+# Treaty-reference tip: cite the treaty article (e.g. "Art.10(2)(b)") OR
+# "Domestic statutory rate (no treaty)" OR "EU Parent-Subsidiary Directive".
+
+# === EXAMPLES (commented — uncomment + edit a row to add a real cell) ===
+
+# Singapore investor receiving US dividends (no comprehensive bilateral treaty exists):
+# SG	US	30	Singapore-US (no comprehensive treaty — domestic statutory applies)	IRAS bilateral tax treaty list; PwC Singapore Worldwide Tax Summaries — Withholding taxes on US-sourced dividends	No reduction available; full 30% applies under IRC §1441
+
+# Singapore investor receiving UK dividends (UK applies 0% on dividends regardless of recipient):
+# SG	UK	0	HMRC: UK-resident companies pay dividends gross; no UK withholding tax	HMRC International Manual; PwC Worldwide Tax Summaries: United Kingdom	UK has no domestic withholding on ordinary dividends to non-residents
+
+# Australia investor receiving US dividends under treaty:
+# AU	US	15	US-Australia Tax Treaty Art.10(2)(b)	IRS Publication 901 Table 1 (Australia row, Dividends column); PwC US Worldwide Tax Summaries	0% available for qualifying parent-subsidiary holdings ≥10% ownership
+
+# Germany investor receiving Netherlands dividends under EU framework:
+# DE	NL	15	Germany-Netherlands Tax Treaty Art.10(2)(b)	PwC Worldwide Tax Summaries: Netherlands — Withholding taxes on dividends to non-residents	0% available under EU Parent-Subsidiary Directive for qualifying holdings
+
+# === YOUR ROWS BELOW (uncomment + add) ===
+
+# inv	pay	rate	ref	src	notes
