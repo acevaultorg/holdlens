@@ -1,5 +1,48 @@
 # HoldLens — TASKS
 
+## 🟡 ROADMAP QUEUE (operator directive 2026-04-27) — 17 missing routes from Tier-A expansion
+
+Audit 2026-04-27 confirmed routes against operator's "best implementation possible" Tier-S/Tier-A roadmap. Already shipped this session: `/dividend-tax/[X]/[Y]/` pair pages (a8bc99290) + `/managers-by-style/` taxonomy (8d23a9509). The 17 missing routes below are queued for next-session execution, ordered by leverage × cost-to-ship ratio.
+
+### High-leverage / low-cost (autonomous, brain-doable)
+
+- [ ] `/etf-by-superinvestor/[manager]/` — 30 pages overlapping each manager's holdings against ETFS to find best replicating ETF. Uses existing MANAGERS + ETFS data. ~2h ship. **Archetype: comparison_vs_competitor + finite_public_dataset_programmatic.** [id:etf-by-superinvestor]
+- [ ] `/buyback-tracker/` hub — corporate buyback announcements aggregator. `/buybacks/` data already exists (28 URLs); just needs hub page consolidating signal. ~1h ship. [id:buyback-tracker-hub]
+- [ ] `/sec-form-4-archive/` — historical insider trading archive. Existing `/insiders/` covers Form 4 data; this would be a date-indexed alternate view. ~1h ship if new. [id:sec-form-4-archive]
+- [ ] `/value-screen/` — Greenblatt magic formula calculator (ROIC + earnings yield). Pure computation against existing tickers. Operator may need to provide ROIC dataset. ~3h ship. [id:value-screen-greenblatt]
+- [ ] `/sector-rotation/` — quarterly sector ETF tracker. Existing `/sector/` has 11 URLs; rotation needs cross-time-period view. ~3h ship. [id:sector-rotation]
+- [ ] `/buyback-yield-screen/` — buyback yield calculator + ranked screener. ~2h ship. [id:buyback-yield-screen]
+
+### Medium-leverage / scaffold-only (operator data needed for full ship)
+
+- [ ] `/brokers/` — broker comparison hub by country. Operator needs to confirm/finalize affiliate accounts (Tier-S task #1). ~4h ship after operator. [id:brokers-by-country]
+- [ ] `/robo-advisors/` — Betterment + Wealthfront + M1 Finance + SoFi comparison. Operator needs affiliate accounts. ~3h ship. [id:robo-advisors]
+- [ ] `/529-plans/` — state-by-state 529 comparison + Wealthfront/Vanguard direct. Operator: Wealthfront affiliate. ~4h ship. [id:529-plans]
+- [ ] `/hsa/` — Lively + Fidelity HSA + HealthEquity comparison. Operator: HSA affiliate accounts. ~3h ship. [id:hsa-comparison]
+- [ ] `/tax-loss/` — tax-loss harvesting calculator + Wealthfront/TurboTax/Empower. ~3h ship. [id:tax-loss-harvesting]
+- [ ] `/earnings/` — earnings-event calendar + Tastytrade options affiliate ($200-500/funded). ~4h ship. [id:earnings-calendar]
+- [ ] `/options-flow/` — unusual options activity tracker (Tastytrade primary). ~3h ship. [id:options-flow]
+- [ ] `/family-office-tracker/` — underserved-vs-hedge-fund focus. Needs filtered 13F data tagged as family-office. ~4h ship. [id:family-office-tracker]
+- [ ] `/spinoff-tracker/` — corporate spinoffs (institutional-favorite signal). Needs SEC EDGAR spinoff parser. ~5h ship. [id:spinoff-tracker]
+- [ ] `/CTA-tracker/` — Commodity Trading Advisor positions. Operator: research source identification. ~6h ship. [id:cta-tracker]
+- [ ] `/letters/` — investor-letters archive (Q4 2025/2026 from Buffett/Ackman/Klarman). Operator-research-heavy. ~8h spread. [id:investor-letters-archive]
+
+### 🔴 BLOCKING DECISION — operator-only
+
+- [ ] **Pro-tier reframe decision** — operator constraint excludes subscriptions. Decide: drop €9/mo / convert to lifetime supporter / B2B data-license. Blocks all Pro-tier feature additions including 30→80 manager universe expansion. **DECISION REQUIRED before tasks above that depend on Pro-tier.** [id:pro-tier-reframe-decision]
+- [ ] **30 → 80 manager EDGAR universe expansion** — depends on Pro-tier reframe first. Then per-manager EDGAR data pulls. ~5-7 days operator + brain. [id:manager-universe-expansion]
+
+### Already shipped this session (2026-04-27)
+
+- [x] `/dividend-tax/[X]/[Y]/` pair pages — 75 verified pages, auto-grow with operator's research cadence — commit a8bc99290
+- [x] Dividend-tax research cadence infrastructure (dt:add + dt:stats + RESEARCH.md + 325 placeholders) — commit dae64e957
+- [x] `/managers-by-style/` taxonomy — 7 cluster pages + hub — commit 8d23a9509
+- [x] Coverage progress badge on `/dividend-tax/` hub — commit 893d620e6
+- [x] Homepage dedupe fixes (LiveInsiderActivity + RecentMaterialEvents) — commits e92e0e385 + a12f2e1cb
+- [x] GSC audit + sitemap-prune script + audit-homepage-dedupe postbuild guard
+
+---
+
 ## 🟡 RECOMMENDED — Post-deploy verification + Plausible goals setup (~10 min, runs ONCE after wrangler succeeds) — [id:post-deploy-verify-aug-instrumentation]
 
 **WHAT:** Two checks + one Plausible-dashboard configuration step that close the AUG measurement loop. Run after `wrangler pages deploy` finally succeeds and lands the 12-commit batch (Q4 report + EngagementTracker + form-4-vs-13f + cross-links + Oracle state).
