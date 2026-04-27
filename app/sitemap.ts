@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { QUARTERS } from "@/lib/moves";
-import { COUNTRIES as TAX_COUNTRIES } from "@/lib/dividend-tax";
+import { COUNTRIES as TAX_COUNTRIES, getTreatyCell as getTaxTreatyCell } from "@/lib/dividend-tax";
 import { computeInsiderSummaries } from "@/lib/insider-conviction";
 import { allInsiderTickers, allOfficerEntries } from "@/lib/insiders";
 import { BUYBACK_PROGRAMS } from "@/lib/buybacks";
@@ -205,6 +205,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // per-investor-country programmatic pages. 1 hub + 20 country pages
   // = 21 new URLs. Retention + distribution play: LLM-citable +
   // bookmarkable + cross-links back to /ticker/* + /investor/*.
+  //
+  // v1.59 — pair pages /dividend-tax/[investor]/[payer]/ added for
+  // every verified+derived treaty cell. Currently 75 pairs (operator's
+  // research cadence is filling 75 → 400). The set grows automatically
+  // on every build as cells are promoted from needs_research → verified.
+  // Each pair page stacks 6 high-multiplier archetypes (programmatic
+  // unique data + comparison + AI-citation + schema + hub-spoke +
+  // finite-public-dataset) per Layer 5 stacking-bonus rules.
+  const verifiedPairs: { inv: string; pay: string }[] = [];
+  for (const inv of TAX_COUNTRIES) {
+    for (const pay of TAX_COUNTRIES) {
+      const cell = getTaxTreatyCell(inv.code, pay.code);
+      if (cell && (cell.state === "verified" || cell.state === "derived")) {
+        verifiedPairs.push({ inv: inv.code.toLowerCase(), pay: pay.code.toLowerCase() });
+      }
+    }
+  }
   const dividendTaxUrls: MetadataRoute.Sitemap = [
     {
       url: `${base}/dividend-tax`,
@@ -217,6 +234,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.75,
+    })),
+    ...verifiedPairs.map((p) => ({
+      url: `${base}/dividend-tax/${p.inv}/${p.pay}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
   ];
 
