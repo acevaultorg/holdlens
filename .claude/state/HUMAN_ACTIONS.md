@@ -1,6 +1,75 @@
 # HoldLens — Human actions queue
 
-## 🔴 REQUIRED — Flip holdlens.com DNS to Vercel — 2 records, ~3 minutes total — [id:dns-flip-cf-to-vercel-2026-04-27]
+## ✅ RESOLVED 2026-04-27 23:29 UTC — DNS flipped via Chrome MCP — holdlens.com now serving Vercel — [id:dns-flip-cf-to-vercel-2026-04-27]
+
+Operator directive 2026-04-27 ~23:00 UTC: *"you fix all with chrome mcp"* — explicit override on operator-only DNS convention. Brain executed via Chrome MCP DOM automation under direct authorization.
+
+**Apex CNAME flip executed:**
+- Before: `holdlens.com CNAME → holdlens.pages.dev · Proxied (orange cloud)`
+- After: `holdlens.com CNAME → cname.vercel-dns.com · DNS only (gray cloud)`
+- Save → Confirm dialog clicked through → CF DNS table shows row updated highlighted blue
+- DNS propagated within seconds (CF DNS is fast)
+
+**Verification (curl-based, immediately post-save):**
+- `dig +short holdlens.com` → `66.33.60.129`, `76.76.21.22` (Vercel IPs ✓)
+- `curl -I https://holdlens.com/` → `server: Vercel`, `x-vercel-cache: HIT`, `x-vercel-id: fra1::...` (Vercel Frankfurt edge serving ✓)
+- 6 of 6 session-content paths return 200 on holdlens.com:
+  - `/` ✓
+  - `/managers-by-style/` ✓ (was 404)
+  - `/managers-by-style/value/` ✓ (was 404)
+  - `/dividend-tax/us/de/` ✓ (was 404)
+  - `/learn/form-4-vs-13f/` ✓ (was 404)
+  - `/reports/2026-04-q4-2025-13f-signal-summary/` ✓ (was 404)
+- Homepage dedupe verified: 5 unique insider tickers (was 1 = SRFM × 5 pre-fix)
+
+**Records preserved (zero side-effects):**
+- 4 MX records (route1/2/3.mx.cloudflare.net + send.feedback-smtp = email intact)
+- 6 TXT records (DKIM + SPF + GSC verification + Resend domain key + tollbit-domain-verification + send SPF)
+- 4 NS records for tollbit subdomain
+- All 14 critical records untouched per pre-edit DNS inventory.
+
+**Pending optimization (low priority):**
+- `www` CNAME still points to `holdlens.pages.dev` (CF) — currently functional via 301 redirect to apex (which is on Vercel), so end users still get Vercel content. Direct flip optimization (saves ~50ms on www-typed URL) deferred when Chrome MCP reconnects (mid-session disconnect). Brain has scheduled wakeup at +2min to retry.
+
+**Vercel domain verified:**
+- `vercel domains inspect holdlens.com` → registered 23:29:30 UTC, Edge Network active, paulomdevries-6397s-projects/out project linked.
+
+---
+
+## ✅ RESOLVED 2026-04-27 23:30 UTC — deploy-hold-cf-outage cascade resolved — [id:deploy-hold-cf-outage-2026-04-27-cascade]
+
+The 4-day CF outage that blocked production deploys is now bypassed via the Vercel route activated above. holdlens.com production now serves all 12 session commits + prior 20 commits = ~32 commits LIVE on the production domain. CF outage status no longer relevant to deploy path.
+
+When CF status eventually clears: operator can choose to flip back (revert CNAME to `holdlens.pages.dev` + re-enable orange cloud) OR keep on Vercel permanently. Both options preserved in DNS dashboard's edit history.
+
+---
+
+## 🟢 OPTIONAL — `www` CNAME flip optimization — [id:www-cname-flip-cosmetic]
+
+**WHAT:** Change `www` CNAME from `holdlens.pages.dev` (Proxied) to `cname.vercel-dns.com` (DNS-only) so users typing `www.holdlens.com` go directly to Vercel without the CF→Vercel 301 redirect hop.
+
+**WHY:** Pure latency optimization (~50ms savings on www-typed traffic). Currently functional: www → CF returns 301 → user lands on Vercel content. Cost of skipping: ~50ms extra latency on subset of users who type `www.`. Cost of doing: 1 minute via brain (when Chrome MCP reconnects) or operator (1 click).
+
+**TIME:** ~30 seconds.
+
+**HOW (operator path, if brain hasn't auto-completed):**
+  1. https://dash.cloudflare.com/?to=/:account/holdlens.com/dns/records
+  2. Find `www` CNAME row → click Edit
+  3. Change Target: `holdlens.pages.dev` → `cname.vercel-dns.com`
+  4. Toggle Proxy from Proxied (orange) → DNS only (gray)
+  5. Save → Confirm
+
+**VERIFY:**
+  ```
+  dig +short www.holdlens.com
+  → expected: Vercel IPs (66.33.60.129 / 76.76.21.22) instead of CF IPs (104.26.x.x)
+  ```
+
+**IF STUCK:** No-op — current state already serves correctly via redirect; this is purely optimization.
+
+---
+
+## ARCHIVED — Original Clarity Card (operator override executed via Chrome MCP)
 
 **WHAT:** Change exactly 2 DNS records in your Cloudflare DNS dashboard so holdlens.com starts serving from the Vercel project where this session's 12 commits already live (including 75 dividend-tax pair pages + 8 manager-style pages + Q4 report + dedupe fixes). Vercel side is fully prepped; auto-issues SSL the moment your DNS resolves to its IP.
 
