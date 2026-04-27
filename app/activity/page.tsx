@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Every tracked buy, add, trim, and exit from the best portfolio managers in the world. Grouped by quarter, ranked by manager quality.",
   openGraph: { title: "Activity — HoldLens" , images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }]},
+  alternates: { canonical: "https://holdlens.com/activity/" },
 };
 
 export default function ActivityPage() {

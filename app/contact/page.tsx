@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch with HoldLens. Email for feedback, press, partnerships, bug reports, or data corrections.",
   robots: { index: true, follow: true },
+  alternates: { canonical: "https://holdlens.com/contact/" },
 };
 
 export default function ContactPage() {

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Backtests — What if you'd copied a superinvestor?",
   description: "Interactive backtests for Buffett, Ackman, Druckenmiller and more. See your money grow vs the S&P 500.",
+  alternates: { canonical: "https://holdlens.com/simulate/" },
 };
 
 const BACKTESTS = [

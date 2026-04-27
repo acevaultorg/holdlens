@@ -4,6 +4,7 @@ import AdSlot from "@/components/AdSlot";
 export const metadata: Metadata = {
   title: "About HoldLens",
   description: "HoldLens helps retail investors follow the smartest minds in the market — for free, with conviction analysis.",
+  alternates: { canonical: "https://holdlens.com/about/" },
 };
 
 export default function AboutPage() {

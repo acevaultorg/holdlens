@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: "Free forever core — the unified signed ConvictionScore is in Free, not Pro. Pro €9/mo founders.",
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
+  alternates: { canonical: "https://holdlens.com/pricing/" },
 };
 
 export default function PricingPage() {

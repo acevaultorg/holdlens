@@ -5,6 +5,7 @@ import AdSlot from "@/components/AdSlot";
 export const metadata: Metadata = {
   title: "Most-owned stocks across superinvestors",
   description: "Stocks held by the most tracked hedge fund managers. Conviction scores, owner counts, sectors.",
+  alternates: { canonical: "https://holdlens.com/ticker/" },
 };
 
 export default function TickerIndex() {

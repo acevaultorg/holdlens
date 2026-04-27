@@ -5,6 +5,7 @@ import AdSlot from "@/components/AdSlot";
 export const metadata: Metadata = {
   title: "Investors — All tracked superinvestors",
   description: "Browse all superinvestors tracked by HoldLens. Buffett, Ackman, Icahn, Einhorn, Klarman, Greenblatt and more.",
+  alternates: { canonical: "https://holdlens.com/investor/" },
 };
 
 export default function InvestorsIndex() {

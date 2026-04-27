@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Learn — Plain English guides to hedge fund investing",
   description: "Free guides to 13F filings, copy-trading, hedge fund tracking, and how superinvestors think.",
+  alternates: { canonical: "https://holdlens.com/learn/" },
 };
 
 // v1.42 — removed the `coming?: boolean` field. The render path below no

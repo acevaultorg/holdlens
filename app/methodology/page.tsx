@@ -4,6 +4,7 @@ import AdSlot from "@/components/AdSlot";
 export const metadata: Metadata = {
   title: "Methodology — How HoldLens scores conviction",
   description: "How HoldLens parses 13F filings, calculates conviction scores, and ranks superinvestor moves.",
+  alternates: { canonical: "https://holdlens.com/methodology/" },
 };
 
 export default function MethodologyPage() {

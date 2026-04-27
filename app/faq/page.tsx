@@ -4,6 +4,7 @@ import AdSlot from "@/components/AdSlot";
 export const metadata: Metadata = {
   title: "FAQ — HoldLens hedge fund tracking",
   description: "Frequently asked questions about HoldLens, 13F filings, superinvestor tracking, and copy-trading.",
+  alternates: { canonical: "https://holdlens.com/faq/" },
 };
 
 const FAQS = [

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "HoldLens Terms of Service — the rules for using holdlens.com, including the non-investment-advice disclaimer, data usage rights, and limits of liability.",
   robots: { index: true, follow: true },
+  alternates: { canonical: "https://holdlens.com/terms/" },
 };
 
 export default function TermsPage() {

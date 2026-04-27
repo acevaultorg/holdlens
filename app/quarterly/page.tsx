@@ -4,6 +4,7 @@ import AdSlot from "@/components/AdSlot";
 export const metadata: Metadata = {
   title: "Quarterly recaps — Hedge fund holdings by quarter",
   description: "Quarterly summaries of what the world's best investors bought, sold, and held. Updated after every 13F filing cycle.",
+  alternates: { canonical: "https://holdlens.com/quarterly/" },
 };
 
 const PERIODS = [

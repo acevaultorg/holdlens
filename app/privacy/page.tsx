@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "HoldLens Privacy Policy — how we collect, use, and protect your information, including disclosure of third-party cookies, advertising, and analytics providers.",
   robots: { index: true, follow: true },
+  alternates: { canonical: "https://holdlens.com/privacy/" },
 };
 
 export default function PrivacyPolicyPage() {
