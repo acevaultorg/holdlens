@@ -1,5 +1,71 @@
 # HoldLens — Session context
 
+## Session Handoff (2026-04-27 14:50 UTC · auto = sovereign auto · GSC audit + dedupe fixes + dividend-tax research-cadence build)
+
+**Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
+**Branch:** main · clean
+**HEAD:** 35cf9f816 (data: dividend-tax batch TSV template)
+**Working dir:** `/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens`
+**Production:** **CF outage day 4** (`minor · Minor Service Outage` Europe + NA — checked 9× this session, never cleared). holdlens.com still serves pre-session content. **Vercel fallback `out-lac-delta.vercel.app` is operator-authorized live URL** per prior session's resolved Path-A/B/C card (still pending operator decision).
+
+### Shipped this session (12 atomic commits, all pushed to origin/main + 11 deployed live to Vercel fallback)
+
+| # | Commit | Class | What it does |
+|---|---|---|---|
+| 1 | `c06a1bbf9` | feat | `scripts/prune-sitemap.ts` postbuild — drops dead URLs from sitemap.xml + sitemap-ai.xml |
+| 2 | `436208f08` | data | GSC audit baseline (12-panel via Chrome MCP) + 3 Clarity Cards |
+| 3 | `d34170b89` | data | Withdraw stale Clarity Card #2 (etfETFs already fixed in `e0da79d3a`) |
+| 4 | `e92e0e385` | fix | Homepage `LiveInsiderActivity` dedupe — 1 → 5 unique tickers |
+| 5 | `a12f2e1cb` | fix | Homepage `RecentMaterialEvents` dedupe — 4 → 5 unique tickers |
+| 6 | `d3ed4decb` | feat | `scripts/audit-homepage-dedupe.ts` postbuild guardrail |
+| 7 | `dae64e957` | feat | Dividend-tax research-cadence: `dt:add` + `dt:stats` CLIs + 325 needs_research placeholders + RESEARCH.md doc |
+| 8 | `a8bc99290` | feat | `app/dividend-tax/[investor]/[payer]/page.tsx` — 75 pair pages + sitemap entries (Task 5 from operator roadmap) |
+| 9 | `893d620e6` | feat | Coverage progress badge on `/dividend-tax/` hub |
+| 10 | `35cf9f816` | data | Batch TSV template for operator's research sessions |
+
+### Live URL deploy-truth verified
+
+```
+200 /
+200 /learn/form-4-vs-13f/                               (was 404 on holdlens.com)
+200 /reports/2026-04-q4-2025-13f-signal-summary/        (was 404 on holdlens.com)
+200 /dividend-tax/us/de/                                (NEW — pair page)
+200 /dividend-tax/us/                                   (existing, with new badge)
+200 /dividend-tax/                                      (with new coverage progress badge)
+404 /dividend-tax/jp/au/                                (CORRECT — needs_research, AP-3 compliant)
+Homepage /insiders/company/ unique tickers: 5 (was 1)
+Homepage /events/company/   unique tickers: 5 (was 4)
+```
+
+### Operator-side remaining (3 Clarity Cards in HUMAN_ACTIONS.md)
+
+1. 🔴 **CF outage decision** — still pending. Path A (wait), B (DNS flip to Vercel), C (dual-deploy).
+2. 🟡 **GSC validate-fix click** — after CF deploy lands. 7 indexing-reason rows show "Validation Not Started".
+3. 🟢 **Dividend-tax research cadence** — operator's stated tonight kickoff (75 → 400 cells, 30-45 min/evening). Infrastructure shipped + ready. First session: `npm run dt:stats` then `npm run dt:add` per the workflow doc at `data/dividend-tax-RESEARCH.md`. Suggested first batch: SG (lowest coverage at 10%).
+
+### Key audit-pattern insight (worth keeping)
+
+Sitemap section size × homepage internal-link count ratio = orphan/dedupe-bug detector. Found 2 real homepage bugs (LiveInsiderActivity cluster-buy collapse, RecentMaterialEvents cluster-event collapse) via this pattern. Codified as `scripts/audit-homepage-dedupe.ts` postbuild guard. Pattern catches: section ≥4 links + ratio ≥2.0x + top slug repeats ≥3× → flag. Warns only (cluster signal can be legitimate). Compounds across every future build.
+
+### Pair-page cadence projection (auto-grows with operator's research)
+
+```
+Day 0  (now):   75/400 = 18.8%  · 75 pair pages live
+Day  7 (+12/d): ~159/400 = 40%  · ~159 pair pages live
+Day 14:         ~243/400 = 61%
+Day 21:         ~327/400 = 82%
+Day 28:          400/400 = 100%
+```
+Each cell promoted from `needs_research` → `verified` ships its pair page on next build. Zero brain action needed during cadence — only operator runs `npm run dt:add` per cell.
+
+### Picked up next session
+
+If CF status is `none` → run `npm run deploy` for production CF deploy of all 12 commits.
+If CF still outage → Vercel fallback is current; same `out-lac-delta.vercel.app` URL aliased to latest deploy.
+If operator has run `dt:add` cells → run `npm run build && vercel deploy --prebuilt --prod --yes --scope paulomdevries-6397s-projects` to ship new pair pages.
+
+---
+
 ## Session Handoff (2026-04-26 12:25 UTC · auto = sovereign auto · iCloud→Local migration verification)
 
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
