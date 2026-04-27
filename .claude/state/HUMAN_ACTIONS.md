@@ -498,3 +498,116 @@ Env var changes don't propagate until the next deployment. Either:
 
 500 subs × quarterly 13F broadcast × 2% trial click × $9/mo = $90/mo baseline. At 2000 subs (6 months of organic growth) that's $360/mo recurring, pure margin after the $20/mo Resend Pro tier kicks in. Worth 10 minutes of DNS config.
 
+
+---
+
+## 🟡 RECOMMENDED — Sitemap pruning script: remove dead URLs from sitemap (~5 min one-time + reusable) — [id:gsc-sitemap-prune-script]
+
+**WHAT:** Add a postbuild script that filters URLs from sitemap.xml (and sitemap-ai.xml) whose corresponding HTML files don't exist in `out/`. Currently `npm run postbuild` runs `strip-broken-links.ts` which strips broken `<a>` tags from rendered HTML, but the sitemap.xml is generated independently and ships URLs that 404.
+
+**WHY:** Google's crawl budget is finite. 20% of all crawls (~2,180/90d) hit 404s, starving the 1,135 "Discovered - currently not indexed" pages of crawl attention. Cost of skipping: indexing stays stuck at 55% (2,769/5,022) for weeks longer; site-quality signal slowly degrades; HCU resilience weakens.
+
+**TIME:** ~5 min to write the script + add to package.json postbuild chain. Then runs automatically every build.
+
+**HOW:**
+
+  1. Read existing pattern:
+     `cat scripts/strip-broken-links.ts | head -50`
+     → expected: TypeScript file walking `out/` HTML and rewriting links.
+
+  2. Create `scripts/prune-sitemap.ts` — read `out/sitemap.xml`, for each `<url><loc>` check `fs.existsSync(path.join(out, urlToFilePath(loc)))` (where `urlToFilePath` maps `https://holdlens.com/foo/` → `foo/index.html`), drop entries that don't resolve. Whitelist API routes that don't have index.html.
+
+  3. Same logic for `out/sitemap-ai.xml`.
+
+  4. Update `package.json` postbuild chain (currently: `strip-broken-links.ts && add-content-signals.mjs && generate-sitemap-ai.mjs`):
+     ```
+     "postbuild": "npx tsx scripts/strip-broken-links.ts && npx tsx scripts/prune-sitemap.ts && node scripts/add-content-signals.mjs && node scripts/generate-sitemap-ai.mjs && npx tsx scripts/prune-sitemap.ts"
+     ```
+     (Run prune twice: once after strip-broken-links to clean main sitemap, once after generate-sitemap-ai to clean the AI variant.)
+
+  5. Test locally: `npm run build` → check `wc -l out/sitemap.xml` drops by ~929 lines or `<url>` count drops accordingly.
+
+**VERIFY:** After next deploy + 7 days, GSC → Settings → Crawl stats → By response. "Not found (404)" should drop from 20% to <5% as Google re-crawls based on the cleaner sitemap. Also: `curl -s https://holdlens.com/sitemap.xml | grep -c "<loc>"` should show fewer URLs than current 2,619.
+
+**IF STUCK:**
+- Some URLs intentionally don't have index.html (API routes, redirects). Whitelist them by URL prefix (`/api/`, `/_next/`).
+- Sitemap generator may regenerate the dropped URLs on next build — also fix the source generator (`generate-sitemap-ai.mjs` / Next.js sitemap config) so the upstream truth is correct, not just the post-filter.
+- If `next.config.js` uses `sitemap` plugin auto-generation, the filter is the cleanest fix; the upstream is harder to change.
+
+[archetype:cleanup_refactor × +0.05] [score:7 — closes major crawl-budget bleed; multiplier on every other indexing improvement]
+
+---
+
+## 🟡 RECOMMENDED — Fix `/etfETFs` concat bug in internal-link generator (~10 min) — [id:fix-etfetfs-concat-bug]
+
+**WHAT:** A page or component is generating internal links of the form `https://holdlens.com/etfETFs` (looks like template-literal concat defect: `${etfPath}${"ETFs"}` without separator). Google has crawled and 404'd this URL (4/24/26 3:34 PM in crawl logs). Fix the source string template.
+
+**WHY:** Each unique 404 URL is a one-time waste plus a small "this site has broken links" signal. Clean codebase = stronger HCU resilience. Cost of skipping: minor crawl-budget loss + minor quality-signal degradation; could indicate other similar bugs lurking.
+
+**TIME:** ~10 min (grep + fix + commit + deploy).
+
+**HOW:**
+
+  1. `cd "/Users/paulodevries/Local/holdlens-com 26 apr/holdlens"`
+
+  2. Search for the offending pattern:
+     ```
+     grep -rn "etfETFs\|etf.*ETFs\|/etf\${" app/ components/ lib/ --include='*.ts' --include='*.tsx'
+     ```
+     → expected: 1-2 matches in a Link/href construction.
+
+  3. Fix the offending template literal — likely one of:
+     - Missing path separator: `${baseUrl}/etf${path}/ETFs` → check what should go between
+     - String join bug: `paths.join('')` → should be `paths.join('/')`
+     - Hardcoded: `<Link href={\`/etf${type}\`}>ETFs</Link>` → should be `<Link href={\`/etf/\${type}\`}>ETFs</Link>`
+
+  4. Commit + deploy (deploy will be blocked by CF outage; commit anyway and ship next clear window).
+
+**VERIFY:** After deploy, `curl -s https://holdlens.com/ | grep -oE 'href="[^"]*etfETFs[^"]*"' | head -3` → returns nothing.
+
+**IF STUCK:**
+- If grep returns nothing: the URL may be coming from a data file (JSON/CSV) rather than code. Check `data/etfs*.json` or `app/etf*/page.tsx` route generators.
+- Could also be a Next.js sitemap entry from a config rather than rendered HTML — check `app/sitemap.ts` if present.
+
+[archetype:bug_fix_blocking_revenue × +0.02] [score:5 — small absolute, but closes a quality-signal hole]
+
+---
+
+## 🟡 RECOMMENDED — After Q4 deploy + sitemap fix lands → trigger GSC validation (3 min) — [id:gsc-validate-after-deploy]
+
+**WHAT:** All 7 "Why pages aren't indexed" rows show "Validation Not Started." Validation is the GSC action that says "I fixed these — please recrawl." But triggering it BEFORE the actual fix lands just resets the 90-day clock with no improvement. Wait until: (a) CF outage clears, (b) Q4 deploy + 12-commit batch lands, (c) sitemap-pruning ships → THEN validate.
+
+**WHY:** Triggering validation prematurely is wasted: Google re-fetches the same broken URLs and re-fails. Cost of waiting: zero. Cost of triggering early: 90 days of stale validation status before retry; Google's trust signal gets hit.
+
+**TIME:** ~3 min when ready.
+
+**HOW (after deploys land + sitemap fix ships):**
+
+  1. Open https://search.google.com/u/1/search-console/index?resource_id=sc-domain%3Aholdlens.com
+
+  2. Scroll to "Why pages aren't indexed" table.
+
+  3. Click each row in order of impact. For each:
+     - Click row → drilldown page
+     - Click **VALIDATE FIX** button (top right)
+     - Confirm.
+
+  4. Order to validate (highest impact first):
+     - **Discovered - currently not indexed** (1,135 pages — biggest cohort)
+     - **Not found (404)** (809 — should drop dramatically after sitemap prune)
+     - **Crawled - currently not indexed** (82)
+     - **Duplicate without user-selected canonical** (12)
+     - **Page with redirect** (195) — likely intentional, may skip
+     - **Excluded by 'noindex' tag** (18) — likely intentional, audit first
+     - **Duplicate, Google chose different canonical** (2) — low priority
+
+**VERIFY:** Each row's Validation column changes from "Not Started" to "Started." Result arrives within 7-14 days (email + GSC inbox notification). Indexed page count should rise toward 4,000+ over following 30 days.
+
+**IF STUCK:**
+- If "Excluded by 'noindex'" or "Duplicate without canonical" affect URLs you actually WANT indexed, fix the underlying issue (remove noindex, add `<link rel="canonical">`) BEFORE clicking Validate.
+- "Page with redirect" is mostly the www→apex 301; that's correct behavior — don't validate, just leave it.
+
+[archetype:analytics_wiring × 0.10] [score:8 — accelerates re-indexing of cleaned URLs]
+
+---
+

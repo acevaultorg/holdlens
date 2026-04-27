@@ -494,3 +494,57 @@ Background poller `bg2p8t2ko` watching /events/, /disclaimer/, /glossary/ for HT
 **False-alarm debunked (during diagnostics):** initial curl of `/investor/buffett/` returned 404. Root cause = wrong slug in probe — canonical URL is `/investor/warren-buffett/` per `MANAGERS` in `lib/managers.ts` (full-name slugs). `/investor/warren-buffett/` returns 200. Site is healthy; no regression.
 
 **Budget note:** current session context is high (deep TollBit diagnostics + spec triage + 4 feature ships + state seeds + verification loops + deploy debugging). Next session (`/acepilot auto` pickup) should start focused on single highest-leverage item — InsiderLens Day-2 scraper OR Events Day-2 scraper is recommended, each ~4 hours, either multiplies bot-crawl revenue once TollBit's BDev pipeline converts partners.
+
+---
+
+## 2026-04-27 — GSC audit (full, every panel) + sitemap-ai.xml submission
+
+**Context:** Operator session in `/Users/paulodevries/Local/holdlens-com 26 apr/holdlens`. Mode: `auto` (= sovereign auto per v17.3). Operator interjected during P0 deploy task with directive to audit GSC + "make optimal, every setting." Per `rules/cloudflare-pages-epipe.md` Step 0, the deploy is blocked by ongoing CF "Minor Service Outage" (Europe + NA partial_outage) — same root cause documented in commit a357a1f21. Brain-doable parallel work selected: GSC audit.
+
+**Audited panels (12 total via Chrome MCP, sc-domain property):**
+- Overview, Performance (both properties)
+- Indexing → Pages, Sitemaps, Removals
+- Experience → Core Web Vitals, HTTPS
+- Enhancements → Breadcrumbs, Datasets, FAQ
+- Security & Manual Actions
+- Links
+- Settings (Ownership, Users, Associations, Crawl Stats with all 4 breakdowns)
+
+**Decision: submit sitemap-ai.xml to GSC NOW.** Brain-doable, low-risk, addresses Lever-5 bot-harvest gap from `rules/bot-harvest.md`. The file exists at `https://holdlens.com/sitemap-ai.xml` (200, 29KB). Status post-submit: "Couldn't fetch" (initial) — will resolve on Google's next fetch attempt within hours.
+
+**Decision: do NOT trigger validation on the 7 "Why pages aren't indexed" reasons.** All 7 currently show "Validation Not Started." Triggering validation BEFORE fixing the underlying causes (sitemap pruning, ticker page slugs, /etfETFs concat bug) would just re-fail Google's recrawl and waste the 90-day validation cooldown. Per I-27 Clarity Card emitted to operator: validate AFTER fixes ship.
+
+**Decision: do NOT auto-fix the sitemap pruning script in this session.** Despite being in `auto` mode, the pruning logic touches the build pipeline (postbuild chain in package.json) and risks breaking deploys mid-CF-outage. Safer to emit a Clarity Card with the exact spec, let operator review, ship in a stable build/deploy window.
+
+**Verified non-issues (no action needed):**
+- www.holdlens.com "Problems last week" host status — verified via curl, redirects 301 to apex correctly on all paths (/, /robots.txt, /sitemap.xml). Status is residual from CF outage; will self-heal.
+- Core Web Vitals "insufficient data" — site too young (11 days) for CrUX. Will populate as visitors grow.
+- HTTPS report 404 on domain property — domain properties don't have an HTTPS panel (URL-prefix only). Not a misconfiguration.
+- Apple PWA endpoints 404ing — Googlebot probes `/apple-app-site-association` and `/apple-icon.svg` per PWA spec. Harmless; Google retries decline once it learns the site doesn't have a PWA app target.
+
+**Clean baselines confirmed (no action needed, log for future):**
+- Manual Actions: No issues
+- Security Issues: No issues
+- Ownership: verified Paulo de Vries (paulomdevries@gmail.com per github-org rule + accounts-prefer-acevaultorg rule)
+- robots.txt: All files valid (Google's check)
+- GA: associated
+- Internal links: 20,180 (healthy hub-spoke from rotation/ + new-positions/ + landing pages)
+- Crawl response p50: 104ms (excellent)
+- Mobile-first: 72% Smartphone (correct ratio)
+- Schema enhancements: Breadcrumbs 142 valid / 0 invalid · Datasets 3/0 · FAQ 1/0 (more pending recrawl after recent commits)
+
+**Findings logged to `KNOWLEDGE.md`** (GSC audit baseline subsection).
+
+**Action items emitted to `HUMAN_ACTIONS.md`:**
+1. [id:gsc-sitemap-prune-script] — Sitemap pruning script (closes 20% crawl-budget bleed)
+2. [id:fix-etfetfs-concat-bug] — String-concat bug in internal link generator
+3. [id:gsc-validate-after-deploy] — Trigger validation AFTER fixes ship
+
+**Backlinks gap (0 external links indexed):** Already covered by existing operator playbook (May 15 Q4 distribution drop, HARO pitching, HN Show HN, Wikipedia citations per `rules/aceusergrowth.md` Profile 1). No new card needed.
+
+**Session header summary:**
+- Auto-fixed in-session: 1 (sitemap-ai.xml submitted to GSC)
+- Operator-actionable Clarity Cards emitted: 3
+- Verified clean: 8 panels (no action needed)
+- Findings written: KNOWLEDGE.md (audit baseline) + HUMAN_ACTIONS.md (3 cards) + DECISIONS.md (this entry)
+

@@ -202,3 +202,36 @@ excluded from `generateStaticParams` in `app/investor/[slug]/page.tsx`.
 ### Tag firing verification
 
 Chrome MCP probe on 2026-04-16: `region1.google-analytics.com/g/collect?v=2&tid=G-HDK5CHBQEY&en=page_view&ep.anonymize_ip=true` — firing. Initial hits returned 503 during GA4 property provisioning (first ~30 min post-creation, known GA4 backend behavior); realtime panel confirmed events landed despite edge 503s.
+
+### GSC audit baseline (verified 2026-04-27 via Chrome MCP)
+
+Two GSC properties exist for holdlens.com: `sc-domain:holdlens.com` (canonical, comprehensive — added 2026-04-15) and `https://holdlens.com/` (URL-prefix, narrower scope). Use sc-domain as primary. Domain properties don't have an HTTPS report (URL-prefix only).
+
+**Health snapshot (2026-04-27, verified):**
+- Manual Actions: No issues · Security Issues: No issues
+- Ownership: verified Paulo de Vries · Associations: GA linked · robots.txt: All files valid
+- Indexed: 2,769 pages · Crawl response p50: 104ms · Mobile-first: 72% Smartphone (correct)
+- Crawl: 10.9K requests/90d, 498MB downloaded · Internal links: 20,180 · External links: 0
+- Core Web Vitals: insufficient CrUX data (low traffic, will populate as visitors grow)
+
+**Schema enhancements (recently shipped, validating):**
+- Breadcrumbs: 142 valid / 0 invalid · Datasets: 3 valid / 0 invalid · FAQ: 1 valid / 0 invalid (more pending; commits 7dd704b/e6b6328/91fefb4 not yet recrawled)
+
+**Sitemaps:**
+- `https://holdlens.com/sitemap.xml` — submitted Apr 16, 2,619 pages discovered, Success
+- `https://holdlens.com/sitemap-ai.xml` — submitted Apr 27 (this session), pending fetch (29KB live)
+
+**Indexing gaps (2,253 not indexed, 7 reasons, all "Validation Not Started"):**
+- 1,135 Discovered - currently not indexed (Google sees but doesn't index — quality/budget gating; resolves with backlinks + freshness signals)
+- 809 Not found (404) — chart shows spike 4/15-17 + dropped near-zero post-4/19; residual = Apple-PWA + stale tickers + concat bug
+- 195 Page with redirect (mostly intentional — www→apex 301)
+- 18 Excluded by 'noindex' tag (admin/draft/api routes — verify intentional)
+- 12 Duplicate without user-selected canonical
+- 82 Crawled - currently not indexed (quality signal needed)
+- 2 Duplicate, Google chose different canonical than user
+
+**Crawl budget waste:** 20% of crawls hit 404 (~2.18K req over 90d). 929 total examples. Patterns: stale ticker pages (`/signal/BSX`, `/signal/FTI`, `/signal/KLRA/` — dropped between EDGAR data refreshes), string-concat bug (`/etfETFs`), malformed dual-class URLs (`/insiders/company/moga/mogb`), Apple PWA probes (`/apple-app-site-association`, `/apple-icon.svg` — harmless).
+
+**Performance baseline (sc-domain, last 3 months, 2026-04-27):** 2 clicks · ~1.9K impressions · 0.1% CTR · pos 30. Top queries: "dev kantesaria fico", "himalaya capital". Site is 11 days old; baseline still establishing.
+
+**www subdomain:** correctly redirects 301 to apex on all paths (verified curl 2026-04-27 — `https://www.holdlens.com/*` → `https://holdlens.com/*`). "Problems last week" status in GSC is residual from CF outage window; transient/self-healing.
