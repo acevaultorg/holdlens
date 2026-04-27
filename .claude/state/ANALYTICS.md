@@ -537,3 +537,75 @@ Dual play: honest daily-fresh data layer + Pay-Per-Crawl revenue optimization. O
 - Heartbeat: not probed.
 - Lint discovered broken (`ESLint must be installed`) — noted, not fixed (no operator directive to install).
 - Only stop/pause/halt exits.
+
+---
+
+## 2026-04-27 — Session: GSC audit + SEO sweep (auto mode, Local repo)
+
+**Working dir:** `/Users/paulodevries/Local/holdlens-com 26 apr/holdlens` (post-iCloud-migration, per LEARNED.md 2026-04-26).
+**Mode:** `auto` (= sovereign auto per v17.3).
+**Operator interjection:** "audit GSC, make optimal, every setting" → "always merge all and put live" → "c" continue × 3.
+**External constraint:** CF Pages outage (`minor · Minor Service Outage`, Europe + NA partial_outage) — same outage that EPIPE'd 7 wrangler retries 2026-04-26. Step 0 from `rules/cloudflare-pages-epipe.md` enforced (no deploy retries during outage).
+
+### ## Behavior Log (this session, 7 commits)
+
+```
+timestamp                | task                                                   | archetype                          | tier     | gate | cycle-sec | success
+2026-04-27 09:30-10:00   | GSC audit (12 panels via Chrome MCP, both properties) | analytics_wiring                    | Standard | AUTO | ~1800     | ✓
+2026-04-27 10:05         | sitemap-ai.xml submitted to GSC                       | indexnow_autoping_every_deploy +40 | Quick    | AUTO | ~120      | ✓
+2026-04-27 10:10         | Auto-fix: scripts/prune-sitemap.ts written + wired    | cleanup_refactor +0.05             | Standard | AUTO | ~600      | ✓
+2026-04-27 10:30         | Auto-fix: DesktopNav <li> key separator (etfETFs)     | bug_fix_blocking_revenue +0.02     | Quick    | AUTO | ~300      | ✓
+2026-04-27 11:00         | Canonical on 7 conversion pages (incl. /premium fix)  | SEO_page_addition +50              | Standard | AUTO | ~600      | ✓
+2026-04-27 11:30         | Canonical on remaining 17 top-level indexable pages   | SEO_page_addition +50              | Standard | AUTO | ~900      | ✓
+2026-04-27 12:00         | Canonical on 2 remaining dynamic routes (compare/qq)  | SEO_page_addition +50              | Quick    | AUTO | ~180      | ✓
+```
+
+### ## Cycle Times
+
+```
+date        | task                            | tier     | est-sec | actual-sec | delta%
+2026-04-27  | GSC audit                       | Standard | 1800    | 1800       | 0%
+2026-04-27  | sitemap-ai submit               | Quick    | 180     | 120        | -33%
+2026-04-27  | prune-sitemap.ts                | Standard | 1200    | 600        | -50%
+2026-04-27  | DesktopNav fix                  | Quick    | 600     | 300        | -50%
+2026-04-27  | canonical batch (7 pages)       | Standard | 1200    | 600        | -50%
+2026-04-27  | canonical batch (17 pages)      | Standard | 1500    | 900        | -40%
+2026-04-27  | canonical (2 dynamic routes)    | Quick    | 300     | 180        | -40%
+```
+
+### ## Gate Log
+
+```
+date       | gate          | task-type              | predicted   | actual          | correct?
+2026-04-27 | AUTO          | GSC audit              | success     | success         | ✓
+2026-04-27 | AUTO          | sitemap submit         | success     | success         | ✓
+2026-04-27 | AUTO          | prune-sitemap script   | reversible  | reversible      | ✓
+2026-04-27 | AUTO          | DesktopNav fix         | low-risk    | clean ts pass   | ✓
+2026-04-27 | AUTO          | canonical adds         | mechanical  | clean ts pass   | ✓
+2026-04-27 | DEPLOY-HELD   | wrangler deploy        | EPIPE       | n/a (Step 0)    | ✓ (skipped)
+```
+
+### ## Specialist Log
+
+No formal specialists dispatched this session — work was direct GSC inspection + mechanical SEO fixes. @craftsman would normally fire on "public-facing UI ship" but only DesktopNav was UI-touching (one-line key fix, mechanical). Per I-23 the operator-tag bypass `[mechanical]` applies; logged here for honesty.
+
+### ## Oracle Snapshot (post-session)
+
+```
+Revenue Oracle: +$0/wk projected this session (SEO infra; pays off post-deploy + 7-30d)
+Retention Oracle: +0% projected (no UX changes)
+Distribution Oracle: +20-50 vis/wk projected (canonical clarity + sitemap cleanup)
+```
+
+Calibration window: re-check 2026-05-04 (7d post-deploy when CF clears) for Distribution Oracle accuracy.
+
+### ## Session End State
+
+- Branch: main, ahead of origin by 0 (all 7 commits pushed)
+- Working tree: clean
+- Stash: clean
+- Heartbeat: rules/autopilot-immortality.md — not probed this session (deploy blocked by external; immortality not relevant here)
+- 7 commits queued for next CF-clear deploy + ~12 prior commits = ~19 total queued
+- Memory addition: `~/.claude/projects/-Users-paulodevries-Local-holdlens-com-26-apr/memory/feedback_always_merge_and_deploy.md` — operator's "always merge all and put live" directive persisted
+- Only stop/pause/halt exits
+
