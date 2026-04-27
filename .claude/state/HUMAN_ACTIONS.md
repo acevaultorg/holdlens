@@ -1,5 +1,76 @@
 # HoldLens — Human actions queue
 
+## 🔴 REQUIRED — Flip holdlens.com DNS to Vercel — 2 records, ~3 minutes total — [id:dns-flip-cf-to-vercel-2026-04-27]
+
+**WHAT:** Change exactly 2 DNS records in your Cloudflare DNS dashboard so holdlens.com starts serving from the Vercel project where this session's 12 commits already live (including 75 dividend-tax pair pages + 8 manager-style pages + Q4 report + dedupe fixes). Vercel side is fully prepped; auto-issues SSL the moment your DNS resolves to its IP.
+
+**WHY:** Cloudflare has been in `minor · Minor Service Outage` for 4 days (10 status checks this session, all the same). holdlens.com production deploys via wrangler are EPIPE'ing. The Vercel fallback URL `out-lac-delta.vercel.app` already serves all session content correctly (verified via Chrome MCP this session). One DNS flip = holdlens.com immediately serves the same content. Cost of skipping: holdlens.com keeps showing pre-session content (no Q4 report, no /managers-by-style/, no /dividend-tax/[X]/[Y]/, no homepage dedupe fixes) until CF clears — indefinite wait.
+
+**TIME:** ~3 minutes (2 record edits + immediate propagation since Cloudflare-managed records are usually <60s).
+
+**HOW:**
+
+  1. Open this URL in your browser (already-logged-in Cloudflare session):
+     https://dash.cloudflare.com/?to=/:account/holdlens.com/dns/records
+     → expected: Cloudflare DNS records page for holdlens.com.
+
+  2. Find the **A record for `holdlens.com`** (apex / @ root):
+     Click the **Edit** (pencil) icon on its row.
+     Change Content/IPv4 to: `76.76.21.21`
+     Set Proxy status to: **DNS only** (gray cloud, NOT orange).
+     Click **Save**.
+     → expected: row updates, gray-cloud icon visible.
+
+  3. Find the **A record (or CNAME) for `www`**:
+     Click Edit.
+     If A: change to `76.76.21.21`. If CNAME: change to `cname.vercel-dns.com`.
+     Set Proxy status to: **DNS only** (gray cloud).
+     Click **Save**.
+     → expected: row updates, gray-cloud icon visible.
+
+  4. **DO NOT TOUCH** any other records. Specifically PRESERVE:
+     - **MX records** (Resend email — alerts@holdlens.com)
+     - **TXT records** for SPF / DKIM / DMARC / GSC verification / Resend domain verification
+     - **CAA records** (if any — SSL CA authorization)
+     - Any subdomain records (e.g., `_dmarc`, `_acme-challenge`, etc.)
+     These are EMAIL + AUTH records; don't share fate with the A record.
+
+**VERIFY (run from your Terminal after DNS save):**
+
+  ```
+  /usr/bin/curl -s -o /dev/null -w "%{http_code}\n" https://holdlens.com/managers-by-style/
+  ```
+  → expected: `200` (was 404 before the flip). May take 1-5 min for DNS propagation.
+
+  ```
+  /usr/bin/curl -s -o /dev/null -w "%{http_code}\n" https://holdlens.com/dividend-tax/us/de/
+  ```
+  → expected: `200` (was 404).
+
+  Also fingerprint-check the homepage:
+  ```
+  /usr/bin/curl -s https://holdlens.com/ | grep -c "Latest insider buys"
+  ```
+  → expected: `1` or `2` (homepage rendering correctly).
+
+**IF STUCK:**
+
+  - **Curl still 404 after 10 min:** check Cloudflare DNS dashboard — confirm A record for holdlens.com truly says `76.76.21.21` and gray cloud (not orange). Orange-cloud routes through CF's edge → defeats the change.
+  - **Vercel domain shows "pending" >5 min:** open https://vercel.com/paulomdevries-6397s-projects/out/settings/domains → click "Refresh" on holdlens.com row → Vercel re-checks DNS.
+  - **SSL cert error:** Vercel auto-issues Let's Encrypt cert ~30-60 sec after DNS resolves. If still erroring after 5 min, click "Refresh" in Vercel Domains panel.
+  - **Email broken after change:** you accidentally edited an MX record. Step 4 lists what to leave alone. Revert the MX change first.
+  - **Want to roll back:** edit the A records back to whatever Cloudflare originally had (it auto-shows the prior value in the edit dialog as "previous value" or you can recreate). Set proxy back to orange. Email + GSC + DKIM stay unaffected because step 4 says don't touch them.
+
+**Brain-side prep already complete (verified):**
+- ✓ holdlens.com claimed on Vercel project `paulomdevries-6397s-projects/out`
+- ✓ www.holdlens.com claimed on same project
+- ✓ All 12 session commits + prior 20 commits = ~32 commits live at out-lac-delta.vercel.app right now (verified 200 on 14 paths via curl + Chrome MCP DOM)
+- ✓ Vercel `out` project's deployment ID: `dpl_6rsHFU1jPDAQn7M764aGdUr9wBfA` (current production)
+
+The DNS flip is the only remaining step. Brain cannot do it (DNS modification = security/account-level change, operator-only by convention).
+
+---
+
 ## 👤 PENDING (2026-04-16 sovereign-auto session)
 
 Small operator follow-ups after v1.12–v1.26 shipped all primary pipelines live.
