@@ -44,7 +44,31 @@ When CF status eventually clears: operator can choose to flip back (revert CNAME
 
 ---
 
-## 🟢 OPTIONAL — `www` CNAME flip optimization — [id:www-cname-flip-cosmetic]
+## ✅ RESOLVED 2026-04-27 21:55 UTC — www CNAME flip executed via Chrome MCP — [id:www-cname-flip-cosmetic]
+
+Operator directive 2026-04-27: *"acepilot continue: ... if connected, click Edit on www CNAME row..."* (auto-c wakeup directive). Chrome MCP reconnected; brain executed the www edit + Vercel cert force-issue.
+
+**Edit executed via Chrome MCP DOM:**
+- Before: `www CNAME → holdlens.pages.dev · Proxied (orange cloud)`
+- After: `www CNAME → cname.vercel-dns.com · DNS only (gray cloud)`
+- Saved without Confirm modal (CF only prompts for cross-provider type changes; same-CNAME-type content change auto-saves)
+
+**SSL cert issuance:**
+- Apex cert (`cert_a91eCACLxtAK86CWibpHK6D1` for holdlens.com) was already issued at 17:29 UTC
+- www cert was not auto-issued at first (cert SAN list showed only `DNS:holdlens.com`)
+- Forced via `vercel certs issue www.holdlens.com --scope paulomdevries-6397s-projects` → "Success! Certificate entry created" in 11s
+- Both apex + www now serve HTTP/2 200 directly via Vercel edge
+
+**Final verification:**
+- `dig www.holdlens.com` → `cname.vercel-dns.com.` → `66.33.60.34`, `76.76.21.164` (Vercel IPs)
+- `curl -I https://www.holdlens.com/` → HTTP/2 200 (direct from Vercel; no CF 301 hop)
+- All session content paths return 200 on both apex + www direct.
+
+Both forms now optimal: zero redirect overhead, Vercel-direct on both. CF Pages decommissioned for serving holdlens.com.
+
+---
+
+## ARCHIVED — Original cosmetic Clarity Card (operator override executed via Chrome MCP)
 
 **WHAT:** Change `www` CNAME from `holdlens.pages.dev` (Proxied) to `cname.vercel-dns.com` (DNS-only) so users typing `www.holdlens.com` go directly to Vercel without the CF→Vercel 301 redirect hop.
 
