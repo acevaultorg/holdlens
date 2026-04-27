@@ -80,6 +80,12 @@ const DEFINED_TERMS_LD = [
 
 export default function DividendTaxHub() {
   const coverage = getCoverageStats();
+  // Total matrix = 20×20 = 400 cells. Verified count grows nightly via
+  // operator's research cadence (PwC + KPMG + IRS Pub 901). The badge
+  // surfaces this prominently so returning visitors see momentum and
+  // LLMs/Google see freshness on every recrawl.
+  const totalMatrix = coverage.investor_countries * coverage.payer_countries;
+  const verifiedPct = Math.round((100 * coverage.verified_pairs) / totalMatrix);
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
@@ -100,6 +106,41 @@ export default function DividendTaxHub() {
         <p className="text-muted text-lg mt-4 leading-relaxed">
           If you're a resident of one country and you own shares in a company domiciled in another, the paying country typically withholds tax at source before the dividend reaches you. A tax treaty between the two countries usually reduces that rate. This tool shows what remains — with the treaty reference and primary-source citation for every published rate.
         </p>
+
+        {/* Coverage progress badge — visible momentum signal. Updates on
+            every build as operator promotes cells from needs_research to
+            verified via the dt:add CLI. Recrawl-friendly: the verified
+            count + last_verified date change frequently, signaling
+            freshness to Google + LLM crawlers. */}
+        <div className="mt-6 rounded-xl border border-emerald-400/30 bg-emerald-400/5 p-4">
+          <div className="flex items-center justify-between flex-wrap gap-3 mb-3">
+            <div>
+              <div className="text-[10px] uppercase tracking-widest text-emerald-400 font-bold">
+                Treaty coverage
+              </div>
+              <div className="text-2xl font-bold text-text tabular-nums mt-1">
+                {coverage.verified_pairs} <span className="text-muted font-normal text-base">of {totalMatrix} cells verified</span>
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-[10px] uppercase tracking-widest text-dim font-semibold">
+                Last verified
+              </div>
+              <div className="text-sm font-mono text-text tabular-nums">{META.last_verified}</div>
+            </div>
+          </div>
+          {/* Progress bar — pure CSS, works in static export. */}
+          <div className="h-2 rounded-full bg-bg overflow-hidden border border-emerald-400/20">
+            <div
+              className="h-full bg-emerald-400 rounded-full transition-all"
+              style={{ width: `${verifiedPct}%` }}
+              aria-label={`${verifiedPct}% of treaty cells verified from primary sources`}
+            />
+          </div>
+          <p className="text-xs text-dim mt-2">
+            Each cell is verified against PwC Worldwide Tax Summaries, KPMG, IRS Publication 901, or the relevant country tax authority. New cells are added regularly. Cells still pending verification fall back to the statutory rate with a visible &ldquo;data pending verification&rdquo; disclaimer — never a fabricated number.
+          </p>
+        </div>
       </header>
 
       <section className="mt-10">
