@@ -611,3 +611,57 @@ Env var changes don't propagate until the next deployment. Either:
 
 ---
 
+
+---
+
+## 🔴 BLOCKED — 14 commits + sitemap-prune queued; deploy held by CF outage — [id:deploy-hold-cf-outage-2026-04-27]
+
+**WHAT:** 14 unshipped commits + the new sitemap-prune script sit on `origin/main` waiting for a CF-Pages deploy. CF status is `minor · Minor Service Outage` (Europe + NA partial_outage) — the same outage that EPIPE'd 7 wrangler attempts earlier today (logged 2026-04-26 in LEARNED.md). Per `~/.claude/rules/cloudflare-pages-epipe.md` Step 0, brain does NOT retry during outage.
+
+**WHY:** Each retry during outage produces an EPIPE row + burns ~5 min each. Earlier session lost ~30 min to 7 retries before realizing the outage was the cause. Cost of waiting: 14 commits stay invisible (Q4 report 404, form-4-vs-13f 404, EngagementTracker not measuring AAERA, sitemap stays stale with 5 dead URLs). Cost of correct waiting: 30-min recheck cadence + auto-deploy when status flips to `none`.
+
+**TIME:** ~3 minutes when CF status clears (build is already in `out/`; just `wrangler pages deploy` + IndexNow).
+
+**HOW (operator path A — wait for CF and let next session retry):**
+
+  1. Recheck CF status: `curl -s https://www.cloudflarestatus.com/api/v2/summary.json | python3 -c "import json,sys;d=json.load(sys.stdin);print(d['status']['indicator'])"`
+     → expected: when output is `none`, deploy is unblocked.
+
+  2. From terminal in this directory:
+     ```
+     cd "/Users/paulodevries/Local/holdlens-com 26 apr/holdlens" && npm run deploy
+     ```
+     → expected: `Uploading... (N/10858)` → `✨ Deployment complete!` → `Submitted XXXX URLs to IndexNow`.
+
+  3. Verify: `curl -s -o /dev/null -w "%{http_code}\n" https://holdlens.com/reports/2026-04-q4-2025-13f-signal-summary/`
+     → expected: `200` (was `404`).
+
+**HOW (operator path B — try right now from your terminal):**
+
+Sometimes operator's terminal succeeds where brain session EPIPEs (different network process state). Per `~/.claude/rules/cloudflare-pages-epipe.md`:
+
+  1. `cd "/Users/paulodevries/Local/holdlens-com 26 apr/holdlens"`
+  2. `npm run deploy`
+  3. If EPIPE → wait 1-2h, retry once.
+
+**VERIFY (after any successful deploy):**
+- `curl -s -o /dev/null -w "%{http_code}\n" https://holdlens.com/reports/2026-04-q4-2025-13f-signal-summary/` → 200
+- `curl -s -o /dev/null -w "%{http_code}\n" https://holdlens.com/learn/form-4-vs-13f/` → 200
+- `curl -s https://holdlens.com/sitemap.xml | grep -c "<loc>"` → drops by 5+ (prune-sitemap took effect)
+
+**IF STUCK:**
+- All 7 attempts EPIPE same way → CF status truly persists; wait 6-12h.
+- Wrangler prompts for auth → `npx wrangler login` first.
+- Deploy succeeds but routes still 404 → CF edge cache; purge via dashboard → Caching → Purge Everything.
+
+**Commits queued (origin/main HEAD = 436208f08, ahead of last live deploy by ~14 commits):**
+- `436208f08` data(state): GSC audit baseline + 3 Clarity Cards
+- `c06a1bbf9` feat(seo): prune-sitemap.ts postbuild — drop dead URLs from sitemap
+- `91fefb44c` feat(seo): BRK.A redirect + FAQPage on 4 final /learn/ pages
+- `7dd704bee` feat(seo): FAQPage schema on /learn/how-to-read-a-13f
+- `e6b632891` feat(seo): FAQPage schema on /learn/45-day-lag-explained
+- `11269ff3b` feat(learn): reciprocal cross-links to /learn/form-4-vs-13f
+- + ~9 prior commits (Q4 report, EngagementTracker, /learn/form-4-vs-13f)
+
+[archetype:deploy_pipeline_fix × +0.20] [score:9 — unblocks 14 commits + Q4 narrative + AUG measurement]
+
