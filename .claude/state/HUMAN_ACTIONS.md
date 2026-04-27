@@ -538,38 +538,15 @@ Env var changes don't propagate until the next deployment. Either:
 
 ---
 
-## 🟡 RECOMMENDED — Fix `/etfETFs` concat bug in internal-link generator (~10 min) — [id:fix-etfetfs-concat-bug]
+## ✅ WITHDRAWN 2026-04-27 14:30 — `/etfETFs` concat bug — [id:fix-etfetfs-concat-bug]
 
-**WHAT:** A page or component is generating internal links of the form `https://holdlens.com/etfETFs` (looks like template-literal concat defect: `${etfPath}${"ETFs"}` without separator). Google has crawled and 404'd this URL (4/24/26 3:34 PM in crawl logs). Fix the source string template.
+Card written 2026-04-27 ~10:00 UTC during GSC audit. Subsequent grep audit (this session, ~14:30 UTC) confirms the bug was **already fixed** in commit `e0da79d3a fix(nav): DesktopNav <li> key separator stops Google crawling /etfETFs` (shipped earlier today). The fix is also live at out-lac-delta.vercel.app per the 12:53 UTC Vercel fallback deploy.
 
-**WHY:** Each unique 404 URL is a one-time waste plus a small "this site has broken links" signal. Clean codebase = stronger HCU resilience. Cost of skipping: minor crawl-budget loss + minor quality-signal degradation; could indicate other similar bugs lurking.
+The 929 `/etfETFs` GSC 404 entries are **residual stale URLs** from Google's crawl queue dated before the e0da79d3a fix landed. Google will recrawl and drop them naturally over the next 30-60 days. No operator action needed.
 
-**TIME:** ~10 min (grep + fix + commit + deploy).
+**Same for `/insiders/company/{moga,mogb,n/a}` patterns** referenced in the original audit — current code uses `${ticker.toLowerCase()}` consistently across `app/insiders/`, `app/sitemap.ts`, `scripts/generate-api-json.ts` (10 occurrences, all clean). The 4 malformed slugs in GSC logs are also residual from prior data refreshes; sitemap-prune script (shipped this session, commit c06a1bbf9) catches any that resurface in current sitemap.
 
-**HOW:**
-
-  1. `cd "/Users/paulodevries/Local/holdlens-com 26 apr/holdlens"`
-
-  2. Search for the offending pattern:
-     ```
-     grep -rn "etfETFs\|etf.*ETFs\|/etf\${" app/ components/ lib/ --include='*.ts' --include='*.tsx'
-     ```
-     → expected: 1-2 matches in a Link/href construction.
-
-  3. Fix the offending template literal — likely one of:
-     - Missing path separator: `${baseUrl}/etf${path}/ETFs` → check what should go between
-     - String join bug: `paths.join('')` → should be `paths.join('/')`
-     - Hardcoded: `<Link href={\`/etf${type}\`}>ETFs</Link>` → should be `<Link href={\`/etf/\${type}\`}>ETFs</Link>`
-
-  4. Commit + deploy (deploy will be blocked by CF outage; commit anyway and ship next clear window).
-
-**VERIFY:** After deploy, `curl -s https://holdlens.com/ | grep -oE 'href="[^"]*etfETFs[^"]*"' | head -3` → returns nothing.
-
-**IF STUCK:**
-- If grep returns nothing: the URL may be coming from a data file (JSON/CSV) rather than code. Check `data/etfs*.json` or `app/etf*/page.tsx` route generators.
-- Could also be a Next.js sitemap entry from a config rather than rendered HTML — check `app/sitemap.ts` if present.
-
-[archetype:bug_fix_blocking_revenue × +0.02] [score:5 — small absolute, but closes a quality-signal hole]
+**Net effect:** 2 of 3 Clarity Cards from the GSC audit were stale-residue, not active bugs. State updated to reflect reality.
 
 ---
 
