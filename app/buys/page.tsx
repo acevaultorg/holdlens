@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   twitter: { card: "summary_large_image", title: "Heaviest smart-money buys — HoldLens" },
+  alternates: { canonical: "https://holdlens.com/buys/" },
 };
 
 export default function BuysPage() {

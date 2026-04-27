@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   description: "The 25 most-owned stocks across 10 tracked superinvestors. Updated quarterly. Free.",
   twitter: { card: "summary_large_image", title: "Top hedge fund stock picks 2026" , images: ["/og/home.png"]},
   openGraph: { title: "Top hedge fund stock picks 2026" , images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }]},
+  alternates: { canonical: "https://holdlens.com/top-picks/" },
 };
 
 export default function TopPicksPage() {

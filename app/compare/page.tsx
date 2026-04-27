@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "Compare — stocks + managers side-by-side",
   description:
     "Two ways to compare on HoldLens: stock pair (e.g. AAPL vs GOOGL) or manager pair (e.g. Buffett vs Ackman). Pick one and see hedge fund ownership overlap, shared tickers, and per-position conviction.",
+  alternates: { canonical: "https://holdlens.com/compare/" },
 };
 
 export default function CompareIndex() {

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "Custom alerts, unlimited CSV exports, priority API access, ad-free reading, and early-access feature drops. One tier. No tricks.",
   alternates: {
-    canonical: "https://holdlens.com/premium",
+    canonical: "https://holdlens.com/premium/",
   },
 };
 

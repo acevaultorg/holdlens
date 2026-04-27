@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Interactive stock screener for HoldLens: filter by sector, min tracked owners, min weighted score, live day change. Built on the 30 best portfolio managers in the world.",
   openGraph: { title: "Screener — HoldLens" , images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }]},
+  alternates: { canonical: "https://holdlens.com/screener/" },
 };
 
 export default function ScreenerPage() {

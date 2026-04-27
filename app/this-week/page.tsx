@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description: "Top signals at a glance.",
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
+  alternates: { canonical: "https://holdlens.com/this-week/" },
 };
 
 export default function ThisWeekPage() {
