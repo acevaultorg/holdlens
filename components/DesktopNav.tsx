@@ -217,7 +217,7 @@ export default function DesktopNav() {
 
             <ul className="p-2">
               {grp.links.map((link) => (
-                <li key={link.href + link.label} role="none">
+                <li key={`${link.href}|${link.label}`} role="none">
                   <a
                     href={link.href}
                     role="menuitem"
