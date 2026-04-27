@@ -9,7 +9,7 @@
     "generate-api": "npx tsx scripts/generate-api-json.ts",
     "prebuild": "npx tsx scripts/generate-og-images.ts && npx tsx scripts/generate-api-json.ts",
     "build": "next build",
-    "postbuild": "npx tsx scripts/strip-broken-links.ts && node scripts/add-content-signals.mjs && node scripts/generate-sitemap-ai.mjs && npx tsx scripts/prune-sitemap.ts",
+    "postbuild": "npx tsx scripts/strip-broken-links.ts && node scripts/add-content-signals.mjs && node scripts/generate-sitemap-ai.mjs && npx tsx scripts/prune-sitemap.ts && npx tsx scripts/audit-homepage-dedupe.ts",
     "start": "next start",
     "lint": "next lint",
     "indexnow": "npx tsx scripts/ping-indexnow.ts",
