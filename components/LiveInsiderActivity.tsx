@@ -32,11 +32,20 @@ type Row = {
 };
 
 export default function LiveInsiderActivity() {
-  // Show the 5 most-recent discretionary buys (highest-signal subset).
-  // Discretionary > scheduled — a CEO choosing to buy TODAY is a stronger
-  // read than a scheduled 10b5-1 plan grinding through.
-  const recentBuys: Row[] = INSIDER_TX
-    .filter((tx) => tx.action === "buy")
+  // Show the 5 most-recent discretionary buys, deduped to 5 DIFFERENT
+  // tickers. Without dedupe, a cluster-buy day (e.g. 5 SRFM insiders buying
+  // together on Apr 21) collapses the widget to a single ticker repeated
+  // five times — bad UX (feels broken) and bad SEO (homepage only deep-links
+  // one /insiders/company/ page instead of five). Top-1-per-ticker then
+  // rank-by-recency = breadth-first homepage; per-ticker cluster-signal
+  // still surfaces on /insiders/company/[ticker]/ pages.
+  const newestBuyPerTicker = new Map<string, InsiderTx>();
+  for (const tx of INSIDER_TX) {
+    if (tx.action !== "buy") continue;
+    const cur = newestBuyPerTicker.get(tx.ticker);
+    if (!cur || tx.date > cur.date) newestBuyPerTicker.set(tx.ticker, tx);
+  }
+  const recentBuys: Row[] = [...newestBuyPerTicker.values()]
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 5)
     .map((tx) => ({ tx, isDiscretionary: isDiscretionary(tx) }));
