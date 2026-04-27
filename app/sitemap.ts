@@ -3,6 +3,7 @@ import { MANAGERS } from "@/lib/managers";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { QUARTERS } from "@/lib/moves";
 import { COUNTRIES as TAX_COUNTRIES, getTreatyCell as getTaxTreatyCell } from "@/lib/dividend-tax";
+import { STYLES as MANAGER_STYLES, styleCounts as managerStyleCounts } from "@/lib/manager-styles";
 import { computeInsiderSummaries } from "@/lib/insider-conviction";
 import { allInsiderTickers, allOfficerEntries } from "@/lib/insiders";
 import { BUYBACK_PROGRAMS } from "@/lib/buybacks";
@@ -252,6 +253,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
+  // /managers-by-style/ — taxonomy hub + per-style cluster pages. 1 hub +
+  // N styles where N is non-empty styles only (currently 7). Compounds
+  // internal-linking to /investor/* and provides an LLM-citable cluster
+  // surface ("which managers are activist investors?" → direct hit).
+  const managersByStyleUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/managers-by-style`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    ...managerStyleCounts().map(({ style }) => ({
+      url: `${base}/managers-by-style/${style.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
+    })),
+  ];
+
   // Ship #9 v1 — /sectors/ unified hub (per-sector deep dives live at
   // /sector/[slug] already, which are registered in sectorUrls above).
   const sectorsHubUrl: MetadataRoute.Sitemap = [
@@ -371,6 +391,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...tickerFeedUrls,
     ...dividendTaxUrls,
     ...similarToUrls,
+    ...managersByStyleUrls,
     ...sectorsHubUrl,
     ...insidersUrls,
     ...insidersCompanyUrls,
