@@ -16,6 +16,8 @@ import DividendTaxCalc from "@/components/DividendTaxCalc";
 import { DailyMoveForInvestor, getDailySnapshotTimestamp } from "@/components/DailyMove";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
+import { styleOf, STYLES_BY_SLUG, managersByStyle } from "@/lib/manager-styles";
+import { topReplicatingETFs } from "@/lib/etf-overlap";
 
 // Build-time timestamp — signals to LLM crawlers + Googlebot when this
 // static profile was last regenerated. Per v19.4 freshness_per_page archetype.
@@ -409,6 +411,64 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           </a>
         </section>
       )}
+
+      {/* Discovery cross-links — ETF replication + style cluster.
+          One template edit produces 30 internal-link improvements.
+          Each card is its own SEO target page; this is the hub spoke. */}
+      {(() => {
+        const style = styleOf(m.slug);
+        const styleMeta = style ? STYLES_BY_SLUG[style] : undefined;
+        const peerCount = style ? managersByStyle(style).length - 1 : 0;
+        const topETF = topReplicatingETFs(m, 1)[0];
+        return (
+          <section className="mt-16 grid md:grid-cols-2 gap-3">
+            <a
+              href={`/etf-by-superinvestor/${m.slug}/`}
+              className="rounded-xl border border-border bg-panel p-5 hover:border-brand transition group"
+            >
+              <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+                ETF replication
+              </div>
+              <div className="font-semibold text-text group-hover:text-brand transition">
+                Which ETF replicates {m.name.split(" ")[0]}&apos;s portfolio?
+              </div>
+              <div className="text-xs text-muted mt-2 leading-relaxed">
+                {topETF ? (
+                  <>
+                    Closest match:{" "}
+                    <span className="font-mono text-text">{topETF.etf.ticker}</span> · overlap score{" "}
+                    <span className="font-mono text-text">{topETF.score.toFixed(1)}</span> across{" "}
+                    {topETF.sharedTickers.length} shared top-10 names. Full ranked list of 5 ETFs →
+                  </>
+                ) : (
+                  <>
+                    None of the 12 tracked ETFs has top-10 overlap with {m.name.split(" ")[0]}
+                    &apos;s holdings — concentrated picks outside the most-AUM index ETFs. See full
+                    analysis →
+                  </>
+                )}
+              </div>
+            </a>
+            {styleMeta && (
+              <a
+                href={`/managers-by-style/${style}/`}
+                className="rounded-xl border border-border bg-panel p-5 hover:border-brand transition group"
+              >
+                <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+                  Investing style
+                </div>
+                <div className="font-semibold text-text group-hover:text-brand transition">
+                  {m.name.split(" ")[0]} is a {styleMeta.name.toLowerCase()} investor
+                </div>
+                <div className="text-xs text-muted mt-2 leading-relaxed">
+                  See {peerCount} other {styleMeta.name.toLowerCase()} manager
+                  {peerCount === 1 ? "" : "s"} tracked. {styleMeta.signature}
+                </div>
+              </a>
+            )}
+          </section>
+        );
+      })()}
 
       {/* Per-quarter digest cross-links — SEO crawlability + discovery.
           Without this section these 232 pages were orphaned from the main investor
