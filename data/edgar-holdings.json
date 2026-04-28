@@ -4684,7 +4684,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NUVATION B",
+        "ticker": "NUVB",
         "name": "NUVATION BIO INC",
         "cusip": "67080N119",
         "shares": 134995,
@@ -5015,7 +5015,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NUVATION B",
+        "ticker": "NUVB",
         "name": "NUVATION BIO INC",
         "cusip": "67080N119",
         "shares": 134995,
@@ -5984,7 +5984,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NUVATION B",
+        "ticker": "NUVB",
         "name": "NUVATION BIO INC",
         "cusip": "67080N119",
         "shares": 134995,
@@ -7019,7 +7019,7 @@
     "filingDate": "2025-08-13",
     "reportDate": "2025-06-30",
     "totalValueMn": 4130.04,
-    "holdingCount": 20,
+    "holdingCount": 21,
     "holdings": [
       {
         "ticker": "GOOG",
@@ -7134,20 +7134,20 @@
         "pctPortfolio": 2.4
       },
       {
-        "ticker": "HLF",
-        "name": "HERBALIFE LTD",
-        "cusip": "G4412G101",
-        "shares": 24888844,
-        "valueMn": 82.51,
-        "pctPortfolio": 2
-      },
-      {
         "ticker": "LIBERTY BR",
         "name": "LIBERTY BROADBAND CORP",
         "cusip": "530307107",
         "shares": 753170,
         "valueMn": 74.09,
         "pctPortfolio": 1.8
+      },
+      {
+        "ticker": "HLF",
+        "name": "HERBALIFE LTD",
+        "cusip": "G4412G101",
+        "shares": 7759844,
+        "valueMn": 66.89,
+        "pctPortfolio": 1.6
       },
       {
         "ticker": "ICON",
@@ -7174,6 +7174,14 @@
         "pctPortfolio": 0.6
       },
       {
+        "ticker": "HERBALIFE",
+        "name": "HERBALIFE LTD",
+        "cusip": "42703MAF0",
+        "shares": 17129000,
+        "valueMn": 15.62,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "TAMBORAN R",
         "name": "TAMBORAN RES CORP",
         "cusip": "87507T101",
@@ -7190,7 +7198,7 @@
     "filingDate": "2025-05-14",
     "reportDate": "2025-03-31",
     "totalValueMn": 3496.06,
-    "holdingCount": 20,
+    "holdingCount": 21,
     "holdings": [
       {
         "ticker": "WTW",
@@ -7297,14 +7305,6 @@
         "pctPortfolio": 3
       },
       {
-        "ticker": "HLF",
-        "name": "HERBALIFE LTD",
-        "cusip": "G4412G101",
-        "shares": 24729526,
-        "valueMn": 80.43,
-        "pctPortfolio": 2.3
-      },
-      {
         "ticker": "SOLVENTUM",
         "name": "SOLVENTUM CORP",
         "cusip": "83444M101",
@@ -7321,6 +7321,14 @@
         "pctPortfolio": 2
       },
       {
+        "ticker": "HLF",
+        "name": "HERBALIFE LTD",
+        "cusip": "G4412G101",
+        "shares": 7600526,
+        "valueMn": 65.59,
+        "pctPortfolio": 1.9
+      },
+      {
         "ticker": "CLVT",
         "name": "CLARIVATE PLC",
         "cusip": "G21810109",
@@ -7335,6 +7343,14 @@
         "shares": 703349,
         "valueMn": 42.12,
         "pctPortfolio": 1.2
+      },
+      {
+        "ticker": "HERBALIFE",
+        "name": "HERBALIFE LTD",
+        "cusip": "42703MAF0",
+        "shares": 17129000,
+        "valueMn": 14.83,
+        "pctPortfolio": 0.4
       },
       {
         "ticker": "LIBERTY BR",
@@ -7361,7 +7377,7 @@
     "filingDate": "2025-02-13",
     "reportDate": "2024-12-31",
     "totalValueMn": 3434.53,
-    "holdingCount": 19,
+    "holdingCount": 20,
     "holdings": [
       {
         "ticker": "LBTYK",
@@ -7487,9 +7503,9 @@
         "ticker": "HLF",
         "name": "HERBALIFE LTD",
         "cusip": "G4412G101",
-        "shares": 24729526,
-        "valueMn": 63.95,
-        "pctPortfolio": 1.9
+        "shares": 7600526,
+        "valueMn": 50.85,
+        "pctPortfolio": 1.5
       },
       {
         "ticker": "GENUINE PA",
@@ -7498,6 +7514,14 @@
         "shares": 315337,
         "valueMn": 36.82,
         "pctPortfolio": 1.1
+      },
+      {
+        "ticker": "HERBALIFE",
+        "name": "HERBALIFE LTD",
+        "cusip": "42703MAF0",
+        "shares": 17129000,
+        "valueMn": 13.1,
+        "pctPortfolio": 0.4
       },
       {
         "ticker": "LIBERTY BR",
@@ -7524,7 +7548,7 @@
     "filingDate": "2024-11-13",
     "reportDate": "2024-09-30",
     "totalValueMn": 3516.3,
-    "holdingCount": 18,
+    "holdingCount": 19,
     "holdings": [
       {
         "ticker": "LBTYK",
@@ -7623,14 +7647,6 @@
         "pctPortfolio": 2.3
       },
       {
-        "ticker": "HLF",
-        "name": "HERBALIFE LTD",
-        "cusip": "G4412G101",
-        "shares": 22253526,
-        "valueMn": 49.4,
-        "pctPortfolio": 1.4
-      },
-      {
         "ticker": "FORTREA HL",
         "name": "FORTREA HLDGS INC",
         "cusip": "34965K107",
@@ -7645,6 +7661,22 @@
         "shares": 350681,
         "valueMn": 45.9,
         "pctPortfolio": 1.3
+      },
+      {
+        "ticker": "HLF",
+        "name": "HERBALIFE LTD",
+        "cusip": "G4412G101",
+        "shares": 5124526,
+        "valueMn": 36.85,
+        "pctPortfolio": 1
+      },
+      {
+        "ticker": "HERBALIFE",
+        "name": "HERBALIFE LTD",
+        "cusip": "42703MAF0",
+        "shares": 17129000,
+        "valueMn": 12.56,
+        "pctPortfolio": 0.4
       },
       {
         "ticker": "LIBERTY BR",
@@ -8037,7 +8069,7 @@
     "filingDate": "2026-02-17",
     "reportDate": "2025-12-31",
     "totalValueMn": 190157451.2,
-    "holdingCount": 2997,
+    "holdingCount": 2992,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -8362,9 +8394,9 @@
       {
         "ticker": "IVV",
         "name": "ISHARES TR",
-        "cusip": "464287432",
-        "shares": 3274746,
-        "valueMn": 810758.47,
+        "cusip": "464288653",
+        "shares": 3833008,
+        "valueMn": 852750.77,
         "pctPortfolio": 0.4
       },
       {
@@ -8453,6 +8485,14 @@
         "cusip": "872540109",
         "shares": 4814467,
         "valueMn": 739550.34,
+        "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "UNP",
+        "name": "UNION PAC CORP",
+        "cusip": "907818108",
+        "shares": 5907173,
+        "valueMn": 679353.45,
         "pctPortfolio": 0.4
       },
       {
@@ -8720,14 +8760,6 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "UNP",
-        "name": "UNITED PARCEL SERVICE INC",
-        "cusip": "911312106",
-        "shares": 5200135,
-        "valueMn": 515801.41,
-        "pctPortfolio": 0.3
-      },
-      {
         "ticker": "UNITED THE",
         "name": "UNITED THERAPEUTICS CORP DEL",
         "cusip": "91307C102",
@@ -8944,6 +8976,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "CVI",
+        "name": "CVR ENERGY INC",
+        "cusip": "12662P108",
+        "shares": 1711858,
+        "valueMn": 442736.93,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "DHI",
         "name": "D R HORTON INC",
         "cusip": "23331A109",
@@ -9065,10 +9105,10 @@
       },
       {
         "ticker": "HP",
-        "name": "HP INC",
-        "cusip": "40434L105",
-        "shares": 13582142,
-        "valueMn": 302610.13,
+        "name": "HELMERICH &amp; PAYNE INC",
+        "cusip": "423452101",
+        "shares": 13708230,
+        "valueMn": 306226.32,
         "pctPortfolio": 0.2
       },
       {
@@ -9307,8 +9347,8 @@
         "ticker": "TTWO",
         "name": "TAKE-TWO INTERACTIVE SOFTWAR",
         "cusip": "874054109",
-        "shares": 1138738,
-        "valueMn": 291550.99,
+        "shares": 1162068,
+        "valueMn": 292004.77,
         "pctPortfolio": 0.2
       },
       {
@@ -9341,14 +9381,6 @@
         "cusip": "883203101",
         "shares": 5357182,
         "valueMn": 466985.56,
-        "pctPortfolio": 0.2
-      },
-      {
-        "ticker": "CVI",
-        "name": "THE CIGNA GROUP",
-        "cusip": "125523100",
-        "shares": 1598091,
-        "valueMn": 439842.71,
         "pctPortfolio": 0.2
       },
       {
@@ -9899,8 +9931,16 @@
         "ticker": "CANADIAN N",
         "name": "CANADIAN NAT RES LTD",
         "cusip": "136385101",
-        "shares": 4914765,
-        "valueMn": 246722.53,
+        "shares": 3680735,
+        "valueMn": 124672.12,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "CNI",
+        "name": "CANADIAN NATL RY CO",
+        "cusip": "136375102",
+        "shares": 1234030,
+        "valueMn": 122050.42,
         "pctPortfolio": 0.1
       },
       {
@@ -9981,6 +10021,14 @@
         "cusip": "166764100",
         "shares": 1256977,
         "valueMn": 191538.19,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "CHK",
+        "name": "CHURCH &amp; DWIGHT CO INC",
+        "cusip": "171340102",
+        "shares": 1741425,
+        "valueMn": 167286.95,
         "pctPortfolio": 0.1
       },
       {
@@ -10683,8 +10731,8 @@
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
         "cusip": "46436E718",
-        "shares": 2302757,
-        "valueMn": 181444.72,
+        "shares": 1744495,
+        "valueMn": 139452.42,
         "pctPortfolio": 0.1
       },
       {
@@ -11696,14 +11744,6 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNP",
-        "name": "UNION PAC CORP",
-        "cusip": "907818108",
-        "shares": 707038,
-        "valueMn": 163552.04,
-        "pctPortfolio": 0.1
-      },
-      {
         "ticker": "UNH",
         "name": "UNITEDHEALTH GROUP INC",
         "cusip": "91324P102",
@@ -12547,8 +12587,8 @@
         "ticker": "BABA",
         "name": "ALIBABA GROUP HLDG LTD",
         "cusip": "01609W102",
-        "shares": 5731,
-        "valueMn": 840.01,
+        "shares": 1285463,
+        "valueMn": 59119.04,
         "pctPortfolio": 0
       },
       {
@@ -14005,14 +14045,6 @@
         "cusip": "056525108",
         "shares": 28880,
         "valueMn": 5036.99,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "BABA",
-        "name": "BAKER HUGHES COMPANY",
-        "cusip": "05722G100",
-        "shares": 1279732,
-        "valueMn": 58279.03,
         "pctPortfolio": 0
       },
       {
@@ -15832,14 +15864,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CHK",
-        "name": "CHURCH &amp; DWIGHT CO INC",
-        "cusip": "171340102",
-        "shares": 939143,
-        "valueMn": 78747.16,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "CHURCHILL ",
         "name": "CHURCHILL DOWNS INC",
         "cusip": "171484108",
@@ -16893,14 +16917,6 @@
         "cusip": "126600105",
         "shares": 180360,
         "valueMn": 3354.7,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "CVI",
-        "name": "CVR ENERGY INC",
-        "cusip": "12662P108",
-        "shares": 113767,
-        "valueMn": 2894.22,
         "pctPortfolio": 0
       },
       {
@@ -18461,14 +18477,6 @@
         "cusip": "30212W100",
         "shares": 18570,
         "valueMn": 168.06,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "CHK",
-        "name": "EXPAND ENERGY CORPORATION",
-        "cusip": "165167735",
-        "shares": 802282,
-        "valueMn": 88539.8,
         "pctPortfolio": 0
       },
       {
@@ -20544,14 +20552,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HP",
-        "name": "HELMERICH &amp; PAYNE INC",
-        "cusip": "423452101",
-        "shares": 126088,
-        "valueMn": 3616.19,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "HENRY JACK",
         "name": "HENRY JACK &amp; ASSOC INC",
         "cusip": "426281101",
@@ -20872,7 +20872,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HUDSON PAC",
+        "ticker": "HPP",
         "name": "HUDSON PAC PPTYS INC",
         "cusip": "444097406",
         "shares": 26388,
@@ -29776,14 +29776,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TTWO",
-        "name": "TIM S A",
-        "cusip": "88706T108",
-        "shares": 23330,
-        "valueMn": 453.78,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "TIMBERLAND",
         "name": "TIMBERLAND BANCORP INC",
         "cusip": "887098101",
@@ -32024,7 +32016,7 @@
     "filingDate": "2025-11-14",
     "reportDate": "2025-09-30",
     "totalValueMn": 155639035.35,
-    "holdingCount": 2951,
+    "holdingCount": 2947,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -32342,8 +32334,8 @@
         "ticker": "IVV",
         "name": "ISHARES TR",
         "cusip": "464287432",
-        "shares": 2450557,
-        "valueMn": 591065.3,
+        "shares": 2916869,
+        "valueMn": 624026.43,
         "pctPortfolio": 0.4
       },
       {
@@ -32859,6 +32851,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "CVI",
+        "name": "CVR ENERGY INC",
+        "cusip": "12662P108",
+        "shares": 931231,
+        "valueMn": 239602.5,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "DHI",
         "name": "D R HORTON INC",
         "cusip": "23331A109",
@@ -33027,19 +33027,19 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "HP",
+        "name": "HELMERICH &amp; PAYNE INC",
+        "cusip": "423452101",
+        "shares": 9200122,
+        "valueMn": 248068.11,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "HOWMET AER",
         "name": "HOWMET AEROSPACE INC",
         "cusip": "443201108",
         "shares": 1228173,
         "valueMn": 237025.1,
-        "pctPortfolio": 0.2
-      },
-      {
-        "ticker": "HP",
-        "name": "HP INC",
-        "cusip": "40434L105",
-        "shares": 9039803,
-        "valueMn": 244526.66,
         "pctPortfolio": 0.2
       },
       {
@@ -33379,14 +33379,6 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "CVI",
-        "name": "THE CIGNA GROUP",
-        "cusip": "125523100",
-        "shares": 816742,
-        "valueMn": 235425.93,
-        "pctPortfolio": 0.2
-      },
-      {
         "ticker": "TMUS",
         "name": "T-MOBILE US INC",
         "cusip": "872590104",
@@ -33424,6 +33416,14 @@
         "cusip": "90353T100",
         "shares": 2537074,
         "valueMn": 247643.81,
+        "pctPortfolio": 0.2
+      },
+      {
+        "ticker": "UNP",
+        "name": "UNION PAC CORP",
+        "cusip": "907818108",
+        "shares": 2539290,
+        "valueMn": 311960.43,
         "pctPortfolio": 0.2
       },
       {
@@ -33926,8 +33926,8 @@
         "ticker": "CHK",
         "name": "CHURCH &amp; DWIGHT CO INC",
         "cusip": "171340102",
-        "shares": 1127644,
-        "valueMn": 97654,
+        "shares": 2098315,
+        "valueMn": 200778.1,
         "pctPortfolio": 0.1
       },
       {
@@ -34331,14 +34331,6 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "CHK",
-        "name": "EXPAND ENERGY CORPORATION",
-        "cusip": "165167735",
-        "shares": 970671,
-        "valueMn": 103124.11,
-        "pctPortfolio": 0.1
-      },
-      {
         "ticker": "EXTRA SPAC",
         "name": "EXTRA SPACE STORAGE INC",
         "cusip": "30225T102",
@@ -34646,8 +34638,8 @@
         "ticker": "ICE",
         "name": "INTERCONTINENTAL EXCHANGE IN",
         "cusip": "45866F104",
-        "shares": 649729,
-        "valueMn": 108460.58,
+        "shares": 628432,
+        "valueMn": 105878.13,
         "pctPortfolio": 0.1
       },
       {
@@ -34670,8 +34662,8 @@
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
         "cusip": "46436E718",
-        "shares": 1670577,
-        "valueMn": 122389.9,
+        "shares": 1204265,
+        "valueMn": 89428.77,
         "pctPortfolio": 0.1
       },
       {
@@ -35510,8 +35502,8 @@
         "ticker": "TTWO",
         "name": "TAKE-TWO INTERACTIVE SOFTWAR",
         "cusip": "874054109",
-        "shares": 434422,
-        "valueMn": 112237.26,
+        "shares": 461232,
+        "valueMn": 112835.66,
         "pctPortfolio": 0.1
       },
       {
@@ -35611,27 +35603,11 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNP",
-        "name": "UNION PAC CORP",
-        "cusip": "907818108",
-        "shares": 653321,
-        "valueMn": 154425.44,
-        "pctPortfolio": 0.1
-      },
-      {
         "ticker": "UNITED AIR",
         "name": "UNITED AIRLS HLDGS INC",
         "cusip": "910047109",
         "shares": 1868286,
         "valueMn": 180289.59,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "UNP",
-        "name": "UNITED PARCEL SERVICE INC",
-        "cusip": "911312106",
-        "shares": 1885969,
-        "valueMn": 157534.99,
         "pctPortfolio": 0.1
       },
       {
@@ -36558,8 +36534,8 @@
         "ticker": "BABA",
         "name": "ALIBABA GROUP HLDG LTD",
         "cusip": "01609W102",
-        "shares": 2038,
-        "valueMn": 364.18,
+        "shares": 1243361,
+        "valueMn": 60841.45,
         "pctPortfolio": 0
       },
       {
@@ -38035,14 +38011,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BABA",
-        "name": "BAKER HUGHES COMPANY",
-        "cusip": "05722G100",
-        "shares": 1241323,
-        "valueMn": 60477.27,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "BALCHEM",
         "name": "BALCHEM CORP",
         "cusip": "057665200",
@@ -39198,8 +39166,16 @@
         "ticker": "CANADIAN N",
         "name": "CANADIAN NAT RES LTD",
         "cusip": "136385101",
-        "shares": 52293,
-        "valueMn": 2867.85,
+        "shares": 33099,
+        "valueMn": 1057.86,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "CNI",
+        "name": "CANADIAN NATL RY CO",
+        "cusip": "136375102",
+        "shares": 19194,
+        "valueMn": 1809.99,
         "pctPortfolio": 0
       },
       {
@@ -40848,14 +40824,6 @@
         "cusip": "126600105",
         "shares": 118010,
         "valueMn": 2231.57,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "CVI",
-        "name": "CVR ENERGY INC",
-        "cusip": "12662P108",
-        "shares": 114489,
-        "valueMn": 4176.58,
         "pctPortfolio": 0
       },
       {
@@ -44331,14 +44299,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HP",
-        "name": "HELMERICH &amp; PAYNE INC",
-        "cusip": "423452101",
-        "shares": 160319,
-        "valueMn": 3541.45,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "HENRY JACK",
         "name": "HENRY JACK &amp; ASSOC INC",
         "cusip": "426281101",
@@ -45160,6 +45120,14 @@
         "cusip": "45841N107",
         "shares": 75142,
         "valueMn": 5170.53,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "INTERCONTI",
+        "name": "INTERCONTINENTAL HOTELS GROU",
+        "cusip": "45857P806",
+        "shares": 21297,
+        "valueMn": 2582.45,
         "pctPortfolio": 0
       },
       {
@@ -53411,14 +53379,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TTWO",
-        "name": "TIM S A",
-        "cusip": "88706T108",
-        "shares": 26810,
-        "valueMn": 598.4,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "TIMBERLAND",
         "name": "TIMBERLAND BANCORP INC",
         "cusip": "887098101",
@@ -55643,7 +55603,7 @@
     "filingDate": "2025-08-14",
     "reportDate": "2025-06-30",
     "totalValueMn": 120622080.11,
-    "holdingCount": 2883,
+    "holdingCount": 2880,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -55918,6 +55878,14 @@
         "pctPortfolio": 0.4
       },
       {
+        "ticker": "IVV",
+        "name": "ISHARES TR",
+        "cusip": "464287432",
+        "shares": 2179906,
+        "valueMn": 422833.7,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "MONSTER BE",
         "name": "MONSTER BEVERAGE CORP NEW",
         "cusip": "61174X109",
@@ -56054,6 +56022,14 @@
         "pctPortfolio": 0.3
       },
       {
+        "ticker": "CVI",
+        "name": "CVR ENERGY INC",
+        "cusip": "12662P108",
+        "shares": 1246833,
+        "valueMn": 375577.41,
+        "pctPortfolio": 0.3
+      },
+      {
         "ticker": "DHR",
         "name": "DANAHER CORPORATION",
         "cusip": "235851102",
@@ -56147,14 +56123,6 @@
         "cusip": "461202103",
         "shares": 440809,
         "valueMn": 312619.87,
-        "pctPortfolio": 0.3
-      },
-      {
-        "ticker": "IVV",
-        "name": "ISHARES TR",
-        "cusip": "464287432",
-        "shares": 1773582,
-        "valueMn": 394368.67,
         "pctPortfolio": 0.3
       },
       {
@@ -56262,14 +56230,6 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "CVI",
-        "name": "THE CIGNA GROUP",
-        "cusip": "125523100",
-        "shares": 1136394,
-        "valueMn": 372612.12,
-        "pctPortfolio": 0.3
-      },
-      {
         "ticker": "TRANE TECH",
         "name": "TRANE TECHNOLOGIES PLC",
         "cusip": "G8994E103",
@@ -56283,6 +56243,14 @@
         "cusip": "89417E109",
         "shares": 1454118,
         "valueMn": 384752.45,
+        "pctPortfolio": 0.3
+      },
+      {
+        "ticker": "UNP",
+        "name": "UNION PAC CORP",
+        "cusip": "907818108",
+        "shares": 2762378,
+        "valueMn": 337753.39,
         "pctPortfolio": 0.3
       },
       {
@@ -57022,14 +56990,6 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "UNP",
-        "name": "UNITED PARCEL SERVICE INC",
-        "cusip": "911312106",
-        "shares": 2300081,
-        "valueMn": 231388.12,
-        "pctPortfolio": 0.2
-      },
-      {
         "ticker": "US FOODS H",
         "name": "US FOODS HLDG CORP",
         "cusip": "912008109",
@@ -57537,8 +57497,8 @@
         "ticker": "CHK",
         "name": "CHURCH &amp; DWIGHT CO INC",
         "cusip": "171340102",
-        "shares": 896006,
-        "valueMn": 85487.95,
+        "shares": 966239,
+        "valueMn": 93700.95,
         "pctPortfolio": 0.1
       },
       {
@@ -58142,6 +58102,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "HP",
+        "name": "HELMERICH &amp; PAYNE INC",
+        "cusip": "423452101",
+        "shares": 3824297,
+        "valueMn": 92521.6,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "HEWLETT PA",
         "name": "HEWLETT PACKARD ENTERPRISE C",
         "cusip": "42824C109",
@@ -58155,14 +58123,6 @@
         "cusip": "437076102",
         "shares": 432457,
         "valueMn": 158556.04,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "HP",
-        "name": "HP INC",
-        "cusip": "40434L105",
-        "shares": 3714543,
-        "valueMn": 90857.72,
         "pctPortfolio": 0.1
       },
       {
@@ -58217,8 +58177,8 @@
         "ticker": "ICE",
         "name": "INTERCONTINENTAL EXCHANGE IN",
         "cusip": "45866F104",
-        "shares": 396060,
-        "valueMn": 71361.13,
+        "shares": 382992,
+        "valueMn": 69853.89,
         "pctPortfolio": 0.1
       },
       {
@@ -58235,14 +58195,6 @@
         "cusip": "44980X109",
         "shares": 978577,
         "valueMn": 67101.03,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "ISHARES TR",
-        "name": "ISHARES TR",
-        "cusip": "46436E718",
-        "shares": 1096704,
-        "valueMn": 83683.65,
         "pctPortfolio": 0.1
       },
       {
@@ -59113,8 +59065,8 @@
         "ticker": "TTWO",
         "name": "TAKE-TWO INTERACTIVE SOFTWAR",
         "cusip": "874054109",
-        "shares": 481727,
-        "valueMn": 116987.47,
+        "shares": 526610,
+        "valueMn": 117890.06,
         "pctPortfolio": 0.1
       },
       {
@@ -59211,14 +59163,6 @@
         "cusip": "90364P105",
         "shares": 11407569,
         "valueMn": 145731.69,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "UNP",
-        "name": "UNION PAC CORP",
-        "cusip": "907818108",
-        "shares": 462297,
-        "valueMn": 106365.27,
         "pctPortfolio": 0.1
       },
       {
@@ -62769,8 +62713,16 @@
         "ticker": "CANADIAN N",
         "name": "CANADIAN NAT RES LTD",
         "cusip": "136385101",
-        "shares": 36392,
-        "valueMn": 1909.07,
+        "shares": 25842,
+        "valueMn": 811.45,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "CNI",
+        "name": "CANADIAN NATL RY CO",
+        "cusip": "136375102",
+        "shares": 10550,
+        "valueMn": 1097.62,
         "pctPortfolio": 0
       },
       {
@@ -64382,14 +64334,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CVI",
-        "name": "CVR ENERGY INC",
-        "cusip": "12662P108",
-        "shares": 110439,
-        "valueMn": 2965.29,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "CYBERARK S",
         "name": "CYBERARK SOFTWARE LTD",
         "cusip": "M2682V108",
@@ -65763,14 +65707,6 @@
         "cusip": "30212W100",
         "shares": 10403,
         "valueMn": 94.67,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "CHK",
-        "name": "EXPAND ENERGY CORPORATION",
-        "cusip": "165167735",
-        "shares": 70233,
-        "valueMn": 8212.99,
         "pctPortfolio": 0
       },
       {
@@ -67678,14 +67614,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HP",
-        "name": "HELMERICH &amp; PAYNE INC",
-        "cusip": "423452101",
-        "shares": 109754,
-        "valueMn": 1663.88,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "HENRY JACK",
         "name": "HENRY JACK &amp; ASSOC INC",
         "cusip": "426281101",
@@ -68558,6 +68486,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "INTERCONTI",
+        "name": "INTERCONTINENTAL HOTELS GROU",
+        "cusip": "45857P806",
+        "shares": 13068,
+        "valueMn": 1507.24,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "INTERCORP ",
         "name": "INTERCORP FINL SVCS INC",
         "cusip": "P5626F128",
@@ -68747,6 +68683,14 @@
         "cusip": "46434G103",
         "shares": 126021,
         "valueMn": 7625.57,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ISHARES TR",
+        "name": "ISHARES TR",
+        "cusip": "46436E718",
+        "shares": 690380,
+        "valueMn": 55218.62,
         "pctPortfolio": 0
       },
       {
@@ -76598,14 +76542,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TTWO",
-        "name": "TIM S A",
-        "cusip": "88706T108",
-        "shares": 44883,
-        "valueMn": 902.6,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "TIMBERLAND",
         "name": "TIMBERLAND BANCORP INC",
         "cusip": "887098101",
@@ -78718,7 +78654,7 @@
     "filingDate": "2025-05-15",
     "reportDate": "2025-03-31",
     "totalValueMn": 96908483.9,
-    "holdingCount": 2784,
+    "holdingCount": 2780,
     "holdings": [
       {
         "ticker": "AAPL",
@@ -79033,6 +78969,14 @@
         "pctPortfolio": 0.4
       },
       {
+        "ticker": "CVI",
+        "name": "CVR ENERGY INC",
+        "cusip": "12662P108",
+        "shares": 1181192,
+        "valueMn": 378860.11,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "GARMIN",
         "name": "GARMIN LTD",
         "cusip": "H2906T109",
@@ -79054,6 +78998,14 @@
         "cusip": "45337C102",
         "shares": 6736169,
         "valueMn": 405786.83,
+        "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "IVV",
+        "name": "ISHARES TR",
+        "cusip": "464287432",
+        "shares": 1969468,
+        "valueMn": 354053.08,
         "pctPortfolio": 0.4
       },
       {
@@ -79102,14 +79054,6 @@
         "cusip": "81762P102",
         "shares": 473609,
         "valueMn": 362604.81,
-        "pctPortfolio": 0.4
-      },
-      {
-        "ticker": "CVI",
-        "name": "THE CIGNA GROUP",
-        "cusip": "125523100",
-        "shares": 1149693,
-        "valueMn": 378249.03,
         "pctPortfolio": 0.4
       },
       {
@@ -79305,14 +79249,6 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "IVV",
-        "name": "ISHARES TR",
-        "cusip": "464287432",
-        "shares": 1584200,
-        "valueMn": 328588.08,
-        "pctPortfolio": 0.3
-      },
-      {
         "ticker": "KR",
         "name": "KROGER CO",
         "cusip": "501044101",
@@ -79473,6 +79409,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "BABA",
+        "name": "ALIBABA GROUP HLDG LTD",
+        "cusip": "01609W102",
+        "shares": 5459087,
+        "valueMn": 235212.48,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "ALLISON TR",
         "name": "ALLISON TRANSMISSION HLDGS I",
         "cusip": "01973R101",
@@ -79518,14 +79462,6 @@
         "cusip": "052769106",
         "shares": 572701,
         "valueMn": 147338.78,
-        "pctPortfolio": 0.2
-      },
-      {
-        "ticker": "BABA",
-        "name": "BAKER HUGHES COMPANY",
-        "cusip": "05722G100",
-        "shares": 5457164,
-        "valueMn": 234958.21,
         "pctPortfolio": 0.2
       },
       {
@@ -80073,6 +80009,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "UNP",
+        "name": "UNION PAC CORP",
+        "cusip": "907818108",
+        "shares": 1370685,
+        "valueMn": 173268.36,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "UNIVERSAL ",
         "name": "UNIVERSAL CORP VA",
         "cusip": "913456109",
@@ -80548,8 +80492,8 @@
         "ticker": "CHK",
         "name": "CHURCH &amp; DWIGHT CO INC",
         "cusip": "171340102",
-        "shares": 1069816,
-        "valueMn": 117080.65,
+        "shares": 1132880,
+        "valueMn": 124094.59,
         "pctPortfolio": 0.1
       },
       {
@@ -81137,19 +81081,19 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "HP",
+        "name": "HELMERICH &amp; PAYNE INC",
+        "cusip": "423452101",
+        "shares": 4485452,
+        "valueMn": 122999.23,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "HOME DEPOT",
         "name": "HOME DEPOT INC",
         "cusip": "437076102",
         "shares": 216960,
         "valueMn": 78231.18,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "HP",
-        "name": "HP INC",
-        "cusip": "40434L105",
-        "shares": 4231333,
-        "valueMn": 116361.64,
         "pctPortfolio": 0.1
       },
       {
@@ -81198,14 +81142,6 @@
         "cusip": "46266C105",
         "shares": 675597,
         "valueMn": 115864.87,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "ISHARES TR",
-        "name": "ISHARES TR",
-        "cusip": "46436E718",
-        "shares": 954580,
-        "valueMn": 64500.36,
         "pctPortfolio": 0.1
       },
       {
@@ -82193,14 +82129,6 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNP",
-        "name": "UNITED PARCEL SERVICE INC",
-        "cusip": "911312106",
-        "shares": 1180709,
-        "valueMn": 128886.18,
-        "pctPortfolio": 0.1
-      },
-      {
         "ticker": "V F",
         "name": "V F CORP",
         "cusip": "918204108",
@@ -83046,14 +82974,6 @@
         "cusip": "014752109",
         "shares": 7822,
         "valueMn": 1636.15,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "BABA",
-        "name": "ALIBABA GROUP HLDG LTD",
-        "cusip": "01609W102",
-        "shares": 1923,
-        "valueMn": 254.28,
         "pctPortfolio": 0
       },
       {
@@ -85588,8 +85508,16 @@
         "ticker": "CANADIAN N",
         "name": "CANADIAN NAT RES LTD",
         "cusip": "136385101",
-        "shares": 21284,
-        "valueMn": 868.45,
+        "shares": 18090,
+        "valueMn": 557.16,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "CNI",
+        "name": "CANADIAN NATL RY CO",
+        "cusip": "136375102",
+        "shares": 3194,
+        "valueMn": 311.29,
         "pctPortfolio": 0
       },
       {
@@ -87217,14 +87145,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CVI",
-        "name": "CVR ENERGY INC",
-        "cusip": "12662P108",
-        "shares": 31499,
-        "valueMn": 611.08,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "CYBERARK S",
         "name": "CYBERARK SOFTWARE LTD",
         "cusip": "M2682V108",
@@ -88518,14 +88438,6 @@
         "cusip": "30212W100",
         "shares": 18391,
         "valueMn": 179.87,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "CHK",
-        "name": "EXPAND ENERGY CORPORATION",
-        "cusip": "165167735",
-        "shares": 63064,
-        "valueMn": 7013.94,
         "pctPortfolio": 0
       },
       {
@@ -90281,14 +90193,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HP",
-        "name": "HELMERICH &amp; PAYNE INC",
-        "cusip": "423452101",
-        "shares": 254119,
-        "valueMn": 6637.6,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "HENRY JACK",
         "name": "HENRY JACK &amp; ASSOC INC",
         "cusip": "426281101",
@@ -91116,8 +91020,16 @@
         "ticker": "ICE",
         "name": "INTERCONTINENTAL EXCHANGE IN",
         "cusip": "45866F104",
-        "shares": 250598,
-        "valueMn": 42899.17,
+        "shares": 245878,
+        "valueMn": 42381.9,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "INTERCONTI",
+        "name": "INTERCONTINENTAL HOTELS GROU",
+        "cusip": "45857P806",
+        "shares": 4720,
+        "valueMn": 517.27,
         "pctPortfolio": 0
       },
       {
@@ -91310,6 +91222,14 @@
         "cusip": "46434G103",
         "shares": 116229,
         "valueMn": 6053.39,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ISHARES TR",
+        "name": "ISHARES TR",
+        "cusip": "46436E718",
+        "shares": 569312,
+        "valueMn": 39035.36,
         "pctPortfolio": 0
       },
       {
@@ -98444,8 +98364,8 @@
         "ticker": "TTWO",
         "name": "TAKE-TWO INTERACTIVE SOFTWAR",
         "cusip": "874054109",
-        "shares": 168312,
-        "valueMn": 34201.85,
+        "shares": 215392,
+        "valueMn": 34938.65,
         "pctPortfolio": 0
       },
       {
@@ -98918,14 +98838,6 @@
         "cusip": "88688T100",
         "shares": 607054,
         "valueMn": 399.14,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "TTWO",
-        "name": "TIM S A",
-        "cusip": "88706T108",
-        "shares": 47080,
-        "valueMn": 736.8,
         "pctPortfolio": 0
       },
       {
@@ -99446,14 +99358,6 @@
         "cusip": "904767704",
         "shares": 35007,
         "valueMn": 2084.7,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "UNP",
-        "name": "UNION PAC CORP",
-        "cusip": "907818108",
-        "shares": 189976,
-        "valueMn": 44382.19,
         "pctPortfolio": 0
       },
       {
@@ -101001,7 +100905,7 @@
     "filingDate": "2025-02-14",
     "reportDate": "2024-12-31",
     "totalValueMn": 77526868.43,
-    "holdingCount": 2556,
+    "holdingCount": 2553,
     "holdings": [
       {
         "ticker": "AAPL",
@@ -101503,8 +101407,8 @@
         "ticker": "IVV",
         "name": "ISHARES TR",
         "cusip": "464287432",
-        "shares": 903581,
-        "valueMn": 196149,
+        "shares": 1005205,
+        "valueMn": 203702.6,
         "pctPortfolio": 0.3
       },
       {
@@ -101996,6 +101900,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "HP",
+        "name": "HELMERICH &amp; PAYNE INC",
+        "cusip": "423452101",
+        "shares": 4187171,
+        "valueMn": 136564.74,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "HEWLETT PA",
         "name": "HEWLETT PACKARD ENTERPRISE C",
         "cusip": "42824C109",
@@ -102009,14 +101921,6 @@
         "cusip": "43300A203",
         "shares": 714620,
         "valueMn": 176625.54,
-        "pctPortfolio": 0.2
-      },
-      {
-        "ticker": "HP",
-        "name": "HP INC",
-        "cusip": "40434L105",
-        "shares": 4084465,
-        "valueMn": 133276.09,
         "pctPortfolio": 0.2
       },
       {
@@ -102759,8 +102663,8 @@
         "ticker": "CHK",
         "name": "CHURCH &amp; DWIGHT CO INC",
         "cusip": "171340102",
-        "shares": 1019404,
-        "valueMn": 106741.76,
+        "shares": 1070966,
+        "valueMn": 111874.76,
         "pctPortfolio": 0.1
       },
       {
@@ -104479,8 +104383,8 @@
         "ticker": "UNP",
         "name": "UNION PAC CORP",
         "cusip": "907818108",
-        "shares": 185886,
-        "valueMn": 42389.23,
+        "shares": 359010,
+        "valueMn": 64109.44,
         "pctPortfolio": 0.1
       },
       {
@@ -110140,14 +110044,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CHK",
-        "name": "EXPAND ENERGY CORPORATION",
-        "cusip": "165167735",
-        "shares": 51562,
-        "valueMn": 5133,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "EXPENSIFY",
         "name": "EXPENSIFY INC",
         "cusip": "30219Q106",
@@ -111788,14 +111684,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HP",
-        "name": "HELMERICH &amp; PAYNE INC",
-        "cusip": "423452101",
-        "shares": 102706,
-        "valueMn": 3288.65,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "HENRY JACK",
         "name": "HENRY JACK &amp; ASSOC INC",
         "cusip": "426281101",
@@ -112567,8 +112455,16 @@
         "ticker": "ICE",
         "name": "INTERCONTINENTAL EXCHANGE IN",
         "cusip": "45866F104",
-        "shares": 191592,
-        "valueMn": 28389.17,
+        "shares": 184957,
+        "valueMn": 27560.33,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "INTERCONTI",
+        "name": "INTERCONTINENTAL HOTELS GROU",
+        "cusip": "45857P806",
+        "shares": 6635,
+        "valueMn": 828.84,
         "pctPortfolio": 0
       },
       {
@@ -112759,8 +112655,8 @@
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
         "cusip": "464289511",
-        "shares": 498165,
-        "valueMn": 33557.71,
+        "shares": 396541,
+        "valueMn": 26004.1,
         "pctPortfolio": 0
       },
       {
@@ -119103,8 +118999,8 @@
         "ticker": "TTWO",
         "name": "TAKE-TWO INTERACTIVE SOFTWAR",
         "cusip": "874054109",
-        "shares": 22414,
-        "valueMn": 4125.9,
+        "shares": 75895,
+        "valueMn": 4754.84,
         "pctPortfolio": 0
       },
       {
@@ -119489,14 +119385,6 @@
         "cusip": "88688T100",
         "shares": 31297,
         "valueMn": 41.63,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "TTWO",
-        "name": "TIM S A",
-        "cusip": "88706T108",
-        "shares": 53481,
-        "valueMn": 628.94,
         "pctPortfolio": 0
       },
       {
@@ -120017,14 +119905,6 @@
         "cusip": "911163103",
         "shares": 73350,
         "valueMn": 2003.19,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "UNP",
-        "name": "UNITED PARCEL SERVICE INC",
-        "cusip": "911312106",
-        "shares": 173124,
-        "valueMn": 21720.2,
         "pctPortfolio": 0
       },
       {
@@ -121460,7 +121340,7 @@
     "filingDate": "2024-11-14",
     "reportDate": "2024-09-30",
     "totalValueMn": 72382044.85,
-    "holdingCount": 2485,
+    "holdingCount": 2481,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -121559,6 +121439,14 @@
         "pctPortfolio": 0.7
       },
       {
+        "ticker": "CVI",
+        "name": "CVR ENERGY INC",
+        "cusip": "12662P108",
+        "shares": 1489024,
+        "valueMn": 490526.77,
+        "pctPortfolio": 0.7
+      },
+      {
         "ticker": "JNJ",
         "name": "JOHNSON &amp; JOHNSON",
         "cusip": "478160104",
@@ -121572,14 +121460,6 @@
         "cusip": "743315103",
         "shares": 1898732,
         "valueMn": 475708.4,
-        "pctPortfolio": 0.7
-      },
-      {
-        "ticker": "CVI",
-        "name": "THE CIGNA GROUP",
-        "cusip": "125523100",
-        "shares": 1414242,
-        "valueMn": 488804.54,
         "pctPortfolio": 0.7
       },
       {
@@ -121727,7 +121607,7 @@
         "pctPortfolio": 0.4
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "ARISTA NETWORKS INC",
         "cusip": "040413106",
         "shares": 793131,
@@ -122119,6 +121999,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "BABA",
+        "name": "ALIBABA GROUP HLDG LTD",
+        "cusip": "01609W102",
+        "shares": 4366783,
+        "valueMn": 157199.92,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "ALLISON TR",
         "name": "ALLISON TRANSMISSION HLDGS I",
         "cusip": "01973R101",
@@ -122188,14 +122076,6 @@
         "cusip": "053332102",
         "shares": 41402,
         "valueMn": 130419.88,
-        "pctPortfolio": 0.2
-      },
-      {
-        "ticker": "BABA",
-        "name": "BAKER HUGHES COMPANY",
-        "cusip": "05722G100",
-        "shares": 4361246,
-        "valueMn": 156612.35,
         "pctPortfolio": 0.2
       },
       {
@@ -122416,10 +122296,10 @@
       },
       {
         "ticker": "HP",
-        "name": "HP INC",
-        "cusip": "40434L105",
-        "shares": 3729622,
-        "valueMn": 133296.69,
+        "name": "HELMERICH &amp; PAYNE INC",
+        "cusip": "423452101",
+        "shares": 3852074,
+        "valueMn": 137021.68,
         "pctPortfolio": 0.2
       },
       {
@@ -123279,6 +123159,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "CHK",
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167735",
+        "shares": 790063,
+        "valueMn": 82298.29,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "CVX",
         "name": "CHEVRON CORP NEW",
         "cusip": "166764100",
@@ -123292,14 +123180,6 @@
         "cusip": "169656105",
         "shares": 920486,
         "valueMn": 52983.2,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "CHK",
-        "name": "CHURCH &amp; DWIGHT CO INC",
-        "cusip": "171340102",
-        "shares": 773707,
-        "valueMn": 80953.01,
         "pctPortfolio": 0.1
       },
       {
@@ -123954,8 +123834,8 @@
         "ticker": "IVV",
         "name": "ISHARES TR",
         "cusip": "464287432",
-        "shares": 418151,
-        "valueMn": 96862.95,
+        "shares": 513079,
+        "valueMn": 104232.26,
         "pctPortfolio": 0.1
       },
       {
@@ -124039,7 +123919,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 118064,
@@ -124978,16 +124858,8 @@
         "ticker": "UNP",
         "name": "UNION PAC CORP",
         "cusip": "907818108",
-        "shares": 172476,
-        "valueMn": 42456.88,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "UNP",
-        "name": "UNITED PARCEL SERVICE INC",
-        "cusip": "911312106",
-        "shares": 365886,
-        "valueMn": 49621.43,
+        "shares": 538362,
+        "valueMn": 92078.31,
         "pctPortfolio": 0.1
       },
       {
@@ -125668,14 +125540,6 @@
         "cusip": "015271109",
         "shares": 41635,
         "valueMn": 4944.13,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "BABA",
-        "name": "ALIBABA GROUP HLDG LTD",
-        "cusip": "01609W102",
-        "shares": 5537,
-        "valueMn": 587.57,
         "pctPortfolio": 0
       },
       {
@@ -128359,11 +128223,11 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CHK",
-        "name": "CHESAPEAKE ENERGY CORP",
-        "cusip": "165167735",
-        "shares": 19373,
-        "valueMn": 1719.9,
+        "ticker": "CHESAPEAKE",
+        "name": "CHESAPEAKE UTILS CORP",
+        "cusip": "165303108",
+        "shares": 3017,
+        "valueMn": 374.62,
         "pctPortfolio": 0
       },
       {
@@ -129276,14 +129140,6 @@
         "cusip": "126600105",
         "shares": 29792,
         "valueMn": 530.9,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "CVI",
-        "name": "CVR ENERGY INC",
-        "cusip": "12662P108",
-        "shares": 74782,
-        "valueMn": 1722.23,
         "pctPortfolio": 0
       },
       {
@@ -132047,14 +131903,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HP",
-        "name": "HELMERICH &amp; PAYNE INC",
-        "cusip": "423452101",
-        "shares": 122452,
-        "valueMn": 3724.99,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "HENRY JACK",
         "name": "HENRY JACK &amp; ASSOC INC",
         "cusip": "426281101",
@@ -132786,8 +132634,16 @@
         "ticker": "ICE",
         "name": "INTERCONTINENTAL EXCHANGE IN",
         "cusip": "45866F104",
-        "shares": 122173,
-        "valueMn": 19285.98,
+        "shares": 119099,
+        "valueMn": 18946.33,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "INTERCONTI",
+        "name": "INTERCONTINENTAL HOTELS GROU",
+        "cusip": "45857P806",
+        "shares": 3074,
+        "valueMn": 339.65,
         "pctPortfolio": 0
       },
       {
@@ -132946,8 +132802,8 @@
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
         "cusip": "464289511",
-        "shares": 417445,
-        "valueMn": 28219.29,
+        "shares": 322517,
+        "valueMn": 20849.99,
         "pctPortfolio": 0
       },
       {
@@ -138978,8 +138834,8 @@
         "ticker": "TTWO",
         "name": "TAKE-TWO INTERACTIVE SOFTWAR",
         "cusip": "874054109",
-        "shares": 20702,
-        "valueMn": 3177.54,
+        "shares": 71232,
+        "valueMn": 4047.67,
         "pctPortfolio": 0
       },
       {
@@ -139380,14 +139236,6 @@
         "cusip": "88688T100",
         "shares": 58206,
         "valueMn": 102.44,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "TTWO",
-        "name": "TIM S A",
-        "cusip": "88706T108",
-        "shares": 50530,
-        "valueMn": 870.13,
         "pctPortfolio": 0
       },
       {
@@ -141351,7 +141199,7 @@
     "filingDate": "2024-08-14",
     "reportDate": "2024-06-30",
     "totalValueMn": 65201404.38,
-    "holdingCount": 2407,
+    "holdingCount": 2403,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -141410,6 +141258,14 @@
         "pctPortfolio": 0.8
       },
       {
+        "ticker": "CVI",
+        "name": "CVR ENERGY INC",
+        "cusip": "12662P108",
+        "shares": 1600503,
+        "valueMn": 511892.67,
+        "pctPortfolio": 0.8
+      },
+      {
         "ticker": "JNJ",
         "name": "JOHNSON &amp; JOHNSON",
         "cusip": "478160104",
@@ -141423,14 +141279,6 @@
         "cusip": "58155Q103",
         "shares": 857611,
         "valueMn": 500879.12,
-        "pctPortfolio": 0.8
-      },
-      {
-        "ticker": "CVI",
-        "name": "THE CIGNA GROUP",
-        "cusip": "125523100",
-        "shares": 1547245,
-        "valueMn": 510466.96,
         "pctPortfolio": 0.8
       },
       {
@@ -141794,7 +141642,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "ARISTA NETWORKS INC",
         "cusip": "040413106",
         "shares": 545041,
@@ -141859,10 +141707,10 @@
       },
       {
         "ticker": "HP",
-        "name": "HP INC",
-        "cusip": "40434L105",
-        "shares": 5359174,
-        "valueMn": 186927.98,
+        "name": "HELMERICH &amp; PAYNE INC",
+        "cusip": "423452101",
+        "shares": 5525621,
+        "valueMn": 192943.37,
         "pctPortfolio": 0.3
       },
       {
@@ -141882,7 +141730,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 207686,
@@ -142650,6 +142498,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "UNP",
+        "name": "UNION PAC CORP",
+        "cusip": "907818108",
+        "shares": 655380,
+        "valueMn": 105714.47,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "UNH",
         "name": "UNITEDHEALTH GROUP INC",
         "cusip": "91324P102",
@@ -143043,10 +142899,10 @@
       },
       {
         "ticker": "CHK",
-        "name": "CHURCH &amp; DWIGHT CO INC",
-        "cusip": "171340102",
-        "shares": 781808,
-        "valueMn": 81057.88,
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167735",
+        "shares": 900826,
+        "valueMn": 90839.97,
         "pctPortfolio": 0.1
       },
       {
@@ -143645,8 +143501,8 @@
         "ticker": "IVV",
         "name": "ISHARES TR",
         "cusip": "464287507",
-        "shares": 240344,
-        "valueMn": 42869.34,
+        "shares": 275592,
+        "valueMn": 45642.52,
         "pctPortfolio": 0.1
       },
       {
@@ -144615,22 +144471,6 @@
         "cusip": "90384S303",
         "shares": 121245,
         "valueMn": 46371.36,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "UNP",
-        "name": "UNION PAC CORP",
-        "cusip": "907818108",
-        "shares": 179962,
-        "valueMn": 40653.46,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "UNP",
-        "name": "UNITED PARCEL SERVICE INC",
-        "cusip": "911312106",
-        "shares": 475418,
-        "valueMn": 65061.01,
         "pctPortfolio": 0.1
       },
       {
@@ -148034,11 +147874,11 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CHK",
-        "name": "CHESAPEAKE ENERGY CORP",
-        "cusip": "165167735",
-        "shares": 121890,
-        "valueMn": 10087.1,
+        "ticker": "CHESAPEAKE",
+        "name": "CHESAPEAKE UTILS CORP",
+        "cusip": "165303108",
+        "shares": 2872,
+        "valueMn": 305.01,
         "pctPortfolio": 0
       },
       {
@@ -148911,14 +148751,6 @@
         "cusip": "126600105",
         "shares": 24196,
         "valueMn": 417.13,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "CVI",
-        "name": "CVR ENERGY INC",
-        "cusip": "12662P108",
-        "shares": 53258,
-        "valueMn": 1425.72,
         "pctPortfolio": 0
       },
       {
@@ -151674,14 +151506,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HP",
-        "name": "HELMERICH &amp; PAYNE INC",
-        "cusip": "423452101",
-        "shares": 166447,
-        "valueMn": 6015.39,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "HENRY JACK",
         "name": "HENRY JACK &amp; ASSOC INC",
         "cusip": "426281101",
@@ -152421,8 +152245,16 @@
         "ticker": "ICE",
         "name": "INTERCONTINENTAL EXCHANGE IN",
         "cusip": "45866F104",
-        "shares": 109968,
-        "valueMn": 14846.31,
+        "shares": 103269,
+        "valueMn": 14136.55,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "INTERCONTI",
+        "name": "INTERCONTINENTAL HOTELS GROU",
+        "cusip": "45857P806",
+        "shares": 6699,
+        "valueMn": 709.76,
         "pctPortfolio": 0
       },
       {
@@ -152589,8 +152421,8 @@
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
         "cusip": "46432F842",
-        "shares": 180789,
-        "valueMn": 11841.44,
+        "shares": 145541,
+        "valueMn": 9068.26,
         "pctPortfolio": 0
       },
       {
@@ -153274,7 +153106,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "LIBERTY GL",
+        "ticker": "LBTYK",
         "name": "LIBERTY GLOBAL LTD",
         "cusip": "G61188127",
         "shares": 165803,
@@ -157445,8 +157277,8 @@
         "ticker": "SHOP",
         "name": "SHOPIFY INC",
         "cusip": "82509L107",
-        "shares": 3551,
-        "valueMn": 234.54,
+        "shares": 3869995,
+        "valueMn": 11041.26,
         "pctPortfolio": 0
       },
       {
@@ -157583,14 +157415,6 @@
         "cusip": "829242106",
         "shares": 181090,
         "valueMn": 2325.2,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "SHOP",
-        "name": "SIRIUS XM HOLDINGS INC",
-        "cusip": "82968B103",
-        "shares": 3866444,
-        "valueMn": 10806.71,
         "pctPortfolio": 0
       },
       {
@@ -158461,8 +158285,8 @@
         "ticker": "TTWO",
         "name": "TAKE-TWO INTERACTIVE SOFTWAR",
         "cusip": "874054109",
-        "shares": 19265,
-        "valueMn": 2995.52,
+        "shares": 107799,
+        "valueMn": 4263.32,
         "pctPortfolio": 0
       },
       {
@@ -158799,14 +158623,6 @@
         "cusip": "88642R109",
         "shares": 45780,
         "valueMn": 4358.71,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "TTWO",
-        "name": "TIM S A",
-        "cusip": "88706T108",
-        "shares": 88534,
-        "valueMn": 1267.81,
         "pctPortfolio": 0
       },
       {
@@ -160618,7 +160434,7 @@
     "filingDate": "2024-05-15",
     "reportDate": "2024-03-31",
     "totalValueMn": 58704823.76,
-    "holdingCount": 2262,
+    "holdingCount": 2258,
     "holdings": [
       {
         "ticker": "MSFT",
@@ -160773,6 +160589,14 @@
         "pctPortfolio": 0.6
       },
       {
+        "ticker": "CVI",
+        "name": "CVR ENERGY INC",
+        "cusip": "12662P108",
+        "shares": 963486,
+        "valueMn": 344538.4,
+        "pctPortfolio": 0.6
+      },
+      {
         "ticker": "MOLSON COO",
         "name": "MOLSON COORS BEVERAGE CO",
         "cusip": "60871R209",
@@ -160794,14 +160618,6 @@
         "cusip": "745867101",
         "shares": 3151607,
         "valueMn": 379106.84,
-        "pctPortfolio": 0.6
-      },
-      {
-        "ticker": "CVI",
-        "name": "THE CIGNA GROUP",
-        "cusip": "125523100",
-        "shares": 947030,
-        "valueMn": 343951.58,
         "pctPortfolio": 0.6
       },
       {
@@ -161174,10 +160990,10 @@
       },
       {
         "ticker": "HP",
-        "name": "HP INC",
-        "cusip": "40434L105",
-        "shares": 5146058,
-        "valueMn": 155102.2,
+        "name": "HELMERICH &amp; PAYNE INC",
+        "cusip": "423452101",
+        "shares": 5199925,
+        "valueMn": 157367.83,
         "pctPortfolio": 0.3
       },
       {
@@ -161205,7 +161021,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 166779,
@@ -161365,7 +161181,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "ARISTA NETWORKS INC",
         "cusip": "040413106",
         "shares": 448618,
@@ -161426,6 +161242,14 @@
         "cusip": "151290889",
         "shares": 14840403,
         "valueMn": 133712.03,
+        "pctPortfolio": 0.2
+      },
+      {
+        "ticker": "CHK",
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167735",
+        "shares": 889960,
+        "valueMn": 90449.3,
         "pctPortfolio": 0.2
       },
       {
@@ -162301,14 +162125,6 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "CHK",
-        "name": "CHURCH &amp; DWIGHT CO INC",
-        "cusip": "171340102",
-        "shares": 736057,
-        "valueMn": 76778.1,
-        "pctPortfolio": 0.1
-      },
-      {
         "ticker": "CINCINNATI",
         "name": "CINCINNATI FINL CORP",
         "cusip": "172062101",
@@ -162952,8 +162768,8 @@
         "ticker": "IVV",
         "name": "ISHARES TR",
         "cusip": "464287507",
-        "shares": 177959,
-        "valueMn": 30470.93,
+        "shares": 182497,
+        "valueMn": 30715.08,
         "pctPortfolio": 0.1
       },
       {
@@ -163768,16 +163584,8 @@
         "ticker": "UNP",
         "name": "UNION PAC CORP",
         "cusip": "907818108",
-        "shares": 120544,
-        "valueMn": 29531.1,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "UNP",
-        "name": "UNITED PARCEL SERVICE INC",
-        "cusip": "911312106",
-        "shares": 234864,
-        "valueMn": 34534.47,
+        "shares": 355408,
+        "valueMn": 64065.57,
         "pctPortfolio": 0.1
       },
       {
@@ -166893,11 +166701,11 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CHK",
-        "name": "CHESAPEAKE ENERGY CORP",
-        "cusip": "165167735",
-        "shares": 158383,
-        "valueMn": 14151.91,
+        "ticker": "CHESAPEAKE",
+        "name": "CHESAPEAKE UTILS CORP",
+        "cusip": "165303108",
+        "shares": 4480,
+        "valueMn": 480.7,
         "pctPortfolio": 0
       },
       {
@@ -167722,14 +167530,6 @@
         "cusip": "126600105",
         "shares": 10425,
         "valueMn": 185.98,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "CVI",
-        "name": "CVR ENERGY INC",
-        "cusip": "12662P108",
-        "shares": 16456,
-        "valueMn": 586.82,
         "pctPortfolio": 0
       },
       {
@@ -170325,14 +170125,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HP",
-        "name": "HELMERICH &amp; PAYNE INC",
-        "cusip": "423452101",
-        "shares": 53867,
-        "valueMn": 2265.63,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "HENRY JACK",
         "name": "HENRY JACK &amp; ASSOC INC",
         "cusip": "426281101",
@@ -171008,8 +170800,16 @@
         "ticker": "ICE",
         "name": "INTERCONTINENTAL EXCHANGE IN",
         "cusip": "45866F104",
-        "shares": 111492,
-        "valueMn": 15091.82,
+        "shares": 105331,
+        "valueMn": 14440.85,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "INTERCONTI",
+        "name": "INTERCONTINENTAL HOTELS GROU",
+        "cusip": "45857P806",
+        "shares": 6161,
+        "valueMn": 650.97,
         "pctPortfolio": 0
       },
       {
@@ -171184,8 +170984,8 @@
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
         "cusip": "46432F842",
-        "shares": 51641,
-        "valueMn": 3768.73,
+        "shares": 47103,
+        "valueMn": 3524.57,
         "pctPortfolio": 0
       },
       {
@@ -171869,7 +171669,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "LIBERTY GL",
+        "ticker": "LBTYK",
         "name": "LIBERTY GLOBAL LTD",
         "cusip": "G61188127",
         "shares": 79583,
@@ -175744,8 +175544,8 @@
         "ticker": "SHOP",
         "name": "SHOPIFY INC",
         "cusip": "82509L107",
-        "shares": 3807,
-        "valueMn": 293.79,
+        "shares": 3379490,
+        "valueMn": 13391.44,
         "pctPortfolio": 0
       },
       {
@@ -175858,14 +175658,6 @@
         "cusip": "829242106",
         "shares": 204360,
         "valueMn": 2752.73,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "SHOP",
-        "name": "SIRIUS XM HOLDINGS INC",
-        "cusip": "82968B103",
-        "shares": 3375683,
-        "valueMn": 13097.65,
         "pctPortfolio": 0
       },
       {
@@ -176640,8 +176432,8 @@
         "ticker": "TTWO",
         "name": "TAKE-TWO INTERACTIVE SOFTWAR",
         "cusip": "874054109",
-        "shares": 18187,
-        "valueMn": 2700.59,
+        "shares": 97022,
+        "valueMn": 4099.91,
         "pctPortfolio": 0
       },
       {
@@ -176970,14 +176762,6 @@
         "cusip": "88642R109",
         "shares": 44458,
         "valueMn": 4090.14,
-        "pctPortfolio": 0
-      },
-      {
-        "ticker": "TTWO",
-        "name": "TIM S A",
-        "cusip": "88706T108",
-        "shares": 78835,
-        "valueMn": 1399.32,
         "pctPortfolio": 0
       },
       {
@@ -178776,7 +178560,7 @@
         "pctPortfolio": 1.3
       },
       {
-        "ticker": "BRUKER",
+        "ticker": "BRKR",
         "name": "BRUKER CORP",
         "cusip": "116794207",
         "shares": 48334,
@@ -182986,7 +182770,7 @@
         "pctPortfolio": 0.7
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "Arista Networks Inc",
         "cusip": "040413106",
         "shares": 52275,
@@ -183333,7 +183117,7 @@
         "pctPortfolio": 3.1
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "Arista Networks Inc",
         "cusip": "040413106",
         "shares": 428252,
@@ -184781,15 +184565,15 @@
     "filingDate": "2026-02-17",
     "reportDate": "2025-12-31",
     "totalValueMn": 7027767.84,
-    "holdingCount": 155,
+    "holdingCount": 156,
     "holdings": [
       {
-        "ticker": "EXE",
+        "ticker": "CHK",
         "name": "EXPAND ENERGY CORP",
-        "cusip": "165167180",
-        "shares": 5157657,
-        "valueMn": 568178.43,
-        "pctPortfolio": 8.1
+        "cusip": "165167735",
+        "shares": 5062363,
+        "valueMn": 558682.38,
+        "pctPortfolio": 7.9
       },
       {
         "ticker": "TORM",
@@ -185032,7 +184816,7 @@
         "pctPortfolio": 0.8
       },
       {
-        "ticker": "CABLE ONE",
+        "ticker": "CABO",
         "name": "CABLE ONE INC",
         "cusip": "12685JAE5",
         "shares": 58874000,
@@ -185096,7 +184880,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "BIOMARIN P",
+        "ticker": "BMRN",
         "name": "BIOMARIN PHARMACEUTICAL INC",
         "cusip": "09061GAK7",
         "shares": 42118000,
@@ -185176,7 +184960,7 @@
         "pctPortfolio": 0.5
       },
       {
-        "ticker": "TELADOC HE",
+        "ticker": "TDOC",
         "name": "TELADOC HEALTH INC",
         "cusip": "87918AAF2",
         "shares": 38479000,
@@ -185328,7 +185112,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "JD.COM",
+        "ticker": "JD",
         "name": "JD.COM INC",
         "cusip": "47215PAJ5",
         "shares": 19233000,
@@ -185408,7 +185192,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "BANDWIDTH",
+        "ticker": "BAND",
         "name": "BANDWIDTH INC",
         "cusip": "05988JAD5",
         "shares": 13650000,
@@ -185600,6 +185384,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "EXE",
+        "name": "EXPAND ENERGY CORP",
+        "cusip": "165167180",
+        "shares": 95294,
+        "valueMn": 9496.05,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "FRESHPET",
         "name": "FRESHPET INC",
         "cusip": "358039AB1",
@@ -185640,7 +185432,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "LIVE NATIO",
+        "ticker": "LYV",
         "name": "LIVE NATION ENTERTAINMENT INC",
         "cusip": "538034BC2",
         "shares": 9670000,
@@ -185712,7 +185504,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "SHAKE SHAC",
+        "ticker": "SHAK",
         "name": "SHAKE SHACK INC",
         "cusip": "819047AB7",
         "shares": 5686000,
@@ -185744,7 +185536,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNITY SOFT",
+        "ticker": "U",
         "name": "UNITY SOFTWARE INC",
         "cusip": "91332UAB7",
         "shares": 9076000,
@@ -185760,7 +185552,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UPWORK",
+        "ticker": "UPWK",
         "name": "UPWORK INC",
         "cusip": "91688FAB0",
         "shares": 7038000,
@@ -185824,7 +185616,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BRIDGEBIO ",
+        "ticker": "BBIO",
         "name": "BRIDGEBIO PHARMA INC",
         "cusip": "10806XAD4",
         "shares": 2550000,
@@ -185896,7 +185688,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GUARDANT H",
+        "ticker": "GH",
         "name": "GUARDANT HEALTH INC",
         "cusip": "40131MAB5",
         "shares": 555000,
@@ -185928,7 +185720,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ON SEMICON",
+        "ticker": "ON",
         "name": "ON SEMICONDUCTOR CORP",
         "cusip": "682189AS4",
         "shares": 1950000,
@@ -186032,7 +185824,7 @@
     "filingDate": "2025-11-13",
     "reportDate": "2025-09-30",
     "totalValueMn": 6490256.63,
-    "holdingCount": 151,
+    "holdingCount": 152,
     "holdings": [
       {
         "ticker": "TORM",
@@ -186043,12 +185835,12 @@
         "pctPortfolio": 12.9
       },
       {
-        "ticker": "EXE",
+        "ticker": "CHK",
         "name": "EXPAND ENERGY CORP",
-        "cusip": "165167180",
-        "shares": 5157657,
-        "valueMn": 547041.34,
-        "pctPortfolio": 8.4
+        "cusip": "165167735",
+        "shares": 5062363,
+        "valueMn": 537825.45,
+        "pctPortfolio": 8.3
       },
       {
         "ticker": "GTX",
@@ -186251,7 +186043,7 @@
         "pctPortfolio": 1
       },
       {
-        "ticker": "CABLE ONE",
+        "ticker": "CABO",
         "name": "CABLE ONE INC",
         "cusip": "12685JAE5",
         "shares": 58746000,
@@ -186339,7 +186131,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "TELADOC HE",
+        "ticker": "TDOC",
         "name": "TELADOC HEALTH INC",
         "cusip": "87918AAF2",
         "shares": 40638000,
@@ -186467,7 +186259,7 @@
         "pctPortfolio": 0.4
       },
       {
-        "ticker": "JD.COM",
+        "ticker": "JD",
         "name": "JD.COM INC",
         "cusip": "47215PAJ5",
         "shares": 23821000,
@@ -186491,7 +186283,7 @@
         "pctPortfolio": 0.4
       },
       {
-        "ticker": "GUARDANT H",
+        "ticker": "GH",
         "name": "GUARDANT HEALTH INC",
         "cusip": "40131MAB5",
         "shares": 13887000,
@@ -186571,7 +186363,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "BIOMARIN P",
+        "ticker": "BMRN",
         "name": "BIOMARIN PHARMACEUTICAL INC",
         "cusip": "09061GAK7",
         "shares": 19719000,
@@ -186643,7 +186435,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "BRIDGEBIO ",
+        "ticker": "BBIO",
         "name": "BRIDGEBIO PHARMA INC",
         "cusip": "10806XAB8",
         "shares": 12607000,
@@ -186691,7 +186483,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "SHAKE SHAC",
+        "ticker": "SHAK",
         "name": "SHAKE SHACK INC",
         "cusip": "819047AB7",
         "shares": 11716000,
@@ -186731,7 +186523,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "SHIFT4 PAY",
+        "ticker": "FOUR",
         "name": "SHIFT4 PAYMENTS INC",
         "cusip": "82452JAD1",
         "shares": 14544000,
@@ -186787,7 +186579,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNITY SOFT",
+        "ticker": "U",
         "name": "UNITY SOFTWARE INC",
         "cusip": "91332UAB7",
         "shares": 3751000,
@@ -186859,7 +186651,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UPWORK",
+        "ticker": "UPWK",
         "name": "UPWORK INC",
         "cusip": "91688FAB0",
         "shares": 4646000,
@@ -186979,7 +186771,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BANDWIDTH",
+        "ticker": "BAND",
         "name": "BANDWIDTH INC",
         "cusip": "05988JAD5",
         "shares": 8630000,
@@ -187075,6 +186867,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "EXE",
+        "name": "EXPAND ENERGY CORP",
+        "cusip": "165167180",
+        "shares": 95294,
+        "valueMn": 9215.89,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "TPI COMPOS",
         "name": "TPI COMPOSITES INC",
         "cusip": "87266J104",
@@ -187147,7 +186947,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "WAYFAIR",
+        "ticker": "W",
         "name": "WAYFAIR INC",
         "cusip": "94419LAP6",
         "shares": 900000,
@@ -187203,7 +187003,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ON SEMICON",
+        "ticker": "ON",
         "name": "ON SEMICONDUCTOR CORP",
         "cusip": "682189AS4",
         "shares": 1950000,
@@ -187251,7 +187051,7 @@
     "filingDate": "2025-08-13",
     "reportDate": "2025-06-30",
     "totalValueMn": 5814694.47,
-    "holdingCount": 158,
+    "holdingCount": 159,
     "holdings": [
       {
         "ticker": "TORM",
@@ -187270,12 +187070,12 @@
         "pctPortfolio": 10.8
       },
       {
-        "ticker": "EXE",
+        "ticker": "CHK",
         "name": "EXPAND ENERGY CORP",
-        "cusip": "165167180",
-        "shares": 5157658,
-        "valueMn": 602311.31,
-        "pctPortfolio": 10.4
+        "cusip": "165167735",
+        "shares": 5062364,
+        "valueMn": 591992.88,
+        "pctPortfolio": 10.2
       },
       {
         "ticker": "GTX",
@@ -187470,7 +187270,7 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "CABLE ONE",
+        "ticker": "CABO",
         "name": "CABLE ONE INC",
         "cusip": "12685JAE5",
         "shares": 51812000,
@@ -187558,7 +187358,7 @@
         "pctPortfolio": 0.5
       },
       {
-        "ticker": "TELADOC HE",
+        "ticker": "TDOC",
         "name": "TELADOC HEALTH INC",
         "cusip": "87918AAF2",
         "shares": 30338000,
@@ -187662,7 +187462,7 @@
         "pctPortfolio": 0.4
       },
       {
-        "ticker": "BRIDGEBIO ",
+        "ticker": "BBIO",
         "name": "BRIDGEBIO PHARMA INC",
         "cusip": "10806XAB8",
         "shares": 20156000,
@@ -187734,7 +187534,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "GUARDANT H",
+        "ticker": "GH",
         "name": "GUARDANT HEALTH INC",
         "cusip": "40131MAB5",
         "shares": 12210000,
@@ -187742,7 +187542,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "SHAKE SHAC",
+        "ticker": "SHAK",
         "name": "SHAKE SHACK INC",
         "cusip": "819047AB7",
         "shares": 8821000,
@@ -187779,6 +187579,14 @@
         "cusip": "08579X101",
         "shares": 3697000,
         "valueMn": 10240.69,
+        "pctPortfolio": 0.2
+      },
+      {
+        "ticker": "EXE",
+        "name": "EXPAND ENERGY CORP",
+        "cusip": "165167180",
+        "shares": 95294,
+        "valueMn": 10318.43,
         "pctPortfolio": 0.2
       },
       {
@@ -187830,7 +187638,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "SHIFT4 PAY",
+        "ticker": "FOUR",
         "name": "SHIFT4 PAYMENTS INC",
         "cusip": "82452JAD1",
         "shares": 11913000,
@@ -187838,7 +187646,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "JD.COM",
+        "ticker": "JD",
         "name": "JD.COM INC",
         "cusip": "47215PAJ5",
         "shares": 12352000,
@@ -187878,7 +187686,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "ON SEMICON",
+        "ticker": "ON",
         "name": "ON SEMICONDUCTOR CORP",
         "cusip": "682189AS4",
         "shares": 8330000,
@@ -187894,7 +187702,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "WAYFAIR",
+        "ticker": "W",
         "name": "WAYFAIR INC",
         "cusip": "94419LAP6",
         "shares": 2585000,
@@ -187902,7 +187710,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNITY SOFT",
+        "ticker": "U",
         "name": "UNITY SOFTWARE INC",
         "cusip": "91332UAB7",
         "shares": 3216000,
@@ -187966,7 +187774,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BANDWIDTH",
+        "ticker": "BAND",
         "name": "BANDWIDTH INC",
         "cusip": "05988JAD5",
         "shares": 4301000,
@@ -188158,7 +187966,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UPWORK",
+        "ticker": "UPWK",
         "name": "UPWORK INC",
         "cusip": "91688FAB0",
         "shares": 6373000,
@@ -188206,7 +188014,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "ALIBABA  H",
+        "ticker": "BABA",
         "name": "ALIBABA GROUP HOLDING LTD",
         "cusip": "01609WBG6",
         "shares": 5397000,
@@ -188406,7 +188214,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BIOMARIN P",
+        "ticker": "BMRN",
         "name": "BIOMARIN PHARMACEUTICAL INC",
         "cusip": "09061GAK7",
         "shares": 1481000,
@@ -188526,7 +188334,7 @@
     "filingDate": "2025-05-15",
     "reportDate": "2025-03-31",
     "totalValueMn": 5169601.83,
-    "holdingCount": 150,
+    "holdingCount": 152,
     "holdings": [
       {
         "ticker": "TORM",
@@ -188537,12 +188345,12 @@
         "pctPortfolio": 12.8
       },
       {
-        "ticker": "EXE",
+        "ticker": "CHK",
         "name": "EXPAND ENERGY CORP",
-        "cusip": "165167180",
-        "shares": 5657658,
-        "valueMn": 628792.78,
-        "pctPortfolio": 12.2
+        "cusip": "165167735",
+        "shares": 5562364,
+        "valueMn": 619202.39,
+        "pctPortfolio": 12
       },
       {
         "ticker": "GTX",
@@ -188729,7 +188537,7 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "CABLE ONE",
+        "ticker": "CABO",
         "name": "CABLE ONE INC",
         "cusip": "12685JAE5",
         "shares": 42610000,
@@ -188777,7 +188585,7 @@
         "pctPortfolio": 0.7
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA",
         "cusip": "71654V408",
         "shares": 2659492,
@@ -188833,7 +188641,7 @@
         "pctPortfolio": 0.5
       },
       {
-        "ticker": "GUARDANT H",
+        "ticker": "GH",
         "name": "GUARDANT HEALTH INC",
         "cusip": "40131MAD1",
         "shares": 30164000,
@@ -188921,7 +188729,7 @@
         "pctPortfolio": 0.4
       },
       {
-        "ticker": "BRIDGEBIO ",
+        "ticker": "BBIO",
         "name": "BRIDGEBIO PHARMA INC",
         "cusip": "10806XAB8",
         "shares": 15385000,
@@ -189001,11 +188809,11 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "TELADOC HE",
+        "ticker": "TDOC",
         "name": "TELADOC HEALTH INC",
-        "cusip": "539183AA1",
-        "shares": 17671000,
-        "valueMn": 16440.65,
+        "cusip": "87918AAF2",
+        "shares": 15354000,
+        "valueMn": 14141.03,
         "pctPortfolio": 0.3
       },
       {
@@ -189073,6 +188881,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "EXE",
+        "name": "EXPAND ENERGY CORP",
+        "cusip": "165167180",
+        "shares": 95294,
+        "valueMn": 9590.39,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "LUMENTUM",
         "name": "LUMENTUM HOLDINGS INC",
         "cusip": "55024UAH2",
@@ -189121,7 +188937,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "SHAKE SHAC",
+        "ticker": "SHAK",
         "name": "SHAKE SHACK INC",
         "cusip": "819047AB7",
         "shares": 11556000,
@@ -189129,7 +188945,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "SHIFT4 PAY",
+        "ticker": "FOUR",
         "name": "SHIFT4 PAYMENTS INC",
         "cusip": "82452JAD1",
         "shares": 12010000,
@@ -189321,7 +189137,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "ON SEMICON",
+        "ticker": "ON",
         "name": "ON SEMICONDUCTOR CORP",
         "cusip": "682189AS4",
         "shares": 6741000,
@@ -189369,7 +189185,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "SHOPIFY",
+        "ticker": "SHOP",
         "name": "SHOPIFY INC",
         "cusip": "82509LAA5",
         "shares": 5600000,
@@ -189425,7 +189241,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNITY SOFT",
+        "ticker": "U",
         "name": "UNITY SOFTWARE INC",
         "cusip": "91332UAB7",
         "shares": 3216000,
@@ -189449,7 +189265,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "WAYFAIR",
+        "ticker": "W",
         "name": "WAYFAIR INC",
         "cusip": "94419LAP6",
         "shares": 7641000,
@@ -189513,7 +189329,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BANDWIDTH",
+        "ticker": "BAND",
         "name": "BANDWIDTH INC",
         "cusip": "05988JAD5",
         "shares": 3020000,
@@ -189705,6 +189521,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "TELADOC HE",
+        "name": "TELADOC HEALTH INC",
+        "cusip": "539183AA1",
+        "shares": 2317000,
+        "valueMn": 2299.62,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "TETRA TECH",
         "name": "TETRA TECH INC",
         "cusip": "88162GAB9",
@@ -189713,7 +189537,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "UPWORK",
+        "ticker": "UPWK",
         "name": "UPWORK INC",
         "cusip": "91688FAB0",
         "shares": 2217000,
@@ -189737,7 +189561,7 @@
     "filingDate": "2025-02-12",
     "reportDate": "2024-12-31",
     "totalValueMn": 5635080.96,
-    "holdingCount": 150,
+    "holdingCount": 151,
     "holdings": [
       {
         "ticker": "TORM",
@@ -189748,12 +189572,12 @@
         "pctPortfolio": 13.8
       },
       {
-        "ticker": "EXE",
+        "ticker": "CHK",
         "name": "EXPAND ENERGY CORP",
-        "cusip": "165167180",
-        "shares": 7032658,
-        "valueMn": 698857.54,
-        "pctPortfolio": 12.4
+        "cusip": "165167735",
+        "shares": 6937364,
+        "valueMn": 690614.61,
+        "pctPortfolio": 12.3
       },
       {
         "ticker": "GTX",
@@ -189948,7 +189772,7 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "CABLE ONE",
+        "ticker": "CABO",
         "name": "CABLE ONE INC",
         "cusip": "12685JAE5",
         "shares": 46137000,
@@ -189972,7 +189796,7 @@
         "pctPortfolio": 0.8
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA",
         "cusip": "71654V408",
         "shares": 3352724,
@@ -190044,7 +189868,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "GUARDANT H",
+        "ticker": "GH",
         "name": "GUARDANT HEALTH INC",
         "cusip": "40131MAB5",
         "shares": 38535000,
@@ -190268,7 +190092,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "SHAKE SHAC",
+        "ticker": "SHAK",
         "name": "SHAKE SHACK INC",
         "cusip": "819047AB7",
         "shares": 8556000,
@@ -190276,7 +190100,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "SHIFT4 PAY",
+        "ticker": "FOUR",
         "name": "SHIFT4 PAYMENTS INC",
         "cusip": "82452JAD1",
         "shares": 9910000,
@@ -190324,7 +190148,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "WAYFAIR",
+        "ticker": "W",
         "name": "WAYFAIR INC",
         "cusip": "94419LAM3",
         "shares": 9568000,
@@ -190380,7 +190204,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BANDWIDTH",
+        "ticker": "BAND",
         "name": "BANDWIDTH INC",
         "cusip": "05988JAD5",
         "shares": 5163000,
@@ -190404,7 +190228,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BRIDGEBIO ",
+        "ticker": "BBIO",
         "name": "BRIDGEBIO PHARMA INC",
         "cusip": "10806XAD4",
         "shares": 3798000,
@@ -190417,6 +190241,14 @@
         "cusip": "163092AD1",
         "shares": 3419000,
         "valueMn": 3323.27,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "EXE",
+        "name": "EXPAND ENERGY CORP",
+        "cusip": "165167180",
+        "shares": 95294,
+        "valueMn": 8242.93,
         "pctPortfolio": 0.1
       },
       {
@@ -190516,7 +190348,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "INSMED",
+        "ticker": "INSM",
         "name": "INSMED INC",
         "cusip": "457669AB5",
         "shares": 1642000,
@@ -190692,7 +190524,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "TELADOC HE",
+        "ticker": "TDOC",
         "name": "TELADOC HEALTH INC",
         "cusip": "87918AAF2",
         "shares": 7574000,
@@ -190708,7 +190540,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UPWORK",
+        "ticker": "UPWK",
         "name": "UPWORK INC",
         "cusip": "91688FAB0",
         "shares": 3420000,
@@ -190860,7 +190692,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ON SEMICON",
+        "ticker": "ON",
         "name": "ON SEMICONDUCTOR CORP",
         "cusip": "682189AU9",
         "shares": 1448000,
@@ -190932,7 +190764,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "UNITY SOFT",
+        "ticker": "U",
         "name": "UNITY SOFTWARE INC",
         "cusip": "91332UAB7",
         "shares": 2601000,
@@ -191135,7 +190967,7 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA",
         "cusip": "71654V408",
         "shares": 4069272,
@@ -191183,7 +191015,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "CABLE ONE",
+        "ticker": "CABO",
         "name": "CABLE ONE INC",
         "cusip": "12685JAE5",
         "shares": 41521000,
@@ -191327,7 +191159,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "GUARDANT H",
+        "ticker": "GH",
         "name": "GUARDANT HEALTH INC",
         "cusip": "40131MAB5",
         "shares": 21573000,
@@ -191543,7 +191375,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BANDWIDTH",
+        "ticker": "BAND",
         "name": "BANDWIDTH INC",
         "cusip": "05988JAD5",
         "shares": 6975000,
@@ -191567,7 +191399,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BRIDGEBIO ",
+        "ticker": "BBIO",
         "name": "BRIDGEBIO PHARMA INC",
         "cusip": "10806XAB8",
         "shares": 3628000,
@@ -191663,7 +191495,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "INSMED",
+        "ticker": "INSM",
         "name": "INSMED INC",
         "cusip": "457669AB5",
         "shares": 1642000,
@@ -191679,7 +191511,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "LIVE NATIO",
+        "ticker": "LYV",
         "name": "LIVE NATION ENTERTAINMENT INC",
         "cusip": "538034BA6",
         "shares": 4903000,
@@ -191775,7 +191607,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "ON SEMICON",
+        "ticker": "ON",
         "name": "ON SEMICONDUCTOR CORP",
         "cusip": "682189AU9",
         "shares": 6440000,
@@ -191823,7 +191655,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "SHAKE SHAC",
+        "ticker": "SHAK",
         "name": "SHAKE SHACK INC",
         "cusip": "819047AB7",
         "shares": 8475000,
@@ -191831,7 +191663,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "SHIFT4 PAY",
+        "ticker": "FOUR",
         "name": "SHIFT4 PAYMENTS INC",
         "cusip": "82452JAB5",
         "shares": 2950000,
@@ -191847,7 +191679,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "TELADOC HE",
+        "ticker": "TDOC",
         "name": "TELADOC HEALTH INC",
         "cusip": "87918AAF2",
         "shares": 6671000,
@@ -191879,7 +191711,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UPWORK",
+        "ticker": "UPWK",
         "name": "UPWORK INC",
         "cusip": "91688FAB0",
         "shares": 4752000,
@@ -192175,7 +192007,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "UNITY SOFT",
+        "ticker": "U",
         "name": "UNITY SOFTWARE INC",
         "cusip": "91332UAB7",
         "shares": 2043000,
@@ -192191,7 +192023,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "WAYFAIR",
+        "ticker": "W",
         "name": "WAYFAIR INC",
         "cusip": "94419LAP6",
         "shares": 1400000,
@@ -192386,7 +192218,7 @@
         "pctPortfolio": 1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA",
         "cusip": "71654V408",
         "shares": 4506453,
@@ -192450,7 +192282,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "CABLE ONE",
+        "ticker": "CABO",
         "name": "CABLE ONE INC",
         "cusip": "12685JAE5",
         "shares": 39272000,
@@ -192682,7 +192514,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "GUARDANT H",
+        "ticker": "GH",
         "name": "GUARDANT HEALTH INC",
         "cusip": "40131MAB5",
         "shares": 20116000,
@@ -192738,7 +192570,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "INSMED",
+        "ticker": "INSM",
         "name": "INSMED INC",
         "cusip": "457669AB5",
         "shares": 1642000,
@@ -192778,7 +192610,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "SHIFT4 PAY",
+        "ticker": "FOUR",
         "name": "SHIFT4 PAYMENTS INC",
         "cusip": "82452JAB5",
         "shares": 6285000,
@@ -192794,7 +192626,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BRIDGEBIO ",
+        "ticker": "BBIO",
         "name": "BRIDGEBIO PHARMA INC",
         "cusip": "10806XAB8",
         "shares": 7009000,
@@ -192938,7 +192770,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "LIVE NATIO",
+        "ticker": "LYV",
         "name": "LIVE NATION ENTERTAINMENT INC",
         "cusip": "538034BA6",
         "shares": 4798000,
@@ -193010,7 +192842,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UPWORK",
+        "ticker": "UPWK",
         "name": "UPWORK INC",
         "cusip": "91688FAB0",
         "shares": 5700000,
@@ -193026,7 +192858,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BANDWIDTH",
+        "ticker": "BAND",
         "name": "BANDWIDTH INC",
         "cusip": "05988JAD5",
         "shares": 6056000,
@@ -193114,7 +192946,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNITY SOFT",
+        "ticker": "U",
         "name": "UNITY SOFTWARE INC",
         "cusip": "91332UAB7",
         "shares": 8302000,
@@ -193122,7 +192954,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "ON SEMICON",
+        "ticker": "ON",
         "name": "ON SEMICONDUCTOR CORP",
         "cusip": "682189AU9",
         "shares": 8361000,
@@ -193162,7 +192994,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "TELADOC HE",
+        "ticker": "TDOC",
         "name": "TELADOC HEALTH INC",
         "cusip": "87918AAF2",
         "shares": 9438000,
@@ -193170,7 +193002,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "SHAKE SHAC",
+        "ticker": "SHAK",
         "name": "SHAKE SHACK INC",
         "cusip": "819047AB7",
         "shares": 9703000,
@@ -193314,7 +193146,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BIOMARIN P",
+        "ticker": "BMRN",
         "name": "BIOMARIN PHARMACEUTICAL INC",
         "cusip": "09061GAH4",
         "shares": 2936000,
@@ -193517,7 +193349,7 @@
         "pctPortfolio": 1.2
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA",
         "cusip": "71654V408",
         "shares": 5099509,
@@ -193621,7 +193453,7 @@
         "pctPortfolio": 0.5
       },
       {
-        "ticker": "CABLE ONE",
+        "ticker": "CABO",
         "name": "CABLE ONE INC",
         "cusip": "12685JAE5",
         "shares": 32173000,
@@ -193829,7 +193661,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "WAYFAIR",
+        "ticker": "W",
         "name": "WAYFAIR INC",
         "cusip": "94419LAF8",
         "shares": 12572000,
@@ -193901,7 +193733,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BRIDGEBIO ",
+        "ticker": "BBIO",
         "name": "BRIDGEBIO PHARMA INC",
         "cusip": "10806XAB8",
         "shares": 5522000,
@@ -194061,7 +193893,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "LIVE NATIO",
+        "ticker": "LYV",
         "name": "LIVE NATION ENTERTAINMENT INC",
         "cusip": "538034BA6",
         "shares": 6524000,
@@ -194117,7 +193949,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "NRG ENERGY",
+        "ticker": "NRG",
         "name": "NRG ENERGY INC",
         "cusip": "629377CG5",
         "shares": 3408000,
@@ -194141,7 +193973,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "ON SEMICON",
+        "ticker": "ON",
         "name": "ON SEMICONDUCTOR CORP",
         "cusip": "682189AU9",
         "shares": 7262000,
@@ -194189,7 +194021,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "SHAKE SHAC",
+        "ticker": "SHAK",
         "name": "SHAKE SHACK INC",
         "cusip": "819047AB7",
         "shares": 6222000,
@@ -194197,7 +194029,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "SHIFT4 PAY",
+        "ticker": "FOUR",
         "name": "SHIFT4 PAYMENTS INC",
         "cusip": "82452JAB5",
         "shares": 6232000,
@@ -194237,7 +194069,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "TELADOC HE",
+        "ticker": "TDOC",
         "name": "TELADOC HEALTH INC",
         "cusip": "87918AAF2",
         "shares": 9142000,
@@ -194245,7 +194077,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UNITY SOFT",
+        "ticker": "U",
         "name": "UNITY SOFTWARE INC",
         "cusip": "91332UAB7",
         "shares": 7588000,
@@ -194253,7 +194085,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "UPWORK",
+        "ticker": "UPWK",
         "name": "UPWORK INC",
         "cusip": "91688FAB0",
         "shares": 4571000,
@@ -194341,7 +194173,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BANDWIDTH",
+        "ticker": "BAND",
         "name": "BANDWIDTH INC",
         "cusip": "05988JAD5",
         "shares": 2603000,
@@ -194445,7 +194277,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "INSMED",
+        "ticker": "INSM",
         "name": "INSMED INC",
         "cusip": "457669AB5",
         "shares": 1993000,
@@ -196725,16 +196557,8 @@
     "filingDate": "2026-02-17",
     "reportDate": "2025-12-31",
     "totalValueMn": 79121382.15,
-    "holdingCount": 66,
+    "holdingCount": 83,
     "holdings": [
-      {
-        "ticker": "",
-        "name": "",
-        "cusip": "000957100",
-        "shares": 519689259,
-        "valueMn": 44351761.36,
-        "pctPortfolio": 56.1
-      },
       {
         "ticker": "GOOGL",
         "name": "",
@@ -196768,6 +196592,22 @@
         "pctPortfolio": 3.2
       },
       {
+        "ticker": "ICE",
+        "name": "",
+        "cusip": "45866F104",
+        "shares": 15584531,
+        "valueMn": 2524070.56,
+        "pctPortfolio": 3.2
+      },
+      {
+        "ticker": "IQV",
+        "name": "",
+        "cusip": "46266C105",
+        "shares": 11319718,
+        "valueMn": 2551577.58,
+        "pctPortfolio": 3.2
+      },
+      {
         "ticker": "KEYS",
         "name": "",
         "cusip": "49271V100",
@@ -196790,6 +196630,30 @@
         "shares": 22031493,
         "valueMn": 2201166.47,
         "pctPortfolio": 2.8
+      },
+      {
+        "ticker": "WTW",
+        "name": "",
+        "cusip": "G96629103",
+        "shares": 5613089,
+        "valueMn": 1844461.18,
+        "pctPortfolio": 2.3
+      },
+      {
+        "ticker": "ELV",
+        "name": "",
+        "cusip": "036752103",
+        "shares": 4794445,
+        "valueMn": 1680692.58,
+        "pctPortfolio": 2.1
+      },
+      {
+        "ticker": "EFX",
+        "name": "",
+        "cusip": "294429105",
+        "shares": 7557127,
+        "valueMn": 1639745.43,
+        "pctPortfolio": 2.1
       },
       {
         "ticker": "MRK",
@@ -196872,6 +196736,14 @@
         "pctPortfolio": 1.2
       },
       {
+        "ticker": "AER",
+        "name": "",
+        "cusip": "N00985106",
+        "shares": 5840480,
+        "valueMn": 839627.43,
+        "pctPortfolio": 1.1
+      },
+      {
         "ticker": "CHTR",
         "name": "",
         "cusip": "16119P108",
@@ -196885,6 +196757,14 @@
         "cusip": "37940X102",
         "shares": 11348361,
         "valueMn": 878363.14,
+        "pctPortfolio": 1.1
+      },
+      {
+        "ticker": "UNP",
+        "name": "",
+        "cusip": "907818108",
+        "shares": 3656510,
+        "valueMn": 845823.83,
         "pctPortfolio": 1.1
       },
       {
@@ -196912,11 +196792,27 @@
         "pctPortfolio": 0.6
       },
       {
+        "ticker": "PAYC",
+        "name": "",
+        "cusip": "70432V102",
+        "shares": 3209759,
+        "valueMn": 511507.19,
+        "pctPortfolio": 0.6
+      },
+      {
         "ticker": "CNC",
         "name": "",
         "cusip": "15135B101",
         "shares": 9050554,
         "valueMn": 372430.3,
+        "pctPortfolio": 0.5
+      },
+      {
+        "ticker": "MOH",
+        "name": "",
+        "cusip": "60855R100",
+        "shares": 2346437,
+        "valueMn": 407200.68,
         "pctPortfolio": 0.5
       },
       {
@@ -196926,6 +196822,22 @@
         "shares": 961570,
         "valueMn": 301740.67,
         "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "FLUT",
+        "name": "",
+        "cusip": "G3643J108",
+        "shares": 1016963,
+        "valueMn": 218687.72,
+        "pctPortfolio": 0.3
+      },
+      {
+        "ticker": "IT",
+        "name": "",
+        "cusip": "366651107",
+        "shares": 963984,
+        "valueMn": 243193.88,
+        "pctPortfolio": 0.3
       },
       {
         "ticker": "V",
@@ -196944,11 +196856,27 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "RYAAY",
+        "name": "",
+        "cusip": "783513203",
+        "shares": 2233754,
+        "valueMn": 161254.7,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "AXP",
         "name": "",
         "cusip": "025816109",
         "shares": 219077,
         "valueMn": 81047.45,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "BLK",
+        "name": "",
+        "cusip": "09290D101",
+        "shares": 54409,
+        "valueMn": 58236.13,
         "pctPortfolio": 0.1
       },
       {
@@ -196976,6 +196904,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "KKR",
+        "name": "",
+        "cusip": "48251W104",
+        "shares": 370193,
+        "valueMn": 47192.2,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "ABT",
         "name": "",
         "cusip": "002824100",
@@ -197000,6 +196936,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "BABA",
+        "name": "",
+        "cusip": "01609W102",
+        "shares": 9589,
+        "valueMn": 1405.56,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "AAPL",
         "name": "",
         "cusip": "037833100",
@@ -197013,6 +196957,14 @@
         "cusip": "038222105",
         "shares": 2200,
         "valueMn": 565.38,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ADP",
+        "name": "",
+        "cusip": "053015103",
+        "shares": 805,
+        "valueMn": 207.07,
         "pctPortfolio": 0
       },
       {
@@ -197088,6 +197040,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "HDB",
+        "name": "",
+        "cusip": "40415F101",
+        "shares": 6000,
+        "valueMn": 219.24,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "HLT",
         "name": "",
         "cusip": "43300A203",
@@ -197115,8 +197075,8 @@
         "ticker": "IVV",
         "name": "",
         "cusip": "464287655",
-        "shares": 533,
-        "valueMn": 131.2,
+        "shares": 1625,
+        "valueMn": 285.71,
         "pctPortfolio": 0
       },
       {
@@ -197224,6 +197184,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "TMO",
+        "name": "",
+        "cusip": "883556102",
+        "shares": 541,
+        "valueMn": 313.48,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "UNH",
         "name": "",
         "cusip": "91324P102",
@@ -197264,16 +197232,8 @@
     "filingDate": "2025-11-14",
     "reportDate": "2025-09-30",
     "totalValueMn": 62375897.74,
-    "holdingCount": 71,
+    "holdingCount": 87,
     "holdings": [
-      {
-        "ticker": "",
-        "name": "",
-        "cusip": "000957100",
-        "shares": 485191594,
-        "valueMn": 34334618.79,
-        "pctPortfolio": 55
-      },
       {
         "ticker": "GOOGL",
         "name": "",
@@ -197281,6 +197241,14 @@
         "shares": 11407227,
         "valueMn": 2773096.88,
         "pctPortfolio": 4.4
+      },
+      {
+        "ticker": "IQV",
+        "name": "",
+        "cusip": "46266C105",
+        "shares": 11387265,
+        "valueMn": 2162897.18,
+        "pctPortfolio": 3.5
       },
       {
         "ticker": "SCHW",
@@ -197315,6 +197283,14 @@
         "pctPortfolio": 2.9
       },
       {
+        "ticker": "ICE",
+        "name": "",
+        "cusip": "45866F104",
+        "shares": 10195719,
+        "valueMn": 1717774.71,
+        "pctPortfolio": 2.8
+      },
+      {
         "ticker": "CRM",
         "name": "",
         "cusip": "79466L302",
@@ -197329,6 +197305,22 @@
         "shares": 62619103,
         "valueMn": 1597413.32,
         "pctPortfolio": 2.6
+      },
+      {
+        "ticker": "EFX",
+        "name": "",
+        "cusip": "294429105",
+        "shares": 5833688,
+        "valueMn": 1496515.88,
+        "pctPortfolio": 2.4
+      },
+      {
+        "ticker": "WTW",
+        "name": "",
+        "cusip": "G96629103",
+        "shares": 4294607,
+        "valueMn": 1483571.85,
+        "pctPortfolio": 2.4
       },
       {
         "ticker": "BAC",
@@ -197360,6 +197352,14 @@
         "cusip": "02005N100",
         "shares": 26998441,
         "valueMn": 1058338.89,
+        "pctPortfolio": 1.7
+      },
+      {
+        "ticker": "ELV",
+        "name": "",
+        "cusip": "036752103",
+        "shares": 3189624,
+        "valueMn": 1030631.44,
         "pctPortfolio": 1.7
       },
       {
@@ -197435,12 +197435,36 @@
         "pctPortfolio": 0.9
       },
       {
+        "ticker": "MOH",
+        "name": "",
+        "cusip": "60855R100",
+        "shares": 2682141,
+        "valueMn": 513254.5,
+        "pctPortfolio": 0.8
+      },
+      {
         "ticker": "ZM",
         "name": "",
         "cusip": "98956P102",
         "shares": 4750567,
         "valueMn": 467930.84,
         "pctPortfolio": 0.8
+      },
+      {
+        "ticker": "PAYC",
+        "name": "",
+        "cusip": "70432V102",
+        "shares": 1904534,
+        "valueMn": 396409.71,
+        "pctPortfolio": 0.6
+      },
+      {
+        "ticker": "UNP",
+        "name": "",
+        "cusip": "907818108",
+        "shares": 1465587,
+        "valueMn": 346420.7,
+        "pctPortfolio": 0.6
       },
       {
         "ticker": "GOOG",
@@ -197483,6 +197507,22 @@
         "pctPortfolio": 0.4
       },
       {
+        "ticker": "FLUT",
+        "name": "",
+        "cusip": "G3643J108",
+        "shares": 640181,
+        "valueMn": 162605.97,
+        "pctPortfolio": 0.3
+      },
+      {
+        "ticker": "RYAAY",
+        "name": "",
+        "cusip": "783513203",
+        "shares": 3060471,
+        "valueMn": 184301.56,
+        "pctPortfolio": 0.3
+      },
+      {
         "ticker": "HCA",
         "name": "",
         "cusip": "40412C101",
@@ -197504,6 +197544,14 @@
         "cusip": "037833100",
         "shares": 128803,
         "valueMn": 32797.11,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "BLK",
+        "name": "",
+        "cusip": "09290D101",
+        "shares": 66698,
+        "valueMn": 77761.2,
         "pctPortfolio": 0.1
       },
       {
@@ -197531,6 +197579,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "KKR",
+        "name": "",
+        "cusip": "48251W104",
+        "shares": 379906,
+        "valueMn": 49368.79,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "ABT",
         "name": "",
         "cusip": "002824100",
@@ -197555,11 +197611,27 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "BABA",
+        "name": "",
+        "cusip": "01609W102",
+        "shares": 2155,
+        "valueMn": 385.16,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "AMAT",
         "name": "",
         "cusip": "038222105",
         "shares": 2200,
         "valueMn": 450.43,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ADP",
+        "name": "",
+        "cusip": "053015103",
+        "shares": 805,
+        "valueMn": 236.27,
         "pctPortfolio": 0
       },
       {
@@ -197651,6 +197723,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "HDB",
+        "name": "",
+        "cusip": "40415F101",
+        "shares": 8756,
+        "valueMn": 299.11,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "HHH",
         "name": "",
         "cusip": "44267T102",
@@ -197670,8 +197750,8 @@
         "ticker": "IVV",
         "name": "",
         "cusip": "464287465",
-        "shares": 2001,
-        "valueMn": 269.18,
+        "shares": 3093,
+        "valueMn": 420.14,
         "pctPortfolio": 0
       },
       {
@@ -197712,6 +197792,14 @@
         "cusip": "615369105",
         "shares": 2600,
         "valueMn": 1238.85,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "MSI",
+        "name": "",
+        "cusip": "620076307",
+        "shares": 469,
+        "valueMn": 214.47,
         "pctPortfolio": 0
       },
       {
@@ -197803,6 +197891,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "TMO",
+        "name": "",
+        "cusip": "883556102",
+        "shares": 541,
+        "valueMn": 262.4,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "UNH",
         "name": "",
         "cusip": "91324P102",
@@ -197843,16 +197939,8 @@
     "filingDate": "2025-08-14",
     "reportDate": "2025-06-30",
     "totalValueMn": 61501169.03,
-    "holdingCount": 66,
+    "holdingCount": 81,
     "holdings": [
-      {
-        "ticker": "",
-        "name": "",
-        "cusip": "000957100",
-        "shares": 518940541,
-        "valueMn": 32988958.54,
-        "pctPortfolio": 53.6
-      },
       {
         "ticker": "GOOGL",
         "name": "",
@@ -197884,6 +197972,22 @@
         "shares": 14237331,
         "valueMn": 1884168.44,
         "pctPortfolio": 3.1
+      },
+      {
+        "ticker": "ICE",
+        "name": "",
+        "cusip": "45866F104",
+        "shares": 10270241,
+        "valueMn": 1884281.07,
+        "pctPortfolio": 3.1
+      },
+      {
+        "ticker": "IQV",
+        "name": "",
+        "cusip": "46266C105",
+        "shares": 11753182,
+        "valueMn": 1852183.96,
+        "pctPortfolio": 3
       },
       {
         "ticker": "COP",
@@ -197926,12 +198030,28 @@
         "pctPortfolio": 2.2
       },
       {
+        "ticker": "EFX",
+        "name": "",
+        "cusip": "294429105",
+        "shares": 5107787,
+        "valueMn": 1324806.71,
+        "pctPortfolio": 2.2
+      },
+      {
         "ticker": "GM",
         "name": "",
         "cusip": "37045V100",
         "shares": 25303360,
         "valueMn": 1245178.33,
         "pctPortfolio": 2
+      },
+      {
+        "ticker": "WTW",
+        "name": "",
+        "cusip": "G96629103",
+        "shares": 3786257,
+        "valueMn": 1160487.66,
+        "pctPortfolio": 1.9
       },
       {
         "ticker": "CNC",
@@ -197964,6 +198084,14 @@
         "shares": 5330732,
         "valueMn": 919071.45,
         "pctPortfolio": 1.5
+      },
+      {
+        "ticker": "ELV",
+        "name": "",
+        "cusip": "036752103",
+        "shares": 2287565,
+        "valueMn": 889771.21,
+        "pctPortfolio": 1.4
       },
       {
         "ticker": "CRM",
@@ -198022,6 +198150,22 @@
         "pctPortfolio": 0.9
       },
       {
+        "ticker": "PAYC",
+        "name": "",
+        "cusip": "70432V102",
+        "shares": 2081854,
+        "valueMn": 481741.02,
+        "pctPortfolio": 0.8
+      },
+      {
+        "ticker": "MOH",
+        "name": "",
+        "cusip": "60855R100",
+        "shares": 1541308,
+        "valueMn": 459155.65,
+        "pctPortfolio": 0.7
+      },
+      {
         "ticker": "ZM",
         "name": "",
         "cusip": "98956P102",
@@ -198046,11 +198190,35 @@
         "pctPortfolio": 0.4
       },
       {
+        "ticker": "BLK",
+        "name": "",
+        "cusip": "09290D101",
+        "shares": 260716,
+        "valueMn": 273556.73,
+        "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "FLUT",
+        "name": "",
+        "cusip": "G3643J108",
+        "shares": 808559,
+        "valueMn": 231053.82,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "ORCL",
         "name": "",
         "cusip": "68389X105",
         "shares": 1023151,
         "valueMn": 223691.5,
+        "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "RYAAY",
+        "name": "",
+        "cusip": "783513203",
+        "shares": 3916432,
+        "valueMn": 225860.63,
         "pctPortfolio": 0.4
       },
       {
@@ -198110,6 +198278,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "KKR",
+        "name": "",
+        "cusip": "48251W104",
+        "shares": 430632,
+        "valueMn": 57286.98,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "ABT",
         "name": "",
         "cusip": "002824100",
@@ -198134,6 +198310,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "BABA",
+        "name": "",
+        "cusip": "01609W102",
+        "shares": 2515,
+        "valueMn": 285.23,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "AAPL",
         "name": "",
         "cusip": "037833100",
@@ -198147,6 +198331,14 @@
         "cusip": "038222105",
         "shares": 2200,
         "valueMn": 402.75,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ADP",
+        "name": "",
+        "cusip": "053015103",
+        "shares": 1605,
+        "valueMn": 494.98,
         "pctPortfolio": 0
       },
       {
@@ -198222,6 +198414,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "HDB",
+        "name": "",
+        "cusip": "40415F101",
+        "shares": 3000,
+        "valueMn": 230.01,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "HHH",
         "name": "",
         "cusip": "44267T102",
@@ -198241,8 +198441,8 @@
         "ticker": "IVV",
         "name": "",
         "cusip": "464287465",
-        "shares": 2452,
-        "valueMn": 320.64,
+        "shares": 3544,
+        "valueMn": 461.07,
         "pctPortfolio": 0
       },
       {
@@ -198334,6 +198534,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "SYK",
+        "name": "",
+        "cusip": "863667101",
+        "shares": 571,
+        "valueMn": 225.91,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "THC",
         "name": "",
         "cusip": "88033G407",
@@ -198372,6 +198580,14 @@
         "shares": 6104,
         "valueMn": 1464.96,
         "pctPortfolio": 0
+      },
+      {
+        "ticker": "ZTS",
+        "name": "",
+        "cusip": "98978V103",
+        "shares": 1405,
+        "valueMn": 219.11,
+        "pctPortfolio": 0
       }
     ]
   },
@@ -198382,16 +198598,8 @@
     "filingDate": "2025-05-15",
     "reportDate": "2025-03-31",
     "totalValueMn": 59549028.67,
-    "holdingCount": 58,
+    "holdingCount": 71,
     "holdings": [
-      {
-        "ticker": "",
-        "name": "",
-        "cusip": "000957100",
-        "shares": 555875466,
-        "valueMn": 33574283.43,
-        "pctPortfolio": 56.4
-      },
       {
         "ticker": "GOOGL",
         "name": "",
@@ -198407,6 +198615,22 @@
         "shares": 27612443,
         "valueMn": 2161502.01,
         "pctPortfolio": 3.6
+      },
+      {
+        "ticker": "ICE",
+        "name": "",
+        "cusip": "45866F104",
+        "shares": 11431282,
+        "valueMn": 1971896.06,
+        "pctPortfolio": 3.3
+      },
+      {
+        "ticker": "IQV",
+        "name": "",
+        "cusip": "46266C105",
+        "shares": 11169383,
+        "valueMn": 1969162.2,
+        "pctPortfolio": 3.3
       },
       {
         "ticker": "COP",
@@ -198481,12 +198705,36 @@
         "pctPortfolio": 2
       },
       {
+        "ticker": "WTW",
+        "name": "",
+        "cusip": "G96629103",
+        "shares": 3556504,
+        "valueMn": 1201920.61,
+        "pctPortfolio": 2
+      },
+      {
+        "ticker": "EFX",
+        "name": "",
+        "cusip": "294429105",
+        "shares": 4570557,
+        "valueMn": 1113204.95,
+        "pctPortfolio": 1.9
+      },
+      {
         "ticker": "C",
         "name": "",
         "cusip": "172967424",
         "shares": 15503339,
         "valueMn": 1100582,
         "pctPortfolio": 1.8
+      },
+      {
+        "ticker": "ELV",
+        "name": "",
+        "cusip": "036752103",
+        "shares": 2280159,
+        "valueMn": 991777.97,
+        "pctPortfolio": 1.7
       },
       {
         "ticker": "ALLY",
@@ -198518,6 +198766,14 @@
         "cusip": "58933Y105",
         "shares": 7469360,
         "valueMn": 670449.74,
+        "pctPortfolio": 1.1
+      },
+      {
+        "ticker": "PAYC",
+        "name": "",
+        "cusip": "70432V102",
+        "shares": 3040085,
+        "valueMn": 664197.77,
         "pctPortfolio": 1.1
       },
       {
@@ -198561,11 +198817,27 @@
         "pctPortfolio": 0.7
       },
       {
+        "ticker": "MOH",
+        "name": "",
+        "cusip": "60855R100",
+        "shares": 1047433,
+        "valueMn": 345013.96,
+        "pctPortfolio": 0.6
+      },
+      {
         "ticker": "STZ",
         "name": "",
         "cusip": "21036P108",
         "shares": 1728367,
         "valueMn": 317189.9,
+        "pctPortfolio": 0.5
+      },
+      {
+        "ticker": "RYAAY",
+        "name": "",
+        "cusip": "783513203",
+        "shares": 6376673,
+        "valueMn": 270179.64,
         "pctPortfolio": 0.5
       },
       {
@@ -198585,12 +198857,28 @@
         "pctPortfolio": 0.4
       },
       {
+        "ticker": "BLK",
+        "name": "",
+        "cusip": "09290D101",
+        "shares": 229134,
+        "valueMn": 216870.47,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "ORCL",
         "name": "",
         "cusip": "68389X105",
         "shares": 1103635,
         "valueMn": 154299.21,
         "pctPortfolio": 0.3
+      },
+      {
+        "ticker": "FLUT",
+        "name": "",
+        "cusip": "G3643J108",
+        "shares": 573575,
+        "valueMn": 127075.54,
+        "pctPortfolio": 0.2
       },
       {
         "ticker": "HCA",
@@ -198633,6 +198921,22 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "KKR",
+        "name": "",
+        "cusip": "48251W104",
+        "shares": 509361,
+        "valueMn": 58887.23,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "LPLA",
+        "name": "",
+        "cusip": "50212V100",
+        "shares": 135474,
+        "valueMn": 44318.96,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "MA",
         "name": "",
         "cusip": "57636Q104",
@@ -198649,11 +198953,27 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "BABA",
+        "name": "",
+        "cusip": "01609W102",
+        "shares": 109886,
+        "valueMn": 14530.23,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "AAPL",
         "name": "",
         "cusip": "037833100",
         "shares": 128542,
         "valueMn": 28553.03,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ADP",
+        "name": "",
+        "cusip": "053015103",
+        "shares": 1355,
+        "valueMn": 413.99,
         "pctPortfolio": 0
       },
       {
@@ -198732,8 +199052,8 @@
         "ticker": "IVV",
         "name": "",
         "cusip": "464287234",
-        "shares": 1466,
-        "valueMn": 180.64,
+        "shares": 3778,
+        "valueMn": 425.27,
         "pctPortfolio": 0
       },
       {
@@ -198857,16 +199177,8 @@
     "filingDate": "2025-02-14",
     "reportDate": "2024-12-31",
     "totalValueMn": 75993212.31,
-    "holdingCount": 56,
+    "holdingCount": 68,
     "holdings": [
-      {
-        "ticker": "",
-        "name": "",
-        "cusip": "000957100",
-        "shares": 18095331575,
-        "valueMn": 48710371.53,
-        "pctPortfolio": 64.1
-      },
       {
         "ticker": "GOOGL",
         "name": "",
@@ -198874,6 +199186,14 @@
         "shares": 16490303,
         "valueMn": 3121614.42,
         "pctPortfolio": 4.1
+      },
+      {
+        "ticker": "IQV",
+        "name": "",
+        "cusip": "46266C105",
+        "shares": 11335677,
+        "valueMn": 2227573.88,
+        "pctPortfolio": 2.9
       },
       {
         "ticker": "COF",
@@ -198890,6 +199210,14 @@
         "shares": 27689365,
         "valueMn": 2049289.88,
         "pctPortfolio": 2.7
+      },
+      {
+        "ticker": "ICE",
+        "name": "",
+        "cusip": "45866F104",
+        "shares": 13408507,
+        "valueMn": 1998001.62,
+        "pctPortfolio": 2.6
       },
       {
         "ticker": "FE",
@@ -198956,6 +199284,22 @@
         "pctPortfolio": 1.5
       },
       {
+        "ticker": "WTW",
+        "name": "",
+        "cusip": "G96629103",
+        "shares": 3519884,
+        "valueMn": 1102568.55,
+        "pctPortfolio": 1.5
+      },
+      {
+        "ticker": "EFX",
+        "name": "",
+        "cusip": "294429105",
+        "shares": 3582785,
+        "valueMn": 913072.77,
+        "pctPortfolio": 1.2
+      },
+      {
         "ticker": "KEYS",
         "name": "",
         "cusip": "49271V100",
@@ -198993,6 +199337,22 @@
         "cusip": "023135106",
         "shares": 3229040,
         "valueMn": 708419.09,
+        "pctPortfolio": 0.9
+      },
+      {
+        "ticker": "ELV",
+        "name": "",
+        "cusip": "036752103",
+        "shares": 1821284,
+        "valueMn": 671871.62,
+        "pctPortfolio": 0.9
+      },
+      {
+        "ticker": "PAYC",
+        "name": "",
+        "cusip": "70432V102",
+        "shares": 3502881,
+        "valueMn": 717985.52,
         "pctPortfolio": 0.9
       },
       {
@@ -199036,6 +199396,14 @@
         "pctPortfolio": 0.4
       },
       {
+        "ticker": "RYAAY",
+        "name": "",
+        "cusip": "783513203",
+        "shares": 7230765,
+        "valueMn": 315189.05,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "SYF",
         "name": "",
         "cusip": "871829107",
@@ -199050,6 +199418,14 @@
         "shares": 870151,
         "valueMn": 275002.52,
         "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "BLK",
+        "name": "",
+        "cusip": "09290D101",
+        "shares": 227631,
+        "valueMn": 233347.16,
+        "pctPortfolio": 0.3
       },
       {
         "ticker": "CVS",
@@ -199116,12 +199492,44 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "KKR",
+        "name": "",
+        "cusip": "48251W104",
+        "shares": 715717,
+        "valueMn": 105861.7,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "LBTYK",
+        "name": "",
+        "cusip": "G61188101",
+        "shares": 6934484,
+        "valueMn": 88484.02,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "LPLA",
+        "name": "",
+        "cusip": "50212V100",
+        "shares": 195474,
+        "valueMn": 63824.22,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "MA",
         "name": "",
         "cusip": "57636Q104",
         "shares": 131627,
         "valueMn": 69310.76,
         "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "BABA",
+        "name": "",
+        "cusip": "01609W102",
+        "shares": 188986,
+        "valueMn": 16024.12,
+        "pctPortfolio": 0
       },
       {
         "ticker": "ATVI",
@@ -199137,6 +199545,14 @@
         "cusip": "037833100",
         "shares": 129560,
         "valueMn": 32444.42,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ADP",
+        "name": "",
+        "cusip": "053015103",
+        "shares": 1355,
+        "valueMn": 396.65,
         "pctPortfolio": 0
       },
       {
@@ -199191,8 +199607,8 @@
         "ticker": "IVV",
         "name": "",
         "cusip": "464287234",
-        "shares": 60703,
-        "valueMn": 11119.29,
+        "shares": 63409,
+        "valueMn": 11410.75,
         "pctPortfolio": 0
       },
       {
@@ -199316,16 +199732,8 @@
     "filingDate": "2024-11-14",
     "reportDate": "2024-09-30",
     "totalValueMn": 76620609.3,
-    "holdingCount": 55,
+    "holdingCount": 65,
     "holdings": [
-      {
-        "ticker": "",
-        "name": "",
-        "cusip": "000957100",
-        "shares": 18148643544,
-        "valueMn": 49130491.77,
-        "pctPortfolio": 64.1
-      },
       {
         "ticker": "GOOGL",
         "name": "",
@@ -199343,11 +199751,27 @@
         "pctPortfolio": 3.2
       },
       {
+        "ticker": "IQV",
+        "name": "",
+        "cusip": "46266C105",
+        "shares": 10179104,
+        "valueMn": 2412142.17,
+        "pctPortfolio": 3.1
+      },
+      {
         "ticker": "COF",
         "name": "",
         "cusip": "14040H105",
         "shares": 14454114,
         "valueMn": 2164214.44,
+        "pctPortfolio": 2.8
+      },
+      {
+        "ticker": "ICE",
+        "name": "",
+        "cusip": "45866F104",
+        "shares": 13292211,
+        "valueMn": 2135260.78,
         "pctPortfolio": 2.8
       },
       {
@@ -199415,6 +199839,14 @@
         "pctPortfolio": 1.7
       },
       {
+        "ticker": "WTW",
+        "name": "",
+        "cusip": "G96629103",
+        "shares": 3577799,
+        "valueMn": 1053769.17,
+        "pctPortfolio": 1.4
+      },
+      {
         "ticker": "C",
         "name": "",
         "cusip": "172967424",
@@ -199447,6 +199879,14 @@
         "pctPortfolio": 0.9
       },
       {
+        "ticker": "PAYC",
+        "name": "",
+        "cusip": "70432V102",
+        "shares": 4051001,
+        "valueMn": 674775.24,
+        "pctPortfolio": 0.9
+      },
+      {
         "ticker": "DELL",
         "name": "",
         "cusip": "247361702",
@@ -199455,12 +199895,28 @@
         "pctPortfolio": 0.8
       },
       {
+        "ticker": "EFX",
+        "name": "",
+        "cusip": "294429105",
+        "shares": 1820948,
+        "valueMn": 535103.77,
+        "pctPortfolio": 0.7
+      },
+      {
         "ticker": "GPN",
         "name": "",
         "cusip": "37940X102",
         "shares": 5026407,
         "valueMn": 514804.59,
         "pctPortfolio": 0.7
+      },
+      {
+        "ticker": "RYAAY",
+        "name": "",
+        "cusip": "783513203",
+        "shares": 10265761,
+        "valueMn": 463807.08,
+        "pctPortfolio": 0.6
       },
       {
         "ticker": "CVS",
@@ -199551,6 +200007,14 @@
         "pctPortfolio": 0.2
       },
       {
+        "ticker": "LBTYK",
+        "name": "",
+        "cusip": "G61188101",
+        "shares": 8594315,
+        "valueMn": 181425.99,
+        "pctPortfolio": 0.2
+      },
+      {
         "ticker": "AXP",
         "name": "",
         "cusip": "025816109",
@@ -199583,6 +200047,22 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "KKR",
+        "name": "",
+        "cusip": "48251W104",
+        "shares": 806502,
+        "valueMn": 105313.03,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "LPLA",
+        "name": "",
+        "cusip": "50212V100",
+        "shares": 212238,
+        "valueMn": 49372.93,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "MA",
         "name": "",
         "cusip": "57636Q104",
@@ -199596,6 +200076,14 @@
         "cusip": "037833100",
         "shares": 128731,
         "valueMn": 29994.32,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ADP",
+        "name": "",
+        "cusip": "053015103",
+        "shares": 2305,
+        "valueMn": 637.86,
         "pctPortfolio": 0
       },
       {
@@ -199639,11 +200127,19 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "IT",
+        "name": "",
+        "cusip": "366651107",
+        "shares": 465,
+        "valueMn": 235.64,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "IVV",
         "name": "",
         "cusip": "464287234",
-        "shares": 2174,
-        "valueMn": 218.25,
+        "shares": 6123,
+        "valueMn": 662.91,
         "pctPortfolio": 0
       },
       {
@@ -199767,16 +200263,8 @@
     "filingDate": "2024-08-14",
     "reportDate": "2024-06-30",
     "totalValueMn": 59081039.34,
-    "holdingCount": 52,
+    "holdingCount": 61,
     "holdings": [
-      {
-        "ticker": "",
-        "name": "",
-        "cusip": "000957100",
-        "shares": 667927754,
-        "valueMn": 31252214.99,
-        "pctPortfolio": 52.9
-      },
       {
         "ticker": "GOOGL",
         "name": "",
@@ -199784,6 +200272,14 @@
         "shares": 18223963,
         "valueMn": 3319494.89,
         "pctPortfolio": 5.6
+      },
+      {
+        "ticker": "IQV",
+        "name": "",
+        "cusip": "46266C105",
+        "shares": 10671294,
+        "valueMn": 2256338.39,
+        "pctPortfolio": 3.8
       },
       {
         "ticker": "FE",
@@ -199800,6 +200296,14 @@
         "shares": 15180437,
         "valueMn": 2101731.51,
         "pctPortfolio": 3.6
+      },
+      {
+        "ticker": "ICE",
+        "name": "",
+        "cusip": "45866F104",
+        "shares": 14923498,
+        "valueMn": 2042877.66,
+        "pctPortfolio": 3.5
       },
       {
         "ticker": "CHTR",
@@ -199874,6 +200378,14 @@
         "pctPortfolio": 1.7
       },
       {
+        "ticker": "WTW",
+        "name": "",
+        "cusip": "G96629103",
+        "shares": 3895800,
+        "valueMn": 1021245.14,
+        "pctPortfolio": 1.7
+      },
+      {
         "ticker": "ALLY",
         "name": "",
         "cusip": "02005N100",
@@ -199898,6 +200410,14 @@
         "pctPortfolio": 1.4
       },
       {
+        "ticker": "PAYC",
+        "name": "",
+        "cusip": "70432V102",
+        "shares": 4027183,
+        "valueMn": 576048.26,
+        "pctPortfolio": 1
+      },
+      {
         "ticker": "ATVI",
         "name": "",
         "cusip": "02209S103",
@@ -199911,6 +200431,22 @@
         "cusip": "247361702",
         "shares": 11713545,
         "valueMn": 555690.55,
+        "pctPortfolio": 0.9
+      },
+      {
+        "ticker": "EFX",
+        "name": "",
+        "cusip": "294429105",
+        "shares": 2290220,
+        "valueMn": 555286.63,
+        "pctPortfolio": 0.9
+      },
+      {
+        "ticker": "RYAAY",
+        "name": "",
+        "cusip": "783513203",
+        "shares": 4568021,
+        "valueMn": 531900.37,
         "pctPortfolio": 0.9
       },
       {
@@ -199970,6 +200506,14 @@
         "pctPortfolio": 0.4
       },
       {
+        "ticker": "LBTYK",
+        "name": "",
+        "cusip": "G61188101",
+        "shares": 12352538,
+        "valueMn": 215304.74,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "V",
         "name": "",
         "cusip": "92826C839",
@@ -200007,6 +200551,14 @@
         "cusip": "44267T102",
         "shares": 1955002,
         "valueMn": 126723.23,
+        "pctPortfolio": 0.2
+      },
+      {
+        "ticker": "KKR",
+        "name": "",
+        "cusip": "48251W104",
+        "shares": 1179942,
+        "valueMn": 124177.1,
         "pctPortfolio": 0.2
       },
       {
@@ -200058,6 +200610,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "ADP",
+        "name": "",
+        "cusip": "053015103",
+        "shares": 2605,
+        "valueMn": 621.79,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "BRK.B",
         "name": "",
         "cusip": "084670702",
@@ -200095,6 +200655,14 @@
         "cusip": "25243Q205",
         "shares": 10741,
         "valueMn": 1354.23,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "IT",
+        "name": "",
+        "cusip": "366651107",
+        "shares": 1711,
+        "valueMn": 768.34,
         "pctPortfolio": 0
       },
       {
@@ -200194,16 +200762,8 @@
     "filingDate": "2024-05-15",
     "reportDate": "2024-03-31",
     "totalValueMn": 61819148.88,
-    "holdingCount": 50,
+    "holdingCount": 59,
     "holdings": [
-      {
-        "ticker": "",
-        "name": "",
-        "cusip": "000957100",
-        "shares": 626577212,
-        "valueMn": 32355362.45,
-        "pctPortfolio": 52.3
-      },
       {
         "ticker": "GOOGL",
         "name": "",
@@ -200211,6 +200771,14 @@
         "shares": 19739050,
         "valueMn": 2979214.79,
         "pctPortfolio": 4.8
+      },
+      {
+        "ticker": "IQV",
+        "name": "",
+        "cusip": "46266C105",
+        "shares": 10143388,
+        "valueMn": 2565161.31,
+        "pctPortfolio": 4.1
       },
       {
         "ticker": "COF",
@@ -200227,6 +200795,14 @@
         "shares": 14320360,
         "valueMn": 2288680,
         "pctPortfolio": 3.7
+      },
+      {
+        "ticker": "ICE",
+        "name": "",
+        "cusip": "45866F104",
+        "shares": 15110721,
+        "valueMn": 2076666.36,
+        "pctPortfolio": 3.4
       },
       {
         "ticker": "BAC",
@@ -200285,6 +200861,22 @@
         "pctPortfolio": 2.2
       },
       {
+        "ticker": "WTW",
+        "name": "",
+        "cusip": "G96629103",
+        "shares": 3980434,
+        "valueMn": 1094619.37,
+        "pctPortfolio": 1.8
+      },
+      {
+        "ticker": "KKR",
+        "name": "",
+        "cusip": "48251W104",
+        "shares": 10676301,
+        "valueMn": 1073822.39,
+        "pctPortfolio": 1.7
+      },
+      {
         "ticker": "AMZN",
         "name": "",
         "cusip": "023135106",
@@ -200341,12 +200933,28 @@
         "pctPortfolio": 1.2
       },
       {
+        "ticker": "PAYC",
+        "name": "",
+        "cusip": "70432V102",
+        "shares": 3393155,
+        "valueMn": 675271.78,
+        "pctPortfolio": 1.1
+      },
+      {
         "ticker": "ORCL",
         "name": "",
         "cusip": "68389X105",
         "shares": 4871823,
         "valueMn": 611949.71,
         "pctPortfolio": 1
+      },
+      {
+        "ticker": "RYAAY",
+        "name": "",
+        "cusip": "783513203",
+        "shares": 3707100,
+        "valueMn": 539716.69,
+        "pctPortfolio": 0.9
       },
       {
         "ticker": "ATVI",
@@ -200413,6 +201021,14 @@
         "pctPortfolio": 0.4
       },
       {
+        "ticker": "LBTYK",
+        "name": "",
+        "cusip": "G61188101",
+        "shares": 13707493,
+        "valueMn": 231930.78,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "V",
         "name": "",
         "cusip": "92826C839",
@@ -200427,6 +201043,14 @@
         "shares": 548266,
         "valueMn": 182863.16,
         "pctPortfolio": 0.3
+      },
+      {
+        "ticker": "EFX",
+        "name": "",
+        "cusip": "294429105",
+        "shares": 373378,
+        "valueMn": 99886.21,
+        "pctPortfolio": 0.2
       },
       {
         "ticker": "HLT",
@@ -200477,6 +201101,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "ADP",
+        "name": "",
+        "cusip": "053015103",
+        "shares": 3619,
+        "valueMn": 903.81,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "BRK.B",
         "name": "",
         "cusip": "084670702",
@@ -200522,6 +201154,14 @@
         "cusip": "29786A106",
         "shares": 18680,
         "valueMn": 1283.69,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "IT",
+        "name": "",
+        "cusip": "366651107",
+        "shares": 2306,
+        "valueMn": 1099.2,
         "pctPortfolio": 0
       },
       {
@@ -203977,7 +204617,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "EXPAND ENE",
+        "ticker": "EXE",
         "name": "EXPAND ENERGY CORPORATION",
         "cusip": "165167172",
         "shares": 182719,
@@ -204001,7 +204641,7 @@
     "filingDate": "2025-02-10",
     "reportDate": "2024-12-31",
     "totalValueMn": 6463901.9,
-    "holdingCount": 35,
+    "holdingCount": 36,
     "holdings": [
       {
         "ticker": "BABA",
@@ -204212,14 +204852,6 @@
         "pctPortfolio": 1.1
       },
       {
-        "ticker": "EXPAND ENE",
-        "name": "EXPAND ENERGY CORPORATION",
-        "cusip": "165167172",
-        "shares": 695000,
-        "valueMn": 64924,
-        "pctPortfolio": 1
-      },
-      {
         "ticker": "TSM",
         "name": "TAIWAN SEMICONDUCTOR MFG LTD",
         "cusip": "874039100",
@@ -204260,11 +204892,27 @@
         "pctPortfolio": 0.6
       },
       {
+        "ticker": "EXE",
+        "name": "EXPAND ENERGY CORPORATION",
+        "cusip": "165167172",
+        "shares": 400000,
+        "valueMn": 35556.75,
+        "pctPortfolio": 0.6
+      },
+      {
         "ticker": "ANTERO RES",
         "name": "ANTERO RESOURCES CORP",
         "cusip": "03674X106",
         "shares": 840000,
         "valueMn": 29442,
+        "pctPortfolio": 0.5
+      },
+      {
+        "ticker": "CHK",
+        "name": "EXPAND ENERGY CORPORATION",
+        "cusip": "165167735",
+        "shares": 295000,
+        "valueMn": 29367.25,
         "pctPortfolio": 0.5
       },
       {
@@ -204292,7 +204940,7 @@
     "filingDate": "2024-11-14",
     "reportDate": "2024-09-30",
     "totalValueMn": 6731933.58,
-    "holdingCount": 36,
+    "holdingCount": 37,
     "holdings": [
       {
         "ticker": "BABA",
@@ -204479,7 +205127,7 @@
         "pctPortfolio": 1.3
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 100000,
@@ -204551,20 +205199,20 @@
         "pctPortfolio": 0.7
       },
       {
-        "ticker": "CHESAPEAKE",
-        "name": "CHESAPEAKE ENERGY CORP",
-        "cusip": "165167172",
-        "shares": 565000,
-        "valueMn": 40831.5,
-        "pctPortfolio": 0.6
-      },
-      {
         "ticker": "KE HLDGS",
         "name": "KE HLDGS INC",
         "cusip": "482497104",
         "shares": 2175000,
         "valueMn": 43304.25,
         "pctPortfolio": 0.6
+      },
+      {
+        "ticker": "EXE",
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167172",
+        "shares": 400000,
+        "valueMn": 27260.25,
+        "pctPortfolio": 0.4
       },
       {
         "ticker": "MPLX",
@@ -204581,6 +205229,14 @@
         "shares": 4180000,
         "valueMn": 29719.8,
         "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "CHK",
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167735",
+        "shares": 165000,
+        "valueMn": 13571.25,
+        "pctPortfolio": 0.2
       }
     ]
   },
@@ -204591,7 +205247,7 @@
     "filingDate": "2024-08-14",
     "reportDate": "2024-06-30",
     "totalValueMn": 6175369.74,
-    "holdingCount": 35,
+    "holdingCount": 36,
     "holdings": [
       {
         "ticker": "BABA",
@@ -204722,7 +205378,7 @@
         "pctPortfolio": 2
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 109000,
@@ -204826,14 +205482,6 @@
         "pctPortfolio": 1
       },
       {
-        "ticker": "CHESAPEAKE",
-        "name": "CHESAPEAKE ENERGY CORP",
-        "cusip": "165167172",
-        "shares": 588000,
-        "valueMn": 42633.72,
-        "pctPortfolio": 0.7
-      },
-      {
         "ticker": "BOEING",
         "name": "BOEING CO",
         "cusip": "097023105",
@@ -204858,6 +205506,14 @@
         "pctPortfolio": 0.5
       },
       {
+        "ticker": "EXE",
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167172",
+        "shares": 400000,
+        "valueMn": 27182,
+        "pctPortfolio": 0.4
+      },
+      {
         "ticker": "MACYS",
         "name": "MACYS INC",
         "cusip": "55616P104",
@@ -204872,6 +205528,14 @@
         "shares": 611500,
         "valueMn": 26043.79,
         "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "CHK",
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167735",
+        "shares": 188000,
+        "valueMn": 15451.72,
+        "pctPortfolio": 0.3
       }
     ]
   },
@@ -204882,7 +205546,7 @@
     "filingDate": "2024-05-15",
     "reportDate": "2024-03-31",
     "totalValueMn": 6754832.66,
-    "holdingCount": 36,
+    "holdingCount": 37,
     "holdings": [
       {
         "ticker": "BABA",
@@ -205021,7 +205685,7 @@
         "pctPortfolio": 2
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 115000,
@@ -205109,20 +205773,20 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "CHESAPEAKE",
-        "name": "CHESAPEAKE ENERGY CORP",
-        "cusip": "165167172",
-        "shares": 603000,
-        "valueMn": 49184.99,
-        "pctPortfolio": 0.7
-      },
-      {
         "ticker": "BOEING",
         "name": "BOEING CO",
         "cusip": "097023105",
         "shares": 225000,
         "valueMn": 43422.75,
         "pctPortfolio": 0.6
+      },
+      {
+        "ticker": "EXE",
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167172",
+        "shares": 400000,
+        "valueMn": 31152.5,
+        "pctPortfolio": 0.5
       },
       {
         "ticker": "SOUTHWESTE",
@@ -205147,6 +205811,14 @@
         "shares": 660000,
         "valueMn": 27429.6,
         "pctPortfolio": 0.4
+      },
+      {
+        "ticker": "CHK",
+        "name": "CHESAPEAKE ENERGY CORP",
+        "cusip": "165167735",
+        "shares": 203000,
+        "valueMn": 18032.49,
+        "pctPortfolio": 0.3
       },
       {
         "ticker": "KE HLDGS",
@@ -207391,7 +208063,7 @@
         "pctPortfolio": 1.3
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 353183,
@@ -207714,7 +208386,7 @@
         "pctPortfolio": 1.9
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 353183,
@@ -208077,7 +208749,7 @@
         "pctPortfolio": 2.2
       },
       {
-        "ticker": "LAM RESEAR",
+        "ticker": "LRCX",
         "name": "LAM RESEARCH CORP",
         "cusip": "512807108",
         "shares": 353183,
@@ -208976,7 +209648,7 @@
         "pctPortfolio": 13.5
       },
       {
-        "ticker": "KKR &AMP; ",
+        "ticker": "KKR",
         "name": "KKR &amp; CO L P DEL",
         "cusip": "48251w104",
         "shares": 8106049,
@@ -209131,7 +209803,7 @@
         "pctPortfolio": 13.1
       },
       {
-        "ticker": "KKR &AMP; ",
+        "ticker": "KKR",
         "name": "KKR &amp; CO L P DEL",
         "cusip": "48251w104",
         "shares": 8713264,
@@ -209294,7 +209966,7 @@
         "pctPortfolio": 11.6
       },
       {
-        "ticker": "KKR &AMP; ",
+        "ticker": "KKR",
         "name": "KKR &amp; CO L P DEL",
         "cusip": "48251w104",
         "shares": 8847564,
@@ -209473,7 +210145,7 @@
         "pctPortfolio": 10.7
       },
       {
-        "ticker": "KKR &AMP; ",
+        "ticker": "KKR",
         "name": "KKR &amp; CO L P DEL",
         "cusip": "48251w104",
         "shares": 8847564,
@@ -209604,7 +210276,7 @@
         "pctPortfolio": 16.9
       },
       {
-        "ticker": "KKR &AMP; ",
+        "ticker": "KKR",
         "name": "KKR &amp; CO L P DEL",
         "cusip": "48251w104",
         "shares": 10283564,
@@ -209767,7 +210439,7 @@
         "pctPortfolio": 13.3
       },
       {
-        "ticker": "KKR &AMP; ",
+        "ticker": "KKR",
         "name": "KKR &amp; CO L P DEL",
         "cusip": "48251w104",
         "shares": 11393836,
@@ -209922,7 +210594,7 @@
         "pctPortfolio": 15.6
       },
       {
-        "ticker": "KKR &AMP; ",
+        "ticker": "KKR",
         "name": "KKR &amp; CO L P DEL",
         "cusip": "48251w104",
         "shares": 13689816,
@@ -210085,7 +210757,7 @@
         "pctPortfolio": 14.5
       },
       {
-        "ticker": "KKR &AMP; ",
+        "ticker": "KKR",
         "name": "KKR &amp; CO L P DEL",
         "cusip": "48251w104",
         "shares": 14879551,
@@ -215888,7 +216560,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "AURORA INN",
+        "ticker": "AUR",
         "name": "AURORA INNOVATION INC",
         "cusip": "051774115",
         "shares": 2867463,
@@ -216235,7 +216907,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "AURORA INN",
+        "ticker": "AUR",
         "name": "AURORA INNOVATION INC",
         "cusip": "051774115",
         "shares": 2867463,
@@ -216566,7 +217238,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "AURORA INN",
+        "ticker": "AUR",
         "name": "AURORA INNOVATION INC",
         "cusip": "051774115",
         "shares": 2867463,
@@ -216929,7 +217601,7 @@
         "pctPortfolio": 0.4
       },
       {
-        "ticker": "AURORA INN",
+        "ticker": "AUR",
         "name": "AURORA INNOVATION INC",
         "cusip": "051774115",
         "shares": 2867463,
@@ -217236,7 +217908,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "AURORA INN",
+        "ticker": "AUR",
         "name": "AURORA INNOVATION INC",
         "cusip": "051774115",
         "shares": 2867463,
@@ -217543,7 +218215,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "AURORA INN",
+        "ticker": "AUR",
         "name": "AURORA INNOVATION INC",
         "cusip": "051774115",
         "shares": 2867463,
@@ -217890,7 +218562,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "AURORA INN",
+        "ticker": "AUR",
         "name": "AURORA INNOVATION INC",
         "cusip": "051774115",
         "shares": 2867463,
@@ -218173,7 +218845,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "AURORA INN",
+        "ticker": "AUR",
         "name": "AURORA INNOVATION INC",
         "cusip": "051774115",
         "shares": 2867463,
@@ -222808,7 +223480,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "U HAUL HOL",
+        "ticker": "UHAL",
         "name": "U HAUL HOLDING COMPANY",
         "cusip": "023586506",
         "shares": 40000,
@@ -222912,7 +223584,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA PETRO",
         "cusip": "71654V408",
         "shares": 50000,
@@ -223315,7 +223987,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "U HAUL HOL",
+        "ticker": "UHAL",
         "name": "U HAUL HOLDING COMPANY",
         "cusip": "023586506",
         "shares": 34000,
@@ -223411,7 +224083,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA PETRO",
         "cusip": "71654V408",
         "shares": 50000,
@@ -223838,7 +224510,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "U HAUL HOL",
+        "ticker": "UHAL",
         "name": "U HAUL HOLDING COMPANY",
         "cusip": "023586506",
         "shares": 19100,
@@ -223902,7 +224574,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA PETRO",
         "cusip": "71654V408",
         "shares": 50000,
@@ -224361,7 +225033,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "U HAUL HOL",
+        "ticker": "UHAL",
         "name": "U HAUL HOLDING COMPANY",
         "cusip": "023586506",
         "shares": 17100,
@@ -224433,7 +225105,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA PETRO",
         "cusip": "71654V408",
         "shares": 50000,
@@ -224868,7 +225540,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "U HAUL HOL",
+        "ticker": "UHAL",
         "name": "U HAUL HOLDING COMPANY",
         "cusip": "023586506",
         "shares": 17100,
@@ -224948,7 +225620,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA PETRO",
         "cusip": "71654V408",
         "shares": 50000,
@@ -225463,7 +226135,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA PETRO",
         "cusip": "71654V408",
         "shares": 50000,
@@ -225954,7 +226626,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA PETRO",
         "cusip": "71654V408",
         "shares": 50000,
@@ -226405,7 +227077,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "PETROLEO B",
+        "ticker": "PBR",
         "name": "PETROLEO BRASILEIRO SA PETRO",
         "cusip": "71654V408",
         "shares": 50000,
@@ -229209,7 +229881,7 @@
         "pctPortfolio": 1.3
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "ARISTA NETWORKS INC",
         "cusip": "040413106",
         "shares": 466528,
@@ -229604,7 +230276,7 @@
         "pctPortfolio": 1.8
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "ARISTA NETWORKS INC",
         "cusip": "040413106",
         "shares": 410428,
@@ -230087,7 +230759,7 @@
         "pctPortfolio": 1.8
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "ARISTA NETWORKS INC",
         "cusip": "040413106",
         "shares": 106670,
@@ -230522,7 +231194,7 @@
         "pctPortfolio": 1.6
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "ARISTA NETWORKS INC",
         "cusip": "040413106",
         "shares": 97619,
@@ -230949,7 +231621,7 @@
         "pctPortfolio": 1.2
       },
       {
-        "ticker": "ARISTA NET",
+        "ticker": "ANET",
         "name": "ARISTA NETWORKS INC",
         "cusip": "040413106",
         "shares": 95613,
@@ -231841,7 +232513,7 @@
     "filingDate": "2026-01-23",
     "reportDate": "2025-12-31",
     "totalValueMn": 119962595.43,
-    "holdingCount": 263,
+    "holdingCount": 262,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -231871,8 +232543,8 @@
         "ticker": "SHOP",
         "name": "Shopify &apos;A&apos;",
         "cusip": "82509L107",
-        "shares": 31204012,
-        "valueMn": 5022909.81,
+        "shares": 31206232,
+        "valueMn": 5023267.73,
         "pctPortfolio": 4.2
       },
       {
@@ -232388,7 +233060,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "PETROBRAS ",
+        "ticker": "PBR",
         "name": "Petrobras Common ADR",
         "cusip": "71654V408",
         "shares": 33292290,
@@ -233180,7 +233852,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CABLE ONE ",
+        "ticker": "CABO",
         "name": "Cable One Convertible 1.125 2028",
         "cusip": "12685JAG0",
         "shares": 9435000,
@@ -233716,14 +234388,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SHOP",
-        "name": "Shopify Inc",
-        "cusip": "82509L107",
-        "shares": 2220,
-        "valueMn": 357.92,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "SILVERCORP",
         "name": "Silvercorp Metals Inc",
         "cusip": "82835P103",
@@ -233956,7 +234620,7 @@
     "filingDate": "2025-10-31",
     "reportDate": "2025-09-30",
     "totalValueMn": 134628463.02,
-    "holdingCount": 263,
+    "holdingCount": 262,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -234002,8 +234666,8 @@
         "ticker": "SHOP",
         "name": "Shopify &apos;A&apos;",
         "cusip": "82509L107",
-        "shares": 35441559,
-        "valueMn": 5266970.08,
+        "shares": 35443787,
+        "valueMn": 5267301.16,
         "pctPortfolio": 3.9
       },
       {
@@ -234479,7 +235143,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "PETROBRAS ",
+        "ticker": "PBR",
         "name": "Petrobras Common ADR",
         "cusip": "71654V408",
         "shares": 35861508,
@@ -235271,7 +235935,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CABLE ONE ",
+        "ticker": "CABO",
         "name": "Cable One Convertible 1.125 2028",
         "cusip": "12685JAG0",
         "shares": 7373000,
@@ -235831,14 +236495,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SHOP",
-        "name": "Shopify Inc",
-        "cusip": "82509L107",
-        "shares": 2228,
-        "valueMn": 331.08,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "SKYWATER T",
         "name": "SkyWater Technology",
         "cusip": "83089J108",
@@ -236071,7 +236727,7 @@
     "filingDate": "2025-08-06",
     "reportDate": "2025-06-30",
     "totalValueMn": 133482959.97,
-    "holdingCount": 260,
+    "holdingCount": 259,
     "holdings": [
       {
         "ticker": "MELI",
@@ -236141,8 +236797,8 @@
         "ticker": "SHOP",
         "name": "Shopify &apos;A&apos;",
         "cusip": "82509L107",
-        "shares": 37745557,
-        "valueMn": 4353950,
+        "shares": 37748072,
+        "valueMn": 4354239.49,
         "pctPortfolio": 3.3
       },
       {
@@ -236450,7 +237106,7 @@
         "pctPortfolio": 0.4
       },
       {
-        "ticker": "PETROBRAS ",
+        "ticker": "PBR",
         "name": "Petrobras Common ADR",
         "cusip": "71654V408",
         "shares": 46928005,
@@ -237330,7 +237986,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CABLE ONE ",
+        "ticker": "CABO",
         "name": "Cable One Convertible",
         "cusip": "12685JAG0",
         "shares": 4888000,
@@ -237914,14 +238570,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SHOP",
-        "name": "Shopify Inc",
-        "cusip": "82509L107",
-        "shares": 2515,
-        "valueMn": 289.49,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "SKYWATER T",
         "name": "SkyWater Technology",
         "cusip": "83089J108",
@@ -238162,7 +238810,7 @@
     "filingDate": "2025-05-07",
     "reportDate": "2025-03-31",
     "totalValueMn": 114181537.27,
-    "holdingCount": 261,
+    "holdingCount": 260,
     "holdings": [
       {
         "ticker": "MELI",
@@ -238192,8 +238840,8 @@
         "ticker": "SHOP",
         "name": "Shopify &apos;A&apos;",
         "cusip": "82509L107",
-        "shares": 55875233,
-        "valueMn": 5334967.25,
+        "shares": 55877748,
+        "valueMn": 5335206.47,
         "pctPortfolio": 4.7
       },
       {
@@ -238405,7 +239053,7 @@
         "pctPortfolio": 0.7
       },
       {
-        "ticker": "PETROBRAS ",
+        "ticker": "PBR",
         "name": "Petrobras Common ADR",
         "cusip": "71654V408",
         "shares": 58549880,
@@ -240037,14 +240685,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SHOP",
-        "name": "Shopify Inc",
-        "cusip": "82509L107",
-        "shares": 2515,
-        "valueMn": 239.22,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "SIXTH STRE",
         "name": "Sixth Street Specialty Lending",
         "cusip": "83012A109",
@@ -240261,7 +240901,7 @@
     "filingDate": "2025-01-31",
     "reportDate": "2024-12-31",
     "totalValueMn": 129715676.61,
-    "holdingCount": 268,
+    "holdingCount": 267,
     "holdings": [
       {
         "ticker": "AMZN",
@@ -240291,8 +240931,8 @@
         "ticker": "SHOP",
         "name": "Shopify &apos;A&apos;",
         "cusip": "82509L107",
-        "shares": 59773997,
-        "valueMn": 6355769.1,
+        "shares": 59776512,
+        "valueMn": 6356036.64,
         "pctPortfolio": 4.9
       },
       {
@@ -240576,7 +241216,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "PETROBRAS ",
+        "ticker": "PBR",
         "name": "Petrobras Common ADR",
         "cusip": "71654V408",
         "shares": 62390220,
@@ -242168,14 +242808,6 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SHOP",
-        "name": "Shopify Inc",
-        "cusip": "82509L107",
-        "shares": 2515,
-        "valueMn": 267.54,
-        "pctPortfolio": 0
-      },
-      {
         "ticker": "SIXTH STRE",
         "name": "Sixth Street Specialty Lending",
         "cusip": "83012A109",
@@ -242699,7 +243331,7 @@
         "pctPortfolio": 0.7
       },
       {
-        "ticker": "PETROBRAS ",
+        "ticker": "PBR",
         "name": "Petrobras Common ADR",
         "cusip": "71654V408",
         "shares": 69227442,
@@ -244942,7 +245574,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "PETROBRAS ",
+        "ticker": "PBR",
         "name": "Petrobras Common ADR",
         "cusip": "71654V408",
         "shares": 48989964,
@@ -247225,7 +247857,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "PETROBRAS ",
+        "ticker": "PBR",
         "name": "Petrobras Common ADR",
         "cusip": "71654V408",
         "shares": 49429085,
@@ -251780,6 +252412,14 @@
         "pctPortfolio": 2
       },
       {
+        "ticker": "IVV",
+        "name": "ISHARES TR",
+        "cusip": "464287200",
+        "shares": 1529392,
+        "valueMn": 471868.46,
+        "pctPortfolio": 2
+      },
+      {
         "ticker": "ABNB",
         "name": "AIRBNB INC",
         "cusip": "009066101",
@@ -251801,14 +252441,6 @@
         "cusip": "101137107",
         "shares": 4019552,
         "valueMn": 383264.29,
-        "pctPortfolio": 1.6
-      },
-      {
-        "ticker": "IVV",
-        "name": "ISHARES TR",
-        "cusip": "464287200",
-        "shares": 792498,
-        "valueMn": 377031.22,
         "pctPortfolio": 1.6
       },
       {
@@ -251842,14 +252474,6 @@
         "shares": 3565793,
         "valueMn": 291360.97,
         "pctPortfolio": 1.2
-      },
-      {
-        "ticker": "ISHARES TR",
-        "name": "ISHARES TR",
-        "cusip": "46436E718",
-        "shares": 741866,
-        "valueMn": 95336.34,
-        "pctPortfolio": 0.4
       },
       {
         "ticker": "MELI",
@@ -252601,6 +253225,14 @@
         "cusip": "450047303",
         "shares": 102911,
         "valueMn": 1702.15,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ISHARES TR",
+        "name": "ISHARES TR",
+        "cusip": "46436E718",
+        "shares": 4972,
+        "valueMn": 499.09,
         "pctPortfolio": 0
       },
       {
@@ -253663,6 +254295,14 @@
         "pctPortfolio": 1.5
       },
       {
+        "ticker": "IVV",
+        "name": "ISHARES TR",
+        "cusip": "464288240",
+        "shares": 679912,
+        "valueMn": 153298.54,
+        "pctPortfolio": 0.5
+      },
+      {
         "ticker": "GOOGL",
         "name": "ALPHABET INC",
         "cusip": "02079K305",
@@ -253687,28 +254327,12 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "IVV",
-        "name": "ISHARES TR",
-        "cusip": "464287614",
-        "shares": 227851,
-        "valueMn": 106727.45,
-        "pctPortfolio": 0.3
-      },
-      {
         "ticker": "SAP",
         "name": "SAP SE",
         "cusip": "803054204",
         "shares": 344952,
         "valueMn": 92174.64,
         "pctPortfolio": 0.3
-      },
-      {
-        "ticker": "ISHARES TR",
-        "name": "ISHARES TR",
-        "cusip": "464288240",
-        "shares": 457033,
-        "valueMn": 47071.77,
-        "pctPortfolio": 0.2
       },
       {
         "ticker": "TSM",
@@ -254444,6 +255068,14 @@
         "cusip": "450047303",
         "shares": 95306,
         "valueMn": 1128.42,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ISHARES TR",
+        "name": "ISHARES TR",
+        "cusip": "46436E718",
+        "shares": 4972,
+        "valueMn": 500.68,
         "pctPortfolio": 0
       },
       {
@@ -255485,8 +256117,8 @@
         "ticker": "IVV",
         "name": "ISHARES TR",
         "cusip": "464287614",
-        "shares": 225964,
-        "valueMn": 96009.42,
+        "shares": 336604,
+        "valueMn": 108743.67,
         "pctPortfolio": 0.3
       },
       {
@@ -256284,9 +256916,9 @@
       {
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
-        "cusip": "464288257",
-        "shares": 115612,
-        "valueMn": 13234.89,
+        "cusip": "46436E718",
+        "shares": 4972,
+        "valueMn": 500.63,
         "pctPortfolio": 0
       },
       {
@@ -257373,20 +258005,20 @@
         "pctPortfolio": 1.1
       },
       {
+        "ticker": "IVV",
+        "name": "ISHARES TR",
+        "cusip": "464287614",
+        "shares": 843449,
+        "valueMn": 190016.27,
+        "pctPortfolio": 0.6
+      },
+      {
         "ticker": "SAP",
         "name": "SAP SE",
         "cusip": "803054204",
         "shares": 542699,
         "valueMn": 145682.19,
         "pctPortfolio": 0.5
-      },
-      {
-        "ticker": "IVV",
-        "name": "ISHARES TR",
-        "cusip": "464287614",
-        "shares": 399886,
-        "valueMn": 141971.24,
-        "pctPortfolio": 0.4
       },
       {
         "ticker": "MELI",
@@ -257434,14 +258066,6 @@
         "cusip": "053015103",
         "shares": 166526,
         "valueMn": 50878.7,
-        "pctPortfolio": 0.2
-      },
-      {
-        "ticker": "ISHARES TR",
-        "name": "ISHARES TR",
-        "cusip": "464288240",
-        "shares": 466862,
-        "valueMn": 50390.53,
         "pctPortfolio": 0.2
       },
       {
@@ -257770,6 +258394,14 @@
         "cusip": "45780R101",
         "shares": 15650,
         "valueMn": 2683.28,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ISHARES TR",
+        "name": "ISHARES TR",
+        "cusip": "46436E718",
+        "shares": 23299,
+        "valueMn": 2345.51,
         "pctPortfolio": 0
       },
       {
@@ -258280,6 +258912,14 @@
         "pctPortfolio": 0.7
       },
       {
+        "ticker": "IVV",
+        "name": "ISHARES TR",
+        "cusip": "464288240",
+        "shares": 1218406,
+        "valueMn": 262307.07,
+        "pctPortfolio": 0.7
+      },
+      {
         "ticker": "SAP",
         "name": "SAP SE",
         "cusip": "803054204",
@@ -258293,14 +258933,6 @@
         "cusip": "02079K305",
         "shares": 1230197,
         "valueMn": 232876.38,
-        "pctPortfolio": 0.6
-      },
-      {
-        "ticker": "IVV",
-        "name": "ISHARES TR",
-        "cusip": "464287614",
-        "shares": 520334,
-        "valueMn": 205130.56,
         "pctPortfolio": 0.6
       },
       {
@@ -258318,14 +258950,6 @@
         "shares": 711510,
         "valueMn": 149210.73,
         "pctPortfolio": 0.4
-      },
-      {
-        "ticker": "ISHARES TR",
-        "name": "ISHARES TR",
-        "cusip": "464288240",
-        "shares": 729941,
-        "valueMn": 58702.78,
-        "pctPortfolio": 0.2
       },
       {
         "ticker": "MDT",
@@ -258709,6 +259333,14 @@
         "cusip": "45780R101",
         "shares": 15752,
         "valueMn": 2760.48,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ISHARES TR",
+        "name": "ISHARES TR",
+        "cusip": "46436E718",
+        "shares": 31869,
+        "valueMn": 1526.26,
         "pctPortfolio": 0
       },
       {
@@ -259269,9 +259901,9 @@
       {
         "ticker": "IVV",
         "name": "ISHARES TR",
-        "cusip": "464287200",
-        "shares": 186333,
-        "valueMn": 70043.41,
+        "cusip": "464288257",
+        "shares": 316935,
+        "valueMn": 83196.03,
         "pctPortfolio": 0.2
       },
       {
@@ -259614,8 +260246,8 @@
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
         "cusip": "46436E718",
-        "shares": 175428,
-        "valueMn": 16008.75,
+        "shares": 44826,
+        "valueMn": 2856.13,
         "pctPortfolio": 0
       },
       {
@@ -260184,9 +260816,9 @@
       {
         "ticker": "IVV",
         "name": "ISHARES TR",
-        "cusip": "464287655",
-        "shares": 307691,
-        "valueMn": 110558.23,
+        "cusip": "464288257",
+        "shares": 522748,
+        "valueMn": 132397.17,
         "pctPortfolio": 0.3
       },
       {
@@ -260219,14 +260851,6 @@
         "cusip": "40415F101",
         "shares": 853428,
         "valueMn": 54901.02,
-        "pctPortfolio": 0.1
-      },
-      {
-        "ticker": "ISHARES TR",
-        "name": "ISHARES TR",
-        "cusip": "464288257",
-        "shares": 225391,
-        "valueMn": 22879.68,
         "pctPortfolio": 0.1
       },
       {
@@ -260547,6 +261171,14 @@
         "cusip": "45780R101",
         "shares": 13093,
         "valueMn": 2693.05,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "ISHARES TR",
+        "name": "ISHARES TR",
+        "cusip": "46436E718",
+        "shares": 10334,
+        "valueMn": 1040.74,
         "pctPortfolio": 0
       },
       {
@@ -261100,8 +261732,8 @@
         "ticker": "IVV",
         "name": "ISHARES TR",
         "cusip": "464287614",
-        "shares": 80826,
-        "valueMn": 26603.75,
+        "shares": 131389,
+        "valueMn": 30291.07,
         "pctPortfolio": 0.1
       },
       {
@@ -261412,8 +262044,8 @@
         "ticker": "ISHARES TR",
         "name": "ISHARES TR",
         "cusip": "46436E718",
-        "shares": 54038,
-        "valueMn": 4037.29,
+        "shares": 3475,
+        "valueMn": 349.97,
         "pctPortfolio": 0
       },
       {

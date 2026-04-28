@@ -1015,17 +1015,6 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "",
-    "name": "",
-    "action": "add",
-    "deltaPct": 7,
-    "shareChange": 34497665,
-    "portfolioImpactPct": 56.1
-  },
-  {
-    "managerSlug": "bill-nygren",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
     "ticker": "GOOGL",
     "name": "",
     "action": "trim",
@@ -1070,6 +1059,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
+    "ticker": "ICE",
+    "name": "",
+    "action": "add",
+    "deltaPct": 53,
+    "shareChange": 5388812,
+    "portfolioImpactPct": 3.2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
     "ticker": "KEYS",
     "name": "",
     "action": "add",
@@ -1087,6 +1087,39 @@
     "deltaPct": 27,
     "shareChange": 5138469,
     "portfolioImpactPct": 2.8
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "WTW",
+    "name": "",
+    "action": "add",
+    "deltaPct": 31,
+    "shareChange": 1318482,
+    "portfolioImpactPct": 2.3
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "ELV",
+    "name": "",
+    "action": "add",
+    "deltaPct": 50,
+    "shareChange": 1604821,
+    "portfolioImpactPct": 2.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "EFX",
+    "name": "",
+    "action": "add",
+    "deltaPct": 30,
+    "shareChange": 1723439,
+    "portfolioImpactPct": 2.1
   },
   {
     "managerSlug": "bill-nygren",
@@ -1180,6 +1213,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
+    "ticker": "AER",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 5840480,
+    "portfolioImpactPct": 1.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
     "ticker": "CHTR",
     "name": "",
     "action": "add",
@@ -1196,6 +1240,17 @@
     "action": "add",
     "deltaPct": 66,
     "shareChange": 4529670,
+    "portfolioImpactPct": 1.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "UNP",
+    "name": "",
+    "action": "add",
+    "deltaPct": 149,
+    "shareChange": 2190923,
     "portfolioImpactPct": 1.1
   },
   {
@@ -1224,6 +1279,28 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
+    "ticker": "PAYC",
+    "name": "",
+    "action": "add",
+    "deltaPct": 69,
+    "shareChange": 1305225,
+    "portfolioImpactPct": 0.6
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "MOH",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -13,
+    "shareChange": -335704,
+    "portfolioImpactPct": 0.5
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
     "ticker": "GOOG",
     "name": "",
     "action": "trim",
@@ -1235,11 +1312,55 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
+    "ticker": "FLUT",
+    "name": "",
+    "action": "add",
+    "deltaPct": 59,
+    "shareChange": 376782,
+    "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "IT",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 963984,
+    "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "RYAAY",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -27,
+    "shareChange": -826717,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
     "ticker": "AXP",
     "name": "",
     "action": "trim",
     "deltaPct": -10,
     "shareChange": -24220,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "BLK",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -18,
+    "shareChange": -12289,
     "portfolioImpactPct": 0.1
   },
   {
@@ -1262,6 +1383,17 @@
     "action": "trim",
     "deltaPct": -15,
     "shareChange": -481,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "BABA",
+    "name": "",
+    "action": "add",
+    "deltaPct": 345,
+    "shareChange": 7434,
     "portfolioImpactPct": 0
   },
   {
@@ -1312,6 +1444,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
+    "ticker": "HDB",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -31,
+    "shareChange": -2756,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
     "ticker": "HLT",
     "name": "",
     "action": "trim",
@@ -1337,7 +1480,7 @@
     "ticker": "IVV",
     "name": "",
     "action": "trim",
-    "deltaPct": -73,
+    "deltaPct": -47,
     "shareChange": -1468,
     "portfolioImpactPct": 0
   },
@@ -1471,6 +1614,17 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -3190,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "MSI",
+    "name": "",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -469,
     "portfolioImpactPct": 0
   },
   {
@@ -1884,7 +2038,7 @@
     "managerSlug": "chuck-akre",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-13",
-    "ticker": "KKR &AMP; ",
+    "ticker": "KKR",
     "name": "KKR &amp; CO L P DEL",
     "action": "trim",
     "deltaPct": -7,
@@ -3688,7 +3842,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "LIVE NATIO",
+    "ticker": "LYV",
     "name": "LIVE NATION ENTERTAINMENT INC",
     "action": "new",
     "deltaPct": 100,
@@ -3996,7 +4150,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "HLF",
+    "ticker": "HERBALIFE",
     "name": "HERBALIFE LTD",
     "action": "trim",
     "deltaPct": -56,
@@ -4238,7 +4392,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "SHIFT4 PAY",
+    "ticker": "FOUR",
     "name": "SHIFT4 PAYMENTS INC",
     "action": "exit",
     "deltaPct": -100,
@@ -4802,8 +4956,8 @@
     "ticker": "IVV",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 34,
-    "shareChange": 824189,
+    "deltaPct": 31,
+    "shareChange": 916139,
     "portfolioImpactPct": 0.4
   },
   {
@@ -4903,6 +5057,17 @@
     "action": "add",
     "deltaPct": 57,
     "shareChange": 1753155,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "UNP",
+    "name": "UNION PAC CORP",
+    "action": "add",
+    "deltaPct": 133,
+    "shareChange": 3367883,
     "portfolioImpactPct": 0.4
   },
   {
@@ -5228,17 +5393,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "UNP",
-    "name": "UNITED PARCEL SERVICE INC",
-    "action": "add",
-    "deltaPct": 176,
-    "shareChange": 3314166,
-    "portfolioImpactPct": 0.3
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
     "ticker": "UNITED THE",
     "name": "UNITED THERAPEUTICS CORP DEL",
     "action": "add",
@@ -5503,6 +5657,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
+    "ticker": "CVI",
+    "name": "CVR ENERGY INC",
+    "action": "add",
+    "deltaPct": 84,
+    "shareChange": 780627,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
     "ticker": "DHI",
     "name": "D R HORTON INC",
     "action": "add",
@@ -5647,10 +5812,10 @@
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
     "ticker": "HP",
-    "name": "HP INC",
+    "name": "HELMERICH &amp; PAYNE INC",
     "action": "add",
-    "deltaPct": 50,
-    "shareChange": 4542339,
+    "deltaPct": 49,
+    "shareChange": 4508108,
     "portfolioImpactPct": 0.2
   },
   {
@@ -5968,8 +6133,8 @@
     "ticker": "TTWO",
     "name": "TAKE-TWO INTERACTIVE SOFTWAR",
     "action": "add",
-    "deltaPct": 162,
-    "shareChange": 704316,
+    "deltaPct": 152,
+    "shareChange": 700836,
     "portfolioImpactPct": 0.2
   },
   {
@@ -6014,17 +6179,6 @@
     "action": "add",
     "deltaPct": 51,
     "shareChange": 1811787,
-    "portfolioImpactPct": 0.2
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
-    "ticker": "CVI",
-    "name": "THE CIGNA GROUP",
-    "action": "add",
-    "deltaPct": 96,
-    "shareChange": 781349,
     "portfolioImpactPct": 0.2
   },
   {
@@ -6672,8 +6826,19 @@
     "ticker": "CANADIAN N",
     "name": "CANADIAN NAT RES LTD",
     "action": "add",
-    "deltaPct": 9299,
-    "shareChange": 4862472,
+    "deltaPct": 11020,
+    "shareChange": 3647636,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "CNI",
+    "name": "CANADIAN NATL RY CO",
+    "action": "add",
+    "deltaPct": 6329,
+    "shareChange": 1214836,
     "portfolioImpactPct": 0.1
   },
   {
@@ -6762,6 +6927,17 @@
     "action": "trim",
     "deltaPct": -18,
     "shareChange": -279494,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
+    "ticker": "CHK",
+    "name": "CHURCH &amp; DWIGHT CO INC",
+    "action": "trim",
+    "deltaPct": -17,
+    "shareChange": -356890,
     "portfolioImpactPct": 0.1
   },
   {
@@ -7530,8 +7706,8 @@
     "ticker": "ICE",
     "name": "INTERCONTINENTAL EXCHANGE IN",
     "action": "add",
-    "deltaPct": 34,
-    "shareChange": 219703,
+    "deltaPct": 38,
+    "shareChange": 241000,
     "portfolioImpactPct": 0.1
   },
   {
@@ -7571,11 +7747,11 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "IVV",
+    "ticker": "ISHARES TR",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 38,
-    "shareChange": 632180,
+    "deltaPct": 45,
+    "shareChange": 540230,
     "portfolioImpactPct": 0.1
   },
   {
@@ -8814,17 +8990,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "UNP",
-    "name": "UNION PAC CORP",
-    "action": "add",
-    "deltaPct": 8,
-    "shareChange": 53717,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
     "ticker": "UNH",
     "name": "UNITEDHEALTH GROUP INC",
     "action": "trim",
@@ -9721,17 +9886,6 @@
     "action": "trim",
     "deltaPct": -64,
     "shareChange": -19757,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
-    "ticker": "BABA",
-    "name": "ALIBABA GROUP HLDG LTD",
-    "action": "add",
-    "deltaPct": 181,
-    "shareChange": 3693,
     "portfolioImpactPct": 0
   },
   {
@@ -13566,17 +13720,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "CHK",
-    "name": "CHURCH &amp; DWIGHT CO INC",
-    "action": "trim",
-    "deltaPct": -17,
-    "shareChange": -188501,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
     "ticker": "CHURCHILL ",
     "name": "CHURCHILL DOWNS INC",
     "action": "trim",
@@ -16503,17 +16646,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "CHK",
-    "name": "EXPAND ENERGY CORPORATION",
-    "action": "trim",
-    "deltaPct": -17,
-    "shareChange": -168389,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
     "ticker": "XYL",
     "name": "EXPEDITORS INTL WASH INC",
     "action": "trim",
@@ -18917,17 +19049,6 @@
     "action": "trim",
     "deltaPct": -47,
     "shareChange": -175404,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
-    "ticker": "HP",
-    "name": "HELMERICH &amp; PAYNE INC",
-    "action": "trim",
-    "deltaPct": -21,
-    "shareChange": -34231,
     "portfolioImpactPct": 0
   },
   {
@@ -29637,17 +29758,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
-    "ticker": "TTWO",
-    "name": "TIM S A",
-    "action": "trim",
-    "deltaPct": -13,
-    "shareChange": -3480,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-17",
     "ticker": "TIMKEN",
     "name": "TIMKEN CO",
     "action": "add",
@@ -32739,6 +32849,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-17",
+    "ticker": "INTERCONTI",
+    "name": "INTERCONTINENTAL HOTELS GROU",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -21297,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-17",
     "ticker": "INTERPUBLI",
     "name": "INTERPUBLIC GROUP COS INC",
     "action": "exit",
@@ -34301,6 +34422,17 @@
     "managerSlug": "polen-capital",
     "quarter": "2025-Q4",
     "filedAt": "2026-02-12",
+    "ticker": "IVV",
+    "name": "ISHARES TR",
+    "action": "add",
+    "deltaPct": 125,
+    "shareChange": 849480,
+    "portfolioImpactPct": 2
+  },
+  {
+    "managerSlug": "polen-capital",
+    "quarter": "2025-Q4",
+    "filedAt": "2026-02-12",
     "ticker": "ABNB",
     "name": "AIRBNB INC",
     "action": "trim",
@@ -34328,17 +34460,6 @@
     "action": "trim",
     "deltaPct": -28,
     "shareChange": -1578734,
-    "portfolioImpactPct": 1.6
-  },
-  {
-    "managerSlug": "polen-capital",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-12",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 248,
-    "shareChange": 564647,
     "portfolioImpactPct": 1.6
   },
   {
@@ -34384,17 +34505,6 @@
     "deltaPct": -22,
     "shareChange": -1004860,
     "portfolioImpactPct": 1.2
-  },
-  {
-    "managerSlug": "polen-capital",
-    "quarter": "2025-Q4",
-    "filedAt": "2026-02-12",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 62,
-    "shareChange": 284833,
-    "portfolioImpactPct": 0.4
   },
   {
     "managerSlug": "polen-capital",
@@ -38782,7 +38892,7 @@
     "name": "Shopify &apos;A&apos;",
     "action": "trim",
     "deltaPct": -12,
-    "shareChange": -4237547,
+    "shareChange": -4237555,
     "portfolioImpactPct": 4.2
   },
   {
@@ -39163,7 +39273,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2025-Q4",
     "filedAt": "2026-01-23",
-    "ticker": "PETROBRAS ",
+    "ticker": "PBR",
     "name": "Petrobras Common ADR",
     "action": "trim",
     "deltaPct": -7,
@@ -39691,7 +39801,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2025-Q4",
     "filedAt": "2026-01-23",
-    "ticker": "CABLE ONE ",
+    "ticker": "CABO",
     "name": "Cable One Convertible 1.125 2028",
     "action": "add",
     "deltaPct": 28,
@@ -41781,17 +41891,6 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "",
-    "name": "",
-    "action": "trim",
-    "deltaPct": -7,
-    "shareChange": -33748947,
-    "portfolioImpactPct": 55
-  },
-  {
-    "managerSlug": "bill-nygren",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
     "ticker": "GOOGL",
     "name": "",
     "action": "trim",
@@ -41858,6 +41957,28 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
+    "ticker": "EFX",
+    "name": "",
+    "action": "add",
+    "deltaPct": 14,
+    "shareChange": 725901,
+    "portfolioImpactPct": 2.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "WTW",
+    "name": "",
+    "action": "add",
+    "deltaPct": 13,
+    "shareChange": 508350,
+    "portfolioImpactPct": 2.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
     "ticker": "BAC",
     "name": "",
     "action": "trim",
@@ -41886,6 +42007,17 @@
     "deltaPct": -17,
     "shareChange": -4252636,
     "portfolioImpactPct": 2.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "ELV",
+    "name": "",
+    "action": "add",
+    "deltaPct": 39,
+    "shareChange": 902059,
+    "portfolioImpactPct": 1.7
   },
   {
     "managerSlug": "bill-nygren",
@@ -41924,12 +42056,45 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
+    "ticker": "MOH",
+    "name": "",
+    "action": "add",
+    "deltaPct": 74,
+    "shareChange": 1140833,
+    "portfolioImpactPct": 0.8
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
     "ticker": "ZM",
     "name": "",
     "action": "add",
     "deltaPct": 27,
     "shareChange": 1018466,
     "portfolioImpactPct": 0.8
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "PAYC",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -9,
+    "shareChange": -177320,
+    "portfolioImpactPct": 0.6
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "UNP",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 1465587,
+    "portfolioImpactPct": 0.6
   },
   {
     "managerSlug": "bill-nygren",
@@ -41979,12 +42144,45 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
+    "ticker": "FLUT",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -21,
+    "shareChange": -168378,
+    "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "RYAAY",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -22,
+    "shareChange": -855961,
+    "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
     "ticker": "HCA",
     "name": "",
     "action": "trim",
     "deltaPct": -8,
     "shareChange": -20358,
     "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "BLK",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -74,
+    "shareChange": -194018,
+    "portfolioImpactPct": 0.1
   },
   {
     "managerSlug": "bill-nygren",
@@ -42012,11 +42210,44 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
+    "ticker": "KKR",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -12,
+    "shareChange": -50726,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
     "ticker": "AMD",
     "name": "",
     "action": "trim",
     "deltaPct": -18,
     "shareChange": -330,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "BABA",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -14,
+    "shareChange": -360,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "ADP",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -50,
+    "shareChange": -800,
     "portfolioImpactPct": 0
   },
   {
@@ -42100,6 +42331,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
+    "ticker": "HDB",
+    "name": "",
+    "action": "add",
+    "deltaPct": 192,
+    "shareChange": 5756,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
     "ticker": "HHH",
     "name": "",
     "action": "trim",
@@ -42125,7 +42367,7 @@
     "ticker": "IVV",
     "name": "",
     "action": "trim",
-    "deltaPct": -18,
+    "deltaPct": -13,
     "shareChange": -451,
     "portfolioImpactPct": 0
   },
@@ -42171,6 +42413,17 @@
     "action": "trim",
     "deltaPct": -11,
     "shareChange": -315,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "MSI",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 469,
     "portfolioImpactPct": 0
   },
   {
@@ -42254,6 +42507,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
+    "ticker": "TMO",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 541,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
     "ticker": "UNH",
     "name": "",
     "action": "new",
@@ -42292,6 +42556,28 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -264,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "SYK",
+    "name": "",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -571,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "ZTS",
+    "name": "",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -1405,
     "portfolioImpactPct": 0
   },
   {
@@ -44003,7 +44289,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-13",
-    "ticker": "LIVN",
+    "ticker": "LIVANOVA",
     "name": "LIVANOVA PLC",
     "action": "add",
     "deltaPct": 51,
@@ -44234,7 +44520,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-13",
-    "ticker": "SHIFT4 PAY",
+    "ticker": "FOUR",
     "name": "SHIFT4 PAYMENTS INC",
     "action": "add",
     "deltaPct": 22,
@@ -44773,7 +45059,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-13",
-    "ticker": "HLF",
+    "ticker": "HERBALIFE",
     "name": "HERBALIFE LTD",
     "action": "trim",
     "deltaPct": -24,
@@ -45568,8 +45854,8 @@
     "ticker": "IVV",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 38,
-    "shareChange": 676975,
+    "deltaPct": 34,
+    "shareChange": 736963,
     "portfolioImpactPct": 0.4
   },
   {
@@ -45895,7 +46181,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "SPGI",
+    "ticker": "SPDR SERIE",
     "name": "SPDR SERIES TRUST",
     "action": "add",
     "deltaPct": 93,
@@ -46214,6 +46500,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
+    "ticker": "CVI",
+    "name": "CVR ENERGY INC",
+    "action": "trim",
+    "deltaPct": -25,
+    "shareChange": -315602,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
     "ticker": "DHI",
     "name": "D R HORTON INC",
     "action": "add",
@@ -46424,10 +46721,10 @@
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
     "ticker": "HP",
-    "name": "HP INC",
+    "name": "HELMERICH &amp; PAYNE INC",
     "action": "add",
-    "deltaPct": 143,
-    "shareChange": 5325260,
+    "deltaPct": 141,
+    "shareChange": 5375825,
     "portfolioImpactPct": 0.2
   },
   {
@@ -46885,17 +47182,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "CVI",
-    "name": "THE CIGNA GROUP",
-    "action": "trim",
-    "deltaPct": -28,
-    "shareChange": -319652,
-    "portfolioImpactPct": 0.2
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
     "ticker": "TRANE TECH",
     "name": "TRANE TECHNOLOGIES PLC",
     "action": "trim",
@@ -46923,6 +47209,17 @@
     "action": "add",
     "deltaPct": 12,
     "shareChange": 265852,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "UNP",
+    "name": "UNION PAC CORP",
+    "action": "trim",
+    "deltaPct": -8,
+    "shareChange": -223088,
     "portfolioImpactPct": 0.2
   },
   {
@@ -47559,8 +47856,8 @@
     "ticker": "CHK",
     "name": "CHURCH &amp; DWIGHT CO INC",
     "action": "add",
-    "deltaPct": 26,
-    "shareChange": 231638,
+    "deltaPct": 117,
+    "shareChange": 1132076,
     "portfolioImpactPct": 0.1
   },
   {
@@ -48040,17 +48337,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "CHK",
-    "name": "EXPAND ENERGY CORPORATION",
-    "action": "add",
-    "deltaPct": 1282,
-    "shareChange": 900438,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
     "ticker": "FEDERAL RL",
     "name": "FEDERAL RLTY INVT TR NEW",
     "action": "add",
@@ -48407,7 +48693,7 @@
     "name": "INTERCONTINENTAL EXCHANGE IN",
     "action": "add",
     "deltaPct": 64,
-    "shareChange": 253669,
+    "shareChange": 245440,
     "portfolioImpactPct": 0.1
   },
   {
@@ -48436,11 +48722,11 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "IVV",
+    "ticker": "ISHARES TR",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 52,
-    "shareChange": 573873,
+    "deltaPct": 74,
+    "shareChange": 513885,
     "portfolioImpactPct": 0.1
   },
   {
@@ -49484,8 +49770,8 @@
     "ticker": "TTWO",
     "name": "TAKE-TWO INTERACTIVE SOFTWAR",
     "action": "trim",
-    "deltaPct": -10,
-    "shareChange": -47305,
+    "deltaPct": -12,
+    "shareChange": -65378,
     "portfolioImpactPct": 0.1
   },
   {
@@ -49602,33 +49888,11 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "UNP",
-    "name": "UNION PAC CORP",
-    "action": "add",
-    "deltaPct": 41,
-    "shareChange": 191024,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
     "ticker": "UNITED AIR",
     "name": "UNITED AIRLS HLDGS INC",
     "action": "add",
     "deltaPct": 16,
     "shareChange": 257925,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
-    "ticker": "UNP",
-    "name": "UNITED PARCEL SERVICE INC",
-    "action": "trim",
-    "deltaPct": -18,
-    "shareChange": -414112,
     "portfolioImpactPct": 0.1
   },
   {
@@ -50748,9 +51012,9 @@
     "filedAt": "2025-11-14",
     "ticker": "BABA",
     "name": "ALIBABA GROUP HLDG LTD",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 2038,
+    "action": "trim",
+    "deltaPct": -7,
+    "shareChange": -95674,
     "portfolioImpactPct": 0
   },
   {
@@ -52528,17 +52792,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "BABA",
-    "name": "BAKER HUGHES COMPANY",
-    "action": "trim",
-    "deltaPct": -7,
-    "shareChange": -97712,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
     "ticker": "BALCHEM",
     "name": "BALCHEM CORP",
     "action": "add",
@@ -53994,8 +54247,19 @@
     "ticker": "CANADIAN N",
     "name": "CANADIAN NAT RES LTD",
     "action": "add",
-    "deltaPct": 44,
-    "shareChange": 15901,
+    "deltaPct": 28,
+    "shareChange": 7257,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "CNI",
+    "name": "CANADIAN NATL RY CO",
+    "action": "add",
+    "deltaPct": 82,
+    "shareChange": 8644,
     "portfolioImpactPct": 0
   },
   {
@@ -60261,17 +60525,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "HP",
-    "name": "HELMERICH &amp; PAYNE INC",
-    "action": "add",
-    "deltaPct": 46,
-    "shareChange": 50565,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
     "ticker": "HENRY JACK",
     "name": "HENRY JACK &amp; ASSOC INC",
     "action": "add",
@@ -61311,6 +61564,17 @@
     "action": "add",
     "deltaPct": 72,
     "shareChange": 31389,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-14",
+    "ticker": "INTERCONTI",
+    "name": "INTERCONTINENTAL HOTELS GROU",
+    "action": "add",
+    "deltaPct": 63,
+    "shareChange": 8229,
     "portfolioImpactPct": 0
   },
   {
@@ -69965,9 +70229,9 @@
     "filedAt": "2025-11-14",
     "ticker": "PHYS",
     "name": "SPROTT ASSET MANAGEMENT LP",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 189593,
+    "action": "add",
+    "deltaPct": 908,
+    "shareChange": 170793,
     "portfolioImpactPct": 0
   },
   {
@@ -71343,17 +71607,6 @@
     "action": "trim",
     "deltaPct": -8,
     "shareChange": -91975,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
-    "ticker": "TTWO",
-    "name": "TIM S A",
-    "action": "trim",
-    "deltaPct": -40,
-    "shareChange": -18073,
     "portfolioImpactPct": 0
   },
   {
@@ -75661,17 +75914,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-14",
-    "ticker": "PHYS",
-    "name": "SPROTT PHYSICAL GOLD TR",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -18800,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-14",
     "ticker": "STAR HLDGS",
     "name": "STAR HLDGS",
     "action": "exit",
@@ -77179,6 +77421,17 @@
     "managerSlug": "polen-capital",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-12",
+    "ticker": "IVV",
+    "name": "ISHARES TR",
+    "action": "add",
+    "deltaPct": 102,
+    "shareChange": 343308,
+    "portfolioImpactPct": 0.5
+  },
+  {
+    "managerSlug": "polen-capital",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-12",
     "ticker": "GOOGL",
     "name": "ALPHABET INC",
     "action": "trim",
@@ -77218,17 +77471,6 @@
     "deltaPct": -29,
     "shareChange": -141519,
     "portfolioImpactPct": 0.3
-  },
-  {
-    "managerSlug": "polen-capital",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-11-12",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 295,
-    "shareChange": 341421,
-    "portfolioImpactPct": 0.2
   },
   {
     "managerSlug": "polen-capital",
@@ -79940,22 +80182,22 @@
     "managerSlug": "seth-klarman",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-13",
-    "ticker": "HLF",
-    "name": "HERBALIFE LTD",
+    "ticker": "LIBERTY BR",
+    "name": "LIBERTY BROADBAND CORP",
     "action": "exit",
     "deltaPct": -100,
-    "shareChange": -24888844,
+    "shareChange": -753170,
     "portfolioImpactPct": 0
   },
   {
     "managerSlug": "seth-klarman",
     "quarter": "2025-Q3",
     "filedAt": "2025-11-13",
-    "ticker": "LIBERTY BR",
-    "name": "LIBERTY BROADBAND CORP",
+    "ticker": "HLF",
+    "name": "HERBALIFE LTD",
     "action": "exit",
     "deltaPct": -100,
-    "shareChange": -753170,
+    "shareChange": -7759844,
     "portfolioImpactPct": 0
   },
   {
@@ -79989,6 +80231,17 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -2500000,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "seth-klarman",
+    "quarter": "2025-Q3",
+    "filedAt": "2025-11-13",
+    "ticker": "HERBALIFE",
+    "name": "HERBALIFE LTD",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -17129000,
     "portfolioImpactPct": 0
   },
   {
@@ -81462,7 +81715,7 @@
     "name": "Shopify &apos;A&apos;",
     "action": "trim",
     "deltaPct": -6,
-    "shareChange": -2303998,
+    "shareChange": -2304285,
     "portfolioImpactPct": 3.9
   },
   {
@@ -81755,7 +82008,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2025-Q3",
     "filedAt": "2025-10-31",
-    "ticker": "PETROBRAS ",
+    "ticker": "PBR",
     "name": "Petrobras Common ADR",
     "action": "trim",
     "deltaPct": -24,
@@ -82162,7 +82415,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2025-Q3",
     "filedAt": "2025-10-31",
-    "ticker": "CABLE ONE ",
+    "ticker": "CABO",
     "name": "Cable One Convertible 1.125 2028",
     "action": "add",
     "deltaPct": 51,
@@ -82563,17 +82816,6 @@
     "action": "add",
     "deltaPct": 14,
     "shareChange": 1371775,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "tom-slater",
-    "quarter": "2025-Q3",
-    "filedAt": "2025-10-31",
-    "ticker": "SHOP",
-    "name": "Shopify Inc",
-    "action": "trim",
-    "deltaPct": -11,
-    "shareChange": -287,
     "portfolioImpactPct": 0
   },
   {
@@ -84186,17 +84428,6 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
-    "ticker": "",
-    "name": "",
-    "action": "trim",
-    "deltaPct": -7,
-    "shareChange": -36934925,
-    "portfolioImpactPct": 53.6
-  },
-  {
-    "managerSlug": "bill-nygren",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
     "ticker": "GOOGL",
     "name": "",
     "action": "trim",
@@ -84224,6 +84455,17 @@
     "action": "add",
     "deltaPct": 43,
     "shareChange": 4292383,
+    "portfolioImpactPct": 3.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "ICE",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -10,
+    "shareChange": -1161041,
     "portfolioImpactPct": 3.1
   },
   {
@@ -84263,12 +84505,34 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "EFX",
+    "name": "",
+    "action": "add",
+    "deltaPct": 12,
+    "shareChange": 537230,
+    "portfolioImpactPct": 2.2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "GM",
     "name": "",
     "action": "trim",
     "deltaPct": -15,
     "shareChange": -4365899,
     "portfolioImpactPct": 2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "WTW",
+    "name": "",
+    "action": "add",
+    "deltaPct": 6,
+    "shareChange": 229753,
+    "portfolioImpactPct": 1.9
   },
   {
     "managerSlug": "bill-nygren",
@@ -84362,6 +84626,28 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "PAYC",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -32,
+    "shareChange": -958231,
+    "portfolioImpactPct": 0.8
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "MOH",
+    "name": "",
+    "action": "add",
+    "deltaPct": 47,
+    "shareChange": 493875,
+    "portfolioImpactPct": 0.7
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "ZM",
     "name": "",
     "action": "new",
@@ -84384,11 +84670,44 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "BLK",
+    "name": "",
+    "action": "add",
+    "deltaPct": 14,
+    "shareChange": 31582,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "FLUT",
+    "name": "",
+    "action": "add",
+    "deltaPct": 41,
+    "shareChange": 234984,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "ORCL",
     "name": "",
     "action": "trim",
     "deltaPct": -7,
     "shareChange": -80484,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "RYAAY",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -39,
+    "shareChange": -2460241,
     "portfolioImpactPct": 0.4
   },
   {
@@ -84450,6 +84769,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "KKR",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -15,
+    "shareChange": -78729,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "ABT",
     "name": "",
     "action": "new",
@@ -84483,11 +84813,33 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "BABA",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -98,
+    "shareChange": -107371,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "AMAT",
     "name": "",
     "action": "new",
     "deltaPct": 100,
     "shareChange": 2200,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "ADP",
+    "name": "",
+    "action": "add",
+    "deltaPct": 18,
+    "shareChange": 250,
     "portfolioImpactPct": 0
   },
   {
@@ -84560,6 +84912,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "HDB",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 3000,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "HHH",
     "name": "",
     "action": "trim",
@@ -84584,9 +84947,9 @@
     "filedAt": "2025-08-14",
     "ticker": "IVV",
     "name": "",
-    "action": "add",
-    "deltaPct": 67,
-    "shareChange": 986,
+    "action": "trim",
+    "deltaPct": -6,
+    "shareChange": -234,
     "portfolioImpactPct": 0
   },
   {
@@ -84703,6 +85066,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "SYK",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 571,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "VTI",
     "name": "",
     "action": "trim",
@@ -84730,6 +85104,28 @@
     "action": "trim",
     "deltaPct": -75,
     "shareChange": -18064,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "ZTS",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 1405,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "LPLA",
+    "name": "",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -135474,
     "portfolioImpactPct": 0
   },
   {
@@ -85649,7 +86045,7 @@
     "managerSlug": "david-tepper",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "exit",
     "deltaPct": -100,
@@ -85715,7 +86111,7 @@
     "managerSlug": "david-tepper",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
-    "ticker": "CHK",
+    "ticker": "EXE",
     "name": "EXPAND ENERGY CORPORATION",
     "action": "exit",
     "deltaPct": -100,
@@ -86078,12 +86474,12 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-13",
-    "ticker": "EXE",
+    "ticker": "CHK",
     "name": "EXPAND ENERGY CORP",
     "action": "trim",
     "deltaPct": -9,
     "shareChange": -500000,
-    "portfolioImpactPct": 10.4
+    "portfolioImpactPct": 10.2
   },
   {
     "managerSlug": "howard-marks",
@@ -86400,8 +86796,8 @@
     "ticker": "TDOC",
     "name": "TELADOC HEALTH INC",
     "action": "add",
-    "deltaPct": 72,
-    "shareChange": 12667000,
+    "deltaPct": 98,
+    "shareChange": 14984000,
     "portfolioImpactPct": 0.5
   },
   {
@@ -86617,7 +87013,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-13",
-    "ticker": "LIVN",
+    "ticker": "LIVANOVA",
     "name": "LIVANOVA PLC",
     "action": "trim",
     "deltaPct": -33,
@@ -86782,7 +87178,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-13",
-    "ticker": "HLF",
+    "ticker": "HERBALIFE",
     "name": "HERBALIFE LTD",
     "action": "trim",
     "deltaPct": -22,
@@ -87497,7 +87893,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-13",
-    "ticker": "PETROLEO B",
+    "ticker": "PBR",
     "name": "PETROLEO BRASILEIRO SA",
     "action": "exit",
     "deltaPct": -100,
@@ -87733,6 +88129,17 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -295000,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "howard-marks",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-13",
+    "ticker": "TELADOC HE",
+    "name": "TELADOC HEALTH INC",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -2317000,
     "portfolioImpactPct": 0
   },
   {
@@ -88025,6 +88432,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "IVV",
+    "name": "ISHARES TR",
+    "action": "add",
+    "deltaPct": 11,
+    "shareChange": 210438,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "MONSTER BE",
     "name": "MONSTER BEVERAGE CORP NEW",
     "action": "add",
@@ -88190,6 +88608,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "CVI",
+    "name": "CVR ENERGY INC",
+    "action": "add",
+    "deltaPct": 6,
+    "shareChange": 65641,
+    "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "DHR",
     "name": "DANAHER CORPORATION",
     "action": "add",
@@ -88311,17 +88740,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 12,
-    "shareChange": 189382,
-    "portfolioImpactPct": 0.3
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
     "ticker": "JPM",
     "name": "JPMORGAN CHASE &amp; CO.",
     "action": "trim",
@@ -88437,6 +88855,17 @@
     "action": "add",
     "deltaPct": 14,
     "shareChange": 1202713,
+    "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "UNP",
+    "name": "UNION PAC CORP",
+    "action": "add",
+    "deltaPct": 102,
+    "shareChange": 1391693,
     "portfolioImpactPct": 0.3
   },
   {
@@ -89224,7 +89653,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
-    "ticker": "SPGI",
+    "ticker": "SPDR SERIE",
     "name": "SPDR SERIES TRUST",
     "action": "new",
     "deltaPct": 100,
@@ -89328,17 +89757,6 @@
     "action": "add",
     "deltaPct": 77,
     "shareChange": 207084,
-    "portfolioImpactPct": 0.2
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
-    "ticker": "UNP",
-    "name": "UNITED PARCEL SERVICE INC",
-    "action": "add",
-    "deltaPct": 95,
-    "shareChange": 1119372,
     "portfolioImpactPct": 0.2
   },
   {
@@ -89942,8 +90360,8 @@
     "ticker": "CHK",
     "name": "CHURCH &amp; DWIGHT CO INC",
     "action": "trim",
-    "deltaPct": -16,
-    "shareChange": -173810,
+    "deltaPct": -15,
+    "shareChange": -166641,
     "portfolioImpactPct": 0.1
   },
   {
@@ -90709,6 +91127,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "HP",
+    "name": "HELMERICH &amp; PAYNE INC",
+    "action": "trim",
+    "deltaPct": -15,
+    "shareChange": -661155,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "HEWLETT PA",
     "name": "HEWLETT PACKARD ENTERPRISE C",
     "action": "trim",
@@ -90725,17 +91154,6 @@
     "action": "add",
     "deltaPct": 99,
     "shareChange": 215497,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
-    "ticker": "HP",
-    "name": "HP INC",
-    "action": "trim",
-    "deltaPct": -12,
-    "shareChange": -516790,
     "portfolioImpactPct": 0.1
   },
   {
@@ -90811,8 +91229,8 @@
     "ticker": "ICE",
     "name": "INTERCONTINENTAL EXCHANGE IN",
     "action": "add",
-    "deltaPct": 58,
-    "shareChange": 145462,
+    "deltaPct": 56,
+    "shareChange": 137114,
     "portfolioImpactPct": 0.1
   },
   {
@@ -90835,17 +91253,6 @@
     "action": "add",
     "deltaPct": 54,
     "shareChange": 341773,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 15,
-    "shareChange": 142124,
     "portfolioImpactPct": 0.1
   },
   {
@@ -91999,8 +92406,8 @@
     "ticker": "TTWO",
     "name": "TAKE-TWO INTERACTIVE SOFTWAR",
     "action": "add",
-    "deltaPct": 186,
-    "shareChange": 313415,
+    "deltaPct": 144,
+    "shareChange": 311218,
     "portfolioImpactPct": 0.1
   },
   {
@@ -92122,17 +92529,6 @@
     "action": "add",
     "deltaPct": 76,
     "shareChange": 4926341,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
-    "ticker": "UNP",
-    "name": "UNION PAC CORP",
-    "action": "add",
-    "deltaPct": 143,
-    "shareChange": 272321,
     "portfolioImpactPct": 0.1
   },
   {
@@ -95223,7 +95619,7 @@
     "name": "BAKER HUGHES COMPANY",
     "action": "trim",
     "deltaPct": -75,
-    "shareChange": -4118129,
+    "shareChange": -4120052,
     "portfolioImpactPct": 0
   },
   {
@@ -96751,8 +97147,19 @@
     "ticker": "CANADIAN N",
     "name": "CANADIAN NAT RES LTD",
     "action": "add",
-    "deltaPct": 71,
-    "shareChange": 15108,
+    "deltaPct": 43,
+    "shareChange": 7752,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "CNI",
+    "name": "CANADIAN NATL RY CO",
+    "action": "add",
+    "deltaPct": 230,
+    "shareChange": 7356,
     "portfolioImpactPct": 0
   },
   {
@@ -98893,17 +99300,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
-    "ticker": "CVI",
-    "name": "CVR ENERGY INC",
-    "action": "add",
-    "deltaPct": 251,
-    "shareChange": 78940,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
     "ticker": "CYBERARK S",
     "name": "CYBERARK SOFTWARE LTD",
     "action": "trim",
@@ -100647,17 +101043,6 @@
     "action": "trim",
     "deltaPct": -43,
     "shareChange": -7988,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
-    "ticker": "CHK",
-    "name": "EXPAND ENERGY CORPORATION",
-    "action": "add",
-    "deltaPct": 11,
-    "shareChange": 7169,
     "portfolioImpactPct": 0
   },
   {
@@ -103051,17 +103436,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
-    "ticker": "HP",
-    "name": "HELMERICH &amp; PAYNE INC",
-    "action": "trim",
-    "deltaPct": -57,
-    "shareChange": -144365,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
     "ticker": "HENRY JACK",
     "name": "HENRY JACK &amp; ASSOC INC",
     "action": "trim",
@@ -104096,6 +104470,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
+    "ticker": "INTERCONTI",
+    "name": "INTERCONTINENTAL HOTELS GROU",
+    "action": "add",
+    "deltaPct": 177,
+    "shareChange": 8348,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
     "ticker": "INTERCORP ",
     "name": "INTERCORP FINL SVCS INC",
     "action": "new",
@@ -104343,6 +104728,17 @@
     "action": "add",
     "deltaPct": 8,
     "shareChange": 9792,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q2",
+    "filedAt": "2025-08-14",
+    "ticker": "ISHARES TR",
+    "name": "ISHARES TR",
+    "action": "add",
+    "deltaPct": 21,
+    "shareChange": 121068,
     "portfolioImpactPct": 0
   },
   {
@@ -116845,7 +117241,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-14",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "exit",
     "deltaPct": -100,
@@ -116949,17 +117345,6 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -65208,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q2",
-    "filedAt": "2025-08-14",
-    "ticker": "BABA",
-    "name": "ALIBABA GROUP HLDG LTD",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -1923,
     "portfolioImpactPct": 0
   },
   {
@@ -118264,7 +118649,7 @@
     "managerSlug": "john-armitage",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-13",
-    "ticker": "CLF",
+    "ticker": "CLEVELAND-",
     "name": "CLEVELAND-CLIFFS INC NEW",
     "action": "exit",
     "deltaPct": -100,
@@ -119268,8 +119653,8 @@
     "ticker": "IVV",
     "name": "ISHARES TR",
     "action": "trim",
-    "deltaPct": -43,
-    "shareChange": -173922,
+    "deltaPct": -60,
+    "shareChange": -506845,
     "portfolioImpactPct": 0.3
   },
   {
@@ -120354,11 +120739,11 @@
     "managerSlug": "polen-capital",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-13",
-    "ticker": "IVV",
+    "ticker": "ISHARES TR",
     "name": "ISHARES TR",
     "action": "trim",
-    "deltaPct": -75,
-    "shareChange": -351250,
+    "deltaPct": -79,
+    "shareChange": -18327,
     "portfolioImpactPct": 0
   },
   {
@@ -121762,7 +122147,7 @@
     "managerSlug": "polen-capital",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-13",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "exit",
     "deltaPct": -100,
@@ -123654,7 +124039,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-06",
-    "ticker": "PETROBRAS ",
+    "ticker": "PBR",
     "name": "Petrobras Common ADR",
     "action": "trim",
     "deltaPct": -20,
@@ -124138,7 +124523,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2025-Q2",
     "filedAt": "2025-08-06",
-    "ticker": "CABLE ONE ",
+    "ticker": "CABO",
     "name": "Cable One Convertible",
     "action": "new",
     "deltaPct": 100,
@@ -126305,12 +126690,12 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "",
+    "ticker": "ICE",
     "name": "",
     "action": "trim",
-    "deltaPct": -97,
-    "shareChange": -17539456109,
-    "portfolioImpactPct": 56.4
+    "deltaPct": -15,
+    "shareChange": -1977225,
+    "portfolioImpactPct": 3.3
   },
   {
     "managerSlug": "bill-nygren",
@@ -126393,12 +126778,34 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
+    "ticker": "EFX",
+    "name": "",
+    "action": "add",
+    "deltaPct": 28,
+    "shareChange": 987772,
+    "portfolioImpactPct": 1.9
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
     "ticker": "C",
     "name": "",
     "action": "trim",
     "deltaPct": -7,
     "shareChange": -1107127,
     "portfolioImpactPct": 1.8
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "ELV",
+    "name": "",
+    "action": "add",
+    "deltaPct": 25,
+    "shareChange": 458875,
+    "portfolioImpactPct": 1.7
   },
   {
     "managerSlug": "bill-nygren",
@@ -126431,6 +126838,17 @@
     "action": "add",
     "deltaPct": 20,
     "shareChange": 1224910,
+    "portfolioImpactPct": 1.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "PAYC",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -13,
+    "shareChange": -462796,
     "portfolioImpactPct": 1.1
   },
   {
@@ -126470,11 +126888,33 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
+    "ticker": "MOH",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 1047433,
+    "portfolioImpactPct": 0.6
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
     "ticker": "STZ",
     "name": "",
     "action": "new",
     "deltaPct": 100,
     "shareChange": 1728367,
+    "portfolioImpactPct": 0.5
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "RYAAY",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -12,
+    "shareChange": -854092,
     "portfolioImpactPct": 0.5
   },
   {
@@ -126487,6 +126927,17 @@
     "deltaPct": -26,
     "shareChange": -380704,
     "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "FLUT",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 573575,
+    "portfolioImpactPct": 0.2
   },
   {
     "managerSlug": "bill-nygren",
@@ -126525,12 +126976,45 @@
     "managerSlug": "bill-nygren",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
+    "ticker": "KKR",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -29,
+    "shareChange": -206356,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "LPLA",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -31,
+    "shareChange": -60000,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
     "ticker": "CRM",
     "name": "",
     "action": "trim",
     "deltaPct": -76,
     "shareChange": -1005803,
     "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "BABA",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -42,
+    "shareChange": -79100,
+    "portfolioImpactPct": 0
   },
   {
     "managerSlug": "bill-nygren",
@@ -126627,8 +127111,8 @@
     "ticker": "IVV",
     "name": "",
     "action": "trim",
-    "deltaPct": -98,
-    "shareChange": -59237,
+    "deltaPct": -94,
+    "shareChange": -59631,
     "portfolioImpactPct": 0
   },
   {
@@ -126717,6 +127201,17 @@
     "action": "new",
     "deltaPct": 100,
     "shareChange": 19422,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "LBTYK",
+    "name": "",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -6934484,
     "portfolioImpactPct": 0
   },
   {
@@ -127141,7 +127636,7 @@
     "managerSlug": "chuck-akre",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-13",
-    "ticker": "KKR &AMP; ",
+    "ticker": "KKR",
     "name": "KKR &amp; CO L P DEL",
     "action": "trim",
     "deltaPct": -14,
@@ -127328,7 +127823,7 @@
     "managerSlug": "david-tepper",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "new",
     "deltaPct": 100,
@@ -127658,11 +128153,11 @@
     "managerSlug": "david-tepper",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "CHK",
+    "ticker": "EXE",
     "name": "EXPAND ENERGY CORPORATION",
     "action": "trim",
-    "deltaPct": -74,
-    "shareChange": -512281,
+    "deltaPct": -54,
+    "shareChange": -217281,
     "portfolioImpactPct": 0.2
   },
   {
@@ -127718,6 +128213,17 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -840000,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "david-tepper",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "CHK",
+    "name": "EXPAND ENERGY CORPORATION",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -295000,
     "portfolioImpactPct": 0
   },
   {
@@ -128120,12 +128626,12 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "EXE",
+    "ticker": "CHK",
     "name": "EXPAND ENERGY CORP",
     "action": "trim",
     "deltaPct": -20,
     "shareChange": -1375000,
-    "portfolioImpactPct": 12.2
+    "portfolioImpactPct": 12
   },
   {
     "managerSlug": "howard-marks",
@@ -128340,7 +128846,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "PETROLEO B",
+    "ticker": "PBR",
     "name": "PETROLEO BRASILEIRO SA",
     "action": "trim",
     "deltaPct": -21,
@@ -128549,7 +129055,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "LIVN",
+    "ticker": "LIVANOVA",
     "name": "LIVANOVA PLC",
     "action": "new",
     "deltaPct": 100,
@@ -128585,8 +129091,8 @@
     "ticker": "TDOC",
     "name": "TELADOC HEALTH INC",
     "action": "add",
-    "deltaPct": 133,
-    "shareChange": 10097000,
+    "deltaPct": 103,
+    "shareChange": 7780000,
     "portfolioImpactPct": 0.3
   },
   {
@@ -128714,7 +129220,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "SHIFT4 PAY",
+    "ticker": "FOUR",
     "name": "SHIFT4 PAYMENTS INC",
     "action": "add",
     "deltaPct": 21,
@@ -128879,7 +129385,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "HLF",
+    "ticker": "HERBALIFE",
     "name": "HERBALIFE LTD",
     "action": "new",
     "deltaPct": 100,
@@ -129379,6 +129885,17 @@
     "action": "add",
     "deltaPct": 74,
     "shareChange": 876000,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "howard-marks",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "TELADOC HE",
+    "name": "TELADOC HEALTH INC",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 2317000,
     "portfolioImpactPct": 0
   },
   {
@@ -130144,6 +130661,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
+    "ticker": "CVI",
+    "name": "CVR ENERGY INC",
+    "action": "add",
+    "deltaPct": 19,
+    "shareChange": 184919,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
     "ticker": "GARMIN",
     "name": "GARMIN LTD",
     "action": "add",
@@ -130171,6 +130699,17 @@
     "action": "add",
     "deltaPct": 92,
     "shareChange": 3233356,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "IVV",
+    "name": "ISHARES TR",
+    "action": "add",
+    "deltaPct": 96,
+    "shareChange": 964263,
     "portfolioImpactPct": 0.4
   },
   {
@@ -130237,17 +130776,6 @@
     "action": "add",
     "deltaPct": 111,
     "shareChange": 249101,
-    "portfolioImpactPct": 0.4
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
-    "ticker": "CVI",
-    "name": "THE CIGNA GROUP",
-    "action": "add",
-    "deltaPct": 15,
-    "shareChange": 153420,
     "portfolioImpactPct": 0.4
   },
   {
@@ -130507,17 +131035,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 75,
-    "shareChange": 680619,
-    "portfolioImpactPct": 0.3
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
     "ticker": "KR",
     "name": "KROGER CO",
     "action": "trim",
@@ -130727,6 +131244,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
+    "ticker": "BABA",
+    "name": "ALIBABA GROUP HLDG LTD",
+    "action": "add",
+    "deltaPct": 28,
+    "shareChange": 1187379,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
     "ticker": "AMERIPRISE",
     "name": "AMERIPRISE FINL INC",
     "action": "add",
@@ -130765,17 +131293,6 @@
     "action": "add",
     "deltaPct": 337,
     "shareChange": 441571,
-    "portfolioImpactPct": 0.2
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
-    "ticker": "BABA",
-    "name": "BAKER HUGHES COMPANY",
-    "action": "add",
-    "deltaPct": 28,
-    "shareChange": 1185456,
     "portfolioImpactPct": 0.2
   },
   {
@@ -131431,6 +131948,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
+    "ticker": "UNP",
+    "name": "UNION PAC CORP",
+    "action": "add",
+    "deltaPct": 282,
+    "shareChange": 1011675,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
     "ticker": "UNIVERSAL ",
     "name": "UNIVERSAL CORP VA",
     "action": "add",
@@ -131986,6 +132514,17 @@
     "action": "add",
     "deltaPct": 21,
     "shareChange": 93891,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "CHK",
+    "name": "CHURCH &amp; DWIGHT CO INC",
+    "action": "add",
+    "deltaPct": 6,
+    "shareChange": 61914,
     "portfolioImpactPct": 0.1
   },
   {
@@ -132740,6 +133279,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
+    "ticker": "HP",
+    "name": "HELMERICH &amp; PAYNE INC",
+    "action": "add",
+    "deltaPct": 7,
+    "shareChange": 298281,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
     "ticker": "HOME DEPOT",
     "name": "HOME DEPOT INC",
     "action": "add",
@@ -132811,17 +133361,6 @@
     "action": "add",
     "deltaPct": 58,
     "shareChange": 248353,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 92,
-    "shareChange": 456415,
     "portfolioImpactPct": 0.1
   },
   {
@@ -133785,7 +134324,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "add",
     "deltaPct": 32,
@@ -134021,17 +134560,6 @@
     "action": "add",
     "deltaPct": 335,
     "shareChange": 1380804,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
-    "ticker": "UNP",
-    "name": "UNITED PARCEL SERVICE INC",
-    "action": "add",
-    "deltaPct": 582,
-    "shareChange": 1007585,
     "portfolioImpactPct": 0.1
   },
   {
@@ -135055,17 +135583,6 @@
     "action": "trim",
     "deltaPct": -11,
     "shareChange": -982,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
-    "ticker": "BABA",
-    "name": "ALIBABA GROUP HLDG LTD",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 1923,
     "portfolioImpactPct": 0
   },
   {
@@ -138342,8 +138859,19 @@
     "ticker": "CANADIAN N",
     "name": "CANADIAN NAT RES LTD",
     "action": "add",
-    "deltaPct": 118,
-    "shareChange": 11530,
+    "deltaPct": 85,
+    "shareChange": 8336,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "CNI",
+    "name": "CANADIAN NATL RY CO",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 3194,
     "portfolioImpactPct": 0
   },
   {
@@ -140407,17 +140935,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "CVI",
-    "name": "CVR ENERGY INC",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 31499,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
     "ticker": "CYBERARK S",
     "name": "CYBERARK SOFTWARE LTD",
     "action": "new",
@@ -142007,17 +142524,6 @@
     "action": "new",
     "deltaPct": 100,
     "shareChange": 18391,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
-    "ticker": "CHK",
-    "name": "EXPAND ENERGY CORPORATION",
-    "action": "add",
-    "deltaPct": 22,
-    "shareChange": 11502,
     "portfolioImpactPct": 0
   },
   {
@@ -144202,17 +144708,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-15",
-    "ticker": "HP",
-    "name": "HELMERICH &amp; PAYNE INC",
-    "action": "add",
-    "deltaPct": 147,
-    "shareChange": 151413,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
     "ticker": "HENRY JACK",
     "name": "HENRY JACK &amp; ASSOC INC",
     "action": "trim",
@@ -145228,8 +145723,19 @@
     "ticker": "ICE",
     "name": "INTERCONTINENTAL EXCHANGE IN",
     "action": "add",
-    "deltaPct": 31,
-    "shareChange": 59006,
+    "deltaPct": 33,
+    "shareChange": 60921,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "INTERCONTI",
+    "name": "INTERCONTINENTAL HOTELS GROU",
+    "action": "trim",
+    "deltaPct": -29,
+    "shareChange": -1915,
     "portfolioImpactPct": 0
   },
   {
@@ -145472,6 +145978,17 @@
     "action": "add",
     "deltaPct": 36,
     "shareChange": 30623,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-15",
+    "ticker": "ISHARES TR",
+    "name": "ISHARES TR",
+    "action": "add",
+    "deltaPct": 44,
+    "shareChange": 172771,
     "portfolioImpactPct": 0
   },
   {
@@ -154347,8 +154864,8 @@
     "ticker": "TTWO",
     "name": "TAKE-TWO INTERACTIVE SOFTWAR",
     "action": "add",
-    "deltaPct": 651,
-    "shareChange": 145898,
+    "deltaPct": 184,
+    "shareChange": 139497,
     "portfolioImpactPct": 0
   },
   {
@@ -154976,17 +155493,6 @@
     "action": "add",
     "deltaPct": 1840,
     "shareChange": 575757,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-15",
-    "ticker": "TTWO",
-    "name": "TIM S A",
-    "action": "trim",
-    "deltaPct": -12,
-    "shareChange": -6401,
     "portfolioImpactPct": 0
   },
   {
@@ -158766,7 +159272,7 @@
     "managerSlug": "john-armitage",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-13",
-    "ticker": "CLF",
+    "ticker": "CLEVELAND-",
     "name": "CLEVELAND-CLIFFS INC NEW",
     "action": "add",
     "deltaPct": 8,
@@ -159756,23 +160262,23 @@
     "managerSlug": "polen-capital",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-12",
+    "ticker": "IVV",
+    "name": "ISHARES TR",
+    "action": "trim",
+    "deltaPct": -31,
+    "shareChange": -374957,
+    "portfolioImpactPct": 0.6
+  },
+  {
+    "managerSlug": "polen-capital",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-12",
     "ticker": "SAP",
     "name": "SAP SE",
     "action": "trim",
     "deltaPct": -46,
     "shareChange": -457245,
     "portfolioImpactPct": 0.5
-  },
-  {
-    "managerSlug": "polen-capital",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-12",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "trim",
-    "deltaPct": -23,
-    "shareChange": -120448,
-    "portfolioImpactPct": 0.4
   },
   {
     "managerSlug": "polen-capital",
@@ -159838,17 +160344,6 @@
     "action": "trim",
     "deltaPct": -7,
     "shareChange": -13223,
-    "portfolioImpactPct": 0.2
-  },
-  {
-    "managerSlug": "polen-capital",
-    "quarter": "2025-Q1",
-    "filedAt": "2025-05-12",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "trim",
-    "deltaPct": -36,
-    "shareChange": -263079,
     "portfolioImpactPct": 0.2
   },
   {
@@ -160240,6 +160735,17 @@
     "managerSlug": "polen-capital",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-12",
+    "ticker": "ISHARES TR",
+    "name": "ISHARES TR",
+    "action": "trim",
+    "deltaPct": -27,
+    "shareChange": -8570,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "polen-capital",
+    "quarter": "2025-Q1",
+    "filedAt": "2025-05-12",
     "ticker": "KAROOOOO",
     "name": "KAROOOOO LTD",
     "action": "trim",
@@ -160504,7 +161010,7 @@
     "managerSlug": "polen-capital",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-12",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "new",
     "deltaPct": 100,
@@ -162594,7 +163100,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2025-Q1",
     "filedAt": "2025-05-07",
-    "ticker": "PETROBRAS ",
+    "ticker": "PBR",
     "name": "Petrobras Common ADR",
     "action": "trim",
     "deltaPct": -6,
@@ -165663,6 +166169,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
+    "ticker": "IQV",
+    "name": "",
+    "action": "add",
+    "deltaPct": 11,
+    "shareChange": 1156573,
+    "portfolioImpactPct": 2.9
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
     "ticker": "COF",
     "name": "",
     "action": "trim",
@@ -165740,6 +166257,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
+    "ticker": "EFX",
+    "name": "",
+    "action": "add",
+    "deltaPct": 97,
+    "shareChange": 1761837,
+    "portfolioImpactPct": 1.2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
     "ticker": "KEYS",
     "name": "",
     "action": "add",
@@ -165778,6 +166306,28 @@
     "action": "trim",
     "deltaPct": -12,
     "shareChange": -458239,
+    "portfolioImpactPct": 0.9
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "ELV",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 1821284,
+    "portfolioImpactPct": 0.9
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "PAYC",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -14,
+    "shareChange": -548120,
     "portfolioImpactPct": 0.9
   },
   {
@@ -165828,12 +166378,34 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
+    "ticker": "RYAAY",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -30,
+    "shareChange": -3034996,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
     "ticker": "SYF",
     "name": "",
     "action": "new",
     "deltaPct": 100,
     "shareChange": 4347279,
     "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "BLK",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 227631,
+    "portfolioImpactPct": 0.3
   },
   {
     "managerSlug": "bill-nygren",
@@ -165894,11 +166466,66 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
+    "ticker": "KKR",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -11,
+    "shareChange": -90785,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "LBTYK",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -19,
+    "shareChange": -1659831,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "LPLA",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -8,
+    "shareChange": -16764,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "BABA",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 188986,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
     "ticker": "ATVI",
     "name": "",
     "action": "trim",
     "deltaPct": -100,
     "shareChange": -3900077,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "ADP",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -41,
+    "shareChange": -950,
     "portfolioImpactPct": 0
   },
   {
@@ -165952,8 +166579,8 @@
     "ticker": "IVV",
     "name": "",
     "action": "add",
-    "deltaPct": 2692,
-    "shareChange": 58529,
+    "deltaPct": 936,
+    "shareChange": 57286,
     "portfolioImpactPct": 0
   },
   {
@@ -166064,6 +166691,17 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -1118708,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "IT",
+    "name": "",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -465,
     "portfolioImpactPct": 0
   },
   {
@@ -166345,7 +166983,7 @@
     "managerSlug": "chuck-akre",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-13",
-    "ticker": "KKR &AMP; ",
+    "ticker": "KKR",
     "name": "KKR &amp; CO L P DEL",
     "action": "trim",
     "deltaPct": -10,
@@ -166697,17 +167335,6 @@
     "managerSlug": "david-tepper",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-10",
-    "ticker": "CHK",
-    "name": "EXPAND ENERGY CORPORATION",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 695000,
-    "portfolioImpactPct": 1
-  },
-  {
-    "managerSlug": "david-tepper",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-10",
     "ticker": "TSM",
     "name": "TAIWAN SEMICONDUCTOR MFG LTD",
     "action": "trim",
@@ -166774,6 +167401,17 @@
     "managerSlug": "david-tepper",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-10",
+    "ticker": "CHK",
+    "name": "EXPAND ENERGY CORPORATION",
+    "action": "add",
+    "deltaPct": 79,
+    "shareChange": 130000,
+    "portfolioImpactPct": 0.5
+  },
+  {
+    "managerSlug": "david-tepper",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-10",
     "ticker": "INTC",
     "name": "INTEL CORP",
     "action": "trim",
@@ -166790,17 +167428,6 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -200000,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "david-tepper",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-10",
-    "ticker": "CHK",
-    "name": "CHESAPEAKE ENERGY CORP",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -565000,
     "portfolioImpactPct": 0
   },
   {
@@ -167225,17 +167852,6 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-12",
-    "ticker": "EXE",
-    "name": "EXPAND ENERGY CORP",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 7032658,
-    "portfolioImpactPct": 12.4
-  },
-  {
-    "managerSlug": "howard-marks",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-12",
     "ticker": "SPG",
     "name": "STATE STREET CORP",
     "action": "trim",
@@ -167412,7 +168028,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-12",
-    "ticker": "PETROLEO B",
+    "ticker": "PBR",
     "name": "PETROLEO BRASILEIRO SA",
     "action": "trim",
     "deltaPct": -18,
@@ -167687,7 +168303,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-12",
-    "ticker": "SHIFT4 PAY",
+    "ticker": "FOUR",
     "name": "SHIFT4 PAYMENTS INC",
     "action": "add",
     "deltaPct": 236,
@@ -167835,6 +168451,17 @@
     "action": "trim",
     "deltaPct": -39,
     "shareChange": -2149000,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "howard-marks",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-12",
+    "ticker": "EXE",
+    "name": "EXPAND ENERGY CORP",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 95294,
     "portfolioImpactPct": 0.1
   },
   {
@@ -168424,17 +169051,6 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-12",
-    "ticker": "CHK",
-    "name": "CHESAPEAKE ENERGY CORP",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -6870884,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "howard-marks",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-12",
     "ticker": "ITAU UNIBA",
     "name": "ITAU UNIBANCO HOLDING SA",
     "action": "exit",
@@ -168534,7 +169150,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-12",
-    "ticker": "LIVE NATIO",
+    "ticker": "LYV",
     "name": "LIVE NATION ENTERTAINMENT INC",
     "action": "exit",
     "deltaPct": -100,
@@ -168977,8 +169593,8 @@
     "ticker": "CVI",
     "name": "THE CIGNA GROUP",
     "action": "trim",
-    "deltaPct": -30,
-    "shareChange": -417969,
+    "deltaPct": -33,
+    "shareChange": -492751,
     "portfolioImpactPct": 0.4
   },
   {
@@ -169142,8 +169758,8 @@
     "ticker": "IVV",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 116,
-    "shareChange": 485430,
+    "deltaPct": 96,
+    "shareChange": 492126,
     "portfolioImpactPct": 0.3
   },
   {
@@ -169755,6 +170371,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
+    "ticker": "HP",
+    "name": "HELMERICH &amp; PAYNE INC",
+    "action": "add",
+    "deltaPct": 9,
+    "shareChange": 335097,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
     "ticker": "HEWLETT PA",
     "name": "HEWLETT PACKARD ENTERPRISE C",
     "action": "trim",
@@ -169771,17 +170398,6 @@
     "action": "add",
     "deltaPct": 112,
     "shareChange": 378206,
-    "portfolioImpactPct": 0.2
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
-    "ticker": "HP",
-    "name": "HP INC",
-    "action": "add",
-    "deltaPct": 10,
-    "shareChange": 354843,
     "portfolioImpactPct": 0.2
   },
   {
@@ -170527,9 +171143,9 @@
     "filedAt": "2025-02-14",
     "ticker": "BLK",
     "name": "BLACKROCK INC",
-    "action": "add",
-    "deltaPct": 23,
-    "shareChange": 13560,
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 72213,
     "portfolioImpactPct": 0.1
   },
   {
@@ -170693,8 +171309,8 @@
     "ticker": "CHK",
     "name": "CHURCH &amp; DWIGHT CO INC",
     "action": "add",
-    "deltaPct": 32,
-    "shareChange": 245697,
+    "deltaPct": 36,
+    "shareChange": 280903,
     "portfolioImpactPct": 0.1
   },
   {
@@ -172472,7 +173088,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "add",
     "deltaPct": 718,
@@ -172727,9 +173343,9 @@
     "filedAt": "2025-02-14",
     "ticker": "UNP",
     "name": "UNION PAC CORP",
-    "action": "add",
-    "deltaPct": 8,
-    "shareChange": 13410,
+    "action": "trim",
+    "deltaPct": -33,
+    "shareChange": -179352,
     "portfolioImpactPct": 0.1
   },
   {
@@ -176951,9 +177567,9 @@
     "filedAt": "2025-02-14",
     "ticker": "CHESAPEAKE",
     "name": "CHESAPEAKE UTILS CORP",
-    "action": "trim",
-    "deltaPct": -81,
-    "shareChange": -15669,
+    "action": "add",
+    "deltaPct": 23,
+    "shareChange": 687,
     "portfolioImpactPct": 0
   },
   {
@@ -179457,17 +180073,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
-    "ticker": "CHK",
-    "name": "EXPAND ENERGY CORPORATION",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 51562,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
     "ticker": "EXPENSIFY",
     "name": "EXPENSIFY INC",
     "action": "trim",
@@ -181382,17 +181987,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
-    "ticker": "HP",
-    "name": "HELMERICH &amp; PAYNE INC",
-    "action": "trim",
-    "deltaPct": -16,
-    "shareChange": -19746,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
     "ticker": "HENRY JACK",
     "name": "HENRY JACK &amp; ASSOC INC",
     "action": "add",
@@ -182298,8 +182892,19 @@
     "ticker": "ICE",
     "name": "INTERCONTINENTAL EXCHANGE IN",
     "action": "add",
-    "deltaPct": 57,
-    "shareChange": 69419,
+    "deltaPct": 55,
+    "shareChange": 65858,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
+    "ticker": "INTERCONTI",
+    "name": "INTERCONTINENTAL HOTELS GROU",
+    "action": "add",
+    "deltaPct": 116,
+    "shareChange": 3561,
     "portfolioImpactPct": 0
   },
   {
@@ -182526,11 +183131,11 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
-    "ticker": "IVV",
+    "ticker": "ISHARES TR",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 19,
-    "shareChange": 80720,
+    "deltaPct": 23,
+    "shareChange": 74024,
     "portfolioImpactPct": 0
   },
   {
@@ -190207,8 +190812,8 @@
     "ticker": "TTWO",
     "name": "TAKE-TWO INTERACTIVE SOFTWAR",
     "action": "add",
-    "deltaPct": 8,
-    "shareChange": 1712,
+    "deltaPct": 7,
+    "shareChange": 4663,
     "portfolioImpactPct": 0
   },
   {
@@ -190660,17 +191265,6 @@
     "action": "trim",
     "deltaPct": -46,
     "shareChange": -26909,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
-    "ticker": "TTWO",
-    "name": "TIM S A",
-    "action": "add",
-    "deltaPct": 6,
-    "shareChange": 2951,
     "portfolioImpactPct": 0
   },
   {
@@ -191309,17 +191903,6 @@
     "action": "trim",
     "deltaPct": -51,
     "shareChange": -75819,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
-    "ticker": "UNP",
-    "name": "UNITED PARCEL SERVICE INC",
-    "action": "trim",
-    "deltaPct": -53,
-    "shareChange": -192762,
     "portfolioImpactPct": 0
   },
   {
@@ -193075,6 +193658,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
+    "ticker": "BLACKROCK",
+    "name": "BLACKROCK INC",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -58653,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-14",
     "ticker": "2SEVENTY B",
     "name": "2SEVENTY BIO INC",
     "action": "exit",
@@ -193102,17 +193696,6 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -59970,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
-    "ticker": "BABA",
-    "name": "ALIBABA GROUP HLDG LTD",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -5537,
     "portfolioImpactPct": 0
   },
   {
@@ -193465,17 +194048,6 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -17714,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
-    "ticker": "CVI",
-    "name": "CVR ENERGY INC",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -74782,
     "portfolioImpactPct": 0
   },
   {
@@ -194615,7 +195187,7 @@
     "managerSlug": "john-armitage",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-12",
-    "ticker": "CLF",
+    "ticker": "CLEVELAND-",
     "name": "CLEVELAND-CLIFFS INC NEW",
     "action": "add",
     "deltaPct": 41,
@@ -195594,6 +196166,17 @@
     "managerSlug": "polen-capital",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-10",
+    "ticker": "IVV",
+    "name": "ISHARES TR",
+    "action": "add",
+    "deltaPct": 284,
+    "shareChange": 901471,
+    "portfolioImpactPct": 0.7
+  },
+  {
+    "managerSlug": "polen-capital",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-10",
     "ticker": "SAP",
     "name": "SAP SE",
     "action": "trim",
@@ -195605,34 +196188,12 @@
     "managerSlug": "polen-capital",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-10",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 179,
-    "shareChange": 334001,
-    "portfolioImpactPct": 0.6
-  },
-  {
-    "managerSlug": "polen-capital",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-10",
     "ticker": "ICON",
     "name": "ICON PLC",
     "action": "trim",
     "deltaPct": -32,
     "shareChange": -342260,
     "portfolioImpactPct": 0.4
-  },
-  {
-    "managerSlug": "polen-capital",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-10",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 316,
-    "shareChange": 554513,
-    "portfolioImpactPct": 0.2
   },
   {
     "managerSlug": "polen-capital",
@@ -196094,6 +196655,17 @@
     "action": "trim",
     "deltaPct": -12,
     "shareChange": -2211,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "polen-capital",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-10",
+    "ticker": "ISHARES TR",
+    "name": "ISHARES TR",
+    "action": "trim",
+    "deltaPct": -29,
+    "shareChange": -12957,
     "portfolioImpactPct": 0
   },
   {
@@ -196584,7 +197156,7 @@
     "managerSlug": "polen-capital",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-10",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "exit",
     "deltaPct": -100,
@@ -196928,9 +197500,9 @@
     "ticker": "HLF",
     "name": "HERBALIFE LTD",
     "action": "add",
-    "deltaPct": 11,
+    "deltaPct": 48,
     "shareChange": 2476000,
-    "portfolioImpactPct": 1.9
+    "portfolioImpactPct": 1.5
   },
   {
     "managerSlug": "seth-klarman",
@@ -198179,17 +198751,6 @@
     "managerSlug": "terry-smith",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
-    "ticker": "SYK",
-    "name": "STRYKER CORPORATION",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 5333977,
-    "portfolioImpactPct": 8.2
-  },
-  {
-    "managerSlug": "terry-smith",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
     "ticker": "ADP",
     "name": "AUTOMATIC DATA PROCESSING IN",
     "action": "trim",
@@ -198300,28 +198861,6 @@
     "managerSlug": "terry-smith",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
-    "ticker": "ZTS",
-    "name": "ZOETIS INC",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 227329,
-    "portfolioImpactPct": 0.2
-  },
-  {
-    "managerSlug": "terry-smith",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
-    "ticker": "SYK",
-    "name": "STRYKER CORP",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -5336821,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "terry-smith",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
     "ticker": "FORTINET O",
     "name": "FORTINET ORD",
     "action": "exit",
@@ -198410,17 +198949,6 @@
     "managerSlug": "terry-smith",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-14",
-    "ticker": "ZTS",
-    "name": "ZOETIS CL A ORD",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -230726,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "terry-smith",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-02-14",
     "ticker": "MCDONALD S",
     "name": "MCDONALD S ORD",
     "action": "exit",
@@ -198469,7 +198997,7 @@
     "name": "Shopify &apos;A&apos;",
     "action": "trim",
     "deltaPct": -6,
-    "shareChange": -3592311,
+    "shareChange": -3589796,
     "portfolioImpactPct": 4.9
   },
   {
@@ -198718,7 +199246,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2024-Q4",
     "filedAt": "2025-01-31",
-    "ticker": "PETROBRAS ",
+    "ticker": "PBR",
     "name": "Petrobras Common ADR",
     "action": "trim",
     "deltaPct": -10,
@@ -200148,17 +200676,6 @@
     "managerSlug": "tom-slater",
     "quarter": "2024-Q4",
     "filedAt": "2025-01-31",
-    "ticker": "SHOP",
-    "name": "Shopify Inc",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 2515,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "tom-slater",
-    "quarter": "2024-Q4",
-    "filedAt": "2025-01-31",
     "ticker": "SIXTH STRE",
     "name": "Sixth Street Specialty Lending",
     "action": "add",
@@ -200753,6 +201270,17 @@
     "managerSlug": "william-von-mueffling",
     "quarter": "2024-Q4",
     "filedAt": "2025-02-05",
+    "ticker": "BLK",
+    "name": "BLACKROCK INC",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 483793,
+    "portfolioImpactPct": 3.2
+  },
+  {
+    "managerSlug": "william-von-mueffling",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-05",
     "ticker": "TMO",
     "name": "THERMO FISHER SCIENTIFIC INC",
     "action": "add",
@@ -200825,6 +201353,17 @@
     "deltaPct": 32,
     "shareChange": 452339,
     "portfolioImpactPct": 1.6
+  },
+  {
+    "managerSlug": "william-von-mueffling",
+    "quarter": "2024-Q4",
+    "filedAt": "2025-02-05",
+    "ticker": "BLACKROCK",
+    "name": "BLACKROCK INC",
+    "action": "exit",
+    "deltaPct": -100,
+    "shareChange": -488699,
+    "portfolioImpactPct": 0
   },
   {
     "managerSlug": "william-von-mueffling",
@@ -201842,23 +202381,23 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "",
-    "name": "",
-    "action": "add",
-    "deltaPct": 2617,
-    "shareChange": 17480715790,
-    "portfolioImpactPct": 64.1
-  },
-  {
-    "managerSlug": "bill-nygren",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
     "ticker": "FE",
     "name": "",
     "action": "trim",
     "deltaPct": -7,
     "shareChange": -1102003,
     "portfolioImpactPct": 3.2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
+    "ticker": "ICE",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -11,
+    "shareChange": -1631287,
+    "portfolioImpactPct": 2.8
   },
   {
     "managerSlug": "bill-nygren",
@@ -201930,6 +202469,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
+    "ticker": "WTW",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -8,
+    "shareChange": -318001,
+    "portfolioImpactPct": 1.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
     "ticker": "AMZN",
     "name": "",
     "action": "trim",
@@ -201952,12 +202502,34 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
+    "ticker": "EFX",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -20,
+    "shareChange": -469272,
+    "portfolioImpactPct": 0.7
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
     "ticker": "GPN",
     "name": "",
     "action": "add",
     "deltaPct": 75,
     "shareChange": 2146485,
     "portfolioImpactPct": 0.7
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
+    "ticker": "RYAAY",
+    "name": "",
+    "action": "add",
+    "deltaPct": 125,
+    "shareChange": 5697740,
+    "portfolioImpactPct": 0.6
   },
   {
     "managerSlug": "bill-nygren",
@@ -202040,6 +202612,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
+    "ticker": "LBTYK",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -30,
+    "shareChange": -3758223,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
     "ticker": "AXP",
     "name": "",
     "action": "trim",
@@ -202073,6 +202656,39 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
+    "ticker": "KKR",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -32,
+    "shareChange": -373440,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
+    "ticker": "LPLA",
+    "name": "",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 212238,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
+    "ticker": "ADP",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -12,
+    "shareChange": -300,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
     "ticker": "BRK.B",
     "name": "",
     "action": "trim",
@@ -202095,11 +202711,22 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
+    "ticker": "IT",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -73,
+    "shareChange": -1246,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
     "ticker": "IVV",
     "name": "",
     "action": "new",
     "deltaPct": 100,
-    "shareChange": 2174,
+    "shareChange": 6123,
     "portfolioImpactPct": 0
   },
   {
@@ -202381,7 +203008,7 @@
     "managerSlug": "chuck-akre",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-13",
-    "ticker": "KKR &AMP; ",
+    "ticker": "KKR",
     "name": "KKR &amp; CO L P DEL",
     "action": "trim",
     "deltaPct": -17,
@@ -202783,6 +203410,17 @@
     "deltaPct": 100,
     "shareChange": 4180000,
     "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "david-tepper",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
+    "ticker": "CHK",
+    "name": "CHESAPEAKE ENERGY CORP",
+    "action": "trim",
+    "deltaPct": -12,
+    "shareChange": -23000,
+    "portfolioImpactPct": 0.2
   },
   {
     "managerSlug": "david-tepper",
@@ -203404,7 +204042,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "PETROLEO B",
+    "ticker": "PBR",
     "name": "PETROLEO BRASILEIRO SA",
     "action": "trim",
     "deltaPct": -10,
@@ -204108,7 +204746,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "SHIFT4 PAY",
+    "ticker": "FOUR",
     "name": "SHIFT4 PAYMENTS INC",
     "action": "trim",
     "deltaPct": -53,
@@ -204900,6 +205538,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
+    "ticker": "CVI",
+    "name": "CVR ENERGY INC",
+    "action": "trim",
+    "deltaPct": -7,
+    "shareChange": -111479,
+    "portfolioImpactPct": 0.7
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
     "ticker": "JNJ",
     "name": "JOHNSON &amp; JOHNSON",
     "action": "trim",
@@ -204916,17 +205565,6 @@
     "action": "add",
     "deltaPct": 91,
     "shareChange": 904897,
-    "portfolioImpactPct": 0.7
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
-    "ticker": "CVI",
-    "name": "THE CIGNA GROUP",
-    "action": "trim",
-    "deltaPct": -9,
-    "shareChange": -133003,
     "portfolioImpactPct": 0.7
   },
   {
@@ -205483,6 +206121,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
+    "ticker": "BABA",
+    "name": "ALIBABA GROUP HLDG LTD",
+    "action": "trim",
+    "deltaPct": -32,
+    "shareChange": -2058132,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
     "ticker": "ALLISON TR",
     "name": "ALLISON TRANSMISSION HLDGS I",
     "action": "trim",
@@ -205554,17 +206203,6 @@
     "action": "add",
     "deltaPct": 31,
     "shareChange": 111370,
-    "portfolioImpactPct": 0.2
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
-    "ticker": "BABA",
-    "name": "BAKER HUGHES COMPANY",
-    "action": "trim",
-    "deltaPct": -32,
-    "shareChange": -2063669,
     "portfolioImpactPct": 0.2
   },
   {
@@ -205770,10 +206408,10 @@
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
     "ticker": "HP",
-    "name": "HP INC",
+    "name": "HELMERICH &amp; PAYNE INC",
     "action": "trim",
     "deltaPct": -30,
-    "shareChange": -1629552,
+    "shareChange": -1673547,
     "portfolioImpactPct": 0.2
   },
   {
@@ -206594,7 +207232,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "BLK",
+    "ticker": "BLACKROCK",
     "name": "BLACKROCK INC",
     "action": "trim",
     "deltaPct": -26,
@@ -206786,6 +207424,17 @@
     "action": "trim",
     "deltaPct": -39,
     "shareChange": -164776,
+    "portfolioImpactPct": 0.1
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
+    "ticker": "CHK",
+    "name": "CHESAPEAKE ENERGY CORP",
+    "action": "trim",
+    "deltaPct": -12,
+    "shareChange": -110763,
     "portfolioImpactPct": 0.1
   },
   {
@@ -207653,8 +208302,8 @@
     "ticker": "IVV",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 74,
-    "shareChange": 177807,
+    "deltaPct": 86,
+    "shareChange": 237487,
     "portfolioImpactPct": 0.1
   },
   {
@@ -208773,10 +209422,10 @@
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
     "ticker": "UNP",
-    "name": "UNITED PARCEL SERVICE INC",
+    "name": "UNION PAC CORP",
     "action": "trim",
-    "deltaPct": -23,
-    "shareChange": -109532,
+    "deltaPct": -18,
+    "shareChange": -117018,
     "portfolioImpactPct": 0.1
   },
   {
@@ -209580,17 +210229,6 @@
     "action": "add",
     "deltaPct": 186,
     "shareChange": 24058,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
-    "ticker": "BABA",
-    "name": "ALIBABA GROUP HLDG LTD",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 5537,
     "portfolioImpactPct": 0
   },
   {
@@ -212875,17 +213513,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "CHK",
-    "name": "CHESAPEAKE ENERGY CORP",
-    "action": "trim",
-    "deltaPct": -84,
-    "shareChange": -102517,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
     "ticker": "CHEWY",
     "name": "CHEWY INC",
     "action": "trim",
@@ -214024,17 +214651,6 @@
     "action": "add",
     "deltaPct": 23,
     "shareChange": 5596,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
-    "ticker": "CVI",
-    "name": "CVR ENERGY INC",
-    "action": "add",
-    "deltaPct": 40,
-    "shareChange": 21524,
     "portfolioImpactPct": 0
   },
   {
@@ -217341,17 +217957,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "HP",
-    "name": "HELMERICH &amp; PAYNE INC",
-    "action": "trim",
-    "deltaPct": -26,
-    "shareChange": -43995,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
     "ticker": "HENRY JACK",
     "name": "HENRY JACK &amp; ASSOC INC",
     "action": "add",
@@ -218290,8 +218895,19 @@
     "ticker": "ICE",
     "name": "INTERCONTINENTAL EXCHANGE IN",
     "action": "add",
-    "deltaPct": 11,
-    "shareChange": 12205,
+    "deltaPct": 15,
+    "shareChange": 15830,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-14",
+    "ticker": "INTERCONTI",
+    "name": "INTERCONTINENTAL HOTELS GROU",
+    "action": "trim",
+    "deltaPct": -54,
+    "shareChange": -3625,
     "portfolioImpactPct": 0
   },
   {
@@ -218485,11 +219101,11 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "IVV",
+    "ticker": "ISHARES TR",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 131,
-    "shareChange": 236656,
+    "deltaPct": 122,
+    "shareChange": 176976,
     "portfolioImpactPct": 0
   },
   {
@@ -224658,9 +225274,9 @@
     "filedAt": "2024-11-14",
     "ticker": "SHOP",
     "name": "SHOPIFY INC",
-    "action": "add",
-    "deltaPct": 19,
-    "shareChange": 685,
+    "action": "trim",
+    "deltaPct": -100,
+    "shareChange": -3865759,
     "portfolioImpactPct": 0
   },
   {
@@ -225239,7 +225855,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "add",
     "deltaPct": 1161,
@@ -225956,9 +226572,9 @@
     "filedAt": "2024-11-14",
     "ticker": "TTWO",
     "name": "TAKE-TWO INTERACTIVE SOFTWAR",
-    "action": "add",
-    "deltaPct": 7,
-    "shareChange": 1437,
+    "action": "trim",
+    "deltaPct": -34,
+    "shareChange": -36567,
     "portfolioImpactPct": 0
   },
   {
@@ -226443,17 +227059,6 @@
     "action": "new",
     "deltaPct": 100,
     "shareChange": 58206,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
-    "ticker": "TTWO",
-    "name": "TIM S A",
-    "action": "trim",
-    "deltaPct": -43,
-    "shareChange": -38004,
     "portfolioImpactPct": 0
   },
   {
@@ -230464,17 +231069,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "SHOP",
-    "name": "SIRIUS XM HOLDINGS INC",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -3866444,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-14",
     "ticker": "SKYX PLATF",
     "name": "SKYX PLATFORMS CORP",
     "action": "exit",
@@ -230750,7 +231344,7 @@
     "managerSlug": "john-armitage",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "CLF",
+    "ticker": "CLEVELAND-",
     "name": "CLEVELAND-CLIFFS INC NEW",
     "action": "new",
     "deltaPct": 100,
@@ -231700,7 +232294,7 @@
     "name": "ISHARES TR",
     "action": "trim",
     "deltaPct": -39,
-    "shareChange": -121358,
+    "shareChange": -205813,
     "portfolioImpactPct": 0.2
   },
   {
@@ -232092,11 +232686,11 @@
     "managerSlug": "polen-capital",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-13",
-    "ticker": "IVV",
+    "ticker": "ISHARES TR",
     "name": "ISHARES TR",
-    "action": "trim",
-    "deltaPct": -22,
-    "shareChange": -49963,
+    "action": "add",
+    "deltaPct": 334,
+    "shareChange": 34492,
     "portfolioImpactPct": 0
   },
   {
@@ -232334,7 +232928,7 @@
     "managerSlug": "polen-capital",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-13",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "trim",
     "deltaPct": -94,
@@ -232829,17 +233423,6 @@
     "managerSlug": "seth-klarman",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-13",
-    "ticker": "HLF",
-    "name": "HERBALIFE LTD",
-    "action": "add",
-    "deltaPct": 334,
-    "shareChange": 17129000,
-    "portfolioImpactPct": 1.4
-  },
-  {
-    "managerSlug": "seth-klarman",
-    "quarter": "2024-Q3",
-    "filedAt": "2024-11-13",
     "ticker": "FORTREA HL",
     "name": "FORTREA HLDGS INC",
     "action": "trim",
@@ -232857,6 +233440,17 @@
     "deltaPct": -29,
     "shareChange": -143537,
     "portfolioImpactPct": 1.3
+  },
+  {
+    "managerSlug": "seth-klarman",
+    "quarter": "2024-Q3",
+    "filedAt": "2024-11-13",
+    "ticker": "HERBALIFE",
+    "name": "HERBALIFE LTD",
+    "action": "new",
+    "deltaPct": 100,
+    "shareChange": 17129000,
+    "portfolioImpactPct": 0.4
   },
   {
     "managerSlug": "seth-klarman",
@@ -233687,7 +234281,7 @@
     "managerSlug": "stanley-druckenmiller",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-14",
-    "ticker": "ARISTA NET",
+    "ticker": "ANET",
     "name": "Arista Networks Inc",
     "action": "exit",
     "deltaPct": -100,
@@ -234435,7 +235029,7 @@
     "managerSlug": "tom-slater",
     "quarter": "2024-Q3",
     "filedAt": "2024-11-05",
-    "ticker": "PETROBRAS ",
+    "ticker": "PBR",
     "name": "Petrobras Common ADR",
     "action": "add",
     "deltaPct": 41,
@@ -237152,17 +237746,6 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "",
-    "name": "",
-    "action": "add",
-    "deltaPct": 7,
-    "shareChange": 41350542,
-    "portfolioImpactPct": 52.9
-  },
-  {
-    "managerSlug": "bill-nygren",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
     "ticker": "GOOGL",
     "name": "",
     "action": "trim",
@@ -237240,11 +237823,44 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
+    "ticker": "PAYC",
+    "name": "",
+    "action": "add",
+    "deltaPct": 19,
+    "shareChange": 634028,
+    "portfolioImpactPct": 1
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
     "ticker": "DELL",
     "name": "",
     "action": "add",
     "deltaPct": 79,
     "shareChange": 5177315,
+    "portfolioImpactPct": 0.9
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
+    "ticker": "EFX",
+    "name": "",
+    "action": "add",
+    "deltaPct": 513,
+    "shareChange": 1916842,
+    "portfolioImpactPct": 0.9
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
+    "ticker": "RYAAY",
+    "name": "",
+    "action": "add",
+    "deltaPct": 23,
+    "shareChange": 860921,
     "portfolioImpactPct": 0.9
   },
   {
@@ -237328,6 +237944,17 @@
     "managerSlug": "bill-nygren",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
+    "ticker": "LBTYK",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -10,
+    "shareChange": -1354955,
+    "portfolioImpactPct": 0.4
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
     "ticker": "DHR",
     "name": "",
     "action": "trim",
@@ -237355,6 +237982,17 @@
     "action": "trim",
     "deltaPct": -32,
     "shareChange": -176253,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
+    "ticker": "KKR",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -89,
+    "shareChange": -9496359,
     "portfolioImpactPct": 0.2
   },
   {
@@ -237399,6 +238037,17 @@
     "action": "add",
     "deltaPct": 7,
     "shareChange": 93,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
+    "ticker": "ADP",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -28,
+    "shareChange": -1014,
     "portfolioImpactPct": 0
   },
   {
@@ -237454,6 +238103,17 @@
     "action": "trim",
     "deltaPct": -19,
     "shareChange": -2485,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "bill-nygren",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
+    "ticker": "IT",
+    "name": "",
+    "action": "trim",
+    "deltaPct": -26,
+    "shareChange": -595,
     "portfolioImpactPct": 0
   },
   {
@@ -237812,7 +238472,7 @@
     "managerSlug": "chuck-akre",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-13",
-    "ticker": "KKR &AMP; ",
+    "ticker": "KKR",
     "name": "KKR &amp; CO L P DEL",
     "action": "trim",
     "deltaPct": -8,
@@ -238296,6 +238956,17 @@
     "managerSlug": "david-tepper",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
+    "ticker": "CHK",
+    "name": "CHESAPEAKE ENERGY CORP",
+    "action": "trim",
+    "deltaPct": -7,
+    "shareChange": -15000,
+    "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "david-tepper",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
     "ticker": "NORFOLK SO",
     "name": "NORFOLK SOUTHN CORP",
     "action": "exit",
@@ -238703,7 +239374,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "PETROLEO B",
+    "ticker": "PBR",
     "name": "PETROLEO BRASILEIRO SA",
     "action": "trim",
     "deltaPct": -12,
@@ -239209,7 +239880,7 @@
     "managerSlug": "howard-marks",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "LIVE NATIO",
+    "ticker": "LYV",
     "name": "LIVE NATION ENTERTAINMENT INC",
     "action": "trim",
     "deltaPct": -26,
@@ -240111,6 +240782,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
+    "ticker": "CVI",
+    "name": "CVR ENERGY INC",
+    "action": "add",
+    "deltaPct": 66,
+    "shareChange": 637017,
+    "portfolioImpactPct": 0.8
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
     "ticker": "JNJ",
     "name": "JOHNSON &amp; JOHNSON",
     "action": "add",
@@ -240127,17 +240809,6 @@
     "action": "add",
     "deltaPct": 8,
     "shareChange": 62875,
-    "portfolioImpactPct": 0.8
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
-    "ticker": "CVI",
-    "name": "THE CIGNA GROUP",
-    "action": "add",
-    "deltaPct": 63,
-    "shareChange": 600215,
     "portfolioImpactPct": 0.8
   },
   {
@@ -240589,6 +241260,17 @@
     "action": "trim",
     "deltaPct": -41,
     "shareChange": -849501,
+    "portfolioImpactPct": 0.3
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
+    "ticker": "HP",
+    "name": "HELMERICH &amp; PAYNE INC",
+    "action": "add",
+    "deltaPct": 6,
+    "shareChange": 325696,
     "portfolioImpactPct": 0.3
   },
   {
@@ -241552,6 +242234,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
+    "ticker": "UNP",
+    "name": "UNION PAC CORP",
+    "action": "add",
+    "deltaPct": 84,
+    "shareChange": 299972,
+    "portfolioImpactPct": 0.2
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
     "ticker": "UNH",
     "name": "UNITEDHEALTH GROUP INC",
     "action": "trim",
@@ -241904,7 +242597,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "BLK",
+    "ticker": "BLACKROCK",
     "name": "BLACKROCK INC",
     "action": "add",
     "deltaPct": 177,
@@ -242030,17 +242723,6 @@
     "action": "trim",
     "deltaPct": -18,
     "shareChange": -92694,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
-    "ticker": "CHK",
-    "name": "CHURCH &amp; DWIGHT CO INC",
-    "action": "add",
-    "deltaPct": 6,
-    "shareChange": 45751,
     "portfolioImpactPct": 0.1
   },
   {
@@ -242754,8 +243436,8 @@
     "ticker": "IVV",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 35,
-    "shareChange": 62385,
+    "deltaPct": 51,
+    "shareChange": 93095,
     "portfolioImpactPct": 0.1
   },
   {
@@ -243922,28 +244604,6 @@
     "action": "add",
     "deltaPct": 12,
     "shareChange": 12634,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
-    "ticker": "UNP",
-    "name": "UNION PAC CORP",
-    "action": "add",
-    "deltaPct": 49,
-    "shareChange": 59418,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
-    "ticker": "UNP",
-    "name": "UNITED PARCEL SERVICE INC",
-    "action": "add",
-    "deltaPct": 102,
-    "shareChange": 240554,
     "portfolioImpactPct": 0.1
   },
   {
@@ -248152,11 +248812,11 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "CHK",
-    "name": "CHESAPEAKE ENERGY CORP",
+    "ticker": "CHESAPEAKE",
+    "name": "CHESAPEAKE UTILS CORP",
     "action": "trim",
-    "deltaPct": -23,
-    "shareChange": -36493,
+    "deltaPct": -36,
+    "shareChange": -1608,
     "portfolioImpactPct": 0
   },
   {
@@ -249257,17 +249917,6 @@
     "action": "add",
     "deltaPct": 132,
     "shareChange": 13771,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
-    "ticker": "CVI",
-    "name": "CVR ENERGY INC",
-    "action": "add",
-    "deltaPct": 224,
-    "shareChange": 36802,
     "portfolioImpactPct": 0
   },
   {
@@ -252486,17 +253135,6 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "HP",
-    "name": "HELMERICH &amp; PAYNE INC",
-    "action": "add",
-    "deltaPct": 209,
-    "shareChange": 112580,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
     "ticker": "HENRY JACK",
     "name": "HENRY JACK &amp; ASSOC INC",
     "action": "add",
@@ -253410,6 +254048,17 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
+    "ticker": "INTERCONTI",
+    "name": "INTERCONTINENTAL HOTELS GROU",
+    "action": "add",
+    "deltaPct": 9,
+    "shareChange": 538,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "joel-greenblatt",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-14",
     "ticker": "INTERDIGIT",
     "name": "INTERDIGITAL INC",
     "action": "trim",
@@ -253597,11 +254246,11 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "IVV",
+    "ticker": "ISHARES TR",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 250,
-    "shareChange": 129148,
+    "deltaPct": 209,
+    "shareChange": 98438,
     "portfolioImpactPct": 0
   },
   {
@@ -259605,9 +260254,9 @@
     "filedAt": "2024-08-14",
     "ticker": "SHOP",
     "name": "SHOPIFY INC",
-    "action": "trim",
-    "deltaPct": -7,
-    "shareChange": -256,
+    "action": "add",
+    "deltaPct": 15,
+    "shareChange": 490505,
     "portfolioImpactPct": 0
   },
   {
@@ -259751,17 +260400,6 @@
     "action": "trim",
     "deltaPct": -11,
     "shareChange": -23270,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
-    "ticker": "SHOP",
-    "name": "SIRIUS XM HOLDINGS INC",
-    "action": "add",
-    "deltaPct": 15,
-    "shareChange": 490761,
     "portfolioImpactPct": 0
   },
   {
@@ -260142,7 +260780,7 @@
     "managerSlug": "joel-greenblatt",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "add",
     "deltaPct": 35,
@@ -260794,8 +261432,8 @@
     "ticker": "TTWO",
     "name": "TAKE-TWO INTERACTIVE SOFTWAR",
     "action": "add",
-    "deltaPct": 6,
-    "shareChange": 1078,
+    "deltaPct": 11,
+    "shareChange": 10777,
     "portfolioImpactPct": 0
   },
   {
@@ -261159,17 +261797,6 @@
     "action": "trim",
     "deltaPct": -51,
     "shareChange": -43091,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "joel-greenblatt",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
-    "ticker": "TTWO",
-    "name": "TIM S A",
-    "action": "add",
-    "deltaPct": 12,
-    "shareChange": 9699,
     "portfolioImpactPct": 0
   },
   {
@@ -265590,8 +266217,8 @@
     "ticker": "IVV",
     "name": "ISHARES TR",
     "action": "add",
-    "deltaPct": 281,
-    "shareChange": 226865,
+    "deltaPct": 298,
+    "shareChange": 391359,
     "portfolioImpactPct": 0.3
   },
   {
@@ -265603,17 +266230,6 @@
     "action": "add",
     "deltaPct": 20,
     "shareChange": 142878,
-    "portfolioImpactPct": 0.1
-  },
-  {
-    "managerSlug": "polen-capital",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-12",
-    "ticker": "IVV",
-    "name": "ISHARES TR",
-    "action": "add",
-    "deltaPct": 317,
-    "shareChange": 171353,
     "portfolioImpactPct": 0.1
   },
   {
@@ -265939,6 +266555,17 @@
     "managerSlug": "polen-capital",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-12",
+    "ticker": "ISHARES TR",
+    "name": "ISHARES TR",
+    "action": "add",
+    "deltaPct": 197,
+    "shareChange": 6859,
+    "portfolioImpactPct": 0
+  },
+  {
+    "managerSlug": "polen-capital",
+    "quarter": "2024-Q2",
+    "filedAt": "2024-08-12",
     "ticker": "KASPI KZ J",
     "name": "KASPI KZ JSC",
     "action": "new",
@@ -266148,7 +266775,7 @@
     "managerSlug": "polen-capital",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-12",
-    "ticker": "SPGI",
+    "ticker": "SPDR SER T",
     "name": "SPDR SER TR",
     "action": "trim",
     "deltaPct": -63,
@@ -266313,17 +266940,6 @@
     "managerSlug": "prem-watsa",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "BABA",
-    "name": "ALIBABA GROUP HLDG LTD",
-    "action": "new",
-    "deltaPct": 100,
-    "shareChange": 292800,
-    "portfolioImpactPct": 1.9
-  },
-  {
-    "managerSlug": "prem-watsa",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
     "ticker": "CAPRI",
     "name": "CAPRI HOLDINGS LTD",
     "action": "add",
@@ -266395,17 +267011,6 @@
     "action": "exit",
     "deltaPct": -100,
     "shareChange": -1945858,
-    "portfolioImpactPct": 0
-  },
-  {
-    "managerSlug": "prem-watsa",
-    "quarter": "2024-Q2",
-    "filedAt": "2024-08-14",
-    "ticker": "BABA",
-    "name": "ALIBABA GROUP HOLDINGS LTD",
-    "action": "exit",
-    "deltaPct": -100,
-    "shareChange": -292800,
     "portfolioImpactPct": 0
   },
   {
@@ -267006,7 +267611,7 @@
     "managerSlug": "stanley-druckenmiller",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-14",
-    "ticker": "ARISTA NET",
+    "ticker": "ANET",
     "name": "Arista Networks Inc",
     "action": "trim",
     "deltaPct": -88,
@@ -269613,7 +270218,7 @@
     "managerSlug": "william-von-mueffling",
     "quarter": "2024-Q2",
     "filedAt": "2024-08-05",
-    "ticker": "BLK",
+    "ticker": "BLACKROCK",
     "name": "BLACKROCK INC",
     "action": "add",
     "deltaPct": 7,
