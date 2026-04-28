@@ -105,3 +105,28 @@ actual:   2026-04-16 | (all, total)        | 61 | 46 | 3 | 46 | $0 | $0     | "S
 ```
 
 First actual paid revenue row will be written once operator creates TollBit license rates AND a forwarded bot (with presented license) goes through the per-scrape billing flow. ETA ≥1 week after operator action.
+
+## 2026-04-29 — 6-month aggregate from operator-shared TollBit dashboard
+
+Operator shared TollBit Analytics screenshot (last 6 months, all properties):
+
+| metric | value | interpretation |
+|---|---:|---|
+| AI bot attempted scrapes | 316 | bots arriving at paywall |
+| AI bot SUCCESSFUL scrapes | **0** | NONE paid through paywall |
+| AI referrals (humans → site) | 3 | bot citing site → human click |
+| attempted:referral ratio | 100:1 | very poor; 1k industry baseline |
+| AI bot blocked scrapes | 459 | bots that respect paywall, get rejected |
+| holdlens.com share of attempts | 100.0% | single-property scope |
+
+**Compared to 2026-04-16 / 2026-04-24 baseline (week-of):** 61 attempted that week → 316 over 6 months ≈ 12 attempts/wk average. Far below ChatGPT-User's expected 43 forwards/wk. Either (a) most bots that historically forwarded are now blocked because no license exists, OR (b) overall AI-crawler activity to holdlens has declined post-Vercel-migration (CF edge UA-list intact, but the Vercel-served HTML doesn't trigger CF Worker forwarding rules — separate issue worth investigating).
+
+**Revenue: $0.** 0 successful × any rate = $0. Confirmed identical diagnosis to 2026-04-24 correction — ZERO TollBit license rates are configured for holdlens.com.
+
+**Why "blocked" outnumber "attempted":** TollBit counts "blocked" as bots that respected the bot-paywall protocol but were rejected because no purchasable license exists. 459 bots ASKED to pay; got back "No licenses available" → walked away. Each one of those 459 was a $0.01-$0.05 lost opportunity.
+
+**Why "successful = 0" not "successful = 3" like 2026-04-24:** TollBit's per-bot "successful" in the bot-table column counted $0 free-preview scrapes as success. The top-card "Successful AI bot scrapes" only counts paid revenue events. Both measure the same underlying reality: zero revenue.
+
+**Counterfactual: ~$50-150/mo if licenses configured.** 459 blocked + 316 attempted = ~775 bot-events / 6 months = ~130/mo. If half buy at $0.01 (default), that's ~$0.65/mo. If pricing tiered per llms.txt ($0.002 / $0.005 / $0.010), ChatGPT-class bots hitting per-entity-detail routes at $0.005 × ~50/mo = ~$0.25/mo. If platform deal closes (TollBit BDev) and ChatGPT/Perplexity start paying tier rates rather than walking away, $50-150/mo is realistic.
+
+**Action: still operator-only.** Brain cannot create license rates (real-money config; I-21 prohibits new financial action without operator-direct permission per-action). The 🔴 Clarity Card from 2026-04-24 (`[id:tollbit-create-license-rates]`) remains open. Below is the refreshed walkthrough.

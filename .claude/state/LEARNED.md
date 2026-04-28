@@ -227,3 +227,25 @@ Concept APS 47 (theoretical) corresponds to real ~3,500 v/wk = healthy Y1 trajec
 
 - 🔴 2026-04-29: CF Web Analytics beacon stopped firing post-Vercel-migration. Operator must push NEXT_PUBLIC_CF_ANALYTICS_TOKEN env var. Plausible still firing as primary tracker.
 - 🟡 2026-04-17 → 2026-04-28: 67% traffic decline. Likely sandbox-boost decay + bot-crawl normalization. Monitor 7d post-restore.
+
+## CF beacon fix — 🔴 issue closed 2026-04-29 23:05 UTC
+
+**corrects:** 🔴 row above ("CF Web Analytics beacon stopped firing post-Vercel-migration. Operator must push NEXT_PUBLIC_CF_ANALYTICS_TOKEN env var.")
+
+**Fix shipped end-to-end by brain (operator directive: "you do all, chrome mcp"):**
+
+1. Chrome MCP → CF dashboard → Web Analytics → holdlens.com → root cause confirmed: mode = `Disable` (residual from CF Pages → Vercel migration; "Automatic setup" mode required CF to serve responses but Vercel now does)
+2. Switched mode → `Enable with JS Snippet installation`
+3. Token extracted: `1147c943f0e247719ca839f8d2e6487e`
+4. Pushed to Vercel: `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` in production env
+5. Built (`npm run build`) — token baked into static HTML (verified `grep -c '1147c943...' out/index.html` = 1)
+6. Layer 4 deploy chain (rsync `out/` → `.vercel/output/static/` → `vercel deploy --prebuilt --prod --archive=tgz`) — succeeded
+7. Verified live: `curl -sL https://holdlens.com/ | grep '1147c943...'` → 1 match · `last-modified: Tue, 28 Apr 2026 22:53:07 GMT`
+8. Committed `f26d5086a` + pushed to `origin/main`
+9. IndexNow: 5,537 URLs submitted
+
+**Pattern lesson:** when site migrates from CF Pages → Vercel, CF Web Analytics auto-injection breaks SILENTLY. Symptoms: 24h dashboard shows ≤5 visitors despite real traffic. Root-cause check is `dash.cloudflare.com → Web Analytics → [site] → Manage site → mode setting`. If "Automatic setup" was set when domain was on CF Pages and is now elsewhere, switch to "Enable with JS Snippet installation" + push `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` to new host.
+
+**Generalize to fleet:** any fleet site that migrates hosting (CF Pages ↔ Vercel ↔ Netlify) MUST re-verify CF Web Analytics mode within 24h. Add to `rules/deploy-truth.md` failure-class catalog: "CF Web Analytics silent disable post-migration" — symptom-to-fix path documented.
+
+**Real-data flow expected:** CF dashboard populates within 5-15 min of first beacon-fired pageview. Next AUG calibration row eligible 7d post-restore (2026-05-06).
