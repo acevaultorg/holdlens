@@ -129,7 +129,9 @@ export default async function EtfDetailPage({
 
       {/* Top holdings */}
       <section className="mt-12 mb-12">
-        <h2 className="text-xl font-bold mb-3">Top 10 holdings</h2>
+        <h2 className="text-xl font-bold mb-3">
+          {e.ticker} ({e.name}) top {e.topHoldings.length} disclosed holdings
+        </h2>
         <div className="rounded-2xl border border-border bg-panel overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-bg/40 border-b border-border">
