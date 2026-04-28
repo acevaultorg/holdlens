@@ -281,6 +281,32 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         </p>
       </aside>
 
+      {/* Visible-text freshness signal. Schema dateModified already in
+          ProfilePage JSON-LD above; LLMs preferentially cite sources that
+          ALSO show the freshness as plain text near the content body
+          (Aleyda Solis C9 — Fresh). Format matches the format machine
+          extractors prefer: ISO YYYY-MM-DD. */}
+      {filing?.latestDate && (
+        <div className="mt-4 text-xs" style={{ color: "var(--dim, #6b7280)" }}>
+          <span className="text-dim">
+            Data verified {filing.latestDate} · sourced from SEC EDGAR
+            {filing.edgarUrl && (
+              <>
+                {" · "}
+                <a
+                  href={filing.edgarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-text underline"
+                >
+                  view filing
+                </a>
+              </>
+            )}
+          </span>
+        </div>
+      )}
+
       {/* Share strip — placed above-fold right after TL;DR so visitors see
           it at peak engagement. Pre-composed share text uses the actual
           headline fact (#1 holding + %) so shared links arrive with
