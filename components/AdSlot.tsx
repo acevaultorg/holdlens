@@ -30,7 +30,16 @@ declare global {
 type Format = "horizontal" | "rectangle" | "square" | "in-article";
 type Priority = "primary" | "secondary";
 
-const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "";
+// Hardcoded fallback to production AdSense pub ID — without this, post-Vercel
+// migration (DNS-flip session 2026-04-28) ships 0 revenue because env vars
+// don't transfer with the DNS change. The ads.txt + meta verification both
+// confirm the same pub ID, safe to fall back. Operator can override via env
+// (e.g. for staging) at any time.
+const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-7449214764048186";
+// Slot IDs without env values fall back to AdSense Auto Ads, which is
+// initialized in app/layout.tsx with `enable_page_level_ads: true`. Auto Ads
+// scans + injects on its own without per-slot configuration. Operator can
+// later set per-slot env vars from AdSense dashboard for richer placement.
 const ADSENSE_SLOT_HORIZONTAL = process.env.NEXT_PUBLIC_ADSENSE_SLOT_HORIZONTAL || "";
 const ADSENSE_SLOT_RECTANGLE = process.env.NEXT_PUBLIC_ADSENSE_SLOT_RECTANGLE || "";
 const ADSENSE_SLOT_INARTICLE = process.env.NEXT_PUBLIC_ADSENSE_SLOT_INARTICLE || "";

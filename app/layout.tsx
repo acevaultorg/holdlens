@@ -188,6 +188,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
           strategy="lazyOnload"
         />
+        {/* AdSense Auto Ads — page-level toggle that lets Google scan and inject
+            ads automatically without per-slot config. Critical for revenue post-
+            Vercel-migration (2026-04-28): env vars for per-slot IDs don't transfer
+            with DNS flip; Auto Ads serves on every page even with empty per-slot
+            env. Operator can later add slot IDs from AdSense dashboard for richer
+            placement, but Auto Ads earns from day one. */}
+        <Script id="adsense-auto-ads" strategy="lazyOnload">
+          {`(window.adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-7449214764048186", enable_page_level_ads: true});`}
+        </Script>
         <meta name="google-adsense-account" content="ca-pub-7449214764048186" />
       </head>
       <body className="min-h-screen bg-bg text-text font-sans">
