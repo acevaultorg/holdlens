@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MANAGERS } from "@/lib/managers";
 import { topReplicatingETFs } from "@/lib/etf-overlap";
+import ShareStrip from "@/components/ShareStrip";
 
 type ManagerParams = { manager: string };
 
@@ -117,6 +118,15 @@ export default async function ManagerETFPage({
           </p>
         )}
       </header>
+
+      <ShareStrip
+        title={
+          topMatch
+            ? `Closest ETF to ${m.name}'s portfolio: ${topMatch.etf.ticker} — overlap ${topMatch.score.toFixed(1)} on ${topMatch.sharedTickers.length} shared top-10 names`
+            : `${m.name}'s portfolio doesn't overlap any of the 12 tracked US ETFs`
+        }
+        url={`https://holdlens.com/etf-by-superinvestor/${m.slug}/`}
+      />
 
       {topMatch && (
         <section className="mt-10">

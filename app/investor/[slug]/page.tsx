@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import EmailCapture from "@/components/EmailCapture";
+import ShareStrip from "@/components/ShareStrip";
 import LiveQuote from "@/components/LiveQuote";
 import PortfolioValue from "@/components/PortfolioValue";
 import InvestorMoves from "@/components/InvestorMoves";
@@ -279,6 +280,19 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           )}
         </p>
       </aside>
+
+      {/* Share strip — placed above-fold right after TL;DR so visitors see
+          it at peak engagement. Pre-composed share text uses the actual
+          headline fact (#1 holding + %) so shared links arrive with
+          context, not generic "check this out". */}
+      <ShareStrip
+        title={
+          tldrTopHolding
+            ? `${m.name} runs ${m.fund} — top position: ${tldrTopHolding.ticker} at ${tldrTopHolding.pct.toFixed(1)}% of book`
+            : `${m.name} portfolio — ${m.fund} 13F holdings on HoldLens`
+        }
+        url={`https://holdlens.com/investor/${m.slug}/`}
+      />
 
       <DailyMoveForInvestor slug={m.slug} />
 

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import TickerLogo from "@/components/TickerLogo";
 import TickerLink from "@/components/TickerLink";
+import ShareStrip from "@/components/ShareStrip";
 import { ETFS, getEtf, formatAum } from "@/lib/etfs";
 
 export async function generateStaticParams() {
@@ -89,6 +90,11 @@ export default async function EtfDetailPage({
         <Stat label="Top holdings" value={`${e.topHoldings.length}`} />
         <Stat label="Top-3 concentration" value={`${top3Sum.toFixed(0)}%`} />
       </div>
+
+      <ShareStrip
+        title={`${e.ticker} (${e.name}) — top ${e.topHoldings.length} holdings + ${top3Sum.toFixed(0)}% top-3 concentration`}
+        url={`https://holdlens.com/etf/${e.ticker}/`}
+      />
 
       <aside
         className="mb-10 rounded-card border border-insight/30 bg-surface-insight p-5"
