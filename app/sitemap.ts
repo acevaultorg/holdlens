@@ -295,6 +295,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
+  // /embed/ — landing page listing every embeddable widget. Per-investor
+  // and per-ticker embed routes are noindex (they're iframe targets, not
+  // SERP candidates), so only the hub goes in sitemap.
+  const embedHubUrl: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/embed`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    },
+  ];
+
   // Ship #9 v1 — /sectors/ unified hub (per-sector deep dives live at
   // /sector/[slug] already, which are registered in sectorUrls above).
   const sectorsHubUrl: MetadataRoute.Sitemap = [
@@ -416,6 +428,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...similarToUrls,
     ...managersByStyleUrls,
     ...etfBySuperinvestorUrls,
+    ...embedHubUrl,
     ...sectorsHubUrl,
     ...insidersUrls,
     ...insidersCompanyUrls,

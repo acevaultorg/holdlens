@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import EmailCapture from "@/components/EmailCapture";
 import LiveQuote from "@/components/LiveQuote";
@@ -121,6 +122,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       canonical: `https://holdlens.com/investor/${m.slug}`,
       types: {
         "application/rss+xml": `https://holdlens.com/investor/${m.slug}/feed.xml`,
+        // JSON API discoverability — LLM crawlers + automated agents prefer
+        // structured data over HTML scraping. The /api/v1/managers/[slug].json
+        // endpoint returns full holdings + ConvictionScore + ROI + moves.
+        "application/json": `https://holdlens.com/api/v1/managers/${m.slug}.json`,
       },
     },
   };
@@ -528,6 +533,54 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           </section>
         );
       })()}
+
+      {/* Embed-this card — discoverability for the iframe widget. Each
+          embed = permanent backlink + recurring discovery channel. Per
+          audit's 🔴 fix (Embeddability dimension), this is the entry path
+          finance-blog authors and LLM-citation tools use to find the
+          drop-in widget. */}
+      <section className="mt-12">
+        <details className="rounded-2xl border border-border bg-panel overflow-hidden group">
+          <summary className="cursor-pointer px-6 py-4 list-none flex items-center justify-between hover:bg-bg/40 transition">
+            <div>
+              <div className="text-[10px] uppercase tracking-widest text-emerald-400 font-bold mb-1">
+                Embed on your site
+              </div>
+              <div className="text-sm font-semibold text-text">
+                Drop {m.name.split(" ")[0]}&apos;s portfolio into your blog or wiki
+              </div>
+            </div>
+            <span className="text-brand text-sm group-open:rotate-90 transition-transform">→</span>
+          </summary>
+          <div className="px-6 pb-5 border-t border-border">
+            <p className="text-xs text-muted leading-relaxed mt-4 mb-3">
+              600px-wide iframe. Top-3 holdings + closest replicating ETF + investing-style tag.
+              Updates when the underlying 13F filing updates. Free, attribution-only.
+            </p>
+            <pre className="rounded-lg border border-border bg-bg/80 p-3 text-[11px] font-mono text-text overflow-x-auto leading-relaxed">
+              <code>{`<iframe src="https://holdlens.com/embed/investor/${m.slug}/" width="600" height="360" frameborder="0" loading="lazy" title="${m.name} portfolio — HoldLens"></iframe>`}</code>
+            </pre>
+            <div className="mt-3 flex items-center gap-4 text-xs">
+              <Link
+                href={`/embed/investor/${m.slug}/`}
+                target="_blank"
+                className="text-brand hover:underline font-semibold"
+              >
+                Preview embed →
+              </Link>
+              <Link href="/embed/" className="text-muted hover:text-text">
+                See all embed widgets
+              </Link>
+              <a
+                href={`/api/v1/managers/${m.slug}.json`}
+                className="text-muted hover:text-text font-mono"
+              >
+                JSON API →
+              </a>
+            </div>
+          </div>
+        </details>
+      </section>
 
       {/* Per-quarter digest cross-links — SEO crawlability + discovery.
           Without this section these 232 pages were orphaned from the main investor
