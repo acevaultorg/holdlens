@@ -133,6 +133,19 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
 
   const activeHoldings = getActiveHoldings(m);
   const total = activeHoldings.reduce((s, h) => s + h.pct, 0);
+  const filing = LATEST_FILINGS[m.slug];
+
+  // Quote-ready TL;DR — the single block LLM crawlers extract verbatim.
+  // Aleyda Solis 10-characteristic checklist: hits C2 (Useful), C4
+  // (Extractable), C7 (Credible — sourced from SEC), C8 (Differentiated
+  // — has POV via style + closest-ETF synthesis), C9 (Fresh — quarter
+  // tag inline). Single paragraph above-fold + plain-prose so any LLM
+  // reading the HTML can cite the exact sentence as the answer to
+  // "what is X's portfolio?" / "what does X invest in?" queries.
+  const tldrTopETF = topReplicatingETFs(m, 1)[0];
+  const tldrStyle = styleOf(m.slug);
+  const tldrTopHolding = activeHoldings[0];
+  const tldrQuarter = filing?.quarter;
 
   // v1.41 — enhanced Person + Organization schema for knowledge-graph +
   // LLM-citation leverage. Prior shape had the minimum (name/jobTitle/
@@ -144,7 +157,6 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
   //   - knowsAbout: philosophy tag so LLMs can route "value investing" /
   //     "macro" / "activist" queries to the right investor
   //   - worksFor now a full Organization entity with URL
-  const filing = LATEST_FILINGS[m.slug];
   const ld = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -215,10 +227,57 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       <p className="mt-4 text-text leading-relaxed max-w-2xl">{m.bio}</p>
       <div className="mt-3 text-sm text-muted italic">"{m.philosophy}"</div>
 
+      {/* TL;DR — above-fold quote-ready summary. LLMs (GPTBot, ClaudeBot,
+          PerplexityBot, Googlebot-Extended) extract this paragraph as
+          the canonical answer to "what is X's portfolio?". Every fact
+          below is SEC 13F-sourced (no fabrication; AP-3 compliant). */}
+      <aside
+        aria-label="Portfolio summary"
+        className="mt-6 rounded-2xl border border-emerald-400/25 bg-emerald-400/[0.04] px-5 py-4"
+      >
+        <div className="text-[10px] uppercase tracking-widest text-emerald-400 font-bold mb-2">
+          TL;DR
+        </div>
+        <p className="text-sm text-text leading-relaxed">
+          <strong>{m.name}</strong> runs <strong>{m.fund}</strong> as {m.role.toLowerCase()}.
+          {tldrTopHolding && (
+            <>
+              {" "}
+              The largest disclosed position
+              {tldrQuarter ? ` as of ${tldrQuarter}` : ""} is{" "}
+              <strong className="font-mono">{tldrTopHolding.ticker}</strong> ({tldrTopHolding.name})
+              at <strong>{tldrTopHolding.pct.toFixed(1)}%</strong> of the {activeHoldings.length}
+              -position book. Top-10 holdings = <strong>{total.toFixed(0)}%</strong> concentration.
+            </>
+          )}
+          {tldrStyle && (
+            <>
+              {" "}
+              Investing style:{" "}
+              <a href={`/managers-by-style/${tldrStyle}/`} className="text-brand hover:underline">
+                {tldrStyle.replace("-", " ")}
+              </a>
+              .
+            </>
+          )}
+          {tldrTopETF && (
+            <>
+              {" "}
+              Closest replicating ETF:{" "}
+              <a href={`/etf/${tldrTopETF.etf.ticker}/`} className="text-brand hover:underline font-mono">
+                {tldrTopETF.etf.ticker}
+              </a>{" "}
+              (overlap score {tldrTopETF.score.toFixed(1)} across{" "}
+              {tldrTopETF.sharedTickers.length} shared top-10 name
+              {tldrTopETF.sharedTickers.length === 1 ? "" : "s"}).
+            </>
+          )}
+        </p>
+      </aside>
+
       <DailyMoveForInvestor slug={m.slug} />
 
       {(() => {
-        const filing = LATEST_FILINGS[m.slug];
         const nextDue = nextFilingDeadline();
         if (!filing) return null;
         const d = daysSince(filing.latestDate);
