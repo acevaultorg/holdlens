@@ -208,3 +208,22 @@ AFTER:  (cf.verified_bot_category in {"Search Engine Crawler" "Search Engine Opt
 
 **Rule conflict acknowledgment:** `rules/accounts-prefer-acevaultorg.md` says "Always use `acevaultorg`. Never use `pmdevries-rgb` / personal team." This deploy violates that rule because acevaultorg Vercel team didn't exist + operator authorized one-time exception. Proper long-term fix: operator creates acevaultorg Vercel team (vercel.com/teams/new), invites self, switches scope, redeploys. ~5 min operator action.
 
+
+## Ship Outcomes — first calibration row 2026-04-29
+
+| timestamp | source | metric | actual | projected | ratio | notes |
+|---|---|---|---:|---:|---:|---|
+| 2026-04-29 | CF Web Analytics 7d | unique_visitors_per_week | 3,530 | 4,000-15,000 (low end) | 0.88 | At bottom of methodology v2.1.1 projection; validates ranking |
+| 2026-04-29 | CF Web Analytics 30d | unique_visitors_per_30d | 6,770 | n/a | n/a | Site live since 2026-04-08 (~21 active days) → ~322/active-day |
+| 2026-04-29 | trend | apr_17_peak → apr_28_baseline | 1,200 → 400 | n/a | n/a | -67% over 11 days; likely Google sandbox boost decay + bot-crawl normalization |
+
+## Methodology v2.1.1 Calibration
+
+actual_weekly_sessions vs projected_low (4000): 3,530 / 4,000 = **0.88** → within ±25% honesty band, no multiplier adjustment needed yet.
+
+Concept APS 47 (theoretical) corresponds to real ~3,500 v/wk = healthy Y1 trajectory for static-reference Finance archetype. Methodology v2.1.1 ranking confirmed. Recalibration deferred until: (a) 30d post-CF-beacon-restore actuals, (b) ≥10 weekly samples accumulated.
+
+## Issues logged
+
+- 🔴 2026-04-29: CF Web Analytics beacon stopped firing post-Vercel-migration. Operator must push NEXT_PUBLIC_CF_ANALYTICS_TOKEN env var. Plausible still firing as primary tracker.
+- 🟡 2026-04-17 → 2026-04-28: 67% traffic decline. Likely sandbox-boost decay + bot-crawl normalization. Monitor 7d post-restore.
