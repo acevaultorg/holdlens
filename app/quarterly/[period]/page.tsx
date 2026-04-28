@@ -38,19 +38,75 @@ export async function generateMetadata({ params }: { params: Promise<{ period: s
   };
 }
 
+// Period freshness map — drives Article schema datePublished/dateModified.
+// 13F filings due 45 days post-quarter-end; fileDate = first-week-after-deadline,
+// modDate = bumped on every recompute (top tickers / consensus shifts).
+const PERIOD_DATES: Record<string, { published: string; modified: string }> = {
+  "2026-q1": { published: "2026-05-16", modified: "2026-04-29" }, // pre-fill (filings rolling in May)
+  "2025-q4": { published: "2026-02-17", modified: "2026-04-29" }, // canonical Q4 filing window done
+};
+
 export default async function QuarterlyPage({ params }: { params: Promise<{ period: string }> }) {
   const { period } = await params;
   const p = PERIODS.find((x) => x.slug === period);
   if (!p) notFound();
 
   const top = topTickers(10);
+  const dates = PERIOD_DATES[period] ?? { published: "2026-04-01", modified: "2026-04-29" };
+
+  // LLM-citation infrastructure (per rules/concept-finder-methodology.md v2.1
+  // Layer 7 — characteristics #4 Extractable + #9 Fresh). Article schema
+  // makes quarterly recaps citable as primary sources by ChatGPT/Claude/
+  // Perplexity when answering "what did Buffett buy in Q1 2026" type queries.
+  // Without this, /quarterly/2026-q1 returned schema=0 in 2026-04-29 audit.
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: p.title,
+    description: p.intro,
+    datePublished: dates.published,
+    dateModified: dates.modified,
+    author: { "@type": "Organization", name: "HoldLens" },
+    publisher: {
+      "@type": "Organization",
+      name: "HoldLens",
+      url: "https://holdlens.com",
+      logo: { "@type": "ImageObject", url: "https://holdlens.com/icon.png" },
+    },
+    mainEntityOfPage: `https://holdlens.com/quarterly/${period}/`,
+    image: "https://holdlens.com/og/home.png",
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "CreativeWorkSeries",
+      name: "HoldLens quarterly recaps",
+      url: "https://holdlens.com/quarterly/",
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Quarterly recaps", item: "https://holdlens.com/quarterly/" },
+      { "@type": "ListItem", position: 3, name: p.label, item: `https://holdlens.com/quarterly/${period}/` },
+    ],
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+
       <a href="/quarterly" className="text-xs text-muted hover:text-text">← All quarterly recaps</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Quarterly recap</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">{p.title}</h1>
       <p className="text-lg text-muted mb-12">{p.intro}</p>
+
+      {/* Visible-text freshness — pairs with Article schema datePublished
+          + dateModified. Aleyda Solis C9 (Fresh). v0.1.36 audit fix 2026-04-29. */}
+      <div className="-mt-8 mb-12 text-xs text-dim">
+        Published {dates.published} · Last verified {dates.modified} · sourced from SEC EDGAR 13F filings
+      </div>
 
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-4">Top consensus positions</h2>

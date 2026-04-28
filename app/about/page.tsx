@@ -7,9 +7,63 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://holdlens.com/about/" },
 };
 
+// LLM-citation infrastructure (per rules/concept-finder-methodology.md v2.1
+// Layer 7 — characteristics #3 Recognizable + #7 Credible + #8 Differentiated).
+// AboutPage + Organization + Person founder schema satisfies E-E-A-T for
+// LLM crawlers (GPTBot, ClaudeBot, PerplexityBot) and Google's Page Experience
+// signal. Without this block, /about returned schema=0 in v0.1.36 audit
+// (2026-04-29) — the page existed but couldn't establish brand identity
+// for LLM citation pickup.
+const ABOUT_LD = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  url: "https://holdlens.com/about/",
+  name: "About HoldLens",
+  description:
+    "HoldLens parses SEC 13F + Form 4 filings from 30 of the world's best portfolio managers and computes a signed −100..+100 ConvictionScore per ticker. Free, ad-supported, structured for LLM citation.",
+  inLanguage: "en-US",
+  isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  about: {
+    "@type": "Thing",
+    name: "Hedge fund 13F holdings tracking + conviction scoring",
+  },
+};
+
+const ORGANIZATION_LD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://holdlens.com/#organization",
+  name: "HoldLens",
+  url: "https://holdlens.com",
+  logo: "https://holdlens.com/icon.png",
+  description:
+    "Quarterly 13F-tracking + daily Form 4 insider tracking for 30 superinvestors. Original ConvictionScore + InsiderScore methodology. Free + ad-supported.",
+  foundingDate: "2026-04",
+  sameAs: ["https://github.com/acevaultorg/holdlens"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "contact@editnative.com",
+    contactType: "Customer support",
+    availableLanguage: ["English"],
+  },
+};
+
+const BREADCRUMB_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+    { "@type": "ListItem", position: 2, name: "About", item: "https://holdlens.com/about/" },
+  ],
+};
+
 export default function AboutPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 prose-content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ABOUT_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
+
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">About</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">Smart money, out loud.</h1>
       <div className="space-y-6 text-text leading-relaxed">

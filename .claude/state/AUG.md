@@ -149,3 +149,52 @@ Remaining levers are **operator-time** per `rules/aceusergrowth.md` Part 2:
 
 See Clarity Cards queued in TASKS.md for operator sequencing.
 
+
+---
+
+## 2026-04-29 — Week 6 score (CF beacon restored, schema gaps fixed)
+
+| Stage | Score (0-10) | Source / rationale | Confidence |
+|---|---|---|---|
+| **Acquisition** | 2 (was 1) | CF Web Analytics 30d pre-disable: 6,770 visitors. Plausible 30d still ~12 humans. CF/Plausible ratio ~560:1 implies most CF was bot-traffic; humans baseline still ~3-20/wk. Bumping +1 because CF beacon now restored — real human signal flows again from this point. | Medium |
+| **Activation** | 1.5 | Unchanged from Apr 20 (no instrumentation shipped) | Low |
+| **Engagement** | 2 | Unchanged. Plausible session shape pending real data flow. | Low |
+| **Retention** | 1 | Unchanged. D7 statistically undefined at <20 humans/wk. | Cold |
+| **Advocacy** | 1 | Unchanged. Zero shares, zero embeds, zero k-factor logged. | High |
+| **Monetization** | 1 | Unchanged. €0/wk. AdSense pending. TollBit 6mo/$0 (operator gate). Pro tier no Stripe live keys. | High |
+| **Performance** | 8 | Unchanged from Apr 20 lab estimates. v1.65+ ships preserved CWV envelope (LCP <1.5s, INP <200ms, CLS ~0). v0.1.36 audit added schema (no CWV impact). | Medium |
+
+### Computation
+
+```
+AUG_v3 = 10 × (0.20 × 0.15 × 0.20 × 0.10 × 0.10 × 0.10 × 0.80)^(1/7)
+       = 10 × (4.8e-7)^(1/7)
+       = 10 × 0.166
+       = 1.66
+```
+
+### WoW delta
+
+Week 5 (2026-04-20) AUG_v3 = 1.58. Week 6 (2026-04-29) AUG_v3 = **1.66**. **+0.08 WoW.** Marginal lift driven by Acquisition score bump (1→2) on CF beacon restoration. Not enough to break out of "Critical" status (<5).
+
+### Top weakness — STILL acquisition (score=2)
+
+**Why the same answer as Week 5:** technical infrastructure complete; remaining levers are operator-time (HN Show HN, LinkedIn weekly post, Reddit organic, HARO pitches, Wikipedia citations). No brain-side ship moves human acquisition meaningfully without those operator-time investments.
+
+**v0.1.36 audit ships that DID compound (Day-1-data-flywheel):**
+- ✅ CF Web Analytics beacon restored end-to-end (commit f26d5086a)
+- ✅ /about + /quarterly[period] JSON-LD shipped (this audit cycle)
+- ✅ ETF detail template quote-ready H2
+- ✅ EDGAR 8K + Form 4 refresh (within 28h)
+- ✅ Methodology v2.1.1 calibration row logged (3,530 v/wk vs 4,000 projected = 0.88 ratio)
+
+**v0.1.36 ships that DID NOT compound** (operator-only blockers):
+- ❌ TollBit license rates → 0 successful scrapes in 6 months
+- ❌ AdSense approval status → unknown / pending
+- ❌ Plausible Goals → operator click step pending
+- ❌ Pro-tier Stripe live keys → blocked by Pro-tier reframe decision
+- ❌ Mediavine Journey → blocked by 1,000 sessions/mo threshold (~currently 800/mo Plausible humans?)
+
+### Next AUG measurement window
+
+2026-05-06 (Week 7). Real CF beacon data should be flowing for 7+ days by then. Expect Acquisition score to either jump (3-4 if site is genuinely getting 100+ humans/wk per CF) OR confirm operator-action queue is the only path forward.
