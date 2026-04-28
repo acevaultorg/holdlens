@@ -4,6 +4,7 @@ import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { QUARTERS } from "@/lib/moves";
 import { COUNTRIES as TAX_COUNTRIES, getTreatyCell as getTaxTreatyCell } from "@/lib/dividend-tax";
 import { STYLES as MANAGER_STYLES, styleCounts as managerStyleCounts } from "@/lib/manager-styles";
+import { topReplicatingETFs as etfTopReplicating } from "@/lib/etf-overlap";
 import { computeInsiderSummaries } from "@/lib/insider-conviction";
 import { allInsiderTickers, allOfficerEntries } from "@/lib/insiders";
 import { BUYBACK_PROGRAMS } from "@/lib/buybacks";
@@ -272,6 +273,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
+  // /etf-by-superinvestor/ — per-manager portfolio-overlap pages.
+  // Hub + 30 manager pages. Each answers a recurring search query
+  // ("which ETF replicates [manager]'s portfolio") with quote-ready
+  // overlap-score data — high LLM-citation fit.
+  // Reference etfTopReplicating to keep the import live (computation
+  // happens at page render time per manager; sitemap just emits URLs).
+  void etfTopReplicating;
+  const etfBySuperinvestorUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/etf-by-superinvestor`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    ...MANAGERS.map((m) => ({
+      url: `${base}/etf-by-superinvestor/${m.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.65,
+    })),
+  ];
+
   // Ship #9 v1 — /sectors/ unified hub (per-sector deep dives live at
   // /sector/[slug] already, which are registered in sectorUrls above).
   const sectorsHubUrl: MetadataRoute.Sitemap = [
@@ -392,6 +415,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...dividendTaxUrls,
     ...similarToUrls,
     ...managersByStyleUrls,
+    ...etfBySuperinvestorUrls,
     ...sectorsHubUrl,
     ...insidersUrls,
     ...insidersCompanyUrls,
