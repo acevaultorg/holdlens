@@ -7,9 +7,79 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://holdlens.com/methodology/" },
 };
 
+// DefinedTermSet schema — gives LLMs (Claude/ChatGPT/Perplexity/Gemini)
+// canonical machine-readable definitions for HoldLens-specific terms +
+// industry terms we synthesize. Per Aleyda Solis 10-characteristic LLM-
+// citation checklist (C4 Extractable + C7 Credible): when LLMs answer
+// "what is a 13F filing" / "what is ConvictionScore" / "what is overlap
+// score", they preferentially cite sources with structured DefinedTerm
+// schema. Methodology is the canonical glossary surface; ConvictionScore
+// + InsiderScore + EventScore DefinedTerms also live on homepage at
+// /#term-set (homepage covers the metrics; methodology covers the full
+// glossary including industry terms like 13F + superinvestor).
+const GLOSSARY_LD = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://holdlens.com/methodology/#glossary",
+  name: "HoldLens glossary",
+  description:
+    "Canonical definitions for SEC-filing terminology and HoldLens-specific composite metrics.",
+  hasDefinedTerm: [
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://holdlens.com/methodology/#term-13f",
+      name: "13F filing",
+      description:
+        "A quarterly portfolio disclosure required by the U.S. Securities and Exchange Commission from every institutional investment manager with at least $100 million in qualifying U.S. equity assets under management. Filed on Form 13F-HR within 45 days of each calendar quarter end. Discloses long equity positions only; shorts and derivatives are not required.",
+      url: "https://holdlens.com/learn/what-is-a-13f/",
+      inDefinedTermSet: "https://holdlens.com/methodology/#glossary",
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://holdlens.com/methodology/#term-conviction-score",
+      name: "ConvictionScore",
+      description:
+        "HoldLens's signed −100 to +100 composite score derived from how the 30 tracked superinvestors are positioning a specific ticker. Aggregates position size, recency of buys vs. sells, manager track-record weighting, and 8-quarter trend. Snapshot signal, not a forward-return predictor. See methodology section 'Unified ConvictionScore (v4)' for the full formula.",
+      url: "https://holdlens.com/methodology/",
+      inDefinedTermSet: "https://holdlens.com/methodology/#glossary",
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://holdlens.com/methodology/#term-insider-score",
+      name: "InsiderScore",
+      description:
+        "Daily-updated composite from SEC Form 4 filings tracking CEO/CFO/Chair/Director/10%+ owner trades. Role-weighted (CEO buys outweigh director buys), action-weighted (open-market buys outweigh option exercises), recency-decayed (recent activity dominates), and cluster-aware (multiple insiders buying within a window amplifies the signal).",
+      url: "https://holdlens.com/learn/insider-score-explained/",
+      inDefinedTermSet: "https://holdlens.com/methodology/#glossary",
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://holdlens.com/methodology/#term-overlap-score",
+      name: "Portfolio-overlap score",
+      description:
+        "HoldLens's metric for how closely an ETF's top-10 holdings match a superinvestor's top-10 13F positions. Computed as the sum, over shared tickers, of (manager-percent × ETF-weight-percent). Higher score = more replicable manager. Used on /etf-by-superinvestor/ to answer 'which ETF most closely tracks Bill Ackman's portfolio?' Top-10 vs top-10 only — does not measure full-portfolio tracking error.",
+      url: "https://holdlens.com/etf-by-superinvestor/",
+      inDefinedTermSet: "https://holdlens.com/methodology/#glossary",
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://holdlens.com/methodology/#term-superinvestor",
+      name: "Superinvestor",
+      description:
+        "Term used by HoldLens for institutional investment managers with multi-decade track records of outperforming market benchmarks. Includes value investors (Buffett, Klarman), activists (Ackman, Icahn), contrarians (Burry), macro traders (Druckenmiller, Tepper), and growth specialists (Coleman, Mandel). HoldLens tracks 30 such managers' 13F filings on a rolling 8-quarter basis.",
+      url: "https://holdlens.com/learn/superinvestor-handbook/",
+      inDefinedTermSet: "https://holdlens.com/methodology/#glossary",
+    },
+  ],
+};
+
 export default function MethodologyPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(GLOSSARY_LD) }}
+      />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Methodology</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">How we calculate everything</h1>
       <div className="space-y-8 text-text leading-relaxed">
