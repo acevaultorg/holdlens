@@ -1,16 +1,65 @@
 {
-  "generatedAt": "2026-04-23T23:08:23.685Z",
-  "totalRows": 3001,
+  "generatedAt": "2026-04-28T21:11:47.543Z",
+  "totalRows": 9931,
   "days": [
     {
-      "date": "2026-04-20",
-      "formsListed": 3577,
-      "form4sFound": 701,
-      "parsed": 1696,
-      "skipped": 4,
+      "date": "2026-04-21",
+      "formsListed": 4265,
+      "form4sFound": 665,
+      "parsed": 1481,
+      "skipped": 9,
       "skipReasons": {
-        "parse_failed": 4
+        "parse_failed": 9
       }
+    },
+    {
+      "date": "2026-04-22",
+      "formsListed": 4430,
+      "form4sFound": 980,
+      "parsed": 2496,
+      "skipped": 6,
+      "skipReasons": {
+        "parse_failed": 6
+      }
+    },
+    {
+      "date": "2026-04-23",
+      "formsListed": 4938,
+      "form4sFound": 799,
+      "parsed": 1749,
+      "skipped": 21,
+      "skipReasons": {
+        "parse_failed": 21
+      }
+    },
+    {
+      "date": "2026-04-24",
+      "formsListed": 5760,
+      "form4sFound": 980,
+      "parsed": 2245,
+      "skipped": 34,
+      "skipReasons": {
+        "parse_failed": 33,
+        "txt_http_err": 1
+      }
+    },
+    {
+      "date": "2026-04-27",
+      "formsListed": 6172,
+      "form4sFound": 858,
+      "parsed": 1960,
+      "skipped": 10,
+      "skipReasons": {
+        "parse_failed": 10
+      }
+    },
+    {
+      "date": "2026-04-28",
+      "formsListed": 0,
+      "form4sFound": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "skipReasons": {}
     }
   ]
 }

@@ -96,6 +96,14 @@ export default async function EtfDetailPage({
         url={`https://holdlens.com/etf/${e.ticker}/`}
       />
 
+      {/* Visible-text freshness — pairs with Article schema datePublished
+          + dateModified above. Aleyda Solis C9. */}
+      {e.asOfDate && (
+        <div className="mt-4 text-xs text-dim">
+          Data verified {e.asOfDate} · sourced from {e.issuer} official disclosure
+        </div>
+      )}
+
       <aside
         className="mb-10 rounded-card border border-insight/30 bg-surface-insight p-5"
         aria-label="HoldLens read"

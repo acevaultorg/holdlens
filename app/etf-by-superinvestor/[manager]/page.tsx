@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MANAGERS } from "@/lib/managers";
 import { topReplicatingETFs } from "@/lib/etf-overlap";
+import { LATEST_FILINGS } from "@/lib/filings";
 import ShareStrip from "@/components/ShareStrip";
 
 type ManagerParams = { manager: string };
@@ -127,6 +128,34 @@ export default async function ManagerETFPage({
         }
         url={`https://holdlens.com/etf-by-superinvestor/${m.slug}/`}
       />
+
+      {/* Visible-text freshness signal — schema dateModified above is opaque
+          to LLMs without a paired plain-text date. Shows manager's latest
+          13F filing date (the upstream input that the overlap analysis
+          depends on). Aleyda Solis C9 (Fresh). */}
+      {(() => {
+        const filing = LATEST_FILINGS[m.slug];
+        if (!filing?.latestDate) return null;
+        return (
+          <div className="mt-4 text-xs text-dim">
+            Data verified {filing.latestDate} · based on {m.name}&apos;s {filing.quarter} 13F
+            filing
+            {filing.edgarUrl && (
+              <>
+                {" · "}
+                <a
+                  href={filing.edgarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-text underline"
+                >
+                  view on SEC EDGAR
+                </a>
+              </>
+            )}
+          </div>
+        );
+      })()}
 
       {topMatch && (
         <section className="mt-10">
