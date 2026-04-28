@@ -6,12 +6,12 @@ Audit 2026-04-27 confirmed routes against operator's "best implementation possib
 
 ### High-leverage / low-cost (autonomous, brain-doable)
 
-- [ ] `/etf-by-superinvestor/[manager]/` — 30 pages overlapping each manager's holdings against ETFS to find best replicating ETF. Uses existing MANAGERS + ETFS data. ~2h ship. **Archetype: comparison_vs_competitor + finite_public_dataset_programmatic.** [id:etf-by-superinvestor]
-- [ ] `/buyback-tracker/` hub — corporate buyback announcements aggregator. `/buybacks/` data already exists (28 URLs); just needs hub page consolidating signal. ~1h ship. [id:buyback-tracker-hub]
-- [ ] `/sec-form-4-archive/` — historical insider trading archive. Existing `/insiders/` covers Form 4 data; this would be a date-indexed alternate view. ~1h ship if new. [id:sec-form-4-archive]
-- [ ] `/value-screen/` — Greenblatt magic formula calculator (ROIC + earnings yield). Pure computation against existing tickers. Operator may need to provide ROIC dataset. ~3h ship. [id:value-screen-greenblatt]
-- [ ] `/sector-rotation/` — quarterly sector ETF tracker. Existing `/sector/` has 11 URLs; rotation needs cross-time-period view. ~3h ship. [id:sector-rotation]
-- [ ] `/buyback-yield-screen/` — buyback yield calculator + ranked screener. ~2h ship. [id:buyback-yield-screen]
+- [x] `/etf-by-superinvestor/[manager]/` — SHIPPED 2026-04-28 commit `5b5eb8d2b`. 30 manager pages + hub at `/etf-by-superinvestor/`. Uses existing MANAGERS + ETFS data; new lib/etf-overlap.ts computes weighted-overlap scores. 31 sitemap entries. Archetype-stack: programmatic_unique + ai-citation + comparison + schema + hub-spoke.
+- [x] `/buyback-tracker/` hub — RESOLVED-AS-EXISTING. `/buybacks/page.tsx` IS the tracker (title: "Corporate Buyback Tracker — biggest share-repurchase programs in the S&P 500"); has topBuybacks, topBuybackYields, by-ticker, largest-authorizations subroutes. Roadmap entry was duplicative. [id:buyback-tracker-hub]
+- [x] `/sec-form-4-archive/` — RESOLVED-AS-EXISTING. `/insiders/page.tsx` IS the Form 4 archive (description: "SEC Form 4 insider transactions from CEOs, CFOs, and directors across major tickers"); has /insiders/live/, /insiders/company/[ticker]/, /insiders/officer/[slug]/. Roadmap entry was duplicative. [id:sec-form-4-archive]
+- [x] `/buyback-yield-screen/` — RESOLVED-AS-EXISTING. `/buybacks/yield/` route already shipped. Roadmap entry was duplicative. [id:buyback-yield-screen]
+- [ ] `/value-screen/` — Greenblatt magic formula calculator (ROIC + earnings yield). Pure computation but needs ROIC dataset operator-provided OR scraped from financial-data API. ~3h ship. [id:value-screen-greenblatt]
+- [ ] `/sector-rotation/` — quarterly sector ETF tracker. Existing `/sector/` has 11 URLs; rotation needs cross-time-period view (multi-quarter performance comparison). ~3h ship. [id:sector-rotation]
 
 ### Medium-leverage / scaffold-only (operator data needed for full ship)
 
