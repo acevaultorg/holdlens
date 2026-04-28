@@ -357,7 +357,9 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
 
       <section className="mt-12">
         <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
-          <h2 className="text-2xl font-bold">Recent moves</h2>
+          <h2 className="text-2xl font-bold">
+            {m.name}&apos;s recent 13F moves: buys, adds, trims, and exits
+          </h2>
           <div className="text-xs text-dim">
             Manager quality score:{" "}
             {/* v4.2 — derived-ROI quality. Audit showed hand-coded
@@ -379,7 +381,10 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       />
 
       <section className="mt-12">
-        <h2 className="text-2xl font-bold mb-6">Top holdings</h2>
+        <h2 className="text-2xl font-bold mb-6">
+          {m.name}&apos;s top {activeHoldings.length} disclosed holdings
+          {filing?.quarter ? ` (${filing.quarter})` : ""}
+        </h2>
         <div className="rounded-2xl border border-border bg-panel overflow-hidden">
           <table className="w-full text-sm">
             <thead className="text-dim text-xs uppercase tracking-wider">
@@ -445,7 +450,9 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         if (related.length === 0) return null;
         return (
           <section className="mt-16">
-            <h2 className="text-2xl font-bold mb-4">Similar investors</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              Investors with portfolios similar to {m.name}
+            </h2>
             <p className="text-muted text-sm mb-6">
               Tracked managers whose top positions overlap with {m.name.split(" ")[0]}'s portfolio.
             </p>

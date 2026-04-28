@@ -50,7 +50,9 @@ export default function InvestorConcentration({
   return (
     <section className="mt-12 rounded-2xl border border-border bg-panel p-6">
       <div className="flex items-baseline justify-between mb-5 flex-wrap gap-2">
-        <h2 className="text-xl font-bold">Concentration profile</h2>
+        <h2 className="text-xl font-bold">
+          {managerFirstName}&apos;s portfolio concentration: top-1, top-5, top-10
+        </h2>
         <span
           className={`text-[11px] font-semibold uppercase tracking-widest ${verdictClass}`}
         >
