@@ -64,3 +64,4 @@
 2026-04-29 10:55 | session-end | mode:auto(=sovereign-auto) | event:revenue-funnel-complete-coverage | shipped:13-page-monetization-coverage + REVENUE_ACTIVATION + corrections | commits:5(3637a77ba+b686152ed+03b8b798a + earlier) | deploys:5 | live-verified:9-pages | next:operator min activation = -540/mo
 2026-04-29T13:20Z | session-end | mode:auto sovereign | tasks:18 | handoff:written | next-heartbeat:scheduled
 2026-04-29T13:31Z | session-end | mode:auto(=sovereign-auto) | tasks:11(schema-batch-3 + tollbit-verified) | handoff:written | commits:1(bdbc1df7d) | deploy:verified-29-pages-live | indexnow:5537-urls-200
+2026-04-29T13:58Z | session-end | mode:auto(=sovereign-auto) | tasks:1(insiders-live-perf-fix) | event:CRITICAL-PAGE-WEIGHT-FIX | before:24MB | after:611KB | reduction:97.5% | commit:a89d09990 | live-verified:13:58Z
