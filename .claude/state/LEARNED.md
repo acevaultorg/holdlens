@@ -249,3 +249,46 @@ Concept APS 47 (theoretical) corresponds to real ~3,500 v/wk = healthy Y1 trajec
 **Generalize to fleet:** any fleet site that migrates hosting (CF Pages ↔ Vercel ↔ Netlify) MUST re-verify CF Web Analytics mode within 24h. Add to `rules/deploy-truth.md` failure-class catalog: "CF Web Analytics silent disable post-migration" — symptom-to-fix path documented.
 
 **Real-data flow expected:** CF dashboard populates within 5-15 min of first beacon-fired pageview. Next AUG calibration row eligible 7d post-restore (2026-05-06).
+
+## Ship Outcome — 2026-04-29 / rotation v1.86 LLM-citation patch
+
+**Commits:** df7a99f4f (feat) + e836a3ec5 (state). Pushed origin/main. Deploy `dpl_D4b79raFwS1vd97dpFWYikEKUETx` READY at fra1 09:27:42 UTC. holdlens.com/rotation/ verified live with all 4 enhancements (2 JSON-LD scripts + outcome lead + freshness signal + ShareStrip section).
+
+**Trigger pattern:** Apr 28 schema-batch (a733b0b18 — 14 hub pages JSON-LD) had a coverage gap. /rotation was missed despite being one of the highest-Oracle pages on the site. Apr 29 audit caught the gap. Fix shipped same session.
+
+**Generalizable lesson — schema-batch audits need explicit coverage checklist:**
+
+When applying a fleet-wide pattern (JSON-LD, share strips, schema, freshness signals) across a SUBSET of pages, the brain should explicitly enumerate the page list it covered + the page list it skipped + reason. The Apr 28 commit message said "across 14 hub pages" but didn't document which 14, so 2 days later /rotation's gap was invisible to anything except a fresh per-page audit. CSIL check candidate: when a single-purpose feat ships across N pages, log the covered set to a per-feat manifest (or in the commit body) so future audits can detect coverage gaps without re-deriving the eligible-page list from scratch.
+
+**Distribution Oracle stack (this ship):**
+
+| Archetype | Multiplier (v18 calibrated) | Status |
+|---|---:|---|
+| programmatic_unique_data_page | ×+100 | already qualifying (heatmap) |
+| ai_visibility_optimized_page | ×+70 | NEW via Article JSON-LD + outcome lead |
+| schema_markup_article_person_org | ×+20 | NEW |
+| freshness_per_page | ×+30 | NEW (visible "Data verified" + dateModified) |
+| share_by_design_result | ×+95 | NEW (ShareStrip) |
+| comparison_vs_competitor_page | ×+60 | already qualifying ("beats Dataroma") |
+| internal_linking_hub_spoke | ×+15 | already qualifying |
+
+Stack count = 7 ≥+15-multiplier archetypes on one page. Per Layer 5 stacking-bonus: stack ≥5 → ×1.50. **Distribution Oracle projected delta:** +5-15 vis/wk over 30d post-deploy, calibrating at 7d.
+
+**Triple-Oracle projection (logged for calibration):**
+
+```
+{
+  "task_id": "rotation-v1.86-llm-citation-patch",
+  "shipped_at": "2026-04-29T09:27:42Z",
+  "archetype": "ai_visibility_optimized_page + schema_markup + freshness + share_by_design",
+  "revenue_oracle_projected_$/wk": 1.5,        // €1-3/wk midpoint, AdSense pending
+  "retention_oracle_projected_d7_delta_pct": 0.005,  // small (rotation isn't weekly-recurrence)
+  "distribution_oracle_projected_visitors_wk": 10,   // midpoint of 5-15 vis/wk band
+  "confidence": 0.4,                            // medium-cold, first ship in this archetype-stack
+  "calibration_window": "7d + 30d post-deploy"
+}
+```
+
+**Operator-side: nothing required.** This ship is fully autonomous: code edited + tested + committed + pushed + deployed + IndexNow-pinged. CF Web Analytics + Plausible + GSC will measure traffic delta naturally over 7-30d window.
+
+**Triple-cap APS in effect:** all three Oracle weights modest (none > +1.0 cap), so this ship contributes mid-tier not megawin. Honest archetype: "thoughtful patch on existing high-value page" rather than "new-route discovery."

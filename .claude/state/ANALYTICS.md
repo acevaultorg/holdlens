@@ -609,3 +609,51 @@ Calibration window: re-check 2026-05-04 (7d post-deploy when CF clears) for Dist
 - Memory addition: `~/.claude/projects/-Users-paulodevries-Local-holdlens-com-26-apr/memory/feedback_always_merge_and_deploy.md` — operator's "always merge all and put live" directive persisted
 - Only stop/pause/halt exits
 
+
+---
+
+## Session Rollup — 2026-04-29 (v19.38 sovereign-auto, /rotation v1.86 LLM-citation patch)
+
+**Mode:** auto = sovereign auto · Death Guard pre-flight ok (L1:98 Edit + 84 Write rules ok · L2:heartbeat 9d stale-not-fatal-since-runner-anomaly-pattern-known · L3:MODE=sovereign-auto · L4:CIRCUIT closed · L5:active)
+**Branch:** main · clean before + clean after (2 atomic commits pushed)
+**Working dir:** `/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens`
+**Production:** holdlens.com on Vercel (Apr 27 DNS flip preserved). CF outage Day 6+ ongoing but irrelevant to deploy path.
+
+### Behavior Log
+```
+2026-04-29 09:00 | rotation-v1.86-audit | ai_visibility_optimized_page+schema_markup+freshness+share_by_design | static-reference / programmatic-seo | medium / single-page-edit | tier:Standard | specialist-mix:self-craftsman+self-distributor | gate:AUTO | cycle-time-sec:~3300 | success:true | revenue:$1.5/wk | retention:+0.005% | distribution:+10vis/wk | commits:df7a99f4f+e836a3ec5 | deploy:dpl_D4b79raFwS1vd97dpFWYikEKUETx | live:holdlens.com/rotation/ verified 2 JSON-LD + outcome + freshness + ShareStrip
+```
+
+### Cycle Times
+```
+2026-04-29 | rotation-v1.86-audit | Standard | estimated-sec:5400 | actual-sec:3300 | delta%:-39 (under estimate)
+```
+
+### Gate Log
+```
+2026-04-29 09:00 | gate:auto-accepted(sovereign-auto) | task-type:public-facing-ship | predicted:reversible-edit-passes | actual:reversible-edit-passed | correct:true
+```
+
+### Specialist Log (self-pass per scope-bounded patch)
+```
+2026-04-29 | self-craftsman | /rotation v1.86 | mean:0.87 (Useful 0.85 / Delightful 0.80 / Reliable 0.95 / Clear 0.90 / Unique 0.85) | verdict:PASS
+2026-04-29 | self-distributor | /rotation v1.86 | mean:0.86 (SEO 0.85 / Shareability 0.85 / Channel-match 0.95 / Loop-closure 0.80 / Moat 0.85) | verdict:PASS
+```
+
+### Session arc
+
+1. ABSORB → discovered last session 2026-04-27 14:50 UTC was followed by an Apr 28 session (7 commits) that didn't update CONTEXT.md handoff. Stale handoff masked DNS flip + Apr 28 schema batch + CF beacon fix. Reconstructed via git log + LEARNED.md tail + HUMAN_ACTIONS.md.
+2. Honest blocker check (per status-report-honesty.md) — found CF outage Day 6+ active but IRRELEVANT (Vercel deploy path active since Apr 27). Real signal: 67% traffic decline Apr 17 peak → Apr 28 baseline (per LEARNED.md), classified as organic decay (sandbox boost + bot normalization), not deploy regression.
+3. Roadmap dedup: `/sector-rotation/` from operator's Tier-A roadmap was DUPLICATIVE-AS-EXISTING `/rotation/` (357-line sector heatmap already polished). Same pattern as `/buyback-tracker/` resolution.
+4. Real Oracle gap: Apr 28 schema-batch (a733b0b18) covered 14 hub pages but missed `/rotation/`. Patched in single ship (df7a99f4f).
+5. Build clean → commit → push → Vercel prebuilt deploy → live verify (4/4 enhancements rendered) → IndexNow ping (5,537 URLs HTTP 200) → state file updates.
+
+### Pattern lesson (compounds with prior sessions)
+
+**Schema-batch coverage gap detection:** when the brain ships a fleet-wide pattern across N pages, it should explicitly enumerate the covered + skipped page lists in the commit body so future audits can detect coverage gaps without re-deriving the eligible-page list from scratch. Apr 28 commit said "across 14 hub pages" without naming them; gap was invisible until the Apr 29 audit. CSIL check candidate (deferred to future): track per-feat manifest of covered pages → on next audit cycle, scan eligible-page set for coverage delta.
+
+### Next session priority candidates
+
+1. **`/value-screen/`** Greenblatt magic formula — the LAST brain-doable ROADMAP item. Needs ROIC dataset (operator-provided OR scrape SEC EBIT/invested-capital from existing EDGAR 8K data). Brain could prototype the scraper → if data extractable, ship the page.
+2. **Coverage audit** of all hub pages for v19.1 archetype completeness (JSON-LD + freshness + ShareStrip). Apr 28 batch did 14; this ship did 1; total enrolled pages may be < complete eligible set.
+3. **Operator-only items still pending** (HUMAN_ACTIONS.md): Pro-tier reframe decision · CF Pay-Per-Crawl per-route pricing · AdSense submission · HN Show HN launch · Wikipedia citations · Ezoic/ProRata/Perplexity/Impact signups.

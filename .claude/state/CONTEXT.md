@@ -1,5 +1,67 @@
 # HoldLens — Session context
 
+## Session Handoff (2026-04-29 09:35 UTC · auto = sovereign auto · /rotation v1.86 LLM-citation patch + roadmap dedup)
+
+**Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
+**Branch:** main · clean · HEAD: `e836a3ec5` (state: resolve /sector-rotation as duplicative)
+**Working dir:** `/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens`
+**Production:** holdlens.com on Vercel (DNS flip Apr 27 preserved). CF outage Day 6+ ongoing but irrelevant — Vercel path stable.
+
+### Shipped this session (2 atomic commits, both pushed + deployed live)
+
+| # | Commit | Class | What it does |
+|---|---|---|---|
+| 1 | `df7a99f4f` | feat | `/rotation` v1.86 LLM-citation patch — Article+BreadcrumbList JSON-LD + outcome lead ("In Q4 2025, tracked superinvestors rotated INTO Financials (+28 net flow) and OUT OF Consumer Staples (-1 net flow).") + visible freshness ("Data verified 2026-04-29") + ShareStrip near footer. Closes coverage gap from Apr 28 schema-batch (a733b0b18 → 14 hub pages but skipped /rotation). |
+| 2 | `e836a3ec5` | state | Resolve `/sector-rotation/` from ROADMAP QUEUE as DUPLICATIVE-AS-EXISTING `/rotation/`. Same pattern as `/buyback-tracker/`/`/sec-form-4-archive/`/`/buyback-yield-screen/` resolutions. |
+
+### Live URL deploy-truth verified (post Vercel `dpl_D4b79raFwS1vd97dpFWYikEKUETx`)
+
+```
+holdlens.com/rotation/ → HTTP/2 200 · age:0 · last-modified:Wed, 29 Apr 2026 09:27:42 GMT · x-vercel-id:fra1
+JSON-LD scripts live: 2 (Article + BreadcrumbList confirmed)
+Outcome line live: "tracked superinvestors rotated INTO Financials (+28 net flow)"
+Freshness signal live: "Data verified 2026-04-29"
+ShareStrip live: "Share this rotation map" section + x.com/intent/post + linkedin.com/sharing buttons
+IndexNow ping: 5,537 URLs HTTP 200 OK to Bing/Yandex/Seznam/Naver
+```
+
+### ROADMAP QUEUE state (post-this-session)
+
+Brain-doable items remaining: 1
+- [ ] `/value-screen/` Greenblatt magic formula — LAST brain-doable in queue. Needs ROIC dataset (operator-provided OR scrape from EDGAR 8K)
+
+Resolved-as-existing this session: 1 (`/sector-rotation/`)
+Resolved-as-existing prior sessions: 3 (`/buyback-tracker/`, `/sec-form-4-archive/`, `/buyback-yield-screen/`)
+Operator-data-blocked: 11 (`/brokers/`, `/robo-advisors/`, `/529-plans/`, `/hsa/`, `/tax-loss/`, `/earnings/`, `/options-flow/`, `/family-office-tracker/`, `/spinoff-tracker/`, `/CTA-tracker/`, `/letters/`)
+
+### Operator-side remaining (no change from last session)
+
+1. 🔴 **Pro-tier reframe decision** — operator constraint excludes subscriptions. Decide: drop €9/mo / convert to lifetime supporter / B2B data-license. Blocks 30→80 manager EDGAR universe expansion. **DECISION REQUIRED before brain can ship Pro-tier features.**
+2. 🔴 **HN Show HN launch** — one-shot ~4h day-of, projected +2-50k visitors 48h
+3. 🟡 **Wikipedia citations** — 5 13F-related pages, ~90 min, highest durability
+4. 🟡 **Ezoic Access Now signup** — self-serve, no traffic floor, +30-60% RPM uplift over AdSense-alone
+5. 🟡 **AdSense submission** — when ready
+6. 🟡 **CF Pay-Per-Crawl per-route pricing** — when CF beta enables
+7. 🟢 **Dividend-tax research cadence** — operator's stated tonight kickoff (75 → 400 cells, 30-45 min/evening). Infrastructure shipped 2026-04-27 + ready.
+
+### Key signal (LEARNED.md 2026-04-29 calibration)
+
+**67% traffic decline Apr 17 peak (1,200/day) → Apr 28 baseline (400/day).** Classified as organic decay (sandbox boost + bot normalization), NOT deploy regression. Verified during ABSORB: robots.txt prod=local, sitemap.xml prod=local (5,537 URLs), all top routes return 200. Real signal; not a fixable deploy bug. CF Web Analytics 7d unique = 3,530/wk (within methodology v2.1.1 honesty band 0.88× projection low end).
+
+**Implication for next session:** continue investing in archetype-stack quality (JSON-LD, freshness, ShareStrip, LLM-citation hooks) on existing high-value pages. Expanding surface area (new routes) is lower-leverage right now than polishing the SERP signals on already-indexed pages.
+
+### Pattern lesson captured
+
+**Schema-batch coverage gap detection** — when brain ships a fleet-wide pattern across N pages, commit body should enumerate covered + skipped page lists. Apr 28 a733b0b18 said "across 14 hub pages" without naming them; /rotation gap invisible for 24h+. CSIL check candidate (deferred): per-feat manifest of covered pages → audit detects deltas.
+
+### Picked up next session
+
+1. **First option:** `/value-screen/` Greenblatt prototype — try parsing ROIC from existing EDGAR 8K data. If feasible, ship single new page; if not, mark as operator-blocked.
+2. **Second option:** Coverage audit of remaining hub pages for v19.1 archetype completeness (JSON-LD + freshness + ShareStrip). Some hub pages may still lack the full stack.
+3. **Third option:** if operator returns with new directive, defer to that.
+
+---
+
 ## Session Handoff (2026-04-27 14:50 UTC · auto = sovereign auto · GSC audit + dedupe fixes + dividend-tax research-cadence build)
 
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
