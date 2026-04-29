@@ -154,7 +154,9 @@ export default async function EventsTypePage({ params }: Props) {
               </tr>
             </thead>
             <tbody>
-              {events.map((e, i) => (
+              {/* v1.91 perf-fix: cap events list to 100 most-recent
+                  (was 760KB+ for high-volume types like earnings) */}
+              {events.slice(0, 100).map((e, i) => (
                 <tr
                   key={`type-${e.ticker}-${e.filedAt}-${i}`}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition"

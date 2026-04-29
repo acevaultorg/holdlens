@@ -138,7 +138,14 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
   const m = getManager(slug);
   if (!m) notFound();
 
-  const activeHoldings = getActiveHoldings(m);
+  // v1.91 perf-fix: cap holdings at source so all downstream components
+  // (SectorBreakdown, PortfolioValue, InvestorConcentration, table) inherit
+  // the cap. Diversified managers (Joel Greenblatt, Howard Marks, Andreas
+  // Halvorsen) had 600-690KB pages before this cap. Capping at top-50
+  // brings them under 500KB. The full portfolio remains accessible via
+  // /investor/[slug]/q/[quarter]/ pages, which are page-statically generated
+  // for every (manager, quarter) pair.
+  const activeHoldings = getActiveHoldings(m).slice(0, 50);
   const total = activeHoldings.reduce((s, h) => s + h.pct, 0);
   const filing = LATEST_FILINGS[m.slug];
 
@@ -424,6 +431,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
               </tr>
             </thead>
             <tbody>
+              {/* v1.91 perf-fix: activeHoldings already capped at source (line 141) */}
               {activeHoldings.map((h) => (
                 <tr key={h.ticker} className="border-b border-border last:border-0 align-top">
                   <td className="px-5 py-4 font-mono font-semibold">

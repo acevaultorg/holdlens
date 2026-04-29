@@ -328,7 +328,8 @@ export default function BiggestSellsPage() {
               </tr>
             </thead>
             <tbody>
-              {all.slice(0, 200).map((b, i) => (
+              {/* v1.91 perf-fix: 200 → 100 (was 678KB) */}
+              {all.slice(0, 100).map((b, i) => (
                 <tr
                   key={`${b.slug}-${b.ticker}-${b.quarter}-${i}`}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition"

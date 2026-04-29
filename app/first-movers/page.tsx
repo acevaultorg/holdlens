@@ -432,8 +432,8 @@ export default function FirstMoversPage() {
               </tr>
             </thead>
             <tbody>
-              {/* Capped at top 200 rows — prior full-table render was the bulk of 665 KB. */}
-              {rows.slice(0, 200).map((r, i) => (
+              {/* v1.91 perf-fix: 200 → 100 (was 596KB after first cap) */}
+              {rows.slice(0, 100).map((r, i) => (
                 <tr
                   key={r.ticker}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition"

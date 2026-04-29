@@ -9,7 +9,13 @@ import TickerLink from "@/components/TickerLink";
 // for users who just want to see the significant moves. Top-50-by-magnitude
 // covers the actual signal — tiny positions with rounding-error delta are
 // noise for a retail reader.
-const MAX_MOVES_PER_QUARTER = 50;
+// v1.91 perf-fix: reduced from 50 → 20 + cap quarters to most-recent 4.
+// Diversified investors (Joel Greenblatt, Howard Marks, Andreas Halvorsen)
+// rendered 8 quarters × 50 = 400 moves on /investor/[slug]/, contributing
+// ~300KB to page weight. Now 4 × 20 = 80 moves; older quarters accessible
+// via /investor/[slug]/q/[quarter]/ statically-generated pages.
+const MAX_MOVES_PER_QUARTER = 20;
+const MAX_QUARTERS_RENDERED = 4;
 
 export default function InvestorMoves({ slug }: { slug: string }) {
   const all = getMovesByManager(slug);
@@ -31,7 +37,7 @@ export default function InvestorMoves({ slug }: { slug: string }) {
 
   return (
     <div className="space-y-6">
-      {orderedQuarters.map((q) => {
+      {orderedQuarters.slice(0, MAX_QUARTERS_RENDERED).map((q) => {
         const moves = byQuarter[q];
         const buys = moves.filter((m) => m.action === "new" || m.action === "add");
         const sells = moves.filter((m) => m.action === "trim" || m.action === "exit");

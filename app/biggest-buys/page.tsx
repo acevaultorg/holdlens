@@ -300,8 +300,8 @@ export default function BiggestBuysPage() {
               </tr>
             </thead>
             <tbody>
-              {/* Capped at 200 rows — full HTML was ~850 KB. */}
-              {all.slice(0, 200).map((b, i) => (
+              {/* v1.91 perf-fix: 200 → 100 (was 637KB after first cap; now ~350KB) */}
+              {all.slice(0, 100).map((b, i) => (
                 <tr
                   key={`${b.slug}-${b.ticker}-${b.quarter}-${i}`}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition"

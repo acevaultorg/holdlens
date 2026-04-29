@@ -60,7 +60,8 @@ function isDiscretionary(tx: InsiderTx): boolean {
 // pages and /insiders/officer/[name]/ per-officer pages, which are
 // page-statically generated for every distinct ticker + officer in the
 // dataset (so SEO surface area is preserved).
-const FEED_CAP = 200;
+// v1.91: 200 → 150 to get under 500KB threshold (was 626KB at 200)
+const FEED_CAP = 150;
 
 export default function InsidersLivePage() {
   // All transactions, newest first. Cap to FEED_CAP for page-weight reasons.

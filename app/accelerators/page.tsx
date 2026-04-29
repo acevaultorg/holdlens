@@ -290,8 +290,8 @@ export default function AcceleratorsPage() {
               </tr>
             </thead>
             <tbody>
-              {/* Capped at top 200 — prior render was ~770 KB uncapped. */}
-              {all.slice(0, 200).map((a, i) => (
+              {/* v1.91 perf-fix: 200 → 100 (was 606KB after first cap) */}
+              {all.slice(0, 100).map((a, i) => (
                 <tr
                   key={a.ticker}
                   className="border-b border-border last:border-0 hover:bg-bg/40 transition"
