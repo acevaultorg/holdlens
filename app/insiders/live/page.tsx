@@ -50,11 +50,25 @@ function isDiscretionary(tx: InsiderTx): boolean {
   return !(tx.note || "").toLowerCase().includes("10b5-1");
 }
 
+// v1.91 (2026-04-29) — page-weight fix. Pre-fix this page was 24MB raw HTML
+// (9,931 Form 4 transactions in a single static export) which: (a) timed out
+// AdSense crawlers blocking site approval, (b) tanked Core Web Vitals on
+// mobile (LCP >30s), (c) was unusable on any throttled connection. Capping
+// the feed at 200 most-recent rows brings the page to ~500KB (~98% size
+// reduction) while preserving the daily-firehose value proposition. Older
+// transactions remain searchable via /insiders/company/[ticker]/ per-issuer
+// pages and /insiders/officer/[name]/ per-officer pages, which are
+// page-statically generated for every distinct ticker + officer in the
+// dataset (so SEO surface area is preserved).
+const FEED_CAP = 200;
+
 export default function InsidersLivePage() {
-  // All transactions, newest first. No filter — this is the firehose.
-  const feed: InsiderTx[] = [...INSIDER_TX].sort((a, b) =>
+  // All transactions, newest first. Cap to FEED_CAP for page-weight reasons.
+  const fullFeed: InsiderTx[] = [...INSIDER_TX].sort((a, b) =>
     a.date < b.date ? 1 : -1,
   );
+  const feed: InsiderTx[] = fullFeed.slice(0, FEED_CAP);
+  const totalRows = fullFeed.length;
 
   const freshest = feed[0];
   const freshestIso = freshest?.date ?? new Date().toISOString().slice(0, 10);
@@ -154,12 +168,21 @@ export default function InsidersLivePage() {
         across major US public companies. Each row links through to the company&apos;s full
         insider roll-up with its aggregate InsiderScore.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-2">
         Freshest tracked transaction:{" "}
         <span className="text-text font-mono">{fmtInsiderDate(freshestIso)}</span>. Form 4
         filings must be submitted to the SEC within 2 business days of transaction — this
         feed is re-indexed daily after overnight EDGAR ingest. Scheduled 10b5-1 plan sales are
         marked; discretionary open-market transactions carry the most signal.
+      </p>
+      <p className="text-dim text-xs max-w-2xl mb-10">
+        Showing the <span className="text-text font-semibold">{feed.length}</span> most-recent
+        of <span className="text-text font-semibold">{totalRows.toLocaleString("en-US")}</span>{" "}
+        tracked transactions. For deeper history, browse by{" "}
+        <Link href="/insiders/" className="underline hover:text-text">
+          ticker or officer
+        </Link>{" "}
+        — every one has its own page-statically generated detail view.
       </p>
 
       {/* Feed table — lots of rows in one view, emphasis on the most-recent */}
