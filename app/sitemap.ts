@@ -246,13 +246,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Ship #8 v1 — /similar-to/[investor]/ per-investor portfolio
-  // similarity ranking pages. 30 new URLs (one per manager).
-  const similarToUrls: MetadataRoute.Sitemap = MANAGERS.map((m) => ({
-    url: `${base}/similar-to/${m.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.75,
-  }));
+  // similarity ranking pages. 30 new URLs (one per manager) + the
+  // /similar-to/ index page (added v1.91 — was 404'ing in nav).
+  const similarToUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/similar-to`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    ...MANAGERS.map((m) => ({
+      url: `${base}/similar-to/${m.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    })),
+  ];
 
   // /managers-by-style/ — taxonomy hub + per-style cluster pages. 1 hub +
   // N styles where N is non-empty styles only (currently 7). Compounds
