@@ -11,7 +11,7 @@ Audit 2026-04-27 confirmed routes against operator's "best implementation possib
 - [x] `/sec-form-4-archive/` — RESOLVED-AS-EXISTING. `/insiders/page.tsx` IS the Form 4 archive (description: "SEC Form 4 insider transactions from CEOs, CFOs, and directors across major tickers"); has /insiders/live/, /insiders/company/[ticker]/, /insiders/officer/[slug]/. Roadmap entry was duplicative. [id:sec-form-4-archive]
 - [x] `/buyback-yield-screen/` — RESOLVED-AS-EXISTING. `/buybacks/yield/` route already shipped. Roadmap entry was duplicative. [id:buyback-yield-screen]
 - [ ] `/value-screen/` — Greenblatt magic formula calculator (ROIC + earnings yield). Pure computation but needs ROIC dataset operator-provided OR scraped from financial-data API. ~3h ship. [id:value-screen-greenblatt]
-- [ ] `/sector-rotation/` — quarterly sector ETF tracker. Existing `/sector/` has 11 URLs; rotation needs cross-time-period view (multi-quarter performance comparison). ~3h ship. [id:sector-rotation]
+- [x] `/sector-rotation/` — RESOLVED-AS-EXISTING 2026-04-29. `/rotation/page.tsx` IS the cross-time-period sector tracker — 357 lines polished, renders 11 sectors × 8-quarter heatmap with size-weighted netflow + hottest/coldest-per-quarter strip + leaderboard. Same pattern as the `/buyback-tracker/` resolution. v1.86 added Article+BreadcrumbList JSON-LD + outcome-lead sentence + visible freshness + ShareStrip (LLM-citation 10-characteristic patch). Roadmap entry was duplicative. [id:sector-rotation]
 
 ### Medium-leverage / scaffold-only (operator data needed for full ship)
 
