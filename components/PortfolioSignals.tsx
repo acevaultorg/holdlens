@@ -6,35 +6,110 @@
 // This is the killer hook for the entire site: it makes the recommendation model
 // PERSONAL — not "what should anyone buy" but "what should YOU do with what
 // you already own". All signals use the unified signed −100..+100 scale.
+//
+// v1.91 perf-fix: switched from importing getNetSignal (which transitively
+// pulled in 10MB of EDGAR JSON via lib/moves → lib/edgar-data) to fetching
+// the precomputed /api/v1/scores.json (23KB, generated at build time by
+// scripts/generate-api-json.ts). Pre-fix this single client component
+// caused the /portfolio/ page JS bundle to be 8.7MB. Post-fix it's normal.
 
 import { useEffect, useState } from "react";
 import { getProfile, subscribeProfile } from "@/lib/profile";
-import { getNetSignal, type NetSignal } from "@/lib/signals";
-import { formatSignedScore } from "@/lib/conviction";
+
+// v1.91 perf-fix: inlined formatSignedScore (4-line function) instead of
+// importing from @/lib/conviction. The import was the second leak — conviction.ts
+// transitively pulled in 10MB of EDGAR JSON via lib/moves → lib/edgar-data.
+function formatSignedScore(score: number): string {
+  if (score > 0) return `+${score}`;
+  if (score < 0) return `−${Math.abs(score)}`;
+  return "0";
+}
+
+type SignalLite = {
+  direction: "BUY" | "SELL" | "NEUTRAL" | string;
+  score: number;
+};
 
 type RowSignal = {
   ticker: string;
-  signal: NetSignal | null;
+  signal: SignalLite | null;
 };
+
+type ScoresApiItem = {
+  ticker: string;
+  score: number;
+  direction: string;
+  // (other fields exist but unused here)
+};
+
+type ScoresApiResponse = {
+  data: ScoresApiItem[];
+  meta?: unknown;
+};
+
+let scoresCachePromise: Promise<Map<string, SignalLite>> | null = null;
+
+function getScoresLookup(): Promise<Map<string, SignalLite>> {
+  if (!scoresCachePromise) {
+    scoresCachePromise = fetch("/api/v1/scores.json", {
+      // Cache aggressively — scores update on each deploy
+      cache: "force-cache",
+    })
+      .then((r) => {
+        if (!r.ok) throw new Error(`scores.json HTTP ${r.status}`);
+        return r.json() as Promise<ScoresApiResponse>;
+      })
+      .then((j) => {
+        const m = new Map<string, SignalLite>();
+        for (const item of j.data) {
+          m.set(item.ticker.toUpperCase(), { direction: item.direction, score: item.score });
+        }
+        return m;
+      })
+      .catch((err) => {
+        // On fetch failure, return empty map — component shows "Not in coverage"
+        // for everything but doesn't crash. The whole component renders null
+        // when rows.length === 0 anyway, so this is graceful.
+        // eslint-disable-next-line no-console
+        console.warn("[PortfolioSignals] failed to load scores.json", err);
+        return new Map<string, SignalLite>();
+      });
+  }
+  return scoresCachePromise;
+}
 
 export default function PortfolioSignals() {
   const [rows, setRows] = useState<RowSignal[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [scoresMap, setScoresMap] = useState<Map<string, SignalLite> | null>(null);
 
+  // Load the scores lookup once on mount (cached after first call).
   useEffect(() => {
+    let cancelled = false;
     setMounted(true);
+    getScoresLookup().then((m) => {
+      if (!cancelled) setScoresMap(m);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Recompute rows whenever the user's portfolio OR scores lookup changes.
+  useEffect(() => {
+    if (!scoresMap) return;
     const compute = () => {
       const holdings = getProfile().holdings;
       setRows(
         holdings.map((h) => ({
           ticker: h.ticker.toUpperCase(),
-          signal: getNetSignal(h.ticker),
-        }))
+          signal: scoresMap.get(h.ticker.toUpperCase()) ?? null,
+        })),
       );
     };
     compute();
     return subscribeProfile(compute);
-  }, []);
+  }, [scoresMap]);
 
   if (!mounted || rows.length === 0) return null;
 

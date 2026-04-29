@@ -21,12 +21,34 @@
 import { useEffect, useRef, useState } from "react";
 import { getProfile, subscribeProfile, type Holding } from "@/lib/profile";
 import { getQuotes, type LiveQuote } from "@/lib/live";
-import { getNetSignal } from "@/lib/signals";
+
+// v1.91 perf-fix: replaced `import { getNetSignal } from "@/lib/signals"` with a
+// lazy fetch of /api/v1/scores.json. The original import transitively pulled in
+// 10MB of EDGAR JSON via lib/moves → lib/edgar-data, ballooning the /portfolio/
+// JS bundle to 8.7MB. The precomputed scores.json is 23KB.
+type SignalLite = { direction: "BUY" | "SELL" | "NEUTRAL" | string; score: number };
+let scoresCache: Promise<Map<string, SignalLite>> | null = null;
+function loadScores(): Promise<Map<string, SignalLite>> {
+  if (!scoresCache) {
+    scoresCache = fetch("/api/v1/scores.json", { cache: "force-cache" })
+      .then((r) => (r.ok ? r.json() : { data: [] }))
+      .then((j: { data: Array<{ ticker: string; score: number; direction: string }> }) => {
+        const m = new Map<string, SignalLite>();
+        for (const item of j.data ?? []) {
+          m.set(item.ticker.toUpperCase(), { direction: item.direction, score: item.score });
+        }
+        return m;
+      })
+      .catch(() => new Map<string, SignalLite>());
+  }
+  return scoresCache;
+}
 
 export default function PortfolioShareCard() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [holdings, setHoldings] = useState<Holding[]>([]);
   const [quotes, setQuotes] = useState<Record<string, LiveQuote | null>>({});
+  const [scoresMap, setScoresMap] = useState<Map<string, SignalLite> | null>(null);
   const [mounted, setMounted] = useState(false);
   const [downloadState, setDownloadState] = useState<"idle" | "done">("idle");
   const [copyState, setCopyState] = useState<"idle" | "done">("idle");
@@ -34,7 +56,15 @@ export default function PortfolioShareCard() {
   useEffect(() => {
     setMounted(true);
     setHoldings(getProfile().holdings);
-    return subscribeProfile((p) => setHoldings(p.holdings));
+    let cancelled = false;
+    loadScores().then((m) => {
+      if (!cancelled) setScoresMap(m);
+    });
+    const unsub = subscribeProfile((p) => setHoldings(p.holdings));
+    return () => {
+      cancelled = true;
+      unsub();
+    };
   }, []);
 
   useEffect(() => {
@@ -63,7 +93,7 @@ export default function PortfolioShareCard() {
         value += q.price * h.shares;
         prevValue += q.prevClose * h.shares;
       }
-      const sig = getNetSignal(h.ticker);
+      const sig = scoresMap?.get(h.ticker.toUpperCase()) ?? null;
       if (sig?.direction === "BUY") buyCount++;
       else if (sig?.direction === "SELL") sellCount++;
     }
