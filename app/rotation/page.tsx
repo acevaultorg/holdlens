@@ -1,9 +1,21 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import CsvExportButton from "@/components/CsvExportButton";
-import { getAllMovesEnriched, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
+import ShareStrip from "@/components/ShareStrip";
+import { getAllMovesEnriched, QUARTERS, QUARTER_LABELS, QUARTER_FILED, type Quarter } from "@/lib/moves";
 import { SECTOR_MAP } from "@/lib/tickers";
 import { MANAGERS } from "@/lib/managers";
+
+// Freshness signals (v1.86 LLM-citation patch) — every fact-page on the
+// site needs visible + schema'd publication + last-modified dates so AI
+// crawlers (GPTBot, ClaudeBot, PerplexityBot) treat the heatmap as a
+// fresh, citable source rather than skipping past for a more recent
+// dataroma article. datePublished tracks when /rotation first shipped
+// (v0.61 sector heatmap, see HEARTBEAT.log 2026-04-15 11:00); dateModified
+// updates with each EDGAR data refresh + structural ship.
+const DATE_PUBLISHED = "2026-04-15";
+const DATE_MODIFIED = "2026-04-29";
+const LATEST_QUARTER: Quarter = "2025-Q4";
 
 export const metadata: Metadata = {
   title: "Sector rotation heatmap — where smart money is moving by quarter",
@@ -113,6 +125,71 @@ export default function SectorRotationPage() {
     (a, b) => (sectorNet.get(b) ?? 0) - (sectorNet.get(a) ?? 0)
   );
 
+  // Latest-quarter hottest/coldest pair — drives the LLM-citation
+  // outcome sentence rendered above the heatmap. hotCold is built from
+  // `quarters` (oldest→newest), so the last entry is the most recent
+  // filed quarter. This sentence is intentionally extractable in one
+  // line so it answers "what sector did hedge funds rotate into in
+  // {quarter}?" type queries cleanly when an LLM crawler indexes the
+  // page (per Aleyda Solis 10-characteristic checklist, dimension #4
+  // "Extractable" — quote-ready H2/lead).
+  const latest = hotCold[hotCold.length - 1];
+  const latestQuarterLabel = QUARTER_LABELS[latest.quarter];
+  const outcomeLine = `In ${latestQuarterLabel}, tracked superinvestors rotated INTO ${latest.hot} (+${latest.hotScore.toFixed(0)} net flow) and OUT OF ${latest.cold} (${latest.coldScore.toFixed(0)} net flow).`;
+
+  // JSON-LD Article + BreadcrumbList — structured-data signal for both
+  // SEO + LLM citation. Article schema lets ChatGPT/Claude/Perplexity
+  // surface this page as the canonical answer for "sector rotation"
+  // queries; BreadcrumbList puts the heatmap on Google's site-hierarchy
+  // graph alongside /sectors and /sector/[slug].
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Sector rotation heatmap — where smart money is moving by quarter",
+    description: outcomeLine,
+    url: "https://holdlens.com/rotation",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://holdlens.com/rotation",
+    },
+    datePublished: DATE_PUBLISHED,
+    dateModified: DATE_MODIFIED,
+    author: {
+      "@type": "Organization",
+      name: "HoldLens",
+      url: "https://holdlens.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "HoldLens",
+      url: "https://holdlens.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://holdlens.com/icons/icon-512.png",
+      },
+    },
+    image: {
+      "@type": "ImageObject",
+      url: "https://holdlens.com/og/home.png",
+      width: 1200,
+      height: 630,
+    },
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    keywords:
+      "sector rotation, 13F sector flow, hedge fund sector positioning, smart money sector heatmap, quarterly sector rotation",
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Sectors", item: "https://holdlens.com/sectors" },
+      { "@type": "ListItem", position: 3, name: "Rotation heatmap", item: "https://holdlens.com/rotation" },
+    ],
+  };
+
   function cellStyle(score: number): React.CSSProperties {
     if (score === 0) return { backgroundColor: "rgba(255,255,255,0.02)" };
     const pct = Math.min(1, Math.abs(score) / maxAbs);
@@ -132,6 +209,15 @@ export default function SectorRotationPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Sector rotation · quarter-over-quarter
       </div>
@@ -142,10 +228,37 @@ export default function SectorRotationPage() {
         Every tracked 13F move from the last 8 quarters, rolled up by sector and quarter. Green = net
         buying, red = net selling. Darker = larger net flow weighted by position size.
       </p>
-      <p className="text-dim text-sm max-w-2xl mb-10">
+      <p className="text-dim text-sm max-w-2xl mb-6">
         Dataroma gives you one quarter of sector weights. HoldLens gives you 8 quarters of signed rotation
         flow — so you can see the <em>direction</em> of smart money, not just the current snapshot. Every
         cell is derived from {moves.length.toLocaleString()} moves across {MANAGERS.length} tracked superinvestors.
+      </p>
+
+      {/* LLM-citation outcome lead (v1.86) — single extractable sentence
+          that directly answers "what sector did hedge funds rotate into
+          last quarter?" Fronts the page so AI crawlers grab a real
+          fact, not marketing copy. Visible to humans too — anchors the
+          page semantically before the heatmap detail. */}
+      <div className="rounded-2xl border border-brand/40 bg-brand/5 p-5 mb-6">
+        <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-2">
+          Latest filed quarter · {latestQuarterLabel}
+        </div>
+        <p className="text-text text-base sm:text-lg leading-snug">
+          {outcomeLine}
+        </p>
+      </div>
+
+      {/* Freshness signal (v1.86) — visible "Data verified" date paired
+          with the JSON-LD dateModified claim. LLM crawlers weight
+          freshness heavily in 2026; without a visible-AND-schema'd
+          date the page silently loses citation share to newer pages.
+          Filed-on date sourced from QUARTER_FILED — accurate to when
+          the SEC actually accepted the latest 13F filings driving
+          this dataset. */}
+      <p className="text-xs text-dim mb-10">
+        Data verified <span className="text-text">{DATE_MODIFIED}</span>
+        {" · "}Source: <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F" target="_blank" rel="noopener" className="underline hover:text-text">SEC EDGAR 13F filings</a>
+        {" · "}Latest filing accepted {QUARTER_FILED[LATEST_QUARTER]}
       </p>
 
       <div className="mb-8 flex justify-end">
@@ -347,10 +460,27 @@ export default function SectorRotationPage() {
         </ul>
       </section>
 
+      {/* Share strip (v1.86) — closes the share-by-design loop on the
+          rotation heatmap. Per v19.1 Acquisition Engine archetype
+          `share_by_design_result × +95`: every result-class page on
+          the site needs a one-click share row so the small percentage
+          of users who would share at zero friction actually do. The
+          rotation table is genuinely shareable content (smart-money
+          insight that updates quarterly + has clear visual hook). */}
+      <section className="mt-16 pt-8 border-t border-border">
+        <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-3">
+          Share this rotation map
+        </div>
+        <ShareStrip
+          title={outcomeLine}
+          url="https://holdlens.com/rotation"
+        />
+      </section>
+
       <p className="text-xs text-dim mt-8 max-w-2xl">
         Heatmap is pure data derivation from SEC 13F filings. Cell color scaled to the global max absolute
-        net flow across the full 8-quarter window. Sector classification via HoldLens's internal SECTOR_MAP;
-        unclassified tickers roll into "Other". Not investment advice.
+        net flow across the full 8-quarter window. Sector classification via HoldLens&rsquo;s internal SECTOR_MAP;
+        unclassified tickers roll into &ldquo;Other&rdquo;. Not investment advice.
       </p>
     </div>
   );
