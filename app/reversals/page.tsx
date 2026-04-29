@@ -137,8 +137,29 @@ export default function ReversalsPage() {
   const comebacks = all.filter((r) => r.pattern === "comeback");
   const whipsaws = all.filter((r) => r.pattern === "whipsaw");
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/reversals/",
+    name: "Reversals — when smart-money flips sentiment",
+    description: "Tickers where tracked superinvestors flipped position direction quarter-over-quarter — buys turning to sells, sells turning to buys.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Reversals", item: "https://holdlens.com/reversals/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Reversals · when smart money changes its mind
       </div>

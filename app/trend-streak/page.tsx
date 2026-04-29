@@ -110,8 +110,29 @@ export default function TrendStreakPage() {
 
   const topCompoundersForCards = threePlusBuys.slice(0, 9);
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/trend-streak/",
+    name: "Trend streaks — multi-quarter conviction across tracked superinvestors",
+    description: "Tickers where managers keep adding quarter after quarter — multi-quarter compounding conviction signals.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Trend streaks", item: "https://holdlens.com/trend-streak/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Trend streaks · multi-quarter compounding
       </div>

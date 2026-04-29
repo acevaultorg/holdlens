@@ -306,8 +306,29 @@ export default function ThemesPage() {
   const computed = THEMES.map(computeTheme);
   const totalThemes = computed.length;
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/themes/",
+    name: "Themes — curated smart-money concentrations across sectors",
+    description: "Curated smart-money themes — AI, Magnificent 7, Energy, Banks, Healthcare and more — across tracked superinvestor portfolios.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Themes", item: "https://holdlens.com/themes/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Themes · smart money by sector bet
       </div>

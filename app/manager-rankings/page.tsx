@@ -137,8 +137,29 @@ export default function ManagerRankingsPage() {
   const quietBeatsBig =
     topQuietAlpha && topBigName && topQuietAlpha.alpha10y > topBigName.alpha10y;
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/manager-rankings/",
+    name: "Manager rankings — composite ranking of tracked portfolio managers",
+    description: "Composite ranking of the world's best active portfolio managers by 10-year CAGR, AUM, conviction, and track record.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Manager rankings", item: "https://holdlens.com/manager-rankings/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Manager rankings · skill × activity composite
       </div>

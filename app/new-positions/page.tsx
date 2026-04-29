@@ -96,8 +96,29 @@ export default function NewPositionsPage() {
     .sort((a, b) => b.count - a.count)
     .slice(0, 5);
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/new-positions/",
+    name: "New positions — fresh-quarter buys by tracked superinvestors",
+    description: "Every fresh position the best portfolio managers opened last quarter — first-time buys before consensus builds.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "New positions", item: "https://holdlens.com/new-positions/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       {/* Header */}
       <div className="mb-10">
         <div className="inline-block text-[10px] font-bold uppercase tracking-widest text-black bg-brand rounded-full px-3 py-1 mb-4">

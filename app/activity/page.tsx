@@ -38,8 +38,29 @@ export default function ActivityPage() {
   // tail can drill into /quarter/[slug] or /biggest-buys / /biggest-sells.
   const PER_QUARTER_CAP = 40;
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/activity/",
+    name: "Full 13F activity feed — every tracked superinvestor move",
+    description: `Every quarterly 13F move across ${MANAGER_QUALITY ? Object.keys(MANAGER_QUALITY).length : 30} tracked superinvestors. Newest first, no curation.`,
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Activity", item: "https://holdlens.com/activity/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Activity feed
       </div>

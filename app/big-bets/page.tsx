@@ -100,8 +100,29 @@ export default function BigBetsPage() {
   // Tracks first-occurrence tickers so we can anchor to them from /signal/[ticker]
   const seenTickers = new Set<string>();
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/big-bets/",
+    name: "Big bets — largest portfolio positions across tracked superinvestors",
+    description: "Where the world's best investors put their biggest bets — concentrated 5%+ positions across tracked smart-money 13F portfolios.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Big bets", item: "https://holdlens.com/big-bets/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Big Bets · size × conviction
       </div>

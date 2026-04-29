@@ -117,8 +117,29 @@ export default function HiddenGemsPage() {
       : 0;
   const top3 = gems.slice(0, 3);
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/hidden-gems/",
+    name: "Hidden gems — under-the-radar smart-money concentrations",
+    description: "Tickers where smart-money is concentrating before the crowd notices — anti-crowding bonus picks across tracked superinvestors.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Hidden gems", item: "https://holdlens.com/hidden-gems/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-3">
         Hidden gems · quiet conviction
       </div>

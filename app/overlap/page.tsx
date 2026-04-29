@@ -140,8 +140,29 @@ export default function OverlapPage() {
   const top6 = pairs.slice(0, 6);
   const maxShared = pairs[0]?.sharedCount ?? 0;
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/overlap/",
+    name: "Manager overlap matrix — pair-by-pair smart-money agreement",
+    description: "Cross-reference where tracked superinvestors agree — pair-by-pair holding overlap across the fleet's curated top-10/20 positions.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Overlap", item: "https://holdlens.com/overlap/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Overlap · who thinks alike
       </div>
