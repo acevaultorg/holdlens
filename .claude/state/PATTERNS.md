@@ -83,3 +83,22 @@ Observation: retry 1 and retry 2 fail at near-identical file counts (~949-1322/3
 - v19.34 lesson: when verification is observed-ineffective in production, brain SKIPS that path + emits operator-action Clarity Card; theater repair burns trust
 
 The deeper pattern: session summaries should cite numbers WITH source-tag, OR honestly say "unknown — last reliable reading was X" instead of regurgitating mixed-source state-file claims as if they were ground truth.
+
+## monetization_layer_active_but_unplaced (2026-04-29)
+
+**Class:** revenue-funnel coverage gap.
+
+**What happened:** session audit of MONETIZATION_STACK.md showed AdSense (Layer 1) status `pending_approval` with snippet wired site-wide + ad units placed on 73 pages. FoundersNudge present on 17 pages. BrokerCta on 3 pages. **All looked "active" at the layer level.**
+
+But: homepage `/` — the page serving 66.7% of all traffic (28 of 42 weekly UV per Plausible 2026-04-29) — had ZERO monetization component instances. The components were active at SITE level but absent on the highest-traffic page.
+
+**Lesson:** monetization audits must run at the PAGE level, not just the LAYER level. A revenue-stack layer can be "active" in `.claude/state/MONETIZATION_STACK.md` while individual high-traffic pages have zero component placements.
+
+**Detection rule for future sessions:**
+1. Get page-traffic distribution from Plausible (top 10 by UV)
+2. For each top-10 page, grep its source for monetization components: `grep -E 'AdSlot|FoundersNudge|BrokerCta|AffiliateCTA|StripeCheckoutButton'`
+3. Flag any top-10 page with zero matches as `monetization_unplaced` failure class.
+
+**Fix applied this session (commit `3637a77ba`):** added AdSlot×2 + FoundersNudge + BrokerCta to homepage. Live-verified via Chrome MCP DOM scrape. 2 ad slots now mounted on holdlens.com homepage where 0 existed before.
+
+**Compounds with prior:** like `mixed_source_traffic_claim` (operator-flagged 2026-04-29), this is a class of "looks fine at aggregate level but broken at granular level" failure. Fleet-wide audits at LAYER level miss page-level gaps. Detection requires per-component-per-top-traffic-page grep.

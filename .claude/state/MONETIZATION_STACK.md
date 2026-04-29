@@ -76,3 +76,41 @@
 ### 2026-04-24 — Scrape-success diagnosis note
 
 Operator flagged 2026-04-24: *"i think scrape success is a big problem. check"*. Investigation confirms the concern is real but the proximate cause is "no license rates" (above), not "paywall broken." Every bot forwarded to TollBit succeeds at content extraction because no paywall is enforced on the bot → content never costs them anything → zero dollar conversion. Fix is operator-only (TollBit dashboard; ~2 min per license rate creation).
+
+## v1.87 monetization-funnel patch (2026-04-29) — homepage coverage gap closed
+
+**Operator directive trace:** *"i want you to make revenue asap, but not theoretical. make the complete funnel perfect for it"*.
+
+**Audit finding:** homepage `/` was serving 66.7% of all traffic (28 of 42 weekly UV per Plausible 2026-04-29 scrape) but had ZERO monetization surfaces — no AdSlot, no FoundersNudge, no BrokerCta. Single highest-leverage code-level gap on the entire site.
+
+**Patch shipped (commit `3637a77ba`, deploy `dpl_kmjqz0fzd` Vercel fra1):**
+
+- **2 AdSlots** added: 1× horizontal `priority="primary"` after RecentMaterialEvents + 1× rectangle `priority="secondary"` before FAQ. Spaced ~800px+ per AdSense policy. Lazy-load via IntersectionObserver (CLS-protected). Self-disable for Pro users. Will serve real ads the moment AdSense application approves (currently pending Google review since 2026-04-18 = 11 days).
+- **FoundersNudge** added before email capture. Per its design fires only on high-intent ranked pages; homepage qualifies (visitor has consumed BuySellSignals + LatestMoves + InsiderActivity + Material Events + 21-card Signal Explorer + Trust Pillars + Methodology before reaching it).
+- **BrokerCta** added immediately after FoundersNudge with context "Acting on a smart-money signal? Open a brokerage account." Self-disables until operator drops affiliate URLs into NEXT_PUBLIC_AFF_IBKR / _SCHWAB / _PUBLIC / _ETORO env vars.
+
+**Live verified (Chrome MCP DOM check, 2026-04-29 ~13:00 UTC):**
+- 2 `<ins class="adsbygoogle">` slots present on holdlens.com homepage
+- adsbygoogle script loaded
+- ca-pub-7449214764048186 client ID present
+- Components render at runtime (client-side, no SSR text)
+
+**Layer activation matrix (post-v1.87):**
+
+| Layer | Pre-v1.87 status | v1.87 status | Activation $/mo (cold-start) |
+|---|---|---|---:|
+| AdSense (L1) | wired site-wide; 0 ad slots on homepage | wired + 2 ad slots on homepage | $5-15/mo when L1 approves |
+| Founders Pass €9 (custom Pro) | only on /pricing + /signal/* | now also on / | +€0-90/mo (1-10 conversions/mo) |
+| Affiliate IBKR/Schwab (L6) | wired on 3 pages (/changelog, /ticker, /signal) | now also on / | $200-400/mo when activated |
+
+**Operator-side activation queue** (full Clarity Cards: `.claude/state/REVENUE_ACTIVATION.md`):
+
+1. 🔴 Impact.com + IBKR signup (~30 min) → $200/funded account
+2. 🔴 Ezoic Access Now signup (~15 min) → $30-80/mo immediate
+3. 🔴 Check AdSense email + drop slot IDs (~5 min if approved) → $5-15/mo
+4. 🟡 ProRata.ai signup (~10 min) → $2-15/mo
+5. 🟡 Wikipedia citations × 5 (~90 min) → durability LLM-citation amplifier
+
+**Total operator effort: ~50 min for #1-3 = ~$240-540/mo activated. Currently $0 active revenue.**
+
+**Pattern lesson logged:** highest-leverage monetization gap is rarely a missing revenue-stack LAYER; it's component-PLACEMENT coverage. Apr 2026 audit revealed AdSense/Founders/Affiliate all "active" at site level but homepage (66.7% of traffic) had zero placements. Coverage audits > layer audits. Filed to PATTERNS.md as `monetization_layer_active_but_unplaced`.
