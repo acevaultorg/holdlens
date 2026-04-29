@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import DividendTaxCalc from "@/components/DividendTaxCalc";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import { COUNTRIES, getCoverageStats, META } from "@/lib/dividend-tax";
 
 export const metadata: Metadata = {
@@ -217,6 +220,10 @@ export default function DividendTaxHub() {
           </a>
         </div>
       </section>
+
+      <FoundersNudge tone="brand" context="You're computing real after-tax dividend yields across investor + payer countries." />
+      <BrokerCta context="Need a broker for tax-efficient dividend investing? Compare options." />
+      <AdSlot format="horizontal" />
 
       <p className="mt-16 text-xs text-dim">
         Estimates for educational purposes only. Tax rules change; consult a qualified tax professional for your specific situation. Not investment advice.

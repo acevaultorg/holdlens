@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import { MANAGERS } from "@/lib/managers";
 import { QUARTER_FILED, LATEST_QUARTER } from "@/lib/moves";
 import { getConviction, formatSignedScore, convictionLabel } from "@/lib/conviction";
@@ -255,6 +256,7 @@ export default function ConvictionLeadersPage() {
       </section>
 
       <FoundersNudge tone="brand" context="You're reading the managers with the highest average conviction across their top holdings." />
+      <BrokerCta context="Want to follow a high-conviction manager? Open a brokerage account." />
       <AdSlot format="horizontal" />
 
       {/* Methodology */}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTER_LABELS, QUARTER_FILED, LATEST_QUARTER, type Quarter } from "@/lib/moves";
@@ -288,6 +290,8 @@ export default function FreshConvictionPage() {
         </section>
       )}
 
+      <FoundersNudge tone="brand" context="You're seeing the highest-conviction lonely trades — bets where no one else has piled in yet." />
+      <BrokerCta context="Riding a fresh-conviction signal? Open a brokerage account." />
       <AdSlot format="horizontal" />
 
       {/* Full table */}

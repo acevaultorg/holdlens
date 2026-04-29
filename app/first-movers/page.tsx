@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, QUARTER_FILED, LATEST_QUARTER, type Quarter } from "@/lib/moves";
@@ -406,6 +407,7 @@ export default function FirstMoversPage() {
       )}
 
       <FoundersNudge tone="brand" context="You're seeing who bought these tickers before the crowd arrived." />
+      <BrokerCta context="Riding a first-mover signal? Open a brokerage account." />
       <AdSlot format="horizontal" />
 
       {/* Full table */}

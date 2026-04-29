@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import CsvExportButton from "@/components/CsvExportButton";
 import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, QUARTER_FILED, LATEST_QUARTER, type Quarter } from "@/lib/moves";
@@ -218,6 +219,7 @@ export default function ContrarianBetsPage() {
       )}
 
       <FoundersNudge tone="brand" context="You're seeing where smart money actively disagrees — the most interesting bets on the table." />
+      <BrokerCta context="Acting on a contrarian thesis? Open a brokerage account." />
       <AdSlot format="horizontal" />
 
       {/* Methodology */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTER_LABELS, QUARTER_FILED, LATEST_QUARTER, type Quarter } from "@/lib/moves";
@@ -276,6 +277,7 @@ export default function BiggestBuysPage() {
       )}
 
       <FoundersNudge tone="emerald" context="You're reading every single trade that pushed past 10% of a manager's book." />
+      <BrokerCta context="Following a high-conviction buy? Open a brokerage account." />
       <AdSlot format="horizontal" />
 
       {/* Full table */}

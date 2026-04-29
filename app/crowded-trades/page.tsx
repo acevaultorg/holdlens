@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import CsvExportButton from "@/components/CsvExportButton";
 import TickerLogo from "@/components/TickerLogo";
 import { topTickers } from "@/lib/tickers";
@@ -339,6 +340,7 @@ export default function CrowdedTradesPage() {
       </section>
 
       <FoundersNudge tone="rose" context="You're tracking the tickers where smart money is most piled in — and where the exit gets narrow." />
+      <BrokerCta context="Looking for an entry on a crowded name? Open a brokerage account." />
       <AdSlot format="horizontal" />
 
       {/* Methodology */}

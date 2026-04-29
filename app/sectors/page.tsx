@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 
 // Ship #9 v1 — Sector Rotation Analyzer hub. Per HOLDLENS_MASTER_ROADMAP,
 // the rotation surface is covered by two existing routes: /rotation (the
@@ -243,6 +246,10 @@ export default function SectorsHub() {
           </a>
         </div>
       </section>
+
+      <FoundersNudge tone="brand" context="You're scanning all 11 sectors with smart-money positioning data." />
+      <BrokerCta context="Building a sector-rotation portfolio? Open a brokerage account." />
+      <AdSlot format="horizontal" />
 
       <p className="mt-16 text-xs text-dim">
         Data sourced from SEC 13F-HR filings via EDGAR. 45-day filing lag applies. Long equity positions only. Not investment advice.

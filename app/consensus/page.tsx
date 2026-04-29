@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import CsvExportButton from "@/components/CsvExportButton";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES, QUARTERS, QUARTER_FILED, LATEST_QUARTER } from "@/lib/moves";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
@@ -280,6 +281,7 @@ export default function ConsensusPage() {
       )}
 
       <FoundersNudge tone="emerald" context="You're looking at tickers where ≥5 superinvestors agree and all signals point the same way." />
+      <BrokerCta context="Found a consensus pick? Open a brokerage account." />
       <AdSlot format="horizontal" />
 
       <section className="mt-12 rounded-2xl border border-border bg-panel p-6">

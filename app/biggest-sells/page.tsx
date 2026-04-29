@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTER_LABELS, QUARTER_FILED, LATEST_QUARTER, type Quarter } from "@/lib/moves";
@@ -295,6 +296,7 @@ export default function BiggestSellsPage() {
       )}
 
       <FoundersNudge tone="rose" context="You're seeing the single biggest conviction collapses — every trim and exit ranked by size." />
+      <BrokerCta context="Need a low-cost broker for tax-loss harvesting? Compare options." />
       <AdSlot format="horizontal" />
 
       {/* Full table */}

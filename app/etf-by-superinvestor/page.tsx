@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import { MANAGERS } from "@/lib/managers";
 import { topReplicatingETFs } from "@/lib/etf-overlap";
 
@@ -147,6 +150,10 @@ export default function ETFBySuperinvestorHub() {
           </a>
         </div>
       </section>
+
+      <FoundersNudge tone="brand" context="You're seeing which ETFs match each tracked manager's style — Buffett-clone, Burry-clone, etc." />
+      <BrokerCta context="Replicating a superinvestor via ETFs? Open a brokerage account." />
+      <AdSlot format="horizontal" />
 
       <p className="mt-16 text-xs text-dim">
         Educational analysis based on disclosed top-10 holdings. Not a recommendation to buy any ETF or stock. Holdings change quarterly (managers) or daily (ETFs); scores reflect snapshots.

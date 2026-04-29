@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 
 export const metadata: Metadata = {
   title: "ForecastLens — calibration ledger for HoldLens predictions · HoldLens",
@@ -124,6 +127,10 @@ export default function ForecastsHub() {
           {" · "}
           <Link href="/disclaimer/" className="text-brand underline">Disclaimer</Link>
         </p>
+
+        <FoundersNudge tone="brand" context="You're reading our calibration ledger — every prediction tracked vs actuals." />
+        <BrokerCta context="Backtesting an idea? Open a brokerage account." />
+        <AdSlot format="horizontal" />
       </div>
 
       <script

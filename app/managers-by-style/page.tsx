@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import { STYLES, styleCounts, managersByStyle } from "@/lib/manager-styles";
 import { MANAGERS } from "@/lib/managers";
 
@@ -143,8 +146,12 @@ export default function ManagersByStyleHub() {
         </div>
       </section>
 
+      <FoundersNudge tone="brand" context="You're browsing the 30 tracked managers grouped by their dominant investing style." />
+      <BrokerCta context="Want to follow a manager's style? Open a brokerage account." />
+      <AdSlot format="horizontal" />
+
       <p className="mt-16 text-xs text-dim">
-        Style classifications are editorial and reflect the manager's most-publicly-known posture. Some managers operate across multiple styles; this taxonomy uses the one most observable in their 13F-disclosed long-only equity book.
+        Style classifications are editorial and reflect the manager&apos;s most-publicly-known posture. Some managers operate across multiple styles; this taxonomy uses the one most observable in their 13F-disclosed long-only equity book.
       </p>
     </div>
   );
