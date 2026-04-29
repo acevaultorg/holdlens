@@ -160,7 +160,11 @@ export default async function InsiderPage(
               </tr>
             </thead>
             <tbody>
-              {s.transactions.map((tx, i) => (
+              {/* v1.91 perf-fix: cap to 200 most-recent transactions per entity.
+                  Some institutional 13G filers (e.g. magnetar-financial-llc) had
+                  thousands of rows producing >1MB pages. Older transactions remain
+                  searchable via /insiders/company/[ticker]/ pages. */}
+              {s.transactions.slice(0, 200).map((tx, i) => (
                 <tr key={i} className="border-b border-border last:border-0 align-top">
                   <td className="px-4 py-3 text-xs text-dim tabular-nums whitespace-nowrap">
                     {fmtInsiderDate(tx.date)}

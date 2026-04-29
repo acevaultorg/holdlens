@@ -234,7 +234,9 @@ export default async function InsidersOfficerPage({ params }: Props) {
               </tr>
             </thead>
             <tbody>
-              {entry.transactions.map((tx, i) => {
+              {/* v1.91 perf-fix: cap to 200 most-recent transactions per officer
+                  (some institutional officer entries had >1MB pages). */}
+              {entry.transactions.slice(0, 200).map((tx, i) => {
                 const disc = isDiscretionary(tx);
                 const isBuy = tx.action === "buy";
                 return (

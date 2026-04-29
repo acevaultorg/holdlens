@@ -39,17 +39,30 @@ function isDiscretionarySell(tx: InsiderTx): boolean {
   return !note.includes("10b5-1");
 }
 
-export default function InsidersPage() {
-  const buys: InsiderTx[] = INSIDER_TX.filter((tx) => tx.action === "buy").sort(sortByDateDesc);
-  const sells: InsiderTx[] = INSIDER_TX.filter((tx) => tx.action === "sell").sort(sortByDateDesc);
+// v1.91 perf-fix (companion to /insiders/live/ fix). Pre-fix this hub page
+// was 13.6MB raw HTML — rendered ALL ~9,931 INSIDER_TX rows in two tables
+// (buys + sells). Same blocker for AdSense crawler as /insiders/live/ was.
+// Aggregations (totalBuyValue, sells count etc.) still use the FULL dataset,
+// only the rendered tables are capped. Older transactions remain searchable
+// via /insiders/company/[ticker]/ + /insiders/officer/[name]/ statically
+// generated pages.
+const INSIDERS_HUB_TABLE_CAP = 100;
 
-  const totalBuyValue = buys.reduce((sum, tx) => sum + tx.value, 0);
-  const totalSellValue = sells.reduce((sum, tx) => sum + tx.value, 0);
-  const discretionarySellValue = sells
+export default function InsidersPage() {
+  const allBuys: InsiderTx[] = INSIDER_TX.filter((tx) => tx.action === "buy").sort(sortByDateDesc);
+  const allSells: InsiderTx[] = INSIDER_TX.filter((tx) => tx.action === "sell").sort(sortByDateDesc);
+  const buys = allBuys.slice(0, INSIDERS_HUB_TABLE_CAP);
+  const sells = allSells.slice(0, INSIDERS_HUB_TABLE_CAP);
+  const buysTotal = allBuys.length;
+  const sellsTotal = allSells.length;
+
+  const totalBuyValue = allBuys.reduce((sum, tx) => sum + tx.value, 0);
+  const totalSellValue = allSells.reduce((sum, tx) => sum + tx.value, 0);
+  const discretionarySellValue = allSells
     .filter(isDiscretionarySell)
     .reduce((sum, tx) => sum + tx.value, 0);
   const netBuyValue = totalBuyValue - discretionarySellValue;
-  const uniqueBuyTickers = new Set(buys.map((tx) => tx.ticker)).size;
+  const uniqueBuyTickers = new Set(allBuys.map((tx) => tx.ticker)).size;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -110,14 +123,14 @@ export default function InsidersPage() {
           <div className="text-[10px] uppercase tracking-widest text-emerald-400 font-bold mb-1">
             Insider buys
           </div>
-          <div className="text-3xl font-bold text-text tabular-nums">{buys.length}</div>
+          <div className="text-3xl font-bold text-text tabular-nums">{buysTotal.toLocaleString("en-US")}</div>
           <div className="text-xs text-dim mt-1">{fmtInsiderValue(totalBuyValue)} total</div>
         </div>
         <div className="rounded-2xl border border-rose-400/30 bg-rose-400/5 p-5">
           <div className="text-[10px] uppercase tracking-widest text-rose-400 font-bold mb-1">
             Insider sells
           </div>
-          <div className="text-3xl font-bold text-text tabular-nums">{sells.length}</div>
+          <div className="text-3xl font-bold text-text tabular-nums">{sellsTotal.toLocaleString("en-US")}</div>
           <div className="text-xs text-dim mt-1">{fmtInsiderValue(totalSellValue)} total</div>
         </div>
         <div className="rounded-2xl border border-border bg-panel p-5">
@@ -149,7 +162,7 @@ export default function InsidersPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-text">
             <span className="text-emerald-400">Insider buys</span> — the signal
           </h2>
-          <span className="text-sm text-muted">{buys.length} transactions</span>
+          <span className="text-sm text-muted">Showing {buys.length} of {buysTotal.toLocaleString("en-US")}</span>
         </div>
         <p className="text-muted text-sm mb-6 leading-relaxed max-w-2xl">
           Open-market CEO/CFO buys historically outperform the market. An insider who buys
@@ -246,7 +259,7 @@ export default function InsidersPage() {
       <section className="mb-16">
         <div className="flex items-baseline gap-3 mb-4 flex-wrap">
           <h2 className="text-2xl md:text-3xl font-bold text-text">Insider sells</h2>
-          <span className="text-sm text-muted">{sells.length} transactions</span>
+          <span className="text-sm text-muted">Showing {sells.length} of {sellsTotal.toLocaleString("en-US")}</span>
         </div>
         <p className="text-muted text-sm mb-6 leading-relaxed max-w-2xl">
           Most sells are 10b5-1 scheduled plans — pre-committed months in advance to avoid

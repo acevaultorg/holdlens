@@ -240,7 +240,9 @@ export default async function InsidersCompanyPage({ params }: Props) {
               </tr>
             </thead>
             <tbody>
-              {transactions.map((tx, i) => {
+              {/* v1.91 perf-fix: cap per-ticker page to 200 most-recent transactions
+                  (some high-activity tickers like CRWV had >1MB pages). */}
+              {transactions.slice(0, 200).map((tx, i) => {
                 const disc = isDiscretionary(tx);
                 const isBuy = tx.action === "buy";
                 return (
