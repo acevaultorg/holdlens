@@ -500,3 +500,25 @@ As of Apr 19 Plausible snapshot: holdlens.com had **12 UV / 30 days = ~0.4 UV/da
 ### Plausible share-link (TODO — operator action)
 
 Operator can generate a public share-link in Plausible: Site → Settings (gear) → Visibility → "+ Add a shared link" → name "fleet-data-readonly" → copy URL → paste into `~/.claude/fleet/FLEET_METRICS_DATA/plausible-shares.txt` as `holdlens.com | <url>`. Once dropped, AceEvolve cycle reads it and can scrape weekly without operator-driven Chrome MCP. ~2 min one-time op.
+
+## Ship outcomes (continued — 2026-04-29 PM)
+
+```
+2026-04-29 13:18 | holdlens | monetization_gap_closure (14 pages) | proj:+5-15 vis/wk · +$0/wk direct · +$25-200/funded-broker (when env vars activated) | TBD | TBD | TBD | v1.90 — 14-page monetization closure: best-now + insiders + activity + compare + hidden-gems + trend-streak + reversals + overlap + exits + manager-rankings + themes + concentration + big-bets + new-positions all received canonical FoundersNudge + BrokerCta + AdSlot trio. Build clean. Deploy via Vercel Layer 4 (rsync + --archive=tgz for 19,606 files). All 14 verified HTTP 200 live (last-modified 2026-04-29T13:18:42Z). IndexNow ping 5537 URLs. BrokerCta returns null until env vars (NEXT_PUBLIC_IBKR_REF / etc.) drop — single-config-change activates 23+ pages simultaneously. Total session: 18 pages monetized + verified end-to-end.
+```
+
+## TollBit verification (2026-04-29 13:09 UTC)
+
+Operator queried whether TollBit caused the apparent CF Web Analytics drop on Apr 27. Honest answer:
+
+- TollBit dashboard (app.tollbit.com → HoldLens property): **5.1% of holdlens.com traffic this week was AI bot scrapes** (274 blocked). Status: "Content protected" (4-bar full).
+- "0/2 active access methods" config — 2 paid-access methods set up but NEITHER active. = TollBit blocks bots without offering them a paid path. Worst-of-both at this scale.
+- 6-month aggregate: 316 attempts, 459 blocked, **$0 revenue**, 3 human-via-AI-citation referrals.
+- The Apr 27 CF Web Analytics drop is NOT TollBit. It's a measurement artifact:
+  - Pre-Apr 27: Cloudflare proxy edge view = saw all bot+human traffic = 800-1,200/day
+  - Apr 27: DNS flipped to Vercel-direct → CF lost edge view
+  - Apr 27-28: ~24h beacon outage (no CF measurement)
+  - Apr 28 23:05 UTC: beacon manually re-injected, CF now sees JS-fired traffic only
+  - Post-restore CF (3 UV/24h) ≈ Plausible baseline (2.4 UV/day average) — meters now agree.
+- **Decision: leave TollBit alone at current scale.** Net cost ~0, net revenue ~0, blocking 5.1% of traffic that wasn't converting. Revisit at 1k+ UV/mo when bot-monetization compounds.
+- AdSense status confirmed: holdlens.com = "Getting ready" (review pending, ownership ✅, review requested ✅). Ads.txt is correctly live (HTTP 200, canonical line) — the dashboard's "Not found" status is stale (last scan Apr 14, before Vercel DNS flip).
