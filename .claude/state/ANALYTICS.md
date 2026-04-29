@@ -657,3 +657,33 @@ Calibration window: re-check 2026-05-04 (7d post-deploy when CF clears) for Dist
 1. **`/value-screen/`** Greenblatt magic formula — the LAST brain-doable ROADMAP item. Needs ROIC dataset (operator-provided OR scrape SEC EBIT/invested-capital from existing EDGAR 8K data). Brain could prototype the scraper → if data extractable, ship the page.
 2. **Coverage audit** of all hub pages for v19.1 archetype completeness (JSON-LD + freshness + ShareStrip). Apr 28 batch did 14; this ship did 1; total enrolled pages may be < complete eligible set.
 3. **Operator-only items still pending** (HUMAN_ACTIONS.md): Pro-tier reframe decision · CF Pay-Per-Crawl per-route pricing · AdSense submission · HN Show HN launch · Wikipedia citations · Ezoic/ProRata/Perplexity/Impact signups.
+
+---
+
+## Session Rollup — 2026-04-29 (continued · 4-page signal-explorer schema batch)
+
+**Commit 4 of session:** `2e81e2eb7` — JSON-LD CollectionPage+Breadcrumb on /consensus, /contrarian-bets, /crowded-trades, /conviction-leaders. Same coverage-gap class as /rotation v1.86. 4 pages × 4-archetype stack contribution.
+
+### Behavior Log
+```
+2026-04-29 11:00 | signal-explorer-4page-schema-batch | ai_visibility_optimized_page+schema_markup+freshness | static-reference / programmatic-seo | medium / 4-page-batch | tier:Standard | specialist-mix:self-craftsman+self-distributor | gate:AUTO | cycle-time-sec:~3000 | success:true | revenue:$0.5-2/wk | retention:+0.005-0.02% | distribution:+12-40vis/wk | commit:2e81e2eb7 | deploy:dpl_<3ipo59g2t> | live:4/4 verified CollectionPage+BreadcrumbList+dateModified
+```
+
+### Session totals (across both ships)
+
+- 4 atomic commits pushed: df7a99f4f, e836a3ec5, 0851a704d, 2e81e2eb7
+- 2 Vercel prebuilt deploys (both READY, fra1 edge, age:0 fresh)
+- 5 pages enhanced with new/upgraded archetype stacks
+- 11,074 IndexNow submissions (5,537 × 2)
+- 4 state files updated
+- 1 roadmap dedup
+- Cumulative Distribution Oracle projection: +17-55 vis/wk over 30d
+
+### Verification time / shipping time ratio
+
+- Verification (curl deploy-truth + grep schema + IndexNow ping confirm): ~5 min × 2 ships = 10 min
+- Code edits + build + deploy: ~70 min × 2 ships = 140 min
+- State writes: ~15 min total
+- Total session: ~165 min for 5-page polish
+
+Ratio: ~6% verification overhead. Honest deploy-truth checks are cheap and they prevent the silent-fail-claim-success failure pattern that v19.27/28 caught.

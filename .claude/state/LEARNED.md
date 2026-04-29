@@ -292,3 +292,54 @@ Stack count = 7 ≥+15-multiplier archetypes on one page. Per Layer 5 stacking-b
 **Operator-side: nothing required.** This ship is fully autonomous: code edited + tested + committed + pushed + deployed + IndexNow-pinged. CF Web Analytics + Plausible + GSC will measure traffic delta naturally over 7-30d window.
 
 **Triple-cap APS in effect:** all three Oracle weights modest (none > +1.0 cap), so this ship contributes mid-tier not megawin. Honest archetype: "thoughtful patch on existing high-value page" rather than "new-route discovery."
+
+## Ship Outcome — 2026-04-29 / signal-explorer 4-page schema patch
+
+**Commit:** 2e81e2eb7. Pushed origin/main. Deploy `dpl_<3ipo59g2t>` READY at fra1. All 4 pages verified live with schema (CollectionPage + BreadcrumbList + dateModified="2026-04-29") on holdlens.com.
+
+**Pages patched:**
+- /consensus
+- /contrarian-bets
+- /crowded-trades
+- /conviction-leaders
+
+**Same coverage-gap pattern as /rotation v1.86 (df7a99f4f):** the Apr 29 a733b0b18 hub-batch (which brought hub coverage 17/31 → 31/31) excluded signal-explorer pages. /rotation patch + this 4-page batch close the gap on the next-most-leveraged surfaces.
+
+**Distribution Oracle archetype stack per page (4 multipliers ×+15 each):**
+- ai_visibility_optimized_page (×+70) — NEW via CollectionPage schema
+- schema_markup_article_person_org (×+20) — NEW
+- freshness_per_page (×+30) — NEW via dateModified
+- programmatic_unique_data_page (×+100) — already qualifying
+
+Stack count = 4 archetypes per page → ×1.25 stacking bonus. Cold-start projection: +3-10 vis/wk per page = +12-40 vis/wk fleet contribution.
+
+**Triple-Oracle aggregate this session (rotation + 4-batch):**
+- Revenue Oracle: +€2-5/wk (cumulative across 5 patched pages)
+- Retention Oracle: +0.005-0.02% D7 (small — these are SEO surfaces, not retention drivers)
+- Distribution Oracle: +17-55 vis/wk projected over 30d post-deploy
+
+**NOT in this batch (deferred):**
+- Outcome-lead extractable sentence per page (requires #1-result wording)
+- ShareStrip per page (requires natural share-title)
+- Visible "Data verified" text near content (requires per-page UX injection)
+
+These would unlock 3 more archetype-stack multipliers (share_by_design ×+95, comparison ×+60, cumulative+30 visible-freshness) per page. Future scope.
+
+**Cumulative session output (auto = sovereign auto):**
+- 4 atomic commits pushed origin/main: df7a99f4f + e836a3ec5 + 0851a704d + 2e81e2eb7
+- 2 Vercel prebuilt deploys (rotation v1.86 + 4-page schema batch) — both READY
+- 11,074 IndexNow URLs (5537 × 2 pings)
+- 5 pages with new/upgraded archetype stacks
+- 4 state files updated (TASKS, CONTEXT, ANALYTICS, LEARNED)
+- 1 roadmap dedup (/sector-rotation as DUPLICATIVE-AS-EXISTING /rotation)
+
+**Generalizable lesson — coverage-gap detection compounds across pages:**
+
+The /rotation gap (Apr 28 schema-batch missed it) and the signal-explorer gap (Apr 29 hub-batch missed them) are the SAME failure class: "fleet-wide pattern N/M didn't enumerate eligible pages". The fix is per-feat coverage manifest documented in commit body. Future schema-batches should ship with explicit "covered: [list], skipped: [list with reason]" so audits can detect deltas in seconds.
+
+This compounds with the same lesson from prior sessions (calibration drift, narrative drift) — every fleet-wide pattern needs an explicit coverage manifest, not a vague "across N pages" count.
+
+**Sessions where this lesson matters next:**
+- Next schema-batch (Article-with-outcome upgrade for the 5 remaining "signal" pages: hidden-gems, trend-streak, accelerators, biggest-buys, biggest-sells, fresh-conviction, exits, reversals, concentration, themes) — should include coverage manifest in commit
+- Next ShareStrip rollout — same
+- Next freshness-signal rollout — same

@@ -56,3 +56,5 @@
 2026-04-20 00:14 | session-start | mode:auto(heartbeat) | L1:ok L2:ok L3:ok L4:closed L5:active TASKS:ok HB:fresh | resume:post-compaction | heartbeat-age:<15min
 2026-04-20 00:14 | ship9-learn-metadata | Ship #9 COMPLETE | commit:ecfee45a9 | scope: openGraph+twitter+BreadcrumbList+ShareStrip+Article-dates on what-is-a-13f + conviction-score-explained + copy-trading-myth | all 11 /learn articles now at full LLM-citation parity | build:clean | pushed:main
 2026-04-20 00:15 | session-end | mode:auto(heartbeat) | tasks:1(ship9) | handoff:written | next-heartbeat:auto
+2026-04-29 09:32 | session-end | mode:auto(=sovereign-auto) | tasks:1(rotation-v1.86-LLM-citation-patch) | handoff:written | commits:3(df7a99f4f+e836a3ec5+0851a704d) | deploy:dpl_D4b79raFwS1vd97dpFWYikEKUETx | live:holdlens.com/rotation/ verified | indexnow:5537-urls-200
+2026-04-29 09:56 | session-end | mode:auto(=sovereign-auto) | tasks:2(rotation-v1.86 + signal-explorer-4page-batch) | handoff:written | commits:4(df7a99f4f+e836a3ec5+0851a704d+2e81e2eb7) | deploys:2 | live-verified:5/5-pages | indexnow:11074-urls

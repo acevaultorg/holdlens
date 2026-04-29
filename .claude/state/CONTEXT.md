@@ -1,5 +1,77 @@
 # HoldLens — Session context
 
+## Session Handoff (2026-04-29 12:00 UTC · auto = sovereign auto · 5-page LLM-citation coverage-gap fix)
+
+**Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
+**Branch:** main · clean · HEAD: `2e81e2eb7` (feat: signal-explorer 4-page schema batch)
+**Working dir:** `/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens`
+**Production:** holdlens.com on Vercel (DNS flip Apr 27 preserved). 2 deploys this session, both READY at fra1.
+
+### Shipped this session (4 atomic commits, 5 pages enhanced, all live + IndexNow-pinged 11,074 URLs)
+
+| # | Commit | Class | What it does |
+|---|---|---|---|
+| 1 | `df7a99f4f` | feat | `/rotation` v1.86 LLM-citation patch — Article + BreadcrumbList JSON-LD + outcome lead ("In Q4 2025, tracked superinvestors rotated INTO Financials (+28 net flow) and OUT OF Consumer Staples (-1 net flow).") + visible freshness ("Data verified 2026-04-29") + ShareStrip near footer. |
+| 2 | `e836a3ec5` | state | Resolve `/sector-rotation/` from ROADMAP QUEUE as DUPLICATIVE-AS-EXISTING `/rotation/`. |
+| 3 | `0851a704d` | state | LEARNED.md ship-outcome row + ANALYTICS.md session rollup + CONTEXT.md fresh handoff (1st ship). |
+| 4 | `2e81e2eb7` | feat | 4-page signal-explorer schema batch — CollectionPage + BreadcrumbList JSON-LD on /consensus, /contrarian-bets, /crowded-trades, /conviction-leaders. Same coverage-gap pattern as /rotation; same Apr 29 a733b0b18 hub-batch missed both sets. |
+
+### Live URL deploy-truth verified (post both Vercel deploys)
+
+```
+holdlens.com/rotation/         → HTTP 200 · 2 JSON-LD scripts · Article + Breadcrumb · outcome line + freshness + ShareStrip ✓
+holdlens.com/consensus/        → HTTP 200 · CollectionPage + BreadcrumbList + dateModified=2026-04-29 ✓
+holdlens.com/contrarian-bets/  → HTTP 200 · CollectionPage + BreadcrumbList + dateModified=2026-04-29 ✓
+holdlens.com/crowded-trades/   → HTTP 200 · CollectionPage + BreadcrumbList + dateModified=2026-04-29 ✓
+holdlens.com/conviction-leaders/ → HTTP 200 · CollectionPage + BreadcrumbList + dateModified=2026-04-29 ✓
+
+IndexNow: 5,537 URLs × 2 pings = 11,074 submissions HTTP 200 OK
+```
+
+### Distribution Oracle archetype lift (cumulative this session)
+
+| Page | New archetypes added | Stack count post-ship |
+|---|---|---:|
+| /rotation | ai_visibility +70, schema +20, freshness +30, share_by_design +95 | 7 (full v1.86 stack) |
+| /consensus | ai_visibility +70, schema +20, freshness +30 | 4 |
+| /contrarian-bets | same | 4 |
+| /crowded-trades | same | 4 |
+| /conviction-leaders | same | 4 |
+
+Total: 5 pages with new/upgraded archetype stacks. Cold-start projection +17-55 vis/wk fleet-wide over 30d, calibrating at 7d.
+
+### ROADMAP QUEUE state (post-session)
+
+Brain-doable items remaining: 1
+- [ ] `/value-screen/` Greenblatt — needs ROIC dataset (operator-provided OR scrape SEC EBIT/invested-capital)
+
+Resolved-as-existing this session: 1 (`/sector-rotation/`)
+Operator-data-blocked: 11
+
+### Operator-side remaining (no change from prior handoff)
+
+1. 🔴 **Pro-tier reframe decision** — operator constraint excludes subscriptions
+2. 🔴 **HN Show HN launch** — one-shot ~4h day-of, +2-50k visitors 48h
+3. 🟡 **Wikipedia citations** — 5 13F-related pages, ~90 min, highest durability
+4. 🟡 **Ezoic Access Now signup** — self-serve, no traffic floor, +30-60% RPM
+5. 🟡 **AdSense submission** — when ready
+6. 🟡 **CF Pay-Per-Crawl per-route pricing** — when CF beta enables
+7. 🟢 **Dividend-tax research cadence** — operator's tonight kickoff (75 → 400 cells)
+
+### Pattern lesson captured (binding from this session forward)
+
+**Schema-batch coverage gap detection — every fleet-wide pattern needs an explicit coverage manifest in commit body.** Apr 28 a733b0b18 said "across 14 hub pages" without naming them; coverage gap on /rotation + 4 signal-explorer pages was invisible until per-page audit. Future fleet-wide pattern commits MUST include "covered: [list], skipped: [list with reason]" so audits detect deltas in seconds.
+
+### Picked up next session
+
+1. **First option:** Article+outcome+ShareStrip upgrade for the 4 signal-explorer pages just patched (raises stack count from 4 → 7 each, matches /rotation level). Per-page outcome line requires reading each page's #1-result computation. ~60-90 min.
+2. **Second option:** Continue hunting Apr 29 a733b0b18 coverage gaps. Other signal pages (`/hidden-gems`, `/trend-streak`, `/accelerators`, `/biggest-buys`, `/biggest-sells`, `/fresh-conviction`, `/exits`, `/reversals`, `/concentration`, `/themes`, `/overlap`) — same likely missing schema. ~60 min for a 5-page batch.
+3. **Third option:** `/value-screen/` Greenblatt prototype — try parsing ROIC from existing EDGAR 8K data. ~3h speculative.
+
+Lean: option 2 if pages truly missing schema (one verifier curl test answers it). High-multiplier compounding via stacking schema across more pages.
+
+---
+
 ## Session Handoff (2026-04-29 09:35 UTC · auto = sovereign auto · /rotation v1.86 LLM-citation patch + roadmap dedup)
 
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
