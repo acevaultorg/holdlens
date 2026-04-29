@@ -931,3 +931,66 @@ Brain-side audit complete. Per finding action breakdown:
 
 After: 8 active insights → 0 active insights (or 1 if skip-rule review surfaces a real issue).
 
+
+---
+
+## ✅ RESOLVED 2026-04-29 23:50 UTC — Brain executed all CF Security fixes via Chrome MCP — operator directive: "you fix all chrome mcp"
+
+Brain authorization received for autonomous CF dashboard execution (parallel to 2026-04-27 DNS-flip + 2026-04-29 CF beacon-token sessions).
+
+### Actions executed end-to-end via Chrome MCP
+
+**1. Archived 3 anti-bot-harvest insights** (would have killed PPC + LLM citation revenue):
+- ✅ "Review and block AI bots from accessing your assets" (Moderate) — Archive insight
+- ✅ "Review unwanted AI crawlers with AI Labyrinth" (Low) — Archive insight
+- ✅ "Standard Super Bot Fight Mode not enabled" (Moderate) — Archive insight
+
+Account-wide Moderate count: 35 → 34. Low count: 34 → 33. Verified via re-rendered Top Insights panel (AI Labyrinth + Block AI bots + Bot Fight Mode no longer in top-5 list).
+
+**2. DMARC Management enabled (CF beta auto-managed service)**:
+- ✅ Navigated to CF Email → DMARC Management for holdlens.com
+- ✅ Clicked "Enable DMARC Management"
+- ✅ CF generated default record + clicked "Add" to confirm
+- ✅ DNS verified live via `dig +short TXT _dmarc.holdlens.com`:
+  ```
+  "v=DMARC1; p=none; rua=mailto:3f9569c7a01d45df87a542a947959fec@dmarc-reports.cloudflare.net"
+  ```
+- ✅ Dashboard shows: DMARC policy=None (monitor mode), SPF=Soft fail, DKIM=Yes
+- ⏳ First DMARC report in ~24h. RUA reports auto-flow to CF dashboard.
+- 🔮 After 30d clean: operator can strengthen p=none → p=quarantine via dashboard
+- This single record fixes all 3 "DMARC Record Error detected" findings (they collapse to one root cause)
+
+**3. Triggered "Scan now"**:
+- ✅ Clicked Scan now button (async; CF re-scans in 5-15 min)
+- Will clear: 3× DMARC findings (record now exists) + Security.txt finding (file already RFC-9116 compliant)
+
+### State after brain actions
+
+**Active insights (verified screenshot 23:48 UTC):**
+- 1 Moderate (was 3)
+- 4 Low (was 5)
+- **Total: 5 active** (was 8)
+
+**Expected after CF scan completes (~5-15 min, async):**
+- 1 Moderate ("Reduce skip rules" — operator review only)
+- 0 Low (DMARC + Security.txt all clear post-scan)
+- **Total: 1 active**
+
+### One remaining (operator-only)
+
+🟡 **Reduce skip rules for improved protection** (Moderate)
+
+Brain cannot decide which WAF skip rules are intentional vs. legacy. The Bingbot WAF skip is documented intentional in BOT_TRAFFIC.md. Operator review:
+
+1. Open: dash.cloudflare.com → holdlens.com → Security → WAF → Custom Rules → Skip rules
+2. Keep: any Bingbot / search-engine bot skip (BOT_TRAFFIC.md)
+3. Remove: any others without documented purpose
+4. ~5 min review
+
+### What brain did NOT do (out of scope)
+
+- Did NOT enable any anti-AI-bot CF feature (would conflict with revenue strategy)
+- Did NOT modify SPF (already correctly configured: `v=spf1 include:_spf.mx.cloudflare.net ~all`)
+- Did NOT touch WAF skip rules (operator decision)
+- Did NOT strengthen DMARC to p=quarantine (default p=none correct for first 30 days)
+
