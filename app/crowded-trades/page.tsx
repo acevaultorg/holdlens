@@ -4,7 +4,7 @@ import FoundersNudge from "@/components/FoundersNudge";
 import CsvExportButton from "@/components/CsvExportButton";
 import TickerLogo from "@/components/TickerLogo";
 import { topTickers } from "@/lib/tickers";
-import { MERGED_MOVES, QUARTERS } from "@/lib/moves";
+import { MERGED_MOVES, QUARTERS, QUARTER_FILED, LATEST_QUARTER } from "@/lib/moves";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
 
 // /crowded-trades — tickers with the most superinvestors piled in, split by
@@ -105,8 +105,46 @@ export default function CrowdedTradesPage() {
   const loading = rows.filter((r) => r.netDirection === "loading");
   const topLoad = loading[0] ?? null;
 
+  // LLM-citation infrastructure (audit 2026-04-29 fix — same gap pattern
+  // that hit /rotation; Apr 29 a733b0b18 hub-batch missed signal-explorer
+  // pages). CollectionPage + ItemList + BreadcrumbList + dates make this
+  // page citable for "crowded trades hedge funds" queries.
+  const top3 = rows.slice(0, 3);
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/crowded-trades/",
+    name: "Crowded trades — where smart money is piled in",
+    description: `${rows.length} tickers with the highest superinvestor ownership counts, scored by current conviction × recent flow direction.`,
+    datePublished: QUARTER_FILED[LATEST_QUARTER] || "2026-02-17",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: top20.length,
+      itemListElement: top3.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/ticker/${r.symbol}/`,
+        name: `${r.symbol} — ${r.name} · ${r.ownerCount} owners · ${r.netDirection}`,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Crowded trades", item: "https://holdlens.com/crowded-trades/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Crowded trades · ownership × conviction × flow
       </div>

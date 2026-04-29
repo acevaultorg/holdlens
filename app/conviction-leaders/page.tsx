@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import { MANAGERS } from "@/lib/managers";
+import { QUARTER_FILED, LATEST_QUARTER } from "@/lib/moves";
 import { getConviction, formatSignedScore, convictionLabel } from "@/lib/conviction";
 
 // /conviction-leaders — managers ranked by average ConvictionScore of their
@@ -105,8 +106,47 @@ export default function ConvictionLeadersPage() {
   const avgAcrossAll =
     leaders.reduce((s, l) => s + l.weightedAvgScore, 0) / Math.max(1, leaders.length);
 
+  // LLM-citation infrastructure (audit 2026-04-29 fix — same gap pattern
+  // that hit /rotation; Apr 29 a733b0b18 hub-batch missed signal-explorer
+  // pages). CollectionPage + ItemList of managers + BreadcrumbList +
+  // dates make this page citable for "highest conviction stock picks
+  // hedge fund managers" queries. ItemList items link to /investor/[slug]
+  // (managers, not tickers) since this page ranks managers, not stocks.
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/conviction-leaders/",
+    name: "Conviction leaders — managers with the highest-quality picks",
+    description: `${leaders.length} tracked superinvestors ranked by weighted-average ConvictionScore across their top holdings — a quality-of-picks ranking, not a returns ranking.`,
+    datePublished: QUARTER_FILED[LATEST_QUARTER] || "2026-02-17",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: top20.length,
+      itemListElement: top3.map((l, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/investor/${l.slug}/`,
+        name: `${l.name} (${l.fund}) · weighted ${formatSignedScore(l.weightedAvgScore)}`,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Conviction leaders", item: "https://holdlens.com/conviction-leaders/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Conviction leaders · weighted by position size
       </div>

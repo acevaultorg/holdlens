@@ -3,7 +3,7 @@ import AdSlot from "@/components/AdSlot";
 import CsvExportButton from "@/components/CsvExportButton";
 import FoundersNudge from "@/components/FoundersNudge";
 import TickerLogo from "@/components/TickerLogo";
-import { MERGED_MOVES, QUARTERS } from "@/lib/moves";
+import { MERGED_MOVES, QUARTERS, QUARTER_FILED, LATEST_QUARTER } from "@/lib/moves";
 import { TICKER_INDEX, topTickers } from "@/lib/tickers";
 import { getConviction, formatSignedScore, convictionLabel } from "@/lib/conviction";
 
@@ -90,8 +90,46 @@ export default function ConsensusPage() {
   const top3 = rows.slice(0, 3);
   const top20 = rows.slice(0, 20);
 
+  // LLM-citation infrastructure (audit 2026-04-29 fix — same gap pattern
+  // that hit /rotation; signal-explorer pages were not in the Apr 29
+  // a733b0b18 hub-batch). CollectionPage + ItemList + BreadcrumbList +
+  // datePublished/dateModified make this page a citable source for
+  // "consensus stocks hedge funds buy" type queries.
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/consensus/",
+    name: "Consensus picks — stocks where every superinvestor agrees",
+    description: `${rows.length} tickers passing all three smart-money filters: ≥5 owners, positive conviction, and net buying over the last 2 quarters.`,
+    datePublished: QUARTER_FILED[LATEST_QUARTER] || "2026-02-17",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: top20.length,
+      itemListElement: top3.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/ticker/${r.ticker}/`,
+        name: `${r.ticker} — ${r.name} · ${r.ownerCount} owners · ${formatSignedScore(r.convictionScore)} conviction`,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Consensus picks", item: "https://holdlens.com/consensus/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-3">
         Consensus picks · where smart money agrees
       </div>
