@@ -59,3 +59,27 @@ Observation: retry 1 and retry 2 fail at near-identical file counts (~949-1322/3
 **Root cause:** Operator's "never stop" directive applies to the LOOP as a whole (build → live → verify → next build), not to individual retry budgets within a single deploy path. Per `rules/cloudflare-pages-epipe.md` the 3-retry cap exists because "each retry past the third yields zero new information." The operator's directive does NOT override the rule's discipline — it means: when one path hits its cap, pivot to OTHER productive work within the loop.
 **Fix:** after 3 EPIPE on a single deploy path: (a) emit Clarity Card for operator-terminal wrangler OR schedule-later retry, (b) pivot to a DIFFERENT fleet site / different ship / different verification, (c) return to the blocked deploy path only in a later session window ("success rate is non-zero across the day"). Do not rationalize cap violations as compliance with broader directives.
 **Trip-wire:** if the same session runs wrangler attempt ≥4 on the same project, log `retry_cap_violation` + halt the retry loop.
+
+## mixed_source_traffic_claim (2026-04-29, operator-flagged)
+
+**Class:** state-file-honesty failure.
+
+**What happened:** session summary cited "67% organic traffic decline Apr 17 peak (1,200/day) → Apr 28 baseline (400/day)" sourced from a LEARNED.md row that conflated bot-inclusive Cloudflare Web Analytics counts with "organic traffic." Three errors layered:
+
+1. Source confusion — CF Web Analytics is bot-inclusive (counts JS-firing or beacon-hit bots); Plausible is JS-fired humans-only; GSC is organic-search humans. The 1,200/400 numbers came from CF, were called "organic." Wrong.
+2. Beacon-restore invalidated the time series — CF beacon was OFF Apr 27→Apr 28 23:05. A "Apr 17 → Apr 28" trend against an off-beacon window can't be a real day-by-day comparison.
+3. Cherry-picked endpoints — peak-day-vs-baseline-day framing isn't a trend; period-vs-period is.
+
+**Real organic signal at fault-detection time:** Plausible Apr 19 snapshot showed 12 UV / 30 days for holdlens.com (≈ 0.4/day humans). Three orders of magnitude smaller than the cited "400/day."
+
+**Operator caught it.** Session reply: "i think your numbers, like the organic traffic are not correct."
+
+**Fix:** every traffic number in state files MUST tag source explicitly going forward. Format: `123 UV/wk (plausible-30d, JS-fired)` or `5,200 UV/wk (cf-web-analytics-7d, bot-inclusive)` or `345 clicks/wk (gsc-7d-organic-search)`. Bare "X visitors/week" is forbidden.
+
+**Detection rule for future sessions:** if a state-file row reads "traffic" / "visitors" / "UV" / "decline" / "growth" without a source tag in the same row, treat as suspect. Re-read source before quoting in summaries.
+
+**Compounds with prior:**
+- v19.27/28 lessons: only `lastRunAt` advancement signals real execution; `nextRunAt` + `enabled:true` are intent, not truth
+- v19.34 lesson: when verification is observed-ineffective in production, brain SKIPS that path + emits operator-action Clarity Card; theater repair burns trust
+
+The deeper pattern: session summaries should cite numbers WITH source-tag, OR honestly say "unknown — last reliable reading was X" instead of regurgitating mixed-source state-file claims as if they were ground truth.

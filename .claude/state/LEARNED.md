@@ -385,3 +385,39 @@ Same template applies. Next-session deferred to keep this session's commit count
 Apr 29 a733b0b18 hub-batch defined "hub" as 31 specific pages and excluded the 16 signal-explorer surfaces. Per-feat coverage manifest in commit body would have detected this 24h+ earlier. CSIL check candidate: track per-feat manifest of covered pages + on next audit cycle scan eligible-page set for coverage delta.
 
 This compounds with prior session lessons (calibration drift, narrative drift, coverage drift) — every fleet-wide pattern needs an explicit coverage manifest, not a vague "across N pages" count.
+
+## Corrections — 2026-04-29 (operator-flagged numbers issue)
+
+**corrects:** the "67% traffic decline Apr 17 → Apr 28" + "3,530 unique visitors/week" + "1,200/day → 400/day" claims in this LEARNED.md (Apr 29 row added earlier this session) AND in the session summaries / commit messages / CONTEXT.md handoffs that referenced them.
+
+**The error class:** conflated bot-inclusive Cloudflare Web Analytics counts with "organic traffic." Operator caught the mismatch.
+
+**Honest re-statement:**
+
+| Source | Window | Reading | What it actually measures |
+|---|---|---|---|
+| Plausible | 30d (Apr 19 snapshot) | 12 UV / 23 visits / 129 pv | JS-fired sessions ≈ humans (bots excluded by lack-of-JS) |
+| CF Web Analytics | 7d (per Apr 29 row) | 3,530 UV | beacon-fired, includes bots that execute JS or hit the beacon URL |
+| CF Web Analytics | 30d | 6,770 UV | same source, bot-inclusive |
+| TollBit aggregate | 6 months | 316 bot attempts · 0 paid · 3 human-referrals-via-AI | bots only, plus the small downstream-human signal |
+
+**Three layered errors** in the original claim:
+
+1. **Source confusion** — the 1,200/day → 400/day "trend" was CF Web Analytics (bot-inclusive), not Plausible (organic-humans). Calling it "organic traffic decline" was wrong from the start.
+2. **Beacon-restore invalidates the time series** — CF Web Analytics was OFF from Apr 27 DNS-flip until Apr 28 23:05 restore. A trend "Apr 17 → Apr 28" against a beacon that didn't fire for the last 24h+ of that window can't be a real day-by-day trend; it has to be reconstructed from a different source or stale data.
+3. **Cherry-picked endpoints** — even if both numbers were valid, "Apr 17 peak" vs. "Apr 28 baseline" is comparing one outlier day to one normal day, not comparing periods. A 7-day average vs 21-day average is a more honest framing — and there, the most-recent week's average is HIGHER than the 21-day average (504/day vs 322/day, both bot-inclusive), suggesting traffic is rising, not declining.
+
+**Real organic-human signal (last reliable reading):**
+
+As of Apr 19 Plausible snapshot: holdlens.com had **12 UV / 30 days = ~0.4 UV/day organic**. That's ~3 orders of magnitude smaller than the 504/day bot-inclusive number.
+
+**What's unknown:** organic traffic for Apr 20-29. Plausible snapshot is 10 days old. No way to verify without operator dropping a share link to `~/.claude/fleet/FLEET_METRICS_DATA/plausible-shares.txt` (currently empty).
+
+**Implication for session-summary numbers:**
+
+- "Distribution Oracle projection +29-95 vis/wk" — projections themselves are still cold-start estimates per the v18.0 calibrated archetype multipliers, but they project organic-human traffic, NOT bot-inclusive CF Web Analytics. Actuals for calibration must come from Plausible OR from a CF Web Analytics column that filters bots, NOT from the raw CF bot-inclusive number.
+- The 9-page schema-batch ships still produce real value (LLM citation lift, SEO ranking signal) — the value of those ships isn't disputed by this correction. What's disputed is the "67% decline" framing that came BEFORE them.
+
+**Pattern lesson:** every "traffic" number in state files MUST tag the source explicitly. Future LEARNED.md rows tag with `(plausible-30d)` or `(cf-web-analytics-7d, bot-inclusive)` or `(gsc-7d-organic)` — never bare numbers. Adding to PATTERNS.md as `mixed_source_traffic_claim` failure class.
+
+**Operator's correct read:** the numbers I cited weren't lies but they were misleading by source-mixing. Honest answer when asked about traffic: "I don't know recent organic traffic for sure — Plausible last snapshot was Apr 19; CF Web Analytics is bot-inclusive; need fresh share link for accurate organic UV."
