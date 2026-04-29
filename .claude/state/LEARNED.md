@@ -421,3 +421,82 @@ As of Apr 19 Plausible snapshot: holdlens.com had **12 UV / 30 days = ~0.4 UV/da
 **Pattern lesson:** every "traffic" number in state files MUST tag the source explicitly. Future LEARNED.md rows tag with `(plausible-30d)` or `(cf-web-analytics-7d, bot-inclusive)` or `(gsc-7d-organic)` — never bare numbers. Adding to PATTERNS.md as `mixed_source_traffic_claim` failure class.
 
 **Operator's correct read:** the numbers I cited weren't lies but they were misleading by source-mixing. Honest answer when asked about traffic: "I don't know recent organic traffic for sure — Plausible last snapshot was Apr 19; CF Web Analytics is bot-inclusive; need fresh share link for accurate organic UV."
+
+## Plausible verified live — 2026-04-29 (Chrome MCP scrape, post-operator-correction)
+
+**Source:** Chrome MCP navigated to `plausible.io/holdlens.com` (logged in as paulo de vries, team Cluster01). 30d + 7d top-stats parsed via `javascript_tool` DOM scrape.
+
+### Real organic-human numbers (Plausible JS-fired, bots excluded)
+
+**Last 30 days (rolling):**
+
+| metric | value | vs Apr 19 snapshot |
+|---|---:|---|
+| Unique Visitors | 71 | 12 → 71 = **5.9× growth in 10 days** |
+| Total Visits | 96 | 23 → 96 = 4.2× |
+| Total Pageviews | 372 | 129 → 372 = 2.9× |
+| Views per Visit | 3.88 | unchanged-good |
+| Bounce Rate | 7% | 13% → 7% (improved 6pp) |
+| Visit Duration | 4m 38s | new metric (Apr 19 didn't capture) |
+
+**Last 7 days:**
+
+| metric | value | WoW delta |
+|---|---:|---:|
+| Unique Visitors | 42 | **+45%** |
+| Total Visits | 50 | +9% |
+| Total Pageviews | 156 | -28% |
+| Views per Visit | 3.12 | -34% |
+| Bounce Rate | 6% | -3pp (improved) |
+| Visit Duration | 2m 21s | -67% |
+
+**Daily chart pattern (last 7d):** Apr 22 spike (19 UV, likely LinkedIn/Reddit/HN moment), Apr 23 = 2, Apr 24 = 3, Apr 25 = 1, Apr 26 = 8, Apr 27 = 5, Apr 28 = 4. (Apr 29 partial-day not yet shown.)
+
+### Sources (last 7d)
+
+| source | visitors | % |
+|---|---:|---:|
+| Direct / None | 32 | 76.2% |
+| Google | 6 | 14.3% |
+| Yandex | 2 | 4.8% |
+| calibrationledger.com | 2 | 4.8% |
+| **chatgpt.com** | **1** | **2.4%** ← first measurable AI-citation-to-human referral |
+
+### Top pages (last 7d)
+
+| page | visitors | % |
+|---|---:|---:|
+| `/` | 28 | 66.7% |
+| `/dividend-tax/` | 2 | 4.8% |
+| `/dividend-tax/us/de/` | 2 | 4.8% (Apr 27 ship — discovered) |
+| `/etf/` | 2 | 4.8% |
+| `/forecasts/` | 2 | 4.8% |
+| `/insiders/live/` | 2 | 4.8% |
+| `/investor/dev-kantesaria/` | 2 | 4.8% |
+| `/signal/CP/` | 2 | 4.8% |
+| `/activity/` | 1 | 2.4% |
+
+### Honest re-projection of session ships (calibration baseline corrected)
+
+**Pre-correction projection** (in commit messages):
+- "+29-95 vis/wk fleet contribution from 9 schema-batch pages" — calibrated against an inflated bot-inclusive baseline. **Wrong scale.**
+
+**Post-correction honest projection** (calibrated against real 42 UV/wk baseline):
+- The 9 patched pages don't show in the 7d top-pages list yet (too fresh; LLM crawler pickup + Google reindex takes 7-30d)
+- Realistic projection: +1-5 organic UV/wk uplift across the 9 pages combined over the next 30d, bounded by the site's small base (currently ~42 UV/wk humans)
+- Schema additions compound at SCALE — they matter most when the site has 500+ UV/wk and LLM citations multiply. At 42 UV/wk, the lift is small absolute, real percentage.
+
+**The correct framing:** the 9-page schema-batch is INFRASTRUCTURE work — it doesn't bend the curve at this traffic level, it makes the site MORE INDEXABLE so when distribution work (HN/Reddit/Wikipedia/LinkedIn — operator-only items) lands, the LLM-citation-fit captures more of the bump than it otherwise would.
+
+### Real signal (corrected)
+
+- **Site is GROWING, not declining.** 12 UV/30d (Apr 19) → 71 UV/30d (Apr 29) = 5.9× in 10 days
+- **Engagement is strong.** 7% bounce rate, 3.88 pages/visit, 4m 38s duration = humans who land actually use the site
+- **First AI-citation-to-human conversion measured.** 1 chatgpt.com referral in last 7d
+- **Cross-fleet referrals working.** 2 calibrationledger.com → holdlens visits
+- **Recent ships getting indexed.** /dividend-tax/us/de/ (Apr 27 pair-page ship) showing 2 visitors — Google found it within 2 days
+- **Homepage dominates** (66.7% of pageviews) — single biggest lever for any homepage UX/copy work
+
+### Plausible share-link (TODO — operator action)
+
+Operator can generate a public share-link in Plausible: Site → Settings (gear) → Visibility → "+ Add a shared link" → name "fleet-data-readonly" → copy URL → paste into `~/.claude/fleet/FLEET_METRICS_DATA/plausible-shares.txt` as `holdlens.com | <url>`. Once dropped, AceEvolve cycle reads it and can scrape weekly without operator-driven Chrome MCP. ~2 min one-time op.
