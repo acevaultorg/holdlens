@@ -70,3 +70,4 @@
 2026-04-29T15:21Z | session-end | mode:auto(=sovereign-auto) | event:HONEST-PERF-FIX-AFTER-CALL-OUT | found:16-pages-still-over-500KB-via-broken-PATH-find | fixed:16-pages | InvestorMoves-cap:50q8→20q4 | site-wide:0-pages-over-500KB-real-verify | commit:dffd78943
 2026-04-29T15:50Z | session-end | mode:auto(=sovereign-auto) | event:DEEP-AUDIT-FOUND-PORTFOLIO-JS-BUNDLE-8.7MB | fixed:8728KB→22KB-99.703:50:38 PMeduction | also-shipped:perf-budget-guard-extended-to-JS-chunks | site-state:0-pages-over-500KB-0-JS-over-200KB | commit:00a539495 | live-verified:15:48Z
 2026-04-29T16:11Z | session-end | event:BROKEN-LINK-FIX | found:/similar-to/-404-on-every-page-via-nav | created:app/similar-to/page.tsx | live:120-of-120-homepage-links-return-200 | commit:92f6ca8bc
+2026-04-29T16:21Z | session-end | event:SITEMAP-INDEX-PAGE-FIX | added:/similar-to/-to-sitemap | metadata-audit:0-real-bugs-all-dups-noindexed | broken-links:0-of-456-across-36-pages | commit:0c83d209b
