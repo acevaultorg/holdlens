@@ -86,6 +86,14 @@ export const metadata: Metadata = {
       // dangerouslySetInnerHTML injection in <head>; standard form works for
       // their public scraper.
       "impact-site-verification": "5890806c-03de-4eb8-9041-f2b7b8f761cf",
+      // Ezoic Access Now verification (v1.89, 2026-04-29) — verifies
+      // holdlens.com ownership during Ezoic onboarding. Ezoic Access Now is
+      // a zero-traffic-floor ad-network wrapper that stacks on top of
+      // AdSense to lift RPM ~30-60% (per rules/revenue-maximizer.md Layer 5).
+      // Once verified + integration set to "Cloudflare", Ezoic auto-injects
+      // ad code via the Cloudflare worker — no further site-side changes
+      // required.
+      "ezoic-site-verification": "DQ9SpjDXsgmj0d7qjFggouaZlB8AjN",
     },
   },
 };
