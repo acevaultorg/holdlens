@@ -11,9 +11,33 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://holdlens.com/screener/" },
 };
 
+// LLM-citation infrastructure (audit 2026-04-29 fix)
+const SCREENER_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  url: "https://holdlens.com/screener/",
+  name: "HoldLens stock screener",
+  description: "Interactive stock screener: filter by sector, tracked-owner count, weighted ConvictionScore, live day change. Built on 30 of the best portfolio managers in the world.",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "All",
+  inLanguage: "en-US",
+  isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
+};
+const SCREENER_BREADCRUMB_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+    { "@type": "ListItem", position: 2, name: "Screener", item: "https://holdlens.com/screener/" },
+  ],
+};
+
 export default function ScreenerPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCREENER_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCREENER_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Screener
       </div>

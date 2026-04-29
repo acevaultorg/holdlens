@@ -153,8 +153,40 @@ export default function AcceleratorsPage() {
   const longest = all[0]?.runLength ?? 0;
   const top9 = threePlus.slice(0, 9);
 
+  // LLM-citation infrastructure (audit 2026-04-29 fix)
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/accelerators/",
+    name: "Accelerators — smart money crowd-forming signal",
+    description: "Stocks with 3+ consecutive quarters of net-add across 30 tracked superinvestors. Crowd-forming signal distinct from snapshot crowdedness.",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: top9.length,
+      itemListElement: top9.map((a, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/ticker/${a.ticker}/`,
+        name: `${a.ticker} — ${a.runLength}Q accelerator`,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Accelerators", item: "https://holdlens.com/accelerators/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Accelerators · crowd forming
       </div>

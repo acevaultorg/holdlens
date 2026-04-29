@@ -18,6 +18,25 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://holdlens.com/compare/" },
 };
 
+// LLM-citation infrastructure (audit 2026-04-29 fix)
+const COMPARE_LD = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  url: "https://holdlens.com/compare/",
+  name: "Compare — stocks + managers side-by-side",
+  description: "Two compare modes on HoldLens: stock pair (AAPL vs GOOGL) or manager pair (Buffett vs Ackman). 13F ownership overlap, shared tickers, per-position conviction.",
+  inLanguage: "en-US",
+  isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+};
+const COMPARE_BREADCRUMB_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+    { "@type": "ListItem", position: 2, name: "Compare", item: "https://holdlens.com/compare/" },
+  ],
+};
+
 export default function CompareIndex() {
   const topTix = topTickers(8);
 
@@ -53,6 +72,8 @@ export default function CompareIndex() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COMPARE_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COMPARE_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Compare · Two modes
       </div>

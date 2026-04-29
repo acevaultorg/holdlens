@@ -9,8 +9,39 @@ export const metadata: Metadata = {
 };
 
 export default function InvestorsIndex() {
+  // LLM-citation infrastructure (audit 2026-04-29 fix)
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/investor/",
+    name: "All tracked superinvestors",
+    description: `${MANAGERS.length} of the world's best portfolio managers tracked via SEC 13F filings.`,
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: MANAGERS.length,
+      itemListElement: MANAGERS.map((m, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/investor/${m.slug}/`,
+        name: m.name,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Investors", item: "https://holdlens.com/investor/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">All investors</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">{MANAGERS.length} superinvestors tracked</h1>
       <p className="text-muted text-lg max-w-2xl mb-12">

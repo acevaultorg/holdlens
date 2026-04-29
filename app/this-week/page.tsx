@@ -24,8 +24,30 @@ export default function ThisWeekPage() {
   const topSells = getSellSignals().slice(0, 5);
   const quarterLabel = QUARTER_LABELS[LATEST_QUARTER];
 
+  // LLM-citation infrastructure (audit 2026-04-29 fix)
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/this-week/",
+    name: "This week on HoldLens — top buy/sell signals",
+    description: `Top buy + sell signals + trending tickers from ${MANAGERS.length} tracked portfolio managers, distilled to one page.`,
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "This week", item: "https://holdlens.com/this-week/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         This week on HoldLens
       </div>

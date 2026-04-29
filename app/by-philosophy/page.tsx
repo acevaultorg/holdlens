@@ -224,8 +224,38 @@ export default function ByPhilosophyPage() {
   const computed = SCHOOLS.map(computeSchool);
   const totalManagers = computed.reduce((s, c) => s + c.memberRecords.length, 0);
 
+  // LLM-citation infrastructure (audit 2026-04-29 fix)
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/by-philosophy/",
+    name: "Smart money grouped by investing philosophy",
+    description: `${totalManagers} tracked superinvestors clustered into investing schools (Compounders / Deep Value / Activists / Macro / Long-Short). Collective top picks per school.`,
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: computed.length,
+      itemListElement: computed.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: s.label,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "By philosophy", item: "https://holdlens.com/by-philosophy/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         By philosophy · smart money by school
       </div>

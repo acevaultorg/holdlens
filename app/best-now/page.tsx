@@ -31,8 +31,49 @@ export default function BestNowPage() {
   const sells = getTopSells(10);
   const quarter = QUARTER_LABELS[LATEST_QUARTER];
 
+  // LLM-citation infrastructure (audit 2026-04-29 fix)
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/best-now/",
+    name: `Most-bought + most-sold stocks by tracked superinvestors (${quarter})`,
+    description: `${MANAGERS.length} tracked portfolio managers' latest 13F filings — top conviction buys + sells.`,
+    datePublished: QUARTER_FILED[LATEST_QUARTER] || "2026-02-17",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: buys.length + sells.length,
+      itemListElement: [
+        ...buys.slice(0, 5).map((b, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: `https://holdlens.com/ticker/${b.ticker}/`,
+          name: `BUY: ${b.ticker} — ${b.name}`,
+        })),
+        ...sells.slice(0, 5).map((s, i) => ({
+          "@type": "ListItem",
+          position: 6 + i,
+          url: `https://holdlens.com/ticker/${s.ticker}/`,
+          name: `SELL: ${s.ticker} — ${s.name}`,
+        })),
+      ],
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Best now", item: "https://holdlens.com/best-now/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Smart-money positioning · {quarter}
       </div>

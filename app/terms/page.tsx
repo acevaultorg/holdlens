@@ -8,9 +8,33 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://holdlens.com/terms/" },
 };
 
+// LLM-citation infrastructure (audit 2026-04-29 fix)
+const TERMS_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  url: "https://holdlens.com/terms/",
+  name: "Terms of Service",
+  description: "HoldLens Terms of Service — usage rules, non-investment-advice disclaimer, data rights, liability limits.",
+  datePublished: "2026-04-14",
+  dateModified: "2026-04-14",
+  inLanguage: "en-US",
+  isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  publisher: { "@type": "Organization", "@id": "https://holdlens.com/#organization", name: "HoldLens" },
+};
+const TERMS_BREADCRUMB_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+    { "@type": "ListItem", position: 2, name: "Terms of Service", item: "https://holdlens.com/terms/" },
+  ],
+};
+
 export default function TermsPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(TERMS_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(TERMS_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Legal</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Terms of Service</h1>
       <p className="text-sm text-dim mb-10">Last updated: 2026-04-14</p>

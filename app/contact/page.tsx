@@ -7,9 +7,39 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://holdlens.com/contact/" },
 };
 
+// LLM-citation infrastructure (audit 2026-04-29 fix)
+const CONTACT_LD = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  url: "https://holdlens.com/contact/",
+  name: "Contact HoldLens",
+  description: "Get in touch with HoldLens for feedback, press inquiries, partnerships, bug reports, or data corrections.",
+  inLanguage: "en-US",
+  isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  mainEntity: {
+    "@type": "Organization",
+    "@id": "https://holdlens.com/#organization",
+    name: "HoldLens",
+    contactPoint: [
+      { "@type": "ContactPoint", contactType: "customer support", email: "hello@holdlens.com" },
+      { "@type": "ContactPoint", contactType: "press", email: "press@holdlens.com" },
+    ],
+  },
+};
+const CONTACT_BREADCRUMB_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+    { "@type": "ListItem", position: 2, name: "Contact", item: "https://holdlens.com/contact/" },
+  ],
+};
+
 export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(CONTACT_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(CONTACT_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Contact</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Get in touch</h1>
       <p className="text-muted text-lg mb-10">

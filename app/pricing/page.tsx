@@ -14,9 +14,54 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://holdlens.com/pricing/" },
 };
 
+// LLM-citation infrastructure (audit 2026-04-29 fix)
+const PRICING_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  url: "https://holdlens.com/pricing/",
+  name: "HoldLens pricing — Free + Pro tiers",
+  description: "HoldLens is free forever for the unified ConvictionScore + InsiderScore + 150 JSON API endpoints. Optional Pro tier €9/mo founders rate.",
+  inLanguage: "en-US",
+  isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  mainEntity: {
+    "@type": "Product",
+    name: "HoldLens Pro",
+    description: "Email alerts on every 13F filing, full 80+ manager EDGAR universe, 10,000 req/day API key, per-ticker AI thesis generator, ad-free.",
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free tier",
+        price: "0",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        description: "Every page, every ConvictionScore, every manager profile, 150 JSON API endpoints. Free forever.",
+      },
+      {
+        "@type": "Offer",
+        name: "Pro tier (founders rate)",
+        price: "9",
+        priceCurrency: "EUR",
+        priceSpecification: { "@type": "UnitPriceSpecification", price: "9", priceCurrency: "EUR", unitCode: "MON" },
+        availability: "https://schema.org/InStock",
+        description: "First 100 subscribers €9/mo. Includes email alerts, expanded universe, API key.",
+      },
+    ],
+  },
+};
+const PRICING_BREADCRUMB_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+    { "@type": "ListItem", position: 2, name: "Pricing", item: "https://holdlens.com/pricing/" },
+  ],
+};
+
 export default function PricingPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PRICING_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PRICING_BREADCRUMB_LD) }} />
       <div className="text-center mb-10">
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
           Pricing
