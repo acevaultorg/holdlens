@@ -42,7 +42,7 @@ const ORGANIZATION_LD = {
   sameAs: ["https://github.com/acevaultorg/holdlens"],
   contactPoint: {
     "@type": "ContactPoint",
-    email: "contact@editnative.com",
+    email: "hello@holdlens.com",
     contactType: "Customer support",
     availableLanguage: ["English"],
   },
