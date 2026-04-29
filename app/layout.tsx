@@ -75,6 +75,17 @@ export const metadata: Metadata = {
       // Bing uses <meta name="msvalidate.01" content="..."/>. Populate after
       // Bing Webmaster Tools registration (a separate step — see below).
       // "msvalidate.01": "<bing-token>",
+      //
+      // Impact.com affiliate marketplace verification (v1.88, 2026-04-29) —
+      // verifies holdlens.com ownership in app.impact.com. Required for
+      // affiliate program approval (IBKR, Schwab, Public, Robinhood, Tastytrade
+      // per REVENUE_ACTIVATION.md card #1). Impact's verification scraper
+      // accepts the standard HTML5 `content=` attribute form (which Next.js
+      // emits via this API). If they ever require the literal `value=`
+      // attribute form (per their snippet UI) we'd add a parallel
+      // dangerouslySetInnerHTML injection in <head>; standard form works for
+      // their public scraper.
+      "impact-site-verification": "5890806c-03de-4eb8-9041-f2b7b8f761cf",
     },
   },
 };
@@ -83,6 +94,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <head>
+        {/* v1.88 — Impact.com affiliate marketplace verification (literal
+            `value=` attribute form). Impact's snippet UI emits the meta tag
+            with `value=` instead of the HTML5-standard `content=` (which the
+            metadata.verification.other API above also emits in parallel).
+            Some Impact verification scrapers specifically grep for the
+            `value=` form, so we emit both attribute names to maximize
+            scraper compatibility. Spread syntax bypasses React's TS warning
+            about `value` on meta tags (HTML5 doesn't define `value` for
+            meta, but it's a valid attribute name and renders verbatim). */}
+        <meta name="impact-site-verification" {...{ value: "5890806c-03de-4eb8-9041-f2b7b8f761cf" }} />
+
         {/* Perf: preconnect to the origins we WILL hit, so the DNS + TLS
             handshake overlaps with critical rendering instead of blocking it. */}
         <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
