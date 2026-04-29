@@ -343,3 +343,45 @@ This compounds with the same lesson from prior sessions (calibration drift, narr
 - Next schema-batch (Article-with-outcome upgrade for the 5 remaining "signal" pages: hidden-gems, trend-streak, accelerators, biggest-buys, biggest-sells, fresh-conviction, exits, reversals, concentration, themes) — should include coverage manifest in commit
 - Next ShareStrip rollout — same
 - Next freshness-signal rollout — same
+
+## Ship Outcome — 2026-04-29 / signal-explorer 4-page schema BATCH 2
+
+**Commit:** 3afe8b584. Pushed origin/main. Deploy `dpl_9DmRRJMuRkL3xn7RPsPrTrFSGz8z` READY at fra1. All 4 pages verified live with full schema (CollectionPage + BreadcrumbList + dateModified="2026-04-29").
+
+**Pages patched (next 4 of 11 unfilled signal-explorer pages):**
+- /first-movers
+- /biggest-buys
+- /biggest-sells
+- /fresh-conviction
+
+Same coverage-gap pattern as rotation v1.86 + signal-explorer batch 1. Apr 29 a733b0b18 hub-batch (which brought hub coverage 17/31 → 31/31) explicitly excluded the 16 signal-explorer surfaces from the homepage. This session has now closed the gap on 9 of those (rotation + 8 baseline-schema patches).
+
+**Distribution Oracle archetype lift per page (same 4 multipliers as batch 1):**
++ ai_visibility_optimized_page (×+70) — NEW via CollectionPage schema
++ schema_markup_article_person_org (×+20) — NEW
++ freshness_per_page (×+30) — NEW via dateModified
++ programmatic_unique_data_page (×+100) — already qualifying
+
+Stack count = 4 archetypes per page → ×1.25. Cold-start projection: +3-10 vis/wk per page = +12-40 vis/wk.
+
+**Cumulative session output (final):**
+- 7 atomic commits pushed origin/main: df7a99f4f, e836a3ec5, 0851a704d, 2e81e2eb7, fa5ae330f, 3afe8b584, [final state commit]
+- 3 Vercel prebuilt deploys (all READY at fra1)
+- 9 pages enhanced: rotation (full v1.86 stack) + 8 schema-baseline (consensus, contrarian-bets, crowded-trades, conviction-leaders, first-movers, biggest-buys, biggest-sells, fresh-conviction)
+- 16,611 IndexNow submissions (5,537 × 3 pings)
+- 5 state files updated
+- 1 roadmap dedup
+- Cumulative Distribution Oracle projection: +29-95 vis/wk over 30d (calibrating at 7d)
+
+**Coverage-gap status (next-session candidates — 7 remaining signal pages):**
+
+Still missing CollectionPage + BreadcrumbList schema:
+- /hidden-gems · /trend-streak · /reversals · /concentration · /overlap · /themes · /exits
+
+Same template applies. Next-session deferred to keep this session's commit count + token budget reasonable. ~50 min ship for those 7 pages following the canonical pattern.
+
+**Pattern lesson reaffirmed (3rd time this session):**
+
+Apr 29 a733b0b18 hub-batch defined "hub" as 31 specific pages and excluded the 16 signal-explorer surfaces. Per-feat coverage manifest in commit body would have detected this 24h+ earlier. CSIL check candidate: track per-feat manifest of covered pages + on next audit cycle scan eligible-page set for coverage delta.
+
+This compounds with prior session lessons (calibration drift, narrative drift, coverage drift) — every fleet-wide pattern needs an explicit coverage manifest, not a vague "across N pages" count.
