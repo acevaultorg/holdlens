@@ -315,7 +315,9 @@ export default function OverlapPage() {
               </thead>
               <tbody>
                 {/* Capped at top 200 pairs — ~870 manager pair combinations total. */}
-                {pairs.slice(0, 200).map((p, i) => (
+                {/* v1.91 perf-fix: reduced from 200 → 100 pairs (page was 717KB raw).
+                    Reduces DOM by ~50% while preserving the top-overlap signal. */}
+                {pairs.slice(0, 100).map((p, i) => (
                   <tr
                     key={`${p.slugA}-${p.slugB}`}
                     className="border-b border-border last:border-0 hover:bg-bg/40 transition"

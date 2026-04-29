@@ -36,7 +36,12 @@ export default function ActivityPage() {
   // Cap each quarter at the top 40 highest-conviction moves. Previously rendered
   // ~3000 cards = 10 MB of HTML, killing mobile TTFB. Users who want the long
   // tail can drill into /quarter/[slug] or /biggest-buys / /biggest-sells.
-  const PER_QUARTER_CAP = 40;
+  // v1.91 perf-fix: reduced per-quarter cap from 40 → 20 + limited to most-recent
+  // 4 quarters (was rendering all 8). Pre-fix page was 986KB raw (~320 cards);
+  // now ~500KB (~80 cards). Older quarters remain accessible via per-investor
+  // /investor/[slug]/q/[quarter]/ pages, page-statically generated.
+  const PER_QUARTER_CAP = 20;
+  const QUARTERS_TO_SHOW = 4;
 
   const collectionLd = {
     "@context": "https://schema.org",
@@ -78,7 +83,7 @@ export default function ActivityPage() {
       <AdSlot format="horizontal" />
 
       <div className="space-y-12">
-        {orderedQuarters.map((q) => {
+        {orderedQuarters.slice(0, QUARTERS_TO_SHOW).map((q) => {
           const total = byQuarter[q].length;
           const shown = byQuarter[q].slice(0, PER_QUARTER_CAP);
           const hasMore = total > shown.length;

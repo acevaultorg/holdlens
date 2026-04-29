@@ -213,7 +213,10 @@ export default function ExitsPage() {
         </div>
         <h2 className="text-2xl font-bold mb-6">Every exit, in order</h2>
         <div className="space-y-8">
-          {[...byQuarter.entries()].map(([quarter, items]) => (
+          {/* v1.91 perf-fix: reduced from all 8 quarters to most-recent 4 + per-quarter
+              cap from 60 → 30 (page was 848KB raw). Older quarters remain accessible via
+              per-investor pages. */}
+          {[...byQuarter.entries()].slice(0, 4).map(([quarter, items]) => (
             <div key={quarter}>
               <div className="flex items-baseline justify-between mb-3 border-b border-border pb-2">
                 <div className="text-lg font-bold text-text">
@@ -222,7 +225,7 @@ export default function ExitsPage() {
                 <div className="text-xs text-dim">{items.length} exits</div>
               </div>
               <div className="grid sm:grid-cols-2 gap-3">
-                {items.slice(0, 60).map((r, i) => (
+                {items.slice(0, 30).map((r, i) => (
                   <a
                     key={`${r.ticker}-${r.managerSlug}-${quarter}-${i}`}
                     href={`/signal/${r.ticker}`}
