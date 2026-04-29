@@ -3,6 +3,7 @@ import AdSlot from "@/components/AdSlot";
 import LiveQuote from "@/components/LiveQuote";
 import CsvExportButton from "@/components/CsvExportButton";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import { MANAGERS } from "@/lib/managers";
 import { getConviction, convictionLabel, formatSignedScore } from "@/lib/conviction";
 import { getManagerROI } from "@/lib/manager-roi";
@@ -147,6 +148,7 @@ export default function BigBetsPage() {
       </div>
 
       <FoundersNudge context="You're analysing where the world's best investors put their biggest bets." />
+      <BrokerCta context="Found a big-bet thesis you want to act on? Compare brokers with low-friction execution." />
       <AdSlot format="horizontal" className="mb-10" />
 
       <div className="rounded-2xl border border-border bg-panel overflow-hidden">

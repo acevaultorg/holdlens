@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import CsvExportButton from "@/components/CsvExportButton";
 import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
@@ -251,6 +253,10 @@ export default function ExitsPage() {
           the model disagrees with the capitulation.
         </p>
       </section>
+
+      <FoundersNudge tone="brand" context="You're tracking full position exits — when smart-money sells the entire stake, that's a signal." />
+      <BrokerCta context="Considering an exit yourself? Compare brokers with low-friction sells." />
+      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-12">
         Not investment advice. 13F filings are delayed 45 days and report long-only

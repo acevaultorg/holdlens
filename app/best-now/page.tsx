@@ -3,6 +3,8 @@ import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
 import CsvExportButton from "@/components/CsvExportButton";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
+import AdSlot from "@/components/AdSlot";
 import SinceFilingDelta from "@/components/SinceFilingDelta";
 import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
 import { getTopBuys, getTopSells, convictionLabel } from "@/lib/conviction";
@@ -145,6 +147,8 @@ export default function BestNowPage() {
       </section>
 
       <FoundersNudge tone="emerald" context="You're reading the top smart-money buy signals right now." />
+      <BrokerCta context="Found a buy signal you want to act on? Compare brokers with low-friction execution." />
+      <AdSlot format="horizontal" />
 
       {/* Methodology callout */}
       <section className="rounded-2xl border border-border bg-panel p-6">

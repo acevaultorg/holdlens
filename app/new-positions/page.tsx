@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
 import { getAllMovesEnriched, LATEST_QUARTER, QUARTER_LABELS } from "@/lib/moves";
@@ -246,6 +247,7 @@ export default function NewPositionsPage() {
       </div>
 
       <FoundersNudge tone="emerald" context="You're reading every fresh position the best portfolio managers opened last quarter." />
+      <BrokerCta context="Want to mirror a fresh smart-money position? Compare brokers with low-friction execution." />
       <AdSlot format="in-article" className="mb-10" />
 
       {/* Split panel: sector breakdown + busiest managers */}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
 import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
@@ -390,6 +392,10 @@ export default function ReversalsPage() {
           will grow.
         </p>
       </section>
+
+      <FoundersNudge tone="brand" context="You're spotting where smart-money flipped sentiment — buys turning to sells, sells turning to buys." />
+      <BrokerCta context="Want to act on a sentiment reversal? Compare brokers with low-friction execution." />
+      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-12">
         Not investment advice. Reversal detection is limited by archive coverage.{" "}

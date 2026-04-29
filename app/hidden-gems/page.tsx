@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import { TICKER_INDEX } from "@/lib/tickers";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
@@ -352,6 +354,10 @@ export default function HiddenGemsPage() {
           structurally high-conviction, and sourced from managers with track records.
         </p>
       </section>
+
+      <FoundersNudge tone="brand" context="You're spotting under-the-radar gems where smart-money is concentrating before the crowd notices." />
+      <BrokerCta context="Want to act on a hidden-gem thesis? Compare brokers with low-friction execution." />
+      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-12">
         Not investment advice. 13F filings are delayed 45 days and report long-only

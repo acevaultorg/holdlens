@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import { MERGED_MOVES } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
@@ -382,6 +384,10 @@ export default function TrendStreakPage() {
           signal is both broad and deep.
         </p>
       </section>
+
+      <FoundersNudge tone="brand" context="You're tracking multi-quarter conviction streaks where managers keep adding to a position." />
+      <BrokerCta context="Want to ride a multi-quarter trend? Compare brokers with low-friction execution." />
+      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-12">
         Not investment advice. 13F filings are delayed 45 days and report long-only

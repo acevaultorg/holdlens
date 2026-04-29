@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import CsvExportButton from "@/components/CsvExportButton";
 import { MANAGERS } from "@/lib/managers";
 import { MANAGER_QUALITY } from "@/lib/signals";
@@ -389,6 +391,10 @@ export default function OverlapPage() {
           for the shared thesis &mdash; these are the names with cross-philosophy conviction.
         </p>
       </section>
+
+      <FoundersNudge tone="brand" context="You're cross-referencing where the world's best portfolio managers agree — pair-by-pair overlap." />
+      <BrokerCta context="Want to mirror a high-overlap consensus position? Compare brokers with low-friction execution." />
+      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-12">
         Not investment advice. Top holdings are the curated top 10-20 per manager;

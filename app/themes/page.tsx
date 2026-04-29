@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import { MANAGERS } from "@/lib/managers";
 import { MANAGER_QUALITY } from "@/lib/signals";
 import { TICKER_INDEX } from "@/lib/tickers";
@@ -344,6 +345,7 @@ export default function ThemesPage() {
       </div>
 
       <FoundersNudge tone="emerald" context="You're looking at curated smart-money themes — AI, Mag 7, Energy, Banks, Healthcare and more." />
+      <BrokerCta context="Found a theme you want exposure to? Compare brokers with low-friction execution." />
       <AdSlot format="horizontal" />
 
       {/* Per-theme sections */}

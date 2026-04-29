@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getAllMovesEnriched, QUARTER_LABELS, QUARTERS, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 
 export const metadata: Metadata = {
   title: "Activity feed — every 13F move by the best investors",
@@ -153,6 +155,10 @@ export default function ActivityPage() {
         );
         })}
       </div>
+
+      <FoundersNudge tone="brand" context="You're scanning the full 13F activity feed across 30 superinvestors." />
+      <BrokerCta context="Found a move you want to mirror? Compare brokers with low-friction execution." />
+      <AdSlot format="horizontal" />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import CsvExportButton from "@/components/CsvExportButton";
 import { MANAGERS } from "@/lib/managers";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
@@ -272,6 +273,7 @@ export default function ConcentrationPage() {
       </section>
 
       <FoundersNudge tone="brand" context="You're seeing who's all-in vs diversified across the tracked fleet." />
+      <BrokerCta context="Want to mirror a high-conviction portfolio? Compare brokers with low-friction execution." />
       <AdSlot format="horizontal" />
 
       {/* Methodology */}

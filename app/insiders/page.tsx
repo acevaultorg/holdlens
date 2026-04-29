@@ -7,6 +7,8 @@ import {
   type InsiderTx,
 } from "@/lib/insiders";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 
 export const metadata: Metadata = {
   title: "Insider Activity — Recent CEO/CFO Buys & Sells",
@@ -404,6 +406,9 @@ export default function InsidersPage() {
           </Link>
         </div>
       </section>
+
+      <FoundersNudge tone="brand" context="You're reading curated CEO/CFO insider Form 4 transactions across major tickers." />
+      <BrokerCta context="Want to act on insider buy signals? Compare brokers with low-friction execution." />
     </div>
   );
 }

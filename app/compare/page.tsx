@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { MANAGERS } from "@/lib/managers";
 import { MANAGER_QUALITY } from "@/lib/signals";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 
 // /compare — directory landing (v0.87). The parent `/compare` route
 // previously 404'd even though `/compare/aapl-vs-googl` and
@@ -203,6 +206,10 @@ export default function CompareIndex() {
           </div>
         </div>
       </section>
+
+      <FoundersNudge tone="brand" context="You're comparing tickers and managers side-by-side from 13F filings." />
+      <BrokerCta context="Decided which side of the compare to act on? Compare brokers with low-friction execution." />
+      <AdSlot format="horizontal" />
 
       <p className="text-xs text-dim mt-8 text-center">
         Ownership data derived from SEC Form 13F filings. Not investment advice.

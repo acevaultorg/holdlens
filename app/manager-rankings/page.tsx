@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import FundLogo from "@/components/FundLogo";
 import { MANAGERS } from "@/lib/managers";
 import { getAllManagerROI, SP500_CAGR_10Y } from "@/lib/manager-roi";
@@ -211,6 +212,7 @@ export default function ManagerRankingsPage() {
       </div>
 
       <FoundersNudge tone="brand" context="You're reading the composite ranking of the best active portfolio managers in the world." />
+      <BrokerCta context="Want to mirror a top-ranked manager's positions? Compare brokers with low-friction execution." />
       <AdSlot format="horizontal" />
 
       {/* Full unified ranking */}
