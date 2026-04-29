@@ -9,6 +9,9 @@ import SinceLastVisit from "@/components/SinceLastVisit";
 import FaqSchema, { type FaqItem } from "@/components/FaqSchema";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import { MANAGERS } from "@/lib/managers";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { getAllConvictionScores } from "@/lib/conviction";
@@ -363,6 +366,23 @@ export default function HomePage() {
           uniquely differentiated on this homepage (no competitor surfaces
           all three on the same landing). */}
       <RecentMaterialEvents />
+
+      {/* v1.87 monetization-funnel patch — homepage gets 66.7% of all
+          traffic per Plausible 7d, but had ZERO ad/CTA surfaces before
+          this. Operator directive 2026-04-29: revenue ASAP. Three
+          high-leverage placements added below:
+          1. Horizontal AdSlot here (after user has consumed 3 fresh-data
+             widgets — earned-impression position, AdSense-policy-safe
+             well below fold + below content)
+          2. FoundersNudge before footer email capture (visitor has read
+             the full homepage = max receptivity for €9 lifetime offer)
+          3. In-article AdSlot before FAQ (second viewport-eligible slot,
+             well-spaced from #1; AdSense recommends ≥600px between slots)
+          AdSlot self-disables for Pro users + lazy-loads at 200px
+          viewport entry (no CLS, no impact on LCP). */}
+      <section className="py-10 border-t border-border">
+        <AdSlot format="horizontal" priority="primary" />
+      </section>
 
       {/* Signal explorer — discovery grid for the forward-looking pages.
           This is what Dataroma does not have: eight distinct views on smart
@@ -737,6 +757,25 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* v1.87 — FoundersNudge + BrokerCta stack (homepage footer-area).
+          Per FoundersNudge design: dismissible 30d, returns null for Pro
+          users, only fires on high-intent ranked pages. Per BrokerCta
+          design: self-disables when affiliate env vars unset (zero UX
+          noise pre-activation; activates the moment operator signs up
+          for IBKR/Schwab and drops NEXT_PUBLIC_AFF_IBKR/SCHWAB into env).
+          Homepage qualifies for both because a user who's read this far
+          has consumed BuySellSignals + LatestMoves + LiveInsiderActivity
+          + Material Events + the full 21-card Signal Explorer grid +
+          Trust Pillars + Methodology section. By the time they reach the
+          email-capture they've earned the €9 lifetime offer AND the
+          high-intent broker-account-opening pitch. */}
+      <section className="py-10 border-t border-border">
+        <FoundersNudge />
+      </section>
+      <section className="py-2">
+        <BrokerCta context="Acting on a smart-money signal? Open a brokerage account." />
+      </section>
+
       {/* Email capture */}
       <section className="py-20 border-t border-border text-center">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Get alerts the moment they move.</h2>
@@ -747,6 +786,17 @@ export default function HomePage() {
           <EmailCapture size="lg" />
         </div>
         <div className="text-xs text-dim mt-4">Free forever. ~3 emails per week during filing seasons.</div>
+      </section>
+
+      {/* v1.87 — 2nd AdSlot (rectangle) before FAQ. Spaced ~800px+ from
+          the homepage-mid slot above; well-separated per AdSense policy.
+          FAQ is the natural last-stop content section before footer, so
+          this slot catches users who scrolled deep without bouncing —
+          the highest-engaged audience segment. AdSlot self-tiers to
+          `secondary` priority on returning visitors (per its rules) so
+          repeat users don't see ad-saturation. */}
+      <section className="py-10 border-t border-border">
+        <AdSlot format="rectangle" priority="secondary" />
       </section>
 
       {/* FAQ — visible copy + matching JSON-LD for Google rich results */}
