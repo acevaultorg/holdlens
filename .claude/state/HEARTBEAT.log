@@ -65,3 +65,4 @@
 2026-04-29T13:20Z | session-end | mode:auto sovereign | tasks:18 | handoff:written | next-heartbeat:scheduled
 2026-04-29T13:31Z | session-end | mode:auto(=sovereign-auto) | tasks:11(schema-batch-3 + tollbit-verified) | handoff:written | commits:1(bdbc1df7d) | deploy:verified-29-pages-live | indexnow:5537-urls-200
 2026-04-29T13:58Z | session-end | mode:auto(=sovereign-auto) | tasks:1(insiders-live-perf-fix) | event:CRITICAL-PAGE-WEIGHT-FIX | before:24MB | after:611KB | reduction:97.5% | commit:a89d09990 | live-verified:13:58Z
+2026-04-29T14:36Z | session-end | mode:auto(=sovereign-auto) | tasks:5(perf-batch-2) | event:HEAVY-PAGES-CAPPED | combined-savings:~1.4MB | commits:2(a89d09990+f626ff251) | live-verified:14:35Z
