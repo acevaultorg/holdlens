@@ -852,3 +852,82 @@ Operator directive 2026-04-27 ~12:30 UTC: *"already for days we have this proble
 - Share with anyone who needs holdlens content while CF heals
 - Revert to CF once outage clears
 
+
+---
+
+## 🔒 CF Security Insights — 8 findings triaged 2026-04-29 (operator dashboard: dash.cloudflare.com → Security Center)
+
+Brain-side audit complete. Per finding action breakdown:
+
+### 🟢 NO ACTION — already fixed (CF scan stale, will clear next scan)
+
+#### Security.txt not configured (Low, scanned 26 Apr 16:26)
+**Status:** ALREADY LIVE + RFC-9116 compliant. `curl https://holdlens.com/.well-known/security.txt` returns HTTP 200 with `Contact: mailto:contact@editnative.com`, `Expires: 2027-04-20`, `Preferred-Languages: en`, `Canonical: ...`. CF scan ran before file was deployed (or before CF re-cached).
+
+**Operator action:** click "Scan now" in CF Security Insights → finding clears. ~10 sec.
+
+---
+
+### 🔴 DISMISS — would break bot-harvest revenue strategy (per `rules/bot-harvest.md`)
+
+#### "Review and block AI bots from accessing your assets" (Moderate)
+**Status:** DO NOT enable. Conflicts with v19.4 Bot Harvest strategy + Cloudflare Pay-Per-Crawl monetization (Layer 2 of `rules/revenue-maximizer.md`).
+
+**Why CF suggests it:** Default for sites that don't want AI scraping.
+**Why we want bots IN:** GPTBot/ClaudeBot/PerplexityBot crawls = (a) potential PPC revenue $0.001-0.10/crawl; (b) LLM citation traffic compounding; (c) 4.4× AI-visitor conversion multiplier per Semrush 2025.
+
+**Operator action:** dismiss/archive in CF Security Insights. ~5 sec.
+
+#### "Review unwanted AI crawlers with AI Labyrinth" (Low)
+**Status:** DO NOT enable. AI Labyrinth sends bots to a maze, killing both PPC revenue + LLM citation funnel. Same conflict as above.
+
+**Operator action:** dismiss/archive. ~5 sec.
+
+#### "Standard Super Bot Fight Mode not enabled" (Moderate, scanned 26 Apr)
+**Status:** DO NOT enable. Same class — would block AI crawlers + harm Bingbot recovery effort (BOT_TRAFFIC.md). The current selective rules (Bingbot WAF skip + 19-UA TollBit forwarding) are intentional.
+
+**Operator action:** dismiss/archive. ~5 sec.
+
+---
+
+### 🟡 REVIEW — operator-decision
+
+#### "Reduce skip rules for improved protection" (Moderate)
+**Status:** REVIEW manually. Brain has logged ONE intentional WAF skip rule (Bingbot per BOT_TRAFFIC.md) but cannot enumerate all skip rules from CLI. CF wants to reduce skip rules to tighten WAF; Brain wants to KEEP at minimum the Bingbot skip.
+
+**Operator action:** open CF dashboard → Security → WAF → Custom Rules → review skip rules. Keep Bingbot skip (intentional). Remove any others if they don't serve a documented purpose. ~5 min.
+
+---
+
+### 🔴 FIX — operator-only (DNS change)
+
+#### "DMARC Record Error detected" (×3, Low)
+**Status:** REAL — verified via `dig +short TXT _dmarc.holdlens.com` → returns nothing. SPF record exists (`v=spf1 include:_spf.mx.cloudflare.net ~all`) but DMARC is MISSING entirely.
+
+**Why fix:** Email deliverability + anti-phishing. Without DMARC, hello@holdlens.com / contact@editnative.com mailing capability is reduced; spammers can spoof @holdlens.com.
+
+**Operator action (~3 min):**
+1. Open CF Dashboard → holdlens.com → DNS → Records
+2. Click "Add record"
+3. Type: TXT · Name: `_dmarc` · Content: `v=DMARC1; p=none; rua=mailto:contact@editnative.com; pct=100`
+4. Save
+5. Wait 1-24h for DNS propagation
+6. Verify: `dig +short TXT _dmarc.holdlens.com` returns the record
+7. After 30 days of monitoring (no spoofing reports via RUA): strengthen to `p=quarantine` then later `p=reject`
+
+**If stuck:**
+- Domain not in CF DNS: register at registrar's DNS panel instead
+- Already have a partial DMARC record: replace with full above
+- Want stricter from start: `p=quarantine` is OK for new domains with no existing email volume
+
+---
+
+## 📊 Net change for operator (~10 min total work)
+
+- Click "Scan now" → security.txt finding clears (10 sec)
+- Dismiss 3 anti-AI-bot insights → preserve bot-harvest revenue strategy (15 sec)
+- Review skip rules → likely no change needed (5 min)
+- Add DMARC DNS record → fixes 3 email-security insights (3 min)
+
+After: 8 active insights → 0 active insights (or 1 if skip-rule review surfaces a real issue).
+
