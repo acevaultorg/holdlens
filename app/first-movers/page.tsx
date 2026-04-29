@@ -3,7 +3,7 @@ import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
-import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, type Quarter } from "@/lib/moves";
+import { MERGED_MOVES, QUARTERS, QUARTER_LABELS, QUARTER_FILED, LATEST_QUARTER, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
 import { TICKER_INDEX } from "@/lib/tickers";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
@@ -212,9 +212,47 @@ export default function FirstMoversPage() {
   const crowdCame = rows.filter((r) => r.lateMovers.length > 0).length;
   const maxLead = rows[0]?.leadQuarters ?? 0;
   const topCrowd = rows.filter((r) => r.currentOwnerCount >= 3).slice(0, 8);
+  const top3 = rows.slice(0, 3);
+
+  // LLM-citation infrastructure (audit 2026-04-29 fix — coverage-gap
+  // pattern from a733b0b18 hub-batch). CollectionPage + ItemList +
+  // BreadcrumbList + dates make this page citable for "first movers
+  // hedge fund stocks" queries.
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/first-movers/",
+    name: "First movers — who bought this name first, before the crowd",
+    description: `${totalTickers} tickers ranked by how many quarters one tracked superinvestor held them BEFORE the crowd piled in. Max lead this dataset: ${maxLead} quarters.`,
+    datePublished: QUARTER_FILED[LATEST_QUARTER] || "2026-02-17",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: totalTickers,
+      itemListElement: top3.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/ticker/${r.ticker}/`,
+        name: `${r.ticker} — ${r.name} · ${r.leadQuarters}Q lead before crowd`,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "First movers", item: "https://holdlens.com/first-movers/" },
+    ],
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         First movers · bought before the crowd
       </div>

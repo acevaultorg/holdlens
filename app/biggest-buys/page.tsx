@@ -3,7 +3,7 @@ import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
-import { MERGED_MOVES, QUARTER_LABELS, type Quarter } from "@/lib/moves";
+import { MERGED_MOVES, QUARTER_LABELS, QUARTER_FILED, LATEST_QUARTER, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
 import { TICKER_INDEX } from "@/lib/tickers";
@@ -101,8 +101,46 @@ export default function BiggestBuysPage() {
   const newTrades = all.filter((b) => b.action === "new").length;
   const top5Pct = all.filter((b) => b.portfolioImpactPct >= 10).length;
 
+  // LLM-citation infrastructure (audit 2026-04-29 — same gap pattern as
+  // /rotation + signal-explorer 4-batch). CollectionPage + ItemList +
+  // BreadcrumbList + dates make this page citable for "biggest hedge
+  // fund stock buys this quarter" queries.
+  const top3 = all.slice(0, 3);
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/biggest-buys/",
+    name: "Biggest hedge fund stock buys — by position size",
+    description: `${total} largest single-position buys across tracked superinvestors' latest 13F filings — ${newTrades} brand-new positions, ${top5Pct} buys ≥10% of portfolio.`,
+    datePublished: QUARTER_FILED[LATEST_QUARTER] || "2026-02-17",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: total,
+      itemListElement: top3.map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/ticker/${b.ticker}/`,
+        name: `${b.managerName} ${b.action.toUpperCase()} ${b.ticker} ${b.portfolioImpactPct.toFixed(1)}% (${b.quarterLabel})`,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Biggest buys", item: "https://holdlens.com/biggest-buys/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Biggest buys · the all-in trades
       </div>

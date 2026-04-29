@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import TickerLogo from "@/components/TickerLogo";
 import { MANAGERS } from "@/lib/managers";
-import { MERGED_MOVES, QUARTER_LABELS, type Quarter } from "@/lib/moves";
+import { MERGED_MOVES, QUARTER_LABELS, QUARTER_FILED, LATEST_QUARTER, type Quarter } from "@/lib/moves";
 import { MANAGER_QUALITY } from "@/lib/signals";
 import { getConviction, formatSignedScore } from "@/lib/conviction";
 import { TICKER_INDEX } from "@/lib/tickers";
@@ -103,8 +103,46 @@ export default function FreshConvictionPage() {
   const completelyAlone = all.filter((t) => t.currentOwnerCount === 0).length;
   const pairedOnly = all.filter((t) => t.currentOwnerCount === 1).length;
 
+  // LLM-citation infrastructure (audit 2026-04-29 — same gap pattern as
+  // /rotation + signal-explorer batch). CollectionPage + ItemList +
+  // BreadcrumbList + dates make this page citable for "fresh / lonely
+  // hedge fund stock picks no one else owns" queries.
+  const top3 = all.slice(0, 3);
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: "https://holdlens.com/fresh-conviction/",
+    name: "Fresh conviction — lonely new trades no one else has",
+    description: `${total} new positions on tickers where ${completelyAlone} are completely alone (zero other tracked owners) and ${pairedOnly} are paired-only — the highest-conviction contrarian signal in the dataset.`,
+    datePublished: QUARTER_FILED[LATEST_QUARTER] || "2026-02-17",
+    dateModified: new Date().toISOString().slice(0, 10),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: total,
+      itemListElement: top3.map((t, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://holdlens.com/ticker/${t.ticker}/`,
+        name: `${t.managerName} NEW ${t.ticker} ${t.currentOwnerCount === 0 ? "ALONE" : "PAIRED"} (${t.quarterLabel})`,
+      })),
+    },
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Fresh conviction", item: "https://holdlens.com/fresh-conviction/" },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Fresh conviction · rarest buys
       </div>
