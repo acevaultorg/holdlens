@@ -10,6 +10,7 @@ import ManagerROICard from "@/components/ManagerROICard";
 import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLink from "@/components/TickerLink";
 import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
@@ -450,6 +451,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       </section>
 
       <FoundersNudge context={`You're reading ${m.name}'s full 13F portfolio and conviction signals.`} />
+      <BrokerCta context={`Want to mirror ${m.name}'s top positions? Compare brokers with low-friction execution.`} />
       <AdSlot format="horizontal" />
 
       {/* Dividend tax calculator — retention hook on investor pages.

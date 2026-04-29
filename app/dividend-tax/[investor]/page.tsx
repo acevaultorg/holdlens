@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import DividendTaxCalc from "@/components/DividendTaxCalc";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import {
   COUNTRIES,
   getCountry,
@@ -260,6 +263,10 @@ export default async function InvestorCountryPage(
           </a>
         </div>
       </section>
+
+      <FoundersNudge tone="brand" context={`You're checking dividend withholding rates for a ${country.name} resident across 20 payer countries.`} />
+      <BrokerCta context={`Brokerage matters for ${country.name} residents — some support treaty-rate filings automatically.`} />
+      <AdSlot format="horizontal" />
 
       <p className="mt-16 text-xs text-dim">
         Estimates for educational purposes only. Tax rules change; consult a qualified tax professional for your specific situation. Sources cited above were current as of {META.last_verified}. Not investment advice.

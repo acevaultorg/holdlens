@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import {
   COUNTRIES,
   getCountry,
@@ -284,6 +287,10 @@ export default async function PairPage({ params }: { params: Promise<PairParams>
           </ul>
         </section>
       )}
+
+      <FoundersNudge tone="brand" context={`You're computing real after-tax dividend yield for ${inv.name} → ${pay.name}.`} />
+      <BrokerCta context="Need a broker for tax-efficient cross-border dividend investing? Compare options." />
+      <AdSlot format="horizontal" />
 
       <footer className="mt-16 pt-8 border-t border-border text-xs text-dim">
         <p>

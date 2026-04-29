@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import TickerLink from "@/components/TickerLink";
 import {
@@ -218,6 +220,10 @@ export default function EtfLanding() {
           </a>
         </div>
       </section>
+
+      <FoundersNudge tone="brand" context="You're researching the most-held tickers across major ETFs — passive flows + active conviction." />
+      <BrokerCta context="Need a broker to actually buy these ETFs commission-free? Compare options." />
+      <AdSlot format="horizontal" />
     </div>
   );
 }

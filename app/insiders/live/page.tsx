@@ -9,6 +9,8 @@ import {
 import { officerSlug } from "@/lib/insider-score";
 import TickerLogo from "@/components/TickerLogo";
 import AdSlot from "@/components/AdSlot";
+import FoundersNudge from "@/components/FoundersNudge";
+import BrokerCta from "@/components/BrokerCta";
 
 // /insiders/live/ — the chronological Form 4 firehose. Every tracked
 // insider transaction, newest first, no curation. Companion to /insiders/
@@ -242,6 +244,8 @@ export default function InsidersLivePage() {
         </div>
       </div>
 
+      <FoundersNudge tone="brand" context="You're watching the live Form 4 insider-transaction firehose across tracked superinvestor holdings." />
+      <BrokerCta context="Want to act on insider signals? Compare brokers with low-friction order routing." />
       <AdSlot format="horizontal" />
 
       {/* Related / internal linking hub */}
