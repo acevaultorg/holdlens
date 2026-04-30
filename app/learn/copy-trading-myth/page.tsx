@@ -132,6 +132,24 @@ export default function CopyMythPage() {
         <ShareStrip url="https://holdlens.com/learn/copy-trading-myth" title="Can you actually copy Warren Buffett?" />
 
         <AdSlot format="horizontal" priority="secondary" />
+
+        <section className="mt-10 border-t border-border pt-6">
+          <h2 className="text-base font-bold text-text mb-3">If you still want to track them on HoldLens</h2>
+          <p className="text-sm text-muted leading-relaxed">
+            <a href="/" className="text-brand hover:underline">30-investor 13F tracker</a>
+            {" with ConvictionScore + filing-date timestamps so you see exactly when each move arrives at SEC. "}
+            <a href="/investor/buffett" className="text-brand hover:underline">Buffett</a>
+            {", "}
+            <a href="/investor/ackman" className="text-brand hover:underline">Ackman</a>
+            {", "}
+            <a href="/investor/druckenmiller" className="text-brand hover:underline">Druckenmiller</a>
+            {", and 27 others — each with their own page. "}
+            <a href="/simulate" className="text-brand hover:underline">Backtest gallery</a>
+            {" — see what 'copying' actually returns historically. "}
+            <a href="/insiders/" className="text-brand hover:underline">Form 4 insider trades</a>
+            {" — the only SEC signal arriving within 2 days of the trade."}
+          </p>
+        </section>
       </div>
     </div>
   );

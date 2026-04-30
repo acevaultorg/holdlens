@@ -524,6 +524,20 @@ export default function SurvivorshipBiasPage() {
         url="https://holdlens.com/learn/survivorship-bias-in-hedge-funds"
         title="Survivorship Bias in Hedge Funds — Why the Dead Funds Matter"
       />
+
+      <section className="mt-12 border-t border-border pt-8 max-w-3xl mx-auto">
+        <h2 className="text-base font-bold text-text mb-3">See active managers live on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/manager-rankings/" className="text-brand hover:underline">Manager rankings</a>
+          {" — composite by 10y CAGR + AUM + conviction. "}
+          <a href="/leaderboard" className="text-brand hover:underline">Leaderboard</a>
+          {" — head-to-head performance. "}
+          <a href="/" className="text-brand hover:underline">30-investor 13F tracker</a>
+          {" — only currently-active managers (we explicitly select against survivor bias by tracking only managers with ≥10 year continuous filings, not 'best of N then disappeared'). "}
+          <a href="/simulate" className="text-brand hover:underline">Backtest gallery</a>
+          {" — historical returns shown alongside drawdowns, not just compounded peaks."}
+        </p>
+      </section>
     </div>
   );
 }

@@ -380,6 +380,22 @@ export default function FortyFiveDayLagPage() {
         url="https://holdlens.com/learn/45-day-lag-explained"
         via="holdlens"
       />
+
+      <section className="mt-12 border-t border-border pt-8 max-w-3xl mx-auto">
+        <h2 className="text-base font-bold text-text mb-3">Live 13F + faster filings on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/" className="text-brand hover:underline">30-investor 13F tracker</a>
+          {" — quarterly filings within hours of EDGAR publish. "}
+          <a href="/this-week" className="text-brand hover:underline">This week's moves</a>
+          {" — what just hit the SEC. "}
+          <a href="/quarter/2025-q4" className="text-brand hover:underline">Latest quarter digest</a>
+          {". For faster-cadence SEC signals (no 45-day lag): "}
+          <a href="/insiders/" className="text-brand hover:underline">Form 4 insider trades</a>
+          {" (2-day filing window) and "}
+          <a href="/events/" className="text-brand hover:underline">Form 8-K material events</a>
+          {" (4-day filing window)."}
+        </p>
+      </section>
     </div>
   );
 }

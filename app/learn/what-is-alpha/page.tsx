@@ -317,6 +317,20 @@ export default function WhatIsAlphaPage() {
         url="https://holdlens.com/learn/what-is-alpha"
         via="holdlens"
       />
+
+      <section className="mt-12 border-t border-border pt-8 max-w-3xl mx-auto">
+        <h2 className="text-base font-bold text-text mb-3">See alpha live on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/manager-rankings/" className="text-brand hover:underline">Manager rankings</a>
+          {" — composite by 10y CAGR + AUM + conviction. "}
+          <a href="/leaderboard" className="text-brand hover:underline">Leaderboard</a>
+          {" — head-to-head performance. "}
+          <a href="/simulate" className="text-brand hover:underline">Backtest gallery</a>
+          {" — run any manager's 13F portfolio against history. "}
+          <a href="/" className="text-brand hover:underline">Live 13F tracker</a>
+          {" — every quarterly filing scored on the −100..+100 ConvictionScore."}
+        </p>
+      </section>
     </div>
   );
 }

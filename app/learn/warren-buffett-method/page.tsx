@@ -318,6 +318,20 @@ export default function WarrenBuffettMethodPage() {
         url="https://holdlens.com/learn/warren-buffett-method"
         via="holdlens"
       />
+
+      <section className="mt-12 border-t border-border pt-8 max-w-3xl mx-auto">
+        <h2 className="text-base font-bold text-text mb-3">See Buffett live on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/investor/buffett" className="text-brand hover:underline">Berkshire Hathaway 13F portfolio</a>
+          {" — every position, scored on the −100..+100 ConvictionScore. "}
+          <a href="/simulate/buffett" className="text-brand hover:underline">26-year Buffett backtest</a>
+          {" (1999-2025). "}
+          <a href="/big-bets/" className="text-brand hover:underline">Where Buffett bets biggest</a>
+          {" relative to peers. "}
+          <a href="/" className="text-brand hover:underline">Full 30-investor 13F tracker</a>
+          {" with each manager's signal alongside Berkshire."}
+        </p>
+      </section>
     </div>
   );
 }
