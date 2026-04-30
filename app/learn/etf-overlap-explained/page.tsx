@@ -152,6 +152,20 @@ export default function Article() {
       </p>
 
       <hr />
+      <section className="mt-8">
+        <h2 className="text-base font-bold text-text mb-3">See overlap live on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/overlap" className="text-brand hover:underline">Manager overlap matrix</a>
+          {" — which pairs of superinvestors own the same stocks. "}
+          <a href="/etf" className="text-brand hover:underline">12 major US ETFs</a>
+          {" with daily-disclosed holdings. "}
+          <a href="/etf-by-superinvestor" className="text-brand hover:underline">ETF-by-superinvestor</a>
+          {" — your favorite manager's portfolio mapped to ETF equivalents. "}
+          <a href="/similar-to/" className="text-brand hover:underline">Similar portfolios</a>
+          {" — Jaccard overlap across 30 managers."}
+        </p>
+      </section>
+      <hr className="mt-8" />
       <p className="text-xs text-dim">
         This is educational content, not investment advice. Overlap is one
         diversification consideration; others include sector concentration,

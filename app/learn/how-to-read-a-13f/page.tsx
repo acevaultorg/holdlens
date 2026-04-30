@@ -418,6 +418,26 @@ export default function HowToReadA13FPage() {
         url="https://holdlens.com/learn/how-to-read-a-13f"
         via="holdlens"
       />
+
+      <section className="mt-12 border-t border-border pt-8 max-w-3xl mx-auto">
+        <h2 className="text-base font-bold text-text mb-3">See 13F filings live on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/" className="text-brand hover:underline">30-investor 13F tracker</a>
+          {" with ConvictionScore. "}
+          <a href="/big-bets/" className="text-brand hover:underline">Where they bet biggest</a>
+          {", "}
+          <a href="/new-positions/" className="text-brand hover:underline">fresh-money positions</a>
+          {", "}
+          <a href="/manager-rankings/" className="text-brand hover:underline">manager rankings</a>
+          {". For the related 13D/13G activist filings: "}
+          <a href="/activist/" className="text-brand hover:underline">activist tracker</a>
+          {". Per-investor pages: "}
+          <a href="/investor/buffett" className="text-brand hover:underline">Buffett</a>
+          {", "}
+          <a href="/investor/ackman" className="text-brand hover:underline">Ackman</a>
+          {", and 28 others."}
+        </p>
+      </section>
     </div>
   );
 }

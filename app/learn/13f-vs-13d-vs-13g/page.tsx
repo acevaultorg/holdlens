@@ -773,6 +773,22 @@ export default function ThirteenFvsDvsGPage() {
         url="https://holdlens.com/learn/13f-vs-13d-vs-13g"
         title="13F vs 13D vs 13G — what's the difference"
       />
+
+      <section className="mt-12 border-t border-border pt-8 max-w-3xl mx-auto">
+        <h2 className="text-base font-bold text-text mb-3">See it live on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/" className="text-brand hover:underline">13F superinvestor tracker</a>
+          {" — every quarterly Form 13F across 30 tracked managers, scored on the −100..+100 ConvictionScore. "}
+          <a href="/activist/" className="text-brand hover:underline">Activist filings (13D / 13G)</a>
+          {" — every Schedule 13D + 13G crossing 5%+ ownership, with intent classification. "}
+          <a href="/insiders/" className="text-brand hover:underline">Insider trades (Form 4)</a>
+          {" — for the executive-level filings 13D/G holders typically aren't subject to. "}
+          <a href="/proxies/" className="text-brand hover:underline">Proxy tracker (DEF 14A)</a>
+          {" — and "}
+          <a href="/def-14a/" className="text-brand hover:underline">DEF 14A explainer</a>
+          {" for the proxy-statement filing required at every annual meeting."}
+        </p>
+      </section>
     </div>
   );
 }

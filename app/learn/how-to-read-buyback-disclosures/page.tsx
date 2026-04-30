@@ -192,6 +192,20 @@ export default function HowToReadBuybackDisclosuresPage() {
       <AdSlot format="horizontal" />
 
       <section className="mt-12 pt-8 border-t border-border">
+        <h2 className="text-base font-bold text-text mb-3">See buyback disclosures live on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/buybacks" className="text-brand hover:underline">Corporate buybacks tracker</a>
+          {" — authorizations + execution. Related SEC filings: "}
+          <a href="/events/" className="text-brand hover:underline">8-K material events</a>
+          {", "}
+          <a href="/insiders/" className="text-brand hover:underline">Form 4 insider trades</a>
+          {" (10b5-1 plans often align with repurchase windows). Background reading: "}
+          <a href="/learn/buybacks-vs-dividends" className="text-brand hover:underline">buybacks vs dividends</a>
+          {"."}
+        </p>
+      </section>
+
+      <section className="mt-8 pt-6 border-t border-border">
         <ShareStrip
           title="How to read buyback disclosures — a plain-English SEC filing guide"
           url={url}

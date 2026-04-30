@@ -128,6 +128,26 @@ export default function What13FPage() {
         <ShareStrip url="https://holdlens.com/learn/what-is-a-13f" title="What is a 13F filing?" />
 
         <AdSlot format="horizontal" priority="secondary" />
+
+        <section className="mt-10 border-t border-border pt-6">
+          <h2 className="text-base font-bold text-text mb-3">See 13F filings live on HoldLens</h2>
+          <p className="text-sm text-muted leading-relaxed">
+            <a href="/" className="text-brand hover:underline">Live 13F tracker</a>
+            {" — every quarterly filing from 30 tracked managers, scored on the −100..+100 ConvictionScore. "}
+            <a href="/manager-rankings/" className="text-brand hover:underline">Manager rankings</a>
+            {", "}
+            <a href="/big-bets/" className="text-brand hover:underline">biggest bets</a>
+            {", "}
+            <a href="/new-positions/" className="text-brand hover:underline">new positions</a>
+            {". Related SEC filings: "}
+            <a href="/activist/" className="text-brand hover:underline">13D/13G activist</a>
+            {", "}
+            <a href="/insiders/" className="text-brand hover:underline">Form 4 insiders</a>
+            {", "}
+            <a href="/proxies/" className="text-brand hover:underline">DEF 14A proxies</a>
+            {"."}
+          </p>
+        </section>
       </div>
     </div>
   );
