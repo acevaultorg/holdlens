@@ -261,6 +261,23 @@ export default function ActivistLanding() {
           </a>
         </div>
       </section>
+
+      <section className="mt-10 border-t border-border pt-8">
+        <h2 className="text-base font-bold text-text mb-3">Related SEC filings on HoldLens</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          <a href="/def-14a/" className="text-brand hover:underline">DEF 14A explainer</a>
+          {" · "}
+          <a href="/proxies/" className="text-brand hover:underline">Proxy tracker (DEF 14A)</a>
+          {" · "}
+          <a href="/insiders/" className="text-brand hover:underline">Insider trades (Form 4)</a>
+          {" · "}
+          <a href="/events/" className="text-brand hover:underline">Material events (8-K)</a>
+          {" · "}
+          <a href="/bankruptcy/" className="text-brand hover:underline">Chapter 11 (8-K Item 1.03)</a>
+          {" · "}
+          <a href="/enforcement/" className="text-brand hover:underline">SEC enforcement</a>
+        </p>
+      </section>
     </div>
   );
 }

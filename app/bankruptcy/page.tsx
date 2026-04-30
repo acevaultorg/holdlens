@@ -164,8 +164,12 @@ export default function BankruptcyHub() {
           for full not-investment-advice + 4-business-day filing-lag framing.
         </p>
 
-        <h2 className="text-2xl font-bold mt-10 mb-3">Related</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-3">Related SEC filings on HoldLens</h2>
         <p className="text-muted">
+          <Link href="/events/" className="text-brand underline">
+            Material events (8-K)
+          </Link>
+          {" · "}
           <Link href="/events/type/bankruptcy/" className="text-brand underline">
             All 8-K Item 1.03 events
           </Link>
@@ -175,7 +179,19 @@ export default function BankruptcyHub() {
           </Link>
           {" · "}
           <Link href="/insiders/" className="text-brand underline">
-            Insider trades
+            Insider trades (Form 4)
+          </Link>
+          {" · "}
+          <Link href="/activist/" className="text-brand underline">
+            Activist filings (13D/13G)
+          </Link>
+          {" · "}
+          <Link href="/proxies/" className="text-brand underline">
+            Proxy tracker (DEF 14A)
+          </Link>
+          {" · "}
+          <Link href="/def-14a/" className="text-brand underline">
+            DEF 14A explainer
           </Link>
           {" · "}
           <Link href="/enforcement/" className="text-brand underline">

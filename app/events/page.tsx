@@ -327,6 +327,42 @@ export default function EventsHubPage() {
             </div>
           </div>
         </div>
+
+        <h3 className="text-base font-bold text-text mb-3 mt-10">Wider SEC-data stack</h3>
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+          <Link
+            href="/proxies/"
+            className="rounded-xl border border-border bg-panel p-4 hover:border-brand/40 transition block"
+          >
+            <div className="text-xs uppercase tracking-wider text-brand font-semibold mb-1">DEF 14A</div>
+            <div className="text-sm font-semibold text-text">Proxy tracker</div>
+            <div className="text-[11px] text-muted mt-1">Vote, comp, activist proxies. Q1-Q2 peak.</div>
+          </Link>
+          <Link
+            href="/activist/"
+            className="rounded-xl border border-border bg-panel p-4 hover:border-rose-400/40 transition block"
+          >
+            <div className="text-xs uppercase tracking-wider text-rose-400 font-semibold mb-1">13D / 13G</div>
+            <div className="text-sm font-semibold text-text">Activist filings</div>
+            <div className="text-[11px] text-muted mt-1">5%+ ownership crossings — intent signal.</div>
+          </Link>
+          <Link
+            href="/bankruptcy/"
+            className="rounded-xl border border-border bg-panel p-4 hover:border-rose-400/40 transition block"
+          >
+            <div className="text-xs uppercase tracking-wider text-rose-400 font-semibold mb-1">8-K Item 1.03</div>
+            <div className="text-sm font-semibold text-text">Chapter 11 tracker</div>
+            <div className="text-[11px] text-muted mt-1">Bankruptcy filings, public-US universe.</div>
+          </Link>
+          <Link
+            href="/def-14a/"
+            className="rounded-xl border border-border bg-panel p-4 hover:border-brand/40 transition block"
+          >
+            <div className="text-xs uppercase tracking-wider text-brand font-semibold mb-1">Explainer</div>
+            <div className="text-sm font-semibold text-text">What is DEF 14A?</div>
+            <div className="text-[11px] text-muted mt-1">SEC proxy form code defined.</div>
+          </Link>
+        </div>
       </section>
     </div>
   );
