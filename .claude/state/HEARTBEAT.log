@@ -83,3 +83,4 @@
 2026-04-30 21:32 | session-end | mode:auto | tasks:phase-1-brand-consolidation | event:HOLDLENS-STANDARD-LIVE+v2.0-ROADMAP | deploy:085004195 | indexnow:5549_urls | bias-corrected:adsense-IS-live | L1:ok L2:ok L3:ok L4:ok L5:active
 2026-04-30 21:54 | session-end | mode:auto | tasks:fix-all-polish | event:ARTICLE-PARITY-COMPLETE+30-INVESTOR-EYEBROWS+BUFFETT-FIX | deploy:7d94110af | indexnow:5550_urls | L1:ok L2:ok L3:ok L4:ok L5:active
 2026-04-30 22:15 | session-end | mode:auto | tasks:csil-audit+oracle-calibration-row | event:11-SHIP-LOOP-CALIBRATION-LOGGED | bias-corrected:plausible-800u-mo-not-71+pro-tier-already-live+brokers-IBKR+Schwab-chosen | L1:ok L2:ok L3:ok L4:ok L5:active
+2026-04-30 22:24 | session-end | mode:auto | tasks:brokerCta-env-var-bug-fix+schwab-wired | event:NEXT_PUBLIC_IBKR_REF+NEXT_PUBLIC_SCHWAB_REF-LIVE | deploy:6c79f37c6 | bias-corrected:prior-clarity-card-env-var-name-wrong | L1:ok L2:ok L3:ok L4:ok L5:active

@@ -1,29 +1,33 @@
-// BrokerCta — subtle broker-affiliate CTA for signal/ticker pages.
+// BrokerCta — subtle broker-affiliate CTA for hub / learn / homepage surfaces.
 //
-// Revenue model: Interactive Brokers pays ~$200 per funded account opened
-// through an affiliate link. Signal-page visitors are by definition
-// high-intent retail investors — the exact audience that opens a new
-// broker account when a conviction thesis resonates.
+// Sister component: AffiliateCTA (rendered on /ticker/[symbol]/ +
+// /signal/[ticker]/). Both components share the same canonical env-var
+// convention NEXT_PUBLIC_AFF_<BROKER> so the operator drops ONE value
+// per broker and BOTH components activate. Legacy NEXT_PUBLIC_<BROKER>_REF
+// names (BrokerCta original spec) still read as fallback for any value
+// the operator already set.
 //
-// Placement is deliberate: the "Found a bet you like? → Open an IBKR account"
-// CTA sits AFTER the user has read the smart-money analysis, not before.
-// It's a natural next step, not a popup interruption.
+// Revenue model: Interactive Brokers pays ~$200 per funded account; Schwab
+// $100-300; eToro $50-200; moomoo $20-100; Public $25-50; Trade Republic
+// flat. Visitors landing on a HoldLens hub are high-intent retail investors
+// — the exact audience that opens a new broker account when a thesis
+// resonates. Placement is AFTER the analysis, not before — a natural next
+// step, not a popup.
 //
-// Activation: operator signs up for IBKR's referral program, gets an
-// affiliate URL, drops it into NEXT_PUBLIC_IBKR_REF in Cloudflare Pages env.
-// Until then the component renders nothing — zero UI noise.
+// Operator activation: per MONETIZATION_STACK.md (2026-04-23) operator
+// specified IBKR + Charles Schwab as primary brokers. Drop EITHER:
+//   NEXT_PUBLIC_AFF_IBKR=<URL>   (canonical; activates BrokerCta + AffiliateCTA)
+//   NEXT_PUBLIC_IBKR_REF=<URL>   (legacy; activates BrokerCta only)
+// into Vercel/Cloudflare Pages env. Component renders nothing if no value.
 //
-// Optional alt brokers supported: Charles Schwab (NEXT_PUBLIC_SCHWAB_REF),
-// eToro (NEXT_PUBLIC_ETORO_REF), Trade Republic (NEXT_PUBLIC_TRADEREPUBLIC_REF).
-// Any broker the operator has a referral URL for can be added to the array
-// with a new env-var entry. Per MONETIZATION_STACK.md (2026-04-23) operator
-// specifies IBKR + Schwab as primaries; secondaries via the existing entries.
+// Full env-var inventory: see .env.example at repo root.
 
 type Broker = {
   key: string;
   label: string;
   pitch: string;
-  env: string;
+  envCanonical: string;  // NEXT_PUBLIC_AFF_* — preferred, matches AffiliateCTA
+  envLegacy?: string;    // NEXT_PUBLIC_*_REF — original BrokerCta names
   payout: string;
 };
 
@@ -31,46 +35,81 @@ const BROKERS: Broker[] = [
   {
     key: "ibkr",
     label: "Interactive Brokers",
-    pitch: "Global reach, pro-grade API, SIPC-insured. Fund the account and get our conviction data for free.",
-    env: "NEXT_PUBLIC_IBKR_REF",
+    pitch: "Global reach, pro-grade API, SIPC-insured. ~$200/funded account.",
+    envCanonical: "NEXT_PUBLIC_AFF_IBKR",
+    envLegacy: "NEXT_PUBLIC_IBKR_REF",
     payout: "US-available",
   },
   {
     key: "schwab",
     label: "Charles Schwab",
-    pitch: "$0 commissions on US stocks/ETFs, deep research suite, fractional shares. Strong fit for retail US accounts.",
-    env: "NEXT_PUBLIC_SCHWAB_REF",
+    pitch: "$0 commissions on US stocks/ETFs, deep research suite, fractional shares. ~$100-300/funded.",
+    envCanonical: "NEXT_PUBLIC_AFF_SCHWAB",
+    envLegacy: "NEXT_PUBLIC_SCHWAB_REF",
     payout: "US-available",
+  },
+  {
+    key: "public",
+    label: "Public.com",
+    pitch: "Commission-free, social investing, $10 free stock signup. ~$25-50/funded.",
+    envCanonical: "NEXT_PUBLIC_AFF_PUBLIC",
+    payout: "US-available",
+  },
+  {
+    key: "robinhood",
+    label: "Robinhood",
+    pitch: "Free trades, fractional shares, simple UI. ~$5-10/funded.",
+    envCanonical: "NEXT_PUBLIC_AFF_ROBINHOOD",
+    payout: "US only",
   },
   {
     key: "etoro",
     label: "eToro",
-    pitch: "Copy-trading and fractional shares, best for discretionary US-equity bets.",
-    env: "NEXT_PUBLIC_ETORO_REF",
+    pitch: "Copy-trading and fractional shares, best for discretionary US-equity bets. ~$50-200/funded.",
+    envCanonical: "NEXT_PUBLIC_AFF_ETORO",
+    envLegacy: "NEXT_PUBLIC_ETORO_REF",
     payout: "EU + UK + AU",
+  },
+  {
+    key: "moomoo",
+    label: "moomoo",
+    pitch: "Pro trading tools, free real-time data. ~$20-100/funded.",
+    envCanonical: "NEXT_PUBLIC_AFF_MOOMOO",
+    payout: "US + APAC",
   },
   {
     key: "tradere",
     label: "Trade Republic",
     pitch: "€1 flat per trade, EU-native. Best-in-class mobile UI.",
-    env: "NEXT_PUBLIC_TRADEREPUBLIC_REF",
+    envCanonical: "NEXT_PUBLIC_AFF_TRADEREPUBLIC",
+    envLegacy: "NEXT_PUBLIC_TRADEREPUBLIC_REF",
     payout: "EU only",
   },
 ];
 
-function readRef(env: string): string | undefined {
+function readRef(envCanonical: string, envLegacy?: string): string | undefined {
   // Each env var inlined at build time. Enumerated explicitly so static
-  // analysis picks them up.
-  switch (env) {
-    case "NEXT_PUBLIC_IBKR_REF":
-      return process.env.NEXT_PUBLIC_IBKR_REF;
-    case "NEXT_PUBLIC_SCHWAB_REF":
-      return process.env.NEXT_PUBLIC_SCHWAB_REF;
-    case "NEXT_PUBLIC_ETORO_REF":
-      return process.env.NEXT_PUBLIC_ETORO_REF;
-    case "NEXT_PUBLIC_TRADEREPUBLIC_REF":
-      return process.env.NEXT_PUBLIC_TRADEREPUBLIC_REF;
+  // analysis picks them up. Canonical first, legacy as fallback for any
+  // value the operator already set under the original BrokerCta spec.
+  switch (envCanonical) {
+    case "NEXT_PUBLIC_AFF_IBKR":
+      return process.env.NEXT_PUBLIC_AFF_IBKR || process.env.NEXT_PUBLIC_IBKR_REF;
+    case "NEXT_PUBLIC_AFF_SCHWAB":
+      return process.env.NEXT_PUBLIC_AFF_SCHWAB || process.env.NEXT_PUBLIC_SCHWAB_REF;
+    case "NEXT_PUBLIC_AFF_PUBLIC":
+      return process.env.NEXT_PUBLIC_AFF_PUBLIC;
+    case "NEXT_PUBLIC_AFF_ROBINHOOD":
+      return process.env.NEXT_PUBLIC_AFF_ROBINHOOD;
+    case "NEXT_PUBLIC_AFF_ETORO":
+      return process.env.NEXT_PUBLIC_AFF_ETORO || process.env.NEXT_PUBLIC_ETORO_REF;
+    case "NEXT_PUBLIC_AFF_MOOMOO":
+      return process.env.NEXT_PUBLIC_AFF_MOOMOO;
+    case "NEXT_PUBLIC_AFF_TRADEREPUBLIC":
+      return process.env.NEXT_PUBLIC_AFF_TRADEREPUBLIC || process.env.NEXT_PUBLIC_TRADEREPUBLIC_REF;
   }
+  // Suppress unused-variable warning for envLegacy — included in signature
+  // for future brokers that may not have a canonical _AFF_ name yet.
+  void envLegacy;
   return undefined;
 }
 
@@ -81,7 +120,7 @@ export default function BrokerCta({
   ticker?: string;
   context?: string;
 }) {
-  const active = BROKERS.map((b) => ({ ...b, href: readRef(b.env) })).filter(
+  const active = BROKERS.map((b) => ({ ...b, href: readRef(b.envCanonical, b.envLegacy) })).filter(
     (b) => b.href,
   );
 
