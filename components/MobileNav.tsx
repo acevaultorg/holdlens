@@ -138,7 +138,7 @@ const GROUPS: MGroup[] = [
     links: [
       { href: "/learn", label: "Learning center" },
       { href: "/learn/superinvestor-handbook", label: "Superinvestor handbook", color: "buy" },
-      { href: "/methodology", label: "Methodology" },
+      { href: "/methodology", label: "The Standard (methodology)" },
       { href: "/proof", label: "Proof — does it work?", color: "buy" },
       { href: "/simulate", label: "Backtests", color: "buy" },
       { href: "/quarterly", label: "Quarterly State" },

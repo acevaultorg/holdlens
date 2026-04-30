@@ -132,7 +132,7 @@ const RESEARCH: NavGroup = {
   links: [
     { href: "/learn", label: "Learning center", desc: "11+ explainer articles" },
     { href: "/learn/superinvestor-handbook", label: "Superinvestor handbook", color: "emerald" },
-    { href: "/methodology", label: "Methodology", desc: "How ConvictionScore is built" },
+    { href: "/methodology", label: "The Standard", desc: "ConvictionScore methodology v1.0" },
     { href: "/proof", label: "Proof — does it work?", color: "emerald" },
     { href: "/quarterly", label: "Quarterly State of Institutions" },
     { href: "/press-kit", label: "Press kit + media" },

@@ -261,6 +261,12 @@ export default function HomePage() {
             Subhead: `text-pretty` applied to avoid tail-orphans. Bonded
             pairs `+100 buy` and `−100 sell` get `whitespace-nowrap` so the
             sign never splits from its label across lines. */}
+        <a
+          href="/methodology"
+          className="inline-block mb-4 text-[11px] uppercase tracking-widest text-brand font-semibold border border-brand/30 hover:border-brand/60 rounded-full px-3 py-1 transition"
+        >
+          The HoldLens Standard · ConvictionScore v1.0 →
+        </a>
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-balance">
           <span className="text-text/90">Understand every move by the</span>{" "}
           {/* v1.39 — gradient hero text for first-paint dopamine lift. Base

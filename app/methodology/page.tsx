@@ -2,9 +2,25 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
-  title: "Methodology — How HoldLens scores conviction",
-  description: "How HoldLens parses 13F filings, calculates conviction scores, and ranks superinvestor moves.",
+  title: "The HoldLens Standard — ConvictionScore methodology v1.0",
+  description:
+    "The HoldLens Standard for synthesized SEC-filing intelligence. ConvictionScore methodology v1.0 — seven signal layers + two penalties unified into a signed −100..+100 score. Open methodology, transparent weights, version-tracked.",
   alternates: { canonical: "https://holdlens.com/methodology/" },
+  openGraph: {
+    title: "The HoldLens Standard — ConvictionScore methodology v1.0",
+    description:
+      "The canonical methodology for synthesized SEC-filing intelligence. Seven signal layers + two penalties → unified −100..+100 ConvictionScore. Free, open, version-tracked.",
+    url: "https://holdlens.com/methodology/",
+    type: "article",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "The HoldLens Standard — ConvictionScore methodology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The HoldLens Standard — ConvictionScore methodology v1.0",
+    description:
+      "Seven signal layers + two penalties → unified −100..+100 ConvictionScore. Open methodology, version-tracked.",
+    images: ["/og/home.png"],
+  },
 };
 
 // DefinedTermSet schema — gives LLMs (Claude/ChatGPT/Perplexity/Gemini)
@@ -81,7 +97,15 @@ export default function MethodologyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(GLOSSARY_LD) }}
       />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Methodology</div>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">How we calculate everything</h1>
+      <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
+        The HoldLens Standard · v1.0
+      </div>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
+        The HoldLens Standard — <span className="text-brand">ConvictionScore</span> methodology
+      </h1>
+      <p className="text-muted text-lg leading-relaxed max-w-2xl mb-10">
+        The canonical methodology for synthesized SEC-filing intelligence. Seven signal layers + two penalties unified into a signed −100..+100 ConvictionScore. Open methodology, transparent weights, version-tracked.
+      </p>
       <div className="space-y-8 text-text leading-relaxed">
 
         <section>
@@ -182,6 +206,68 @@ export default function MethodologyPage() {
           <p className="text-muted">
             Manager portfolios update within hours of each 13F filing. Email subscribers get a one-line move
             alert per filing. We never delete historical data — every quarter is preserved.
+          </p>
+        </section>
+
+        <section id="v2-roadmap" className="rounded-xl border border-border bg-panel p-6">
+          <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+            Roadmap · v2.0 (proposed)
+          </div>
+          <h2 className="text-2xl font-bold mb-3">v2.0 — composite simplification</h2>
+          <p className="text-muted leading-relaxed mb-4">
+            v1.0 ships seven signal layers + two penalties with internal weight ranges (smart money 0-30, insider activity 0-20, track record 0-20, trend streak 0-10, concentration 0-10, contrarian 0-10, event signal -15..+5; minus dissent 0-40, crowding 0-10). v2.0 proposes a 6-dimension composite with explicit operator-tunable percentage weights:
+          </p>
+          <div className="overflow-x-auto mb-4">
+            <table className="w-full text-sm">
+              <thead className="text-dim text-xs uppercase tracking-wider">
+                <tr className="border-b border-border">
+                  <th className="text-left px-3 py-2">Dimension</th>
+                  <th className="text-right px-3 py-2">Weight</th>
+                  <th className="text-left px-3 py-2 hidden sm:table-cell">Maps to v1.0</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted">
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2"><strong className="text-text">Position Size</strong> — % of portfolio, absolute $, relative to investor's avg</td>
+                  <td className="text-right px-3 py-2 tabular-nums">25%</td>
+                  <td className="px-3 py-2 hidden sm:table-cell text-xs">Concentration + Smart money (size component)</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2"><strong className="text-text">Holding Tenure</strong> — quarters held continuously, change velocity</td>
+                  <td className="text-right px-3 py-2 tabular-nums">20%</td>
+                  <td className="px-3 py-2 hidden sm:table-cell text-xs">Trend streak + Smart money (time-decay)</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2"><strong className="text-text">Adding vs Trimming</strong> — recent direction, cumulative QoQ delta, trajectory</td>
+                  <td className="text-right px-3 py-2 tabular-nums">15%</td>
+                  <td className="px-3 py-2 hidden sm:table-cell text-xs">Smart money (direction) + Dissent penalty</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2"><strong className="text-text">Cross-Investor Overlap</strong> — how many of N tracked superinvestors hold same ticker</td>
+                  <td className="text-right px-3 py-2 tabular-nums">15%</td>
+                  <td className="px-3 py-2 hidden sm:table-cell text-xs">Smart money (consensus) - Crowding penalty</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="px-3 py-2"><strong className="text-text">Insider Buy Alignment</strong> — Form 4 insider purchases on same ticker</td>
+                  <td className="text-right px-3 py-2 tabular-nums">15%</td>
+                  <td className="px-3 py-2 hidden sm:table-cell text-xs">Insider activity layer (existing)</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2"><strong className="text-text">Material Event Context</strong> — recent 8-K, bankruptcy proximity, activist 13D presence</td>
+                  <td className="text-right px-3 py-2 tabular-nums">10%</td>
+                  <td className="px-3 py-2 hidden sm:table-cell text-xs">Event signal layer (existing)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-muted text-sm leading-relaxed mb-3">
+            <strong className="text-text">Goal:</strong> single 0-100 magnitude (paired with current −100..+100 directional score) where each dimension has a transparent percentage weight an operator could see + tune. Easier to explain, easier to license as a B2B scoring API, easier to audit.
+          </p>
+          <p className="text-muted text-sm leading-relaxed mb-3">
+            <strong className="text-text">Status:</strong> proposal only — v1.0 is the live scoring system today. v2.0 ships when the simplified weights are validated against the same 4-quarter backtest (target r&nbsp;≥&nbsp;0 vs. v1.0&apos;s r&nbsp;=&nbsp;−0.12) and the methodology delta is documented in this page&apos;s Errors and corrections section.
+          </p>
+          <p className="text-dim text-xs">
+            Track methodology evolution: this page is the canonical version-history surface. Past versions are preserved in git; current version is always the published one above.
           </p>
         </section>
 
