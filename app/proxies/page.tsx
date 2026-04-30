@@ -64,11 +64,15 @@ export default function ProxiesHub() {
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Related</h2>
         <p className="text-muted">
+          <Link href="/def-14a/" className="text-brand underline">What is DEF 14A?</Link>
+          {" · "}
           <Link href="/activist/" className="text-brand underline">Activist filings (13D/13G)</Link>
           {" · "}
           <Link href="/insiders/" className="text-brand underline">Insider trades (Form 4)</Link>
           {" · "}
           <Link href="/events/" className="text-brand underline">Material events (8-K)</Link>
+          {" · "}
+          <Link href="/bankruptcy/" className="text-brand underline">Chapter 11 (8-K Item 1.03)</Link>
           {" · "}
           <Link href="/enforcement/" className="text-brand underline">SEC enforcement</Link>
         </p>

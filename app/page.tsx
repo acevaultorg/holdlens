@@ -73,6 +73,10 @@ const HOMEPAGE_FAQ: FaqItem[] = [
     q: "How many portfolio managers does HoldLens track?",
     a: `${MANAGERS.length} of the world's best active superinvestors, including Warren Buffett, Bill Ackman, Stanley Druckenmiller, Seth Klarman, Howard Marks, David Tepper, Michael Burry, Chris Hohn, Chase Coleman, Li Lu, and others across value, growth, activist, macro, and long-short strategies.`,
   },
+  {
+    q: "What SEC filings does HoldLens track?",
+    a: "HoldLens covers six SEC filing types as a unified smart-money + signals platform. Form 13F — quarterly portfolio holdings from 30 tracked superinvestors (the core ConvictionScore dataset). Form 4 — daily insider trades (CEO/CFO/director buys + sells), scored on the −100..+100 InsiderScore at /insiders/. Form 8-K — intra-day material events (earnings, M&A, bankruptcy, cybersecurity, CEO change), scored on the −100..+100 EventScore at /events/. Schedule 13D and 13G — activist 5%+ ownership filings at /activist/. DEF 14A — definitive proxy statements (shareholder votes, exec comp, activist proxy contests) at /proxies/, with explainer at /def-14a/. Form 8-K Item 1.03 — Chapter 11 bankruptcy filings tracked separately at /bankruptcy/. All six are aggregated from SEC EDGAR daily and free.",
+  },
 ];
 
 export default function HomePage() {
