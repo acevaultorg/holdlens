@@ -86,12 +86,38 @@ export default function InsidersPage() {
       { "@type": "PropertyValue", name: "Total value" },
     ],
   };
+  const definedTermLd = {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: "Form 4",
+    alternateName: ["SEC Form 4", "Statement of Changes in Beneficial Ownership", "Insider Trading Disclosure"],
+    description:
+      "Form 4 is the SEC filing required when a corporate insider (officer, director, 10%+ beneficial owner) buys, sells, or otherwise acquires/disposes of company stock. Required filing within 2 business days of the transaction under Section 16 of the Securities Exchange Act of 1934. Discretionary buys are the strongest single equity signal; 10b5-1 plan trades signal pre-scheduled disposition. Source: SEC EDGAR.",
+    inDefinedTermSet: "https://www.sec.gov/cgi-bin/browse-edgar",
+    url: "https://holdlens.com/insiders/",
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Insider Activity", item: "https://holdlens.com/insiders/" },
+    ],
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">

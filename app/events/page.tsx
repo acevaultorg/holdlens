@@ -89,6 +89,15 @@ export default function EventsHubPage() {
           { "@type": "ListItem", position: 2, name: "Material events", item: "https://holdlens.com/events/" },
         ],
       },
+      {
+        "@type": "DefinedTerm",
+        name: "Form 8-K",
+        alternateName: ["8-K", "Current Report", "SEC Form 8-K", "Material Event Disclosure"],
+        description:
+          "Form 8-K is the SEC current-report filing required when a public US company experiences a material event that shareholders should know about. Filed within 4 business days of the event. Items include 1.01 (material agreement), 1.03 (bankruptcy), 2.01 (acquisition completion), 2.02 (earnings), 2.06 (material impairment), 4.02 (financial restatement), 5.02 (officer/director change), 5.03 (charter amendment), 7.01 (Reg FD disclosure), 8.01 (other material events). Source: SEC EDGAR.",
+        inDefinedTermSet: "https://www.sec.gov/cgi-bin/browse-edgar",
+        url: "https://holdlens.com/events/",
+      },
     ],
   };
 

@@ -46,6 +46,24 @@ export default function BankruptcyHub() {
       })),
     },
   };
+  const definedTermLd = {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: "Form 8-K Item 1.03",
+    alternateName: ["8-K Item 1.03", "Bankruptcy or Receivership", "Chapter 11 disclosure", "Chapter 7 disclosure"],
+    description:
+      "Form 8-K Item 1.03 is the SEC current-report disclosure required when a public US company or its significant subsidiary files a petition for bankruptcy or receivership. Required filing within 4 business days of the material event under Regulation FD. Encompasses Chapter 7 (liquidation), Chapter 11 (reorganization), and Chapter 15 (cross-border) filings; the form itself does not distinguish chapter type.",
+    inDefinedTermSet: "https://www.sec.gov/cgi-bin/browse-edgar",
+    url: "https://holdlens.com/bankruptcy/",
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Chapter 11 Tracker", item: "https://holdlens.com/bankruptcy/" },
+    ],
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -207,6 +225,14 @@ export default function BankruptcyHub() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
     </div>
   );

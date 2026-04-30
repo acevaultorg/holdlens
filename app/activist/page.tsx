@@ -63,11 +63,22 @@ export default function ActivistLanding() {
       { "@type": "ListItem", position: 2, name: "Activist", item: "https://holdlens.com/activist" },
     ],
   };
+  const definedTermLd = {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: "Schedule 13D",
+    alternateName: ["Schedule 13G", "Form 13D", "Form 13G", "13D filing", "13G filing", "Beneficial Ownership Report"],
+    description:
+      "Schedule 13D and 13G are SEC beneficial ownership reports required when an investor crosses 5% of a public company's outstanding shares. Schedule 13D signals intent to influence (10-day filing window); Schedule 13G is for passive long-term holders. Amendments (13D/A, 13G/A) follow 1%+ position changes or intent shifts.",
+    inDefinedTermSet: "https://www.sec.gov/cgi-bin/browse-edgar",
+    url: "https://holdlens.com/activist/",
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermLd) }} />
 
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Activist filings · SEC 13D/13G

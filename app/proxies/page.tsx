@@ -26,6 +26,24 @@ export default function ProxiesHub() {
     url: "https://holdlens.com/proxies/",
     publisher: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
   };
+  const definedTermLd = {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: "DEF 14A",
+    alternateName: ["Definitive Proxy Statement", "Form DEF 14A", "Proxy Statement"],
+    description:
+      "DEF 14A is the SEC form code for a definitive proxy statement, filed under Section 14(a) of the Securities Exchange Act of 1934 before each annual shareholder meeting. Discloses voting matters, executive compensation, board nominations, activist proxy contests, related-party transactions.",
+    inDefinedTermSet: "https://www.sec.gov/cgi-bin/browse-edgar",
+    url: "https://holdlens.com/proxies/",
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
+      { "@type": "ListItem", position: 2, name: "Proxy Tracker (DEF 14A)", item: "https://holdlens.com/proxies/" },
+    ],
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -79,6 +97,8 @@ export default function ProxiesHub() {
       </div>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
     </div>
   );
 }
