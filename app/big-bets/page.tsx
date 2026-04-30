@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "The most concentrated high-conviction positions across 30 tracked superinvestors. Combines position size with the ConvictionScore signal so you see the bets with BOTH size and consensus behind them.",
   alternates: { canonical: "https://holdlens.com/big-bets" },
   openGraph: {
-    title: "Big Bets · HoldLens",
+    title: "Big Bets",
     description:
       "Where smart money bets biggest AND the data agrees. Position size × ConvictionScore, ranked.",
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],

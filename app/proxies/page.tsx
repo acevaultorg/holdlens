@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "DEF 14A Proxy Tracker — voting + comp + activist campaigns · HoldLens",
+  title: "DEF 14A Proxy Tracker — voting + comp + activist campaigns",
   description:
     "SEC Form DEF 14A proxy filings: shareholder voting, executive compensation, board nominations, activist campaign details. Q1-Q2 peak. EDGAR-sourced.",
   alternates: { canonical: "https://holdlens.com/proxies/" },

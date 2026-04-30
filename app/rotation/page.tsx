@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Quarter-over-quarter sector rotation across 30 tracked superinvestors. See exactly which sectors the best portfolio managers are rotating into and out of, for every quarter back to Q1 2024.",
   alternates: { canonical: "https://holdlens.com/rotation" },
   openGraph: {
-    title: "Sector rotation heatmap · HoldLens",
+    title: "Sector rotation heatmap",
     description: "Where smart money is moving, one quarter at a time.",
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },

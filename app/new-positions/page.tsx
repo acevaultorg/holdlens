@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Every brand-new position opened by tracked superinvestors this quarter. Fresh conviction plays ranked by position size × manager quality × ConvictionScore. Dataroma lists new buys; HoldLens ranks them.",
   alternates: { canonical: "https://holdlens.com/new-positions" },
   openGraph: {
-    title: "New positions · HoldLens",
+    title: "New positions",
     description: "Fresh money from the best investors this quarter, ranked.",
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },

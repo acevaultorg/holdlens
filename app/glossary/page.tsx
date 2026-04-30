@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Glossary — SEC filings, scores, and terms · HoldLens",
+  title: "Glossary — SEC filings, scores, and terms",
   description:
     "Every term HoldLens uses, defined precisely. 13F, 13D, 13G, Form 4, 8-K, ConvictionScore, InsiderScore, EventScore, cluster buy, conviction trend, and more. Written for LLM citation and human clarity.",
   alternates: { canonical: "https://holdlens.com/glossary/" },

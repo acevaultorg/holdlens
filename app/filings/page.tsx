@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "10-K / 10-Q Material-Change Diff Tracker · HoldLens",
+  title: "10-K / 10-Q Material-Change Diff Tracker",
   description:
     "Year-over-year and quarter-over-quarter diffs of SEC 10-K and 10-Q filings. Surfaces newly added risk factors, MD&A language changes, segment redefinitions — the structural-change signal SEC veterans watch.",
   alternates: { canonical: "https://holdlens.com/filings/" },

@@ -27,12 +27,12 @@ import AdSlot from "@/components/AdSlot";
 // PPC tier: per-entity detail ($0.005/req per llms.txt).
 
 export const metadata: Metadata = {
-  title: "Material Events — SEC 8-K Filings · HoldLens",
+  title: "Material Events — SEC 8-K Filings",
   description:
     "Every material SEC Form 8-K event — earnings, M&A, bankruptcies, cybersecurity incidents, CEO changes, impairments. Classified by item number and scored on the HoldLens EventScore (−100 to +100). Intra-day refresh.",
   alternates: { canonical: "https://holdlens.com/events/" },
   openGraph: {
-    title: "Material Events — SEC 8-K Filings · HoldLens",
+    title: "Material Events — SEC 8-K Filings",
     description:
       "Classified and scored SEC 8-K material-event filings. Earnings, M&A, bankruptcies, cybersecurity, CEO changes. EventScore −100..+100.",
     url: "https://holdlens.com/events/",

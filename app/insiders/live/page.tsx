@@ -23,7 +23,7 @@ import BrokerCta from "@/components/BrokerCta";
 // will wire the scraper; today reads curated INSIDER_TX).
 
 export const metadata: Metadata = {
-  title: "Live Insider Feed — Latest Form 4 Trades · HoldLens",
+  title: "Live Insider Feed — Latest Form 4 Trades",
   description:
     "Every tracked SEC Form 4 insider trade, chronological. CEO, CFO, Chair, Director, and 10%+ owner transactions. Daily refresh from EDGAR. InsiderScore on every row.",
   alternates: { canonical: "https://holdlens.com/insiders/live/" },

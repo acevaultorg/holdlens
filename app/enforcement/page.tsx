@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "SEC Enforcement Actions Tracker · HoldLens",
+  title: "SEC Enforcement Actions Tracker",
   description:
     "Every SEC enforcement action, consent decree, civil penalty, and administrative proceeding involving public companies. EDGAR-sourced, freshness-stamped, cross-linked to /insiders/ and /events/.",
   alternates: { canonical: "https://holdlens.com/enforcement/" },

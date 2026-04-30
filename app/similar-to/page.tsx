@@ -15,7 +15,7 @@ import { MANAGERS } from "@/lib/managers";
 // AND adds a discovery-rich landing page for the entire similarity feature.
 
 export const metadata: Metadata = {
-  title: "Similar portfolios — find the superinvestor most like another · HoldLens",
+  title: "Similar portfolios — find the superinvestor most like another",
   description:
     "Cross-reference 30 tracked superinvestors by 13F portfolio overlap. Pick a manager, see who runs the most similar book — Jaccard similarity on shared-ticker union. Free.",
   alternates: { canonical: "https://holdlens.com/similar-to/" },

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Form ADV Adviser Tracker — RIA AUM, fees, and disciplinary history · HoldLens",
+  title: "Form ADV Adviser Tracker — RIA AUM, fees, and disciplinary history",
   description:
     "Every SEC-registered investment adviser tracked via Form ADV: AUM, fee schedule, employee count, disciplinary history, custodian relationships. Annual filing freshness.",
   alternates: { canonical: "https://holdlens.com/advisers/" },

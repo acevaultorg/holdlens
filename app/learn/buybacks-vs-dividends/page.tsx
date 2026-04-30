@@ -3,7 +3,7 @@ import AdSlot from "@/components/AdSlot";
 import ShareStrip from "@/components/ShareStrip";
 
 export const metadata: Metadata = {
-  title: "Buybacks vs dividends — what's the real difference? · HoldLens",
+  title: "Buybacks vs dividends — what's the real difference?",
   description:
     "Share repurchases and dividends both return cash to shareholders, but they hit your account, your tax bill, and your company's future very differently. The honest tradeoffs.",
   alternates: { canonical: "https://holdlens.com/learn/buybacks-vs-dividends" },

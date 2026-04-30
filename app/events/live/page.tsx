@@ -19,7 +19,7 @@ import AdSlot from "@/components/AdSlot";
 // shape flows through.
 
 export const metadata: Metadata = {
-  title: "Live 8-K Feed — Latest SEC Material Events · HoldLens",
+  title: "Live 8-K Feed — Latest SEC Material Events",
   description:
     "Every tracked SEC Form 8-K material event, chronological. Earnings, M&A, bankruptcies, cybersecurity incidents, CEO changes, impairments. Intra-day refresh from SEC EDGAR.",
   alternates: { canonical: "https://holdlens.com/events/live/" },

@@ -3,7 +3,7 @@ import AdSlot from "@/components/AdSlot";
 import ShareStrip from "@/components/ShareStrip";
 
 export const metadata: Metadata = {
-  title: "How to read buyback disclosures — a plain-English SEC filing guide · HoldLens",
+  title: "How to read buyback disclosures — a plain-English SEC filing guide",
   description:
     "What to look for in a company's 10-K cash-flow statement, 8-K authorization announcements, and 10-Q monthly share-repurchase tables. With examples.",
   alternates: { canonical: "https://holdlens.com/learn/how-to-read-buyback-disclosures" },

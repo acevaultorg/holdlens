@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ALL_EVENTS, fmtEventDate } from "@/lib/events";
 
 export const metadata: Metadata = {
-  title: "Chapter 11 Bankruptcy Tracker — every public-US Form 8-K Item 1.03 · HoldLens",
+  title: "Chapter 11 Bankruptcy Tracker — every public-US Form 8-K Item 1.03",
   description:
     "Every public US company that has filed for bankruptcy or receivership, surfaced from SEC Form 8-K Item 1.03 within 4 business days. Live EDGAR feed + cross-link to insider patterns + 8-K material events.",
   alternates: { canonical: "https://holdlens.com/bankruptcy/" },

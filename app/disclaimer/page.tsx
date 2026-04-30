@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Disclaimer — not investment advice · HoldLens",
+  title: "Disclaimer — not investment advice",
   description:
     "HoldLens is a research and information tool built on public SEC filings. It is not investment advice, a recommendation to buy or sell securities, or a substitute for consultation with a licensed financial advisor.",
   alternates: { canonical: "https://holdlens.com/disclaimer/" },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Disclaimer · HoldLens",
+    title: "Disclaimer",
     description:
       "HoldLens is a research tool. Not investment advice. 13F data is reported with a 45-day lag; Form 4 within 2 business days. Users bear full responsibility for trading decisions.",
     url: "https://holdlens.com/disclaimer/",

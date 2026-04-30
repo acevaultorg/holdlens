@@ -15,7 +15,7 @@ import TickerLogo from "@/components/TickerLogo";
 
 export const metadata: Metadata = {
   title:
-    "Superinvestor Divergence — where the smart money disagrees · HoldLens",
+    "Superinvestor Divergence — where the smart money disagrees",
   description:
     "Tickers where ≥2 tracked superinvestors are net buying AND ≥2 are net selling in the same quarter. Computed from 30 manager 13F filings. The debate signal — when conviction is split.",
   alternates: { canonical: "https://holdlens.com/divergence/" },

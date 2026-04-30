@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getRecentReports, REPORTS } from "@/lib/reports";
 
 export const metadata: Metadata = {
-  title: "Quarterly Reports + Weekly Commentary · HoldLens",
+  title: "Quarterly Reports + Weekly Commentary",
   description:
     "HoldLens's editorial output: quarterly 'State of 13F Filings' deep-dives + weekly commentary on superinvestor moves, insider clusters, and material events. PDF + HTML + JSON-LD structured for citation.",
   alternates: { canonical: "https://holdlens.com/reports/" },
