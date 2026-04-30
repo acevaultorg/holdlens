@@ -13,9 +13,11 @@
 // affiliate URL, drops it into NEXT_PUBLIC_IBKR_REF in Cloudflare Pages env.
 // Until then the component renders nothing — zero UI noise.
 //
-// Optional alt brokers supported: eToro (NEXT_PUBLIC_ETORO_REF), Trade Republic
-// (NEXT_PUBLIC_TRADEREPUBLIC_REF). Any broker the operator has a referral URL
-// for can be added to the array with a new env-var entry.
+// Optional alt brokers supported: Charles Schwab (NEXT_PUBLIC_SCHWAB_REF),
+// eToro (NEXT_PUBLIC_ETORO_REF), Trade Republic (NEXT_PUBLIC_TRADEREPUBLIC_REF).
+// Any broker the operator has a referral URL for can be added to the array
+// with a new env-var entry. Per MONETIZATION_STACK.md (2026-04-23) operator
+// specifies IBKR + Schwab as primaries; secondaries via the existing entries.
 
 type Broker = {
   key: string;
@@ -31,6 +33,13 @@ const BROKERS: Broker[] = [
     label: "Interactive Brokers",
     pitch: "Global reach, pro-grade API, SIPC-insured. Fund the account and get our conviction data for free.",
     env: "NEXT_PUBLIC_IBKR_REF",
+    payout: "US-available",
+  },
+  {
+    key: "schwab",
+    label: "Charles Schwab",
+    pitch: "$0 commissions on US stocks/ETFs, deep research suite, fractional shares. Strong fit for retail US accounts.",
+    env: "NEXT_PUBLIC_SCHWAB_REF",
     payout: "US-available",
   },
   {
@@ -55,6 +64,8 @@ function readRef(env: string): string | undefined {
   switch (env) {
     case "NEXT_PUBLIC_IBKR_REF":
       return process.env.NEXT_PUBLIC_IBKR_REF;
+    case "NEXT_PUBLIC_SCHWAB_REF":
+      return process.env.NEXT_PUBLIC_SCHWAB_REF;
     case "NEXT_PUBLIC_ETORO_REF":
       return process.env.NEXT_PUBLIC_ETORO_REF;
     case "NEXT_PUBLIC_TRADEREPUBLIC_REF":
