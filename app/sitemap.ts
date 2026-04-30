@@ -39,6 +39,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // feed + company + officer pages all refresh daily from Form 4 EDGAR.
     { url: `${base}/insiders`, lastModified: now, changeFrequency: "daily", priority: 0.88 },
     { url: `${base}/insiders/live`, lastModified: now, changeFrequency: "daily", priority: 0.85 },
+    // SEC-data product hubs — the 6-concept stack (13F + Form 4 + 8-K +
+    // 13D/G + DEF 14A + Ch 11). All canonical for their filing-type
+    // keyword cluster + EDGAR-sourced. Pre-fix: only /insiders/ was in
+    // sitemap; /proxies, /events, /activist, /bankruptcy, /def-14a were
+    // discoverable only via internal links — silent indexing leak. Each
+    // is now a first-class sitemap entry with daily/weekly cadence.
+    { url: `${base}/events`, lastModified: now, changeFrequency: "daily", priority: 0.88 },
+    { url: `${base}/events/live`, lastModified: now, changeFrequency: "daily", priority: 0.85 },
+    { url: `${base}/activist`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${base}/proxies`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${base}/bankruptcy`, lastModified: now, changeFrequency: "daily", priority: 0.85 },
+    { url: `${base}/def-14a`, lastModified: now, changeFrequency: "monthly", priority: 0.82 },
+    // Signal-explorer hubs — homepage SignalCard grid surfaces these as
+    // "Twenty-five ways to read smart money." Each hub is a unique-data
+    // page with structured data + internal hub-spoke links to the SEC
+    // filing trackers. Should match nav prominence in sitemap.
+    { url: `${base}/themes`, lastModified: now, changeFrequency: "weekly", priority: 0.82 },
+    { url: `${base}/overlap`, lastModified: now, changeFrequency: "weekly", priority: 0.82 },
+    { url: `${base}/by-philosophy`, lastModified: now, changeFrequency: "weekly", priority: 0.82 },
+    { url: `${base}/big-bets`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${base}/new-positions`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/changelog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     // Already-live routes that were never in the sitemap
     { url: `${base}/activity`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },

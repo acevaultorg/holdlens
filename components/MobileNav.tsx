@@ -109,6 +109,8 @@ const GROUPS: MGroup[] = [
       { href: "/buybacks", label: "Corporate buybacks" },
       { href: "/dividend-tax", label: "Dividend tax by country" },
       { href: "/activist", label: "Activist campaigns" },
+      { href: "/proxies", label: "Proxy tracker (DEF 14A)" },
+      { href: "/def-14a", label: "What is DEF 14A?" },
       { href: "/bankruptcy", label: "Chapter 11 tracker" },
       { href: "/themes", label: "AI · Mag 7 · Energy themes" },
       { href: "/quarter/2025-q4", label: "Quarterly digest" },

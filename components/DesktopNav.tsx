@@ -101,6 +101,8 @@ const MARKETS: NavGroup = {
     { href: "/buybacks", label: "Corporate buybacks", desc: "Authorizations + execution" },
     { href: "/dividend-tax", label: "Dividend tax by country", desc: "Treaty withholding calc" },
     { href: "/activist", label: "Activist campaigns" },
+    { href: "/proxies", label: "Proxy tracker (DEF 14A)", desc: "Votes, exec comp, activist proxies" },
+    { href: "/def-14a", label: "What is DEF 14A?", desc: "SEC proxy form code explained" },
     { href: "/bankruptcy", label: "Chapter 11 tracker", desc: "Form 8-K Item 1.03 filings", color: "rose" },
     { href: "/themes", label: "Themes", desc: "AI · Mag 7 · Energy · Banks" },
     { href: "/quarter/2025-q4", label: "Quarterly digest", desc: "Latest filing cycle" },

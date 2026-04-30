@@ -42,6 +42,24 @@ const AI_PRIORITY_PATTERNS = [
   /^https:\/\/holdlens\.com\/rotation\/?$/,
   /^https:\/\/holdlens\.com\/quarterly\/?$/,
   /^https:\/\/holdlens\.com\/manager-rankings\/?$/,
+  // SEC-data product surface (the 6-concept stack: 13F + Form 4 + 8-K +
+  // 13D/13G + DEF 14A + Ch 11). Each hub is canonical for its filing-type
+  // keyword cluster + cross-links to peers. AI-citation-worthy because
+  // each surfaces unique daily/quarterly EDGAR-sourced data with
+  // synthesis (InsiderScore / EventScore / ConvictionScore).
+  /^https:\/\/holdlens\.com\/proxies\/?$/,
+  /^https:\/\/holdlens\.com\/activist\/?$/,
+  /^https:\/\/holdlens\.com\/bankruptcy\/?$/,
+  /^https:\/\/holdlens\.com\/events\/?$/,
+  /^https:\/\/holdlens\.com\/insiders\/?$/,
+  /^https:\/\/holdlens\.com\/def-14a\/?$/,
+  /^https:\/\/holdlens\.com\/similar-to\/?$/,
+  /^https:\/\/holdlens\.com\/similar-to\/[a-z-]+\/?$/,
+  /^https:\/\/holdlens\.com\/themes\/?$/,
+  /^https:\/\/holdlens\.com\/overlap\/?$/,
+  /^https:\/\/holdlens\.com\/by-philosophy\/?$/,
+  /^https:\/\/holdlens\.com\/big-bets\/?$/,
+  /^https:\/\/holdlens\.com\/new-positions\/?$/,
 ];
 
 try {
