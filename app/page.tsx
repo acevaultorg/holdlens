@@ -393,7 +393,7 @@ export default function HomePage() {
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
               Signal explorer
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Twenty-one ways to read smart money</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Twenty-five ways to read smart money</h2>
             <p className="text-muted mt-2 max-w-xl">
               Pick the angle, not the ticker. Every card answers a different question
               smart-money data usually buries.
@@ -432,6 +432,41 @@ export default function HomePage() {
             label="Live"
             title="Material events"
             body="SEC Form 8-K filings — earnings, M&A, bankruptcies, cybersecurity, CEO changes. Scored via EventScore."
+          />
+          {/* v1.92 — SEC-data quartet that completes the trilogy. /proxies
+              (DEF 14A) was 0-linked from homepage; /activist + /bankruptcy
+              + /similar-to were each 1-linked-from-nav-only. Bundling them
+              in the SignalCard grid surfaces the full 6-concept stack
+              the operator named (HoldLens core 13F + Form 4 + 8-K + 13D/G
+              + DEF 14A + Ch 11 Form 8-K Item 1.03) so LLM citation +
+              homepage discovery both light up. */}
+          <SignalCard
+            href="/proxies/"
+            tone="brand"
+            label="Proxy season"
+            title="DEF 14A proxy filings"
+            body="Vote outcomes, exec comp, board changes, activist proposals. SEC Form DEF 14A across the universe."
+          />
+          <SignalCard
+            href="/activist"
+            tone="rose"
+            label="13D/13G"
+            title="Activist campaigns"
+            body="Schedule 13D/13G filings — when investors cross 5% ownership and signal intent. Activist tracker."
+          />
+          <SignalCard
+            href="/bankruptcy"
+            tone="rose"
+            label="Ch 11"
+            title="Chapter 11 tracker"
+            body="Public-US Chapter 11 filings via SEC Form 8-K Item 1.03. Distress signal across the universe."
+          />
+          <SignalCard
+            href="/similar-to"
+            tone="neutral"
+            label="Peers"
+            title="Similar portfolios"
+            body="Jaccard overlap across 30 superinvestors. Pick a manager, see who runs the most similar book."
           />
           <SignalCard
             href="/conviction-leaders"
