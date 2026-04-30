@@ -104,6 +104,15 @@ export default function BuffettPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BUFFETT_PERSON_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BUFFETT_BREADCRUMB_LD) }} />
+      <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
+        <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
+        <a
+          href="/methodology"
+          className="text-[11px] uppercase tracking-widest text-brand font-semibold border border-brand/30 hover:border-brand/60 rounded-full px-3 py-1 transition"
+        >
+          Scored on The HoldLens Standard →
+        </a>
+      </div>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Investor profile
       </div>

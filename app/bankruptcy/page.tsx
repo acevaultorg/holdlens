@@ -64,6 +64,26 @@ export default function BankruptcyHub() {
       { "@type": "ListItem", position: 2, name: "Chapter 11 Tracker", item: "https://holdlens.com/bankruptcy/" },
     ],
   };
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Chapter 11 Bankruptcy Tracker — every public-US Form 8-K Item 1.03 filing",
+    description:
+      "Live tracker of every Chapter 11 + Chapter 7 + Chapter 15 bankruptcy or receivership filing across the public-US universe, sourced from SEC Form 8-K Item 1.03 disclosures within 4 business days of the petition.",
+    url: "https://holdlens.com/bankruptcy/",
+    datePublished: "2026-04-29",
+    dateModified: new Date().toISOString().slice(0, 10),
+    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+    publisher: {
+      "@type": "Organization",
+      name: "HoldLens",
+      url: "https://holdlens.com/",
+      logo: { "@type": "ImageObject", url: "https://holdlens.com/og/home.png" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://holdlens.com/bankruptcy/" },
+    inLanguage: "en-US",
+    isBasedOn: "https://www.sec.gov/cgi-bin/browse-edgar",
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -233,6 +253,10 @@ export default function BankruptcyHub() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
     </div>
   );
