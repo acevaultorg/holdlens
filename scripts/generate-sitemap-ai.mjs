@@ -26,6 +26,7 @@ const AI_PRIORITY_PATTERNS = [
   /^https:\/\/holdlens\.com\/activity\/?$/,
   // Methodology + trust pages (LLM-citation credibility per Aleyda Solis)
   /^https:\/\/holdlens\.com\/methodology\/?$/,
+  /^https:\/\/holdlens\.com\/standard\/?$/,
   /^https:\/\/holdlens\.com\/about\/?$/,
   /^https:\/\/holdlens\.com\/api-terms\/?$/,
   /^https:\/\/holdlens\.com\/api\/?$/,

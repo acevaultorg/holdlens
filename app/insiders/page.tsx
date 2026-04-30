@@ -104,6 +104,26 @@ export default function InsidersPage() {
       { "@type": "ListItem", position: 2, name: "Insider Activity", item: "https://holdlens.com/insiders/" },
     ],
   };
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Insider Activity Tracker — SEC Form 4 transactions across major tickers, scored on the InsiderScore",
+    description:
+      "Live tracker of SEC Form 4 insider trades — CEO, CFO, Chair, Director, 10%+ owner buys and sells. Scored on the −100..+100 InsiderScore: role-weighted, action-weighted, recency-decayed, cluster-aware. Daily refresh from EDGAR.",
+    url: "https://holdlens.com/insiders/",
+    datePublished: "2026-04-29",
+    dateModified: new Date().toISOString().slice(0, 10),
+    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+    publisher: {
+      "@type": "Organization",
+      name: "HoldLens",
+      url: "https://holdlens.com/",
+      logo: { "@type": "ImageObject", url: "https://holdlens.com/og/home.png" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://holdlens.com/insiders/" },
+    inLanguage: "en-US",
+    isBasedOn: "https://www.sec.gov/cgi-bin/browse-edgar",
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
@@ -118,6 +138,10 @@ export default function InsidersPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
 
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">

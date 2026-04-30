@@ -231,7 +231,15 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
-      <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
+        <a
+          href="/methodology"
+          className="text-[11px] uppercase tracking-widest text-brand font-semibold border border-brand/30 hover:border-brand/60 rounded-full px-3 py-1 transition"
+        >
+          Scored on The HoldLens Standard →
+        </a>
+      </div>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Investor profile</div>
       <div className="flex items-center gap-4 mb-2">
         <FundLogo slug={m.slug} name={m.name} size={56} />

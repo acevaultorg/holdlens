@@ -115,6 +115,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Support
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/methodology`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/standard`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     // v1.54 — commercial routing for AI/LLM/fintech bot traffic
     { url: `${base}/api-terms`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/for-ai`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },

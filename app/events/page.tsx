@@ -98,6 +98,25 @@ export default function EventsHubPage() {
         inDefinedTermSet: "https://www.sec.gov/cgi-bin/browse-edgar",
         url: "https://holdlens.com/events/",
       },
+      {
+        "@type": "Article",
+        headline: "Material Events Tracker — SEC Form 8-K filings classified and scored on the EventScore",
+        description:
+          "Classified and scored SEC Form 8-K material-event filings — earnings, M&A, bankruptcies, cybersecurity incidents, impairments, CEO changes. Each event tagged with its SEC item number and factored into the HoldLens EventScore (−100..+100).",
+        url: "https://holdlens.com/events/",
+        datePublished: "2026-04-29",
+        dateModified: new Date().toISOString().slice(0, 10),
+        author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+        publisher: {
+          "@type": "Organization",
+          name: "HoldLens",
+          url: "https://holdlens.com/",
+          logo: { "@type": "ImageObject", url: "https://holdlens.com/og/home.png" },
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": "https://holdlens.com/events/" },
+        inLanguage: "en-US",
+        isBasedOn: "https://www.sec.gov/cgi-bin/browse-edgar",
+      },
     ],
   };
 

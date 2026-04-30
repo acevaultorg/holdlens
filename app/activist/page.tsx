@@ -73,12 +73,33 @@ export default function ActivistLanding() {
     inDefinedTermSet: "https://www.sec.gov/cgi-bin/browse-edgar",
     url: "https://holdlens.com/activist/",
   };
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Activist Investor Tracker — Schedule 13D and 13G filings across the SEC universe",
+    description:
+      "Live tracker of every SEC Schedule 13D and 13G beneficial ownership filing. When investors cross 5% ownership and signal active or passive intent. EDGAR-sourced.",
+    url: "https://holdlens.com/activist/",
+    datePublished: "2026-04-29",
+    dateModified: new Date().toISOString().slice(0, 10),
+    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+    publisher: {
+      "@type": "Organization",
+      name: "HoldLens",
+      url: "https://holdlens.com/",
+      logo: { "@type": "ImageObject", url: "https://holdlens.com/og/home.png" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://holdlens.com/activist/" },
+    inLanguage: "en-US",
+    isBasedOn: "https://www.sec.gov/cgi-bin/browse-edgar",
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
 
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Activist filings · SEC 13D/13G

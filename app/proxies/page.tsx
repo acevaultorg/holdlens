@@ -44,6 +44,26 @@ export default function ProxiesHub() {
       { "@type": "ListItem", position: 2, name: "Proxy Tracker (DEF 14A)", item: "https://holdlens.com/proxies/" },
     ],
   };
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "DEF 14A Proxy Tracker — voting, exec comp, activist campaigns across the SEC universe",
+    description:
+      "Live tracker of every Form DEF 14A proxy statement filed with the SEC: shareholder votes, executive compensation, board nominations, activist proxy contests. Q1-Q2 peak filing season. EDGAR-sourced.",
+    url: "https://holdlens.com/proxies/",
+    datePublished: "2026-04-29",
+    dateModified: new Date().toISOString().slice(0, 10),
+    author: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
+    publisher: {
+      "@type": "Organization",
+      name: "HoldLens",
+      url: "https://holdlens.com/",
+      logo: { "@type": "ImageObject", url: "https://holdlens.com/og/home.png" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://holdlens.com/proxies/" },
+    inLanguage: "en-US",
+    isBasedOn: "https://www.sec.gov/cgi-bin/browse-edgar",
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -99,6 +119,7 @@ export default function ProxiesHub() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
     </div>
   );
 }
