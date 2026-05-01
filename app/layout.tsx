@@ -188,14 +188,70 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
         {/* Microsoft Clarity — free heatmaps + session recordings. The
             highest-signal UX research tool that Plausible can't provide.
-            Activates when NEXT_PUBLIC_CLARITY_ID is set. */}
+            Activates when NEXT_PUBLIC_CLARITY_ID is set.
+            Configure at: https://clarity.microsoft.com/projects
+            Drop the project ID into Vercel env NEXT_PUBLIC_CLARITY_ID;
+            redeploy auto-fires.
+
+            Out-of-box configuration when active:
+            - Route tag: every session tagged with current pathname so
+              operator can filter heatmaps by /proxies/ vs /insiders/ etc.
+            - Pro-tier tag: localStorage holdlens_pro_tier reflected as
+              clarity.set('pro', 'true|false') so operator can compare
+              free-user vs Pro-user behavior in the dashboard.
+            - Broker-click event: fires clarity.event('broker_click', {broker})
+              alongside the existing Plausible event so cross-tool funnel
+              analysis works with one event taxonomy. */}
         {process.env.NEXT_PUBLIC_CLARITY_ID && (
           <Script id="ms-clarity" strategy="afterInteractive">
             {`(function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window,document,"clarity","script","${process.env.NEXT_PUBLIC_CLARITY_ID}");`}
+              })(window,document,"clarity","script","${process.env.NEXT_PUBLIC_CLARITY_ID}");
+              // Out-of-box tagging: route + Pro-tier reflection + broker-click event delegate.
+              // Runs after Clarity tag loads. Idempotent; safe across pageviews.
+              (function setupClarityTags() {
+                function tag() {
+                  try {
+                    if (!window.clarity) return false;
+                    window.clarity('set', 'route', window.location.pathname);
+                    var pro = window.localStorage && window.localStorage.getItem('holdlens_pro_tier');
+                    window.clarity('set', 'pro', pro ? 'true' : 'false');
+                    return true;
+                  } catch(e) { return false; }
+                }
+                // Try immediately; retry once after Clarity script loads.
+                if (!tag()) setTimeout(tag, 1500);
+
+                // Global broker-click delegate — uses the existing Plausible CSS-class tags
+                // (plausible-event-broker=<key>) as the source. Fires both Plausible (CSS-handled)
+                // and Clarity events for cross-tool funnel analysis. Covers BrokerCta +
+                // AffiliateCTA on every page they render.
+                if (!window.__holdlensBrokerDelegateInstalled) {
+                  window.__holdlensBrokerDelegateInstalled = true;
+                  document.addEventListener('click', function(e) {
+                    var t = e.target;
+                    while (t && t !== document) {
+                      if (t.tagName === 'A') {
+                        var cls = t.className || '';
+                        if (cls.indexOf && cls.indexOf('plausible-event-broker=') !== -1) {
+                          var match = cls.match(/plausible-event-broker=(\\w+)/);
+                          var broker = match ? match[1] : 'unknown';
+                          try {
+                            if (window.clarity) {
+                              window.clarity('event', 'broker_click');
+                              window.clarity('set', 'last_broker_click', broker);
+                            }
+                          } catch(err) {}
+                        }
+                        return;
+                      }
+                      t = t.parentNode;
+                    }
+                  }, true);
+                }
+              })();`}
           </Script>
         )}
         {/* Cloudflare Web Analytics — privacy-friendly, zero-sampling RUM
