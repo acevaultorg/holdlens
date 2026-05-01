@@ -136,6 +136,12 @@ export default function BacktestShareCard({
         props: { manager: managerName, startYear: String(startYear) },
       });
     }
+    // Mirror to Clarity via the layout-level CustomEvent bus.
+    try {
+      window.dispatchEvent(new CustomEvent("clarity:event", {
+        detail: { name: "share_card_download", tag: { key: "share_manager", value: managerName } },
+      }));
+    } catch {}
   }
 
   function copyPost() {

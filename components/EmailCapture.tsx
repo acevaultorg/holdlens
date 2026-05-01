@@ -85,6 +85,9 @@ export default function EmailCapture({
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@example.com"
+        // PII safety: Clarity masks email inputs in session recordings + heatmaps.
+        // Required by Microsoft Clarity Additional Terms (Finance industry).
+        data-clarity-mask="true"
         className={`flex-1 bg-panel border border-border rounded-xl px-4 ${padY} ${textSize} outline-none focus:border-brand transition`}
       />
       <button

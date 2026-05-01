@@ -211,6 +211,12 @@ export default function SignalShareCard({
     } catch {
       // ignore
     }
+    // Mirror to Clarity via the layout-level CustomEvent bus (one event taxonomy).
+    try {
+      window.dispatchEvent(new CustomEvent("clarity:event", {
+        detail: { name: "share_card_download", tag: { key: "share_ticker", value: ticker } },
+      }));
+    } catch {}
   }
 
   // Single composed string used for both copy AND tweet intent. Including the

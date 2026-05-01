@@ -66,6 +66,8 @@ export default function ProfileClient() {
             value={profile.email || ""}
             onChange={(e) => save({ email: e.target.value })}
             placeholder="you@example.com"
+            // PII safety per Clarity Additional Terms (Finance industry).
+            data-clarity-mask="true"
             className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text focus:border-brand outline-none"
           />
           <span className="block text-[11px] text-dim mt-1">

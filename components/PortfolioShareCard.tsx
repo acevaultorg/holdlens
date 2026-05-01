@@ -212,6 +212,16 @@ export default function PortfolioShareCard() {
       setDownloadState("done");
       setTimeout(() => setDownloadState("idle"), 1500);
     }, "image/png");
+    // Mirror to Plausible + Clarity via shared event taxonomy.
+    try {
+      const w = window as Window & { plausible?: (n: string, o?: object) => void };
+      w.plausible?.("Portfolio Share Download");
+    } catch {}
+    try {
+      window.dispatchEvent(new CustomEvent("clarity:event", {
+        detail: { name: "share_card_download", tag: { key: "share_kind", value: "portfolio" } },
+      }));
+    } catch {}
   }
 
   function copyPost() {

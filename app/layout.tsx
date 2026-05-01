@@ -189,19 +189,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Microsoft Clarity — free heatmaps + session recordings. The
             highest-signal UX research tool that Plausible can't provide.
             Activates when NEXT_PUBLIC_CLARITY_ID is set.
-            Configure at: https://clarity.microsoft.com/projects
-            Drop the project ID into Vercel env NEXT_PUBLIC_CLARITY_ID;
-            redeploy auto-fires.
 
-            Out-of-box configuration when active:
-            - Route tag: every session tagged with current pathname so
-              operator can filter heatmaps by /proxies/ vs /insiders/ etc.
-            - Pro-tier tag: localStorage holdlens_pro_tier reflected as
-              clarity.set('pro', 'true|false') so operator can compare
-              free-user vs Pro-user behavior in the dashboard.
-            - Broker-click event: fires clarity.event('broker_click', {broker})
-              alongside the existing Plausible event so cross-tool funnel
-              analysis works with one event taxonomy. */}
+            Project: HoldLens · Industry: Financial Services · ID: wk6syntdl3
+            Dashboard: https://clarity.microsoft.com/projects/view/wk6syntdl3
+            Configure at: https://clarity.microsoft.com/projects
+
+            FULL CONFIGURATION shipped (every tag + event for cross-tool analysis):
+
+            Custom tags (use as filters in dashboard):
+              route               — pathname (filter heatmaps per page)
+              route_section       — top-level section (investor|ticker|proxies|events|insiders|learn|...)
+              pro                 — true|false from localStorage holdlens_pro_tier
+              device_class        — mobile|tablet|desktop from innerWidth
+              is_returning_visitor— true|false from localStorage __hl_visited
+              entry_page          — first pathname this session (sessionStorage)
+              referrer_class      — search|social|llm|direct|other from document.referrer
+              investor            — slug on /investor/[slug]/ pages
+              ticker              — symbol on /ticker/[symbol]/, /stock/[ticker]/, /signal/[ticker]/
+              event_type          — slug on /events/type/[type]/ pages
+              last_broker_click   — last broker key clicked (set by broker_click event)
+              last_affiliate      — last affiliate context clicked (set by affiliate_click event)
+
+            Custom events (use as conversion goals):
+              broker_click        — BrokerCta + AffiliateCTA outbound to broker
+              affiliate_click     — AffiliateCTA per-ticker outbound (subset of broker)
+              pro_checkout_click  — Stripe Payment Link clicked (begin_checkout)
+              share_card_download — share-card PNG downloaded
+              learn_complete      — user scrolled ≥90% of a /learn/ article
+
+            PII safety (Finance industry per Clarity Additional Terms):
+              <input type="email"> elements wear data-clarity-mask in EmailCapture +
+              ProfileClient. Stripe iframe is auto-masked by Clarity (cross-origin).
+              No SSN/account/card fields anywhere on the site. */}
         {process.env.NEXT_PUBLIC_CLARITY_ID && (
           <Script id="ms-clarity" strategy="afterInteractive">
             {`(function(c,l,a,r,i,t,y){
@@ -209,47 +228,183 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               })(window,document,"clarity","script","${process.env.NEXT_PUBLIC_CLARITY_ID}");
-              // Out-of-box tagging: route + Pro-tier reflection + broker-click event delegate.
-              // Runs after Clarity tag loads. Idempotent; safe across pageviews.
+
+              // Helpers: classify referrer + derive route section + device class.
+              function __hlReferrerClass(ref) {
+                if (!ref) return 'direct';
+                try {
+                  var h = new URL(ref).hostname.toLowerCase();
+                  if (/google\\.|bing\\.|duckduckgo\\.|yandex\\.|brave\\.|baidu\\.|kagi\\.|yahoo\\./.test(h)) return 'search';
+                  if (/chat\\.openai\\.|chatgpt\\.|claude\\.ai|perplexity\\.|gemini\\.google\\.|bard\\.google\\.|copilot\\.|you\\.com|phind\\./.test(h)) return 'llm';
+                  if (/twitter\\.|x\\.com|t\\.co|facebook\\.|fb\\.|linkedin\\.|reddit\\.|news\\.ycombinator|threads\\.|mastodon\\.|bluesky\\./.test(h)) return 'social';
+                  if (h === window.location.hostname) return 'internal';
+                  return 'other';
+                } catch (e) { return 'other'; }
+              }
+              function __hlRouteSection(p) {
+                var seg = (p || '/').split('/').filter(Boolean)[0] || 'home';
+                return seg.toLowerCase();
+              }
+              function __hlDeviceClass() {
+                var w = window.innerWidth || 0;
+                if (w >= 1024) return 'desktop';
+                if (w >= 640) return 'tablet';
+                return 'mobile';
+              }
+              function __hlPathTags(c, p) {
+                // Page-specific tags from pathname regex. Stable: only sets when
+                // pattern matches; never wipes a previously-set tag.
+                var m;
+                m = p.match(/^\\/investor\\/([^\\/]+)/);
+                if (m) c('set', 'investor', m[1]);
+                m = p.match(/^\\/(?:ticker|stock|signal|short-interest|etf)\\/([^\\/]+)/);
+                if (m) c('set', 'ticker', m[1].toUpperCase());
+                m = p.match(/^\\/events\\/type\\/([^\\/]+)/);
+                if (m) c('set', 'event_type', m[1]);
+                m = p.match(/^\\/quarter(?:ly)?\\/([^\\/]+)/);
+                if (m) c('set', 'period', m[1]);
+              }
+
               (function setupClarityTags() {
                 function tag() {
                   try {
                     if (!window.clarity) return false;
-                    window.clarity('set', 'route', window.location.pathname);
+                    var c = window.clarity;
+                    var path = window.location.pathname;
+
+                    // Core tags (every session)
+                    c('set', 'route', path);
+                    c('set', 'route_section', __hlRouteSection(path));
+                    c('set', 'device_class', __hlDeviceClass());
                     var pro = window.localStorage && window.localStorage.getItem('holdlens_pro_tier');
-                    window.clarity('set', 'pro', pro ? 'true' : 'false');
+                    c('set', 'pro', pro ? 'true' : 'false');
+
+                    // Returning-visitor tag (localStorage flag, set on first visit)
+                    try {
+                      var visited = window.localStorage && window.localStorage.getItem('__hl_visited');
+                      c('set', 'is_returning_visitor', visited ? 'true' : 'false');
+                      if (!visited && window.localStorage) {
+                        window.localStorage.setItem('__hl_visited', String(Date.now()));
+                      }
+                    } catch(e) {}
+
+                    // Entry-page + referrer-class (set once per session via sessionStorage)
+                    try {
+                      var ss = window.sessionStorage;
+                      if (ss) {
+                        var entry = ss.getItem('__hl_entry');
+                        if (!entry) { entry = path; ss.setItem('__hl_entry', entry); }
+                        c('set', 'entry_page', entry);
+                        var rc = ss.getItem('__hl_refclass');
+                        if (!rc) { rc = __hlReferrerClass(document.referrer); ss.setItem('__hl_refclass', rc); }
+                        c('set', 'referrer_class', rc);
+                      }
+                    } catch(e) {}
+
+                    // Page-specific tags
+                    __hlPathTags(c, path);
                     return true;
                   } catch(e) { return false; }
                 }
                 // Try immediately; retry once after Clarity script loads.
                 if (!tag()) setTimeout(tag, 1500);
 
-                // Global broker-click delegate — uses the existing Plausible CSS-class tags
-                // (plausible-event-broker=<key>) as the source. Fires both Plausible (CSS-handled)
-                // and Clarity events for cross-tool funnel analysis. Covers BrokerCta +
-                // AffiliateCTA on every page they render.
-                if (!window.__holdlensBrokerDelegateInstalled) {
-                  window.__holdlensBrokerDelegateInstalled = true;
+                // Re-tag on SPA route changes (Next.js client navigations).
+                // Wraps history.pushState/replaceState + popstate so tags follow
+                // the user's current page even without a hard reload.
+                if (!window.__hlClarityRouteHook) {
+                  window.__hlClarityRouteHook = true;
+                  ['pushState','replaceState'].forEach(function(fn){
+                    var orig = history[fn];
+                    history[fn] = function(){
+                      var r = orig.apply(this, arguments);
+                      setTimeout(tag, 50);
+                      return r;
+                    };
+                  });
+                  window.addEventListener('popstate', function(){ setTimeout(tag, 50); });
+                }
+
+                // Global click delegate — fires Clarity events for the 3 high-value
+                // CTAs across every page they render. Idempotent; safe to re-run.
+                if (!window.__holdlensClarityDelegate) {
+                  window.__holdlensClarityDelegate = true;
                   document.addEventListener('click', function(e) {
                     var t = e.target;
                     while (t && t !== document) {
                       if (t.tagName === 'A') {
-                        var cls = t.className || '';
-                        if (cls.indexOf && cls.indexOf('plausible-event-broker=') !== -1) {
-                          var match = cls.match(/plausible-event-broker=(\\w+)/);
-                          var broker = match ? match[1] : 'unknown';
-                          try {
+                        try {
+                          var cls = (t.className && t.className.indexOf) ? t.className : '';
+                          var href = t.getAttribute && t.getAttribute('href') || '';
+                          var ds = t.getAttribute && t.getAttribute('data-clarity-event') || '';
+
+                          // Broker click — uses Plausible CSS-class tags as source
+                          if (cls.indexOf && cls.indexOf('plausible-event-broker=') !== -1) {
+                            var bm = cls.match(/plausible-event-broker=(\\w+)/);
+                            var broker = bm ? bm[1] : 'unknown';
                             if (window.clarity) {
                               window.clarity('event', 'broker_click');
                               window.clarity('set', 'last_broker_click', broker);
+                              // Affiliate vs hub broker — affiliate is per-ticker
+                              if (cls.indexOf('plausible-event-ticker=') !== -1) {
+                                window.clarity('event', 'affiliate_click');
+                                window.clarity('set', 'last_affiliate', broker);
+                              }
                             }
-                          } catch(err) {}
-                        }
+                          }
+
+                          // Pro checkout click — any Stripe Payment Link link
+                          if (href.indexOf('buy.stripe.com') !== -1) {
+                            if (window.clarity) {
+                              window.clarity('event', 'pro_checkout_click');
+                            }
+                          }
+
+                          // Generic data-attribute trigger for opt-in events from
+                          // any component (e.g. <a data-clarity-event="share_card_download">).
+                          if (ds && window.clarity) {
+                            window.clarity('event', ds);
+                          }
+                        } catch(err) {}
                         return;
                       }
                       t = t.parentNode;
                     }
                   }, true);
+
+                  // Programmatic share-card downloads + custom events from React
+                  // components. window.dispatchEvent(new CustomEvent('clarity:event', {detail:{name:'share_card_download',tag:{key:'kind',value:'backtest'}}}))
+                  window.addEventListener('clarity:event', function(e) {
+                    try {
+                      if (!window.clarity || !e.detail || !e.detail.name) return;
+                      window.clarity('event', e.detail.name);
+                      if (e.detail.tag && e.detail.tag.key && e.detail.tag.value) {
+                        window.clarity('set', e.detail.tag.key, e.detail.tag.value);
+                      }
+                    } catch(err) {}
+                  });
+
+                  // Learn-article completion — fires once per /learn/ article when
+                  // user scrolls ≥90% of the document. Throttled via boolean.
+                  if (window.location.pathname.indexOf('/learn/') === 0) {
+                    var fired = false;
+                    var onScroll = function() {
+                      if (fired) return;
+                      var d = document.documentElement;
+                      var scrolled = (window.scrollY + window.innerHeight) / d.scrollHeight;
+                      if (scrolled >= 0.9) {
+                        fired = true;
+                        try {
+                          if (window.clarity) {
+                            window.clarity('event', 'learn_complete');
+                            window.clarity('set', 'last_learn_completed', window.location.pathname);
+                          }
+                        } catch(err) {}
+                        window.removeEventListener('scroll', onScroll);
+                      }
+                    };
+                    window.addEventListener('scroll', onScroll, { passive: true });
+                  }
                 }
               })();`}
           </Script>
