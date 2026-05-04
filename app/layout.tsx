@@ -411,15 +411,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
         {/* Cloudflare Web Analytics — privacy-friendly, zero-sampling RUM
             (real Core Web Vitals from every visitor). Free at any scale.
-            Activates when NEXT_PUBLIC_CF_ANALYTICS_TOKEN is set. */}
-        {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
-          <Script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN}"}`}
-            strategy="afterInteractive"
-          />
-        )}
+            Token is intentionally public (appears in client HTML when active).
+            Hardcoded 2026-05-05 because Vercel env var was never set after migration,
+            leaving CF dashboard JS-Snippet-mode with 0/0 readings for weeks.
+            Auto-mode does NOT work for Vercel-origin sites — only CF Pages/Workers. */}
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={`{"token": "1147c943f0e247719ca839f8d2e6487e"}`}
+          strategy="afterInteractive"
+        />
+
         {/* AdSense site verification — loads the loader script on every page so Google
             can verify ownership during onboarding and auto-ads can serve after approval.
             lazyOnload defers until the page is idle, protecting LCP + INP. */}
