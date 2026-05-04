@@ -20,7 +20,8 @@ const OUT_DIR = "out";
 const HTML_BUDGET_BYTES = 500 * 1024; // 500 KB per page HTML
 const JS_BUDGET_BYTES = 250 * 1024; // 250 KB per JS chunk
 const ALLOWLIST = new Set([
-  // path → reason (none currently — keep this list short, intentional)
+  // path → reason (keep this list short, intentional)
+  'out/insiders/live/index.html', // 502KB live insider feed; 2KB over budget after CF beacon hardcode 2026-05-05. Slim to <500KB next /insiders refactor.
 ]);
 
 function walk(dir, predicate) {
