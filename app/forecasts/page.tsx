@@ -5,7 +5,7 @@ import FoundersNudge from "@/components/FoundersNudge";
 import BrokerCta from "@/components/BrokerCta";
 
 export const metadata: Metadata = {
-  title: "ForecastLens — calibration ledger for HoldLens predictions",
+  title: { absolute: "ForecastLens — calibration ledger for HoldLens predictions" },
   description:
     "Every forecast HoldLens publishes — backtested predictions, projected vs. actual, calibration accuracy by score band. Honest ledger of what the trilogy got right and wrong.",
   alternates: { canonical: "https://holdlens.com/forecasts/" },

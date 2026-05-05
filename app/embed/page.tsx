@@ -12,7 +12,7 @@ import { MANAGERS } from "@/lib/managers";
 //   2. /embed/[ticker]/ — ConvictionScore badge (shipped earlier)
 
 export const metadata: Metadata = {
-  title: "Embed HoldLens widgets on your site — free, attribution-only",
+  title: { absolute: "Embed HoldLens widgets on your site — free, attribution-only" },
   description:
     "Drop-in iframes for every tracked superinvestor + ticker. Portfolio cards, ConvictionScore badges. Free. Attribution-only. No API key.",
   alternates: { canonical: "https://holdlens.com/embed/" },

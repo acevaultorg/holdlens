@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "API Terms — HoldLens free tier + commercial license",
+  title: { absolute: "API Terms — HoldLens free tier + commercial license" },
   description:
     "The HoldLens public JSON API is free with attribution. Commercial licensing for AI retrieval, LLM training, fintech redistribution, and enterprise use is available on request.",
   alternates: { canonical: "https://holdlens.com/api-terms" },

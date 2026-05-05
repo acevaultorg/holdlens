@@ -14,7 +14,7 @@ import Link from "next/link";
 // through to the canonical methodology page in one tap.
 
 export const metadata: Metadata = {
-  title: "The HoldLens Standard — synthesized SEC-filing intelligence for everyone",
+  title: { absolute: "The HoldLens Standard — synthesized SEC-filing intelligence for everyone" },
   description:
     "The HoldLens Standard is the open methodology for synthesized SEC-filing intelligence. Free public dashboards. Open ConvictionScore methodology. Used by retail investors, fintech apps, AI advisors, and hedge funds.",
   alternates: { canonical: "https://holdlens.com/methodology/" },

@@ -9,7 +9,7 @@ import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
-  title: "This week on HoldLens — top buy/sell signals at a glance",
+  title: { absolute: "This week on HoldLens — top buy/sell signals at a glance" },
   description: `The single page every HoldLens user checks first. Top buy signals, top sell signals, trending tickers — everything you need from ${MANAGERS.length} of the best portfolio managers in the world.`,
   openGraph: {
     title: "This week on HoldLens",

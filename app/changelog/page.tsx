@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Changelog — HoldLens",
+  title: { absolute: "Changelog — HoldLens" },
   description:
     "What's new in HoldLens. Every version, every ship. Updated as we ship — not as we plan.",
   alternates: { canonical: "https://holdlens.com/changelog/" },

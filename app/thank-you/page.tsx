@@ -3,7 +3,7 @@ import ProActivator from "@/components/ProActivator";
 import PurchaseTracker from "@/components/PurchaseTracker";
 
 export const metadata: Metadata = {
-  title: "Thanks — welcome to HoldLens Pro",
+  title: { absolute: "Thanks — welcome to HoldLens Pro" },
   description: "Your HoldLens Pro subscription is active.",
   robots: { index: false, follow: false },
 };

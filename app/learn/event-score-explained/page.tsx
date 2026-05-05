@@ -22,7 +22,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 // /learn/sec-signals-trilogy (the three together).
 
 export const metadata: Metadata = {
-  title: "EventScore Explained — how HoldLens scores SEC 8-K material events",
+  title: { absolute: "EventScore Explained — how HoldLens scores SEC 8-K material events" },
   description:
     "The deterministic formula behind HoldLens's EventScore. How item-type severity, market-cap weight, recency decay, and event-cluster detection combine into a signed −100 to +100 score for every SEC Form 8-K filing.",
   alternates: {

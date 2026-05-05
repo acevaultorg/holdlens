@@ -26,7 +26,7 @@ import { LATEST_FILINGS } from "@/lib/filings";
 // consistency fix, not a content change — one source of truth for the
 // homepage's three title slots.
 export const metadata: Metadata = {
-  title: "30 superinvestors, one ConvictionScore — HoldLens",
+  title: { absolute: "30 superinvestors, one ConvictionScore — HoldLens" },
   description:
     "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers on a signed +100 buy / −100 sell scale. SEC-sourced. Updated quarterly.",
   alternates: { canonical: "https://holdlens.com/" },

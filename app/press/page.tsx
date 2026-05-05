@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
-  title: "Press kit — HoldLens",
+  title: { absolute: "Press kit — HoldLens" },
   description: "Press kit, media mentions, and resources for journalists covering HoldLens and hedge fund tracking.",
   alternates: { canonical: "https://holdlens.com/press/" },
 };

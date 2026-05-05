@@ -7,7 +7,7 @@ import { MANAGERS } from "@/lib/managers";
 import { topReplicatingETFs } from "@/lib/etf-overlap";
 
 export const metadata: Metadata = {
-  title: "Which ETF replicates each superinvestor's portfolio? — HoldLens",
+  title: { absolute: "Which ETF replicates each superinvestor's portfolio? — HoldLens" },
   description: "Per-manager portfolio-overlap rankings against 12 major US ETFs. Which ETF most closely mirrors Buffett, Ackman, Druckenmiller, or 27 other tracked superinvestors? Free analysis. Cited holdings.",
   alternates: { canonical: "https://holdlens.com/etf-by-superinvestor/" },
   openGraph: {

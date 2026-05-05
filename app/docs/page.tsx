@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
-  title: "Public JSON API — HoldLens",
+  title: { absolute: "Public JSON API — HoldLens" },
   description:
     "Free public JSON API: ConvictionScore, buy/sell signals, 30 superinvestor holdings, 8-quarter sector rotation. No auth. CDN-cached. Dataroma has no API — HoldLens does.",
   alternates: { canonical: "https://holdlens.com/docs" },

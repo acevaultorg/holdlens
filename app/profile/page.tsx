@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ProfileClient from "./ProfileClient";
 
 export const metadata: Metadata = {
-  title: "My profile — HoldLens",
+  title: { absolute: "My profile — HoldLens" },
   description: "Your HoldLens profile and preferences. Stored on this device.",
   robots: { index: false, follow: false },
 };

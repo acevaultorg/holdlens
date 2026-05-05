@@ -11,7 +11,7 @@ import AdSlot from "@/components/AdSlot";
 // capped at 100 seats — it's stated once and not repeated to pressure.
 
 export const metadata: Metadata = {
-  title: "HoldLens Pro — what you unlock at €9/mo",
+  title: { absolute: "HoldLens Pro — what you unlock at €9/mo" },
   description:
     "Custom alerts, unlimited CSV exports, priority API access, ad-free reading, and early-access feature drops. One tier. No tricks.",
   alternates: {

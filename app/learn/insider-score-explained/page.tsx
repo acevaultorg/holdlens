@@ -21,7 +21,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 // trilogy article and from /insiders/.
 
 export const metadata: Metadata = {
-  title: "InsiderScore Explained — how HoldLens scores SEC Form 4 trades",
+  title: { absolute: "InsiderScore Explained — how HoldLens scores SEC Form 4 trades" },
   description:
     "The deterministic formula behind HoldLens's InsiderScore. How officer role, action type, transaction size, cluster detection, and recency decay combine into a signed −100 to +100 score for every insider transaction.",
   alternates: {

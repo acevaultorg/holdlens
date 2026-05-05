@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 // routes people to /pricing (the Pro subscription is the best support).
 
 export const metadata: Metadata = {
-  title: "Support HoldLens — keep it free",
+  title: { absolute: "Support HoldLens — keep it free" },
   description:
     "HoldLens is free and will stay free. If it saved you a trade, buy us a coffee or grab Pro. Four zero-approval tip-jar options, plus Pro at €9/mo founders rate.",
   alternates: { canonical: "https://holdlens.com/support" },

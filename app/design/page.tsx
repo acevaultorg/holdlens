@@ -11,7 +11,7 @@ import Logo from "@/components/Logo";
 // is also a visual test — any regression in tokens shows up here first.
 
 export const metadata: Metadata = {
-  title: "HoldLens Brand Guide — design tokens, colors, type, components",
+  title: { absolute: "HoldLens Brand Guide — design tokens, colors, type, components" },
   description:
     "The complete HoldLens design system. Every color, type scale, radius, shadow, and motion token documented with usage rules.",
   alternates: { canonical: "https://holdlens.com/design" },

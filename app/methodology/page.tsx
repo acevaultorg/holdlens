@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
-  title: "The HoldLens Standard — ConvictionScore methodology v1.0",
+  title: { absolute: "The HoldLens Standard — ConvictionScore methodology v1.0" },
   description:
     "The HoldLens Standard for synthesized SEC-filing intelligence. ConvictionScore methodology v1.0 — seven signal layers + two penalties unified into a signed −100..+100 score. Open methodology, transparent weights, version-tracked.",
   alternates: { canonical: "https://holdlens.com/methodology/" },

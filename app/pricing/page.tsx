@@ -4,7 +4,7 @@ import StripeCheckoutButton from "@/components/StripeCheckoutButton";
 import { MANAGERS } from "@/lib/managers";
 
 export const metadata: Metadata = {
-  title: "Pricing — HoldLens Free + Pro",
+  title: { absolute: "Pricing — HoldLens Free + Pro" },
   description: `HoldLens is free forever for the full recommendation model, signal dossiers, and live data. Pro tier is €14/mo (€9/mo founders rate for the first 100 subscribers) with email alerts, EDGAR automation, custom watchlists, and API access. Live now.`,
   openGraph: {
     title: "HoldLens Pricing",

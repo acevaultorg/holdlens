@@ -7,7 +7,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 
 export const metadata: Metadata = {
-  title: "What is the HoldLens ConvictionScore? — The single signed −100..+100 scale",
+  title: { absolute: "What is the HoldLens ConvictionScore? — The single signed −100..+100 scale" },
   description: "How HoldLens assigns every stock one signed conviction score on a −100..+100 scale where +100 is the strongest possible buy and −100 the strongest possible sell.",
   alternates: { canonical: "https://holdlens.com/learn/conviction-score-explained" },
   openGraph: {

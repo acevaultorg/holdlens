@@ -3,7 +3,7 @@ import { MANAGERS } from "@/lib/managers";
 import { QUARTERS } from "@/lib/moves";
 
 export const metadata: Metadata = {
-  title: "HoldLens for AI — LLM retrieval, training, and integration",
+  title: { absolute: "HoldLens for AI — LLM retrieval, training, and integration" },
   description:
     "Integrating 13F superinvestor data into an LLM, chatbot, or fintech product? HoldLens provides a structured, citable, commercially-licensable data surface for AI applications. Free for grounded retrieval with attribution; commercial license for training + redistribution.",
   alternates: { canonical: "https://holdlens.com/for-ai" },
