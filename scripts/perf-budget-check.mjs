@@ -22,6 +22,8 @@ const JS_BUDGET_BYTES = 250 * 1024; // 250 KB per JS chunk
 const ALLOWLIST = new Set([
   // path → reason (keep this list short, intentional)
   'out/insiders/live/index.html', // 502KB live insider feed; 2KB over budget after CF beacon hardcode 2026-05-05. Slim to <500KB next /insiders refactor.
+  'out/insiders/company/noma/index.html', // 507KB noma insider history; 7KB over after Next.js 15.5.15 bump (build-output growth). Slim with /insiders refactor.
+  'out/insiders/company/crwv/index.html', // 504KB crwv insider history; 4KB over after Next.js 15.5.15 bump. Slim with /insiders refactor.
 ]);
 
 function walk(dir, predicate) {
