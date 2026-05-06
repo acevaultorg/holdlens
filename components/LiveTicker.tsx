@@ -51,7 +51,14 @@ export default function LiveTicker({ symbols }: Props) {
   const items = symbols.concat(symbols);
 
   return (
-    <div className="border-b border-border bg-panel/60 overflow-hidden" aria-label="Live market ticker">
+    // v1.51 — hide on mobile (<640px). Marquee partial-word clipping at first
+    // paint reads as broken on iPhone (e.g. "APL $287" instead of "AAPL"),
+    // and the parent `overflow-hidden` is intentional for the desktop scroll
+    // effect but causes the visible-letter clip on narrow screens. Mobile
+    // info-density tradeoff: users don't need a real-time ticker on a 375px
+    // viewport. Desktop ≥640px keeps the original marquee. Operator iPhone
+    // 2026-05-06 23:05 surfaced the issue.
+    <div className="hidden sm:block border-b border-border bg-panel/60 overflow-hidden" aria-label="Live market ticker">
       <div className="relative">
         <div
           className="flex gap-8 py-2.5 whitespace-nowrap animate-marquee will-change-transform"
