@@ -140,17 +140,25 @@ function SignalColumn({
 
   return (
     <div className={`rounded-2xl border ${accentBorder} ${accentBg} p-6`}>
-      <div className="flex items-baseline justify-between mb-5 gap-3">
+      {/* v1.50 mobile-overflow fix: header stacks on mobile (<640px), goes
+          side-by-side on sm+. At 375px the right-column 'Signed −100…+100 · top
+          picks 25–50' text was wider than the available right-edge space when
+          paired with 'TOP SIGNALS · Q4 FILINGS' on the left, clipping content
+          past the viewport edge. Stacking eliminates the fight for horizontal
+          space — left column gets full width on mobile, right ConvictionScore
+          callout drops below it. */}
+      <div className="flex flex-col gap-2 mb-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
         <div className="min-w-0">
           <div className={`text-[10px] uppercase tracking-widest font-bold ${accent}`}>{subtitle}</div>
           <h3 className="text-2xl font-bold mt-1">{title}</h3>
         </div>
         {/* ConvictionScore attribution — names the proprietary metric so the
             scoring isn't mistaken for generic data. Links to the explainer
-            page, giving curious readers a one-click path to the methodology. */}
+            page, giving curious readers a one-click path to the methodology.
+            On mobile: left-aligned, full row. On sm+: right-aligned, shrink-0. */}
         <a
           href="/learn/conviction-score-explained"
-          className={`shrink-0 text-right text-[10px] uppercase tracking-wider font-bold ${accent} opacity-70 hover:opacity-100 transition`}
+          className={`text-[10px] uppercase tracking-wider font-bold ${accent} opacity-70 hover:opacity-100 transition sm:shrink-0 sm:text-right`}
           title="Learn how ConvictionScore is calculated"
         >
           <div>ConvictionScore →</div>
