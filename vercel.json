@@ -1,7 +1,7 @@
 {
-  "framework": "nextjs",
   "buildCommand": "next build",
   "outputDirectory": "out",
   "installCommand": "npm ci",
-  "trailingSlash": true
+  "trailingSlash": true,
+  "cleanUrls": true
 }
