@@ -248,8 +248,8 @@ export default function HomePage() {
           Trust row cut to 3 items (was 4 — too dense). Removed border-y
           divider on the BuySellSignals section that fragmented hero → card
           flow. All three are spacing-consistency fixes flagged by operator. */}
-      <section className="pt-12 pb-10 text-center">
-        <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-6">
+      <section className="pt-4 sm:pt-12 pb-10 text-center">
+        <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-3 sm:mb-6">
           SEC-sourced · {MANAGERS.length} investors tracked · updated every quarter
         </div>
         {/* v1.48 — widow-orphan fix on hero. `text-balance` lets the browser
