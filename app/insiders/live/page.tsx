@@ -187,7 +187,7 @@ export default function InsidersLivePage() {
       </p>
 
       {/* Feed table — lots of rows in one view, emphasis on the most-recent */}
-      <div className="rounded-2xl border border-border bg-panel overflow-hidden mb-10">
+      <div className="rounded-2xl border border-border bg-panel overflow-x-auto mb-10">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="text-dim text-[10px] uppercase tracking-wider">

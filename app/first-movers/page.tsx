@@ -418,7 +418,7 @@ export default function FirstMoversPage() {
         <h2 className="text-2xl font-bold mb-4">
           All {rows.length} tickers with an opening quarter on record
         </h2>
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-bg/40 border-b border-border">
               <tr className="text-[10px] uppercase tracking-wider text-dim font-semibold">

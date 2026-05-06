@@ -314,7 +314,7 @@ export default function BiggestSellsPage() {
           long tail, drill into <a href="/quarter/2025-q4" className="text-brand hover:underline">/quarter/2025-q4</a> or
           a specific manager's <a href="/investor" className="text-brand hover:underline">investor page</a>.
         </p>
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-bg/40 border-b border-border">
               <tr className="text-[10px] uppercase tracking-wider text-dim font-semibold">

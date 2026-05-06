@@ -227,7 +227,7 @@ export default async function InsidersCompanyPage({ params }: Props) {
 
       {/* All transactions */}
       <h2 className="text-2xl font-bold text-text mb-4">All tracked transactions</h2>
-      <div className="rounded-2xl border border-border bg-panel overflow-hidden mb-10">
+      <div className="rounded-2xl border border-border bg-panel overflow-x-auto mb-10">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="text-dim text-[10px] uppercase tracking-wider">

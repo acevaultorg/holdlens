@@ -225,7 +225,7 @@ export default function InsidersPage() {
             No tracked insider buys in the current dataset.
           </div>
         ) : (
-          <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+          <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="text-dim text-[10px] uppercase tracking-wider">
@@ -322,7 +322,7 @@ export default function InsidersPage() {
             No tracked insider sells in the current dataset.
           </div>
         ) : (
-          <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+          <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="text-dim text-[10px] uppercase tracking-wider">

@@ -102,7 +102,7 @@ export default async function ComparePage({ params }: { params: Promise<{ pair: 
           <p className="text-muted text-sm mb-6 max-w-2xl">
             Stocks both managers hold as a top position. Overlap in conviction is a strong consensus signal.
           </p>
-          <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+          <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="text-dim text-xs uppercase tracking-wider">
                 <tr className="border-b border-border">

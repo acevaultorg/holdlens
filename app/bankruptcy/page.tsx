@@ -103,7 +103,7 @@ export default function BankruptcyHub() {
       {bankruptcyEvents.length > 0 && (
         <section className="mb-12">
           <h2 className="text-2xl font-bold mt-2 mb-4">Recent filings</h2>
-          <div className="rounded-lg border border-border overflow-hidden">
+          <div className="rounded-lg border border-border overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-card text-text">
                 <tr>

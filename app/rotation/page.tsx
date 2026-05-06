@@ -403,7 +403,7 @@ export default function SectorRotationPage() {
           For each quarter: the sector smart money rotated <em>into</em> hardest (green) and the sector they
           rotated <em>out of</em> hardest (red).
         </p>
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="text-dim text-xs uppercase tracking-wider">
               <tr className="border-b border-border">

@@ -78,7 +78,7 @@ export default function GrandPortfolioPage() {
         />
       </div>
 
-      <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+      <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="text-dim text-xs uppercase tracking-wider">
             <tr className="border-b border-border">
@@ -156,7 +156,7 @@ export default function GrandPortfolioPage() {
           The same universe, ranked instead by how many of the {MANAGERS.length} tracked managers hold each position.
           Raw consensus — no quality weighting — to surface broad conviction.
         </p>
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="text-dim text-xs uppercase tracking-wider">
               <tr className="border-b border-border">

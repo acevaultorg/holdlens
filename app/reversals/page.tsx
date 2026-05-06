@@ -314,7 +314,7 @@ export default function ReversalsPage() {
             job. Worth reading as a reminder that even the best superinvestors
             change their minds.
           </p>
-          <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+          <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-bg/40 border-b border-border">
                 <tr className="text-[10px] uppercase tracking-wider text-dim font-semibold">

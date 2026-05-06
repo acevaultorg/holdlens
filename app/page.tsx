@@ -638,7 +638,7 @@ export default function HomePage() {
           </div>
           <a href="/top-picks" className="text-sm text-muted hover:text-text">See all →</a>
         </div>
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="text-dim text-xs uppercase tracking-wider">
               <tr className="border-b border-border">

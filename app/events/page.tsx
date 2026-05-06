@@ -270,7 +270,7 @@ export default function EventsHubPage() {
             Full live feed →
           </Link>
         </div>
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="text-dim text-[10px] uppercase tracking-wider">
               <tr className="border-b border-border">

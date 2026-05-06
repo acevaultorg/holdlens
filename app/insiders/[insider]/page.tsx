@@ -149,7 +149,7 @@ export default async function InsiderPage(
         <p className="text-muted text-sm mb-5">
           Curated subset of {s.name}&apos;s SEC Form 4 filings. Routine 10b5-1 schedule sales are flagged inline and weighted less in the conviction score.
         </p>
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="text-dim text-xs uppercase tracking-wider">
               <tr className="border-b border-border">

@@ -232,7 +232,7 @@ export default function TrendStreakPage() {
             Full list · all {compounders.length} buy streaks
           </div>
           <h2 className="text-2xl font-bold mb-4">Every buy streak, longest first</h2>
-          <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+          <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-bg/40 border-b border-border">
                 <tr className="text-[10px] uppercase tracking-wider text-dim font-semibold">
@@ -305,7 +305,7 @@ export default function TrendStreakPage() {
             The capitulators · all {capitulators.length} sell streaks
           </div>
           <h2 className="text-2xl font-bold mb-4">Who keeps walking away?</h2>
-          <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+          <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-bg/40 border-b border-border">
                 <tr className="text-[10px] uppercase tracking-wider text-dim font-semibold">

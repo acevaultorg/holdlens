@@ -144,7 +144,7 @@ export default async function EventsTypePage({ params }: Props) {
           </div>
         </div>
       ) : (
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden mb-10">
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto mb-10">
           <table className="w-full text-sm">
             <thead className="text-dim text-[10px] uppercase tracking-wider">
               <tr className="border-b border-border">

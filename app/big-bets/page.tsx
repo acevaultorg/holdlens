@@ -172,7 +172,7 @@ export default function BigBetsPage() {
       <BrokerCta context="Found a big-bet thesis you want to act on? Compare brokers with low-friction execution." />
       <AdSlot format="horizontal" className="mb-10" />
 
-      <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+      <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="text-dim text-xs uppercase tracking-wider">
             <tr className="border-b border-border">
@@ -281,7 +281,7 @@ export default function BigBetsPage() {
             Where a tier-1 manager is betting big on a stock almost nobody else tracks. Fewer eyes = more potential
             alpha — and far more risk. These are the contrarian concentration plays where consensus hasn't arrived yet.
           </p>
-          <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+          <div className="rounded-2xl border border-border bg-panel overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="text-dim text-xs uppercase tracking-wider">
                 <tr className="border-b border-border">
