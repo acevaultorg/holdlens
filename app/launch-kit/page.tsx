@@ -186,7 +186,7 @@ Built by a solo dev on Next.js + Cloudflare Pages. The "Dataroma meets modern UX
 
 export default function LaunchKitPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
+    <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <div className="mb-4 inline-block text-[10px] font-bold uppercase tracking-widest bg-rose-400/15 text-rose-400 border border-rose-400/30 rounded px-2 py-1">
         Operator only · noindex
       </div>

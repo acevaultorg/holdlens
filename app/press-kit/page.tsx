@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PressKitPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto px-8 sm:px-6 py-12">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Operator launch kit · internal
       </div>

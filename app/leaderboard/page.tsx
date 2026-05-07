@@ -27,7 +27,7 @@ export default function LeaderboardPage() {
   const ranked = [...allROI].sort((a, b) => b.alpha10y - a.alpha10y);
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         Leaderboard · Manager ROI
       </div>

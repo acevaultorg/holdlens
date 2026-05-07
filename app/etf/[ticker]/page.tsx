@@ -66,7 +66,7 @@ export default async function EtfDetailPage({
   const top3Sum = e.topHoldings.slice(0, 3).reduce((s, h) => s + h.weightPct, 0);
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16">
+    <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 

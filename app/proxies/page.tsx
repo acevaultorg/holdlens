@@ -66,7 +66,7 @@ export default function ProxiesHub() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16">
+    <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Governance</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Proxy Tracker — DEF 14A</h1>
       <p className="text-lg text-muted leading-relaxed mb-10">

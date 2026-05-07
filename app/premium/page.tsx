@@ -99,7 +99,7 @@ const FAQS: FAQ[] = [
 
 export default function PremiumPage() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       {/* Hero */}
       <div className="text-center mb-12">
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">

@@ -74,7 +74,7 @@ export default function CompareIndex() {
   const curatedMgrPairs = managerPairs.slice(0, 4);
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COMPARE_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COMPARE_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">

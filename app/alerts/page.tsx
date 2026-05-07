@@ -21,7 +21,7 @@ export default function AlertsPage() {
   const nextDeadline = `${next.quarter} (filing by ${next.date})`;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16">
+    <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-center mb-12">
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
           Alerts

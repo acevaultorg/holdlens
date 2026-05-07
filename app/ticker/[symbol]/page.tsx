@@ -74,7 +74,7 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
+    <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <a href="/ticker" className="text-xs text-muted hover:text-text">← All tickers</a>

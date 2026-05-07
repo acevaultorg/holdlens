@@ -247,7 +247,7 @@ const ENDPOINTS: { method: "GET"; path: string; desc: string; example: string }[
 
 export default function DocsPage() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       <div className="mb-12">
         <div className="inline-block text-[10px] font-bold uppercase tracking-widest text-black bg-brand rounded-full px-3 py-1 mb-4">
           Shipped · Free · No auth

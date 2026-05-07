@@ -118,7 +118,7 @@ export default function SupportPage() {
   const anyLive = active.some((p) => p.href);
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16">
+    <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Support
       </div>

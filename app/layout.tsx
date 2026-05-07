@@ -477,7 +477,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             always reachable. z-40 sits above page content but below the
             MobileNav overlay (z-50). */}
         <header className="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur-md supports-[backdrop-filter]:bg-bg/75">
-          <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+          <div className="max-w-5xl mx-auto px-8 sm:px-6 py-4 flex items-center justify-between gap-4">
             <a
               href="/"
               className="flex items-center gap-2 font-semibold text-lg shrink-0 hover:opacity-90 transition-base"
@@ -507,7 +507,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="border-t border-border mt-24">
           {/* Data freshness band */}
           <div className="border-b border-border bg-panel/30">
-            <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between gap-4 flex-wrap text-xs text-dim">
+            <div className="max-w-5xl mx-auto px-8 sm:px-6 py-3 flex items-center justify-between gap-4 flex-wrap text-xs text-dim">
               <DataFreshness />
               <div>
                 Live prices via <a href="https://finance.yahoo.com" className="text-brand hover:underline" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · 60s cache
@@ -523,7 +523,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               strip. Organized for mental-model clarity: what users come for
               (Signals), what's moving (Moves), who's behind it (Managers),
               how to evaluate (Discover), and product (Product). */}
-          <div className="max-w-5xl mx-auto px-6 pt-10 pb-6">
+          <div className="max-w-5xl mx-auto px-8 sm:px-6 pt-10 pb-6">
             <nav
               aria-label="Site map"
               className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-8 text-sm"
@@ -592,7 +592,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* Legal + meta strip */}
           <div className="border-t border-border">
-            <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between gap-3 text-xs text-dim">
+            <div className="max-w-5xl mx-auto px-8 sm:px-6 py-5 flex flex-col md:flex-row justify-between gap-3 text-xs text-dim">
               <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice.</div>
               <div className="flex gap-5 flex-wrap">
                 <a href="/about" className="hover:text-text transition">About</a>

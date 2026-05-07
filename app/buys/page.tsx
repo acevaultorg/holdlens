@@ -42,7 +42,7 @@ export default function BuysPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
 
       <div className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-4">

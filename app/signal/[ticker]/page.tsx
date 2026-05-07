@@ -194,7 +194,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
       : "text-muted border-border bg-panel";
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       {/* JSON-LD — Article + BreadcrumbList for Google rich results */}
       <script
         type="application/ld+json"

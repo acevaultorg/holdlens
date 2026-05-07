@@ -90,7 +90,7 @@ export default function DividendTaxHub() {
   const totalMatrix = coverage.investor_countries * coverage.payer_countries;
   const verifiedPct = Math.round((100 * coverage.verified_pairs) / totalMatrix);
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
+    <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COLLECTION_LD) }} />
       {DEFINED_TERMS_LD.map((term, i) => (

@@ -146,7 +146,7 @@ function SubLink({ href, label }: { href: string; label: string }) {
 
 export default function SuperinvestorHandbookPage() {
   return (
-    <article className="max-w-3xl mx-auto px-6 py-16">
+    <article className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }}

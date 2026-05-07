@@ -68,7 +68,7 @@ export default async function ComparePage({ params }: { params: Promise<{ pair: 
   const shared = b.topHoldings.filter((h) => aTickers.has(h.ticker.toUpperCase()));
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">
         Head-to-head comparison

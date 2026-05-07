@@ -72,7 +72,7 @@ export default function TodayPage() {
 
   if (!daily) {
     return (
-      <main className="max-w-4xl mx-auto px-6 py-16">
+      <main className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
         <h1 className="text-3xl font-bold mb-3">Today</h1>
         <p className="text-[#8892a0]">
           Daily snapshot not yet generated. Check back after US market close.
@@ -103,7 +103,7 @@ export default function TodayPage() {
   };
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12">
+    <main className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}

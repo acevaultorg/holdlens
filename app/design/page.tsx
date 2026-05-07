@@ -94,7 +94,7 @@ function TypeSample({
 
 export default function DesignPage() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       {/* Hero */}
       <div className="mb-16">
         <div className="text-[10px] uppercase tracking-widest font-bold text-brand mb-3">

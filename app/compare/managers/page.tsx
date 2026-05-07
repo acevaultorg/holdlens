@@ -80,7 +80,7 @@ export default function CompareManagersIndex() {
   const mostSimilar = pairingList.sort((x, y) => y.shared.length - x.shared.length).slice(0, 8);
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Head-to-head
       </div>
