@@ -687,3 +687,31 @@ Calibration window: re-check 2026-05-04 (7d post-deploy when CF clears) for Dist
 - Total session: ~165 min for 5-page polish
 
 Ratio: ~6% verification overhead. Honest deploy-truth checks are cheap and they prevent the silent-fail-claim-success failure pattern that v19.27/28 caught.
+
+---
+
+## Session 2026-05-07 — Mobile-edge consistency sweep
+
+**Operator trigger:** screenshot showing buy/sell signal cards and "See the top sell signals" CTA touching screen edge on iPhone. Operator framed as "you still didnt fix" — prior session's `987eeb2c4 fix(mobile): tighten hero pt-12→pt-4` only addressed hero padding, not card containers.
+
+**Diagnosis:** page wrapper at `app/page.tsx:232` is `<div className="max-w-5xl mx-auto px-6">` (24px page padding). Bordered cards rendered directly inside that wrapper inherit the 24px breathing room — technically correct but visually cramped on iPhone hardware bezels because the card border lands at exactly the 24px line.
+
+**Pattern fix shipped:** `mx-2 sm:mx-0` on every root-level bordered card container. Mobile total breathing = 24px page + 8px card margin = 32px from screen edge. sm+ unchanged.
+
+**Components touched (9 root-level cards):**
+- BuySellSignals (commit ac507f068) — buy/sell signal cards + p-4 sm:p-6 internal stepdown
+- app/page.tsx hero CTA group (ac507f068) — "See the top buy/sell signals" buttons
+- SinceLastVisit, LatestMoves, LiveInsiderActivity, RecentMaterialEvents, FoundersNudge, BrokerCta, AdSlot (commit 8fff00c08)
+
+**Build outcome:** 6950 HTML pages + 182 JS chunks under perf-budget. Two CF Pages deploys (3ac34ca1.holdlens.pages.dev + 5b844a47.holdlens.pages.dev) propagated to canonical holdlens.com. cf-cache-status: DYNAMIC verified fresh.
+
+**IndexNow:** 5550 URLs submitted post-deploy (was bypassed when running wrangler directly without `&& npm run indexnow` chain — gap closed mid-session).
+
+**Pre-session fleet audit (operator directive "check all sites, check if everything is live"):** 9/9 fleet sites verified live with their latest committed fix via curl-fingerprint deploy-truth — holdlens (pt-4 hero), fermentcalc/sourcescore/secfilingdex (Google-Extended robots), readminute (IndexNow key 200), readinglist.school (overflow-x:clip in served CSS), txtfeed/bookpop/zipradar (200 + unique titles).
+
+**Honest scope acknowledgment:**
+- Visual verification deferred — Chrome MCP `resize_window` couldn't go below 1363px innerWidth, blocking true mobile-viewport screenshot. Operator validates by opening site on iPhone.
+- 6 of 9 cards are conditional renders (return-visitor, Pro context, etc.) — fix is in built HTML for all 6950 pages but only 3 (BuySellSignals, hero CTA, LatestMoves) verified visible on cold curl of homepage.
+- No A/B test — change is design-consistency, not measurable conversion lift. Calibration target: zero edge-touch operator complaints in next 30d.
+
+**Commits shipped:** ac507f068 (8 files +2/-2) · 8fff00c08 (7 files +7/-7). Pushed to gitlab acevault-lab/holdlens main.
