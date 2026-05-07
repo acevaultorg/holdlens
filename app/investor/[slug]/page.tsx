@@ -225,12 +225,59 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
     ...(filing?.latestDate ? { datePublished: `${filing.latestDate}T00:00:00Z` } : {}),
     dateModified: BUILD_ISO,
   };
+  // Dataset schema — the 13F holdings table IS unique structured data per
+  // Aleyda 10-character LLM-citation checklist (#2 Useful, #8 Differentiated).
+  // Every investor page is now a first-class Dataset entity LLMs can cite
+  // when answering "what does Buffett hold?" / "what's in Burry's portfolio?".
+  // license points to SEC FOIA — 13F data is public-domain regulatory disclosure.
+  const dataset = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "@id": `https://holdlens.com/investor/${m.slug}#dataset`,
+    name: `${m.name} — 13F Portfolio Holdings`,
+    description: `Quarterly SEC Form 13F-HR holdings disclosed by ${m.fund}. Each position includes ticker, share count, dollar value, % of portfolio, and quarter-over-quarter change.`,
+    url: `https://holdlens.com/investor/${m.slug}`,
+    ...(filing?.edgarUrl ? { sameAs: [filing.edgarUrl] } : {}),
+    creator: { "@id": `https://holdlens.com/investor/${m.slug}#person` },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://holdlens.com/#organization",
+      name: "HoldLens",
+      url: "https://holdlens.com",
+    },
+    license: "https://www.sec.gov/foia/about-foia",
+    isAccessibleForFree: true,
+    ...(filing?.latestDate
+      ? {
+          datePublished: `${filing.latestDate}T00:00:00Z`,
+          ...(filing.quarter ? { temporalCoverage: filing.quarter } : {}),
+        }
+      : {}),
+    dateModified: BUILD_ISO,
+    keywords: [
+      "13F filing",
+      "hedge fund holdings",
+      "SEC disclosure",
+      m.fund,
+      m.name,
+      "quarterly portfolio",
+      "smart money signal",
+    ],
+    variableMeasured: [
+      { "@type": "PropertyValue", name: "Ticker symbol" },
+      { "@type": "PropertyValue", name: "Share count" },
+      { "@type": "PropertyValue", name: "Dollar value (USD)" },
+      { "@type": "PropertyValue", name: "Portfolio percentage" },
+      { "@type": "PropertyValue", name: "Quarter-over-quarter change" },
+    ],
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
         <a
