@@ -715,3 +715,50 @@ Ratio: ~6% verification overhead. Honest deploy-truth checks are cheap and they 
 - No A/B test — change is design-consistency, not measurable conversion lift. Calibration target: zero edge-touch operator complaints in next 30d.
 
 **Commits shipped:** ac507f068 (8 files +2/-2) · 8fff00c08 (7 files +7/-7). Pushed to gitlab acevault-lab/holdlens main.
+
+---
+
+## Session 2026-05-07 (cont.) — fleet AdSense compliance + HN draft + post-mobile sweeps
+
+**Triggered by:** operator `c` x 7 cycles after the mobile-edge sweep (logged above as commits ac507f068 + 8fff00c08). Each `c` was operator's signal to find more leverage; brain progressively narrowed to genuine end-of-leverage.
+
+**Commits shipped this continuation (7 commits across holdlens + readinglist + fermentcalc):**
+
+| # | Commit | Repo | Real change | Cycle time |
+|---|---|---|---|---|
+| 4 | d7bb34076 | holdlens | 120-file `px-6 → px-8 sm:px-6` page-wrapper sweep across all non-homepage routes | ~7 min build+deploy+verify |
+| 5 | 0b0769dc2 | holdlens | robots.ts adds explicit Mediapartners-Google + AdsBot-Google + AdsBot-Google-Mobile + Googlebot + Bingbot allowlist | ~10 min |
+| 6 | 2e3760419 | holdlens | /privacy adds canonical `policies.google.com/technologies/partner-sites` link | ~14 min (slow CF deploy day) |
+| 7 | 7e87e07 | readinglist | app/robots.ts adds Mediapartners-Google + AdsBot-Google (the public/robots.txt had them but Next.js metadata route overrides) | ~5 min |
+| 8 | 7c86fa9 | fermentcalc | /privacy adds policies.google.com/technologies/partner-sites link | ~3 min |
+| 9 | 6942456 | readinglist | /privacy-policy adds same partner-sites link | ~3 min |
+| 10 | af221f7 | readinglist | new components/CookieConsent.tsx ported from holdlens (~100 lines, GDPR + AdSense + Google Consent Mode v2) | ~5 min |
+
+**Discoveries (revealed real bugs):**
+
+1. **Layer-7 deploy via Vercel API works clean across multiple sites.** GitLab gitSource type=gitlab successful on readinglist (PIDs 81957641) + fermentcalc (PID 81957972). No EPIPE, no Layer-6 plugin-wrapper interference.
+2. **Next.js metadata route overrides public/robots.txt.** readinglist had a manually-written public/robots.txt with the AdSense bots — but app/robots.ts (which takes precedence) lacked them. Cost: AdSense reviewers see implicit-only allow. Real compliance gap.
+3. **Initial fleet cookie-consent audit had false positives.** My grep for "cookie\|consent\|GDPR" in initial HTML returned 0 for sites where the consent banner is client-rendered post-hydration. readminute + secfilingdex + fermentcalc all have working consent banners (different naming: ConsentBanner / CookieConsent). Only readinglist had the real gap.
+4. **HN_SHOW_HN_DRAFT.md numerical drift.** Draft claimed "5,563 prerendered HTML pages" but live build is 6,950 (25% under-stated). Also "<100KB page weight" was wrong (actual perf-budget is <500KB). Fixed before operator submits Tuesday.
+
+**Pre-flight for Mediavine + AdSense applications (5 active fleet sites — fully clean):**
+
+| Site | Privacy partner-sites | ads.txt | AdSense bots | Cookie consent |
+|---|:-:|:-:|:-:|:-:|
+| holdlens.com | ✅ | ✅ | ✅ | ✅ CookieConsent.tsx |
+| fermentcalc.com | ✅ | ✅ | ✅ | ✅ ConsentBanner + ConsentGate |
+| secfilingdex.com | ✅ | ✅ | ✅ | ✅ CookieConsent.tsx |
+| readminute.com | ✅ | ✅ | ✅ | ✅ CookieConsent.tsx |
+| readinglist.school | ✅ | ✅ | ✅ | ✅ CookieConsent.tsx (just shipped) |
+
+**Honest scope acknowledgment (no progress on these — operator-action only):**
+- Mediavine pre-emptive application (operator types form, ~15 min)
+- AdSense application for 5 fleet sites (~25 min total)
+- Impact.com + 3 broker affiliate signups (~25 min)
+- HN Show HN HoldLens (Tue 6-9am PT, ~5 min posting + monitor)
+- Visual mobile validation (operator opens iPhone, ~60 sec)
+- bookpop B2 funnel (90-min plan exists)
+
+**Calibration target:** these 7 commits are mostly cosmetic + compliance. Per I-22 retention floor watch + I-25 distribution floor watch — auto-flag rollback if 7d post-deploy retention drops >10% OR organic traffic drops >15%. Re-test 2026-05-14.
+
+**End-of-leverage marker:** the `c`-loop hit a clear ceiling around cycle 6. Cycle 7 (HN draft fix) was the last real-impact ship. Beyond this, `c` would surface only marginal cosmetic issues (font scaling, image alt text, schema completeness) — all <0.1% revenue lift each, all heavy-effort to ship correctly. Honest call: revenue moves now require operator hands.

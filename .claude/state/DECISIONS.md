@@ -548,3 +548,28 @@ Background poller `bg2p8t2ko` watching /events/, /disclaimer/, /glossary/ for HT
 - Verified clean: 8 panels (no action needed)
 - Findings written: KNOWLEDGE.md (audit baseline) + HUMAN_ACTIONS.md (3 cards) + DECISIONS.md (this entry)
 
+
+---
+
+## 2026-05-07 — Mobile-edge inset patterns: TWO valid approaches per surface
+
+Decision driver: operator screenshot showed cards/CTAs visually butting up against viewport edge on iPhone (`px-6` page padding = 24px is technically correct but visually cramped against iOS hardware bezels).
+
+**Two approaches shipped same session, both produce ~32px from-screen-edge on mobile:**
+
+1. **Component-level (homepage `app/page.tsx`):** keep page wrapper at `max-w-5xl mx-auto px-6` AND add `mx-2 sm:mx-0` to each root-level bordered card. Net: 24px page padding + 8px card margin = 32px from edge. sm+ unchanged. Used on 9 components (BuySellSignals card · hero CTA group · SinceLastVisit · LatestMoves · LiveInsiderActivity · RecentMaterialEvents · FoundersNudge · BrokerCta · AdSlot).
+   - Pros: per-card control, can opt out individual cards (e.g., bleed-edge data tables), no reduction in content width for non-card elements.
+   - Cons: more edits per page, distributed change.
+
+2. **Page-wrapper (all other 120 routes):** change page wrapper from `max-w-5xl mx-auto px-6` to `max-w-5xl mx-auto px-8 sm:px-6`. Mobile: 32px page padding. sm+: 24px page padding. All bordered cards inside auto-inherit +8px breathing.
+   - Pros: 1 edit per file regardless of card count, propagates globally.
+   - Cons: also reduces mobile content width for text/tables (327→311px on 375px iPhone), can't opt out specific cards.
+
+**Why both exist:** homepage already had per-card `mx-2 sm:mx-0` shipped first (in commit ac507f068 + 8fff00c08). Combining homepage's card-level fix with the page-wrapper change would over-pad to 40px on mobile. Future architectural cleanup could harmonize on ONE approach (likely page-wrapper, simpler) but not urgent — both produce identical visual outcome.
+
+**Future session guidance:** new HoldLens routes should use page-wrapper approach (`max-w-Nxl mx-auto px-8 sm:px-6`) for consistency with the 120 routes shipped d7bb34076. New fleet sites can adopt either pattern; page-wrapper is simpler unless per-card override needed.
+
+**Validated this session:**
+- Build green: 6950 HTML pages + 182 JS chunks under perf-budget
+- Deploy verified: cf-cache-status: DYNAMIC + curl-fingerprint match on canonical domain
+- Visual deferred to operator (Chrome MCP can't reach <640px viewport for mobile breakpoint testing)
