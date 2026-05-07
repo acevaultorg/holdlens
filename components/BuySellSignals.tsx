@@ -139,7 +139,7 @@ function SignalColumn({
   const accentBorder = kind === "buy" ? "border-emerald-400/20" : "border-rose-400/20";
 
   return (
-    <div className={`rounded-2xl border ${accentBorder} ${accentBg} p-4 mx-2 sm:p-6 sm:mx-0`}>
+    <div className={`rounded-2xl border ${accentBorder} ${accentBg} p-4 mx-2 sm:p-6 sm:mx-0 overflow-hidden`}>
       {/* v1.50 mobile-overflow fix: header stacks on mobile (<640px), goes
           side-by-side on sm+. At 375px the right-column 'Signed −100…+100 · top
           picks 25–50' text was wider than the available right-edge space when
@@ -192,7 +192,7 @@ function SignalColumn({
               <li key={it.ticker}>
                 <a
                   href={`/signal/${it.ticker}`}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-bg/40 transition"
+                  className="flex items-center gap-2 sm:gap-3 rounded-lg px-2 sm:px-3 py-2.5 hover:bg-bg/40 transition"
                 >
                   <div className="text-xs text-dim tabular-nums w-5">{i + 1}</div>
                   <TickerLogo symbol={it.ticker} size={32} />
@@ -246,7 +246,7 @@ function SignalColumn({
                       ))}
                     </div>
                   </div>
-                  <div className={`text-base font-bold tabular-nums ${scoreColor}`}>
+                  <div className={`text-sm sm:text-base font-bold tabular-nums shrink-0 ${scoreColor}`}>
                     {formatSignedScore(it.score)}
                   </div>
                 </a>
