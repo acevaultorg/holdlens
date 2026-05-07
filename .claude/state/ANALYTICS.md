@@ -762,3 +762,62 @@ Ratio: ~6% verification overhead. Honest deploy-truth checks are cheap and they 
 **Calibration target:** these 7 commits are mostly cosmetic + compliance. Per I-22 retention floor watch + I-25 distribution floor watch — auto-flag rollback if 7d post-deploy retention drops >10% OR organic traffic drops >15%. Re-test 2026-05-14.
 
 **End-of-leverage marker:** the `c`-loop hit a clear ceiling around cycle 6. Cycle 7 (HN draft fix) was the last real-impact ship. Beyond this, `c` would surface only marginal cosmetic issues (font scaling, image alt text, schema completeness) — all <0.1% revenue lift each, all heavy-effort to ship correctly. Honest call: revenue moves now require operator hands.
+
+---
+
+## Session 2026-05-07 (cont.) — Fleet-wide CF DNS migration + Clarity AI-zichtbaarheid setup (deferred)
+
+**Operator directive:** *"can you make sure the all websites can be fully analysed with cloudflare? is that possible? so also all that are hosted with hostinger and go daddy"* + *"i want you to fix all"*.
+
+**Brain delivered (verified live via DNS + CF API):**
+
+```
+13 of 13 fleet zones now ACTIVE in CF account (paulomdevries@gmail.com / 72bfd26c5f3c935393a25e5c0dea6039):
+
+  Pre-existing CF (7):  holdlens · fermentcalc · sourcescore · secfilingdex
+                        readinglist · txtfeed · zipradar
+  Added this session (6):
+    bookpop.app           added via CF API + Hostinger NS via Chrome MCP
+    readminute.com        added via CF API + Hostinger NS via Chrome MCP
+    readstacks.com        added via CF API + Hostinger NS via Chrome MCP
+    mybookpdf.com         added via CF API + Hostinger NS via Chrome MCP
+    seethinkactprove.com  added via CF API + Hostinger NS via Chrome MCP
+    crotool.com           added via CF API + GoDaddy NS via operator (Chrome MCP
+                          blocked by event.isTrusted on save click)
+```
+
+**Discoveries (real bugs caught):**
+- **CF dashboard refuses to hydrate React in Chrome MCP automation** — confirmed across multiple page loads. Same anti-bot pattern as Vercel dashboards (per `rules/vercel-acevaultorg-deploy-workaround.md` Layer 6). Token operations + zone management must go through API, not dashboard.
+- **GoDaddy event.isTrusted check** rejects programmatic Save click. Operator's real mouse click required (1 site).
+- **Hostinger accepts programmatic clicks** — driven via Chrome MCP cleanly for 5 domains.
+- **CF API token scopes** — `Zone:Edit + DNS:Edit + Account.Analytics:Read` allowed adding zones but NOT writing Web Analytics (`code 10405`) and NOT Clarity log integration (Clarity rejected with "token lacks permissions for this domain"). Scope gaps documented.
+- **CF Web Analytics state** — 7 pre-existing zones already collecting via regex/anonymous host entries with `auto_install: True`. mybookpdf + crotool have explicit entries with `auto_install: False`. Bookpop, readminute, readstacks, seethinkactprove have NO Web Analytics entries yet.
+
+**Method that worked (for future sessions):**
+```python
+# Programmatic CF zone add via API:
+curl -X POST 'https://api.cloudflare.com/client/v4/zones' \
+  -H "Authorization: Bearer $CF_TOKEN" \
+  -d '{"name":"DOMAIN","account":{"id":"ACCT"},"type":"full"}'
+
+# Hostinger nameserver change via Chrome MCP JS reactive setNV pattern:
+# - Navigate /domain/{name}/dns
+# - Click "Change Nameservers" button
+# - Click radio "Custom" if needed (custom radio.click())
+# - Set ns1+ns2 inputs via Object.getPrototypeOf setter + dispatch input/change events
+# - Click "Save" button (programmatic click works, Hostinger doesn't enforce isTrusted)
+```
+
+**Deferred to operator follow-up (per operator request "lets finish it later"):**
+- Token regen with `Zone:Logs:Edit + Account.Web Analytics:Edit` scopes (operator dashboard work — CF dash blocks Chrome MCP)
+- 12 Clarity AI-zichtbaarheid integrations (brain auto-completes via Chrome MCP after token)
+- 4 Web Analytics zone adds (bookpop, readminute, readstacks, seethinkactprove) (brain auto via API after token)
+- 2 auto_install:False → True toggles (mybookpdf, crotool) (brain auto via API after token)
+
+**Calibration target:** zero "AI bot blind" complaints from operator. CF Web Analytics for 7 fleet zones already collecting; remaining 6 will activate once Web Analytics entries are added. The Clarity AI-zichtbaarheid layer is on top of CF — works once CF is in path (which it now is fleet-wide).
+
+**Honest scope acknowledgment:**
+- Brain hit hard limits on CF dashboard automation (anti-bot React hydration block) and GoDaddy save (event.isTrusted)
+- Brain delivered the structurally largest pieces: 6 zones added + 5 Hostinger NS changes
+- Operator delivered: GoDaddy NS change (verified: amanda + lochlan now serving)
+- Token regen pending: blocks final 18 setup actions but they're all 30-sec each via brain after token
