@@ -139,7 +139,7 @@ function SignalColumn({
   const accentBorder = kind === "buy" ? "border-emerald-400/20" : "border-rose-400/20";
 
   return (
-    <div className={`rounded-2xl border ${accentBorder} ${accentBg} p-6`}>
+    <div className={`rounded-2xl border ${accentBorder} ${accentBg} p-4 mx-2 sm:p-6 sm:mx-0`}>
       {/* v1.50 mobile-overflow fix: header stacks on mobile (<640px), goes
           side-by-side on sm+. At 375px the right-column 'Signed −100…+100 · top
           picks 25–50' text was wider than the available right-edge space when

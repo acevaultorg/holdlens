@@ -300,7 +300,7 @@ export default function HomePage() {
             shipping the higher-leverage changes: +33% padding for more
             visual weight, and hover-translate-x on the arrow for directional
             momentum. Mirror treatment on sell CTA to preserve symmetry. */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center mx-2 sm:mx-0">
           <a
             href="/best-now"
             className="group bg-brand text-black font-semibold rounded-xl px-8 py-5 shadow-brand-glow hover:shadow-brand-glow hover:opacity-95 hover:scale-[1.02] transition-all duration-base ease-swift"
