@@ -137,7 +137,7 @@ export default function FoundersNudge({
   // support — an invitation, not a pitch.
   return (
     <aside
-      className={`my-8 rounded-xl border border-border bg-panel/60 p-5 md:p-6`}
+      className={`my-8 mx-2 sm:mx-0 rounded-xl border border-border bg-panel/60 p-5 md:p-6`}
       aria-label="Optional Pro support"
     >
       <div className="flex items-start justify-between gap-4 flex-wrap">

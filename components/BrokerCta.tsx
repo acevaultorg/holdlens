@@ -130,7 +130,7 @@ export default function BrokerCta({
 
   return (
     <aside
-      className="my-10 rounded-2xl border border-brand/30 bg-brand/5 p-5 md:p-6"
+      className="my-10 mx-2 sm:mx-0 rounded-2xl border border-brand/30 bg-brand/5 p-5 md:p-6"
       aria-label="Broker CTA"
     >
       <div className="text-[10px] uppercase tracking-widest font-bold text-brand mb-2">

@@ -113,7 +113,7 @@ export default function RecentMaterialEvents() {
           (where the full 8-K timeline lives) and to the per-item-type page
           (e.g., all cybersecurity incidents). */}
       {events.length > 0 && (
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="mx-2 sm:mx-0 rounded-2xl border border-border bg-panel overflow-hidden">
           <table className="w-full text-sm">
             <thead className="text-dim text-[10px] uppercase tracking-wider">
               <tr className="border-b border-border">

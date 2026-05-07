@@ -238,7 +238,7 @@ export default function AdSlot({
   return (
     <a
       href="/pricing"
-      className={`my-8 block rounded-2xl border border-brand/30 bg-brand/5 p-5 hover:bg-brand/10 transition group ${className}`}
+      className={`my-8 mx-2 sm:mx-0 block rounded-2xl border border-brand/30 bg-brand/5 p-5 hover:bg-brand/10 transition group ${className}`}
       aria-label="Upgrade to HoldLens Pro"
     >
       <div className="flex items-center justify-between gap-4 flex-wrap">

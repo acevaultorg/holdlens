@@ -136,7 +136,7 @@ export default function LiveInsiderActivity() {
           roll-up, which gets the aggregate InsiderScore + all insiders who
           have transacted in that ticker. */}
       {recentBuys.length > 0 && (
-        <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+        <div className="mx-2 sm:mx-0 rounded-2xl border border-border bg-panel overflow-hidden">
           <table className="w-full text-sm">
             <thead className="text-dim text-[10px] uppercase tracking-wider">
               <tr className="border-b border-border">

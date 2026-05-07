@@ -105,7 +105,7 @@ export default function SinceLastVisit({ latestQuarter, latestFilingDate }: Prop
       className="mx-auto max-w-5xl px-6"
       aria-label="Welcome back — what's changed since your last visit"
     >
-      <div className="mt-6 mb-4 rounded-card border border-insight/30 bg-surface-insight p-4 flex items-start gap-3">
+      <div className="mt-6 mb-4 mx-2 sm:mx-0 rounded-card border border-insight/30 bg-surface-insight p-4 flex items-start gap-3">
         <span
           className="mt-0.5 inline-block w-2 h-2 rounded-full bg-insight shrink-0"
           aria-hidden

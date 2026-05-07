@@ -120,7 +120,7 @@ export default function LatestMoves() {
         </a>
       </div>
 
-      <div className="rounded-2xl border border-border bg-panel overflow-hidden">
+      <div className="mx-2 sm:mx-0 rounded-2xl border border-border bg-panel overflow-hidden">
         <table className="w-full text-sm">
           <thead className="bg-bg/40 border-b border-border">
             <tr className="text-[10px] uppercase tracking-wider text-dim font-semibold">
