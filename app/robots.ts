@@ -34,6 +34,24 @@ const LLM_BOTS = [
   "Timpibot",
 ];
 
+// Search + ads quality crawlers — explicitly listed per AdSense / Mediavine
+// compliance best practice (rules/adsense-compliance.md). The wildcard '*'
+// rule technically covers them but Google's docs request explicit listing
+// to avoid ambiguity during AdSense review + ongoing ad-serving audits.
+// Mediapartners-Google = AdSense content/relevance crawler (REQUIRED for
+// AdSense approval); AdsBot-Google + AdsBot-Google-Mobile = landing-page
+// quality scoring for Google Ads. Bingbot listed for Microsoft Ads parity.
+// These crawlers DO execute JS — keep /_next/ accessible (do not disallow).
+const SEARCH_AD_BOTS = [
+  "Googlebot",
+  "Googlebot-News",
+  "Googlebot-Image",
+  "Mediapartners-Google",
+  "AdsBot-Google",
+  "AdsBot-Google-Mobile",
+  "Bingbot",
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -51,6 +69,13 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: ua,
         allow: "/",
         disallow: ["/_next/", "/admin/"],
+      })),
+      // Google + Bing search/ad bots — explicit allow with /_next/ ACCESSIBLE
+      // (they render JS for ranking and ad-quality scoring).
+      ...SEARCH_AD_BOTS.map((ua) => ({
+        userAgent: ua,
+        allow: "/",
+        disallow: ["/admin/"],
       })),
     ],
     sitemap: [
