@@ -168,6 +168,21 @@ export default function PrivacyPolicyPage() {
             </a>{" "}
             to manage your ad preferences.
           </li>
+          {/* AdSense compliance — required reference per Google's
+              EU User Consent + AdSense program policies. */}
+          <li>
+            Read Google&rsquo;s policy on{" "}
+            <a
+              href="https://policies.google.com/technologies/partner-sites"
+              className="text-brand underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              How Google uses information from sites or apps that use our services
+            </a>{" "}
+            for the canonical description of data Google receives when you visit
+            a site that uses Google AdSense.
+          </li>
         </ul>
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Analytics</h2>
