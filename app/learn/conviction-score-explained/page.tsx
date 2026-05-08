@@ -90,7 +90,7 @@ const LD = [
         name: "What does a ConvictionScore of +70 mean vs +40 vs −40?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "+70 to +100 = STRONG BUY (unambiguous tier-1 consensus with trend + insider support). +40 to +70 = BUY (clear positive, solid manager backing). +10 to +40 = WEAK BUY (positive but muted by dissent or crowding). −10 to +10 = NEUTRAL. −10 to −40 = WEAK SELL. −40 to −70 = SELL (clear distribution from tracked managers). −70 to −100 = STRONG SELL (multi-quarter exit pressure from elite managers).",
+          text: "+70 to +100 = Heavy accumulation (unambiguous tier-1 consensus with trend + insider support). +40 to +70 = Net accumulation (clear positive, solid manager backing). +10 to +40 = Slight accumulation (positive but muted by dissent or crowding). −10 to +10 = Mixed. −10 to −40 = Slight selling. −40 to −70 = Net selling (clear distribution from tracked managers). −70 to −100 = Heavy selling (multi-quarter exit pressure from elite managers). Informational only — not investment advice; HoldLens is not a registered investment advisor.",
         },
       },
       {
@@ -209,35 +209,39 @@ export default function ConvictionPage() {
           magnitude. Labels are cosmetic — they don&apos;t affect which list a ticker appears in, only how strong
           the signal reads.
         </p>
+        {/* 2026-05-08 Google policy compliance (rules/google-policy-compliance.md
+            v19.45): replaced verdict-style "BUY/SELL/STRONG BUY" labels with
+            descriptive accumulation/selling language. HoldLens is not a registered
+            investment advisor; verdict labels = YMYL Misrepresentation. */}
         <div className="rounded-xl border border-border bg-panel p-5">
           <ul className="text-sm space-y-1.5">
             <li>
               <span className="text-emerald-400 font-semibold tabular-nums">+70 → +100</span>
-              <span className="text-muted"> — STRONG BUY. Unambiguous tier-1 consensus with trend + insider support.</span>
+              <span className="text-muted"> — Heavy accumulation. Unambiguous tier-1 consensus with trend + insider support.</span>
             </li>
             <li>
               <span className="text-emerald-400 font-semibold tabular-nums">+40 → +70</span>
-              <span className="text-muted"> — BUY. Clear positive signal, solid manager backing.</span>
+              <span className="text-muted"> — Net accumulation. Clear positive signal, solid manager backing.</span>
             </li>
             <li>
               <span className="text-emerald-400 font-semibold tabular-nums">+10 → +40</span>
-              <span className="text-muted"> — WEAK BUY. Positive signal but muted by dissent or crowding.</span>
+              <span className="text-muted"> — Slight accumulation. Positive signal but muted by dissent or crowding.</span>
             </li>
             <li>
               <span className="text-muted font-semibold tabular-nums">−10 → +10</span>
-              <span className="text-muted"> — NEUTRAL label, still appears on buys or sells by sign.</span>
+              <span className="text-muted"> — Mixed. Still appears on buys or sells by sign.</span>
             </li>
             <li>
               <span className="text-rose-400 font-semibold tabular-nums">−10 → −40</span>
-              <span className="text-muted"> — WEAK SELL. Negative signal but not catastrophic.</span>
+              <span className="text-muted"> — Slight selling. Negative signal but not catastrophic.</span>
             </li>
             <li>
               <span className="text-rose-400 font-semibold tabular-nums">−40 → −70</span>
-              <span className="text-muted"> — SELL. Clear distribution from tracked managers.</span>
+              <span className="text-muted"> — Net selling. Clear distribution from tracked managers.</span>
             </li>
             <li>
               <span className="text-rose-400 font-semibold tabular-nums">−70 → −100</span>
-              <span className="text-muted"> — STRONG SELL. Multi-quarter exit pressure from elite managers.</span>
+              <span className="text-muted"> — Heavy selling. Multi-quarter exit pressure from elite managers.</span>
             </li>
           </ul>
         </div>

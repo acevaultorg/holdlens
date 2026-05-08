@@ -49,7 +49,15 @@ export default function TickerActivity({ symbol, moves }: { symbol: string; move
   const sellCount = allMoves.filter((m) => m.action === "trim" || m.action === "exit").length;
   const netSignal = buyCount - sellCount;
   const signalColor = netSignal > 0 ? "text-emerald-400 bg-emerald-400/10 border-emerald-400/30" : netSignal < 0 ? "text-rose-400 bg-rose-400/10 border-rose-400/30" : "text-muted bg-panel border-border";
-  const signalLabel = netSignal > 0 ? `${netSignal > 1 ? "STRONG " : ""}BUY` : netSignal < 0 ? `${netSignal < -1 ? "STRONG " : ""}SELL` : "NEUTRAL";
+  // 2026-05-08 Google policy compliance (rules/google-policy-compliance.md
+  // v19.45): replace verdict-style "STRONG BUY"/"BUY"/"SELL"/"NEUTRAL" labels
+  // with descriptive non-recommendation language. Heavy/Net describes the
+  // observed accumulation or selling pattern factually.
+  const signalLabel = netSignal > 0
+    ? `${netSignal > 1 ? "Heavy " : "Net "}accumulation`
+    : netSignal < 0
+    ? `${netSignal < -1 ? "Heavy " : "Net "}selling`
+    : "Mixed";
 
   return (
     <div className="rounded-2xl border border-border bg-panel overflow-hidden">

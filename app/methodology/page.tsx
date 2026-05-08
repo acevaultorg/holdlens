@@ -173,14 +173,18 @@ export default function MethodologyPage() {
             Labels are purely cosmetic — they describe how strong a signal is, but don't affect which list a
             ticker appears in. Only the SIGN of the score does that.
           </p>
+          {/* 2026-05-08 Google policy compliance (rules/google-policy-compliance.md
+              v19.45): label tiers describe OBSERVED ACCUMULATION/SELLING patterns
+              factually rather than verdict-style BUY/SELL recommendations.
+              HoldLens is not a registered investment advisor. */}
           <ul className="text-muted space-y-1 text-sm">
-            <li><span className="text-emerald-400 font-semibold">STRONG BUY</span> — score ≥ +70</li>
-            <li><span className="text-emerald-400 font-semibold">BUY</span> — score ≥ +40</li>
-            <li><span className="text-emerald-400 font-semibold">WEAK BUY</span> — score &gt; +10</li>
-            <li><span className="text-muted">NEUTRAL</span> — score in [−10, +10] · still appears on buys or sells based on sign</li>
-            <li><span className="text-rose-400 font-semibold">WEAK SELL</span> — score &lt; −10</li>
-            <li><span className="text-rose-400 font-semibold">SELL</span> — score ≤ −40</li>
-            <li><span className="text-rose-400 font-semibold">STRONG SELL</span> — score ≤ −70</li>
+            <li><span className="text-emerald-400 font-semibold">Heavy accumulation</span> — score ≥ +70</li>
+            <li><span className="text-emerald-400 font-semibold">Net accumulation</span> — score ≥ +40</li>
+            <li><span className="text-emerald-400 font-semibold">Slight accumulation</span> — score &gt; +10</li>
+            <li><span className="text-muted">Mixed</span> — score in [−10, +10] · still appears on buys or sells based on sign</li>
+            <li><span className="text-rose-400 font-semibold">Slight selling</span> — score &lt; −10</li>
+            <li><span className="text-rose-400 font-semibold">Net selling</span> — score ≤ −40</li>
+            <li><span className="text-rose-400 font-semibold">Heavy selling</span> — score ≤ −70</li>
           </ul>
         </section>
 
