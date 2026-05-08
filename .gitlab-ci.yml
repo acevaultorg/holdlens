@@ -41,8 +41,7 @@ build:
     - echo "=== verify /out generated ==="
     - test -d out
     - test -f out/investor/michael-burry/index.html
-    - echo "  /out files: $(find out -type f | wc -l)"
-    - echo "  Dataset schema (sanity): $(grep -c '"@type":"Dataset"' out/investor/michael-burry/index.html) (expect 1)"
+    - 'echo "build complete — /out files: $(find out -type f | wc -l)"'
   artifacts:
     paths:
       - out/
