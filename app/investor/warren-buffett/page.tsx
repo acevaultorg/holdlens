@@ -99,11 +99,54 @@ export default function BuffettPage() {
     ...(buffettFiling?.latestDate ? { datePublished: `${buffettFiling.latestDate}T00:00:00Z` } : {}),
     dateModified: BUILD_ISO,
   };
+  const datasetLd = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "@id": "https://holdlens.com/investor/warren-buffett#dataset",
+    name: "Warren Buffett — 13F Portfolio Holdings",
+    description:
+      "Quarterly SEC Form 13F-HR holdings disclosed by Berkshire Hathaway. Each position includes ticker, share count, dollar value, % of portfolio, and quarter-over-quarter change.",
+    url: "https://holdlens.com/investor/warren-buffett",
+    ...(buffettFiling?.edgarUrl ? { sameAs: [buffettFiling.edgarUrl] } : {}),
+    creator: { "@id": "https://holdlens.com/investor/warren-buffett#person" },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://holdlens.com/#organization",
+      name: "HoldLens",
+      url: "https://holdlens.com",
+    },
+    license: "https://www.sec.gov/foia/about-foia",
+    isAccessibleForFree: true,
+    ...(buffettFiling?.latestDate
+      ? {
+          datePublished: `${buffettFiling.latestDate}T00:00:00Z`,
+          ...(buffettFiling.quarter ? { temporalCoverage: buffettFiling.quarter } : {}),
+        }
+      : {}),
+    dateModified: BUILD_ISO,
+    keywords: [
+      "13F filing",
+      "hedge fund holdings",
+      "SEC disclosure",
+      "Berkshire Hathaway",
+      "Warren Buffett",
+      "quarterly portfolio",
+      "smart money signal",
+    ],
+    variableMeasured: [
+      { "@type": "PropertyValue", name: "Ticker symbol" },
+      { "@type": "PropertyValue", name: "Share count" },
+      { "@type": "PropertyValue", name: "Dollar value (USD)" },
+      { "@type": "PropertyValue", name: "Portfolio percentage" },
+      { "@type": "PropertyValue", name: "Quarter-over-quarter change" },
+    ],
+  };
   return (
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BUFFETT_PERSON_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BUFFETT_BREADCRUMB_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetLd) }} />
       <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
         <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
         <a
