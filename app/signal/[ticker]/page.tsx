@@ -22,6 +22,7 @@ import AiThesisCard from "@/components/AiThesisCard";
 import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
+import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
 import { formatSignedScore, convictionLabel, getConviction } from "@/lib/conviction";
@@ -83,14 +84,19 @@ export async function generateMetadata({ params }: { params: Promise<{ ticker: s
   const net = getNetSignal(t.symbol);
   const url = `https://holdlens.com/signal/${t.symbol}`;
 
+  // 2026-05-08 Google policy compliance (rules/google-policy-compliance.md
+  // v19.45): replaced "BUY"/"SELL" verdict-style headline + description with
+  // descriptive accumulation/selling language. HoldLens is not a registered
+  // investment advisor; verdict labels = YMYL Misrepresentation per Google
+  // publisher policy. Numeric ConvictionScore preserved as factual signal.
   let title: string;
   let verdictLine: string;
   if (net && net.direction === "BUY") {
-    title = `${t.symbol} BUY ${formatSignedScore(net.score)} — ${net.buyerCount} superinvestor${net.buyerCount === 1 ? "" : "s"} holding ${t.symbol}`;
-    verdictLine = `${t.symbol} is a ${formatSignedScore(net.score)} BUY on HoldLens's signed −100..+100 ConvictionScore — ${net.buyerCount} tracked superinvestor${net.buyerCount === 1 ? "" : "s"} buying, ${net.sellerCount} selling.`;
+    title = `${t.symbol} ConvictionScore ${formatSignedScore(net.score)} — ${net.buyerCount} superinvestor${net.buyerCount === 1 ? "" : "s"} accumulating ${t.symbol}`;
+    verdictLine = `${t.symbol} ConvictionScore is ${formatSignedScore(net.score)} on HoldLens's signed −100..+100 scale — ${net.buyerCount} tracked superinvestor${net.buyerCount === 1 ? "" : "s"} accumulating, ${net.sellerCount} selling.`;
   } else if (net && net.direction === "SELL") {
-    title = `${t.symbol} SELL ${formatSignedScore(net.score)} — ${net.sellerCount} superinvestor${net.sellerCount === 1 ? "" : "s"} exiting ${t.symbol}`;
-    verdictLine = `${t.symbol} is a ${formatSignedScore(net.score)} SELL on HoldLens's signed −100..+100 ConvictionScore — ${net.sellerCount} tracked superinvestor${net.sellerCount === 1 ? "" : "s"} trimming or exiting, ${net.buyerCount} still buying.`;
+    title = `${t.symbol} ConvictionScore ${formatSignedScore(net.score)} — ${net.sellerCount} superinvestor${net.sellerCount === 1 ? "" : "s"} exiting ${t.symbol}`;
+    verdictLine = `${t.symbol} ConvictionScore is ${formatSignedScore(net.score)} on HoldLens's signed −100..+100 scale — ${net.sellerCount} tracked superinvestor${net.sellerCount === 1 ? "" : "s"} trimming or exiting, ${net.buyerCount} still accumulating.`;
   } else {
     title = `${t.symbol} signal — ${t.ownerCount} tracked superinvestor${t.ownerCount === 1 ? "" : "s"} hold ${t.name}`;
     verdictLine = `${t.ownerCount} of the world's top portfolio managers hold ${t.symbol} (${t.name}).`;
@@ -146,11 +152,14 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
   // signal rather than a generic title. Zero page-weight cost — one inline
   // <script type="application/ld+json"> tag per page.
   const signalUrl = `https://holdlens.com/signal/${t.symbol}`;
+  // 2026-05-08 Google policy compliance: Article schema headline must be
+  // factual, not recommendation-encoded. Avoid BUY/SELL in JSON-LD headline
+  // per rules/google-policy-compliance.md (Structured Data Abuse prevention).
   const headline =
     verdict === "BUY"
-      ? `${t.symbol} BUY signal — smart money conviction ${formatSignedScore(signedScore)}`
+      ? `${t.symbol} ConvictionScore ${formatSignedScore(signedScore)} — superinvestor accumulation pattern`
       : verdict === "SELL"
-      ? `${t.symbol} SELL signal — smart money conviction ${formatSignedScore(signedScore)}`
+      ? `${t.symbol} ConvictionScore ${formatSignedScore(signedScore)} — superinvestor selling pattern`
       : `${t.symbol} signal — what ${t.ownerCount} tracked superinvestors are doing on ${t.name}`;
   const articleLd = {
     "@context": "https://schema.org",
@@ -232,6 +241,14 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         <StarButton symbol={t.symbol} size="lg" />
       </div>
 
+      {/* 2026-05-08 Google policy compliance: prominent informational-only
+          disclaimer above the verdict card. Per rules/google-policy-compliance.md
+          v19.45 — every YMYL/financial-data page must declare non-credentialed
+          status before rendering position-change signals. */}
+      <div className="mt-8">
+        <MethodologyDisclaimer />
+      </div>
+
       {/* v1.40 — "HoldLens read" extractable one-liner. Positioned above the
           verdict card so LLM crawlers (ChatGPT, Claude, Perplexity, Google
           SGE) hit a quote-ready sentence immediately. Hits Aleyda Solis's
@@ -248,14 +265,18 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           HoldLens read
         </div>
         <p className="text-sm text-text leading-relaxed">
+          {/* 2026-05-08 Google policy compliance: removed verdict-style "BUY"/"SELL"
+              labels from inline copy. Replaced with descriptive "accumulating"/"selling"
+              language. ConvictionScore preserved. Per rules/google-policy-compliance.md.
+          */}
           {net && net.direction === "BUY" && (
             <>
-              <span className="font-semibold">{t.symbol}</span> is a{" "}
+              <span className="font-semibold">{t.symbol}</span> ConvictionScore is{" "}
               <span className="font-bold tabular-nums text-emerald-400">
-                {formatSignedScore(net.score)} BUY
+                {formatSignedScore(net.score)}
               </span>{" "}
-              on HoldLens's signed −100..+100 ConvictionScore —{" "}
-              <span className="font-semibold">{net.buyerCount} tracked superinvestor{net.buyerCount === 1 ? "" : "s"}</span> buying,{" "}
+              on HoldLens's signed −100..+100 scale —{" "}
+              <span className="font-semibold">{net.buyerCount} tracked superinvestor{net.buyerCount === 1 ? "" : "s"}</span> accumulating,{" "}
               <span className="font-semibold">{net.sellerCount}</span> selling.
               {trend.consistentBuyers.length > 0 && (
                 <>
@@ -268,13 +289,13 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           )}
           {net && net.direction === "SELL" && (
             <>
-              <span className="font-semibold">{t.symbol}</span> is a{" "}
+              <span className="font-semibold">{t.symbol}</span> ConvictionScore is{" "}
               <span className="font-bold tabular-nums text-rose-400">
-                {formatSignedScore(net.score)} SELL
+                {formatSignedScore(net.score)}
               </span>{" "}
-              on HoldLens's signed −100..+100 ConvictionScore —{" "}
+              on HoldLens's signed −100..+100 scale —{" "}
               <span className="font-semibold">{net.sellerCount} tracked superinvestor{net.sellerCount === 1 ? "" : "s"}</span> trimming or exiting,{" "}
-              <span className="font-semibold">{net.buyerCount}</span> still buying.
+              <span className="font-semibold">{net.buyerCount}</span> still accumulating.
             </>
           )}
           {!net && (

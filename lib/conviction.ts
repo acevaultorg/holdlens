@@ -732,16 +732,35 @@ export function getHistoricalTopBuys(asOfQuarter: Quarter, n = 5): ConvictionSco
 
 /**
  * Symmetric label for the unified −100..+100 conviction score.
- * Mirrors above/below zero so a +45 BUY and a −45 SELL read as equal strength.
+ * Mirrors above/below zero so a +45 and a −45 read as equal strength.
+ *
+ * 2026-05-08 Google policy compliance (per rules/google-policy-compliance.md
+ * v19.45 + AdSense low-value-content remediation):
+ * Replaced "STRONG BUY"/"BUY"/"WEAK BUY"/"NEUTRAL"/"WEAK SELL"/"SELL"/"STRONG SELL"
+ * verdict labels with non-recommendation descriptive language. HoldLens is NOT
+ * a registered investment advisor; verdict-style labels constitute Misrepresentation
+ * (Google publisher policy) and YMYL content without credentials.
+ *
+ * New labels describe OBSERVED OWNERSHIP CHANGES (factual) not RECOMMENDATIONS:
+ *   STRONG BUY  → Heavy accumulation
+ *   BUY         → Net accumulation
+ *   WEAK BUY    → Slight accumulation
+ *   NEUTRAL     → Mixed
+ *   WEAK SELL   → Slight selling
+ *   SELL        → Net selling
+ *   STRONG SELL → Heavy selling
+ *
+ * The numeric ConvictionScore (−100..+100) is preserved as the primary signal.
+ * Color coding (emerald/muted/rose) preserved as visual scaffolding only.
  */
 export function convictionLabel(score: number): { label: string; color: string } {
-  if (score >= 70) return { label: "STRONG BUY", color: "emerald" };
-  if (score >= 40) return { label: "BUY", color: "emerald" };
-  if (score >  DEAD_ZONE) return { label: "WEAK BUY", color: "emerald" };
-  if (score >= -DEAD_ZONE) return { label: "NEUTRAL", color: "muted" };
-  if (score > -40) return { label: "WEAK SELL", color: "rose" };
-  if (score > -70) return { label: "SELL", color: "rose" };
-  return { label: "STRONG SELL", color: "rose" };
+  if (score >= 70) return { label: "Heavy accumulation", color: "emerald" };
+  if (score >= 40) return { label: "Net accumulation", color: "emerald" };
+  if (score >  DEAD_ZONE) return { label: "Slight accumulation", color: "emerald" };
+  if (score >= -DEAD_ZONE) return { label: "Mixed", color: "muted" };
+  if (score > -40) return { label: "Slight selling", color: "rose" };
+  if (score > -70) return { label: "Net selling", color: "rose" };
+  return { label: "Heavy selling", color: "rose" };
 }
 
 /** Format a signed score for display: "+42" or "−18" or "0". */

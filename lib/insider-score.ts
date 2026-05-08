@@ -232,15 +232,21 @@ export function officerSlug(name: string, ticker?: string): string {
 }
 
 // Score-band label for UI color + humans.
+//
+// 2026-05-08 Google policy compliance (rules/google-policy-compliance.md v19.45):
+// Replaced BUY/SELL verdict labels with descriptive non-recommendation language.
+// HoldLens is not a registered investment advisor; verdict-style labels = YMYL
+// Misrepresentation per Google publisher policy. New labels describe OBSERVED
+// insider trading patterns (factual) rather than recommendations.
 export function insiderScoreLabel(score: number): {
   label: string;
   tone: "emerald" | "rose" | "neutral";
 } {
-  if (score >= 50) return { label: "STRONG BUY", tone: "emerald" };
-  if (score >= 20) return { label: "BUY", tone: "emerald" };
-  if (score >= 5) return { label: "WEAK BUY", tone: "emerald" };
-  if (score <= -50) return { label: "STRONG SELL", tone: "rose" };
-  if (score <= -20) return { label: "SELL", tone: "rose" };
-  if (score <= -5) return { label: "WEAK SELL", tone: "rose" };
-  return { label: "NEUTRAL", tone: "neutral" };
+  if (score >= 50) return { label: "Heavy insider buying", tone: "emerald" };
+  if (score >= 20) return { label: "Net insider buying", tone: "emerald" };
+  if (score >= 5) return { label: "Slight insider buying", tone: "emerald" };
+  if (score <= -50) return { label: "Heavy insider selling", tone: "rose" };
+  if (score <= -20) return { label: "Net insider selling", tone: "rose" };
+  if (score <= -5) return { label: "Slight insider selling", tone: "rose" };
+  return { label: "Mixed insider activity", tone: "neutral" };
 }
