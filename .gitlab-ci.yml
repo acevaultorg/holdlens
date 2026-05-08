@@ -1,54 +1,37 @@
-# GitLab CI — auto-deploy holdlens.com on push to main
-# Replaces operator-runs-wrangler-from-laptop with CI-runs-wrangler-from-datacenter.
-# Eliminates the recurring CF Pages EPIPE failure (per ~/.claude/rules/cloudflare-pages-epipe.md)
-# because CI runners have stable datacenter connections vs. residential broadband.
-#
-# Operator setup (one-time):
-#   1. Open https://gitlab.com/acevault-lab/holdlens/-/settings/ci_cd → Variables
-#   2. Add variable CLOUDFLARE_API_TOKEN (Masked + Protected). Token needs scopes:
-#        - Account → Cloudflare Pages → Edit
-#        - Account → Account Settings → Read
-#      Generate at https://dash.cloudflare.com/profile/api-tokens
-#   3. Add variable CLOUDFLARE_ACCOUNT_ID = 72bfd26c5f3c935393a25e5c0dea6039
-#   4. Done. Future pushes to main auto-build + auto-deploy.
+# GitLab CI auto-deploy holdlens.com to CF Pages on push to main.
+# Operator one-time setup: add CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID
+# to project Settings > CI/CD > Variables.
 
 stages:
   - build
   - deploy
 
-# Cache npm + Next build output across pipelines for faster runs
+variables:
+  NODE_VERSION: "24"
+
 cache:
   key: holdlens-cache
   paths:
     - node_modules/
     - .next/cache/
 
-variables:
-  NODE_VERSION: "24"
-
 build:
   stage: build
   image: node:24-bookworm-slim
   before_script:
-    - apt-get update && apt-get install -y --no-install-recommends git ca-certificates
-    - node --version
-    - npm --version
+    - apt-get update
+    - apt-get install -y --no-install-recommends git ca-certificates
   script:
-    - echo "=== install deps ==="
     - npm ci --no-audit --no-fund
-    - echo "=== build static site (next.config.js has typescript.ignoreBuildErrors: true to bypass Next 15.5 type-stub race) ==="
     - npm run build
-    - echo "=== verify /out generated ==="
     - test -d out
     - test -f out/investor/michael-burry/index.html
-    - 'echo "build complete — /out files: $(find out -type f | wc -l)"'
   artifacts:
     paths:
       - out/
     expire_in: 1 day
   only:
-    refs:
-      - main
+    - main
 
 deploy:
   stage: deploy
@@ -56,18 +39,13 @@ deploy:
   needs:
     - build
   before_script:
-    - apt-get update && apt-get install -y --no-install-recommends ca-certificates
+    - apt-get update
+    - apt-get install -y --no-install-recommends ca-certificates
     - npm install -g wrangler@4
   script:
-    - echo "=== deploy /out to CF Pages 'holdlens' project ==="
     - test -d out
-    - test -n "$CLOUDFLARE_API_TOKEN" || (echo "CLOUDFLARE_API_TOKEN not set — see .gitlab-ci.yml header for setup"; exit 1)
-    - test -n "$CLOUDFLARE_ACCOUNT_ID" || (echo "CLOUDFLARE_ACCOUNT_ID not set"; exit 1)
-    - echo "  account: $CLOUDFLARE_ACCOUNT_ID"
-    - echo "  files in /out: $(find out -type f | wc -l)"
+    - test -n "$CLOUDFLARE_API_TOKEN"
+    - test -n "$CLOUDFLARE_ACCOUNT_ID"
     - wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
-    - echo "=== ping IndexNow (best-effort, non-fatal) ==="
-    - npm run indexnow || echo "  indexnow ping failed but deploy succeeded — non-blocking"
   only:
-    refs:
-      - main
+    - main
