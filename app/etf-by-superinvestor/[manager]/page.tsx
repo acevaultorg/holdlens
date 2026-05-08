@@ -5,6 +5,7 @@ import { MANAGERS } from "@/lib/managers";
 import { topReplicatingETFs } from "@/lib/etf-overlap";
 import { LATEST_FILINGS } from "@/lib/filings";
 import ShareStrip from "@/components/ShareStrip";
+import { AUTHOR_SCHEMA } from "@/lib/author";
 
 type ManagerParams = { manager: string };
 
@@ -86,6 +87,7 @@ export default async function ManagerETFPage({
     },
     datePublished: "2026-04-28",
     dateModified: "2026-04-28",
+    author: AUTHOR_SCHEMA,
     publisher: { "@id": "https://holdlens.com/#organization" },
   };
 

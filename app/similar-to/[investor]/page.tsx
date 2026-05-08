@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import FundLogo from "@/components/FundLogo";
 import { MANAGERS, getManager } from "@/lib/managers";
 import { topSimilarInvestors } from "@/lib/similarity";
+import { AUTHOR_SCHEMA } from "@/lib/author";
 
 // Ship #8 v1 — Portfolio Similarity Scorer. Per-investor programmatic
 // page showing the top-10 tracked superinvestors whose 13F portfolios
@@ -78,6 +79,7 @@ export default async function SimilarToPage(
       "@id": `https://holdlens.com/similar-to/${m.slug}`,
     },
     datePublished: "2026-04-19",
+    author: AUTHOR_SCHEMA,
     publisher: { "@id": "https://holdlens.com/#organization" },
   };
 

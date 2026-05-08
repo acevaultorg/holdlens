@@ -6,6 +6,7 @@ import {
 } from "@/lib/insider-conviction";
 import { fmtInsiderValue, fmtInsiderDate } from "@/lib/insiders";
 import TickerLink from "@/components/TickerLink";
+import { AUTHOR_SCHEMA } from "@/lib/author";
 
 // Ship #2 v1 — /insiders/[insider]/ per-corporate-insider programmatic
 // pages. Each page answers "What has [CEO name] been buying or selling?"
@@ -91,6 +92,7 @@ export default async function InsiderPage(
       "@id": `https://holdlens.com/insiders/${s.slug}`,
     },
     datePublished: "2026-04-19",
+    author: AUTHOR_SCHEMA,
     publisher: { "@id": "https://holdlens.com/#organization" },
   };
 

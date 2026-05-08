@@ -20,8 +20,14 @@ export const AUTHOR_URL = "https://holdlens.com/about";
 export const PUBLISHER_REF = { "@id": "https://holdlens.com/#organization" };
 
 /** Schema.org Person object for use as `author` in Article schema. */
+// Stable @id lets future Article schema across the site reference this
+// pen-name entity by reference (`{ author: { "@id": "https://holdlens.com/about/#editorial-team" } }`)
+// instead of inlining the full block. Compounds LLM-citation gravity:
+// crawlers (GPTBot/ClaudeBot/PerplexityBot) treat consistent named-entity
+// references as a stronger authorship-chain signal than ad-hoc inline objects.
 export const AUTHOR_SCHEMA = {
   "@type": "Person",
+  "@id": "https://holdlens.com/about/#editorial-team",
   name: AUTHOR_NAME,
   url: AUTHOR_URL,
   jobTitle: "Editorial team",

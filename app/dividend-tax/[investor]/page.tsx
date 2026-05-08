@@ -11,6 +11,7 @@ import {
   META,
   type CountryCode,
 } from "@/lib/dividend-tax";
+import { AUTHOR_SCHEMA } from "@/lib/author";
 
 // Programmatic per-investor-country page for the dividend-tax section.
 // Each page shows that investor's withholding matrix across all supported
@@ -87,6 +88,7 @@ export default async function InvestorCountryPage(
     },
     datePublished: "2026-04-19",
     dateModified: META.last_verified,
+    author: AUTHOR_SCHEMA,
     publisher: { "@id": "https://holdlens.com/#organization" },
   };
 
