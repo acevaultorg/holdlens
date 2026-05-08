@@ -994,3 +994,80 @@ Brain cannot decide which WAF skip rules are intentional vs. legacy. The Bingbot
 - Did NOT touch WAF skip rules (operator decision)
 - Did NOT strengthen DMARC to p=quarantine (default p=none correct for first 30 days)
 
+---
+
+## 🟡 RECOMMENDED — HN Show HN: ship the one-shot front-page swing — [id:hn-show-hn-holdlens-launch]
+
+**WHAT:** Submit HoldLens to Hacker News as `Show HN`. You get one shot per site, ever. Front-page lands 5k–50k visitors in 48h plus a permanent HN backlink that keeps ranking. Worst case: ≤10 upvotes, post slides off, no harm done. Best case: 200+ upvotes, multi-day traffic spike, sustained organic compounds.
+
+**WHY:** HoldLens crossed 92 UV/30d on May 3 (per concept-finder-methodology v2.3 calibration). It's polished enough — Dataset schema landed today on all 80+ investor pages, mobile clip fixed, GitLab CI deploy pipeline stable, CF Pages serving fast (LCP <1.5s on origin). The fleet has never used its HN Show HN allowance and it expires (informally) once the site has been HN-discussed. Cost of skipping: indefinite delay of the one biggest discovery moment available to a finance-data fleet site. Distribution Oracle weight: `hacker_news_show_hn × +70` per `rules/aceusergrowth.md` v1 Part 2 § C2.
+
+**TIME:** ~30 minutes prep + 6-hour active engagement window on launch day. Best window: Tuesday–Thursday 6–9am PT (15–18h Amsterdam).
+
+**HOW:**
+
+1. **Read the canonical template** for the full pre-launch checklist + opening-comment scaffold + post-submit response playbook:
+   `~/.claude/acepilot-19.8/templates/hn-show-hn-submission.md` (114 lines, complete)
+   → expected: covers HN account warmup requirements, title format, URL field rules, opening-comment template, "what to do when comments arrive" patterns
+2. **Verify HN account ready** (template Pre-launch checklist):
+   - Account age ≥1 year OR ≥20 karma (new accounts auto-flagged)
+   - You've made ≥10 substantive comments on HN threads in the past 4 weeks
+   - If neither applies → add "HN account warmup" as a 4-week prerequisite first; don't submit cold
+3. **Submit at:** `https://news.ycombinator.com/submit`
+   - **Title** (≤60 chars, copy verbatim):
+     `Show HN: HoldLens – Track 82 superinvestor 13F filings with ConvictionScore`
+     (Alt if first feels overlong: `Show HN: HoldLens – Composite signal across 82 hedge-fund 13F filings`)
+   - **URL field:** `https://holdlens.com` (root, NOT a deep page — HN's voting algo correlates with homepage signals)
+   - **Text field:** leave EMPTY (URL submission, not text post)
+4. **Immediately after submit, post the first comment** (you, as OP):
+   ```
+   Founder here. HoldLens reads every superinvestor's quarterly 13F filing
+   from EDGAR and synthesizes a single signed −100…+100 ConvictionScore per
+   ticker — the goal is to surface where smart money is genuinely concentrating
+   vs. just trimming.
+
+   Three things I tried to get right:
+
+   1. Single signed scale (no "buy list" + "sell list" double-counting). A
+      ticker has exactly one number. +42 = strong conviction; −18 = quiet
+      exit pressure. The score is composed from smart-money concentration,
+      insider behavior, contrarian factor, trend streak, and dissent
+      penalty — broken down on every ticker page.
+
+   2. Per-investor pages cite the filing date + EDGAR URL, so every claim
+      is verifiable in one click. No black-box rankings.
+
+   3. Static export, no tracking, no signup wall, no paywall. Free.
+
+   Built solo over the past 4 weeks. Happy to answer questions about the
+   ConvictionScore math, the filing pipeline, or fleet decisions like
+   "why no real-time updates" (13Fs are quarterly; pretending real-time is
+   misleading).
+
+   Bias disclosure: I track most of these positions personally and the site
+   is also useful to me, which kept the scope honest.
+   ```
+   → expected: starts comment thread on a high-effort note; signals "real founder, real work"; invites questions on math + scope
+5. **Engagement window** (most important 6 hours):
+   - Reply to every comment within 30 min for the first 4 hours
+   - Don't argue with negative feedback — say "fair, here's what I'd change" or "you're right, that's a known limit, planning to address by [X]"
+   - If someone asks for the source, link the EDGAR filing URL on a specific investor page (proves transparency)
+   - Don't crosspost to /r/hackernews while it's still climbing (HN moderators down-rank)
+
+**VERIFY:** Same day, after 6h:
+```
+# Pull live HN submission ID + traffic
+curl -sI https://holdlens.com | grep -iE "^server:"  # confirm CF still up
+# Plausible dashboard at plausible.io/holdlens.com → live → expect spike
+# Direct HN URL: https://news.ycombinator.com/from?site=holdlens.com
+```
+- ≥30 upvotes in first 30 min = on track for /new top
+- ≥100 upvotes by 4h = front-page candidate
+- ≥500 upvotes by 8h = front-page lead
+
+**IF STUCK:**
+- **Submission instantly flagged:** check `https://news.ycombinator.com/showdead` while logged in. Common cause: account too new OR title trips spam-filter (avoid emoji, ALL-CAPS, and "best/ultimate/free"). Wait 4 weeks doing genuine commenting, then resubmit with a different angle.
+- **Site goes down under load:** CF Pages handles 50k/48h trivially; if origin somehow chokes, enable CF "Always Online" in dashboard → Caching → Configuration. Won't happen with current setup but worth knowing.
+- **You get a critical comment about Buffett page or specific ticker:** acknowledge specifically, don't deflect. Example: "Yeah, the [thing] section was a placeholder while I migrated the [other thing]. Ship-fix queued."
+- **Mods change title/URL:** rare; if it happens, post in the thread to address the change rather than re-submitting.
+
