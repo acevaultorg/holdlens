@@ -357,27 +357,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // sitemap + page-level noindex (see app/insiders/[insider]/page.tsx)
   // prevents Googlebot from re-indexing the long tail.
   // Per rules/adsense-thin-content-prevention.md (added v2026-05-08).
-  // Aggregator pages /insiders/company/[ticker]/ + /insiders/officer/[slug]/
-  // STAY in sitemap — those are smaller surfaces with richer per-page value.
+  // 2026-05-08 AdSense low-value-content remediation (round 2):
+  // Initial fix removed /insiders/[insider]/* (4,436 thin pages). Deep audit
+  // found /insiders/company/[ticker]/* (673 pages, ~239 main words) and
+  // /insiders/officer/[slug]/* (1,889 pages, ~102 main words) are ALSO
+  // below the 400-word substance floor (per rules/adsense-thin-content-prevention
+  // .md Gate 2). Same template-driven thin-content pattern as /insiders/[insider]/
+  // — would trigger same AdSense rejection.
+  // Remediation: noindex + sitemap-remove all 3 surfaces. Pages remain live
+  // for users via internal navigation; only Googlebot indexing is suppressed.
+  // /investor/[slug]/* (1,150 main words) + /signal/[ticker]/* (1,339 main words)
+  // are substantive — STAY indexed.
   const insidersUrls: MetadataRoute.Sitemap = [];
 
-  // v0.2 InsiderLens Day-1 — /insiders/company/[ticker]/ per-company
-  // insider roll-up. One page per ticker with ≥1 tracked Form 4.
-  const insidersCompanyUrls: MetadataRoute.Sitemap = allInsiderTickers().map((t) => ({
-    url: `${base}/insiders/company/${t.toLowerCase()}`,
-    lastModified: now,
-    changeFrequency: "daily" as const,
-    priority: 0.75,
-  }));
+  // /insiders/company/[ticker]/ — REMOVED from sitemap (still live; noindexed
+  // at page level; ~239 main words = thin per AdSense thin-content gate).
+  const insidersCompanyUrls: MetadataRoute.Sitemap = [];
+  // Original: const insidersCompanyUrls = allInsiderTickers().map(...)
 
-  // v0.2 InsiderLens Day-1 — /insiders/officer/[slug]/ per-officer detail.
-  // Ticker-scoped slugs (name-ticker) disambiguate same-name officers.
-  const insidersOfficerUrls: MetadataRoute.Sitemap = allOfficerEntries().map((e) => ({
-    url: `${base}/insiders/officer/${e.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  // /insiders/officer/[slug]/ — REMOVED from sitemap (still live; noindexed
+  // at page level; ~102 main words = thin).
+  const insidersOfficerUrls: MetadataRoute.Sitemap = [];
+  // Original: const insidersOfficerUrls = allOfficerEntries().map((e) => ({
+  //   url: `${base}/insiders/officer/${e.slug}`,
+  //   lastModified: now,
+  //   changeFrequency: "weekly" as const,
+  //   priority: 0.7,
+  // }));
 
   // v1.53 — Corporate Buyback Tracker sub-vertical (/buybacks/*).
   // 4 static landing/leaderboard surfaces + 10 per-company pages + 2 learn.

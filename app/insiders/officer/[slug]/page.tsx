@@ -52,6 +52,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    // 2026-05-08 AdSense thin-content remediation (round 2):
+    // /insiders/officer/[slug]/* pages have ~102 main words = WELL below
+    // 400-word substance floor (per rules/adsense-thin-content-prevention.md
+    // Gate 2). 1,889 pages of this template would re-trigger AdSense low-value
+    // content rejection. Pages stay live for users via /insiders + ticker
+    // navigation; Googlebot deindexes on next crawl.
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true },
+    },
     alternates: { canonical: `https://holdlens.com/insiders/officer/${slug}/` },
     openGraph: {
       title,
