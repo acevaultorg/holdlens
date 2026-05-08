@@ -31,6 +31,21 @@ export async function generateMetadata(
   return {
     title,
     description,
+    // 2026-05-08 AdSense low-value-content remediation:
+    // 4,436 /insiders/[insider]/* pages (80% of sitemap) are template-driven
+    // SEC Form 4 aggregations — useful for users via internal navigation but
+    // flagged as "thin content" by AdSense reviewer (single-template doorway
+    // pattern across thousands of pages). Setting noindex prevents Googlebot
+    // from indexing the long tail; pages remain accessible to users via
+    // company/officer hubs. Per-investor pages (/investor/[slug]/) +
+    // /insiders/company/[ticker]/ + /insiders/officer/[slug]/ stay indexed
+    // (smaller surface, richer per-page value-add).
+    // See: rules/adsense-thin-content-prevention.md (added v2026-05-08).
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true },
+    },
     alternates: {
       canonical: `https://holdlens.com/insiders/${s.slug}`,
     },

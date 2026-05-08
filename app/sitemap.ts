@@ -349,16 +349,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Ship #2 v1 — /insiders/[insider]/ per-corporate-insider pages
-  // with conviction scoring. One page per unique insider in the
-  // curated Form 4 dataset.
-  const insiderSlugs = [...computeInsiderSummaries().keys()];
-  const insidersUrls: MetadataRoute.Sitemap = insiderSlugs.map((slug) => ({
-    url: `${base}/insiders/${slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  // 2026-05-08 AdSense low-value-content remediation:
+  // /insiders/[insider]/* pages = 4,436 template-driven pages = 80% of
+  // sitemap. AdSense reviewer flagged "Low value content" with these as
+  // the dominant signal. Pages stay live + accessible to users via
+  // company/officer hubs (same data, richer context). Removing from
+  // sitemap + page-level noindex (see app/insiders/[insider]/page.tsx)
+  // prevents Googlebot from re-indexing the long tail.
+  // Per rules/adsense-thin-content-prevention.md (added v2026-05-08).
+  // Aggregator pages /insiders/company/[ticker]/ + /insiders/officer/[slug]/
+  // STAY in sitemap — those are smaller surfaces with richer per-page value.
+  const insidersUrls: MetadataRoute.Sitemap = [];
 
   // v0.2 InsiderLens Day-1 — /insiders/company/[ticker]/ per-company
   // insider roll-up. One page per ticker with ≥1 tracked Form 4.
