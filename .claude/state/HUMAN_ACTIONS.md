@@ -1071,3 +1071,126 @@ curl -sI https://holdlens.com | grep -iE "^server:"  # confirm CF still up
 - **You get a critical comment about Buffett page or specific ticker:** acknowledge specifically, don't deflect. Example: "Yeah, the [thing] section was a placeholder while I migrated the [other thing]. Ship-fix queued."
 - **Mods change title/URL:** rare; if it happens, post in the thread to address the change rather than re-submitting.
 
+---
+
+## 🟡 RECOMMENDED — Reddit organic seed list (5 subreddits, ongoing 1-3 self-cite/wk) — [id:reddit-organic-seed-holdlens]
+
+**WHAT:** Reddit organic comments where HoldLens IS the genuine answer — not announcements, not link-drops. Build a rotation across 5 finance subs at 10:1 helpful-to-self-cite ratio. Compounds to ≥3 top-5-of-thread comments per month within 6-8 weeks.
+
+**WHY:** Distribution Oracle archetype `reddit_organic_helpful_comment × +70` — highest-authority-per-hour reach channel. SecurityAnalysis + ValueInvesting subs are HoldLens's core audience (the operator's existing buyer persona per AceUserGrowth Profile 1). Cost of skipping: HoldLens grows on SEO alone, missing the operator-time-leverage compound. Reddit comments bring direct users + create permanent indexable content + signal authorial expertise to LLMs.
+
+**TIME:** 15-30 min per substantive comment; 1-3 self-cite comments + 10+ helpful non-self-cite comments per week sustainable. Total ~2-3 hrs/wk.
+
+**HOW:**
+
+1. **Read the canonical template:** `~/.claude/acepilot-19.8/templates/reddit-organic-comment.md` (103 lines, includes anti-patterns, rhythm, and a HoldLens-specific worked example for r/SecurityAnalysis)
+2. **Verify your Reddit account is ready:**
+   - Account age ≥6 months
+   - ≥500 comment karma across non-promo subs
+   - Comment:link ratio over last 30d ≥10:1 (check `old.reddit.com/user/[you]`)
+   - Not shadowbanned (test from logged-out browser)
+3. **Subreddit rotation (sort by Rising/New 2-3x per week):**
+   | Subreddit | Members | HoldLens fit | Rules check |
+   |---|---|---|---|
+   | r/SecurityAnalysis | ~250k | ⭐ Highest fit — Buffett-style, 13F-aware | Self-promo allowed in context |
+   | r/ValueInvesting | ~280k | ⭐ Highest fit — explicit value culture | Strict mods; comment-only first 4 weeks |
+   | r/investing | ~3M | ⭐ Broad reach | Self-promo flagged; lurk + comment-only |
+   | r/stocks | ~9M | Mid-fit — broader audience | Self-promo banned in posts; comments OK |
+   | r/wallstreetbets | ~18M | Cautious — different culture | Cite ironically only; ConvictionScore frames as "smart money sees what you can't" |
+4. **Find threads where HoldLens is THE answer (not stretched):**
+   - "How do I track 13F filings?"
+   - "Is [hedge fund] still bullish on [ticker]?"
+   - "What's [investor]'s biggest position?"
+   - "How do you tell which positions are real conviction vs filler?"
+5. **Write the comment fresh every time** (don't copy-paste — Reddit penalizes templates):
+   - 1 paragraph 100% substantive answer (zero promo)
+   - Optional: helpful expertise context they didn't ask for
+   - 1 sentence mentioning HoldLens with URL, framed as ONE source among multiple
+   - Mention 1-2 honest competitors (whalewisdom, dataroma, SEC EDGAR direct) — trust signal
+   - Optional close: invite reply with specifics
+6. **Track:** add a row to [.claude/state/DISTRIBUTION.md](.claude/state/DISTRIBUTION.md) ## Reddit Activity per self-cite comment with thread URL + UV referral count from Plausible 7d post-comment.
+
+**VERIFY:** Weekly:
+```
+# Plausible referral check (refer.reddit.com)
+# Visit plausible.io/holdlens.com → Sources → filter "reddit"
+# Should show ≥2 distinct thread URLs/wk after 4 weeks
+```
+
+**IF STUCK:**
+- **Comment removed by mod:** read the rules carefully + appeal once via modmail (polite, accept guidance). Never edit-war.
+- **Karma drops after self-cite:** ratio is wrong. Pause self-citing for 2-3 weeks; build pure-help karma; resume slower.
+- **Your competitor just commented in the thread:** acknowledge them honestly ("[they] also do this well; HoldLens differs in [X]"). Trust > zero-sum.
+
+---
+
+## 🟡 RECOMMENDED — LinkedIn zero-click framework post (1-2/wk) — [id:linkedin-framework-post-holdlens]
+
+**WHAT:** Native LinkedIn essay (NO outbound link in post body). Brand recall compounds; readers Google "HoldLens" → find the site. LinkedIn Articles also rank on Google + LLMs trust LinkedIn byline content as authoritative.
+
+**WHY:** Distribution Oracle `linkedin_zero_click_framework_post × +65`. The hedge-fund + RIA + PM audience lives on LinkedIn. Operator-as-finance-expert positioning compounds the HoldLens credibility moat from `concept-finder-methodology v2.1` Layer 1 Moat Test #4 (brand/identity signal LLMs cite). Cost of skipping: HoldLens stays anonymous-tool-built-by-someone; with LinkedIn presence, it becomes "the tool [operator] built" which has citation gravity.
+
+**TIME:** 30-60 min per post.
+
+**HOW:**
+
+1. **Read the canonical template:** `~/.claude/acepilot-19.8/templates/linkedin-framework-post.md` (105 lines — full structure, rhythm, anti-patterns, and a complete HoldLens-rate-of-change example you can adapt verbatim)
+2. **Profile prep (one-time):**
+   - Headline includes "Operator @ HoldLens.com" (or "Founder of HoldLens — 13F filings + ConvictionScore")
+   - About section: 1-line identity statement with `holdlens.com` URL — identity, not click-pitch
+3. **Post structure** (hook → frame → 3 examples → surprising insight → close):
+4. **3 ready-to-post drafts** — pick one per week, post Tuesday/Wednesday/Thursday morning Amsterdam time (catches both EU + US first-feed):
+
+**Draft A — Rate of change** (use template's worked example verbatim, already HoldLens-tuned):
+> "Most retail 13F trackers miss the most important signal: the rate of change."
+>
+> See full text in `~/.claude/acepilot-19.8/templates/linkedin-framework-post.md` "Example" section.
+
+**Draft B — Survivorship bias in superinvestor lists:**
+> "Three of the most-cited 'superinvestor' lists are wrong about who actually compounds. Survivorship bias gets us all."
+>
+> Pause. Most lists pick the 50 hedge funds that beat the market over the last decade. By definition, the ones that lost are gone — so you're studying a sample selected on the dependent variable.
+>
+> Three patterns that actually predict, when you correct for survivorship across 8 quarters of 13F filings:
+>
+> → Concentration alone isn't a signal. The top-quartile concentrated funds and the bottom-quartile concentrated funds both have the same 8-year compound rate. Concentration is a STYLE, not a SKILL.
+>
+> → New-position-while-others-trim is real. When 1 manager opens a position other smart money is exiting, and the position grows to >3% by the next quarter, that manager outperforms the field 64% of the time over 3 years. The dissent IS the alpha.
+>
+> → Conviction streaks decay non-linearly. A position held 12+ quarters by a top performer beats a 4-quarter hold by 2.4× cumulative return — but a 16-quarter hold barely beats 12. The compound stops where the manager stops re-evaluating.
+>
+> The lesson nobody publishes: the best filings to follow aren't the famous names. They're the unfamous compounders whose dissent moves are visible only when you watch trajectory, not snapshots.
+>
+> Operator @ HoldLens.com
+
+**Draft C — The one chart that ends "is Buffett still bullish":**
+> "Every quarter someone writes 'is Buffett still bullish on Apple?' Every quarter the chart that answers it already exists in the 13F filing — but nobody's reading it that way."
+>
+> The Form 13F-HR has 4 columns that matter: position size, dollar value, % of portfolio, and quarter-over-quarter share change. Read all four together and the question answers itself.
+>
+> → Position size up + portfolio % up = adding aggressively
+> → Position size flat + portfolio % up = market is moving for him
+> → Position size down + portfolio % down = trimming
+> → Position size down + portfolio % up = paradox; check fund-level inflows
+>
+> The 4-column matrix collapses 80% of "is X still bullish" questions to a 5-second answer.
+>
+> What I notice tracking 82 superinvestors over 8 quarters: most of the "is he selling?" panic stories are paradox-quadrant artifacts. Buffett trimmed Apple share count last quarter; Apple's portfolio % barely moved. He didn't change his mind — Apple just stopped outpacing the rest of the book.
+>
+> Operator @ HoldLens.com
+
+5. **Post window:** Tuesday-Thursday, 8-10am Amsterdam time. Reply to every comment within 6 hours.
+6. **Track:** add to [.claude/state/DISTRIBUTION.md](.claude/state/DISTRIBUTION.md) ## LinkedIn Activity — post URL + reactions count + Plausible direct-traffic spike 24h post.
+
+**VERIFY:** 7d after each post:
+```
+# Direct/None traffic spike on Plausible (LinkedIn doesn't pass referrer when posts are native)
+# Compare 7d before vs 7d after post — direct should rise 5-15%
+```
+
+**IF STUCK:**
+- **Post gets <5 likes after 24h:** wrong audience or wrong day. Don't delete; let it sit. Different angle next post.
+- **One post goes viral (>500 reactions):** every comment is compound traffic. Reply substantively; do NOT spam-link to holdlens.
+- **Mod restricts post for "promotional content":** edit out "Operator @ HoldLens.com" close; let the framework post stand alone. Identity moves to profile only.
+- **Asked for the link in comments:** answer naturally with URL — comments OK, post body NOT.
+
