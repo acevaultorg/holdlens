@@ -57,12 +57,39 @@ const BREADCRUMB_LD = {
   ],
 };
 
+// Person schema — operator identity for E-E-A-T (Google Page Experience signal)
+// + LLM-citation 10-characteristic #7 (Credible) per concept-finder-methodology
+// v2.1 Layer 7. Without Person@id linkage from Article schema (already shipped
+// across /investor/[slug] + /learn/* pages), LLM crawlers can't tie content
+// authorship to a real human operator → citation gravity stays anonymous-tool
+// instead of named-expert. The Person@id is referenceable from any future
+// authored content via { author: { "@id": "https://holdlens.com/about/#person-founder" } }.
+const PERSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://holdlens.com/about/#person-founder",
+  name: "Paulo de Vries",
+  url: "https://holdlens.com/about/",
+  jobTitle: "Founder",
+  worksFor: { "@id": "https://holdlens.com/#organization" },
+  knowsAbout: [
+    "SEC 13F filings",
+    "SEC Form 4 insider transactions",
+    "Portfolio analysis",
+    "Hedge fund tracking",
+    "Conviction-weighted scoring methodology",
+    "Value investing",
+  ],
+  email: "hello@holdlens.com",
+};
+
 export default function AboutPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 prose-content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ABOUT_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_LD) }} />
 
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">About</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">Smart money, out loud.</h1>
