@@ -11,6 +11,7 @@ import TickerLogo from "@/components/TickerLogo";
 import InvestorConcentration from "@/components/InvestorConcentration";
 import FoundersNudge from "@/components/FoundersNudge";
 import TickerLink from "@/components/TickerLink";
+import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
 
@@ -164,6 +165,16 @@ export default function BuffettPage() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Warren Buffett</h1>
       </div>
       <p className="text-muted text-lg">Berkshire Hathaway · CEO since 1970 · Net worth: ~$140B</p>
+
+      {/* Pivot A YMYL compliance (2026-05-09) — every result page that
+          surfaces ConvictionScore numbers + smart-money positioning data
+          must inline the "Informational only / not investment advice /
+          45-day SEC lag / no predictive signal" disclosure (per
+          rules/google-policy-compliance.md v1.0). Matches placement on
+          dynamic-route /investor/[slug] pages. */}
+      <div className="mt-8">
+        <MethodologyDisclaimer />
+      </div>
 
       {(() => {
         const filing = LATEST_FILINGS["warren-buffett"];
