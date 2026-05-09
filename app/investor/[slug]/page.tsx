@@ -11,6 +11,7 @@ import SectorBreakdown from "@/components/SectorBreakdown";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import BrokerCta from "@/components/BrokerCta";
+import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
 import TickerLink from "@/components/TickerLink";
 import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
@@ -382,6 +383,17 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         }
         url={`https://holdlens.com/investor/${m.slug}/`}
       />
+
+      {/* Pivot A YMYL compliance (2026-05-09) — every result page that
+          surfaces ConvictionScore numbers + smart-money positioning data
+          must inline the "Informational only / not investment advice /
+          45-day SEC lag / no predictive signal" disclosure (per
+          rules/google-policy-compliance.md v1.0). Position above the
+          per-quarter filing snapshot so the framing is read before any
+          number is interpreted. */}
+      <div className="mt-8">
+        <MethodologyDisclaimer />
+      </div>
 
       <DailyMoveForInvestor slug={m.slug} />
 

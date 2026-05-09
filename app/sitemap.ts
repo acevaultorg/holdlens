@@ -133,6 +133,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    // Pivot A YMYL compliance (2026-05-09) — /partners is the canonical
+    // home for brokerage affiliate links, moved off result pages to
+    // satisfy Google Publisher Policies → Misrepresentation. Substantive
+    // editorial content + affiliate disclosure on a single dedicated
+    // page; the rest of the site links here with a small text link.
+    { url: `${base}/partners`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const sectorUrls: MetadataRoute.Sitemap = SECTORS.map((s) => ({
