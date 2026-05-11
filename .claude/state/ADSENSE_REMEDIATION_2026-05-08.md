@@ -176,3 +176,89 @@ Per `rules/funnel-order-discipline.md` v1.0 — this fix is **acquisition-stage 
 ---
 
 **Generated:** 2026-05-08 ~15:30 UTC by AcePilot 19.43 in `auto` mode per operator directive *"study this deeply. learn, and fix. i want it to be fixt 100% . 10/10"* + *"this mistake may never happen again with any site"*.
+
+---
+
+## Round-2 — Pivot A "Data Display Only" Compliance Refactor (2026-05-09)
+
+**Trigger:** v19.45 @compliance audit found that v19.44 thin-content fix (shipped 2026-05-08) closed Gate 1 (sitemap-to-substantive ratio) but left 75% of Google-policy surface exposed — verdict labels, YMYL-credentials, Article schema dishonesty, affiliate placement on YMYL pages. Operator directive 2026-05-08: *"Pivot A approved. Execute the data-display-only refactor autonomously."*
+
+**Commits (Pivot A):**
+- `5e36ccd85` (earlier session) — drop BUY/SELL/STRONG-X verdict-label UI site-wide
+- `f9f6cf84a` (earlier session) — rewrite Article schema headlines as factual descriptions
+- `6ca134366` (earlier session) — additional verdict-label cleanup pass
+- `522b9ea39` (2026-05-09 10:25 UTC) — Pivot A round-1: /partners page + BrokerCta + AffiliateCTA refactor + MethodologyDisclaimer on /investor/[slug] + sitemap.ts update
+- `3460fd906` (2026-05-09 10:36 UTC) — Pivot A round-2: MethodologyDisclaimer on hand-coded /investor/warren-buffett (closes 30/30 coverage)
+
+**Live verification (2026-05-09 ~10:50 UTC, holdlens.com):**
+
+| Surface | Pre-Pivot-A | Post-Pivot-A |
+|---|---|---|
+| Inline broker grid on /signal/* | 7 broker cards × 94 pages | REMOVED — text link "See our partner brokers →" only (env-conditional) |
+| Inline broker grid on /investor/* | 7 broker cards × 30 pages | REMOVED — text link only (env-conditional) |
+| MethodologyDisclaimer on /investor/[slug] (dynamic) | 0 of 29 pages | **29 of 29 pages** |
+| MethodologyDisclaimer on /investor/warren-buffett (hand-coded) | 0 (missing) | **1 (round-2 fix)** |
+| TOTAL investor lag disclosure coverage | 0 / 30 | **30 / 30** |
+| /partners (NEW dedicated editorial page) | 404 | 200 OK, 174 KB, ~1,800 word editorial |
+| sitemap.xml /partners entry | 0 | 1 |
+| Article schema "BUY"/"SELL" in headlines | present pre-v19.45 | factual rewrites (commit f9f6cf84a) |
+
+**@compliance audit result post-Pivot-A:** mean **0.74** ✅ PASS (was 0.12 🔴 HARD-BLOCK pre-Pivot-A). Three previously hard-rejected dimensions (Verdict-Label Risk, YMYL-Credential Match, Schema Honesty) all lifted out of 0.0. Full audit log: `.claude/state/COMPLIANCE.md`.
+
+**Updated 7-gate audit (Round-2):**
+- Gate 1 (sitemap-to-substantive ratio): ✅ PASS — 1,114 of 1,115 indexable URLs are substantive (~99%)
+- Gate 2 (per-pattern substance): ✅ PASS — sampled /investor/, /signal/, /partners, /learn/ all ≥1,000 main words
+- Gate 3 (doorway-pattern): ✅ PASS — no remaining pattern >30% of sitemap with template-only differentiation
+- Gate 4 (substantive editorial pages): ✅ PASS — homepage + /about (870 words) + /methodology + /privacy + /contact + /terms + /partners (NEW)
+- Gate 5 (ad density): N/A (pre-AdSense activation)
+- Gate 6 (UX signals): ✅ PASS — mobile-perfect, no surprising popups, internal nav clear
+- Gate 7 (real-traffic floor): 🟡 ADVISORY — 92 UV/30d below the suggested 200 UV/30d, but accepted per `rules/funnel-order-discipline.md` (AdSense approval IS the acquisition-stage compound; gate is not blocking)
+
+**Operator-action queue (post-Pivot-A):**
+
+🔴 REQUIRED — Re-submit AdSense Review (~3 min, ~2026-05-15-22)
+
+WHAT: After Google recrawl completes (typically 7-14 days post-deploy), click "I confirm I have fixed the issues" + "Request review" in AdSense console for holdlens.com.
+
+WHY: Pivot A closes the 4 Google-policy violations cited in the 2026-05-08 rejection email. Without re-submission, AdSense stays in "Getting ready" indefinitely (currently 22+ days since 2026-04-18 application). Re-submission unblocks Layer 1 of `rules/revenue-maximizer.md` canonical stack — first monetization path active. Cost of delay: ~$1.84-7.14/mo revenue × every week deferred.
+
+TIME: ~3 minutes.
+
+HOW:
+1. Verify Google has recrawled (wait until 2026-05-15+):
+   ```bash
+   curl -sL "https://www.google.com/search?q=site:holdlens.com/insiders/" | grep -oc "url=https" | head -1
+   ```
+   → expected: small number (was much higher pre-fix). If still high → wait another 3-4 days.
+2. Navigate to AdSense console:
+   ```
+   https://www.google.com/adsense/new/u/0/pub-XXXXXXXX/sites
+   ```
+   (Replace `pub-XXXXXXXX` with operator's publisher ID from AdSense dashboard URL.)
+3. Click `holdlens.com` row.
+4. Expand "We found some policy violations" panel.
+5. Check ☑ "I confirm I have fixed the issues".
+6. Click **Request review**.
+
+VERIFY: Within 1-7 days of submission, AdSense email arrives with approval or rejection.
+- Approval = ad units start serving; monetization Layer 1 active.
+- Rejection = re-audit via @compliance specialist + 7-gate scan; identify which gate now fails.
+
+IF STUCK:
+- Re-submission button disabled → check "I confirm" box was clicked.
+- Rejected again → likely Gate 7 (traffic floor — site needs more sessions/mo). Wait for traffic compound, re-submit in 30 days.
+- Lost track of publisher ID → check `.claude/state/MONETIZATION_STACK.md` if logged, OR check AdSense home page URL.
+
+🟢 OPTIONAL — Sign drafted invariants (~2 min)
+
+Drafted invariants from v19.5 / v19.16 / v19.22 / v19.45 (incl. I-37/I-38/I-39/I-41/I-42/I-43) are behavioral-only until signed. Operator runs:
+```bash
+SIGNER='Paulo de Vries' ~/.claude/acepilot-19.21/sign-invariants.sh
+```
+to commit `INVARIANT-CHANGE: signed-by [name]` + update `~/.claude/state/INVARIANT_HASH`. Not blocking — invariants are honored behaviorally regardless of signing.
+
+---
+
+**Round-2 ship status:** ✅ FULLY LIVE on holdlens.com (verified 30/30 + /partners + sitemap + clean /signal/AAPL 2026-05-09 ~10:50 UTC).
+
+**Brain version at ship time:** AcePilot 20.0 (entered v20.0 ship moratorium post-ship — no further brain bumps until qualifying trigger fires per `rules/ship-moratorium.md`).

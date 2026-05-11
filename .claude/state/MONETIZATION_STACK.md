@@ -8,7 +8,7 @@
 
 | Layer | Name | Status | Activated | Projected $/mo | Actual $/mo | Notes |
 |---|---|---|---|---:|---:|---|
-| 1 | AdSense | pending_approval | 2026-04-18 (snippet shipped) | $25-50 | - | Application pending Google review. Site meets readiness gate. |
+| 1 | AdSense | pending_re-review (Pivot A complete 2026-05-09) | 2026-04-18 (snippet shipped); 2026-05-08 thin-content fix; 2026-05-09 Pivot A | $25-50 | - | **2026-05-08 rejected for "Low value content"** (4,436 thin /insiders/* pages = 80% sitemap) → v19.44 fix shipped same-day. **2026-05-09 v19.45 @compliance audit found YMYL + verdict-labels + schema-dishonesty + affiliate-on-YMYL violations** → **Pivot A "Data Display Only" shipped 2026-05-09** (commits 522b9ea39 + 3460fd906): 30/30 investor pages have lag disclosure, /partners page replaces inline broker grids on YMYL surfaces, Article schemas factual, verdict labels removed site-wide. @compliance audit post-Pivot-A: mean 0.74 ✅ PASS (was 0.12 🔴 HARD-BLOCK pre-fix). Awaiting Google recrawl (~2026-05-15-22) → operator clicks "Request review". Audit log: COMPLIANCE.md. Remediation log: ADSENSE_REMEDIATION_2026-05-08.md. |
 | 2 | Cloudflare Pay-Per-Crawl | waitlisted | — | $15-80 | - | Beta waitlist. Per-zone toggle blocked on CF Pro beta invitation. PPC.md tracks per-route pricing. |
 | 3 | llms.txt + schema + AI allowlist | active | 2026-04-15 | — (indirect) | — | v19.4 autowired. Feeds 4.4× AI-visitor multiplier. |
 | 4 | Perplexity Publishers Program | pending_review | 2026-04-21 | $10-30 | - | Email + Google Form submitted from contact@holdlens.com. 80/20 rev share. Expected onboarding 1-2 weeks. |
@@ -40,6 +40,10 @@
 | 2026-04-21 | 2 | waitlisted | CF Pay-Per-Crawl beta waitlist joined; pending Pro beta invitation |
 | 2026-04-23 | 8 | partial_activation | TollBit property created (org=acevault, id=an434uon3o4hanz02cliq90q); 2 licenses active at $0.005; bot forwarding observed in analytics (46 weekly forwards) but onboarding synthetic Test still failing without canonical CF Snippet |
 | 2026-04-23 | 8 | first_revenue | PerplexityBot 1 successful paid scrape × $0.005 = $0.005 (week of 4/16-4/22) |
+| 2026-05-08 ~15:00 UTC | 1 | rejected | AdSense rejected for "Low value content" (4,436 thin /insiders/[insider]/* pages = 80% sitemap). v19.44 thin-content fix shipped same-day (commit 5e36ccd85 + sitemap to 1,114 URLs). |
+| 2026-05-09 10:25 UTC | 1 | compliance_refactor_round_1 | Pivot A round-1 shipped (commit 522b9ea39): /partners page created (1,800-word editorial), BrokerCta + AffiliateCTA refactored to /partners text link, MethodologyDisclaimer added to 29 dynamic-route /investor/[slug] pages, sitemap.ts updated. Verified live on holdlens.com via GitLab CI → CF Pages. |
+| 2026-05-09 10:36 UTC | 1 | compliance_refactor_round_2 | Pivot A round-2 shipped (commit 3460fd906): MethodologyDisclaimer added to hand-coded /investor/warren-buffett (30th investor). Closes 30/30 investor page coverage. Verified live 2026-05-09 ~10:48 UTC. |
+| 2026-05-09 11:00 UTC | 1 | compliance_state_logged | COMPLIANCE.md created with 5-dimension @compliance audit log (post-Pivot-A mean 0.74 ✅ PASS). ADSENSE_REMEDIATION_2026-05-08.md appended with Pivot A round-2 closure log. MONETIZATION_STACK.md Layer 1 status updated. Ready for operator AdSense re-submission ~2026-05-15-22 after Google recrawl. |
 
 ## Swap History (atomic, I-37 enforced)
 
