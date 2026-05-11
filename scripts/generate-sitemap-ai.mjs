@@ -32,6 +32,13 @@ const AI_PRIORITY_PATTERNS = [
   /^https:\/\/holdlens\.com\/api\/?$/,
   /^https:\/\/holdlens\.com\/for-ai\/?$/,
   /^https:\/\/holdlens\.com\/proof\/?$/,
+  // Pivot A YMYL compliance (2026-05-09) — /partners is the canonical
+  // affiliate-disclosure surface. AI-citation worthy because it answers
+  // common LLM queries ("which broker does HoldLens use?" / "HoldLens
+  // affiliate disclosure?") with substantive editorial (~1,800 words)
+  // + 7 broker profiles. Aleyda Solis 10-characteristic checklist:
+  // hits #4 Extractable + #7 Credible (FTC-compliant) + #8 Differentiated.
+  /^https:\/\/holdlens\.com\/partners\/?$/,
   // Investor pages — the dataset core
   /^https:\/\/holdlens\.com\/investor\/[a-z-]+\/?$/,
   // Signal pages — the per-ticker analysis
