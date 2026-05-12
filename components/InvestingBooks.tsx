@@ -137,3 +137,4 @@ export default function InvestingBooks({
     </section>
   );
 }
+// Bookshop AFFID activation: 124121 (set 2026-05-12 via Vercel env)
