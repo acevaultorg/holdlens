@@ -33,6 +33,10 @@ build:
     - npm run build
     - test -d out
     - test -f out/investor/michael-burry/index.html
+    # Verify postbuild generators produced their artifacts (sitemap, llms) + Pivot A compliance holds.
+    # HIGH RISK during AdSense review window (submitted 2026-05-08): stale-deploy clobber would surface
+    # pre-Pivot-A verdict labels to Google reviewer and flip the review to rejection.
+    - node scripts/predeploy-guard.mjs
   artifacts:
     paths:
       - out/
@@ -53,6 +57,8 @@ deploy:
     - test -d out
     - test -n "$CLOUDFLARE_API_TOKEN"
     - test -n "$CLOUDFLARE_ACCOUNT_ID"
+    # Defensive re-run of guard at deploy stage — catches stale artifacts between build + deploy.
+    - node scripts/predeploy-guard.mjs
     - wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
   only:
     - main
