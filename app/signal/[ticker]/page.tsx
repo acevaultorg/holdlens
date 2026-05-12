@@ -745,9 +745,9 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           path={`/signal/${t.symbol}`}
           tweet={
             verdict === "BUY"
-              ? `🟢 BUY signal on ${t.symbol} — score ${formatSignedScore(signedScore)} on a −100..+100 scale. Full dossier on HoldLens:`
+              ? `🟢 Net buying on ${t.symbol} — ConvictionScore ${formatSignedScore(signedScore)} on a −100..+100 scale. Full dossier on HoldLens:`
               : verdict === "SELL"
-              ? `🔴 SELL signal on ${t.symbol} — score ${formatSignedScore(signedScore)} on a −100..+100 scale. Full dossier on HoldLens:`
+              ? `🔴 Net selling on ${t.symbol} — ConvictionScore ${formatSignedScore(signedScore)} on a −100..+100 scale. Full dossier on HoldLens:`
               : `What ${MANAGERS.length} of the best portfolio managers in the world are doing on ${t.symbol} — full dossier on HoldLens:`
           }
           label={`Share the ${t.symbol} signal`}

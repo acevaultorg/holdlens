@@ -17,7 +17,11 @@ export default function TrendBadge({ ticker, size = "sm" }: { ticker: string; si
 
   const isBuy = buyStreak >= sellStreak;
   const streak = isBuy ? buyStreak : sellStreak;
-  const label = isBuy ? `${streak}Q BUY` : `${streak}Q SELL`;
+  // Pivot A round-3: descriptive labels — "Q BUY"/"Q SELL" abbreviations
+  // could read as verdict labels. Replaced with "Q ACCUM"/"Q TRIM" (short
+  // accumulation/trimming descriptors) which describe the observed pattern,
+  // not a recommendation.
+  const label = isBuy ? `${streak}Q ACCUM` : `${streak}Q TRIM`;
   const color = isBuy
     ? "text-emerald-400 bg-emerald-400/10 border-emerald-400/30"
     : "text-rose-400 bg-rose-400/10 border-rose-400/30";
