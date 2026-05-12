@@ -16,7 +16,7 @@ const PRIVACY_LD = {
   name: "Privacy Policy",
   description: "HoldLens Privacy Policy — data collection, third-party cookies, advertising + analytics disclosure, user rights.",
   datePublished: "2026-04-14",
-  dateModified: "2026-04-14",
+  dateModified: "2026-05-12",
   inLanguage: "en-US",
   isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
   publisher: { "@type": "Organization", "@id": "https://holdlens.com/#organization", name: "HoldLens" },
@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PRIVACY_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Legal</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Privacy Policy</h1>
-      <p className="text-sm text-dim mb-10">Last updated: 2026-04-14</p>
+      <p className="text-sm text-dim mb-10">Last updated: 2026-05-12</p>
 
       <div className="space-y-6 text-text leading-relaxed">
         <p className="text-muted">
@@ -224,6 +224,60 @@ export default function PrivacyPolicyPage() {
             hello@holdlens.com
           </a>
           . We will respond within 30 days.
+        </p>
+
+        <h3 className="text-xl font-semibold mt-6 mb-2">EU / EEA / UK users — GDPR rights</h3>
+        <p className="text-muted">
+          Under the General Data Protection Regulation (GDPR) and the UK GDPR, if you are located in the European
+          Economic Area, the United Kingdom, or Switzerland, you have the following rights regarding your personal
+          data:
+        </p>
+        <ul className="text-muted space-y-2 list-disc list-inside">
+          <li><strong className="text-text">Right of access</strong> (Article 15) — request a copy of the personal data we hold about you.</li>
+          <li><strong className="text-text">Right to rectification</strong> (Article 16) — correct inaccurate or incomplete data.</li>
+          <li><strong className="text-text">Right to erasure</strong> (&ldquo;right to be forgotten&rdquo;, Article 17) — request deletion of your personal data.</li>
+          <li><strong className="text-text">Right to restrict processing</strong> (Article 18).</li>
+          <li><strong className="text-text">Right to data portability</strong> (Article 20) — receive your data in a machine-readable format.</li>
+          <li><strong className="text-text">Right to object</strong> (Article 21) — including objecting to processing for direct marketing or personalised advertising at any time.</li>
+          <li><strong className="text-text">Right to withdraw consent</strong> — where processing is based on consent (Article 7), you may withdraw it without affecting prior lawful processing.</li>
+          <li><strong className="text-text">Right to lodge a complaint</strong> with a supervisory authority (e.g. the Dutch Autoriteit Persoonsgegevens for NL residents, or your local Data Protection Authority).</li>
+        </ul>
+        <p className="text-muted">
+          For personalised advertising, HoldLens uses a Google-certified Consent Management Platform (CMP) compliant with the
+          IAB Transparency &amp; Consent Framework v2.2. You may withdraw or adjust your advertising consent at any time via
+          the cookie-consent banner on this site.
+        </p>
+
+        <h3 className="text-xl font-semibold mt-6 mb-2">California residents — CCPA / CPRA rights</h3>
+        <p className="text-muted">
+          Under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA), if you
+          are a California resident you have the following rights:
+        </p>
+        <ul className="text-muted space-y-2 list-disc list-inside">
+          <li><strong className="text-text">Right to know</strong> what categories of personal information we collect, sources, purposes, and third parties with whom we share it.</li>
+          <li><strong className="text-text">Right to access</strong> the specific pieces of personal information we hold about you.</li>
+          <li><strong className="text-text">Right to delete</strong> your personal information (subject to legal exceptions).</li>
+          <li><strong className="text-text">Right to correct</strong> inaccurate personal information.</li>
+          <li><strong className="text-text">Right to opt out of sale or sharing</strong> of personal information. HoldLens does not sell personal information for money. The use of cookies for personalised advertising (Google AdSense) may constitute &ldquo;sharing&rdquo; under CPRA — you may opt out via the cookie-consent banner or by emailing{" "}
+            <a href="mailto:hello@holdlens.com" className="text-brand underline">hello@holdlens.com</a>{" "}with subject line &ldquo;Do Not Sell or Share My Personal Information&rdquo;.</li>
+          <li><strong className="text-text">Right to limit use of sensitive personal information.</strong></li>
+          <li><strong className="text-text">Right to non-discrimination</strong> — we will not deny service or charge different prices because you exercised your rights.</li>
+        </ul>
+
+        <h3 className="text-xl font-semibold mt-6 mb-2">Opt-out of personalised advertising</h3>
+        <p className="text-muted">
+          You may opt out of Google&rsquo;s use of cookies for personalised advertising by visiting{" "}
+          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-brand underline">
+            Google Ads Settings
+          </a>
+          . You may also opt out of third-party vendor use of cookies for personalised advertising by visiting{" "}
+          <a href="https://www.aboutads.info/" target="_blank" rel="noopener noreferrer" className="text-brand underline">
+            aboutads.info
+          </a>{" "}(US) or{" "}
+          <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer" className="text-brand underline">
+            youronlinechoices.eu
+          </a>{" "}(EU). On this site, you can also adjust or withdraw advertising consent at any time via the cookie-consent
+          banner. Even if you opt out, you may still see ads — they will simply not be personalised based on your interests.
         </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Children&rsquo;s privacy</h2>
