@@ -161,15 +161,15 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
   // signal rather than a generic title. Zero page-weight cost — one inline
   // <script type="application/ld+json"> tag per page.
   const signalUrl = `https://holdlens.com/signal/${t.symbol}`;
-  // 2026-05-08 Google policy compliance: Article schema headline must be
-  // factual, not recommendation-encoded. Avoid BUY/SELL in JSON-LD headline
-  // per rules/google-policy-compliance.md (Structured Data Abuse prevention).
-  const headline =
-    verdict === "BUY"
-      ? `${t.symbol} ConvictionScore ${formatSignedScore(signedScore)} — superinvestor accumulation pattern`
-      : verdict === "SELL"
-      ? `${t.symbol} ConvictionScore ${formatSignedScore(signedScore)} — superinvestor selling pattern`
-      : `${t.symbol} signal — what ${t.ownerCount} tracked superinvestors are doing on ${t.name}`;
+  // 2026-05-12 Pivot A schema hardening (defensive vs Google recrawl review):
+  // Article schema headline is now PURE FACTUAL — drops "accumulation pattern"
+  // / "selling pattern" / "what X superinvestors are doing" language that a
+  // Google reviewer could read as recommendation-encoded under YMYL framing.
+  // Headline = ticker + dossier-type + canonical-quarter only. ConvictionScore
+  // numeric is preserved in description + page body where it functions as
+  // factual data; removed from the schema-headline surface entirely.
+  // Per rules/google-policy-compliance.md Schema Honesty dimension (I-43).
+  const headline = `${t.symbol} — Superinvestor 13F Holdings Summary (${QUARTER_LABELS[LATEST_QUARTER]})`;
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
