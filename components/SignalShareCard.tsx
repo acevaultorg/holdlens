@@ -20,6 +20,27 @@ import { useEffect, useRef, useState } from "react";
 
 export type SignalShareVerdict = "BUY" | "SELL" | "NEUTRAL";
 
+// Pivot A round-3 (2026-05-12, per v19.45 google-policy-compliance spec):
+// SignalShareVerdict is kept as the internal direction enum (preserved for
+// color-branching + share analytics). UI-visible labels supplied by the maps
+// below describe OBSERVED OWNERSHIP CHANGES, not RECOMMENDATIONS — HoldLens
+// is not a registered investment advisor.
+const VERDICT_DISPLAY: Record<SignalShareVerdict, string> = {
+  BUY: "Net buying",
+  SELL: "Net selling",
+  NEUTRAL: "Mixed signal",
+};
+const VERDICT_CANVAS: Record<SignalShareVerdict, string> = {
+  BUY: "Buying",   // shorter; fits 96px font on share-card canvas
+  SELL: "Selling",
+  NEUTRAL: "Mixed",
+};
+const VERDICT_TWEET_PREFIX: Record<SignalShareVerdict, string> = {
+  BUY: "🟢 Net buying",
+  SELL: "🔴 Net selling",
+  NEUTRAL: "⚪ Mixed signal",
+};
+
 type Props = {
   ticker: string;
   name: string;
@@ -127,10 +148,12 @@ export default function SignalShareCard({
     ctx.font = '14px -apple-system, "SF Pro Display", system-ui, sans-serif';
     ctx.fillText("HOLDLENS VERDICT", rightX, 200);
 
-    // The big verdict word (BUY / SELL / NEUTRAL)
+    // The big descriptive label (Buying / Selling / Mixed) — Pivot A round-3:
+    // replaced bare BUY/SELL verdict words with neutral descriptive labels
+    // per v19.45 google-policy-compliance spec.
     ctx.fillStyle = accent;
     ctx.font = 'bold 96px -apple-system, "SF Pro Display", system-ui, sans-serif';
-    ctx.fillText(verdict, rightX, 290);
+    ctx.fillText(VERDICT_CANVAS[verdict], rightX, 290);
 
     // Signed score (prominent)
     ctx.fillStyle = "#9ca3af";
@@ -292,7 +315,7 @@ export default function SignalShareCard({
         Share this signal
       </div>
       <h3 className="text-xl font-bold mb-1">
-        {ticker} · {verdict} · a card worth sharing
+        {ticker} · {VERDICT_DISPLAY[verdict]} · a card worth sharing
       </h3>
       <p className="text-sm text-muted mb-5">
         One-click PNG of the {ticker} verdict + score, a pre-filled post, and a direct link
@@ -306,7 +329,7 @@ export default function SignalShareCard({
           className="w-full h-auto block"
           style={{ aspectRatio: "1200/630" }}
           role="img"
-          aria-label={`HoldLens ${verdict} signal card for ${ticker} (${name}). Unified ConvictionScore ${formatSignedScore(score)} on a −100 to +100 scale.`}
+          aria-label={`HoldLens share card for ${ticker} (${name}) — ${VERDICT_DISPLAY[verdict]}. Unified ConvictionScore ${formatSignedScore(score)} on a −100 to +100 scale.`}
         />
       </div>
 
@@ -406,14 +429,14 @@ function composeTweet({
       topStreak >= 2
         ? `\n\n${topStreak}+ consecutive quarters of buying from the best portfolio managers in the world.`
         : "";
-    return `🟢 BUY on ${ticker} — score ${scoreStr} / +100 (${convictionLabel})\n\n${buyerCount} tracked manager${buyerCount === 1 ? "" : "s"} buying.${streakLine}\n\nFull dossier — free, no signup:\n${url}`;
+    return `${VERDICT_TWEET_PREFIX.BUY} on ${ticker} — ConvictionScore ${scoreStr} / +100 (${convictionLabel})\n\n${buyerCount} tracked manager${buyerCount === 1 ? "" : "s"} accumulating.${streakLine}\n\nFull dossier — free, no signup:\n${url}`;
   }
   if (verdict === "SELL") {
     const streakLine =
       topStreak >= 2
         ? `\n\n${topStreak}+ consecutive quarters of selling from the best portfolio managers in the world.`
         : "";
-    return `🔴 SELL on ${ticker} — score ${scoreStr} / −100 (${convictionLabel})\n\n${sellerCount} tracked manager${sellerCount === 1 ? "" : "s"} selling.${streakLine}\n\nFull dossier — free, no signup:\n${url}`;
+    return `${VERDICT_TWEET_PREFIX.SELL} on ${ticker} — ConvictionScore ${scoreStr} / −100 (${convictionLabel})\n\n${sellerCount} tracked manager${sellerCount === 1 ? "" : "s"} reducing positions.${streakLine}\n\nFull dossier — free, no signup:\n${url}`;
   }
-  return `${ticker} — HoldLens verdict NEUTRAL · score ${scoreStr}\n\nMixed or absent signals from the best portfolio managers in the world. Full dossier:\n${url}`;
+  return `${ticker} — ConvictionScore ${scoreStr} · ${VERDICT_TWEET_PREFIX.NEUTRAL}\n\nMixed or absent signals from the best portfolio managers in the world. Full dossier:\n${url}`;
 }

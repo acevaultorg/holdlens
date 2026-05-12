@@ -144,8 +144,10 @@ export default function AiThesisCard({
           </div>
           <div className="text-sm text-muted">
             Claude Haiku synthesis of{" "}
-            <span className={`font-semibold ${verdictColor}`}>{verdict}</span> positioning from{" "}
-            {ownerCount} institutional filers
+            <span className={`font-semibold ${verdictColor}`}>
+              {verdict === "BUY" ? "net buying" : verdict === "SELL" ? "net selling" : "mixed"}
+            </span>{" "}
+            positioning from {ownerCount} institutional filers
           </div>
         </div>
         <div className="flex items-center gap-2 text-[10px] text-dim">

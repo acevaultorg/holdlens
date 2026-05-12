@@ -141,8 +141,17 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
   const buyRating = buy ? ratingLabel(buy.score) : null;
   const sellRating = sell ? ratingLabel(sell.score) : null;
 
-  // Verdict from the unified ConvictionScore — single signed −100..+100 scale
+  // Verdict from the unified ConvictionScore — single signed −100..+100 scale.
+  // `verdict` is kept as internal direction enum (used for colors + branching);
+  // VERDICT_DISPLAY supplies the UI-visible descriptive label per Pivot A round-3
+  // (2026-05-12). v19.45 spec: drop all BUY/SELL verdict-style labels site-wide.
+  // Display strings describe OBSERVED OWNERSHIP CHANGES, not RECOMMENDATIONS.
   const verdict: "BUY" | "SELL" | "NEUTRAL" = net?.direction ?? "NEUTRAL";
+  const VERDICT_DISPLAY: Record<"BUY" | "SELL" | "NEUTRAL", string> = {
+    BUY: "Net buying",
+    SELL: "Net selling",
+    NEUTRAL: "Mixed signal",
+  };
   const signedScore = net?.score ?? 0;
 
   // JSON-LD structured data — one Article schema for the dossier itself
@@ -184,7 +193,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
       tickerSymbol: t.symbol,
       ...(t.sector ? { industry: t.sector } : {}),
     },
-    keywords: [t.symbol, t.name, "13F", "superinvestors", "smart money", "stock signal", verdict].join(", "),
+    keywords: [t.symbol, t.name, "13F", "superinvestors", "smart money", "institutional positioning", "ConvictionScore"].join(", "),
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -332,7 +341,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
               HoldLens verdict · single −100..+100 scale
             </div>
             <div className="flex items-baseline gap-4 mt-2 flex-wrap">
-              <div className="text-4xl md:text-5xl font-bold tracking-tight opacity-90">{verdict}</div>
+              <div className="text-4xl md:text-5xl font-bold tracking-tight opacity-90">{VERDICT_DISPLAY[verdict]}</div>
               <div className="text-6xl md:text-7xl font-black tabular-nums tracking-tighter leading-none">
                 {formatSignedScore(signedScore)}
               </div>
@@ -369,7 +378,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
                 <>
                   <span className="font-semibold">{sell.sellerCount} tracked manager{sell.sellerCount > 1 ? "s" : ""}</span>{" "}
                   selling.{" "}
-                  {sellRating && <span className="font-semibold uppercase">{sellRating.label} sell signal.</span>}
+                  {sellRating && <span className="font-semibold uppercase">{sellRating.label} selling pattern.</span>}
                 </>
               )}
               {verdict === "NEUTRAL" && "Mixed or absent signals. Smart money is not decisively moving."}
