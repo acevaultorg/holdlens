@@ -601,6 +601,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a href="/changelog" className="hover:text-text transition">Changelog</a>
                 <a href="/glossary" className="hover:text-text transition">Glossary</a>
                 <a href="/disclaimer" className="hover:text-text transition">Disclaimer</a>
+                {/* Pivot A YMYL compliance (2026-05-09) — affiliate disclosure
+                    canonical surface. FTC rule + Google Publisher Policies
+                    favor visible footer link to affiliate-relationship page
+                    from every page. */}
+                <a href="/partners" className="hover:text-text transition">Partners</a>
                 <a href="/privacy" className="hover:text-text transition">Privacy</a>
                 <a href="/terms" className="hover:text-text transition">Terms</a>
               </div>
