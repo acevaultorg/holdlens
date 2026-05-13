@@ -112,6 +112,14 @@ export default function What13FPage() {
           Raw filings: <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F" className="text-brand underline">SEC EDGAR</a>.
           Painful to read. We do it for you on <a href="/" className="text-brand underline">HoldLens</a>.
         </p>
+        <p className="text-muted mt-3">
+          Want the pure-reference encyclopedic entry — every 13F-HR / 13F-NT / 13F-HR/A variant
+          definition with the SEC regulatory citation? Our sister site catalogs it:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>{" "}
+          (filing-discovery reference; this page focuses on what 13Fs mean for tracked superinvestors).
+        </p>
 
         <InvestingBooks
           heading="Foundational reading on securities analysis"

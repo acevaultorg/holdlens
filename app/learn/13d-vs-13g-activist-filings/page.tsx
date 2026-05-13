@@ -228,6 +228,16 @@ export default function Article() {
         full comparison of all three filings, or browse the{" "}
         <a href="/activist">live activist tracker</a>.
       </p>
+      <p>
+        For the pure-reference encyclopedic entry — every 13D / 13G / 13D-A
+        / 13G-A variant with SEC regulatory citation, broader than the
+        activist lens — see our sister site:{" "}
+        <a href="https://secfilingdex.com/learn/13d-vs-13g/" rel="noopener">
+          secfilingdex.com/learn/13d-vs-13g
+        </a>
+        . HoldLens applies the activist-vs-passive lens; SecFilingDex
+        catalogs all 13D/13G filings across all filers.
+      </p>
 
       <hr />
       <p className="text-xs text-dim">

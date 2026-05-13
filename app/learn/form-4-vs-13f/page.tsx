@@ -397,6 +397,22 @@ export default function Form4vs13FPage() {
           Used to find new questions to ask, both reward careful reading.
         </p>
 
+        <h2 className="text-2xl font-bold mt-12 mb-4">Reference catalog (each form, all filers)</h2>
+        <p>
+          This page is the analytical comparison. For the pure-reference
+          encyclopedic entry on each form — every variant, every SEC regulatory
+          citation, every filer in the EDGAR corpus — see our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="underline hover:text-text" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>{" "}
+          and{" "}
+          <a href="https://secfilingdex.com/learn/form-4/" className="underline hover:text-text" rel="noopener">
+            secfilingdex.com/learn/form-4
+          </a>
+          . HoldLens narrows to tracked superinvestors; SecFilingDex catalogs
+          all filings across all filers.
+        </p>
+
         <ShareStrip
           title="Form 4 vs 13F — insider trades vs institutional portfolios"
           url="https://holdlens.com/learn/form-4-vs-13f"
