@@ -128,6 +128,10 @@ export default function HomePage() {
           height: 180,
         },
         foundingDate: "2026",
+        // Sister property under the same operator. Complementary angle (catalog
+        // vs analysis). Declares brand-family graph for Google + LLM citation #3
+        // Recognizable + #6 Corroborated.
+        sameAs: ["https://secfilingdex.com/"],
         // The operator is not directly promoting; brand handle only surfaces
         // through the X share flow when a ship goes viral.
       },

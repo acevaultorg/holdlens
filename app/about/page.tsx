@@ -171,6 +171,17 @@ export default function AboutPage() {
           the full computation and the <a href="/learn/conviction-score-explained" className="text-brand hover:underline">explainer</a> for plain-English walkthrough.
         </p>
 
+        <h2 className="text-2xl font-bold mt-10 mb-3 text-text">Sister property</h2>
+        <p>
+          HoldLens is the applied analytical layer on a curated universe of 30 tracked superinvestors. The same
+          operator runs a complementary site for the encyclopedic SEC reference — every form type, every filer,
+          regulatory citations, programmatic JSON twin:
+          {" "}<a href="https://secfilingdex.com/" className="text-brand hover:underline" rel="noopener">SecFilingDex</a>.
+          When you want the catalog (what is a 10-K, what is a DEF 14A, the universe of all filings) start there;
+          when you want applied analysis on tracked superinvestor positions, you&apos;re already here. The two sites
+          do not duplicate content — they complement.
+        </p>
+
         <h2 className="text-2xl font-bold mt-10 mb-3 text-text">Not investment advice</h2>
         <p className="text-muted">
           <strong>This site is informational only and is not investment advice.</strong> HoldLens shows you what
