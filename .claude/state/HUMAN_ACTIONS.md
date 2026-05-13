@@ -1,68 +1,101 @@
 # HoldLens — Human actions queue
 
-## 🟡 👨🏻‍🔧 RECOMMENDED — Configure Supabase to activate auth (v0.58)
+## 🟡 👨🏻‍🔧 RECOMMENDED — Activate Supabase auth (operator's org already created)
 
-WHAT: Brain shipped auth scaffolding (signup/login/account routes +
-navbar Sign-in pill + AccountClient with watchlist summary). All UI
-is live and renders gracefully — but actual account creation needs
-a Supabase project (free tier: 500MB DB, 50k MAU — plenty for v0).
-Until configured, the auth pages show "Coming soon" panels and the
-navbar shows "Sign in" → /signup/ which displays the same panel.
+**Operator has created the Supabase org** at https://supabase.com/dashboard/org/vrijvcdgxuvelftxyaae. Brain attempted to extract project URL + anon key via Chrome MCP but Supabase dashboard cookies are blocked from automation (security guard). Operator must do the 3-click extraction below.
 
-WHY: ChatGPT review flagged "thin moat" + operator directive
-"i also believe it must be possible for users to log in and make
-a account". Auth foundation enables:
-  - Cross-device watchlist sync (currently localStorage-only)
-  - Email alerts on 13F filings + watchlist changes (5 tickers free, unlimited Pro)
-  - Subscription management (Pro €9 founders → Power €49 path)
-  - Per-AAERA flywheel: account = retention compound (D7/D30 returns)
-Cost of skipping: watchlist stays device-local; no retention compound
-from cross-device sync; can't ship email alerts.
+WHAT: Operator's Supabase org exists. Brain needs the operator to:
+(a) Create a HoldLens project inside the org (if none exists yet)
+(b) Copy 2 string values from Settings → API
+(c) Paste those into Vercel/CF env vars
+(d) Run one SQL migration to create users + watchlists + alert_preferences tables
 
-TIME: ~5 minutes (one-time setup).
+WHY: Activates account creation + cross-device watchlist sync + alert
+preferences + Pro/Power subscription tracking. All UI scaffolding is
+already live (`/signup/`, `/login/`, `/account/`); they currently show
+"Coming soon" panels until env vars + DB schema land. Brain-doable
+everything EXCEPT the 3 dashboard clicks (operator session cookies
+required) + the SQL paste.
+
+TIME: ~5 minutes total.
 
 HOW:
-  1. Open https://supabase.com in a browser
-  2. Sign in (or sign up — GitHub OAuth works)
-  3. Click "New project"
-       - Name: HoldLens (or whatever)
-       - Database password: generate + save somewhere safe
-       - Region: closest to your users (Europe West if EU-focused)
+  1. **Open operator's Supabase org**:
+     [https://supabase.com/dashboard/org/vrijvcdgxuvelftxyaae](https://supabase.com/dashboard/org/vrijvcdgxuvelftxyaae)
+     → expected: see "Projects" tab. If no project exists, click "+ New project":
+       - Name: `holdlens` (or anything)
+       - Password: click "Generate" + save somewhere (1Password / iCloud
+         Keychain). You only need this if you'll connect via psql later.
+       - Region: closest to most users — EU-West (Frankfurt) for fleet-EU,
+         US-East-1 for fleet-US. HoldLens audience is global retail
+         investors; EU-West is fine.
        - Plan: Free
-  4. Wait ~2 min for provisioning
-  5. Once ready: Settings → API → copy two values:
-       - "Project URL" (looks like: https://abcdefgh.supabase.co)
-       - "anon" / "public" key (NOT service_role — that's secret)
-  6. Paste both into Vercel/Cloudflare Pages env vars OR your local
-     `.env.local`:
-     ```
-     NEXT_PUBLIC_SUPABASE_URL=https://abcdefgh.supabase.co
-     NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbG...
-     ```
-  7. Redeploy (env vars are NEXT_PUBLIC_ → inlined at build, requires
-     a fresh build)
+       Click "Create new project". Wait ~2 min for green "Ready" status.
+
+  2. **Copy 2 values from Settings → API**:
+     In the new project sidebar: Project Settings (gear icon) → API
+       - "Project URL" → copy (looks like `https://abcdef.supabase.co`)
+       - "anon" / "public" key → copy (looks like `eyJhbG...` — NOT
+         service_role; that's the secret one)
+     Open ONE file in any text editor and paste both for clarity:
+       ```
+       NEXT_PUBLIC_SUPABASE_URL=https://abcdef.supabase.co
+       NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbG...
+       ```
+
+  3. **Set env vars on Vercel (where holdlens.com auto-deploys from)**:
+     Vercel dashboard → holdlens project → Settings → Environment Variables
+     Add BOTH variables for ALL environments (Production + Preview + Development).
+     → expected: 2 new rows in env table.
+
+     Alternative (if operator prefers CF Pages instead): Cloudflare → Pages
+     → holdlens project → Settings → Environment variables → add same 2.
+
+  4. **Run SQL migration**:
+     Supabase dashboard → SQL Editor → "+ New query"
+     Open this file from your terminal:
+       ```bash
+       cat "/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens/supabase/migrations/0001_holdlens_auth_v0_58.sql"
+       ```
+     Copy the whole output, paste into SQL Editor, click "Run" (or Cmd+Enter).
+     → expected: "Success. No rows returned." + 4 tables created (profiles,
+       watchlists, alert_preferences, subscriptions) + 4 triggers + RLS policies.
+
+  5. **Trigger a redeploy** (env vars only take effect on fresh build):
+     - If on Vercel: any commit triggers it OR Settings → Deployments →
+       three-dot menu on latest → Redeploy → confirm
+     - If on CF Pages: same — push any commit OR retry wrangler
 
 VERIFY:
   ```bash
   curl -sL https://holdlens.com/signup/ | grep -c "Coming soon"
   ```
-  → expected: 0 (was 1 pre-config; now form renders)
+  → expected: 0 (was 1 pre-config). Form should render with email +
+    magic-link/password tabs.
+
+  Also: visit https://holdlens.com/signup/ in a browser, enter your email,
+  click "Send magic link", check your inbox for the sign-in email.
 
 IF STUCK:
-  - Free tier suddenly says "paused"? Visit dashboard, click "restore"
-    (Supabase auto-pauses inactive free projects after 7d; instant restore)
-  - Magic-link emails not arriving? Check Supabase Auth → Email Templates
-    — default config works; spam folder is the usual culprit
-  - Want password-only (no magic links)? Auth → Providers → Email →
-    disable "Confirm email" if you want instant signup (else users
-    must verify before logging in)
-  - Need DB schema for users + watchlists + alert_preferences?
-    Brain ships a follow-up commit with the SQL migration once you
-    confirm Supabase is up.
+  - Magic-link emails not arriving? Check spam. If still missing,
+    Supabase Auth → Email Templates → "Magic Link" — make sure it's
+    enabled. Default config works.
+  - Want password-only (no email confirmation)? Auth → Providers →
+    Email → disable "Confirm email" (users can log in immediately
+    after signup vs needing to click an email confirmation link).
+  - SQL editor errors "permission denied"? You're using the wrong DB
+    user; switch to "postgres" role in the SQL editor dropdown.
+  - Free tier paused after 7d inactivity? Dashboard → "Restore"
+    button. Instant. Stays restored as long as you have any traffic.
 
-Operator can ALSO defer this if accounts aren't a priority right now —
-the rest of the site (watchlist localStorage, Pro €9 Stripe Payment Link,
-all 7158 pages) works fine without it.
+After step 4 + 5: the existing `/signup/`, `/login/`, `/account/` routes
+render real auth forms. Operator gets first signup email. Cross-device
+watchlist sync starts working automatically (existing localStorage
+watchlist migrates on next save).
+
+Operator can defer this — site works fine without it (watchlist via
+localStorage, all 7158 pages render, Stripe Pro checkout still works).
+The compound value is just retention + email-alerts later.
 
 ---
 
