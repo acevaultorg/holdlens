@@ -68,8 +68,30 @@ export type InsiderTx = {
 // JSON shape matches InsiderTx (with v0.2 EDGAR fields populated). On a fresh
 // repo without an EDGAR run, this resolves to []. Cast asserts shape; the
 // fetcher script writes only validated rows.
+//
+// Defensive sanity filter (v0.57, 2026-05-13) — Form 4 ingestion has known
+// parser-edge-case bugs that produce implausible rows. Known instances:
+//   - CRWV 55 rows with pricePerShare ≈ $10.9M/share + value ≈ $5.85T each
+//     (totals to ~$56.5T fake "Net insider flow" on homepage — the bug
+//     ChatGPT flagged 2026-05-13).
+//   - WEST 7 rows with pricePerShare > $10k/share.
+// Until the parser is fixed (scripts/fetch-edgar-form4.ts), drop rows where:
+//   - pricePerShare > $10,000 (no non-BRK.A common stock trades above $10k/share)
+//   - single-transaction value > $5B (only buyout-class events hit this; not
+//     normal insider transactions; safer to drop than display a $5T sum)
+// Zero-value rows are kept (legit option exercises / gifts that don't have a
+// cash component but do count as insider activity for InsiderScore + cluster
+// signal purposes).
 import edgarRaw from "../data/edgar-form4.json";
-export const EDGAR_INSIDER_TX: InsiderTx[] = (edgarRaw as InsiderTx[]) ?? [];
+const PRICE_SANITY_MAX = 10_000;    // USD per share
+const VALUE_SANITY_MAX = 5_000_000_000;  // $5B per single insider transaction
+function isPlausibleInsiderTx(tx: InsiderTx): boolean {
+  if (tx.pricePerShare && tx.pricePerShare > PRICE_SANITY_MAX) return false;
+  if (tx.value && tx.value > VALUE_SANITY_MAX) return false;
+  return true;
+}
+export const EDGAR_INSIDER_TX: InsiderTx[] =
+  ((edgarRaw as InsiderTx[]) ?? []).filter(isPlausibleInsiderTx);
 
 export const CURATED_INSIDER_TX: InsiderTx[] = [
   // META
