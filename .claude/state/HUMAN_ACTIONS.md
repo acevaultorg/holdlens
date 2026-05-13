@@ -1197,7 +1197,38 @@ curl -sI https://holdlens.com | grep -iE "^server:"  # confirm CF still up
 
 ---
 
-## 🔴 👨🏻‍🔧 REQUIRED — Complete CF Pages deploy for v0.56 (Buffett-bundle commit `145301e2f`)
+## ✅ RESOLVED 2026-05-13 01:35 UTC — v0.56 fully live on CF Pages (wrangler EPIPE was misleading)
+
+**Discovery on re-verify:** wrangler reported EPIPE 5× this session but
+the deploys actually succeeded silently each time. Per `rules/deploy-
+truth.md` — verify with fingerprint, don't trust client-side errors.
+
+**Final verification 2026-05-13 01:35 UTC:**
+- `/fund-overlap/` hub → 200
+- Random 10 fund-overlap pair pages → 10/10 200
+- Random 10 investor pages (including Buffett) → 10/10 contain
+  "Position intelligence" + "Score explainability" + "Cross-portfolio overlap"
+- Buffett page artifact hash `app/investor/warren-buffett/page-cf7eb99dca0c26fb.js`
+  (was `page-bd66d15002d0c8cf.js` pre-v0.56) → new commit deployed
+- ConvictionFactorTable 9-factor breakdown grep-confirmed
+
+**v0.56 ship complete:**
+- 208 `/fund-overlap/[slug]/` pair pages (Article + BreadcrumbList JSON-LD)
+- 30/30 investor pages with PositionIntelligence + ConvictionFactorTable
+  + Cross-portfolio overlap card grid
+- 7158 prerendered pages total
+- 2 GitLab commits: `145301e2f` (Buffett bundle) + `1fa3416fb` (state)
+- IndexNow pinged 1324 URLs (Bing/Yandex/Seznam/Naver)
+
+CF outage status remains `minor` but the Pages deploy path was working
+the whole time; wrangler's network-error display didn't reflect actual
+finalization state. Lesson logged: re-verify outcomes via curl
+fingerprint-match after every wrangler EPIPE before queueing operator-
+action work.
+
+---
+
+
 
 **Status update 2026-05-13 01:30 UTC (corrects earlier 45% claim):**
 Re-spot-checked 30 random fund-overlap URLs on prod: **28/30 return 200**
