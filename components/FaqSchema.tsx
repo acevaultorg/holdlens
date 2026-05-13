@@ -1,14 +1,15 @@
-import Script from "next/script";
-
-// <FaqSchema /> — emits a FAQPage JSON-LD block. Google surfaces FAQ
-// rich results with expandable Q/A directly in SERP for queries that
-// match any of the listed questions — estimated +15% CTR lift on
-// informational queries (SimplyWall.St / Investopedia pattern).
+// <FaqSchema /> — emits a FAQPage JSON-LD block as a SERVER-RENDERED <script>
+// tag so AI crawlers (GPTBot/ClaudeBot/PerplexityBot/Googlebot-Extended) can
+// parse it without JS execution.
 //
-// Emit on / /about /methodology /vs/dataroma /learn/* — anywhere with
-// static "what is…" content that already appears on the page. The
-// guideline per Google: the Q/A MUST also appear in the visible page
-// copy (don't ship schema-only answers), or Google suppresses it.
+// 2026-05-13 fix: prior impl used next/script with strategy="beforeInteractive"
+// which in the app router serializes into __next_f.push() payloads instead of
+// emitting a raw <script type="application/ld+json"> in the streamed HTML.
+// Live audit found 0 FAQPage tags in production HTML even though 7 Q/A pairs
+// were defined on the homepage — schema only appeared inside escaped JSON
+// inside the Next.js client-side hydration payload, invisible to non-JS bots.
+// Plain <script dangerouslySetInnerHTML> matches the site-wide pattern used
+// elsewhere in the app (see app/page.tsx siteWideSchema) and ships in SSR HTML.
 
 export type FaqItem = { q: string; a: string };
 
@@ -24,10 +25,9 @@ export default function FaqSchema({ id, items }: { id: string; items: FaqItem[] 
     })),
   };
   return (
-    <Script
+    <script
       id={id}
       type="application/ld+json"
-      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
     />
   );
