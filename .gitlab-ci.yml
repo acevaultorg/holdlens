@@ -12,6 +12,16 @@ variables:
   # Baked into static export at build time; layout.tsx loads Clarity script
   # only when this is set. Project: holdlens (wk6syntdl3).
   NEXT_PUBLIC_CLARITY_ID: "wk6syntdl3"
+  # Stripe Payment Links — PUBLIC URLs (not secrets); inlined at build time by
+  # components/StripeCheckoutButton.tsx via process.env.NEXT_PUBLIC_*.
+  # Without these in CI variables, the GitLab runner's `next build` produces
+  # empty strings → live /pricing CTA falls through to /alerts email-capture
+  # instead of Stripe Checkout. CF Pages env vars don't help here because the
+  # build happens in the GitLab runner before wrangler ships the artifact.
+  # Hard-coded mirrors the CLARITY_ID pattern above + the values in
+  # .env.production.local. 2026-05-13 fix following 27 days of broken CTA.
+  NEXT_PUBLIC_STRIPE_PAYMENT_LINK: "https://buy.stripe.com/9B6eVcavmcspgsSaIJfIs00"
+  NEXT_PUBLIC_STRIPE_PAYMENT_LINK_FOUNDERS: "https://buy.stripe.com/3cIfZgcDu9gda4u8ABfIs01"
 
 cache:
   # v2 = invalidate when NEXT_PUBLIC_* env-baked vars change (e.g., Clarity ID added 2026-05-08).
