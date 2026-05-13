@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { isWatched, toggleWatchlist, subscribeWatchlist } from "@/lib/watchlist";
+import { isWatched, subscribeWatchlist } from "@/lib/watchlist";
+import {
+  syncedAddTicker,
+  syncedRemoveTicker,
+  initWatchlistSync,
+} from "@/lib/watchlist-sync";
 
 type Props = {
   symbol: string;
@@ -14,12 +19,20 @@ export default function StarButton({ symbol, size = "md" }: Props) {
   useEffect(() => {
     setMounted(true);
     setWatched(isWatched(symbol));
+    // Wire auth → watchlist sync (idempotent; first-call only)
+    initWatchlistSync();
     return subscribeWatchlist(() => setWatched(isWatched(symbol)));
   }, [symbol]);
 
   const onClick = () => {
-    const r = toggleWatchlist(symbol);
-    setWatched(r.watched);
+    // Dual-write: localStorage (sync, instant UI) + Supabase (async, if logged in)
+    if (isWatched(symbol)) {
+      syncedRemoveTicker(symbol);
+      setWatched(false);
+    } else {
+      syncedAddTicker(symbol);
+      setWatched(true);
+    }
   };
 
   const iconSize = size === "lg" ? 22 : size === "sm" ? 14 : 18;

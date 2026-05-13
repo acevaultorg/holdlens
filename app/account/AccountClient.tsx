@@ -9,6 +9,7 @@ import {
   type AuthUser,
 } from "@/lib/auth";
 import { getWatchlist, subscribeWatchlist } from "@/lib/watchlist";
+import { syncWatchlistOnLogin } from "@/lib/watchlist-sync";
 
 export default function AccountClient() {
   const [user, setUser] = useState<AuthUser | null>(null);
@@ -19,6 +20,10 @@ export default function AccountClient() {
     const unsub = subscribeAuth((u) => {
       setUser(u);
       setAuthLoaded(true);
+      // On first auth load + every login: pull cross-device watchlist
+      // from Supabase + union with local + write back. Fire-and-forget;
+      // subscribeWatchlist below updates UI when local changes.
+      if (u) syncWatchlistOnLogin(u.id).catch(() => {});
     });
     return unsub;
   }, []);
@@ -126,9 +131,9 @@ export default function AccountClient() {
             : `${watchlist.length} ${watchlist.length === 1 ? "ticker" : "tickers"} tracked${watchlist.length > 0 ? ": " + watchlist.slice(0, 6).join(", ") + (watchlist.length > 6 ? "…" : "") : ""}.`}
         </p>
         <p className="text-xs text-dim mt-3">
-          v0.58 — watchlist is currently device-local. Cross-device sync ships
-          with the next deploy once the Supabase users + watchlists tables
-          are provisioned (operator one-time DB migration).
+          v0.60 — watchlist syncs to your account automatically. Add or
+          remove tickers anywhere; this list stays consistent across every
+          device you sign in on.
         </p>
       </div>
 
