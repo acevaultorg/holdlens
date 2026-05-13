@@ -22,11 +22,24 @@ variables:
   # .env.production.local. 2026-05-13 fix following 27 days of broken CTA.
   NEXT_PUBLIC_STRIPE_PAYMENT_LINK: "https://buy.stripe.com/9B6eVcavmcspgsSaIJfIs00"
   NEXT_PUBLIC_STRIPE_PAYMENT_LINK_FOUNDERS: "https://buy.stripe.com/3cIfZgcDu9gda4u8ABfIs01"
+  # Supabase auth — NEXT_PUBLIC_ keys are PUBLIC by design.
+  # The "publishable" key is the modern replacement for legacy "anon" JWT.
+  # Both are intentionally exposed to client JS; Row Level Security (RLS)
+  # gates actual data access at the Postgres layer. Hardcoding here mirrors
+  # the Clarity ID + Stripe Payment Link pattern above. Without these vars
+  # at CI-build time, /signup + /login + /account render a "Coming soon"
+  # fallback because lib/auth.ts `isAuthConfigured()` returns false on
+  # empty env. 2026-05-13 v0.60 ship; operator pasted keys + brain ran
+  # SQL migration via Supabase Management API earlier same session.
+  NEXT_PUBLIC_SUPABASE_URL: "https://pguombwsbacsupkokjka.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_3L0A5QVO_3TVf_0ceBwx5g_R5i5yso8"
 
 cache:
-  # v2 = invalidate when NEXT_PUBLIC_* env-baked vars change (e.g., Clarity ID added 2026-05-08).
-  # Bumping the key forces fresh `.next/cache/` so static-export HTML re-renders with new env.
-  key: holdlens-cache-v2
+  # v3 = invalidate when NEXT_PUBLIC_* env-baked vars change.
+  # 2026-05-13: bumped from v2 to force fresh build with Supabase auth keys
+  # newly inlined above. v2 cache would otherwise serve stale signup/page-*.js
+  # chunks compiled without the publishable key embedded.
+  key: holdlens-cache-v3
   paths:
     - node_modules/
     - .next/cache/
