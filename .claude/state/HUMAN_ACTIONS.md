@@ -1,6 +1,38 @@
 # HoldLens — Human actions queue
 
-## 🟡 👨🏻‍🔧 RECOMMENDED — Paste 1 anon key + 1 SQL block to activate auth (v0.58)
+## ✅ RESOLVED 2026-05-13 11:18 UTC — Supabase schema migrated via Management API
+
+Operator pasted a Personal Access Token `sbp_*`. Brain ran the migration
+via `POST https://api.supabase.com/v1/projects/pguombwsbacsupkokjka/database/query`.
+HTTP 201 + empty result array = success.
+
+**Verified state via PAT readback:**
+- 4 tables: `public.profiles · public.watchlists · public.alert_preferences · public.subscriptions` (all 200 from REST API)
+- 2 SECURITY-DEFINER functions: `handle_new_user · touch_updated_at`
+- 1 trigger: `on_auth_user_created` on `auth.users` (fires after insert)
+- 10 RLS policies (3 each on profiles/watchlists/alert_preferences + 1 on subscriptions)
+- RLS enabled on all 4 tables
+
+**Publishable key** (`sb_publishable_3L0A5QVO...`) already inlined in
+build #12 via `.env.local` + `lib/auth.ts` default. When v0.58 deploys
+to production, accounts work immediately — signup writes auth.users
+row → trigger creates profile/watchlist/alert_prefs/subscription rows
+with `(free, inactive)` subscription state. RLS prevents users from
+seeing each other's data.
+
+### 🔴 OPTIONAL but RECOMMENDED for hygiene — REVOKE the PAT now
+
+Operator pasted `sbp_*` token in chat (visible in chat logs +
+Anthropic's storage). Brain used it ONLY for the migration; no
+ongoing dependency. Revoke at:
+[supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens)
+→ find "brain-sql-runner" (or whatever name) → Revoke.
+Cost of skipping: PAT grants full account-level read/write to all your
+Supabase projects. Cost of revoking: 5 seconds.
+
+---
+
+## 🟡 👨🏻‍🔧 RECOMMENDED — Deploy v0.58 to land /signup, /login, /account routes
 
 **Status: project URL hardcoded.** Operator created project
 [pguombwsbacsupkokjka](https://supabase.com/dashboard/project/pguombwsbacsupkokjka)
