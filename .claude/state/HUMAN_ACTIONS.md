@@ -1,5 +1,71 @@
 # HoldLens — Human actions queue
 
+## 🟡 👨🏻‍🔧 RECOMMENDED — Configure Supabase to activate auth (v0.58)
+
+WHAT: Brain shipped auth scaffolding (signup/login/account routes +
+navbar Sign-in pill + AccountClient with watchlist summary). All UI
+is live and renders gracefully — but actual account creation needs
+a Supabase project (free tier: 500MB DB, 50k MAU — plenty for v0).
+Until configured, the auth pages show "Coming soon" panels and the
+navbar shows "Sign in" → /signup/ which displays the same panel.
+
+WHY: ChatGPT review flagged "thin moat" + operator directive
+"i also believe it must be possible for users to log in and make
+a account". Auth foundation enables:
+  - Cross-device watchlist sync (currently localStorage-only)
+  - Email alerts on 13F filings + watchlist changes (5 tickers free, unlimited Pro)
+  - Subscription management (Pro €9 founders → Power €49 path)
+  - Per-AAERA flywheel: account = retention compound (D7/D30 returns)
+Cost of skipping: watchlist stays device-local; no retention compound
+from cross-device sync; can't ship email alerts.
+
+TIME: ~5 minutes (one-time setup).
+
+HOW:
+  1. Open https://supabase.com in a browser
+  2. Sign in (or sign up — GitHub OAuth works)
+  3. Click "New project"
+       - Name: HoldLens (or whatever)
+       - Database password: generate + save somewhere safe
+       - Region: closest to your users (Europe West if EU-focused)
+       - Plan: Free
+  4. Wait ~2 min for provisioning
+  5. Once ready: Settings → API → copy two values:
+       - "Project URL" (looks like: https://abcdefgh.supabase.co)
+       - "anon" / "public" key (NOT service_role — that's secret)
+  6. Paste both into Vercel/Cloudflare Pages env vars OR your local
+     `.env.local`:
+     ```
+     NEXT_PUBLIC_SUPABASE_URL=https://abcdefgh.supabase.co
+     NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbG...
+     ```
+  7. Redeploy (env vars are NEXT_PUBLIC_ → inlined at build, requires
+     a fresh build)
+
+VERIFY:
+  ```bash
+  curl -sL https://holdlens.com/signup/ | grep -c "Coming soon"
+  ```
+  → expected: 0 (was 1 pre-config; now form renders)
+
+IF STUCK:
+  - Free tier suddenly says "paused"? Visit dashboard, click "restore"
+    (Supabase auto-pauses inactive free projects after 7d; instant restore)
+  - Magic-link emails not arriving? Check Supabase Auth → Email Templates
+    — default config works; spam folder is the usual culprit
+  - Want password-only (no magic links)? Auth → Providers → Email →
+    disable "Confirm email" if you want instant signup (else users
+    must verify before logging in)
+  - Need DB schema for users + watchlists + alert_preferences?
+    Brain ships a follow-up commit with the SQL migration once you
+    confirm Supabase is up.
+
+Operator can ALSO defer this if accounts aren't a priority right now —
+the rest of the site (watchlist localStorage, Pro €9 Stripe Payment Link,
+all 7158 pages) works fine without it.
+
+---
+
 ## 🔴 👨🏻‍🔧 REQUIRED — Deploy v0.57 (kills the −$56,540B homepage bug ChatGPT flagged)
 
 WHAT: ChatGPT's 2026-05-13 review of holdlens.com flagged a homepage
