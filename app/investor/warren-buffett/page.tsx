@@ -12,8 +12,12 @@ import InvestorConcentration from "@/components/InvestorConcentration";
 import FoundersNudge from "@/components/FoundersNudge";
 import TickerLink from "@/components/TickerLink";
 import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
+import PositionIntelligence from "@/components/PositionIntelligence";
+import ConvictionFactorTable from "@/components/ConvictionFactorTable";
+import Link from "next/link";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
+import { getPairsForManager } from "@/lib/fund-overlap-pairs";
 
 // Build-time timestamp for dateModified — v19.4 freshness_per_page archetype.
 // Static export means BUILD_ISO is the honest rebuild marker for LLM crawlers
@@ -251,6 +255,67 @@ export default function BuffettPage() {
         holdings={BUFFETT_TOP.map((h) => ({ ticker: h.ticker, pct: h.pctPortfolio }))}
         label="Buffett's sector breakdown"
       />
+
+      {/* v20.x — PositionIntelligence + ConvictionFactorTable + Cross-portfolio
+          overlap. Same 3-section bundle threaded into /investor/[slug] for the
+          other 29 managers. Buffett's dedicated page (335 lines) had been
+          carved off pre-v20 and missed the bundle on first ship; added here so
+          the highest-traffic investor page carries the same intelligence
+          surface as the others. */}
+      <PositionIntelligence managerSlug="warren-buffett" managerName="Warren Buffett" />
+
+      <ConvictionFactorTable managerSlug="warren-buffett" managerName="Warren Buffett" />
+
+      {(() => {
+        const pairs = getPairsForManager("warren-buffett", 6);
+        if (pairs.length === 0) return null;
+        return (
+          <section className="mt-12 rounded-2xl border-2 border-border bg-panel p-6 md:p-7">
+            <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+              Cross-portfolio overlap · pairwise 13F intersection
+            </div>
+            <h2 className="text-2xl font-bold mb-3">
+              Stocks Buffett shares with other super-investors
+            </h2>
+            <p className="text-sm text-muted mb-6 leading-relaxed max-w-3xl">
+              Top 6 pairs by combined portfolio weight. Each pair links to a
+              dedicated page listing every shared position with side-by-side
+              percentages. Useful for spotting consensus picks across distinct
+              investing styles.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {pairs.map((p) => {
+                const other = p.a.slug === "warren-buffett" ? p.b : p.a;
+                return (
+                  <Link
+                    key={p.slug}
+                    href={`/fund-overlap/${p.slug}/`}
+                    className="group rounded-xl border border-border bg-bg/30 p-4 hover:bg-bg/50 hover:border-brand/50 transition"
+                  >
+                    <div className="text-sm font-semibold text-text">
+                      vs {other.name}
+                    </div>
+                    <div className="text-xs text-muted mt-1">
+                      {p.overlapCount} shared · {p.jointConviction.toFixed(1)}% joint conviction
+                    </div>
+                    <div className="text-[11px] text-muted/70 mt-1">
+                      Top: {p.shared.slice(0, 3).map((s) => s.ticker).join(", ")}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="mt-5">
+              <Link
+                href="/fund-overlap/"
+                className="text-sm text-brand hover:underline"
+              >
+                All 208 overlap pairs →
+              </Link>
+            </div>
+          </section>
+        );
+      })()}
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold mb-6">Top holdings</h2>
