@@ -22,7 +22,15 @@
 
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+// Project URL is hardcoded here (operator's Supabase project created
+// 2026-05-13). Project URLs are public-safe — they're not secrets;
+// they're just the resolved DNS endpoint. Env var still overrides for
+// staging/local dev. Anon key MUST come from env var (still public-
+// safe under Supabase Row Level Security, but better discipline to
+// not commit it).
+const DEFAULT_SUPABASE_URL = "https://pguombwsbacsupkokjka.supabase.co";
+const SUPABASE_URL =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || DEFAULT_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
 export const isAuthConfigured = (): boolean =>

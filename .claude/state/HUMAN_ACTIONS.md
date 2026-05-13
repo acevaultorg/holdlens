@@ -1,6 +1,108 @@
 # HoldLens — Human actions queue
 
-## 🟡 👨🏻‍🔧 RECOMMENDED — Activate Supabase auth (operator's org already created)
+## 🟡 👨🏻‍🔧 RECOMMENDED — Paste 1 anon key + 1 SQL block to activate auth (v0.58)
+
+**Status: project URL hardcoded.** Operator created project
+[pguombwsbacsupkokjka](https://supabase.com/dashboard/project/pguombwsbacsupkokjka)
+on 2026-05-13. Brain verified the URL responds with standard Supabase
+401-no-apikey responses → project is live. Project URL
+(`https://pguombwsbacsupkokjka.supabase.co`) is now hardcoded in
+`lib/auth.ts` as the default. **Operator only needs to provide the anon key + run the SQL migration. 3 minutes.**
+
+WHAT: Paste 1 string + 1 SQL block + redeploy. That's it. (Step 1
+project-creation already done.)
+
+WHY: Activates `/signup` + `/login` + `/account` (currently "Coming
+soon" panels). Enables cross-device watchlist sync + email alerts +
+Stripe subscription tracking. Foundation for retention compound
+per AAERA flywheel.
+
+TIME: ~3 minutes.
+
+HOW:
+  1. **Copy anon key from operator's Supabase project**:
+     [https://supabase.com/dashboard/project/pguombwsbacsupkokjka/settings/api-keys](https://supabase.com/dashboard/project/pguombwsbacsupkokjka/settings/api-keys)
+     → expected page: "Project API Keys" with 2 rows: `anon` (public)
+       and `service_role` (secret).
+     → Copy the `anon` key value (starts with `eyJhbG...`). NOT
+       `service_role`.
+
+  2. **Paste anon key into Cloudflare Pages env vars** (holdlens.com
+     production deploy target):
+     [https://dash.cloudflare.com/?to=/:account/pages/view/holdlens/settings/environment-variables](https://dash.cloudflare.com)
+     → "Production" tab → "+ Add variable":
+       Name: `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+       Value: (paste the anon key)
+       Type: Plain text (NEXT_PUBLIC_ is public-safe under RLS)
+     → Click "Save" → expected: variable appears in the env list.
+
+     *Alternative if operator prefers Vercel project: same env var name,*
+     *set under Vercel Settings → Environment Variables → Production +*
+     *Preview + Development.*
+
+  3. **Run SQL migration in Supabase SQL Editor**:
+     [https://supabase.com/dashboard/project/pguombwsbacsupkokjka/sql/new](https://supabase.com/dashboard/project/pguombwsbacsupkokjka/sql/new)
+     Paste the contents of `supabase/migrations/0001_holdlens_auth_v0_58.sql`:
+     ```bash
+     cat "/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens/supabase/migrations/0001_holdlens_auth_v0_58.sql" | pbcopy
+     ```
+     Now Cmd+V into the Supabase SQL editor → click "Run" (or Cmd+Enter)
+     → expected: "Success. No rows returned." + 4 tables created in the
+       "public" schema (profiles · watchlists · alert_preferences ·
+       subscriptions) with RLS enabled + 1 auth.users insert trigger.
+
+  4. **Trigger a CF Pages redeploy**:
+     Either reply `c` to me here (brain will retry wrangler) or run
+     from your terminal:
+     ```bash
+     cd "/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens"
+     npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
+     ```
+     → expected: "Deployment complete!" (or EPIPE — but per memory
+       `feedback_cf_minor_status_not_blocking.md`, often the deploy
+       succeeded silently anyway; verify in step 5).
+
+  5. **Verify auth is live**:
+     ```bash
+     curl -sL https://holdlens.com/signup/ | grep -c "Coming soon"
+     ```
+     → expected: 0 (was 1 pre-config). Then visit
+       [https://holdlens.com/signup/](https://holdlens.com/signup/) in
+       a browser, enter your email, click "Send magic link". Check
+       inbox for sign-in email.
+
+VERIFY: 
+  - First signup: visit `/signup/`, enter your own email, get magic
+    link, click it → lands on `/account/` with your email shown.
+  - Profile row exists: in Supabase Table Editor → "profiles" → see
+    one row with your auth.users.id + email + created_at.
+  - Watchlist row auto-created: "watchlists" → one row with your
+    user_id + empty tickers array.
+
+IF STUCK:
+  - **Magic link email doesn't arrive**: Supabase Auth → Email
+    Templates → check Magic Link is enabled. Free tier sends from
+    `noreply@supabase.co` — sometimes gmail labels as Promotions.
+  - **"Confirm email" wall annoying for testing**: Auth → Providers →
+    Email → disable "Confirm email" so users can log in instantly
+    after signup. Can re-enable later for production discipline.
+  - **SQL editor errors "permission denied for schema auth"**: you're
+    using the right schema — `auth.users` is owned by `supabase_auth_admin`
+    but the trigger creates a row in `public.profiles` referencing it.
+    The migration uses `security definer` which bypasses RLS for the
+    trigger function. If you see this error, run the migration again
+    — it's idempotent.
+  - **Operator changed mind on Supabase**: brain can swap auth provider
+    without breaking the UI scaffolding. `lib/auth.ts` is the only
+    file that would change. Tell brain "use clerk" or "use lucia" and
+    brain re-wires.
+
+After step 4 + 5 confirm: brain auto-removes this card from the queue.
+The compound starts: every new visitor can now create an account, save
+their watchlist, get alerts when tracked managers file. Foundation for
+the Pro tier upgrade path.
+
+---
 
 **Operator has created the Supabase org** at https://supabase.com/dashboard/org/vrijvcdgxuvelftxyaae. Brain attempted to extract project URL + anon key via Chrome MCP but Supabase dashboard cookies are blocked from automation (security guard). Operator must do the 3-click extraction below.
 
