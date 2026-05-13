@@ -108,3 +108,12 @@ Reject hypothesis if:
 ```
 (none)
 ```
+
+## 2026-05-13 — Stripe Pro CTA Fix Ship Impact
+
+| ship_task_id | shipped_at | observed_window | metric | delta | significance |
+|---|---|---|---|---|---|
+| stripe-cta-fix (commit 4e95c0be5) | 2026-05-13 09:30 UTC | TBD post-30d | paid_convert | __pending__ | __pending__ |
+
+Hypothesis: with /pricing now rendering real Stripe Checkout instead of /alerts email-capture fallback, first €9/mo Pro sale becomes possible. Warm lead (liangsunsh@gmail.com, signed up 2026-05-10) is the highest-P single conversion target.
+

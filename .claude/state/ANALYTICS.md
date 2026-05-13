@@ -821,3 +821,21 @@ curl -X POST 'https://api.cloudflare.com/client/v4/zones' \
 - Brain delivered the structurally largest pieces: 6 zones added + 5 Hostinger NS changes
 - Operator delivered: GoDaddy NS change (verified: amanda + lochlan now serving)
 - Token regen pending: blocks final 18 setup actions but they're all 30-sec each via brain after token
+
+## 2026-05-13 — STRIPE PRO CTA FIX SHIPPED (commit 4e95c0be5)
+
+### Behavior Log row
+2026-05-13 09:30 | stripe-cta-fix | pricing_page_change | code-config-edit | scale-1 | quick | self-qualify | AUTO | 17400s | success
+
+### Cycle Times row  
+2026-05-13 | stripe-cta-fix | quick | 300s estimated | 17400s actual | +5700% (CF EPIPE + GitLab minutes-out drove the delta; actual fix was 1 yml line)
+
+### Gate Log row
+2026-05-13 | AUTO | code-config | "fix will land Pro Stripe CTA on live page" | confirmed via curl + Chrome MCP after deploy | correct
+
+### Specialist Log row
+2026-05-13 | self-qualify | code-edit + ship-verify | live HTML now contains buy.stripe.com/3cIfZgcDu9gda4u8ABfIs01 + button text "Subscribe — €9/mo founders rate →" target=_blank | actionable | n/a
+
+### Ship Impact row (revenue track)
+2026-05-13 09:30 UTC | commit 4e95c0be5 | archetype: pricing_page_change | hypothesis: env-var inlining of NEXT_PUBLIC_STRIPE_PAYMENT_LINK_FOUNDERS in GitLab CI will replace dead /alerts email-capture CTA with live Stripe Checkout button → P(first €9 sale in 30d) jumps from 0% (impossible — no checkout) to 30-60% per warm-lead Liang Sun
+

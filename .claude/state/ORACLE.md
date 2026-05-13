@@ -112,3 +112,18 @@ competitive_research_ship × 0.40   cold   (strategic lift when finding new angl
 
 ## Calibration (2026-05-07 — Mobile-edge consistency sweep)
 2026-05-07 16:11 | mobile-edge-sweep | craftsmanship_polish + reliable_retention_signal (no new content; cosmetic consistency across 9 bordered cards) | projected_weekly_$: €0-3/wk Y1 (consistency change, not conversion lever — indirect lift via reduced first-mobile-visit bounce on iPhone-class viewports where cards previously felt edge-cramped) | projected_retention_delta_pct: +0.3% (small bounce-rate reduction on first mobile session compounds over 7d return window) | actual_7d: TBD (re-test 2026-05-14) | actual_30d: TBD (re-test 2026-06-06) | confidence: 0.2 (cold; craftsmanship_polish multiplier per LEARNED.md is +0.010 — small per-task even at high reach × all-mobile-users) | hypothesis: 9 root-level bordered card containers (BuySellSignals + hero CTA group + SinceLastVisit + LatestMoves + LiveInsiderActivity + RecentMaterialEvents + FoundersNudge + BrokerCta + AdSlot) now consistently inset at 32px-from-screen-edge on mobile (was 24px page-padding only). Calibration target: zero new "edge-touch" operator complaints + 7d Plausible mobile bounce rate ≤ pre-deploy baseline. Per I-22 retention floor, watch for >10% regression — would auto-flag rollback.
+## 2026-05-13 — STRIPE PRO CTA FIX (commit 4e95c0be5)
+
+### Projection (at ship time)
+- archetype: pricing_page_change
+- base_multiplier: 1.00 (per Oracle v1 archetype table)
+- route_weight: /pricing carries 100% of Pro conversion intent
+- confidence_factor: 0.5 (no prior pricing-page-change history on this site)
+- projected_weekly_$: €9-30 (€9 from 1 founders sale × P(0.3-0.6) within first week if Liang or organic visitor converts)
+- hypothesis: 27-day broken-CTA state caused 0 conversions despite waitlist + traffic; fixing CTA enables conversion path
+
+### Calibration (TBD)
+- 7d actual_$: __pending__ (operator tracks via Stripe dashboard)
+- 30d actual_$: __pending__
+- Multiplier adjustment: __pending 10+ same-archetype entries__
+
