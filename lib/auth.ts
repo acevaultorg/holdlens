@@ -64,7 +64,21 @@ export async function signUpWithEmail(email: string, password: string): Promise<
 > {
   const sb = getSupabase();
   if (!sb) return { ok: false, error: "Auth not configured yet — coming soon" };
-  const { data, error } = await sb.auth.signUp({ email, password });
+  // emailRedirectTo overrides Supabase's project Site URL (defaults to
+  // http://localhost:3000 on a fresh project — bug fix 2026-05-13 after
+  // operator's first signup confirmation email pointed at localhost). With
+  // this override, the ConfirmationURL in the confirm-signup email lands
+  // on /account/ on the current origin (holdlens.com in production).
+  const { data, error } = await sb.auth.signUp({
+    email,
+    password,
+    options: {
+      emailRedirectTo:
+        typeof window !== "undefined"
+          ? `${window.location.origin}/account/`
+          : undefined,
+    },
+  });
   if (error) return { ok: false, error: error.message };
   if (!data.user) return { ok: false, error: "No user returned" };
   return {
