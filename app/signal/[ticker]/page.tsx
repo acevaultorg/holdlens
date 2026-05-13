@@ -23,6 +23,7 @@ import BrokerCta from "@/components/BrokerCta";
 import TickerLogo from "@/components/TickerLogo";
 import FundLogo from "@/components/FundLogo";
 import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
+import ConvictionWhyBreakdown from "@/components/ConvictionWhyBreakdown";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
 import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QUALITY } from "@/lib/signals";
 import { formatSignedScore, convictionLabel, getConviction } from "@/lib/conviction";
@@ -507,6 +508,16 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
           <a href="/learn/conviction-score-explained" className="text-brand underline">How this is computed</a>
         </div>
       </section>
+
+      {/* v0.59 — "Why this score?" expandable factor explainer. Addresses
+          ChatGPT 2026-05-13 review: "ConvictionScore is a black box dressed
+          as objectivity. Combining consensus + track record + concentration
+          + trend + dissent into one number requires weights nobody can
+          justify rigorously." This component shows the RANGE (min/max) of
+          each factor + a one-line explanation of what it measures — making
+          the weights transparent and defensible. Renders <details> (server-
+          side), SEO + LLM crawlers see all 9 rows expanded. */}
+      <ConvictionWhyBreakdown ticker={t.symbol} />
 
       {/* Viral share card — the single-click "tweet this verdict" unlock.
           Placed here (after verdict + score breakdown, before the chart) so
