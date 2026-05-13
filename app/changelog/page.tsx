@@ -26,6 +26,106 @@ type Release = {
 // Newest first. Update on each version bump.
 const RELEASES: Release[] = [
   {
+    version: "v0.60",
+    date: "2026-05-13",
+    title: "Cross-device watchlist sync via Supabase",
+    highlights: [
+      "Logged-in users: starred tickers sync across devices via Supabase (own-row RLS, no other user can read yours)",
+      "Dual-write pattern — localStorage for instant UI, Supabase as source of truth across devices",
+      "Login = union-merge of local + remote (no destructive overwrite of pre-signup tickers)",
+      "Backed by `lib/watchlist-sync.ts` — pull, union, optimistic upsert",
+    ],
+  },
+  {
+    version: "v0.59",
+    date: "2026-05-13",
+    title: "ConvictionScore transparency — 'Why this score?' breakdown",
+    highlights: [
+      "Every /signal/[ticker]/ page now has an expandable 9-factor breakdown",
+      "Each factor shows min/max range + plain-English description of what it measures",
+      "Raw-sum vs clamped-score reconciliation (transparency when the −100/+100 clamp activates)",
+      "Native <details> element — SEO-readable + works without JS",
+    ],
+  },
+  {
+    version: "v0.58",
+    date: "2026-05-13",
+    title: "User accounts + pricing tier ladder",
+    highlights: [
+      "Signup / login / account routes wired to Supabase Auth (magic-link primary, password fallback)",
+      "Account page with watchlist summary + subscription state",
+      "Power tier €49/mo signaled (coming soon) above the existing €9 founders + €14 Pro",
+      "Annual discount strip — 2 months free for annual subscribers",
+      "Founders €9/mo for-life commitment honored (first 100, no rug-pull)",
+    ],
+  },
+  {
+    version: "v0.57",
+    date: "2026-05-13",
+    title: "Insider-flow sanity filter — kill the −$56,540B homepage bug",
+    highlights: [
+      "Defensive filter on Form 4 ingestion: drops rows where pricePerShare > $10k or value > $5B",
+      "62 outlier rows (mostly CRWV parser-edge-case at $10.9M/share) filtered out",
+      "Homepage 'Net insider flow' now shows −$7.67B (was −$56,540.58B)",
+    ],
+  },
+  {
+    version: "v0.55-0.56",
+    date: "2026-05-13",
+    title: "Fund-overlap pages + position intelligence on every investor",
+    highlights: [
+      "208 new /fund-overlap/[slug]/ pages — every pair of 2 tracked investors with ≥2 shared tickers (e.g. Buffett vs Munger)",
+      "PositionIntelligence component on every /investor/[slug]/ — every holding classified by size bucket (Core / Significant / Starter / Small) + trend (Building / Trimming / Steady / New / Exit pending)",
+      "ConvictionFactorTable — the 9-factor breakdown exposed per holding",
+      "Buffett dedicated page (bespoke template) parity'd with the v20.x bundle",
+    ],
+  },
+  {
+    version: "v0.46-0.54",
+    date: "2026-05-08 → 2026-05-12",
+    title: "Pivot-A compliance — data-display only, no verdict labels",
+    highlights: [
+      "Dropped BUY/SELL/STRONG-X verdict labels across all /signal/[ticker]/ pages — replaced with factual data-display copy",
+      "Rewrote Article schema headlines as descriptive (e.g. 'AAPL — Q4 13F Filings Summary' not 'AAPL SELL signal')",
+      "Inline 45-day SEC lag disclosure on every result page",
+      "Brokerage affiliate stack moved off YMYL surfaces per Google Publisher Policy compliance",
+      "AdSense application resubmitted with cleared verdict surface; awaiting recrawl",
+    ],
+  },
+  {
+    version: "v0.40-0.45",
+    date: "2026-04-28 → 2026-05-04",
+    title: "ConvictionScore v5 — SEC Signals trilogy",
+    highlights: [
+      "9-layer composite: smart money + insider boost + track record + trend streak + concentration + contrarian + event signal − dissent − crowding",
+      "Unified scoring across 13F + Form 4 + 8-K filings",
+      "Per-ticker breakdown table on every signal page (inline values + colors)",
+      "InsiderScore + EventScore companion brands",
+    ],
+  },
+  {
+    version: "v0.30-0.39",
+    date: "2026-04-22 → 2026-04-27",
+    title: "Public methodology + backtest proof",
+    highlights: [
+      "Full /methodology page with worked examples for every factor",
+      "/proof page with realized returns of top-conviction picks vs SPY — honestly disclosed: 20 data points, not statistically significant (n too small for inference)",
+      "/learn/conviction-score-explained — plain-English walkthrough",
+      "TollBit AI-licensing pilot wired (Layer 8 of the Revenue Maximizer stack)",
+    ],
+  },
+  {
+    version: "v0.27-0.29",
+    date: "2026-04-12 → 2026-04-15",
+    title: "Public launch + 30-manager universe",
+    highlights: [
+      "First public launch (2026-04-12) — 30 superinvestors, one ConvictionScore",
+      "Quarterly 13F + daily Form 4 + intraday 8-K ingestion pipeline",
+      "150-endpoint JSON API at /api/v1/ — free, no key required",
+      "Static export deploy on Cloudflare Pages — global edge cache, free tier",
+    ],
+  },
+  {
     version: "v0.26",
     date: "2026-04-11",
     title: "Copy parity",
