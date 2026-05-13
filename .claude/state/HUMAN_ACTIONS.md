@@ -32,7 +32,35 @@ Supabase projects. Cost of revoking: 5 seconds.
 
 ---
 
-## 🟡 👨🏻‍🔧 RECOMMENDED — Deploy v0.58 to land /signup, /login, /account routes
+## ✅ RESOLVED 2026-05-13 11:35 UTC — v0.58 LIVE on production (operator-terminal succeeded)
+
+Operator ran `wrangler pages deploy out` from their own terminal where
+brain's bash sessions had EPIPE'd ~15 times. Different network path
+or CF edge node = success. **Deployment ID: `f15394d8.holdlens.pages.dev`**
+· 19,740 files uploaded · 232.59 sec.
+
+**Live verification 2026-05-13 11:35 UTC:**
+- `/signup/`, `/login/`, `/account/` → all 200 (was all 404)
+- Signup form: email input present + Magic-link / Password tabs visible
+- "Coming soon" panel count = 0 (real auth form renders)
+- Pricing: Power €49 tier + "save 17%" annual strip + Coming-soon badge all live
+- Homepage build fingerprint: `layout-6e2816623678f177.js` (= build #12)
+- Supabase Auth backend (GoTrue v2.189.0): healthy
+- Supabase schema (profiles + watchlists + alert_preferences + subscriptions): live with RLS + auto-profile-on-signup trigger
+
+**End-to-end signup now works:**
+1. Visitor → /signup/ → enters email → clicks "Send magic link"
+2. Supabase Auth sends email
+3. Visitor clicks link → lands on /account/
+4. `auth.users` row created → `on_auth_user_created` trigger fires →
+   inserts row in `profiles` + `watchlists` (empty array) + `alert_preferences` (default cadence) + `subscriptions` (free, inactive)
+5. /account/ renders email + watchlist summary + signed-in state
+
+CF deploy outage gate: BYPASSED via operator's local terminal path
+(per `rules/cloudflare-pages-epipe.md` § "what works" item 4 — local
+shell succeeds where brain session EPIPEs).
+
+---
 
 **Status: project URL hardcoded.** Operator created project
 [pguombwsbacsupkokjka](https://supabase.com/dashboard/project/pguombwsbacsupkokjka)
