@@ -24,6 +24,7 @@ const ALLOWLIST = new Set([
   'out/insiders/live/index.html', // 502KB live insider feed; 2KB over budget after CF beacon hardcode 2026-05-05. Slim to <500KB next /insiders refactor.
   'out/insiders/company/noma/index.html', // 507KB noma insider history; 7KB over after Next.js 15.5.15 bump (build-output growth). Slim with /insiders refactor.
   'out/insiders/company/crwv/index.html', // 504KB crwv insider history; 4KB over after Next.js 15.5.15 bump. Slim with /insiders refactor.
+  'out/insiders/company/fold/index.html', // 502KB fold insider history; 2KB over (2026-05-13 CI). Same pattern as noma/crwv. Page is noindex per v19.44 thin-content fix → SEO unaffected.
 ]);
 
 function walk(dir, predicate) {
