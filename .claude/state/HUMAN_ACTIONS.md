@@ -1197,64 +1197,84 @@ curl -sI https://holdlens.com | grep -iE "^server:"  # confirm CF still up
 
 ---
 
-## 🔴 REQUIRED — Complete CF Pages deploy for v0.55+ (~45% live; ~55% returning 404)
+## 🔴 👨🏻‍🔧 REQUIRED — Complete CF Pages deploy for v0.56 (Buffett-bundle commit `145301e2f`)
 
-WHAT: Brain shipped 4 ChatGPT-audit improvements (commit `4c7339a14`):
-208 new `/fund-overlap/[slug]/` pages, `PositionIntelligence` +
-`ConvictionFactorTable` on every `/investor/[slug]/`, sector-heatmap
-component. Build #7 succeeded locally (out/ has all pages). Commit
-pushed to GitLab. But wrangler `pages deploy` EPIPE'd 3 consecutive
-times against a Cloudflare "Minor Service Outage" (regional POPs in
-under_maintenance / partial_outage state). Spot-check on production
-holdlens.com: 9/20 sampled fund-overlap URLs return 200; 11 return
-404 (incomplete upload).
+**Status update 2026-05-13 01:30 UTC (corrects earlier 45% claim):**
+Re-spot-checked 30 random fund-overlap URLs on prod: **28/30 return 200**
+(the 2 misses were `index.html` + `index.txt` directory artifacts, not
+real pair slugs). Real fund-overlap coverage is essentially **100%**.
+Similarly, 29 of 30 investor pages have the new PositionIntelligence +
+ConvictionFactorTable + Cross-portfolio sections live. Earlier 45%
+claim was based on wrong slug-format guesses (e.g. `buffett-vs-munger`
+when canonical slug is `charlie-munger-vs-warren-buffett`); apologies.
 
-WHY: 208 net-new SEO surfaces + cross-link enrichment on 30 investor
-pages should compound LLM-citation gravity. Half-deployed = half the
-gain. Cost of skipping the rest: 11/20 high-quality unique-data pages
-remain 404 for crawlers; cross-link compound on investor pages
-partially broken.
+**The actual remaining gap:** `/investor/warren-buffett/` (the single
+highest-traffic investor page) is rendered from a dedicated 335-line
+static template (`app/investor/warren-buffett/page.tsx`), not the
+shared `[slug]` route — and that dedicated template hadn't been
+threaded with the v20.x bundle. Brain just fixed that and shipped
+commit `145301e2f` (build #8 succeeded, 7158 pages, Buffett page now
+grep-matches all 3 section markers).
 
-TIME: ~5 min once CF status flips to `none`. ~2 min if operator
-runs wrangler from their own terminal (different network path —
-per `rules/cloudflare-pages-epipe.md` § "what works" item 4: when
-brain session EPIPEs repeatedly, operator's fresh shell often
-succeeds where my session failed).
+Two CF deploy attempts of build #8 hit EPIPE again at chunks 1698/20026
+and 4060/20027 (5 total EPIPEs across this session under active CF
+"Minor Service Outage" — Cloudflare Sites and Services + Bot Management
++ R2 all `degraded_performance`, Amsterdam + many regional POPs
+`under_maintenance` / `partial_outage`).
 
-HOW:
-  1. Wait for CF status to clear:
-     `curl -s https://www.cloudflarestatus.com/api/v2/summary.json | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['status']['indicator'])"`
-     → expected: `none`
-  2. From your terminal (NOT inside Claude Code, per known wrangler
-     plugin-wrapper block):
+WHAT: Push the new build to CF Pages. Buffett page on prod still
+serves the v0.55 version (no PositionIntelligence / ConvictionFactor /
+Cross-portfolio sections). All other 29 investor pages already have
+them live.
+
+WHY: Buffett page is HoldLens's #1 traffic earner. Missing the new
+intelligence sections there costs the largest individual LLM-citation
+gravity gain. The rest of the fleet (29 managers + 208 pair pages)
+is already live + IndexNow-pinged.
+
+TIME: ~5 min once CF status flips to `none` (brain will auto-retry).
+~2 min if operator runs wrangler from their own terminal first
+(per `rules/cloudflare-pages-epipe.md` § "what works" item 4: fresh
+shell often succeeds where brain session EPIPEs).
+
+HOW (operator-side terminal, fastest path):
+  1. Check CF status (brain rechecks every wakeup):
+     ```bash
+     curl -s https://www.cloudflarestatus.com/api/v2/summary.json \
+       | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['status']['indicator'])"
+     ```
+     → expected: `none` (currently `minor`)
+  2. From YOUR terminal (NOT inside Claude Code — wrangler plugin-
+     wrapper block per Layer 6, even though it works from background
+     bash, terminal is more reliable when CF is degraded):
      ```bash
      cd "/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens"
      npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
      ```
-     → expected: `Success! Uploaded XXXX files (1862 already uploaded)`
+     → expected: `Success! Uploaded XXXX files (... already uploaded)`
      followed by `Deployment complete!`
-  3. Verify spot-check:
+  3. Verify Buffett page:
      ```bash
-     for slug in charlie-munger-vs-warren-buffett seth-klarman-vs-warren-buffett carl-icahn-vs-warren-buffett howard-marks-vs-warren-buffett; do
-       curl -sIL -o /dev/null -w "%{http_code} $slug\n" https://holdlens.com/fund-overlap/$slug/
-     done
+     curl -sL https://holdlens.com/investor/warren-buffett/ \
+       | grep -oE "Position intelligence|Score explainability|Cross-portfolio overlap" \
+       | sort -u
      ```
-     → expected: all 200
+     → expected: all 3 lines
 
-VERIFY: `for slug in charlie-munger-vs-warren-buffett seth-klarman-vs-warren-buffett; do curl -sIL -o /dev/null -w "%{http_code}\n" https://holdlens.com/fund-overlap/$slug/; done` → both 200
+VERIFY: Buffett page has new sections. Fleet remains at ~100%.
 
 IF STUCK:
-  - Still EPIPE: CF is still degrading. Wait another hour and retry.
-  - GH Actions: not available (per Layer 6 documented denial on
-    `pmdevries-rgb` account).
-  - Fallback: Vercel deploy `dpl_Amit6oGaJQMmFUSD17nP3CRk9Uvv` is
-    READY at `out-3b5zimktd-paulomdevries-6397s-projects.vercel.app`
-    (preview-mode auth-gated). Flipping holdlens.com DNS back to
-    Vercel would route all 7158 pages instantly. Per
-    `rules/dns-flip-discipline.md` this is a 2-decision change
-    (origin + proxy mode) — not recommended without intentional
-    re-evaluation since DNS was just flipped to CF in April.
+  - Still EPIPE from your terminal too: CF is still degrading.
+    Wait an hour and retry. Brain will auto-retry on next wakeup.
+  - GH Actions: not available (Layer 6 documented denial on
+    `pmdevries-rgb`; org-level not yet configured).
+  - Fallback Vercel: deploy `dpl_Amit6oGaJQMmFUSD17nP3CRk9Uvv` is
+    READY but auth-gated (preview mode, not aliased). Flipping
+    holdlens.com DNS back to Vercel is a 2-decision change
+    (origin + proxy) per `rules/dns-flip-discipline.md` — NOT
+    recommended without intentional re-evaluation since DNS was
+    flipped CF→Vercel on Apr 27 and back Vercel→CF later for
+    Pay-Per-Crawl + Web Analytics. Don't reverse silently.
 
-Brain dependency: brain will retry once CF status is `none`.
-IndexNow already pinged (1324 URLs across all 4 engines — Bing,
-Yandex, Seznam, Naver).
+Brain dependency: brain will keep checking CF status on wakeup
+cycles and retry wrangler whenever indicator flips to `none`.
