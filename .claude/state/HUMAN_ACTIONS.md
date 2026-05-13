@@ -201,7 +201,27 @@ The compound value is just retention + email-alerts later.
 
 ---
 
-## 🔴 👨🏻‍🔧 REQUIRED — Deploy v0.57 (kills the −$56,540B homepage bug ChatGPT flagged)
+## ✅ RESOLVED 2026-05-13 08:54 UTC — v0.57 insider-flow bug fix LIVE on production
+
+Earlier wrangler EPIPE was misleading — deploy DID finalize silently
+(consistent with `feedback_cf_minor_status_not_blocking.md` pattern).
+Final verification:
+```bash
+curl -sL https://holdlens.com/ | grep -oE 'Net insider flow[^<]{0,200}' \
+  | grep -oE '\$\$?[0-9]+\.?[0-9]*[BMK]?'
+# → $$7.67B  (was $$56540.58B)
+```
+ChatGPT-flagged trillion-dollar homepage bug is GONE. Trust restored
+on finance-product first impression. CRWV + WEST outliers filtered
+defensively per `lib/insiders.ts isPlausibleInsiderTx`.
+
+v0.58 (auth + Power tier + annual discount) still pending deploy —
+brain auto-retries wrangler every wakeup cycle. CF status `minor`
+outage persists.
+
+---
+
+## 🟢 👨🏻‍🔧 OPTIONAL (delayed) — Deploy v0.58 features (auth scaffolding + Power tier signal)
 
 WHAT: ChatGPT's 2026-05-13 review of holdlens.com flagged a homepage
 trust-killer: "Net insider flow: −$56,540.58B is obviously a bug
