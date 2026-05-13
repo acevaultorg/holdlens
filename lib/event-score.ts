@@ -80,6 +80,7 @@ export function recencyWeight(isoDate: string, referenceDate: Date = new Date())
 export function detectEventClusters(events: Form8KEvent[]): Set<string> {
   const byTicker: Record<string, Form8KEvent[]> = {};
   for (const e of events) {
+    if (typeof e.ticker !== "string" || e.ticker.length === 0) continue;
     const sym = e.ticker.toUpperCase();
     byTicker[sym] = byTicker[sym] || [];
     byTicker[sym].push(e);
@@ -112,7 +113,10 @@ export function eventContribution(
 ): number {
   const base = itemTypeSignal(event.itemCode);
   const recency = recencyWeight(event.filedAt, referenceDate);
-  const clusterBonus = clusterTickers.has(event.ticker.toUpperCase()) ? 1.3 : 1.0;
+  const clusterBonus =
+    typeof event.ticker === "string" && event.ticker.length > 0
+      ? clusterTickers.has(event.ticker.toUpperCase()) ? 1.3 : 1.0
+      : 1.0;
   return base * recency * clusterBonus;
 }
 

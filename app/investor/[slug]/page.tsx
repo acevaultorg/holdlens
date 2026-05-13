@@ -17,6 +17,9 @@ import FundLogo from "@/components/FundLogo";
 import TickerLogo from "@/components/TickerLogo";
 import InvestorConcentration from "@/components/InvestorConcentration";
 import DividendTaxCalc from "@/components/DividendTaxCalc";
+import PositionIntelligence from "@/components/PositionIntelligence";
+import ConvictionFactorTable from "@/components/ConvictionFactorTable";
+import { getPairsForManager } from "@/lib/fund-overlap-pairs";
 import { DailyMoveForInvestor, getDailySnapshotTimestamp } from "@/components/DailyMove";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
@@ -480,6 +483,65 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         holdings={activeHoldings.map((h) => ({ ticker: h.ticker, pct: h.pct }))}
         label={`${m.name.split(" ")[0]}'s sector breakdown`}
       />
+
+      {/* Position-sizing intelligence — descriptive size + trend
+          classification across all positions. Pivot-A-safe. */}
+      <PositionIntelligence managerSlug={m.slug} managerName={m.name} />
+
+      {/* ConvictionScore 9-factor breakdown per top position — closes
+          the score-explainability gap. */}
+      <ConvictionFactorTable managerSlug={m.slug} managerName={m.name} />
+
+      {/* Fund-overlap pairs — top pair-wise overlap surfaces from this
+          manager. Routes to the 435-page /fund-overlap/[slug]/ surface. */}
+      {(() => {
+        const pairs = getPairsForManager(m.slug, 6);
+        if (pairs.length === 0) return null;
+        return (
+          <section className="mt-12 rounded-2xl border border-border bg-panel p-6 md:p-7">
+            <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+              Cross-portfolio overlap
+            </div>
+            <h2 className="text-2xl font-bold mb-3">
+              Who else holds what {m.name.split(" ").slice(-1)} holds
+            </h2>
+            <p className="text-sm text-muted mb-5 leading-relaxed">
+              Top {pairs.length} highest-conviction overlap pairs containing
+              {" "}{m.name}. Each page is the full intersection of two
+              13F-filed portfolios.
+            </p>
+            <ul className="grid sm:grid-cols-2 gap-3">
+              {pairs.map((p) => {
+                const otherName = p.a.slug === m.slug ? p.b.name : p.a.name;
+                return (
+                  <li
+                    key={p.slug}
+                    className="rounded-xl border border-border bg-bg/40 p-4 hover:border-brand/40 transition"
+                  >
+                    <Link href={`/fund-overlap/${p.slug}/`} className="block group">
+                      <div className="font-semibold text-text group-hover:text-brand transition">
+                        vs {otherName}
+                      </div>
+                      <div className="text-xs text-muted mt-1">
+                        {p.overlapCount} shared positions ·{" "}
+                        {p.jointConviction.toFixed(0)}% joint conviction
+                      </div>
+                      <div className="text-xs text-muted/80 mt-1 truncate">
+                        Top: {p.shared.slice(0, 4).map((s) => s.ticker).join(", ")}
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="mt-4 text-sm">
+              <Link href="/fund-overlap/" className="text-brand hover:underline font-semibold">
+                See all 435 overlap pairs →
+              </Link>
+            </p>
+          </section>
+        );
+      })()}
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold mb-6">

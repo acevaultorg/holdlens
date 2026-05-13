@@ -193,6 +193,7 @@ function buildBuyerMap(quarter: Quarter): Record<string, BuyerEntry[]> {
   const all = enriched.filter((m) => (m.action === "new" || m.action === "add") && m.quarter === quarter);
   const grouped: Record<string, BuyerEntry[]> = {};
   for (const mv of all) {
+    if (typeof mv.ticker !== "string" || mv.ticker.length === 0) continue;
     const sym = mv.ticker.toUpperCase();
     if (!grouped[sym]) grouped[sym] = [];
     grouped[sym].push({
@@ -214,6 +215,7 @@ function buildSellerMap(quarter: Quarter): Record<string, SellerEntry[]> {
   const all = enriched.filter((m) => (m.action === "trim" || m.action === "exit") && m.quarter === quarter);
   const grouped: Record<string, SellerEntry[]> = {};
   for (const mv of all) {
+    if (typeof mv.ticker !== "string" || mv.ticker.length === 0) continue;
     const sym = mv.ticker.toUpperCase();
     if (!grouped[sym]) grouped[sym] = [];
     grouped[sym].push({
@@ -247,6 +249,7 @@ export function getBuySignals(quarter: Quarter = LATEST_QUARTER): BuySignal[] {
 
   for (const c of getAllConvictionScores()) {
     if (c.score <= DEAD_ZONE) continue;
+    if (typeof c.ticker !== "string" || c.ticker.length === 0) continue;
     const sym = c.ticker.toUpperCase();
     const buyers = (buyerMap[sym] ?? []).sort(
       (a, b) => b.quality * b.weight - a.quality * a.weight
@@ -284,6 +287,7 @@ export function getSellSignals(quarter: Quarter = LATEST_QUARTER): SellSignal[] 
 
   for (const c of getAllConvictionScores()) {
     if (c.score >= -DEAD_ZONE) continue;
+    if (typeof c.ticker !== "string" || c.ticker.length === 0) continue;
     const sym = c.ticker.toUpperCase();
     const sellers = (sellerMap[sym] ?? []).sort(
       (a, b) => b.quality * b.weight - a.quality * a.weight
@@ -528,7 +532,10 @@ export function getManagerTickerTrend(
     "2025-Q4",
   ] as const);
   const moves = ALL_MOVES.filter(
-    (m) => m.managerSlug === managerSlug && m.ticker.toUpperCase() === sym
+    (m) =>
+      m.managerSlug === managerSlug &&
+      typeof m.ticker === "string" && m.ticker.length > 0 &&
+      m.ticker.toUpperCase() === sym
   );
 
   let streak = 0;
@@ -579,6 +586,7 @@ export function getTickerTrend(ticker: string): {
   const sym = ticker.toUpperCase();
   const perManagerMoves: Record<string, Move[]> = {};
   for (const mv of ALL_MOVES) {
+    if (typeof mv.ticker !== "string" || mv.ticker.length === 0) continue;
     if (mv.ticker.toUpperCase() !== sym) continue;
     if (!perManagerMoves[mv.managerSlug]) perManagerMoves[mv.managerSlug] = [];
     perManagerMoves[mv.managerSlug].push(mv);

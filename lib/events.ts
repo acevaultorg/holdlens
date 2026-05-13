@@ -360,8 +360,17 @@ export function getRecentEvents(limit = 10): Form8KEvent[] {
 }
 
 export function getEventsForTicker(ticker: string): Form8KEvent[] {
+  if (!ticker) return [];
   const sym = ticker.toUpperCase();
   return ALL_EVENTS
+    // Defensive: EDGAR 8-K records occasionally lack a parsed ticker
+    // (filer is a non-public entity or ticker resolution failed).
+    // Skip those rather than crashing on .toUpperCase() — they wouldn't
+    // match the ticker filter anyway. Guard added 2026-05-13 after
+    // prerender failure on /investor/bill-ackman traced here via
+    // ConvictionFactorTable component invoking getConviction() per
+    // top-N position across 30 managers.
+    .filter((e) => typeof e.ticker === "string" && e.ticker.length > 0)
     .filter((e) => e.ticker.toUpperCase() === sym)
     .sort((a, b) => (a.filedAt < b.filedAt ? 1 : -1));
 }
@@ -376,7 +385,11 @@ export function getEventsForItemSlug(slug: string): Form8KEvent[] {
 
 export function allEventTickers(): string[] {
   const set = new Set<string>();
-  for (const e of ALL_EVENTS) set.add(e.ticker.toUpperCase());
+  for (const e of ALL_EVENTS) {
+    if (typeof e.ticker === "string" && e.ticker.length > 0) {
+      set.add(e.ticker.toUpperCase());
+    }
+  }
   return Array.from(set).sort();
 }
 

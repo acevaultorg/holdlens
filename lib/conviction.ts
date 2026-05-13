@@ -139,7 +139,12 @@ function computeConviction(ticker: string, quarter: Quarter): ConvictionScore {
   const tickerData = TICKER_INDEX[sym];
 
   // Pull all moves for this ticker — across all quarters, time-decayed
-  const allMoves = getAllMovesEnriched().filter((m) => m.ticker.toUpperCase() === sym);
+  // Defensive: guard against any move record with missing/non-string ticker
+  // (added 2026-05-13 — prerender failure on /fund-overlap pages traced to
+  // unguarded .toUpperCase() on cached move set).
+  const allMoves = getAllMovesEnriched().filter(
+    (m) => typeof m.ticker === "string" && m.ticker.length > 0 && m.ticker.toUpperCase() === sym,
+  );
   const buyerMoves = allMoves.filter((m) => m.action === "new" || m.action === "add");
   const sellerMoves = allMoves.filter((m) => m.action === "trim" || m.action === "exit");
 
@@ -446,7 +451,11 @@ function computeConviction(ticker: string, quarter: Quarter): ConvictionScore {
 export function getAllConvictionScores(quarter: Quarter = LATEST_QUARTER): ConvictionScore[] {
   void quarter; // currently uses all quarters via time decay
   const tickers = new Set<string>();
-  for (const m of ALL_MOVES) tickers.add(m.ticker.toUpperCase());
+  for (const m of ALL_MOVES) {
+    if (typeof m.ticker === "string" && m.ticker.length > 0) {
+      tickers.add(m.ticker.toUpperCase());
+    }
+  }
   // Also include all currently-owned tickers (no Q4 move = still relevant)
   for (const t of Object.keys(TICKER_INDEX)) tickers.add(t);
 
@@ -522,7 +531,8 @@ export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): Co
   }
 
   const allMoves = getAllMovesEnriched().filter(
-    (m) => m.ticker.toUpperCase() === sym && (HISTORICAL_QUARTER_ORDER[m.quarter] ?? 0) <= cutoff
+    (m) => typeof m.ticker === "string" && m.ticker.length > 0 &&
+           m.ticker.toUpperCase() === sym && (HISTORICAL_QUARTER_ORDER[m.quarter] ?? 0) <= cutoff
   );
   const buyerMoves = allMoves.filter((m) => m.action === "new" || m.action === "add");
   const sellerMoves = allMoves.filter((m) => m.action === "trim" || m.action === "exit");
@@ -718,7 +728,10 @@ export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): Co
 export function getHistoricalTopBuys(asOfQuarter: Quarter, n = 5): ConvictionScore[] {
   const tickers = new Set<string>();
   for (const m of ALL_MOVES) {
-    if ((HISTORICAL_QUARTER_ORDER[m.quarter] ?? 0) <= (HISTORICAL_QUARTER_ORDER[asOfQuarter] ?? 0)) {
+    if (
+      typeof m.ticker === "string" && m.ticker.length > 0 &&
+      (HISTORICAL_QUARTER_ORDER[m.quarter] ?? 0) <= (HISTORICAL_QUARTER_ORDER[asOfQuarter] ?? 0)
+    ) {
       tickers.add(m.ticker.toUpperCase());
     }
   }

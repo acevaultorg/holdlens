@@ -13,6 +13,7 @@ import { SHORT_POSITIONS } from "@/lib/short-interest";
 import { CONGRESS_MEMBERS } from "@/lib/congress";
 import { ETFS } from "@/lib/etfs";
 import { REPORTS } from "@/lib/reports";
+import { getAllOverlapPairs } from "@/lib/fund-overlap-pairs";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -487,5 +488,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...congressMemberUrls,
     ...etfStaticUrls,
     ...etfTickerUrls,
+    // /fund-overlap/ hub + 435 pairwise overlap pages — substance-floor
+    // filtered to pairs with ≥2 shared positions (per CSIL #30 thin-content
+    // gate). Each page has unique 13F intersection data.
+    { url: `${base}/fund-overlap/`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.82 },
+    ...getAllOverlapPairs()
+      .filter((p) => p.overlapCount >= 2)
+      .map((p) => ({
+        url: `${base}/fund-overlap/${p.slug}/`,
+        lastModified: now,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      })),
   ];
 }
