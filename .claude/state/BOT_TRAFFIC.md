@@ -130,3 +130,44 @@ Operator shared TollBit Analytics screenshot (last 6 months, all properties):
 **Counterfactual: ~$50-150/mo if licenses configured.** 459 blocked + 316 attempted = ~775 bot-events / 6 months = ~130/mo. If half buy at $0.01 (default), that's ~$0.65/mo. If pricing tiered per llms.txt ($0.002 / $0.005 / $0.010), ChatGPT-class bots hitting per-entity-detail routes at $0.005 × ~50/mo = ~$0.25/mo. If platform deal closes (TollBit BDev) and ChatGPT/Perplexity start paying tier rates rather than walking away, $50-150/mo is realistic.
 
 **Action: still operator-only.** Brain cannot create license rates (real-money config; I-21 prohibits new financial action without operator-direct permission per-action). The 🔴 Clarity Card from 2026-04-24 (`[id:tollbit-create-license-rates]`) remains open. Below is the refreshed walkthrough.
+
+## 2026-05-13 — TollBit dashboard re-audit (brain-mode via Chrome MCP)
+
+**Auditor:** AcePilot v20.2 brain via Chrome MCP `app.tollbit.com` operator session.
+
+**Supersedes:** 2026-04-29 6-month audit + 2026-04-24 BOT_TRAFFIC.md correction. Both are now stale.
+
+### Verified current state (May 13)
+
+- **Bot paywall status:** active (`1 forwarded bots · 2 active licenses`)
+- **License rates:**
+  - Summarization — Status: Active · Permissions: Partial use · Global rate: **$0.005**
+  - Full Display — Status: Active · Permissions: Full use + Partial use · Global rate: **$0.005**
+- **Bot forwarding status:**
+  - **Forwarded** (will hit paywall): OAI-SearchBot (OpenAI) only — 1 bot
+  - **Allowed** (free pass to main site, no charge): no bots in this category
+  - **Partially forwarded** (broken setup): no bots in this category
+- **Agent site (`tollbit.holdlens.com` subdomain):** Disabled · Allow all bots ON (separate UI/path, not the main paywall flow)
+
+### Diagnosis
+
+The 2026-04-29 narrative — "no licenses configured, 459 blocked bots, $0 revenue" — has been **resolved at the licenses dimension** (2 active licenses now configured) but **a new bottleneck replaced it**: only 1 bot type (OAI-SearchBot) is being forwarded to the paywall. ClaudeBot, PerplexityBot, Google-Extended, Bytespider, Amazonbot, etc. are NOT being forwarded — they hit holdlens.com directly and consume content without going through TollBit's billing flow.
+
+This is the GOOD failure mode: zero bots blocked (no asset damage), small revenue ceiling (only OAI-SearchBot can pay). Acceptable interim state while CF PPC beta is pending.
+
+### Revenue impact (current state)
+
+- OAI-SearchBot historical volume on HoldLens: low (a few requests/week based on prior CONTEXT.md notes)
+- Per-request rate: $0.005
+- Realistic monthly revenue at current setup: **$0.05 - $0.50/mo**
+
+### Decision (2026-05-13, operator + brain consult)
+
+**Path C-B chosen: status quo on HoldLens.** No expansion of forwarding scope. Path B txtfeed pivot proceeds as the controlled-rollout test. If txtfeed Path B succeeds (≥$5/mo within 30d, bot volume stable), evaluate replicating expanded forwarding to HoldLens at that time.
+
+### Brain-doable autonomous actions taken
+
+- ✅ Audit + verify current state (this entry)
+- ✅ State files updated to supersede stale "459 blocked" narrative
+- ❌ No paywall config changes (operator-only domain; Path C-B = no action)
+

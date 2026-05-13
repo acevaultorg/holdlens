@@ -124,3 +124,21 @@ Operator flagged 2026-04-24: *"i think scrape success is a big problem. check"*.
 **Total operator effort: ~50 min for #1-3 = ~$240-540/mo activated. Currently $0 active revenue.**
 
 **Pattern lesson logged:** highest-leverage monetization gap is rarely a missing revenue-stack LAYER; it's component-PLACEMENT coverage. Apr 2026 audit revealed AdSense/Founders/Affiliate all "active" at site level but homepage (66.7% of traffic) had zero placements. Coverage audits > layer audits. Filed to PATTERNS.md as `monetization_layer_active_but_unplaced`.
+
+## 2026-05-13 — Layer 8 TollBit re-audit (brain-mode via Chrome MCP)
+
+Layer 8 row status correction. Old: `partially_active` with `$0.005 / 1 successful scrape week of 4/16-4/22`. Reality verified via TollBit dashboard `app.tollbit.com/property/an434uon3o4hanz02cliq90q`:
+
+| Field | Verified state (May 13) |
+|---|---|
+| Bot paywall | Active |
+| Licenses | 2 (Summarization $0.005 · Full Display $0.005) |
+| Bots forwarded | 1 (OAI-SearchBot only) |
+| Bots blocked | 0 |
+| Bots in "partial forward" (broken) | 0 |
+| Monthly revenue ceiling at current setup | $0.05 - $0.50/mo |
+
+The 2026-04-29 BOT_TRAFFIC.md "no licenses + 459 blocked" failure mode is RESOLVED. Current state is a no-risk minimal-revenue setup. Acceptable interim while CF PPC beta pending.
+
+**Operator decision 2026-05-13:** Path C-B (status quo). No HoldLens forwarding-scope expansion until txtfeed Path B proves the controlled-rollout pattern (≥$5/mo + bot volume stable @ 30d).
+
