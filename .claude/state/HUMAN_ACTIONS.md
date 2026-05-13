@@ -1,5 +1,74 @@
 # HoldLens — Human actions queue
 
+## 🔴 👨🏻‍🔧 REQUIRED — Deploy v0.57 (kills the −$56,540B homepage bug ChatGPT flagged)
+
+WHAT: ChatGPT's 2026-05-13 review of holdlens.com flagged a homepage
+trust-killer: "Net insider flow: −$56,540.58B is obviously a bug
+(that's 56 trillion)." Brain audited + confirmed: 55 CRWV rows in
+`data/edgar-form4.json` have `pricePerShare ≈ $10.9M` (CoreWeave
+actually trades ~$50/share — parser-edge-case bug in
+`scripts/fetch-edgar-form4.ts`). Each bad row carries value ≈
+$5.85T, sum ≈ $56.5T. Plus 7 WEST rows with similar issue.
+
+Brain shipped defensive sanity filter in `lib/insiders.ts`
+(commit `d71481585`): drops rows where `pricePerShare > $10k` OR
+`value > $5B`. After filter: 62 dropped, 9869 clean. New homepage
+display: **Net insider flow: −$7.67B** (was −$56,540.58B).
+
+Build #9 verified locally (`out/index.html` contains the new
+number). Commit pushed to GitLab `acevault-lab/holdlens` main. But
+4 wrangler `pages deploy` attempts in a row all EPIPE'd at chunks
+2400-4060 — CF still in "Minor Service Outage" status (regional
+POPs under_maintenance + Cloudflare Sites and Services
+`degraded_performance`).
+
+WHY: This is the single most damaging bug on a finance product —
+"−$56 trillion" on the homepage signals broken data pipeline +
+zero QA. AdSense reviewers + LLM crawlers + first-time visitors
+all see it. Cost of leaving it live: every hour = compounding
+trust loss. Cost of the fix: 5 min wrangler success.
+
+TIME: ~5 min from operator's terminal.
+
+HOW:
+  1. Check CF status:
+     ```bash
+     curl -s https://www.cloudflarestatus.com/api/v2/summary.json \
+       | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['status']['indicator'])"
+     ```
+     → expected: `none` (currently `minor`)
+  2. From YOUR terminal (NOT inside Claude Code):
+     ```bash
+     cd "/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens"
+     npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
+     ```
+     → expected: `Deployment complete!` (don't trust the EPIPE
+     message — check live afterward)
+  3. Wait 60 sec for CF cache TTL, then verify:
+     ```bash
+     curl -sL https://holdlens.com/ | grep -oE 'Net insider flow[^<]{0,200}' | grep -oE '[\$0-9.−+B]+' | head -3
+     ```
+     → expected: `$7.67B` (not `$56540.58B`)
+
+VERIFY: Homepage Net insider flow stat shows `−$7.67B` instead
+of `−$56,540.58B`. AdSense + LLM crawlers see a credible number.
+
+IF STUCK:
+  - Still EPIPE after CF status clears: try `npx wrangler@4.90.1`
+    (newer version may have better recovery)
+  - Operator-only deploy from Terminal succeeds where Claude Code
+    bash fails (per `rules/cloudflare-pages-epipe.md` § "what
+    works" item 4)
+  - Worst case: parser-fix is in queue (separate ship);
+    `scripts/fetch-edgar-form4.ts` reads `transactionPricePerShare`
+    from wrong XML path for some CRWV-class edge cases.
+
+Brain status: keeps retrying wrangler on every wakeup cycle until
+CF status flips to `none`. Will auto-verify post-deploy.
+
+---
+
+
 ## ✅ RESOLVED 2026-04-27 23:29 UTC — DNS flipped via Chrome MCP — holdlens.com now serving Vercel — [id:dns-flip-cf-to-vercel-2026-04-27]
 
 Operator directive 2026-04-27 ~23:00 UTC: *"you fix all with chrome mcp"* — explicit override on operator-only DNS convention. Brain executed via Chrome MCP DOM automation under direct authorization.
