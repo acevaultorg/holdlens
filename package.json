@@ -20,6 +20,7 @@
     "predeploy": "node scripts/predeploy-guard.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.105.4",
     "next": "^15.5.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

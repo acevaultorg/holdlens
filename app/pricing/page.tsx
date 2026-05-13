@@ -67,12 +67,14 @@ export default function PricingPage() {
           Pricing
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
-          Free forever. Pro for €9/mo.
+          Free forever. Pro for €9/mo. Power coming soon.
         </h1>
         <p className="text-muted text-lg max-w-2xl mx-auto">
           The full recommendation engine — unified signed ConvictionScore, signal dossiers,
           live prices, multi-quarter trend detection — is free for everyone. Pro adds
-          email alerts, EDGAR automation, custom watchlists, and API access.
+          email alerts, EDGAR automation, custom watchlists, and API access. Power
+          (coming soon) is the analyst tier with bigger API quotas, custom filters,
+          and portfolio sync.
         </p>
       </div>
 
@@ -102,8 +104,23 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* Two-tier pricing grid */}
-      <div className="grid md:grid-cols-2 gap-6 mb-16">
+      {/* Annual discount strip — sits between competitor row and tier grid.
+          Anchors the "save 17%" psychology before the operator sees per-mo
+          numbers below. Standard SaaS price-ladder pattern. */}
+      <div className="max-w-3xl mx-auto mb-8">
+        <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/5 px-5 py-4 flex items-center justify-between flex-wrap gap-3">
+          <div>
+            <div className="text-sm text-text font-semibold">Annual save 17%</div>
+            <div className="text-xs text-muted mt-0.5">Pay yearly · 2 months free · same lifetime founders rate applies</div>
+          </div>
+          <div className="text-xs text-dim">
+            Toggle annual/monthly at checkout
+          </div>
+        </div>
+      </div>
+
+      {/* Pricing grid — 3 tiers (Free / Founders+Pro / Power) */}
+      <div className="grid md:grid-cols-3 gap-6 mb-16">
         {/* Free */}
         <div className="rounded-2xl border border-border bg-panel p-8">
           <div className="text-xs uppercase tracking-widest text-dim font-semibold mb-2">
@@ -206,6 +223,57 @@ export default function PricingPage() {
             </a>
           </p>
         </div>
+
+        {/* Power — coming soon. Power-user tier signals upgrade path
+            without breaking €9 founders lifetime commitment. Operator
+            activates Stripe + features when fleet UV crosses funnel-
+            order math floor (~500 UV/30d minimum). */}
+        <div className="rounded-2xl border border-amber-400/40 bg-amber-400/5 p-8 relative">
+          <div className="absolute -top-3 left-8 text-[10px] uppercase tracking-widest font-bold text-bg bg-amber-400 rounded-full px-3 py-1">
+            Coming soon
+          </div>
+          <div className="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-2">
+            Power
+          </div>
+          <div className="flex items-baseline gap-2 mb-1">
+            <div className="text-4xl sm:text-5xl font-bold tabular-nums">€49</div>
+            <div className="text-sm text-muted">/month</div>
+          </div>
+          <div className="text-sm text-muted mb-6">
+            For analysts + RIAs · cancel anytime
+          </div>
+
+          <div className="mb-6">
+            <p className="text-xs text-muted mb-3">
+              Everything in Pro, plus higher API limits, custom filters,
+              portfolio sync, and priority support — built for users who
+              run real models on this data.
+            </p>
+            <button
+              type="button"
+              disabled
+              className="w-full text-center bg-bg border border-amber-400/40 text-amber-400/70 font-semibold rounded-xl px-5 py-3 cursor-not-allowed"
+            >
+              Notify me at launch →
+            </button>
+            <p className="text-[11px] text-dim mt-3 text-center">
+              <a href="/alerts" className="underline hover:text-text transition">
+                Get notified when Power ships
+              </a>
+            </p>
+          </div>
+
+          <ul className="space-y-3 text-sm">
+            <Feature text="Everything in Pro, plus:" emphasis />
+            <Feature text="100,000 req/day API (vs 10k Pro / 150 Free)" />
+            <Feature text="Custom filters — score ranges × sector × manager combos" />
+            <Feature text="Portfolio sync — match HoldLens signals to YOUR positions" />
+            <Feature text="Bulk CSV/JSON export — unlimited per month" />
+            <Feature text="Historical backtest API — programmatic /proof access" />
+            <Feature text="Priority email support · &lt;24h response" />
+            <Feature text="Direct line to the builder for feature requests" />
+          </ul>
+        </div>
       </div>
 
       {/* FAQ */}
@@ -231,6 +299,10 @@ export default function PricingPage() {
           <FAQ
             q="Do you offer a team or family plan?"
             a="Not yet. If you want to share Pro with your investing club or family, reach out — we'll set something up manually until we ship a real team plan."
+          />
+          <FAQ
+            q="When does Power tier launch?"
+            a="Power is in active development. It targets analysts, RIAs, and quants who run real models on the data — 100k req/day API, custom filters, portfolio sync, bulk export, historical backtest API, priority support. €49/mo. Join /alerts to be notified at launch. Existing Pro subscribers can upgrade with one click and keep their lifetime founders pricing on the Pro base."
           />
           <FAQ
             q="Refund policy?"

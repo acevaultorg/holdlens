@@ -29,6 +29,7 @@
 //   Neutral default for category nouns (no hue rotation per category).
 
 import GlobalSearch from "@/components/GlobalSearch";
+import AuthStatus from "@/components/AuthStatus";
 
 type NavLink = {
   href: string;
@@ -252,6 +253,11 @@ export default function DesktopNav() {
         <span>Pro</span>
         <span className="text-dim font-normal">· €9</span>
       </a>
+      {/* Auth pill — v0.58 (2026-05-13). Logged-out → "Sign in" → /login/
+          (or /signup/ when Supabase env vars not yet configured). Logged-in →
+          truncated email + → /account/. Client-mount only; no SSR hydration
+          mismatch on static-export. See components/AuthStatus.tsx. */}
+      <AuthStatus variant="desktop" />
       <GlobalSearch />
     </nav>
   );
