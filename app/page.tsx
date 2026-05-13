@@ -305,7 +305,7 @@ export default function HomePage() {
             href="/best-now"
             className="group bg-brand text-black font-semibold rounded-xl px-8 py-5 shadow-brand-glow hover:shadow-brand-glow hover:opacity-95 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
-            See the top buy signals{" "}
+            See top accumulating tickers{" "}
             <span
               aria-hidden
               className="inline-block transition-transform duration-base ease-swift group-hover:translate-x-1"
@@ -317,7 +317,7 @@ export default function HomePage() {
             href="/biggest-sells"
             className="group border border-rose-400/40 bg-rose-400/5 text-rose-400 font-semibold rounded-xl px-8 py-5 hover:bg-rose-400/10 hover:border-rose-400/60 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
-            See the top sell signals{" "}
+            See most-trimmed tickers{" "}
             <span
               aria-hidden
               className="inline-block transition-transform duration-base ease-swift group-hover:translate-x-1"

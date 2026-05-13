@@ -85,7 +85,7 @@ export default function NotFound() {
           href="/best-now"
           className="bg-brand text-black font-semibold rounded-xl px-6 py-3.5 hover:opacity-90 transition"
         >
-          See the top buy signals →
+          See top accumulating tickers →
         </a>
         <a
           href="/"

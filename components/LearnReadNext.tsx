@@ -76,7 +76,7 @@ export default function LearnReadNext({ currentSlug }: { currentSlug: string }) 
             Apply it now →
           </div>
           <div className="text-lg font-bold text-text group-hover:text-brand transition-colors">
-            Today's top buy signals
+            Today's top accumulating tickers
           </div>
           <p className="text-sm text-muted mt-1.5 leading-relaxed">
             See the ConvictionScore in action across every tracked stock. Live, SEC-sourced, free.
