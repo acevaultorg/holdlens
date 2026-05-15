@@ -3,6 +3,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // /learn/13f-vs-13d-vs-13g
 //
@@ -176,6 +178,14 @@ export default function ThirteenFvsDvsGPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          Three SEC filings tracked by institutional investors mean three different things.
+          13F: quarterly long US-equity positions for managers over $100M — passive disclosure,
+          45-day lag. 13D: an investor crossing 5% of a public company with intent to influence —
+          activist signal, 10-day window. 13G: same 5% threshold but explicitly passive (index
+          funds, pension allocations) — no activist intent. The same 5% stake in Apple is a yawn
+          on 13G and a takeover threat on 13D. Read the schedule, not just the size.
+        </TldrCard>
         {/* Quick reference card */}
         <div className="rounded-2xl border border-border bg-panel p-6 my-6">
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
@@ -766,6 +776,23 @@ export default function ThirteenFvsDvsGPage() {
           </p>
         </div>
       </div>
+
+      <OurView>
+        <p>
+          Most retail investors over-weight 13Fs and under-weight 13D/13G. The mistake is
+          intuitive — 13Fs are easier to read and there are more of them — but 13Ds are
+          structurally the higher-information filing. A 13D arrives within 10 days of crossing
+          5%, requires the investor to declare intent, and triggers update amendments on every
+          material change. By the time a 13F shows you the same position, the activist has
+          already moved the price.
+        </p>
+        <p>
+          HoldLens treats the three filings as a hierarchy: 13D &gt; 13G &gt; 13F by signal
+          strength when an event is unfolding, but 13F &gt; 13D/13G for long-horizon pattern
+          recognition across managers who never cross the 5% line. Both modes matter. Reading
+          one without the other gives you half the picture.
+        </p>
+      </OurView>
 
       <LearnReadNext currentSlug="13f-vs-13d-vs-13g" />
 

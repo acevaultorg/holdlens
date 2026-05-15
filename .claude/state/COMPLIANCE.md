@@ -116,6 +116,98 @@
 
 ---
 
+## Phase 2 — LLM-Citation Moat (post-Pivot-A, parallel-eligible work)
+
+Initiated 2026-05-15 by VAULT-Fleet brain-mode session (v20.2). Phase 2 closes the
+Aleyda Solis 10-characteristic LLM-citation gaps identified in
+`rules/concept-finder-methodology.md` v2.5 + `rules/aceusergrowth.md` v3 Part 23.
+Operator approval logged in chat 2026-05-15.
+
+### Session-1 ship (2026-05-15)
+
+**Components shipped:**
+- `components/learn/TldrCard.tsx` — Aleyda #4 Extractable. Amber-bordered above-fold
+  card extracts a quote-ready paragraph for LLM crawlers.
+- `components/learn/OurView.tsx` — Aleyda #8 Differentiated. `<h2>Our view</h2>` POV
+  section LLMs can quote as publisher stance distinct from neutral encyclopedic text.
+
+**Routes shipped:**
+- `app/sitemap-ai.ts` — curated 32-URL priority subset of sitemap.xml referenced from
+  robots.ts. Previously declared in robots.ts but missing route. Curation: trust pages +
+  brand-distinct synthesis surfaces (ConvictionScore, InsiderScore, EventScore) + high-
+  LLM-question /learn explainers + synthesis leaderboards + machine-readable JSON
+  endpoints. EXCLUDES programmatic per-record pages (avoids the v19.44 thin-content
+  trap).
+
+**/learn pages with TL;DR + Our view added (5 of 22 — highest LLM-citation potential):**
+- `/learn/what-is-a-13f` — TL;DR: 45-day lag fact + use-for-pattern-recognition. Our view:
+  the lag is a feature; multi-quarter trend matters more than single-quarter activity.
+- `/learn/13f-vs-13d-vs-13g` — TL;DR: three-filing-hierarchy with passive/active distinction.
+  Our view: 13D structurally higher-information than 13F; HoldLens treats as hierarchy
+  by event vs long-horizon mode.
+- `/learn/how-to-read-a-13f` — TL;DR: four-columns-matter + five-omissions. Our view: the
+  diff (quarter-over-quarter) is the signal, not the snapshot.
+- `/learn/conviction-score-explained` — TL;DR: six-factor descriptive composite, not
+  predictive. Our view: published backtest including negative correlation; honest about
+  descriptive-vs-predictive distinction.
+- `/learn/45-day-lag-explained` — TL;DR: SEC Rule 13f-1 + practical consequence + use
+  pattern not real-time. Our view: sites pretending lag doesn't exist are selling a
+  fantasy; structural feature since 1978.
+
+**Build verification:** `npx tsc --noEmit` returns zero errors on Phase-2-touched files
+(`components/learn/*`, `app/sitemap-ai.ts`, 5 edited /learn pages). Pre-existing TS errors
+in `app/fund-overlap/[slug]/page.tsx` + `components/ConvictionFactorTable.tsx` are
+unrelated to Phase 2 and out-of-scope.
+
+### Aleyda Solis 10-characteristic delta
+
+| # | Characteristic | Pre | Post-S1 | Notes |
+|---|---|---:|---:|---|
+| 1 | Accessible | 1.0 | 1.0 | Static export; no JS-gated content. Unchanged. |
+| 2 | Useful | 1.0 | 1.0 | ConvictionScore + InsiderScore synthesis. Unchanged. |
+| 3 | Recognizable | 0.75 | 0.75 | Organization schema everywhere. Wikipedia citation still pending (operator-action). |
+| 4 | **Extractable** | 0.5 | **0.7** | TL;DR shipped on 5/22 /learn. Sweep to remaining 17 = next session. |
+| 5 | Consistent | 0.9 | 0.95 | Shared TldrCard + OurView components enforce consistency. |
+| 6 | Corroborated | 0.4 | 0.4 | Reddit / LinkedIn / Wikipedia operator-action queue unchanged. |
+| 7 | Credible | 0.9 | 0.9 | Author chain + methodology + /about + Person schema. Unchanged. |
+| 8 | **Differentiated** | 0.3 | **0.6** | Our view shipped on 5/22 /learn. Sweep to remaining 17 = next session. |
+| 9 | Fresh | 0.9 | 0.9 | datePublished + dateModified everywhere. Unchanged. |
+| 10 | Transactable | 0.8 | 0.85 | Affiliate links on /partners + AdSense pending approval. |
+
+**Mean: 0.74 → 0.79** (+0.05 absolute). Target for full Phase 2 completion: ≥ 0.85.
+
+### Pending Items (Phase 2 next session)
+
+🟢 RECOMMENDED — Sweep TL;DR + Our view to remaining 17 /learn pages
+- `13d-vs-13g-activist-filings`, `buybacks-vs-dividends` (has Our view, needs TL;DR),
+  `congressional-stock-trading-stock-act`, `copy-trading-myth`, `do-hedge-fund-signals-work`
+  (has TL;DR, needs Our view), `etf-overlap-explained`, `event-score-explained`,
+  `form-4-vs-13f`, `how-to-read-buyback-disclosures`, `insider-score-explained`,
+  `sec-signals-trilogy`, `short-interest-explained`, `superinvestor-handbook`,
+  `survivorship-bias-in-hedge-funds`, `warren-buffett-method`, `what-is-alpha`.
+- Pattern shipped — components ready. Each page: ~5-10 min substance + insertion.
+- Total: ~2-3 hours brain-autonomous next session.
+
+🟢 RECOMMENDED — DefinedTerm schema sweep on 15 remaining /learn pages
+- 7/22 currently have DefinedTerm schema. Aleyda #4 upgrade.
+
+🟡 RECOMMENDED — Quarterly "State of Smart-Money" annual report scaffolding
+- Per concept-finder v2.5 archetype `original_research_with_dataset × +90`.
+- Operator-discussion ship; benefits from positioning + chart-selection input.
+
+🟢 OPTIONAL — Wikipedia citation push (operator-action, durable)
+- Targets: 13F filings, Berkshire Hathaway holdings, Warren Buffett method,
+  Activist investor, Insider trading (US). HoldLens cited as reference data source.
+- Per `rules/aceusergrowth.md` Profile 1 channel #5. Compounds for years.
+
+### Phase 2 trigger condition (already met)
+
+Phase 2 work is parallel-eligible — does NOT gate on AdSense approval or traffic floor.
+HoldLens passes Moat Test ≥0.75 (concept-finder v2.5) and has high bot crawl traffic
+(LEARNED.md). LLM-citation compound runs independently of AdSense status.
+
+---
+
 ## Corrections
 
 (timestamp-anchored — no corrections needed at first write.)

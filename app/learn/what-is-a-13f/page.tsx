@@ -5,6 +5,8 @@ import AuthorByline from "@/components/AuthorByline";
 import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 export const metadata: Metadata = {
   title: "What is a 13F filing? — Plain English guide for retail investors",
@@ -58,6 +60,15 @@ export default function What13FPage() {
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">Learn</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">What is a 13F filing?</h1>
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          A 13F is a quarterly SEC form that institutional managers with over $100M in US equity assets
+          must file within 45 days of quarter-end. It lists long US stock positions only — no shorts,
+          no bonds, no options detail, no cash, no non-US holdings. The 45-day reporting lag is the
+          single most important fact: by the time you read a position, the trade is 6 weeks to 4 months
+          old. Use 13Fs for pattern recognition (consensus, themes, validation), not real-time
+          copy-trading.
+        </TldrCard>
+
         <p className="text-lg text-muted">
           A 13F is an SEC form that institutional investment managers with over <strong className="text-text">$100 million</strong>
           {" "}in assets are required to file every quarter. It lists their long US equity positions.
@@ -120,6 +131,23 @@ export default function What13FPage() {
           </a>{" "}
           (filing-discovery reference; this page focuses on what 13Fs mean for tracked superinvestors).
         </p>
+
+        <OurView>
+          <p>
+            The 45-day lag is a feature, not a bug. It filters noise out of the data. Managers who
+            hold a position across multiple quarterly filings have demonstrated patience and
+            conviction — qualities that don&rsquo;t survive momentum chasing. The investors worth
+            tracking are not the ones with the fastest trades; they&rsquo;re the ones with the most
+            durable theses.
+          </p>
+          <p>
+            That&rsquo;s why HoldLens scores managers by multi-quarter trend and concentration,
+            not by single-quarter activity. Read 13Fs for pattern recognition: where smart money
+            agrees, where it disagrees with itself, and which themes are accumulating despite the
+            headlines. Skip them for tactical timing — the data structurally cannot serve that
+            purpose.
+          </p>
+        </OurView>
 
         <InvestingBooks
           heading="Foundational reading on securities analysis"

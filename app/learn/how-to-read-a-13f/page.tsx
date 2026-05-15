@@ -3,6 +3,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // v1.23 — new /learn/ article. "How to read a 13F in 5 minutes" is a high-volume
 // practical query ("how to read 13f filing", "13f filing explained", "hedge fund
@@ -161,6 +163,15 @@ export default function HowToReadA13FPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          A 13F filing has four columns that matter and five things it deliberately omits.
+          Find the filing on EDGAR, open the Information Table, read share counts and market
+          values at quarter-end, and compare to the manager&rsquo;s prior quarters for direction.
+          Ignore voting authority unless researching activists. The filing never shows shorts,
+          options detail, cash, non-US holdings, or any intra-quarter moves — what you see is a
+          single snapshot taken on the last day of the quarter, published 45 days later.
+        </TldrCard>
+
         <p className="text-muted">
           This guide assumes nothing. If you've never opened an SEC document
           before, you'll leave this page knowing exactly what to look at, what
@@ -410,6 +421,21 @@ export default function HowToReadA13FPage() {
           </p>
         </div>
       </div>
+
+      <OurView>
+        <p>
+          Most retail readers spend too much time on individual line items and too little on
+          the diff. The single highest-leverage operation when reading a 13F is comparing the
+          current filing to the prior quarter side-by-side: what got added, what got cut, what
+          got concentrated. A new position at 0.5% is noise; a position scaled from 1% to 4%
+          across two quarters is conviction.
+        </p>
+        <p>
+          That&rsquo;s why HoldLens stores every historical filing and computes the trend, not
+          just the snapshot. If you only read one quarter in isolation, you&rsquo;re reading
+          the wrong document. The signal lives in the change.
+        </p>
+      </OurView>
 
       <LearnReadNext currentSlug="how-to-read-a-13f" />
 

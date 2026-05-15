@@ -5,6 +5,8 @@ import AuthorByline from "@/components/AuthorByline";
 import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 export const metadata: Metadata = {
   title: { absolute: "What is the HoldLens ConvictionScore? — The single signed −100..+100 scale" },
@@ -128,6 +130,17 @@ export default function ConvictionPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          ConvictionScore is a single signed scale from −100 (strongest aggregate selling) to
+          +100 (strongest aggregate buying) computed from quarterly 13F filings of 30 tracked
+          superinvestors. It combines six factors: smart-money position-direction, insider Form 4
+          activity on the same ticker, manager track record weighting, multi-quarter trend,
+          portfolio concentration, and a contrarian bonus when smart-money disagrees with
+          general consensus. The score is a descriptive composite, not investment advice — its
+          purpose is to surface where conviction is concentrating across the smartest filers,
+          not to predict short-term price.
+        </TldrCard>
+
         <AuthorByline date="2026-03-20" updated="2026-04-10" />
 
         <h2 className="text-2xl font-bold mt-8 mb-3">The problem with dual buy / sell rankings</h2>
@@ -283,6 +296,26 @@ export default function ConvictionPage() {
           The full seven-layer formula lives in the project repo and is described in detail on the{" "}
           <a href="/methodology" className="underline">methodology page</a>. Not investment advice.
         </p>
+
+        <OurView>
+          <p>
+            Most signal scores fail the falsifiability test — they get re-described after the
+            fact to fit whatever happened. ConvictionScore is published with its backtest,
+            including the embarrassing parts: over 221 ticker-quarter pairs across 4 quarters
+            (Q4 2024–Q3 2025), the correlation between the score and forward alpha was
+            slightly negative. Top-decile &ldquo;BUY&rdquo; signals underperformed bottom-decile
+            &ldquo;SELL&rdquo; signals every single quarter of the window.
+          </p>
+          <p>
+            That doesn&rsquo;t make the score useless — it makes it honest. ConvictionScore is
+            a descriptive lens on what smart money is doing, not a predictive timing tool. The
+            value is in the synthesis: 30 filings × 6 factors × 8 quarters compressed into one
+            number you can scan in a second. Use it to identify themes, validate your own
+            theses, and notice when the smart money is unusually concentrated. Don&rsquo;t use
+            it as a trade signal. We&rsquo;ve published the data so you can audit that
+            distinction for yourself.
+          </p>
+        </OurView>
 
         <LearnReadNext currentSlug="conviction-score-explained" />
 

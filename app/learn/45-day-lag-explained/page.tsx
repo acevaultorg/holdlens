@@ -3,6 +3,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // v1.26 — new /learn/ article. The 45-day lag is the single most misunderstood
 // fact about 13F data, and also the one that separates honest sites from
@@ -143,6 +145,16 @@ export default function FortyFiveDayLagPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          The 45-day lag is set by SEC Rule 13f-1: institutional managers have 45 calendar days
+          after each quarter-end to file Form 13F. The window is deliberate — without it,
+          front-runners would trade against funds the moment a new position appeared. Practical
+          consequence: when you see a 13F position, the actual trade is 6 weeks to 4 months
+          old. Quarter-end prices that anchor the filing have already moved. 13F data is
+          structurally backward-looking and works for pattern recognition (consensus, themes,
+          conviction); it does not work for real-time copy-trading.
+        </TldrCard>
+
         <AuthorByline date="2026-04-16" />
 
         <h2 className="text-2xl font-bold mt-10 mb-3">The timeline</h2>
@@ -372,6 +384,25 @@ export default function FortyFiveDayLagPage() {
           </p>
         </div>
       </div>
+
+      <OurView>
+        <p>
+          Sites that pretend the 45-day lag doesn&rsquo;t exist are selling a fantasy.
+          You&rsquo;ll see &ldquo;Buffett bought X — buy now&rdquo; copy that papers over the
+          gap between when the trade happened and when you read about it. By &ldquo;now&rdquo;
+          the position is often months old and the price has moved 5–15%. That isn&rsquo;t
+          smart-money following; it&rsquo;s late-money chasing.
+        </p>
+        <p>
+          The honest read on 13F data accepts the lag as a permanent feature. Use the data for
+          what it&rsquo;s structurally good at — identifying which managers maintain conviction
+          across multiple quarters, where smart money agrees, and which themes are accumulating
+          despite the headlines. Skip it for anything that requires knowing what positions look
+          like today. The filing you&rsquo;re reading is a snapshot of yesterday, taken six
+          weeks before publication. That&rsquo;s not a bug in HoldLens — it&rsquo;s how the SEC
+          designed the disclosure regime, and the design has held since 1978.
+        </p>
+      </OurView>
 
       <LearnReadNext currentSlug="45-day-lag-explained" />
 
