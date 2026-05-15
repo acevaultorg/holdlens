@@ -20,6 +20,32 @@ export default function Article() {
     publisher: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com" },
     mainEntityOfPage: "https://holdlens.com/learn/etf-overlap-explained",
     description: "What ETF overlap means and how it compromises diversification.",
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "ETF overlap",
+        description:
+          "The fraction of holdings that two or more ETFs share, weighted by position size. Owning four ETFs with 70%+ overlap concentrates risk in the same names instead of diversifying.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Jaccard similarity",
+        description:
+          "A set-similarity metric: intersection size divided by union size. Standard quantitative measure of overlap between two portfolios when accounting for the universe of holdings.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Factor concentration",
+        description:
+          "Exposure to underlying systematic factors (market, size, value, momentum, quality) rather than to individual stocks. Multiple large-cap-blend ETFs concentrate market+size factor without delivering true diversification.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Beta",
+        description:
+          "Measure of a portfolio's correlation with broad-market returns. ETF portfolios with high overlap have high collective beta and limited diversification benefit during market-wide drawdowns.",
+      },
+    ],
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",

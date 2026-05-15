@@ -47,6 +47,32 @@ export default function BuybacksVsDividendsPage() {
       url: "https://holdlens.com",
       logo: { "@type": "ImageObject", url: "https://holdlens.com/logo.png" },
     },
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "Share repurchase",
+        description:
+          "A company purchasing its own shares on the open market, shrinking the share count and increasing each remaining shareholder's claim on earnings. Also called a buyback. Not directly taxable to non-selling shareholders.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Dividend",
+        description:
+          "An explicit per-share cash payment from a company to shareholders. Taxed as ordinary income or at qualified-dividend rates. Cutting dividends is a market-signaling event; raising them implies durable cash-flow confidence.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "EPS accretion",
+        description:
+          "The mechanical increase in earnings per share that results from a buyback shrinking the share-count denominator. Distinct from actual earnings growth — buybacks lift EPS even when net income is flat.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Capital return",
+        description:
+          "Cash returned by a company to its shareholders via dividends, buybacks, or special distributions. Aggregate US capital return now exceeds $1.5T/year, with buybacks ~60% of the total.",
+      },
+    ],
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",

@@ -60,12 +60,38 @@ const LD = [
     dateModified: "2026-04-17",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
-    about: {
-      "@type": "Person",
-      name: "Warren Buffett",
-      jobTitle: "Chairman & CEO",
-      worksFor: { "@type": "Organization", name: "Berkshire Hathaway" },
-    },
+    about: [
+      {
+        "@type": "Person",
+        name: "Warren Buffett",
+        jobTitle: "Chairman & CEO",
+        worksFor: { "@type": "Organization", name: "Berkshire Hathaway" },
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Owner mindset",
+        description:
+          "Analyzing a stock purchase as fractional ownership of a business rather than a trading vehicle. Focuses on the underlying enterprise's economics, management quality, and long-term cash-flow durability.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Margin of safety",
+        description:
+          "The discount between a stock's market price and the investor's estimated intrinsic value. Buffett's adopted principle from Benjamin Graham: the margin protects against analytical error and unfavorable market events.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Float",
+        description:
+          "In insurance: premiums received but not yet paid as claims. Berkshire's insurance subsidiaries generate float that funds equity investments at near-zero cost — a structural advantage retail investors cannot replicate.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Holding period",
+        description:
+          "How long a position is held before sale. Berkshire's average holding period exceeds a decade; most retail portfolios turn over annually. The discipline is the input; concentrated long-term outperformance is the output.",
+      },
+    ],
   },
 ];
 

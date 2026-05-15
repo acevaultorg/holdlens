@@ -67,12 +67,32 @@ const LD = [
     dateModified: "2026-04-26",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
-    about: {
-      "@type": "Thing",
-      name: "SEC Form 13F",
-      description:
-        "Quarterly filing by institutional investment managers with $100M+ in US equity assets under discretion.",
-    },
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "Information Table",
+        description:
+          "The infotable.xml file inside a 13F-HR filing. Lists every position with stock name, CUSIP, share count, market value at quarter-end, and voting authority designation.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Voting authority",
+        description:
+          "A 13F column indicating whether the manager has sole, shared, or no voting power over the disclosed shares. Most managers report sole; activists often disclose shared structures.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "13F-HR",
+        description:
+          "The standard Holdings Report variant of Form 13F. Distinct from 13F-NT (Notice) used when securities are reported by another manager, and 13F-HR/A (Amendment) for corrections.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Quarter-end snapshot",
+        description:
+          "A 13F filing reflects positions held on the last day of the calendar quarter (Mar 31, Jun 30, Sep 30, Dec 31). No intra-quarter visibility — positions traded and closed mid-quarter never appear.",
+      },
+    ],
   },
   {
     "@context": "https://schema.org",

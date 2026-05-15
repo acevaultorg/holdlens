@@ -63,6 +63,38 @@ const JSONLD = {
   },
   articleSection: "Investing",
   wordCount: 3400,
+  about: [
+    {
+      "@type": "DefinedTerm",
+      name: "Superinvestor",
+      description:
+        "An institutional investor with a documented multi-decade track record of risk-adjusted outperformance and a distinctive, recognizable investment philosophy. HoldLens tracks 30 — Buffett, Munger, Klarman, Marks, Ackman, Burry, Druckenmiller, and others.",
+    },
+    {
+      "@type": "DefinedTerm",
+      name: "Conviction position",
+      description:
+        "A 13F position sized large enough to materially affect portfolio returns (typically 3%+ of disclosed AUM) and held across multiple quarters. Distinct from index-padding or scratch positions.",
+    },
+    {
+      "@type": "DefinedTerm",
+      name: "Index padding",
+      description:
+        "Small 13F positions (often <0.5% of AUM) that exist for benchmark-relative tracking rather than conviction. Common in larger funds with index-mandated exposures.",
+    },
+    {
+      "@type": "DefinedTerm",
+      name: "Position-size weighting",
+      description:
+        "Methodology that scores manager moves by what fraction of their portfolio the position represents, not by absolute dollar size. A 5% position in a $1B fund signals more than a 0.1% position in a $50B fund.",
+    },
+    {
+      "@type": "DefinedTerm",
+      name: "Multi-quarter trend",
+      description:
+        "The direction of position size across consecutive quarterly 13F filings. Scaling-up across 3+ quarters = high conviction; trimming across 3+ quarters = thesis breaking; one-quarter spike = noise.",
+    },
+  ],
 };
 
 const FAQ_JSONLD = {

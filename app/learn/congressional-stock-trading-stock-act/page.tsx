@@ -29,6 +29,32 @@ export default function Article() {
       "https://holdlens.com/learn/congressional-stock-trading-stock-act",
     description:
       "What the STOCK Act of 2012 requires from U.S. House and Senate members.",
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "STOCK Act",
+        description:
+          "Stop Trading on Congressional Knowledge Act of 2012. Requires US Senators, Representatives, and their immediate families to disclose every stock trade within 45 days. Penalty for late filing is nominal ($200).",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Periodic Transaction Report",
+        description:
+          "The disclosure form filed under the STOCK Act for individual trades. Reports the trade type (buy/sell/exchange), date, asset, and value in pre-defined dollar ranges — never exact amounts.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Dollar range bracket",
+        description:
+          "The STOCK Act discloses trade amounts in tiered brackets: $1K-15K, $15K-50K, $50K-100K, $100K-250K, $250K-500K, $500K-1M, $1M-5M, $5M-25M, $25M-50M, $50M+. Exact values are not public.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "House Clerk eFD",
+        description:
+          "The electronic Financial Disclosure system maintained by the Clerk of the U.S. House of Representatives. Public-facing repository of all House STOCK Act filings.",
+      },
+    ],
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",

@@ -28,6 +28,38 @@ export default function Article() {
     mainEntityOfPage: "https://holdlens.com/learn/short-interest-explained",
     description:
       "What short interest measures and how days-to-cover is calculated.",
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "Short interest",
+        description:
+          "The total number of shares sold short and not yet repurchased. Published bi-monthly by FINRA with ~8-day lag. Expressed as absolute share count or as % of free float.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Days-to-cover",
+        description:
+          "Short interest divided by average daily trading volume. Estimates how many trading days short positions would need to unwind. High values (>10 days) flag squeeze potential.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Borrow fee",
+        description:
+          "The annualized rate shorts pay to borrow shares. Reflects supply-demand of borrowable shares. High borrow fees (>20% annualized) indicate scarcity and elevated conviction or risk.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Short squeeze",
+        description:
+          "A rapid price rise that forces shorts to cover, creating a feedback loop of further price appreciation. Requires high short interest, high days-to-cover, AND a catalyst — short interest alone rarely triggers a squeeze.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Free float",
+        description:
+          "The number of shares available for public trading, excluding insider holdings, restricted shares, and treasury stock. Denominator for the % short interest of float metric.",
+      },
+    ],
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",

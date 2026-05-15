@@ -48,6 +48,32 @@ export default function HowToReadBuybackDisclosuresPage() {
       url: "https://holdlens.com",
       logo: { "@type": "ImageObject", url: "https://holdlens.com/logo.png" },
     },
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "Form 10-K cash-flow statement",
+        description:
+          "The annual SEC filing's statement of cash flows includes a line for 'Repurchase of common stock' showing the actual dollar amount executed. The authoritative measure of executed buybacks (vs announced authorizations).",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Repurchase authorization",
+        description:
+          "A board resolution permitting a company to spend up to a stated dollar amount on share buybacks within a stated window. Announced via 8-K. Authorization is permission, not execution.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Monthly purchases table",
+        description:
+          "A required table in 10-Q quarterly filings showing the share count, average price, and cumulative spend on buybacks for each of the three months in the quarter. The reliable execution-rate signal.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Rule 10b-18 safe harbor",
+        description:
+          "SEC rule providing a safe harbor from market-manipulation claims when a company repurchases its own shares under specified conditions (timing, price, volume, single broker). Standard for most US buyback programs.",
+      },
+    ],
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",

@@ -28,6 +28,38 @@ export default function Article() {
       "https://holdlens.com/learn/13d-vs-13g-activist-filings",
     description:
       "When an investor crosses 5% of a public company they file 13D or 13G. The difference reveals intent.",
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "Schedule 13D",
+        description:
+          "SEC filing required when an investor crosses 5% beneficial ownership with intent to influence control. Filed within 10 days; amended on every material change. Item 4 (Purpose of Transaction) is where activist theses are declared.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Schedule 13G",
+        description:
+          "Short-form SEC filing for passive 5%+ beneficial owners — typically index funds, pension funds, and ETFs explicitly disclaiming influence intent. Lighter ongoing disclosure burden than 13D.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Beneficial owner",
+        description:
+          "An entity that, directly or indirectly, holds voting or investment power over a security. Includes shares held through nominees, derivatives convertible into shares within 60 days, and related parties.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Activist investor",
+        description:
+          "An investor who acquires a significant stake (typically 5-10%+) with intent to influence the company — pushing for board seats, strategic changes, breakups, sales, or capital-return programs.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Material change amendment",
+        description:
+          "Required follow-up filing under Schedule 13D when a previously-declared position changes by 1% or more, or when activist intent changes. Identifier suffix /A.",
+      },
+    ],
   };
   const faqLd = {
     "@context": "https://schema.org",

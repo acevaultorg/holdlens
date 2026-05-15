@@ -52,6 +52,32 @@ const LD = [
     dateModified: "2026-04-10",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "Copy trading",
+        description:
+          "The practice of replicating another investor's trades, typically by buying the same stocks soon after a public disclosure. Structurally limited by reporting lag and absent context (sizing, hedges, options).",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Smart-money signal",
+        description:
+          "A directional indicator derived from the aggregated positioning of institutional managers with strong long-term records. Useful for pattern recognition; not a real-time trade signal.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Selection bias",
+        description:
+          "The error of analyzing only successful or surviving funds while ignoring the larger population that closed, blew up, or merged. Inflates apparent skill and underestimates downside risk.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Turnover",
+        description:
+          "The fraction of a portfolio that changes within a period. Most superinvestors run low turnover — current positions exist because they haven't traded out, not because they actively bought this quarter.",
+      },
+    ],
   },
 ];
 

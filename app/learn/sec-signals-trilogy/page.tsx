@@ -70,6 +70,30 @@ const LD = [
       { "@type": "Thing", name: "SEC Form 13F", url: "https://holdlens.com/glossary/#13f" },
       { "@type": "Thing", name: "SEC Form 4", url: "https://holdlens.com/glossary/#form-4" },
       { "@type": "Thing", name: "SEC Form 8-K", url: "https://holdlens.com/glossary/#form-8k" },
+      {
+        "@type": "DefinedTerm",
+        name: "ConvictionScore",
+        description:
+          "HoldLens composite score from −100 to +100 computed from quarterly 13F filings of 30 tracked superinvestors. Combines position direction, manager track record, multi-quarter trend, concentration, insider alignment, and contrarian bonus.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "InsiderScore",
+        description:
+          "HoldLens score from −100 to +100 derived from Form 4 insider transactions. Weighted by role (CEO/CFO/Director), action (open-market buy vs scheduled sale), recency, and cluster intensity (3+ insiders within 30 days).",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "EventScore",
+        description:
+          "HoldLens score from −100 to +100 computed from SEC Form 8-K material event disclosures. Weighted by event category (existential events outweigh routine), direction, and freshness within the 4-business-day filing window.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Signal trilogy",
+        description:
+          "HoldLens framing of ConvictionScore + InsiderScore + EventScore as three complementary observer classes (institutional managers, corporate insiders, companies themselves) on three lag profiles (45 days, 2 days, 4 days).",
+      },
     ],
   },
   {

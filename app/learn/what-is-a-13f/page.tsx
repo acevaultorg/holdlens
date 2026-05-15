@@ -49,6 +49,32 @@ const LD = [
     dateModified: "2026-04-10",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "Form 13F",
+        description:
+          "An SEC form that institutional investment managers with over $100 million in 13(f) securities must file each quarter, disclosing long US-equity positions within 45 days of quarter-end.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "CUSIP",
+        description:
+          "A unique 9-character alphanumeric identifier assigned by the Committee on Uniform Securities Identification Procedures to North American securities. Appears on every Form 13F line item.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "13(f) securities",
+        description:
+          "The class of securities for which Form 13F filings are required. Includes most US-exchange-listed equities and certain options/convertibles. Excludes shorts, non-US holdings, bonds, cash, and private positions.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "45-day reporting lag",
+        description:
+          "The window between calendar quarter-end and the deadline for filing Form 13F (May 15, Aug 14, Nov 14, Feb 14). Means every disclosed position is 6 weeks to 4 months old at publication.",
+      },
+    ],
   },
 ];
 

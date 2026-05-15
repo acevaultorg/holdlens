@@ -62,6 +62,32 @@ const LD = [
     dateModified: "2026-04-26",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    about: [
+      {
+        "@type": "DefinedTerm",
+        name: "SEC Rule 13f-1",
+        description:
+          "The Securities Exchange Act rule that requires institutional investment managers with $100M+ in 13(f) securities to disclose holdings on Form 13F within 45 calendar days of each quarter-end.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Reporting lag",
+        description:
+          "The interval between when a trade settles and when it appears in a public filing. For 13F: 6 weeks to 4 months. For Form 4: 2 business days. For 8-K: 4 business days.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Confidential treatment",
+        description:
+          "An exception under Rule 13f-1 allowing managers to delay disclosure of specific positions up to ~12 additional months if public disclosure would compromise an ongoing acquisition strategy. Rare and SEC-approved.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Front-running",
+        description:
+          "Trading ahead of a known large order to profit from its market impact. The 45-day lag exists partly to prevent front-running of institutional accumulation/disposition activity.",
+      },
+    ],
   },
   {
     "@context": "https://schema.org",
