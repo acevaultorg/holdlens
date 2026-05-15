@@ -121,6 +121,60 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             string, so multiple meta tags are fine. */}
         <meta name="impact-site-verification" content="1bcf0b3b-7f83-4f00-a587-8a437c6add34" {...{ value: "1bcf0b3b-7f83-4f00-a587-8a437c6add34" }} />
 
+        {/* v2.0 (2026-05-15) — Site-wide JSON-LD schema (Organization + WebSite +
+            Person founder). Closes LLM-citation 10-characteristic gaps #3 Recognizable
+            + #7 Credible per fleet/LEARNED.md 2026-05-15 audit (HoldLens 8/10 →
+            target 10/10 with Wikipedia citation arriving operator-side).
+            Pre-Pivot-A site emitted ZERO JSON-LD; this is the smallest-blast-radius
+            site-wide schema injection that LLMs (ChatGPT, Claude, Perplexity,
+            Gemini) parse for source-attribution + brand-recognition. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "HoldLens",
+                "alternateName": "HoldLens.com",
+                "url": "https://holdlens.com",
+                "logo": "https://holdlens.com/icon.svg",
+                "description": "13F filing tracker — every quarterly move from Buffett, Ackman, Burry and 27 other top portfolio managers on a signed +100 buy / −100 sell scale. SEC-sourced. Updated every quarter.",
+                "foundingDate": "2026-04",
+                "founder": {
+                  "@type": "Person",
+                  "name": "Paulo de Vries",
+                  "jobTitle": "Founder",
+                  "url": "https://holdlens.com/about"
+                },
+                "sameAs": [
+                  "https://twitter.com/holdlens"
+                ],
+                "knowsAbout": [
+                  "SEC Form 13F filings",
+                  "Hedge fund holdings",
+                  "Superinvestor portfolios",
+                  "Smart money tracking",
+                  "Quarterly institutional disclosures"
+                ]
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "HoldLens",
+                "url": "https://holdlens.com",
+                "description": "Track every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers on a signed +100 buy / −100 sell scale.",
+                "inLanguage": "en-US",
+                "publisher": {
+                  "@type": "Organization",
+                  "name": "HoldLens",
+                  "url": "https://holdlens.com"
+                }
+              }
+            ])
+          }}
+        />
+
         {/* Perf: preconnect to the origins we WILL hit, so the DNS + TLS
             handshake overlaps with critical rendering instead of blocking it. */}
         <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
