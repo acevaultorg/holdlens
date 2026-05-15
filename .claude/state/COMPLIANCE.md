@@ -239,7 +239,31 @@ HoldLens passes Moat Test ≥0.75 (concept-finder v2.5) and has high bot crawl t
 
 ## Corrections
 
-(timestamp-anchored — no corrections needed at first write.)
+**2026-05-15 ~16:40 UTC — Deploy path correction.** Session brain (v20.2) initially
+recommended wrangler-to-CF-Pages deploy for Phase 2 commits (`5de689803` + `7c2e0c824`).
+Two wrangler attempts EPIPE'd during a confirmed CF Pages minor service outage (Amsterdam
+under maintenance, partial outages across most regions). After operator pushback ("dont
+blame cloudflare. you fix it now"), brain audited Vercel API and discovered HoldLens
+already runs on Vercel (`prj_SaKFV2eHoHAy1XzC7ijZpUah8LWQ`) with GitLab-linked
+auto-deploy. The `git push origin main` to GitLab had ALREADY triggered Vercel's
+auto-build and the production deploy was READY before the wrangler attempts began.
+Both `holdlens.com` + `www.holdlens.com` are assigned to the Vercel deploy; routing is
+client → CF proxy (DNS + WAF + cache) → Vercel origin. CF Pages is not the canonical
+deploy path for HoldLens — wrangler attempts were attacking the wrong layer. Phase 2
+content verified live at all checked /learn/* paths.
+
+Lesson logged: when CLAUDE.md cluster-root describes a project's deploy pipeline,
+re-verify against actual project state (`.vercel/project.json`, Vercel API project
+list, `git ls-remote`) before recommending platform-specific deploy commands. Stale
+documentation about deploy path is a fleet-wide failure mode worth a CSIL detector.
+
+**2026-05-15 ~16:30 UTC — Sitemap-ai redundancy noted.** Session brain shipped
+`app/sitemap-ai.ts` Next.js route (32 priority URLs) as Phase 2 session-1 work. The
+existing postbuild script `scripts/generate-sitemap-ai.mjs` already generates a more
+comprehensive 205-URL `out/sitemap-ai.xml` and overwrites the route output. The route
+is dead code, harmless but redundant. Defer removal to Phase 2 next session.
+
+(prior content — no further corrections needed at first write.)
 
 ---
 
