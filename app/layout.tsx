@@ -112,6 +112,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             about `value` on meta tags (HTML5 doesn't define `value` for
             meta, but it's a valid attribute name and renders verbatim). */}
         <meta name="impact-site-verification" {...{ value: "5890806c-03de-4eb8-9041-f2b7b8f761cf" }} />
+        {/* Impact.com second partner-account verification (Bookpop media partner,
+            2026-05-15). Operator added holdlens.com as a Promotional Property
+            under a separate Impact account; this token verifies that account.
+            Same `value=` + `content=` dual-attribute trick to satisfy any
+            scraper variant. Both Impact accounts can stay verified
+            simultaneously — Impact's scraper greps for the specific token
+            string, so multiple meta tags are fine. */}
+        <meta name="impact-site-verification" content="1bcf0b3b-7f83-4f00-a587-8a437c6add34" {...{ value: "1bcf0b3b-7f83-4f00-a587-8a437c6add34" }} />
 
         {/* Perf: preconnect to the origins we WILL hit, so the DNS + TLS
             handshake overlaps with critical rendering instead of blocking it. */}
