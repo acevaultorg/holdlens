@@ -3,6 +3,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // v1.24 — new /learn/ article. "What is alpha?" is a foundational concept
 // that every investing site promises to explain and almost every one does it
@@ -97,6 +99,16 @@ export default function WhatIsAlphaPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          Alpha is the portion of a portfolio&rsquo;s return that exceeds what the market would
+          have given for the same level of risk. If you returned 15% while the S&amp;P returned
+          10%, your raw outperformance is 5 percentage points — but some of that came from
+          taking more risk (leverage, concentration, beta). Alpha is what&rsquo;s left after
+          stripping out the risk premium: genuine skill or information advantage, not just
+          dialing risk up. Most apparent &ldquo;outperformance&rdquo; is actually beta;
+          true alpha is rare and hard to sustain across cycles.
+        </TldrCard>
+
         <AuthorByline date="2026-04-16" />
 
         <h2 className="text-2xl font-bold mt-10 mb-3">The 10-second definition</h2>
@@ -309,6 +321,28 @@ export default function WhatIsAlphaPage() {
           </p>
         </div>
       </div>
+
+      <OurView>
+        <p>
+          Almost every &ldquo;market-beating&rdquo; track record collapses when you compute
+          true alpha. Magnificent Seven concentration looks like genius until you adjust for
+          the fact that any tech-heavy portfolio beat the index that year. Small-cap value
+          managers look brilliant in one decade and incompetent in the next because the value
+          factor cycles. Strip out beta, size, value, momentum, quality, and liquidity
+          factors, and most of what funds market as &ldquo;skill&rdquo; turns out to be a
+          factor tilt rebadged.
+        </p>
+        <p>
+          The honest reading: real alpha is genuinely rare. The 30 superinvestors HoldLens
+          tracks are the survivors of decades of selection — and even among them,
+          factor-adjusted alpha is concentrated in a small subset. This is also why
+          HoldLens&rsquo;s own ConvictionScore is published with its backtest, including the
+          embarrassing parts. If we found a signal that easily produced alpha at retail
+          scale, we&rsquo;d be the largest hedge fund in the world. We&rsquo;re not.
+          We&rsquo;re a research site that shows you the patterns and lets you draw your
+          own conclusions.
+        </p>
+      </OurView>
 
       <LearnReadNext currentSlug="what-is-alpha" />
 

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 export const metadata: Metadata = {
   title: "How the STOCK Act works — Congressional stock trading, plain English",
@@ -60,6 +62,18 @@ export default function Article() {
         within 45 days. That's the STOCK Act. Here's what it actually
         requires, what it doesn't, and how to read the disclosures.
       </p>
+
+      <TldrCard>
+        The STOCK Act (Stop Trading on Congressional Knowledge Act, 2012) requires every U.S.
+        Senator and Representative to disclose every stock trade by themselves or immediate
+        family within 45 days. Trades are reported in dollar ranges ($1K-15K, $15K-50K,
+        $50K-100K, $100K-250K, $250K-500K, $500K-1M, $1M-5M, $5M-25M, $25M-50M, $50M+) —
+        never exact amounts. Penalties for late filing are nominal ($200) and frequently
+        unpaid. The disclosures themselves are public but scattered across House Clerk and
+        Senate eFD systems. The data is real-time-ish but incomplete: no options strategies,
+        no shorts, no detail on rationale, and the 45-day window means any genuine
+        front-running has time to land before the public sees it.
+      </TldrCard>
 
       <h2>What the law says</h2>
       <p>
@@ -219,6 +233,27 @@ export default function Article() {
           three SEC ownership disclosures
         </li>
       </ul>
+
+      <OurView>
+        <p>
+          The popular &ldquo;follow Nancy Pelosi&rsquo;s portfolio&rdquo; meme is mostly
+          entertainment, not edge. Academic studies of Congressional trading have produced
+          mixed results — some find modest outperformance for certain committees on certain
+          sector exposures, most find returns indistinguishable from luck after controlling
+          for size, value, and market factors. The bigger story is the structural problem:
+          the law exists, but the penalty for non-compliance is roughly the price of a
+          dinner.
+        </p>
+        <p>
+          The honest use case for STOCK Act data is transparency, not alpha. Knowing which
+          committee members trade in sectors they regulate is governance information —
+          it tells you about institutional integrity, not about whether you should buy the
+          stock they bought. HoldLens surfaces Congressional trades alongside SEC filings
+          because the patterns become interesting when a committee chair&rsquo;s trades
+          coincide with regulatory action or 8-K disclosures. Single trades in isolation are
+          noise.
+        </p>
+      </OurView>
 
       <hr />
       <p className="text-xs text-dim">

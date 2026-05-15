@@ -5,6 +5,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // /learn/superinvestor-handbook — 3000+ word evergreen SEO piece targeting
 // "how to read 13F filings", "how to track superinvestors", "13F explained",
@@ -169,6 +171,16 @@ export default function SuperinvestorHandbookPage() {
         the copy-trading myth, and the honest limits of what this data can tell you. Read straight through
         in ~15 minutes or jump around.
       </p>
+
+      <TldrCard>
+        13F filings disclose what institutional managers with $100M+ AUM hold in US equities each
+        quarter, with a 45-day lag. The handbook covers ten things you need to know to read them
+        properly: what&rsquo;s in the form, what&rsquo;s missing (shorts, options detail, cash,
+        non-US), the difference between conviction positions and index-padding, why most
+        &ldquo;Buffett bought X&rdquo; headlines arrive too late to act on, and the honest limits
+        of what this data can prove. 13F data is best used for pattern recognition across
+        managers, not for tactical timing of individual trades.
+      </TldrCard>
       <div className="rounded-2xl border border-border bg-panel p-5 mb-10">
         <div className="text-[11px] uppercase tracking-widest text-dim font-semibold mb-3">
           What's in the handbook
@@ -607,6 +619,24 @@ export default function SuperinvestorHandbookPage() {
           ))}
         </div>
       </section>
+
+      <OurView>
+        <p>
+          Most &ldquo;learn 13Fs in 5 minutes&rdquo; explainers skip the parts that make 13Fs
+          genuinely useful: the structural lag (so you don&rsquo;t treat them as real-time
+          signals), the selection bias (so you don&rsquo;t treat 30 visible filers as
+          representative of all institutional investing), and the conviction-vs-padding
+          distinction (so you don&rsquo;t conflate a 4% concentrated bet with a 0.5%
+          index-tracking line item). This handbook covers those parts on purpose.
+        </p>
+        <p>
+          Our view on the data: 13F filings are not a trading signal. They are a window into
+          the discipline of patient capital — what professional managers held long enough to
+          appear on the filing, sized large enough to matter, and were willing to disclose
+          publicly. That&rsquo;s a useful research input even when (especially when) the
+          short-term price information has already been priced in.
+        </p>
+      </OurView>
 
       <LearnReadNext currentSlug="superinvestor-handbook" />
 

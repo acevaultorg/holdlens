@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import ShareStrip from "@/components/ShareStrip";
+import TldrCard from "@/components/learn/TldrCard";
 
 export const metadata: Metadata = {
   title: "Buybacks vs dividends — what's the real difference?",
@@ -83,6 +84,17 @@ export default function BuybacksVsDividendsPage() {
         the other is invisible (share count shrinks). They differ on tax, on
         flexibility, and on what they signal about the company&rsquo;s future.
       </p>
+
+      <TldrCard>
+        Dividends and buybacks are two ways companies return cash to shareholders. Dividends:
+        explicit cash payment per share, taxed as income, mostly inflexible (cutting them is a
+        market-signaling event). Buybacks: company purchases its own shares in the open market,
+        shrinking share count without a taxable event for non-sellers, fully flexible (boards
+        can pause/resume quietly). Buybacks have grown to ~$1T/year in the US and now exceed
+        dividends in aggregate. The tradeoffs: dividends suit income-focused investors and
+        stable-cash-flow businesses; buybacks suit tax-deferred compounding and cyclical
+        businesses. Companies using both responsibly give shareholders maximum optionality.
+      </TldrCard>
 
       <section className="prose prose-invert max-w-none text-text leading-relaxed space-y-6">
         <p>

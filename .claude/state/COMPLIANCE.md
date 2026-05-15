@@ -176,20 +176,49 @@ unrelated to Phase 2 and out-of-scope.
 
 **Mean: 0.74 → 0.79** (+0.05 absolute). Target for full Phase 2 completion: ≥ 0.85.
 
-### Pending Items (Phase 2 next session)
+### Session-2 ship (2026-05-15, same-day continuation per operator "do it all")
 
-🟢 RECOMMENDED — Sweep TL;DR + Our view to remaining 17 /learn pages
-- `13d-vs-13g-activist-filings`, `buybacks-vs-dividends` (has Our view, needs TL;DR),
-  `congressional-stock-trading-stock-act`, `copy-trading-myth`, `do-hedge-fund-signals-work`
-  (has TL;DR, needs Our view), `etf-overlap-explained`, `event-score-explained`,
-  `form-4-vs-13f`, `how-to-read-buyback-disclosures`, `insider-score-explained`,
-  `sec-signals-trilogy`, `short-interest-explained`, `superinvestor-handbook`,
-  `survivorship-bias-in-hedge-funds`, `warren-buffett-method`, `what-is-alpha`.
-- Pattern shipped — components ready. Each page: ~5-10 min substance + insertion.
-- Total: ~2-3 hours brain-autonomous next session.
+**16 /learn pages completed with TL;DR + Our view (all real editorial substance, no template fill):**
+- `copy-trading-myth` · `event-score-explained` · `form-4-vs-13f` · `insider-score-explained`
+- `sec-signals-trilogy` · `what-is-alpha` · `survivorship-bias-in-hedge-funds`
+- `warren-buffett-method` · `superinvestor-handbook` · `do-hedge-fund-signals-work` (added Our view; inline TL;DR retained)
+- `buybacks-vs-dividends` (added TL;DR; existing inline Our view retained)
+- `13d-vs-13g-activist-filings` · `congressional-stock-trading-stock-act`
+- `etf-overlap-explained` · `short-interest-explained` · `how-to-read-buyback-disclosures`
+
+**Coverage post session-2:**
+- TL;DR: 21/22 /learn pages (only `page.tsx` index excluded; not an article)
+- Our view: 21/22 /learn pages
+
+**Build verification:** `npx tsc --noEmit` returns zero NEW errors. The 3 pre-existing errors
+in `app/fund-overlap/[slug]/page.tsx` + `components/ConvictionFactorTable.tsx` remain
+out-of-scope.
+
+### Updated Aleyda Solis 10-characteristic delta
+
+| # | Characteristic | Pre-S1 | Post-S1 | Post-S2 | Notes |
+|---|---|---:|---:|---:|---|
+| 1 | Accessible | 1.0 | 1.0 | 1.0 | Unchanged. |
+| 2 | Useful | 1.0 | 1.0 | 1.0 | Unchanged. |
+| 3 | Recognizable | 0.75 | 0.75 | 0.75 | Wikipedia citation still operator-action pending. |
+| 4 | **Extractable** | 0.5 | 0.7 | **0.95** | TL;DR on 21/22 /learn pages. |
+| 5 | Consistent | 0.9 | 0.95 | 0.95 | Shared components enforce consistency. |
+| 6 | Corroborated | 0.4 | 0.4 | 0.4 | Reddit / LinkedIn / Wikipedia queue unchanged. |
+| 7 | Credible | 0.9 | 0.9 | 0.9 | Unchanged. |
+| 8 | **Differentiated** | 0.3 | 0.6 | **0.95** | Our view POV on 21/22 /learn pages. |
+| 9 | Fresh | 0.9 | 0.9 | 0.9 | Unchanged. |
+| 10 | Transactable | 0.8 | 0.85 | 0.85 | Unchanged. |
+
+**Mean: 0.74 → 0.79 → 0.865** ✅ exceeded ≥0.85 Phase 2 target.
+
+### Pending Items (Phase 2 next session — narrower scope)
 
 🟢 RECOMMENDED — DefinedTerm schema sweep on 15 remaining /learn pages
-- 7/22 currently have DefinedTerm schema. Aleyda #4 upgrade.
+- 7/22 currently have DefinedTerm schema. Pushes Aleyda #4 Extractable to 1.0.
+- Per-page: 3-5 DefinedTerm objects, ~3-5 min each.
+
+🟢 OPTIONAL — Refactor do-hedge-fund-signals-work inline TL;DR → shared TldrCard component
+- Output is identical (same amber-card pattern); refactor is consistency-only.
 
 🟡 RECOMMENDED — Quarterly "State of Smart-Money" annual report scaffolding
 - Per concept-finder v2.5 archetype `original_research_with_dataset × +90`.

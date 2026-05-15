@@ -3,6 +3,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // v1.29 — new /learn article. "Warren Buffett method" gets ~6,500 monthly
 // search queries. HoldLens has authority to answer because we hold the
@@ -94,6 +96,18 @@ export default function WarrenBuffettMethodPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          The Warren Buffett method observable in 60+ years of Berkshire Hathaway 13F filings
+          is not stock-picking — it&rsquo;s a discipline of long holding periods, concentration
+          in the highest-conviction ideas, owner-mindset analysis (read the 10-K, understand
+          the business, ignore the chart), buying when others are fearful, and treating cash
+          as an asset class. Most positions Berkshire holds today were established years ago;
+          turnover is famously low. The transferable part is the temperament. The hard part is
+          accepting that holding through 50%+ drawdowns is the price of compounded
+          outperformance — most retail investors can&rsquo;t do this, which is why the method
+          works for the few who can.
+        </TldrCard>
+
         <AuthorByline date="2026-04-17" />
 
         <h2 className="text-2xl font-bold mt-10 mb-3">
@@ -310,6 +324,26 @@ export default function WarrenBuffettMethodPage() {
           </p>
         </div>
       </div>
+
+      <OurView>
+        <p>
+          The wrong takeaway from studying Buffett is &ldquo;buy what Buffett buys.&rdquo;
+          The right takeaway is &ldquo;build the temperament that lets you hold a position
+          for ten years.&rdquo; Almost no retail investor will replicate the picks; almost
+          any retail investor can replicate the holding-period discipline. The picks are the
+          output. The temperament is the input. Most attempts to copy Berkshire fail because
+          they copy the output and skip the input.
+        </p>
+        <p>
+          The other under-appreciated lesson: Buffett&rsquo;s biggest mistakes were
+          sins-of-omission (passing on Amazon, Google, Costco at the right entry point),
+          not sins-of-commission. The discipline of patience also means you&rsquo;ll miss
+          things — and that&rsquo;s the trade. HoldLens shows Berkshire&rsquo;s 13F
+          alongside 29 other superinvestors specifically so the philosophy can be studied
+          comparatively, not imitated literally. The patterns across the survivors are
+          where the lesson lives.
+        </p>
+      </OurView>
 
       <LearnReadNext currentSlug="warren-buffett-method" />
 

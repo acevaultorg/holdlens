@@ -3,6 +3,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // /learn/survivorship-bias-in-hedge-funds
 //
@@ -120,6 +122,18 @@ export default function SurvivorshipBiasPage() {
       </p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          Survivorship bias is the statistical error of analyzing only the funds that
+          survived, while ignoring the much larger population that closed, blew up, or merged
+          out of existence. Roughly 7-10% of hedge funds shut down each year; the academic
+          literature documents that including dead funds drops average hedge-fund returns by
+          2-5 percentage points annually. Most &ldquo;hedge funds beat the market&rdquo;
+          studies are quoting the survivor subset. The 30 superinvestors HoldLens tracks are
+          themselves a survivor sample — useful for pattern recognition, but the base rate
+          for &ldquo;become Warren Buffett&rdquo; is far worse than the visible track records
+          suggest.
+        </TldrCard>
+
         <AuthorByline date="2026-04-17" />
 
         {/* Section 1 */}
@@ -517,6 +531,26 @@ export default function SurvivorshipBiasPage() {
           </p>
         </div>
       </div>
+
+      <OurView>
+        <p>
+          HoldLens is itself a survivor sample. Tracking 30 superinvestors who are still
+          managing money in 2026 deliberately excludes the dozens of equally well-known funds
+          that closed (Tiger Global retail, SAC after its conversion, dozens of late-90s
+          funds), blew up (LTCM, Amaranth, Galleon, Archegos), or merged out. The composite
+          ConvictionScore is computed across the survivors. We&rsquo;re explicit about this
+          because the alternative is pretending it&rsquo;s representative of all
+          hedge-fund-style investing, which it isn&rsquo;t.
+        </p>
+        <p>
+          The pattern that survives the bias correction is still useful: superinvestor
+          behavior (long holding periods, concentration in highest-conviction ideas,
+          counter-trend accumulation) does cluster within the survivor sample in ways
+          consistent with the academic literature on value and quality factors. Read 13F
+          data as descriptive of what survivors do, not as a statistical guide to whether
+          following them will produce the same survival outcome for you.
+        </p>
+      </OurView>
 
       <LearnReadNext currentSlug="survivorship-bias-in-hedge-funds" />
 

@@ -4,6 +4,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // /learn/sec-signals-trilogy
 //
@@ -156,6 +158,17 @@ export default function SecSignalsTrilogyArticle() {
       <AuthorByline date="2026-04-24" />
 
       <div className="space-y-6 text-text leading-relaxed mt-8">
+        <TldrCard>
+          The HoldLens SEC signals trilogy is three complementary scores from three different
+          SEC disclosures: ConvictionScore (Form 13F — what professional managers hold,
+          quarterly, 45-day lag), InsiderScore (Form 4 — what corporate insiders trade in their
+          own company, 2-business-day lag), and EventScore (Form 8-K — what companies disclose
+          about material events, 4-business-day lag). Each captures different actors on
+          different timelines. The trilogy reveals alignment patterns no single signal can
+          show: when manager conviction, insider buying, and corporate events all point the
+          same direction, you have triangulation across three independent observer classes.
+        </TldrCard>
+
         <h2 className="text-2xl font-bold mt-10 mb-3">The problem with reading SEC filings in isolation</h2>
         <p className="text-muted">
           Most investors who follow SEC filings stop at one type. They watch quarterly{" "}
@@ -328,6 +341,24 @@ export default function SecSignalsTrilogyArticle() {
           <Link href="/disclaimer/" className="text-brand underline">disclaimer</Link>{" "}
           for the full statement on data lag, accuracy, and the explicit not-investment-advice framing.
         </p>
+
+        <OurView>
+          <p>
+            The point of the trilogy isn&rsquo;t prediction — it&rsquo;s independent
+            confirmation. When three different observer classes (institutional managers,
+            corporate insiders, the company itself) point in the same direction across three
+            different disclosure regimes with three different lag profiles, the consensus
+            carries more information than any single signal could provide alone.
+          </p>
+          <p>
+            The trilogy also reveals disagreement, which is often more useful than agreement.
+            Insiders buying while institutions are exiting, or 8-K disclosures contradicting
+            management&rsquo;s last earnings narrative, are the misalignment patterns that
+            usually precede significant repricing. HoldLens shows all three scores together on
+            every ticker page so the alignment AND disagreement patterns are visible without
+            cross-referencing three different data sources.
+          </p>
+        </OurView>
       </div>
 
       <ShareStrip

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 export const metadata: Metadata = {
   title: "Short interest, days-to-cover, and squeeze setups — plain English",
@@ -60,6 +62,18 @@ export default function Article() {
         cleanest signal of where smart-money skepticism is concentrated — and
         also where the next short squeeze might erupt.
       </p>
+
+      <TldrCard>
+        Short interest measures how many shares of a stock have been sold short and not yet
+        bought back — published bi-monthly by FINRA with ~8-day lag. Three metrics matter: %
+        of float (concentration), days-to-cover (short shares ÷ daily volume; how long shorts
+        need to unwind), and borrow fee (the cost shorts pay to maintain the position; high
+        fees = high conviction or scarcity). High short interest is a dual signal: it&rsquo;s
+        institutional skepticism worth taking seriously (shorts are betting capital at
+        unbounded risk) AND it&rsquo;s a potential squeeze setup if positive news arrives.
+        Read alongside other data — never in isolation. The data is bi-monthly, so it
+        won&rsquo;t catch real-time changes in positioning.
+      </TldrCard>
 
       <h2>What &ldquo;short&rdquo; actually means</h2>
       <p>
@@ -201,6 +215,26 @@ export default function Article() {
           </a>
         </li>
       </ul>
+
+      <OurView>
+        <p>
+          Short interest is the most asymmetric public-data signal in equity markets. The
+          downside of being short is theoretically unlimited (a stock can rise to any
+          multiple of where you sold); the upside is capped at 100% (the stock can fall to
+          zero). When institutions accept that asymmetry on a specific name, they&rsquo;re
+          declaring high conviction in their thesis. That declaration deserves more weight
+          than long-side conviction by the same institution, because the cost of being wrong
+          is structurally worse.
+        </p>
+        <p>
+          The squeeze risk is real but overstated in retail mythology. Most high-short-interest
+          stocks underperform over 6-12 months because the shorts are usually right about
+          something. The genuine squeeze setups (GameStop 2021-style) are rare and almost
+          always involve specific catalysts (retail-coordination, options gamma, low float)
+          plus the short positioning. Short interest alone isn&rsquo;t a buy signal — it&rsquo;s
+          information about who&rsquo;s on the other side of your trade.
+        </p>
+      </OurView>
 
       <hr />
       <p className="text-xs text-dim">

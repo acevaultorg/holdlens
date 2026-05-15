@@ -4,6 +4,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // /learn/insider-score-explained
 //
@@ -142,6 +144,17 @@ export default function InsiderScoreExplainedArticle() {
       <AuthorByline date="2026-04-23" />
 
       <div className="space-y-6 text-text leading-relaxed mt-8">
+        <TldrCard>
+          InsiderScore is a signed −100 to +100 score computed from SEC Form 4 filings (the
+          near-real-time disclosure when corporate insiders trade their own company&rsquo;s
+          stock). The score weights every trade by role (CEO/CFO/Chair carry more signal than
+          a single director), action (open-market buys are highly bullish; planned 10b5-1
+          sales are usually neutral; option exercises are mostly noise), recency (decays over
+          90 days), and cluster (3+ insiders buying in 30 days is a much stronger signal than
+          1 buying alone). Insider sales are noisy by default; insider clusters of buys are
+          one of the most empirically validated bullish signals in academic finance.
+        </TldrCard>
+
         <h2 className="text-2xl font-bold mt-10 mb-3">Why score insider trades at all?</h2>
         <p className="text-muted">
           A CEO buying $500k of their own stock, a CFO selling 60% of their position via a quarterly 10b5-1
@@ -344,6 +357,27 @@ export default function InsiderScoreExplainedArticle() {
           instruments, gifts to charity), and the cluster-detection algorithm pseudocode live in the{" "}
           <Link href="/methodology" className="text-brand underline">methodology page</Link>.
         </p>
+
+        <OurView>
+          <p>
+            Insider clusters are the most under-weighted signal in retail tooling. The
+            academic literature is remarkably consistent: 3+ insiders buying within a 30-day
+            window after a price drawdown is one of the few signals that survives
+            out-of-sample testing across decades. Single insider buys are roughly noise;
+            single insider sales are even more noise. But clusters of buys reflect
+            non-public information about the business that&rsquo;s legally permitted to be
+            traded on by the insiders themselves.
+          </p>
+          <p>
+            Most insider-trading dashboards lump all Form 4 transactions together — which
+            actively destroys the signal by drowning the cluster patterns in the noise of
+            routine option exercises and 10b5-1 scheduled sales. InsiderScore weights
+            specifically against that — open-market discretionary buys count for far more
+            than mechanical transactions. The score is high-information when bullish (a
+            CEO-led cluster of open-market buys is hard to fake) and intentionally low-
+            information when bearish (most sales are tax-planning, not directional).
+          </p>
+        </OurView>
       </div>
 
       <ShareStrip

@@ -3,6 +3,7 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import OurView from "@/components/learn/OurView";
 
 // /learn/do-hedge-fund-signals-work
 //
@@ -469,6 +470,26 @@ export default function BacktestArticle() {
         <a href="mailto:hello@holdlens.com" className="underline">hello@holdlens.com</a> —
         corrections are logged publicly with a timestamp.
       </p>
+
+      <OurView>
+        <p>
+          Publishing a backtest that contradicts your own product is the test of whether you
+          actually have a product or just a marketing story. Most signal-driven investing
+          sites would have buried this result. We led with it because the descriptive value
+          of ConvictionScore — what smart money is doing right now, comparable across 30
+          managers — survives the negative correlation finding. The score is a research lens,
+          not a prediction engine.
+        </p>
+        <p>
+          The honest read: short-window backtests on retail-accessible signals usually
+          disappoint. The signals that DO survive academic out-of-sample testing (insider
+          clusters, factor tilts on long horizons, low-turnover concentrated portfolios)
+          require holding periods most retail investors don&rsquo;t maintain. If
+          ConvictionScore worked at the 90-day horizon, it would already be arbitraged.
+          The value is in pattern recognition across managers and themes, on horizons
+          measured in years, not next week.
+        </p>
+      </OurView>
 
       <LearnReadNext currentSlug="do-hedge-fund-signals-work" />
     </div>

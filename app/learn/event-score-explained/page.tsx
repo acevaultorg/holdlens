@@ -4,6 +4,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // /learn/event-score-explained
 //
@@ -87,6 +89,17 @@ export default function EventScoreExplainedArticle() {
       <AuthorByline date="2026-04-23" />
 
       <div className="space-y-6 text-text leading-relaxed mt-8">
+        <TldrCard>
+          EventScore is a signed −100 to +100 score computed from SEC Form 8-K filings — a
+          company&rsquo;s own disclosure of material events (earnings, bankruptcy filings,
+          executive changes, cybersecurity incidents, acquisitions, going-concern statements).
+          The score weights events by category (existential events outweigh routine ones),
+          freshness (4-business-day filing window means the data is current within a week),
+          and direction (positive vs negative materiality). Distinct from ConvictionScore
+          (smart-money positioning) and InsiderScore (Form 4 insider trades) — together they
+          form the HoldLens SEC signals trilogy.
+        </TldrCard>
+
         <h2 className="text-2xl font-bold mt-10 mb-3">Why score 8-Ks at all?</h2>
         <p className="text-muted">
           SEC Form 8-K is a company's own disclosure of material events to the market. Companies file a 8-K
@@ -274,6 +287,25 @@ export default function EventScoreExplainedArticle() {
           filings) live in the{" "}
           <Link href="/methodology" className="text-brand underline">methodology page</Link>.
         </p>
+
+        <OurView>
+          <p>
+            The 8-K is the most under-read disclosure in retail investing. Everyone watches
+            earnings calls and reads 10-K annual reports, but the 8-K is where the real-time
+            information lives: leadership departures, regulatory subpoenas, going-concern
+            statements, ratings downgrades, debt-covenant breaches. By the time a story makes
+            financial-media headlines, the 8-K is usually 3–7 days old.
+          </p>
+          <p>
+            EventScore exists to compress that information into one comparable number so a
+            retail investor doesn&rsquo;t need to read 50 8-Ks per day across their watchlist.
+            The score is descriptive — it tells you what happened and how material it was —
+            not predictive. Companies announcing layoffs aren&rsquo;t always going to fall;
+            companies winning regulatory approvals aren&rsquo;t always going to rise. But
+            knowing the event happened, in time-stamped form, with appropriate weight, is the
+            information edge the 8-K filing was designed to provide.
+          </p>
+        </OurView>
       </div>
 
       <ShareStrip

@@ -3,6 +3,8 @@ import ShareStrip from "@/components/ShareStrip";
 import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 // /learn/form-4-vs-13f
 //
@@ -172,6 +174,15 @@ export default function Form4vs13FPage() {
       <AuthorByline date="2026-04-25" />
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          Form 4 and Form 13F report different actors on different timelines. Form 4: company
+          insiders (CEO, CFO, directors, 10%+ owners) trading their own company&rsquo;s stock,
+          filed within 2 business days of the trade — near-real-time. Form 13F: outside
+          institutional investors with $100M+ AUM disclosing US-equity positions, filed within
+          45 days of quarter-end — heavily lagged. Form 4 tells you what people who run the
+          company think about the company. Form 13F tells you what professional money managers
+          think about everyone&rsquo;s companies. Both are useful; neither replaces the other.
+        </TldrCard>
         {/* Quick reference card */}
         <div className="rounded-2xl border border-border bg-panel p-6 my-6">
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
@@ -412,6 +423,23 @@ export default function Form4vs13FPage() {
           . HoldLens narrows to tracked superinvestors; SecFilingDex catalogs
           all filings across all filers.
         </p>
+
+        <OurView>
+          <p>
+            The most useful pattern is the alignment check: when insiders are buying their own
+            stock (Form 4) AND superinvestors are accumulating it (13F) AND the price has been
+            weak, you have a triple-bottom signal that rarely appears in mediocre setups. The
+            opposite — insiders selling, institutions trimming, price strong — is a triple-top
+            warning that&rsquo;s easy to miss because the price action looks fine.
+          </p>
+          <p>
+            Form 4 alone is noisy (insiders sell for tax, divorce, diversification, charity —
+            not all sales are bearish). 13F alone is lagged. Together they triangulate: insider
+            buying confirms what 13F filers are seeing, and 13F accumulation validates what
+            insiders are signaling. HoldLens shows both side-by-side on every ticker page for
+            exactly this triangulation.
+          </p>
+        </OurView>
 
         <ShareStrip
           title="Form 4 vs 13F — insider trades vs institutional portfolios"

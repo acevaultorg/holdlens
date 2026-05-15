@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import ShareStrip from "@/components/ShareStrip";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 export const metadata: Metadata = {
   title: "How to read buyback disclosures — a plain-English SEC filing guide",
@@ -85,6 +87,18 @@ export default function HowToReadBuybackDisclosuresPage() {
         coverage &mdash; most CNBC blurbs quote the authorization size; the
         real action is in the cash-flow statement.
       </p>
+
+      <TldrCard>
+        Companies disclose share buybacks in three SEC filings, each answering a different
+        question. 8-K: the headline announcement when the board authorizes a new program
+        (size + duration). 10-Q quarterly: the monthly Purchases of Equity Securities table
+        showing actual shares bought, price, and remaining authorization. 10-K annual:
+        cash-flow statement &ldquo;repurchase of common stock&rdquo; line showing the dollar
+        amount actually spent. Most retail coverage quotes the 8-K authorization
+        (&ldquo;announced $10B buyback&rdquo;); the real signal is what gets executed in the
+        10-Q tables and confirmed in the 10-K cash flow. Authorization is permission;
+        execution is conviction.
+      </TldrCard>
 
       <section className="prose prose-invert max-w-none text-text leading-relaxed space-y-6">
         <h2 className="text-2xl font-bold mt-8 mb-3">The three filings that matter</h2>
@@ -203,6 +217,25 @@ export default function HowToReadBuybackDisclosuresPage() {
           <a href="/learn/buybacks-vs-dividends" className="text-brand hover:underline">buybacks vs dividends</a>
           {"."}
         </p>
+
+        <OurView>
+          <p>
+            The most useful buyback question is rarely &ldquo;how big was the
+            authorization?&rdquo; — it&rsquo;s &ldquo;how aggressively did they execute it
+            during the price drawdown?&rdquo; A company that buys back its own stock
+            opportunistically (loading up when shares fell, slowing down when shares rallied)
+            is signaling that management views the stock as undervalued in cold-blooded
+            financial terms. A company that mechanically buys at any price — often to offset
+            executive option dilution — is signaling something much weaker.
+          </p>
+          <p>
+            Reading the 10-Q monthly tables is the practical test of which type of company
+            you own. Most retail headlines never reach this level of detail. HoldLens
+            surfaces the execution-rate-vs-price pattern on every ticker page with active
+            buyback programs specifically because the 8-K announcement is marketing and the
+            10-Q execution is signal.
+          </p>
+        </OurView>
       </section>
 
       <section className="mt-8 pt-6 border-t border-border">

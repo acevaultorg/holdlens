@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 export const metadata: Metadata = {
   title: "13D vs 13G — what the difference actually means",
@@ -114,6 +116,17 @@ export default function Article() {
         shares, the SEC requires a filing within 10 calendar days. Which
         filing — 13D or 13G — tells you everything about why they bought.
       </p>
+
+      <TldrCard>
+        Both 13D and 13G are filed when an investor crosses 5% of a public company&rsquo;s
+        voting shares (Section 13(d) of the 1934 Securities Exchange Act). 13D: investor
+        intends to influence — board seats, strategy changes, takeover, restructuring; must
+        file within 10 days; must amend on every material change. 13G: investor is explicitly
+        passive — index funds, pension allocations, ETFs; no activist intent; lighter filing
+        burden. The difference is intent. The same 5% stake in Apple is a yawn on 13G and a
+        takeover threat on 13D. Activists (Ackman, Icahn, Loeb, Elliott) file 13D; institutional
+        passives (Vanguard, BlackRock for most positions) file 13G.
+      </TldrCard>
 
       <h2>The 5% threshold</h2>
       <p>
@@ -238,6 +251,25 @@ export default function Article() {
         . HoldLens applies the activist-vs-passive lens; SecFilingDex
         catalogs all 13D/13G filings across all filers.
       </p>
+
+      <OurView>
+        <p>
+          13D filings are the most under-weighted disclosure in retail investing. Everyone
+          watches 13Fs, which are quarterly and 45 days late, while ignoring 13Ds which arrive
+          within 10 days and explicitly declare intent. When an activist files a 13D, the
+          investor has effectively pre-committed to a public campaign. That commitment is
+          information you can act on; the same investor showing up on a 13F three months later
+          is information that&rsquo;s already old.
+        </p>
+        <p>
+          The honest caveat: activist outcomes vary widely. Famous successes (Icahn at Apple,
+          Ackman at McDonalds) coexist with famous failures (Ackman at JC Penney, Pershing
+          Square at Valeant). The 13D tells you the campaign exists; it doesn&rsquo;t tell you
+          it will succeed. But you at least know to start watching. HoldLens surfaces 13D
+          filings the same day they hit EDGAR so the activist signal arrives before the
+          financial-media headline cycle has metabolized it.
+        </p>
+      </OurView>
 
       <hr />
       <p className="text-xs text-dim">

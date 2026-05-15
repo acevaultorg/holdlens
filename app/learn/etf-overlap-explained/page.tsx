@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 export const metadata: Metadata = {
   title: "ETF overlap explained — why owning multiple ETFs doesn't always diversify",
@@ -47,6 +49,17 @@ export default function Article() {
         products. In reality, more than 80% of the dollars point to the same
         dozen stocks. Here&rsquo;s what overlap actually means.
       </p>
+
+      <TldrCard>
+        ETF overlap is the percentage of one ETF&rsquo;s holdings that also appear in another,
+        weighted by allocation. Most retail multi-ETF portfolios (VOO + VTI + QQQ + SPY) look
+        diversified across four products but actually concentrate 60–90% of dollars in the
+        same 10–20 mega-cap stocks. Owning four ETFs with 70% overlap is equivalent to owning
+        one ETF with extra fees. True diversification requires structural exposure differences
+        (small-cap vs large-cap, international vs domestic, bonds vs equities, factor tilts) —
+        not just different ticker names. Measure overlap before stacking ETFs; the result is
+        usually higher than the marketing suggests.
+      </TldrCard>
 
       <h2>What is ETF overlap?</h2>
       <p>
@@ -165,6 +178,25 @@ export default function Article() {
           {" — Jaccard overlap across 30 managers."}
         </p>
       </section>
+      <OurView>
+        <p>
+          The marketing-driven case for owning four large-cap-blend ETFs is largely
+          self-defeating: each fund is roughly the same exposure rebadged. The real
+          diversification questions are structural — international developed and emerging,
+          small-cap versus large-cap, value tilt versus growth, bond duration, gold or
+          commodities as inflation hedges. None of those are answered by adding another
+          version of the S&amp;P 500.
+        </p>
+        <p>
+          The lesson translates to single-stock concentration too: holding ten mega-caps from
+          five sectors feels diversified but isn&rsquo;t when they&rsquo;re all driven by
+          the same factor (tech multiples, AI capex narrative, etc.). HoldLens shows ETF
+          overlap and Jaccard similarity across the 30 superinvestor portfolios specifically
+          because the &ldquo;diversification&rdquo; question is more about what&rsquo;s
+          actually different in your portfolio than about how many tickers it contains.
+        </p>
+      </OurView>
+
       <hr className="mt-8" />
       <p className="text-xs text-dim">
         This is educational content, not investment advice. Overlap is one

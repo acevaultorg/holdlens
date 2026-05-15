@@ -5,6 +5,8 @@ import AuthorByline from "@/components/AuthorByline";
 import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import TldrCard from "@/components/learn/TldrCard";
+import OurView from "@/components/learn/OurView";
 
 export const metadata: Metadata = {
   title: "Can you actually copy Warren Buffett? — The honest answer",
@@ -68,6 +70,16 @@ export default function CopyMythPage() {
       <p className="text-xl text-muted mb-10">The honest answer: not the way you think.</p>
 
       <div className="space-y-6 text-text leading-relaxed">
+        <TldrCard>
+          Copy-trading hedge funds from 13F filings fails for three structural reasons:
+          45-day lag (the trade is 6 weeks to 4 months old before you see it), selection bias
+          (no shorts, no options, no hedges, no sizing context — you see one leg of a multi-leg
+          trade), and turnover mismatch (most superinvestor &ldquo;positions&rdquo; exist because
+          they don&rsquo;t rebalance, not because they actively bought this quarter). What IS
+          copyable: the patterns across portfolios — long holding periods, concentration,
+          undervaluation discipline, owner mindset. The trades themselves are not.
+        </TldrCard>
+
         <AuthorByline date="2026-03-15" updated="2026-04-10" />
 
         <h2 className="text-2xl font-bold mt-8 mb-3">The 45-day delay problem</h2>
@@ -126,6 +138,24 @@ export default function CopyMythPage() {
         <p className="text-xs text-dim pt-8 border-t border-border mt-12">
           Not investment advice. See <a href="/methodology" className="underline">methodology</a>.
         </p>
+
+        <OurView>
+          <p>
+            The wrong question is &ldquo;can I copy Buffett?&rdquo; The right question is
+            &ldquo;what do Buffett, Munger, Klarman, Marks, Ackman, and Burry have in
+            common?&rdquo; Run that lens across 13F data and the answer is not their picks —
+            their picks differ wildly. The commonality is their behavior: they hold positions
+            for years, they concentrate in their highest-conviction ideas, they wait for
+            mispricing rather than chase momentum, and they treat stocks as fractional
+            ownership of a business.
+          </p>
+          <p>
+            That&rsquo;s the copyable part. Not the tickers — the temperament. HoldLens scores
+            managers on multi-quarter trend and concentration specifically because those are
+            the dimensions where superinvestor behavior most reliably differs from index-fund
+            behavior. The tickers themselves are a distraction.
+          </p>
+        </OurView>
 
         <LearnReadNext currentSlug="copy-trading-myth" />
 
