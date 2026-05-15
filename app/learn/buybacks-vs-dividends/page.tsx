@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import ShareStrip from "@/components/ShareStrip";
 import TldrCard from "@/components/learn/TldrCard";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: "Buybacks vs dividends — what's the real difference?",
@@ -30,7 +31,7 @@ export default function BuybacksVsDividendsPage() {
   const url = "https://holdlens.com/learn/buybacks-vs-dividends";
   const articleLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "Buybacks vs dividends — what's the real difference?",
     description:
       "Share repurchases and dividends both return cash to shareholders but differ in tax treatment, flexibility, and long-term compounding.",
@@ -252,6 +253,7 @@ export default function BuybacksVsDividendsPage() {
       </section>
 
       <section className="mt-8 pt-6 border-t border-border">
+        <CiteThisPage />
         <ShareStrip
           title="Buybacks vs dividends — what's the real difference?"
           url={url}

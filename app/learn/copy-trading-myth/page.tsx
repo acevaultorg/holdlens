@@ -7,6 +7,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: "Can you actually copy Warren Buffett? — The honest answer",
@@ -41,7 +42,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "Can you actually copy Warren Buffett? — The honest answer",
     description:
       "Why 13F-based copy-trading doesn't work the way retail investors think — and what to do instead.",
@@ -183,6 +184,7 @@ export default function CopyMythPage() {
           </p>
         </OurView>
 
+        <CiteThisPage />
         <LearnReadNext currentSlug="copy-trading-myth" />
 
         <ShareStrip url="https://holdlens.com/learn/copy-trading-myth" title="Can you actually copy Warren Buffett?" />

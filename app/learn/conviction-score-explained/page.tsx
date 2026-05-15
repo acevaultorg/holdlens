@@ -7,6 +7,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: { absolute: "What is the HoldLens ConvictionScore? — The single signed −100..+100 scale" },
@@ -42,7 +43,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "What is the HoldLens ConvictionScore?",
     description:
       "How HoldLens assigns every stock one signed conviction score on a −100..+100 scale where +100 is the strongest possible buy and −100 the strongest possible sell.",
@@ -317,6 +318,7 @@ export default function ConvictionPage() {
           </p>
         </OurView>
 
+        <CiteThisPage />
         <LearnReadNext currentSlug="conviction-score-explained" />
 
         <ShareStrip url="https://holdlens.com/learn/conviction-score-explained" title="What is the HoldLens ConvictionScore?" />

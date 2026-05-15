@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: "13D vs 13G — what the difference actually means",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function Article() {
   const articleLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "13D vs 13G — what the difference actually means",
     datePublished: "2026-04-20",
     dateModified: "2026-04-26",
@@ -151,7 +152,7 @@ export default function Article() {
 
       <TldrCard>
         Both 13D and 13G are filed when an investor crosses 5% of a public company&rsquo;s
-        voting shares (Section 13(d) of the 1934 Securities Exchange Act). 13D: investor
+        voting shares (<a href="https://www.law.cornell.edu/uscode/text/15/78m" className="text-brand underline" rel="noopener">Section 13(d) of the Securities Exchange Act of 1934, 15 U.S.C. § 78m(d)</a>; implementing rules at <a href="https://www.ecfr.gov/current/title-17/chapter-II/part-240/subject-group-ECFR82e9d3afb9a8d54/section-240.13d-1" className="text-brand underline" rel="noopener">17 CFR § 240.13d-1</a>). 13D: investor
         intends to influence — board seats, strategy changes, takeover, restructuring; must
         file within 10 days; must amend on every material change. 13G: investor is explicitly
         passive — index funds, pension allocations, ETFs; no activist intent; lighter filing
@@ -303,6 +304,7 @@ export default function Article() {
         </p>
       </OurView>
 
+      <CiteThisPage />
       <hr />
       <p className="text-xs text-dim">
         This is educational content, not investment advice. Activist

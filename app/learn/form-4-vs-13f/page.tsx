@@ -5,6 +5,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // /learn/form-4-vs-13f
 //
@@ -64,7 +65,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "Form 4 vs 13F — insider trades vs institutional portfolios, side by side",
     description:
       "Plain English comparison of SEC Form 4 and Schedule 13F. Two filings, two timeframes, two different signals about what's happening at any public company.",
@@ -175,9 +176,9 @@ export default function Form4vs13FPage() {
 
       <div className="space-y-6 text-text leading-relaxed">
         <TldrCard>
-          Form 4 and Form 13F report different actors on different timelines. Form 4: company
+          Form 4 and Form 13F report different actors on different timelines. Form 4 (<a href="https://www.law.cornell.edu/uscode/text/15/78p" className="text-brand underline" rel="noopener">Section 16 of the Securities Exchange Act, 15 U.S.C. § 78p</a>): company
           insiders (CEO, CFO, directors, 10%+ owners) trading their own company&rsquo;s stock,
-          filed within 2 business days of the trade — near-real-time. Form 13F: outside
+          filed within 2 business days of the trade — near-real-time. Form 13F (<a href="https://www.ecfr.gov/current/title-17/chapter-II/part-240/section-240.13f-1" className="text-brand underline" rel="noopener">17 CFR § 240.13f-1</a>): outside
           institutional investors with $100M+ AUM disclosing US-equity positions, filed within
           45 days of quarter-end — heavily lagged. Form 4 tells you what people who run the
           company think about the company. Form 13F tells you what professional money managers
@@ -447,6 +448,7 @@ export default function Form4vs13FPage() {
         />
       </div>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="form-4-vs-13f" />
     </div>
   );

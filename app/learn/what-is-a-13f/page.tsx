@@ -7,6 +7,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: "What is a 13F filing? — Plain English guide for retail investors",
@@ -39,7 +40,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "What is a 13F filing?",
     description: "Plain English guide to SEC Form 13F for retail investors.",
     author: AUTHOR_SCHEMA,
@@ -87,7 +88,7 @@ export default function What13FPage() {
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">What is a 13F filing?</h1>
       <div className="space-y-6 text-text leading-relaxed">
         <TldrCard>
-          A 13F is a quarterly SEC form that institutional managers with over $100M in US equity assets
+          A 13F is a quarterly SEC form (<a href="https://www.ecfr.gov/current/title-17/chapter-II/part-240/section-240.13f-1" className="text-brand underline" rel="noopener">17 CFR § 240.13f-1</a>) that institutional managers with over $100M in US equity assets
           must file within 45 days of quarter-end. It lists long US stock positions only — no shorts,
           no bonds, no options detail, no cash, no non-US holdings. The 45-day reporting lag is the
           single most important fact: by the time you read a position, the trade is 6 weeks to 4 months
@@ -185,6 +186,7 @@ export default function What13FPage() {
           and score every filing.
         </p>
 
+        <CiteThisPage />
         <LearnReadNext currentSlug="what-is-a-13f" />
 
         <ShareStrip url="https://holdlens.com/learn/what-is-a-13f" title="What is a 13F filing?" />

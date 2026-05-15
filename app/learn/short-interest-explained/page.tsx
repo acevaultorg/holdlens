@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: "Short interest, days-to-cover, and squeeze setups — plain English",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function Article() {
   const articleLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline:
       "Short interest, days-to-cover, and squeeze setups — plain English",
     datePublished: "2026-04-20",
@@ -268,6 +269,7 @@ export default function Article() {
         </p>
       </OurView>
 
+      <CiteThisPage />
       <hr />
       <p className="text-xs text-dim">
         This is educational content, not investment advice. Short interest

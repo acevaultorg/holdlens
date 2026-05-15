@@ -5,6 +5,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // /learn/13f-vs-13d-vs-13g
 //
@@ -76,7 +77,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline:
       "13F vs 13D vs 13G — what's the difference, and what each one tells you",
     description:
@@ -794,6 +795,7 @@ export default function ThirteenFvsDvsGPage() {
         </p>
       </OurView>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="13f-vs-13d-vs-13g" />
 
       <ShareStrip

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: "ETF overlap explained — why owning multiple ETFs doesn't always diversify",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function Article() {
   const articleLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "ETF overlap explained — why owning multiple ETFs doesn't diversify",
     datePublished: "2026-04-20",
     dateModified: "2026-04-20",
@@ -190,6 +191,7 @@ export default function Article() {
         active-manager 13F positions.
       </p>
 
+      <CiteThisPage />
       <hr />
       <section className="mt-8">
         <h2 className="text-base font-bold text-text mb-3">See overlap live on HoldLens</h2>

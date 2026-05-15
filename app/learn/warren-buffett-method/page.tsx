@@ -5,6 +5,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // v1.29 — new /learn article. "Warren Buffett method" gets ~6,500 monthly
 // search queries. HoldLens has authority to answer because we hold the
@@ -49,7 +50,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "The Warren Buffett method — what's transferable, what isn't",
     description:
       "Honest breakdown of which Buffett principles scale to a retail account and which depend on a structural advantage you don't have.",
@@ -371,6 +372,7 @@ export default function WarrenBuffettMethodPage() {
         </p>
       </OurView>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="warren-buffett-method" />
 
       <ShareStrip

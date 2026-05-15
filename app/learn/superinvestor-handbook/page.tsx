@@ -7,6 +7,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // /learn/superinvestor-handbook — 3000+ word evergreen SEO piece targeting
 // "how to read 13F filings", "how to track superinvestors", "13F explained",
@@ -48,7 +49,7 @@ const TOC = [
 
 const JSONLD = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": ["Article", "Report"],
   headline:
     "The Superinvestor Handbook — how to read 13F filings and track smart money",
   description:
@@ -670,6 +671,7 @@ export default function SuperinvestorHandbookPage() {
         </p>
       </OurView>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="superinvestor-handbook" />
 
       <ShareStrip

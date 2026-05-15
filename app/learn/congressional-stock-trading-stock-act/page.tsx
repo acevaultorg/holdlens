@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: "How the STOCK Act works — Congressional stock trading, plain English",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 export default function Article() {
   const articleLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "How the STOCK Act works — Congressional stock trading explained",
     datePublished: "2026-04-20",
     dateModified: "2026-04-20",
@@ -281,6 +282,7 @@ export default function Article() {
         </p>
       </OurView>
 
+      <CiteThisPage />
       <hr />
       <p className="text-xs text-dim">
         This is educational content, not investment advice. Congressional

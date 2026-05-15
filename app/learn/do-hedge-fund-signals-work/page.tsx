@@ -4,6 +4,7 @@ import AuthorByline from "@/components/AuthorByline";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // /learn/do-hedge-fund-signals-work
 //
@@ -73,7 +74,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "Do 13F signals actually predict stock returns? We ran the backtest",
     description:
       "Original research: we backtested our ConvictionScore against 221 ticker-quarter pairs of realized returns. Pearson r = -0.12. Top-decile 'BUY' signals underperformed SPY by 5pt; bottom-decile 'SELL' signals outperformed by 24pt. Here's why.",
@@ -491,6 +492,7 @@ export default function BacktestArticle() {
         </p>
       </OurView>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="do-hedge-fund-signals-work" />
     </div>
   );

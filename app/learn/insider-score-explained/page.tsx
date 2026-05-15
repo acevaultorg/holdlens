@@ -6,6 +6,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // /learn/insider-score-explained
 //
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
 const LD = [
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "InsiderScore Explained — how HoldLens scores SEC Form 4 trades",
     description:
       "The deterministic formula behind HoldLens's InsiderScore. How officer role, action type, transaction size, cluster detection, and recency decay combine into a signed −100 to +100 score for every insider transaction.",
@@ -385,6 +386,7 @@ export default function InsiderScoreExplainedArticle() {
         url="https://holdlens.com/learn/insider-score-explained/"
       />
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="insider-score-explained" />
 
       <script

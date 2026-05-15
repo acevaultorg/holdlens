@@ -3,6 +3,7 @@ import AdSlot from "@/components/AdSlot";
 import ShareStrip from "@/components/ShareStrip";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 export const metadata: Metadata = {
   title: "How to read buyback disclosures — a plain-English SEC filing guide",
@@ -31,7 +32,7 @@ export default function HowToReadBuybackDisclosuresPage() {
   const url = "https://holdlens.com/learn/how-to-read-buyback-disclosures";
   const articleLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "How to read buyback disclosures — a plain-English SEC filing guide",
     description:
       "A retail-investor guide to finding share-repurchase data in SEC 10-K, 10-Q, and 8-K filings, plus how to spot common distortions.",
@@ -265,6 +266,7 @@ export default function HowToReadBuybackDisclosuresPage() {
       </section>
 
       <section className="mt-8 pt-6 border-t border-border">
+        <CiteThisPage />
         <ShareStrip
           title="How to read buyback disclosures — a plain-English SEC filing guide"
           url={url}

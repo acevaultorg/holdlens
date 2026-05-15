@@ -6,6 +6,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // /learn/sec-signals-trilogy
 //
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
 const LD = [
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline:
       "The SEC Signals Trilogy — 13F + Form 4 + 8-K, explained as one system",
     description:
@@ -390,6 +391,7 @@ export default function SecSignalsTrilogyArticle() {
         url="https://holdlens.com/learn/sec-signals-trilogy/"
       />
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="sec-signals-trilogy" />
 
       <script

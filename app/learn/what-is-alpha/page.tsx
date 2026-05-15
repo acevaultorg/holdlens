@@ -5,6 +5,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // v1.24 — new /learn/ article. "What is alpha?" is a foundational concept
 // that every investing site promises to explain and almost every one does it
@@ -54,7 +55,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "What is alpha? A plain English guide to the hedge fund edge",
     description:
       "The single concept behind every hedge fund's marketing deck — explained without jargon, with real numbers from tracked superinvestors.",
@@ -344,6 +345,7 @@ export default function WhatIsAlphaPage() {
         </p>
       </OurView>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="what-is-alpha" />
 
       <ShareStrip

@@ -5,6 +5,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // v1.23 — new /learn/ article. "How to read a 13F in 5 minutes" is a high-volume
 // practical query ("how to read 13f filing", "13f filing explained", "hedge fund
@@ -56,7 +57,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "How to read a 13F filing in 5 minutes",
     description:
       "Plain English walkthrough of SEC Form 13F — cover page, information table, share counts, value columns, CUSIPs, call/put notations, and what 13Fs don't show.",
@@ -457,6 +458,7 @@ export default function HowToReadA13FPage() {
         </p>
       </OurView>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="how-to-read-a-13f" />
 
       <ShareStrip

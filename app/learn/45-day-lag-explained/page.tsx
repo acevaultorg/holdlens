@@ -5,6 +5,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // v1.26 — new /learn/ article. The 45-day lag is the single most misunderstood
 // fact about 13F data, and also the one that separates honest sites from
@@ -51,7 +52,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "The 45-day lag problem in 13F filings — and why it's a feature, not a bug",
     description:
       "SEC 13F filings are always 45 days late. Here's why that's by design, what you CAN still learn from them, and what to ignore.",
@@ -172,7 +173,7 @@ export default function FortyFiveDayLagPage() {
 
       <div className="space-y-6 text-text leading-relaxed">
         <TldrCard>
-          The 45-day lag is set by SEC Rule 13f-1: institutional managers have 45 calendar days
+          The 45-day lag is set by <a href="https://www.ecfr.gov/current/title-17/chapter-II/part-240/section-240.13f-1" className="text-brand underline" rel="noopener">SEC Rule 13f-1</a> (17 CFR § 240.13f-1): institutional managers have 45 calendar days
           after each quarter-end to file Form 13F. The window is deliberate — without it,
           front-runners would trade against funds the moment a new position appeared. Practical
           consequence: when you see a 13F position, the actual trade is 6 weeks to 4 months
@@ -430,6 +431,7 @@ export default function FortyFiveDayLagPage() {
         </p>
       </OurView>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="45-day-lag-explained" />
 
       <ShareStrip

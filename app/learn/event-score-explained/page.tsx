@@ -6,6 +6,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // /learn/event-score-explained
 //
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 const LD = [
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline: "EventScore Explained — how HoldLens scores SEC 8-K material events",
     description:
       "The deterministic formula behind HoldLens's EventScore. How item-type severity, market-cap weight, recency decay, and event-cluster detection combine into a signed −100 to +100 score for every SEC Form 8-K filing.",
@@ -313,6 +314,7 @@ export default function EventScoreExplainedArticle() {
         url="https://holdlens.com/learn/event-score-explained/"
       />
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="event-score-explained" />
 
       <script

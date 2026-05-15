@@ -5,6 +5,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
+import CiteThisPage from "@/components/learn/CiteThisPage";
 
 // /learn/survivorship-bias-in-hedge-funds
 //
@@ -72,7 +73,7 @@ const LD = [
   },
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["Article", "Report"],
     headline:
       "Survivorship Bias in Hedge Funds — Why the Dead Funds Matter",
     description:
@@ -552,6 +553,7 @@ export default function SurvivorshipBiasPage() {
         </p>
       </OurView>
 
+        <CiteThisPage />
       <LearnReadNext currentSlug="survivorship-bias-in-hedge-funds" />
 
       <ShareStrip
