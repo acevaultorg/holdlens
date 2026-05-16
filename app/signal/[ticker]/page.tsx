@@ -770,6 +770,19 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         trend detection, insider activity, and real-time news. Not investment advice.{" "}
         <a href="/methodology" className="underline">Methodology</a>.
       </p>
+
+      <p className="text-xs text-dim mt-3">
+        Sister property:{" "}
+        <a
+          href="https://secfilingdex.com/learn/13f/"
+          className="underline"
+          rel="noopener"
+        >
+          SecFilingDex
+        </a>
+        {" "}— the encyclopedic reference for every SEC form variant (13F-HR / 13F-NT / 13F-HR/A) and the
+        regulatory citation behind the data on this page.
+      </p>
     </div>
   );
 }

@@ -80,6 +80,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/learn/edgar-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/learn/cusip-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/learn/proxy-voting-def-14a`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/learn/13f-securities-list`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/learn/rule-144-holding-period`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/grand`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/screener`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },

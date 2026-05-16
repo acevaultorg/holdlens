@@ -386,6 +386,19 @@ export default function BuffettPage() {
         Data sourced from Berkshire Hathaway 13F filings with the SEC. Approximate snapshot; updated after each
         quarterly filing. Not investment advice.
       </p>
+
+      <p className="text-xs text-dim mt-3">
+        Sister property:{" "}
+        <a
+          href="https://secfilingdex.com/learn/13f/"
+          className="underline"
+          rel="noopener"
+        >
+          SecFilingDex
+        </a>
+        {" "}— the encyclopedic reference for Form 13F (HR / NT / HR/A variants) and the regulatory
+        citation behind every Berkshire position shown above.
+      </p>
     </div>
   );
 }

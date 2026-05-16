@@ -797,6 +797,19 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       <p className="text-xs text-dim mt-16">
         Data sourced from {m.fund} 13F filings with the SEC. Approximate snapshot. Not investment advice.
       </p>
+
+      <p className="text-xs text-dim mt-3">
+        Sister property:{" "}
+        <a
+          href="https://secfilingdex.com/learn/13f/"
+          className="underline"
+          rel="noopener"
+        >
+          SecFilingDex
+        </a>
+        {" "}— the encyclopedic reference for Form 13F (HR / NT / HR/A variants) and the regulatory
+        citation behind every position shown above.
+      </p>
     </div>
   );
 }
