@@ -5,7 +5,7 @@ import { dirname } from "node:path";
 
 const ROOT = new URL("..", import.meta.url);
 const SRC = new URL("./components/LearnReadNext.tsx", ROOT);
-const OUT = new URL("./public/api/v1/learn.json", ROOT);
+const OUT = new URL("./out/api/v1/learn.json", ROOT);
 
 const src = await readFile(SRC, "utf8");
 const start = src.indexOf("LEARN_SEQUENCE: Article[] = [");
