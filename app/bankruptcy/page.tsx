@@ -242,6 +242,19 @@ export default function BankruptcyHub() {
         </p>
       </div>
 
+      <p className="text-xs text-dim mt-12 px-4 sm:px-0">
+        Sister property:{" "}
+        <a
+          href="https://secfilingdex.com/learn/8-k/"
+          className="underline"
+          rel="noopener"
+        >
+          SecFilingDex
+        </a>
+        {" "}— encyclopedic entry for Form 8-K. Chapter 11 filings appear as 8-K Item 1.03
+        (Bankruptcy or Receivership) with the regulatory citation behind every filing tracked above.
+      </p>
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

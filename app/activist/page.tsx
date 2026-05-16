@@ -310,6 +310,19 @@ export default function ActivistLanding() {
           <a href="/enforcement/" className="text-brand hover:underline">SEC enforcement</a>
         </p>
       </section>
+
+      <p className="text-xs text-dim mt-12">
+        Sister property:{" "}
+        <a
+          href="https://secfilingdex.com/learn/13d-vs-13g/"
+          className="underline"
+          rel="noopener"
+        >
+          SecFilingDex
+        </a>
+        {" "}— encyclopedic entry for Schedule 13D vs 13G (activist vs passive 5%+ ownership)
+        with the regulatory citations behind every campaign above.
+      </p>
     </div>
   );
 }

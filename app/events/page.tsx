@@ -392,6 +392,19 @@ export default function EventsHubPage() {
           </Link>
         </div>
       </section>
+
+      <p className="text-xs text-dim mt-12">
+        Sister property:{" "}
+        <a
+          href="https://secfilingdex.com/learn/8-k/"
+          className="underline"
+          rel="noopener"
+        >
+          SecFilingDex
+        </a>
+        {" "}— encyclopedic entry for Form 8-K with every Item taxonomy + the regulatory citation
+        behind the events shown above.
+      </p>
     </div>
   );
 }

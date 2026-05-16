@@ -116,6 +116,19 @@ export default function ProxiesHub() {
         </p>
       </div>
 
+      <p className="text-xs text-dim mt-12">
+        Sister property:{" "}
+        <a
+          href="https://secfilingdex.com/learn/def-14a/"
+          className="underline"
+          rel="noopener"
+        >
+          SecFilingDex
+        </a>
+        {" "}— encyclopedic entry for DEF 14A (definitive proxy statement) with the regulatory
+        citation behind every proxy tracked above.
+      </p>
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />

@@ -281,6 +281,19 @@ export default function Def14APage() {
         </Link>
         .
       </p>
+
+      <p className="text-xs text-dim mt-3">
+        Sister property:{" "}
+        <a
+          href="https://secfilingdex.com/learn/def-14a/"
+          className="underline"
+          rel="noopener"
+        >
+          SecFilingDex
+        </a>
+        {" "}— encyclopedic entry for DEF 14A (definitive proxy statement) and every Schedule 14A
+        variant (PRE 14A, DEFA14A).
+      </p>
     </div>
   );
 }
