@@ -4,7 +4,7 @@ import { getBacktestQuarters } from "@/lib/backtest";
 
 export const metadata: Metadata = {
   title: "Proof — backtested realized returns of the recommender",
-  description: "If you'd followed HoldLens's top BUY signals from each historical 13F filing, here's what your portfolio would look like today. Honest backtest with live prices.",
+  description: "If you'd followed HoldLens's top net-accumulation positions from each historical 13F filing, here's what your portfolio would look like today. Honest backtest with live prices.",
   alternates: { canonical: "https://holdlens.com/proof" },
   openGraph: {
     title: "HoldLens · Recommender backtest proof",
@@ -98,7 +98,7 @@ export default function ProofPage() {
             the warmup dataset).
           </li>
           <li>
-            <span className="text-text font-semibold">Top 5 BUY signals:</span> We take the top 5
+            <span className="text-text font-semibold">Top 5 net-accumulating positions:</span> We take the top 5
             stocks ranked BUY at that historical point in time. No curation — whatever the model said.
           </li>
           <li>

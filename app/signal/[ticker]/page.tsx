@@ -339,7 +339,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         <div className="flex items-center justify-between gap-6 flex-wrap">
           <div>
             <div className="text-[11px] uppercase tracking-widest font-bold opacity-80">
-              HoldLens verdict · single −100..+100 scale
+              ConvictionScore · single −100..+100 scale
             </div>
             <div className="flex items-baseline gap-4 mt-2 flex-wrap">
               <div className="text-4xl md:text-5xl font-bold tracking-tight opacity-90">{VERDICT_DISPLAY[verdict]}</div>

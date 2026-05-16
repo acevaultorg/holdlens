@@ -119,8 +119,8 @@ I built HoldLens (https://holdlens.com) because I wanted a faster way to check i
 HoldLens collapses every stock to ONE signed score on a single −100..+100 scale. +100 is the strongest possible buy. −100 is the strongest possible sell. A ticker appears in exactly one list. No more "is this a buy or a sell?" confusion.
 
 The killer feature is /portfolio — you add your stocks (stays on your device, never sent to a server), and it tells you:
-- "3 of your 5 stocks have BUY signals from Tier-1 managers (Druckenmiller, Klarman, TCI)"
-- "1 of your stocks has a SELL signal — 3 managers exiting"
+- "3 of your 5 stocks have net-accumulation patterns from Tier-1 managers (Druckenmiller, Klarman, TCI)"
+- "1 of your stocks shows net-selling — 3 managers exiting"
 - Live valuation, today's P&L, unrealized gains/losses
 
 It tracks 30 portfolio managers including Buffett, Ackman, Druckenmiller, Klarman, Burry, Howard Marks, Tepper, Coleman (Tiger), Halvorsen (Viking), Hohn (TCI), Mandel (Lone Pine), Akre, Smith (Fundsmith), Pabrai, Greenblatt, and more.
@@ -184,14 +184,14 @@ I built a recommendation model that does this. It also adds:
 - Anti-crowding penalty
 
 Post 5:
-Today's #1 BUY signal from the model: $GE (+42)
+Today's #1 net-accumulation from the model: $GE (+42)
 
 Unified ConvictionScore on a single −100..+100 scale. Multi-quarter trend support, tier-1 buyers, no crowding penalty triggered.
 
 Full dossier: holdlens.com/signal/GE
 
 Post 6:
-Today's #1 SELL signal: $AAPL (−11)
+Today's #1 net-selling: $AAPL (−11)
 
 2 tier-1 managers trimming, Buffett's BRK took profits on the AAPL position, and the stock is already in 15+ tracked portfolios (crowding penalty fires).
 
@@ -240,7 +240,7 @@ The ConvictionScore combines:
 💎 Anti-crowding penalty (surfaces under-the-radar gems)
 ⚖️ Dissent penalty (when smart money is split, the score reflects it)
 
-The killer page is /portfolio — add your stocks and it cross-references them against the model. "3 of your 5 stocks have BUY signals from Tier-1 managers" with one click. localStorage only, never leaves your device.
+The killer page is /portfolio — add your stocks and it cross-references them against the model. "3 of your 5 stocks show net-accumulation patterns from Tier-1 managers" with one click. localStorage only, never leaves your device.
 
 The /leaderboard ranks all 30 managers by REAL alpha vs S&P 500. Some surprises: Buffett is only 5.9/10 in this model (alpha -1.4% over the last decade). Dev Kantesaria (Valley Forge) is the actual #1 with +5.6% alpha.
 

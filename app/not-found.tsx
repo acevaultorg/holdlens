@@ -29,7 +29,7 @@ const POPULAR_ROUTES = [
   {
     href: "/signal/AAPL",
     label: "Signal dossier",
-    desc: "One ticker at a time — verdict, trend, owners.",
+    desc: "One ticker at a time — score, trend, owners.",
     color: "emerald",
   },
   {

@@ -20,7 +20,7 @@ import { getConviction, formatSignedScore, convictionLabel } from "@/lib/convict
 export const metadata: Metadata = {
   title: "Consensus picks — where every superinvestor agrees",
   description:
-    "Tickers with ≥5 superinvestor owners, positive smart-money conviction, and net-buying flow. The collective smart-money BUY signal.",
+    "Tickers with ≥5 superinvestor owners, positive smart-money conviction, and net-buying flow. The factual smart-money consensus pattern.",
   alternates: { canonical: "https://holdlens.com/consensus" },
   openGraph: {
     title: "HoldLens consensus picks — where smart money agrees",

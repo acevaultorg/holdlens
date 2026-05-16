@@ -115,7 +115,7 @@ const LD = [
         name: "Do 13F filings predict which stocks will go up?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Based on our April 2026 backtest of 221 ticker-quarter pairs across 30 tracked portfolio managers — no. The Pearson correlation between our ConvictionScore (a composite of smart-money positioning) and 6-14 month forward alpha over SPY was -0.12. Top-decile BUY signals underperformed SPY by about 5 percentage points; bottom-decile SELL signals outperformed by 24 points. 13F data is useful as institutional positioning intelligence, but not as a direct predictor of future returns.",
+          text: "Based on our April 2026 backtest of 221 ticker-quarter pairs across 30 tracked portfolio managers — no. The Pearson correlation between our ConvictionScore (a composite of smart-money positioning) and 6-14 month forward alpha over SPY was -0.12. Top-decile net-accumulation patterns underperformed SPY by about 5 percentage points; bottom-decile net-selling patterns outperformed by 24 points. 13F data is useful as institutional positioning intelligence, but not as a direct predictor of future returns.",
         },
       },
       {
@@ -358,7 +358,7 @@ export default function BacktestArticle() {
         the last decade. Our derived{" "}
         <a href="/learn/conviction-score-explained" className="underline">10-year ROI panel</a>{" "}
         on each investor page tells this story: the legendary name is not the legendary recent
-        performer. When those managers&apos; picks drive the BUY signal, the signal inherits
+        performer. When those managers&apos; picks drive the net-accumulation pattern, it inherits
         their recent record — which hasn&apos;t beaten the index.
       </p>
 
