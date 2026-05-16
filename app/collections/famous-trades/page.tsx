@@ -5,12 +5,12 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 export const metadata: Metadata = {
   title: "Famous trades — public-record case studies | HoldLens",
   description:
-    "Six historical trades reconstructable from SEC EDGAR alone: Berkshire's Coca-Cola, Burry's Big Short, Ackman's Herbalife, Soros-Druckenmiller's pound, Munger's Costco, Icahn's Apple. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+    "Seven historical trades reconstructable from SEC EDGAR alone: Berkshire/Coca-Cola, Berkshire/Apple, Burry/Big Short, Ackman/Herbalife, Soros-Druckenmiller/GBP, Munger/Costco, Icahn/Apple. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
   alternates: { canonical: "https://holdlens.com/collections/famous-trades" },
   openGraph: {
     title: "Famous trades — public-record case studies",
     description:
-      "Six historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+      "Seven historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
     url: "https://holdlens.com/collections/famous-trades",
     type: "website",
     images: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Famous trades — public-record case studies",
-    description: "Six historical trades reconstructable from SEC EDGAR alone.",
+    description: "Seven historical trades reconstructable from SEC EDGAR alone.",
     images: ["/og/home.png"],
   },
 };
@@ -40,6 +40,14 @@ const TRADES: Trade[] = [
     blurb:
       "Berkshire Hathaway accumulated ~6.7% of Coca-Cola for $1.3B in 1988-89. The position has been untouched for 37 years; current mark-to-market is ~$28B before dividends.",
     period: "1988-1989 entry · ongoing",
+    protagonist: "Warren Buffett · Berkshire Hathaway",
+  },
+  {
+    slug: "buffett-apple-position",
+    title: "Warren Buffett's Apple position",
+    blurb:
+      "Berkshire built Apple into its largest-ever equity position from a Q1 2016 ~9.8M-share entry. Peaked at ~5.5% of Apple's outstanding stock and ~50% of Berkshire's public-equity portfolio. Partial trim in 2024; still Berkshire's #1 holding.",
+    period: "2016 entry · 2024 partial trim · ongoing",
     protagonist: "Warren Buffett · Berkshire Hathaway",
   },
   {
@@ -99,7 +107,7 @@ const LD = [
     "@type": "CollectionPage",
     name: "Famous trades — public-record case studies",
     description:
-      "Six historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+      "Seven historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
     url: "https://holdlens.com/collections/famous-trades",
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
@@ -136,7 +144,7 @@ export default function FamousTradesCollectionPage() {
         Famous trades — public-record case studies
       </h1>
       <p className="text-lg text-muted leading-relaxed mb-10">
-        Six historical trades reconstructable from SEC EDGAR alone. Each essay traces the
+        Seven historical trades reconstructable from SEC EDGAR alone. Each essay traces the
         trade through 13F filings, Form 4 insider disclosures, and DEF 14A proxy statements —
         showing exactly what the public record reveals AND what it structurally cannot show
         (CDS positions, FX trades, derivatives, and shorts are all 13F-invisible).

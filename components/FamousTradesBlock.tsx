@@ -11,6 +11,11 @@ const TRADES: Trade[] = [
     blurb: "Berkshire's 1988-89 KO purchase — $1.3B → ~$28B, untouched 37 years.",
   },
   {
+    slug: "buffett-apple-position",
+    title: "Warren Buffett's Apple position",
+    blurb: "Berkshire's 2016-onward AAPL accumulation — largest equity position in firm history.",
+  },
+  {
     slug: "burry-big-short",
     title: "Michael Burry's Big Short",
     blurb: "Scion Capital's 2005-2008 subprime CDS trade — ~489% net return.",

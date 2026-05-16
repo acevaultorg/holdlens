@@ -42,6 +42,7 @@ const ARTICLES: Article[] = [
   { slug: "13f-securities-list", title: "The 13(f) securities list — what counts as a 13F holding?", desc: "The SEC's quarterly Official List defining what shows up on 13F. ~17,000 securities in scope; shorts, bonds, foreign equities, most derivatives all out of scope." },
   { slug: "rule-144-holding-period", title: "Rule 144 holding period — when insiders can sell", desc: "6 months for reporting issuers; 12 months for non-reporting. Volume limits, manner-of-sale, and three practical reading angles for tracking insider supply." },
   { slug: "buffett-coca-cola-trade", title: "Warren Buffett's Coca-Cola trade", desc: "Berkshire's 1988-89 KO purchase — $1.3B invested, today ~$28B position, untouched for 37 years. Trade mechanics + 13F-traceable accumulation timeline." },
+  { slug: "buffett-apple-position", title: "Warren Buffett's Apple position", desc: "Berkshire's 2016-onward Apple accumulation — built into the firm's largest-ever equity position. Q1 2016 entry · Q2/Q3 2024 partial trim · still Berkshire's #1 holding. Full 13F-traceable timeline." },
   { slug: "burry-big-short", title: "Michael Burry's Big Short", desc: "Scion Capital's 2005-2008 subprime CDS trade returned ~489% net. The canonical case study in why 13F-based research has structural blind spots." },
   { slug: "ackman-herbalife-short", title: "Bill Ackman's Herbalife short", desc: "Pershing Square's six-year activist short campaign — entered 2012, closed at a loss in 2018. What the public-record trail reveals." },
   { slug: "soros-druckenmiller-gbp-1992", title: "Black Wednesday — Soros, Druckenmiller, and the pound trade", desc: "September 16, 1992. Quantum Fund's $1B-in-a-day short of the British pound that forced the UK to exit the ERM. The FX/short/derivative gap to 13F." },
@@ -101,13 +102,13 @@ export default function LearnIndex() {
         className="block rounded-2xl border border-brand/40 bg-surface-brand p-6 hover:border-brand hover:bg-brand/10 transition-all duration-base ease-swift group mb-6"
       >
         <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
-          Featured collection · 6 essays
+          Featured collection · 7 essays
         </div>
         <div className="text-2xl font-bold text-text group-hover:text-brand transition-colors mb-2">
           Famous trades — public-record case studies
         </div>
         <p className="text-sm text-muted leading-relaxed">
-          Berkshire/Coca-Cola · Burry/Big Short · Ackman/Herbalife · Soros-Druckenmiller/GBP · Munger/Costco · Icahn/Apple. Each trade reconstructable from SEC EDGAR alone.
+          Berkshire/Coca-Cola · Berkshire/Apple · Burry/Big Short · Ackman/Herbalife · Soros-Druckenmiller/GBP · Munger/Costco · Icahn/Apple. Each trade reconstructable from SEC EDGAR alone.
         </p>
         <div className="text-xs text-brand font-semibold mt-3">
           Browse the collection →
@@ -130,7 +131,7 @@ export default function LearnIndex() {
           </a>
           <a href="/collections/famous-trades" className="block rounded-card border border-border bg-surface p-3 hover:border-brand/60 hover:bg-brand/5 transition-all duration-base ease-swift group">
             <div className="text-sm font-bold text-text group-hover:text-brand transition-colors">Famous trades</div>
-            <div className="text-xs text-muted mt-0.5">6 essays · historical case studies</div>
+            <div className="text-xs text-muted mt-0.5">7 essays · historical case studies</div>
           </a>
           <a href="/collections/capital-allocation" className="block rounded-card border border-border bg-surface p-3 hover:border-brand/60 hover:bg-brand/5 transition-all duration-base ease-swift group">
             <div className="text-sm font-bold text-text group-hover:text-brand transition-colors">Capital allocation</div>
@@ -140,7 +141,7 @@ export default function LearnIndex() {
       </div>
 
       <div className="text-[10px] uppercase tracking-widest text-muted font-semibold mb-3">
-        All essays (32)
+        All essays (33)
       </div>
       <div className="space-y-4">
         {ARTICLES.map((a) => (
