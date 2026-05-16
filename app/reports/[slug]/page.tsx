@@ -39,7 +39,8 @@ export default async function ReportPage({ params }: Props) {
   // Per-report body. Currently dispatches to inline content based on slug.
   // Future: separate MDX files; for now, hand-written content per slug.
   const body =
-    slug === "2026-04-q4-2025-13f-signal-summary" ? <Q4SignalSummaryBody />
+    slug === "2026-05-q1-2026-13f-signal-summary" ? <Q1Recap2026Body />
+    : slug === "2026-04-q4-2025-13f-signal-summary" ? <Q4SignalSummaryBody />
     : slug === "2026-04-q1-2026-pre-wave-primer" ? <Q1PrimerBody />
     : slug === "2026-04-week-17-insider-cluster-roundup" ? <Week17Body />
     : slug === "2026-04-week-17-8k-event-distribution" ? <Week17EventBody />
@@ -1033,6 +1034,169 @@ function Q4SignalSummaryBody() {
         <Link href="/api/v1/moves.json" className="text-brand underline">/api/v1/moves.json</Link>{" "}
         and{" "}
         <Link href="/api/v1/holdings.json" className="text-brand underline">/api/v1/holdings.json</Link>.
+      </p>
+    </div>
+  );
+}
+
+// ===== Q1 2026 RECAP (live data from EDGAR refresh 2026-05-16) =====
+function Q1Recap2026Body() {
+  return (
+    <div className="prose prose-invert max-w-none">
+      <p className="text-lg text-muted leading-relaxed">
+        The Q1 2026 13F filing window closed <strong className="text-text">2026-05-15</strong>. Of
+        the 30 superinvestors HoldLens tracks, 27 had filed by deadline (the 3 stragglers are
+        smaller registrants whose adviser status sometimes shifts late; their Q1 disclosures
+        typically land within 7-14 days after the deadline as amended filings). Across the
+        filed cohort, HoldLens normalized approximately{" "}
+        <strong className="text-text">4,023 position changes</strong>: 2,027 adds, 1,099 trims,
+        481 first-time positions, 416 full exits.
+      </p>
+
+      <p className="text-muted leading-relaxed mt-4">
+        This is the live snapshot as of the close of the filing window. ConvictionScore v5
+        computations have been refreshed; all live signal pages (
+        <Link href="/buys/" className="text-brand underline">/buys</Link>,{" "}
+        <Link href="/best-now/" className="text-brand underline">/best-now</Link>,{" "}
+        <Link href="/biggest-buys/" className="text-brand underline">/biggest-buys</Link>,
+        per-investor dossiers) reflect Q1 2026 holdings as of EDGAR ingest 2026-05-16.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">The headline move — Ackman opens MSFT 15.3%</h2>
+      <p className="text-muted leading-relaxed">
+        Bill Ackman&apos;s Pershing Square Capital Management disclosed a brand-new position in{" "}
+        <strong className="text-text">Microsoft (MSFT)</strong> at approximately 5.65 million
+        shares, representing <strong className="text-text">15.3% of Pershing&apos;s reportable
+        portfolio</strong>. This is the largest single new-position percentage of Q1 2026 across
+        any tracked superinvestor. It is also the first Microsoft position in Pershing Square&apos;s
+        13F history. Pershing has historically been concentrated in transportation, restaurants,
+        and select hotel-real-estate names; an opening 15.3% software-mega-cap allocation is a
+        material thesis shift.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Berkshire — Dell enters, Alphabet lifted, Chevron trimmed further</h2>
+      <p className="text-muted leading-relaxed">Berkshire Hathaway&apos;s Q1 2026 13F disclosed three notable moves:</p>
+      <ul className="text-muted space-y-2 list-disc list-inside mt-3">
+        <li>
+          <strong className="text-text">DELL — new position</strong>: ~39.8 million shares (about
+          1% of Berkshire&apos;s disclosed equity portfolio). First-ever Dell stake; another data
+          point in Berkshire&apos;s 2024-onward technology drift after Apple, HP, and Snowflake.
+        </li>
+        <li>
+          <strong className="text-text">GOOGL — add</strong>: ~36.4 million shares added, lifting
+          Alphabet to <strong className="text-text">5.9% of the portfolio</strong>. Berkshire&apos;s
+          Alphabet position was first disclosed Q1 2025; this is the second materially-sized add.
+        </li>
+        <li>
+          <strong className="text-text">CVX — trim</strong>: ~45.8 million shares sold. Chevron
+          remains at 6.6% of the portfolio post-trim, but the trim continues a 2-year-long
+          gradual reduction.
+        </li>
+      </ul>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Klarman (Baupost) — three new financial-services + healthcare positions</h2>
+      <p className="text-muted leading-relaxed">
+        Seth Klarman&apos;s Baupost opened three sizeable new positions in Q1 2026 that
+        collectively account for roughly 13% of the disclosed portfolio:
+      </p>
+      <ul className="text-muted space-y-2 list-disc list-inside mt-3">
+        <li><strong className="text-text">AON</strong> — 4.9% (insurance brokerage)</li>
+        <li><strong className="text-text">Visa (V)</strong> — 4.1% (payment networks)</li>
+        <li><strong className="text-text">Teleflex (TFX)</strong> — 3.7% (medical devices)</li>
+      </ul>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Largest single-quarter exit — Coleman closes Grab</h2>
+      <p className="text-muted leading-relaxed">
+        Chase Coleman&apos;s Tiger Global fully exited{" "}
+        <strong className="text-text">Grab Holdings (GRAB)</strong> in Q1 2026 — approximately
+        92.9 million shares closed out. Grab had been a notable Tiger position through 2025; the
+        complete exit (zero shares post-quarter) is one of the cleanest exits of the cycle.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Consensus buys — AMZN holds the #1 slot for a third quarter</h2>
+      <p className="text-muted leading-relaxed">
+        Across all tracked superinvestors, the tickers with the most managers adding in Q1 2026:
+      </p>
+      <ul className="text-muted space-y-2 list-disc list-inside mt-3">
+        <li><strong className="text-text">AMZN</strong> — 6 managers bought (3rd consecutive quarter as #1 consensus)</li>
+        <li><strong className="text-text">V · META · SEA · SPOT · GOOGL · ASML</strong> — 5 managers each</li>
+        <li><strong className="text-text">MSFT · BN (Brookfield) · MCO (Moody&apos;s)</strong> — 4 managers each</li>
+      </ul>
+      <p className="text-muted leading-relaxed mt-3">
+        The tech-mega-cap concentration thesis remains intact: 7 of the top-10 consensus tickers
+        are mega-cap technology + payments. ASML appearing at 5 buyers is a notable data point
+        for semiconductor-equipment positioning.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">Raw-share-count adds — Howard Marks (Oaktree) dominates the list</h2>
+      <p className="text-muted leading-relaxed">
+        Howard Marks&apos; Oaktree Capital Management dominated the Q1 2026 raw-share-count adds.
+        Notably: Oaktree added 205+ million shares of Indivior PLC (a single distressed-name add
+        characteristic of Oaktree&apos;s deep-value mandate), plus 50+ million-share adds to American
+        Water, Coinbase, Bentley Systems, and new positions in Q2 Holdings, Progress Software,
+        Shift4, and Unity Software.
+      </p>
+      <p className="text-muted leading-relaxed mt-3">
+        These reflect Oaktree&apos;s combined credit + equity strategy rather than concentrated
+        thesis bets: most positions are sub-1% of total portfolio. For tracked-superinvestor
+        signal purposes, Oaktree&apos;s adds carry less ConvictionScore weight than Pershing&apos;s
+        Microsoft because of the diversification.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">What the data does NOT show</h2>
+      <p className="text-muted leading-relaxed">
+        Standard 13F caveats apply, and they matter especially this quarter:
+      </p>
+      <ul className="text-muted space-y-2 list-disc list-inside mt-3">
+        <li>
+          <strong className="text-text">No short positions, no derivatives.</strong> Form 13F
+          covers long equity in 13(f)-listed securities only. Any manager running pair trades or
+          options overlays — particularly Druckenmiller, Burry, Soros-style macro — has positions
+          that are invisible to this dataset. See{" "}
+          <Link href="/learn/13f-securities-list/" className="text-brand underline">our 13(f) securities list explainer</Link>.
+        </li>
+        <li>
+          <strong className="text-text">45-day lag</strong>. Q1 2026 positions are quarter-end
+          (March 31, 2026) snapshots disclosed up to 45 days later. Managers may have bought or
+          sold between March 31 and the May 15 deadline; those moves show up in Q2 2026. See{" "}
+          <Link href="/learn/45-day-lag-explained/" className="text-brand underline">the 45-day lag explainer</Link>.
+        </li>
+        <li>
+          <strong className="text-text">Foreign holdings excluded</strong>. Non-US securities (most
+          European, Asian listings) are not 13F-reportable. A manager&apos;s 13F portfolio is their
+          US-listed-equity book only.
+        </li>
+      </ul>
+
+      <h2 className="text-2xl font-bold mt-10 mb-3">How to read this with HoldLens tools</h2>
+      <p className="text-muted leading-relaxed">
+        Three live surfaces on HoldLens reflect Q1 2026 data:
+      </p>
+      <ul className="text-muted space-y-2 list-disc list-inside mt-3">
+        <li>
+          <Link href="/buys/" className="text-brand underline">/buys</Link> — top BUY signals by ConvictionScore (latest quarter only)
+        </li>
+        <li>
+          <Link href="/best-now/" className="text-brand underline">/best-now</Link> — weighted across the 9-quarter window
+        </li>
+        <li>
+          <Link href="/investor/" className="text-brand underline">/investor/[slug]</Link> — per-manager dossier with Q1 2026 holdings vs Q4 2025 delta
+        </li>
+      </ul>
+
+      <p className="text-muted leading-relaxed mt-6">
+        Machine-readable equivalents at{" "}
+        <Link href="/api/v1/" className="text-brand underline">/api/v1/</Link> — see{" "}
+        <Link href="/api/v1/best-now.json" className="text-brand underline">/api/v1/best-now.json</Link>,{" "}
+        <Link href="/api/v1/consensus.json" className="text-brand underline">/api/v1/consensus.json</Link>,
+        and per-manager files under{" "}
+        <Link href="/api/v1/managers/" className="text-brand underline">/api/v1/managers/</Link>.
+      </p>
+
+      <p className="text-xs text-dim pt-6 border-t border-border mt-10">
+        Not investment advice. Sourced from public SEC EDGAR Form 13F-HR filings (Berkshire CIK
+        0001067983 + 26 additional tracked CIKs). Fully reproducible from EDGAR alone. See{" "}
+        <Link href="/methodology" className="text-brand underline">methodology</Link>.
       </p>
     </div>
   );
