@@ -91,9 +91,57 @@ export default function LearnIndex() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Learn</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Plain English guides</h1>
-      <p className="text-muted text-lg max-w-2xl mb-12">
+      <p className="text-muted text-lg max-w-2xl mb-10">
         Everything you need to know about following smart money. No jargon, no fluff.
       </p>
+
+      {/* Featured collection — Famous Trades */}
+      <a
+        href="/collections/famous-trades"
+        className="block rounded-2xl border border-brand/40 bg-surface-brand p-6 hover:border-brand hover:bg-brand/10 transition-all duration-base ease-swift group mb-6"
+      >
+        <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+          Featured collection · 6 essays
+        </div>
+        <div className="text-2xl font-bold text-text group-hover:text-brand transition-colors mb-2">
+          Famous trades — public-record case studies
+        </div>
+        <p className="text-sm text-muted leading-relaxed">
+          Berkshire/Coca-Cola · Burry/Big Short · Ackman/Herbalife · Soros-Druckenmiller/GBP · Munger/Costco · Icahn/Apple. Each trade reconstructable from SEC EDGAR alone.
+        </p>
+        <div className="text-xs text-brand font-semibold mt-3">
+          Browse the collection →
+        </div>
+      </a>
+
+      {/* Browse by topic — 4 collection hubs */}
+      <div className="mb-12">
+        <div className="text-[10px] uppercase tracking-widest text-muted font-semibold mb-3">
+          Browse by topic
+        </div>
+        <div className="grid sm:grid-cols-2 gap-2">
+          <a href="/collections/sec-filing-mechanics" className="block rounded-card border border-border bg-surface p-3 hover:border-brand/60 hover:bg-brand/5 transition-all duration-base ease-swift group">
+            <div className="text-sm font-bold text-text group-hover:text-brand transition-colors">SEC filing mechanics</div>
+            <div className="text-xs text-muted mt-0.5">11 essays · 13F, Form 4, DEF 14A, EDGAR</div>
+          </a>
+          <a href="/collections/signals-and-methodology" className="block rounded-card border border-border bg-surface p-3 hover:border-brand/60 hover:bg-brand/5 transition-all duration-base ease-swift group">
+            <div className="text-sm font-bold text-text group-hover:text-brand transition-colors">Signals + methodology</div>
+            <div className="text-xs text-muted mt-0.5">10 essays · ConvictionScore, InsiderScore, alpha</div>
+          </a>
+          <a href="/collections/famous-trades" className="block rounded-card border border-border bg-surface p-3 hover:border-brand/60 hover:bg-brand/5 transition-all duration-base ease-swift group">
+            <div className="text-sm font-bold text-text group-hover:text-brand transition-colors">Famous trades</div>
+            <div className="text-xs text-muted mt-0.5">6 essays · historical case studies</div>
+          </a>
+          <a href="/collections/capital-allocation" className="block rounded-card border border-border bg-surface p-3 hover:border-brand/60 hover:bg-brand/5 transition-all duration-base ease-swift group">
+            <div className="text-sm font-bold text-text group-hover:text-brand transition-colors">Capital allocation</div>
+            <div className="text-xs text-muted mt-0.5">5 essays · buybacks, short interest, STOCK Act</div>
+          </a>
+        </div>
+      </div>
+
+      <div className="text-[10px] uppercase tracking-widest text-muted font-semibold mb-3">
+        All essays (32)
+      </div>
       <div className="space-y-4">
         {ARTICLES.map((a) => (
           <a key={a.slug} href={`/learn/${a.slug}`}
