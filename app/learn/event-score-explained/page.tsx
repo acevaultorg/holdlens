@@ -63,6 +63,10 @@ const LD = [
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Form_8-K",
+      "https://www.sec.gov/about/forms/form8-k.pdf",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

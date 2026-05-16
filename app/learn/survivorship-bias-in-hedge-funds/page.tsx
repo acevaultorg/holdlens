@@ -86,6 +86,10 @@ const LD = [
     dateModified: "2026-04-17",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Survivorship_bias",
+      "https://en.wikipedia.org/wiki/Hedge_fund",
+    ],
     about: {
       "@type": "DefinedTerm",
       name: "Survivorship Bias",

@@ -53,6 +53,10 @@ const LD = [
     dateModified: "2026-04-10",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Form_13F",
+      "https://en.wikipedia.org/wiki/Survivorship_bias",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

@@ -30,6 +30,10 @@ export default function Article() {
       "https://holdlens.com/learn/congressional-stock-trading-stock-act",
     description:
       "What the STOCK Act of 2012 requires from U.S. House and Senate members.",
+    citation: [
+      "https://en.wikipedia.org/wiki/STOCK_Act",
+      "https://disclosures-clerk.house.gov/PublicDisclosure/FinancialDisclosure",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

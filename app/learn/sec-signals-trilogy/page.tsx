@@ -67,6 +67,11 @@ const LD = [
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Form_13F",
+      "https://en.wikipedia.org/wiki/Form_4",
+      "https://en.wikipedia.org/wiki/Form_8-K",
+    ],
     about: [
       { "@type": "Thing", name: "SEC Form 13F", url: "https://holdlens.com/glossary/#13f" },
       { "@type": "Thing", name: "SEC Form 4", url: "https://holdlens.com/glossary/#form-4" },

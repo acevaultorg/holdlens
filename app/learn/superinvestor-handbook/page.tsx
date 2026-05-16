@@ -64,6 +64,11 @@ const JSONLD = {
   },
   articleSection: "Investing",
   wordCount: 3400,
+  citation: [
+    "https://en.wikipedia.org/wiki/Form_13F",
+    "https://en.wikipedia.org/wiki/Berkshire_Hathaway",
+    "https://www.sec.gov/divisions/investment/13ffaq",
+  ],
   about: [
     {
       "@type": "DefinedTerm",

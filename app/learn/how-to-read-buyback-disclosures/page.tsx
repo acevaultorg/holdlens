@@ -49,6 +49,10 @@ export default function HowToReadBuybackDisclosuresPage() {
       url: "https://holdlens.com",
       logo: { "@type": "ImageObject", url: "https://holdlens.com/logo.png" },
     },
+    citation: [
+      "https://en.wikipedia.org/wiki/Share_repurchase",
+      "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=10-K",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

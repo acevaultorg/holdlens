@@ -21,6 +21,10 @@ export default function Article() {
     publisher: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com" },
     mainEntityOfPage: "https://holdlens.com/learn/etf-overlap-explained",
     description: "What ETF overlap means and how it compromises diversification.",
+    citation: [
+      "https://en.wikipedia.org/wiki/Exchange-traded_fund",
+      "https://en.wikipedia.org/wiki/Index_fund",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

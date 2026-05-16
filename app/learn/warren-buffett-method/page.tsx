@@ -61,6 +61,11 @@ const LD = [
     dateModified: "2026-04-17",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Warren_Buffett",
+      "https://en.wikipedia.org/wiki/Berkshire_Hathaway",
+      "https://en.wikipedia.org/wiki/Value_investing",
+    ],
     about: [
       {
         "@type": "Person",

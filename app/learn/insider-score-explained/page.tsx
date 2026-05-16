@@ -62,6 +62,10 @@ const LD = [
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Form_4",
+      "https://www.sec.gov/about/forms/form4data.pdf",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

@@ -66,6 +66,10 @@ const LD = [
     dateModified: "2026-04-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Alpha_(finance)",
+      "https://en.wikipedia.org/wiki/Capital_asset_pricing_model",
+    ],
     about: {
       "@type": "DefinedTerm",
       name: "Alpha",

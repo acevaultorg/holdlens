@@ -85,6 +85,11 @@ const LD = [
     dateModified: "2026-04-19",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Form_13F",
+      "https://en.wikipedia.org/wiki/Backtesting",
+      "https://en.wikipedia.org/wiki/Pearson_correlation_coefficient",
+    ],
     about: [
       {
         "@type": "DefinedTerm",
