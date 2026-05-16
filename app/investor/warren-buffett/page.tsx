@@ -382,6 +382,31 @@ export default function BuffettPage() {
         </a>
       </section>
 
+      {/* Famous-trade essay cross-link — Berkshire's 1988 Coca-Cola trade
+          is the canonical Buffett position. Hub-spoke compound with the
+          historical-analysis /learn essay. */}
+      <section className="mt-12 rounded-2xl border border-brand/30 bg-surface-brand p-6 md:p-8">
+        <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+          Historical trade analysis
+        </div>
+        <a
+          href="/learn/buffett-coca-cola-trade"
+          className="block group"
+        >
+          <h2 className="text-xl md:text-2xl font-bold text-text group-hover:text-brand transition-colors mb-2">
+            Warren Buffett&apos;s Coca-Cola trade — the 1988 position that defined modern Berkshire
+          </h2>
+          <p className="text-sm text-muted leading-relaxed">
+            Between Q4 1988 and Q3 1989, Berkshire acquired ~6.7% of Coca-Cola for $1.3B.
+            Today the same position is worth ~$28B. 37-year hold, untouched. Full trade
+            mechanics + 13F-traceable accumulation timeline.
+          </p>
+          <div className="text-xs text-brand font-semibold mt-3">
+            Read the deep-dive →
+          </div>
+        </a>
+      </section>
+
       <p className="text-xs text-dim mt-16">
         Data sourced from Berkshire Hathaway 13F filings with the SEC. Approximate snapshot; updated after each
         quarterly filing. Not investment advice.

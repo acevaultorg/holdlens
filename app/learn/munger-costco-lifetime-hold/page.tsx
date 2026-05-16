@@ -56,7 +56,7 @@ const LD = [
       {
         "@type": "Person",
         name: "Charlie Munger",
-        url: "https://holdlens.com/investor/charlie-munger",
+        url: "https://holdlens.com/investor",
       },
       {
         "@type": "Corporation",
@@ -228,7 +228,7 @@ export default function MungerCostcoPage() {
         <section className="mt-10 border-t border-border pt-6">
           <h2 className="text-base font-bold text-text mb-3">See live tracked-manager holdings on HoldLens</h2>
           <p className="text-sm text-muted leading-relaxed">
-            <a href="/investor/charlie-munger" className="text-brand hover:underline">Daily Journal 13F dossier</a>
+            <a href="/investor" className="text-brand hover:underline">Daily Journal 13F dossier</a>
             {" — including the Costco position trail. Sister property cataloging every form variant: "}
             <a href="https://secfilingdex.com/" className="text-brand hover:underline">SecFilingDex</a>
             {"."}

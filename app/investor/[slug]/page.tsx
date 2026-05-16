@@ -794,6 +794,56 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
+      {/* Famous-trade essay cross-link — appears only when there's a matching
+          /learn deep-dive page on the manager's most-cited historical position.
+          Hub-spoke compound: each /investor profile sends users to the historical
+          essay, each essay back-links to this /investor live data. */}
+      {(() => {
+        const famousTradeMap: Record<string, { slug: string; title: string; blurb: string }> = {
+          "michael-burry": {
+            slug: "burry-big-short",
+            title: "The Big Short — Scion Capital's 2005-2008 subprime CDS trade",
+            blurb: "The trade that made Scion. Why Form 13F structurally couldn't show it, and what the public record tells us.",
+          },
+          "bill-ackman": {
+            slug: "ackman-herbalife-short",
+            title: "The Herbalife short — Pershing Square's 2012-2018 activist campaign",
+            blurb: "Six-year multi-billion short campaign that ended at a loss. The public-record case study in activist shorting.",
+          },
+          "stanley-druckenmiller": {
+            slug: "soros-druckenmiller-gbp-1992",
+            title: "Black Wednesday — the Quantum Fund pound trade",
+            blurb: "September 16, 1992. The $1-billion-in-a-day macro trade that broke the Bank of England. Why FX/short/derivative trades are invisible to 13F.",
+          },
+          "carl-icahn": {
+            slug: "icahn-apple-buyback-campaign",
+            title: "The Apple buyback campaign — 2013-2016 long-side activism",
+            blurb: "$3.6B position, public letter to Tim Cook, ~$2B realized gain. The cleanest SEC-filing-trail activist case in modern markets.",
+          },
+        };
+        const trade = famousTradeMap[m.slug];
+        if (!trade) return null;
+        return (
+          <section className="mt-12 rounded-2xl border border-brand/30 bg-surface-brand p-6 md:p-8">
+            <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+              Historical trade analysis
+            </div>
+            <a
+              href={`/learn/${trade.slug}`}
+              className="block group"
+            >
+              <h2 className="text-xl md:text-2xl font-bold text-text group-hover:text-brand transition-colors mb-2">
+                {trade.title}
+              </h2>
+              <p className="text-sm text-muted leading-relaxed">{trade.blurb}</p>
+              <div className="text-xs text-brand font-semibold mt-3">
+                Read the deep-dive →
+              </div>
+            </a>
+          </section>
+        );
+      })()}
+
       <p className="text-xs text-dim mt-16">
         Data sourced from {m.fund} 13F filings with the SEC. Approximate snapshot. Not investment advice.
       </p>

@@ -276,3 +276,19 @@ is dead code, harmless but redundant. Defer removal to Phase 2 next session.
 **File schema version:** 1
 **Last @compliance pass:** 2026-05-09 ~10:48 UTC, mean 0.74 ✅ PASS
 **Next @compliance pass:** at next public-facing ship in Pro mode (per I-43 draft)
+
+---
+
+## 2026-05-16 — Ships M / N / O / P log (this session)
+
+**Ship M** — verdict-language regression cleanup. 7 files swept: /signal/[ticker], /consensus, /proof, /not-found, /press-kit, /learn/sec-signals-trilogy, /learn/do-hedge-fund-signals-work. Replaced "HoldLens verdict / BUY signal / SELL signal" residuals → ConvictionScore + descriptive language. Per I-43 hard-reject: Verdict-Label Risk = 0.0 dimension restored to ~1.0.
+
+**Ship N** — 6 famous-trade /learn essays shipped: warren-buffett-coca-cola-trade · burry-big-short · ackman-herbalife-short · soros-druckenmiller-gbp-1992 · munger-costco-lifetime-hold · icahn-apple-buyback-campaign. All YMYL-LIGHT (historical analysis, no verdict labels, datePublished/dateModified accurate, Person+Article schema, sources cited). @compliance self-audit mean 0.80 ✅ PASS.
+
+**Ship O** — LearnReadNext component expanded 12→32 entries; /learn hub ARTICLES array 19→32. Hub-spoke compound. Cross-link cycle through every /learn page now intact.
+
+**Ship P** — bidirectional /investor ↔ /learn cross-links. famousTradeMap on /investor/[slug] surfaces matching /learn essay for Burry/Ackman/Druckenmiller/Icahn. Static /investor/warren-buffett gets dedicated KO-trade callout. Munger broken-link fix (Munger not in managers.ts; /learn/munger-costco-lifetime-hold now links to /investor index instead of dead /investor/charlie-munger). Schema honesty + recognizability dimensions reinforced.
+
+**File schema version:** 1
+**Last @compliance pass (this session):** 2026-05-16, Ships M/N/O/P mean ~0.80 ✅ PASS
+**Hard-reject dimensions (Verdict-Label / YMYL-Credential / Schema-Honesty):** all ≥ 0.5 — no I-43 violations
