@@ -1,6 +1,7 @@
 {
-  "last_refresh_iso": "2026-04-21T14:46:55.215Z",
-  "trading_date": "2026-04-21",
-  "priced_tickers": 89,
-  "investors_measured": 30
+  "last_refresh_iso": "2026-05-16T13:24:38.000Z",
+  "trading_date": "2026-05-16",
+  "priced_tickers": 0,
+  "investors_measured": 30,
+  "latest_quarter": "2026-Q1"
 }
