@@ -15,9 +15,9 @@ export type Report = {
 export const REPORTS: Report[] = [
   {
     slug: "2026-05-q1-2026-13f-signal-summary",
-    title: "Q1 2026 13F signal summary — Ackman opens MSFT 15.3%, Berkshire enters DELL + lifts GOOGL, AMZN consensus continues",
+    title: "Q1 2026 13F signal summary — Ackman opens MSFT 15.3%, Berkshire re-enters Delta Air Lines + lifts GOOGL, AMZN consensus continues",
     description:
-      "Q1 2026 13F filings closed 2026-05-15. Across 27 tracked superinvestors HoldLens normalized ~4,000 position changes. Headline moves: Ackman opened MSFT at 15.3% of Pershing Square portfolio; Berkshire established Dell + added 36M shares to Alphabet (+5.9% portfolio weight); Buffett trimmed Chevron 45M shares; Coleman exited Grab fully (-93M shares); Klarman opened Aon + Visa + Teleflex; Howard Marks dominated raw share-count adds. AMZN remained #1 consensus buy with 6 managers adding.",
+      "Q1 2026 13F filings closed 2026-05-15. Across 27 tracked superinvestors HoldLens normalized ~4,000 position changes. Headline moves: Ackman opened Microsoft at 15.3% of Pershing Square portfolio; Berkshire re-entered Delta Air Lines + added 36M shares to Alphabet (+5.9% portfolio weight); Buffett trimmed Chevron 45M shares; Coleman exited Grab fully (-93M shares); Klarman opened Aon + Visa + Teleflex; Howard Marks dominated raw share-count adds (Oaktree combined credit + equity + ETF-overlay book). AMZN remained #1 consensus buy with 6 managers adding.",
     publishedAt: "2026-05-16",
     category: "quarterly",
     wordCount: 1800,
@@ -28,7 +28,7 @@ export const REPORTS: Report[] = [
       "buffett",
       "ackman",
       "msft",
-      "dell",
+      "dal",
       "googl",
       "amzn",
       "klarman",

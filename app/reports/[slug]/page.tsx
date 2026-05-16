@@ -1074,22 +1074,26 @@ function Q1Recap2026Body() {
         material thesis shift.
       </p>
 
-      <h2 className="text-2xl font-bold mt-10 mb-3">Berkshire — Dell enters, Alphabet lifted, Chevron trimmed further</h2>
+      <h2 className="text-2xl font-bold mt-10 mb-3">Berkshire — Delta Air Lines re-entry, Alphabet lifted, Chevron trimmed further</h2>
       <p className="text-muted leading-relaxed">Berkshire Hathaway&apos;s Q1 2026 13F disclosed three notable moves:</p>
       <ul className="text-muted space-y-2 list-disc list-inside mt-3">
         <li>
-          <strong className="text-text">DELL — new position</strong>: ~39.8 million shares (about
-          1% of Berkshire&apos;s disclosed equity portfolio). First-ever Dell stake; another data
-          point in Berkshire&apos;s 2024-onward technology drift after Apple, HP, and Snowflake.
+          <strong className="text-text">Delta Air Lines (DAL) — new position</strong>: ~39.8 million
+          shares (about 1% of Berkshire&apos;s disclosed equity portfolio). Note: Berkshire previously
+          held a Delta Airlines position 2016-2020 that was sold in the 2020 COVID-disposal of all
+          four major US airlines. The Q1 2026 disclosure indicates a re-entry. (Verify name-vs-ticker
+          mapping via Berkshire&apos;s primary 13F-HR filing on EDGAR if the published ticker label
+          appears anomalous.)
         </li>
         <li>
-          <strong className="text-text">GOOGL — add</strong>: ~36.4 million shares added, lifting
-          Alphabet to <strong className="text-text">5.9% of the portfolio</strong>. Berkshire&apos;s
-          Alphabet position was first disclosed Q1 2025; this is the second materially-sized add.
+          <strong className="text-text">Alphabet (GOOGL) — add</strong>: ~36.4 million shares added,
+          lifting Alphabet to <strong className="text-text">5.9% of the portfolio</strong>.
+          Berkshire&apos;s Alphabet position was first disclosed Q1 2025; this is the second
+          materially-sized add.
         </li>
         <li>
-          <strong className="text-text">CVX — trim</strong>: ~45.8 million shares sold. Chevron
-          remains at 6.6% of the portfolio post-trim, but the trim continues a 2-year-long
+          <strong className="text-text">Chevron (CVX) — trim</strong>: ~45.8 million shares sold.
+          Chevron remains at 6.6% of the portfolio post-trim, but the trim continues a 2-year-long
           gradual reduction.
         </li>
       </ul>
@@ -1131,16 +1135,18 @@ function Q1Recap2026Body() {
       <h2 className="text-2xl font-bold mt-10 mb-3">Raw-share-count adds — Howard Marks (Oaktree) dominates the list</h2>
       <p className="text-muted leading-relaxed">
         Howard Marks&apos; Oaktree Capital Management dominated the Q1 2026 raw-share-count adds.
-        Notably: Oaktree added 205+ million shares of Indivior PLC (a single distressed-name add
-        characteristic of Oaktree&apos;s deep-value mandate), plus 50+ million-share adds to American
-        Water, Coinbase, Bentley Systems, and new positions in Q2 Holdings, Progress Software,
-        Shift4, and Unity Software.
+        Notable line items include a 205+ million-share add to Indivior PLC (a single distressed-name
+        position characteristic of Oaktree&apos;s deep-value mandate), 50+ million-share adds to
+        American Water + Coinbase + Bentley Systems, plus new positions in Q2 Holdings, Progress
+        Software, Shift4, and Unity Software. One of Marks&apos; largest Q1 2026 holdings by share
+        count is also an Invesco QQQ Trust position — index-ETF exposure on top of the individual
+        equity book.
       </p>
       <p className="text-muted leading-relaxed mt-3">
-        These reflect Oaktree&apos;s combined credit + equity strategy rather than concentrated
-        thesis bets: most positions are sub-1% of total portfolio. For tracked-superinvestor
-        signal purposes, Oaktree&apos;s adds carry less ConvictionScore weight than Pershing&apos;s
-        Microsoft because of the diversification.
+        These positions reflect Oaktree&apos;s combined credit + equity + ETF-overlay strategy
+        rather than concentrated thesis bets: most individual positions are sub-1% of total
+        portfolio. For tracked-superinvestor signal purposes, Oaktree&apos;s adds carry less
+        ConvictionScore weight than Pershing&apos;s Microsoft because of the diversification.
       </p>
 
       <h2 className="text-2xl font-bold mt-10 mb-3">What the data does NOT show</h2>
