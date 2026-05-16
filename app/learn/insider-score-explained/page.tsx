@@ -379,6 +379,15 @@ export default function InsiderScoreExplainedArticle() {
             information when bearish (most sales are tax-planning, not directional).
           </p>
         </OurView>
+
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/form-4/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/form-4
+          </a>
+          {" "}— Form 4 is the canonical insider-transaction disclosure.
+        </p>
+
       </div>
 
       <ShareStrip

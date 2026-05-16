@@ -458,6 +458,15 @@ export default function HowToReadA13FPage() {
         </p>
       </OurView>
 
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>
+          {" "}— regulatory definitions + every 13F variant.
+        </p>
+
+
         <CiteThisPage />
       <LearnReadNext currentSlug="how-to-read-a-13f" />
 

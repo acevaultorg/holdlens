@@ -671,6 +671,15 @@ export default function SuperinvestorHandbookPage() {
         </p>
       </OurView>
 
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>
+          {" "}— Section 13(f) of the Exchange Act is the underlying statute.
+        </p>
+
+
         <CiteThisPage />
       <LearnReadNext currentSlug="superinvestor-handbook" />
 

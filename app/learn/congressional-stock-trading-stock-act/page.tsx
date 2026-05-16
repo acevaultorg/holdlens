@@ -282,6 +282,15 @@ export default function Article() {
         </p>
       </OurView>
 
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/form-4/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/form-4
+          </a>
+          {" "}— STOCK Act disclosures parallel Form 4's insider-transaction structure.
+        </p>
+
+
       <CiteThisPage />
       <hr />
       <p className="text-xs text-dim">

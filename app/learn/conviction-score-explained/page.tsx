@@ -318,6 +318,15 @@ export default function ConvictionPage() {
           </p>
         </OurView>
 
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>
+          {" "}— the quarterly 13F is the upstream data source.
+        </p>
+
+
         <CiteThisPage />
         <LearnReadNext currentSlug="conviction-score-explained" />
 

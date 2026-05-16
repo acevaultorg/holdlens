@@ -795,6 +795,15 @@ export default function ThirteenFvsDvsGPage() {
         </p>
       </OurView>
 
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>
+          {" "}— 13F-HR / 13F-NT / 13F-HR/A variants and the underlying regulatory citation.
+        </p>
+
+
         <CiteThisPage />
       <LearnReadNext currentSlug="13f-vs-13d-vs-13g" />
 

@@ -263,6 +263,15 @@ export default function HowToReadBuybackDisclosuresPage() {
             10-Q execution is signal.
           </p>
         </OurView>
+
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/8-k/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/8-k
+          </a>
+          {" "}— Item 8.01 = buyback authorization events.
+        </p>
+
       </section>
 
       <section className="mt-8 pt-6 border-t border-border">

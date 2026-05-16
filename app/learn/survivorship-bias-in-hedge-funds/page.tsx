@@ -553,6 +553,15 @@ export default function SurvivorshipBiasPage() {
         </p>
       </OurView>
 
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>
+          {" "}— the source data lives in 13F filings.
+        </p>
+
+
         <CiteThisPage />
       <LearnReadNext currentSlug="survivorship-bias-in-hedge-funds" />
 

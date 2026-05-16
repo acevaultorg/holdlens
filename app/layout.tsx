@@ -148,7 +148,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   "url": "https://holdlens.com/about"
                 },
                 "sameAs": [
-                  "https://twitter.com/holdlens"
+                  "https://twitter.com/holdlens",
+                  "https://secfilingdex.com/",
+                  "https://github.com/acevaultorg"
                 ],
                 "knowsAbout": [
                   "SEC Form 13F filings",

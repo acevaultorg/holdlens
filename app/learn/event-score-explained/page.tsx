@@ -307,6 +307,15 @@ export default function EventScoreExplainedArticle() {
             information edge the 8-K filing was designed to provide.
           </p>
         </OurView>
+
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/8-k/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/8-k
+          </a>
+          {" "}— 8-K is the canonical material-event filing.
+        </p>
+
       </div>
 
       <ShareStrip

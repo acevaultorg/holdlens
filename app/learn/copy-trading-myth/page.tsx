@@ -184,6 +184,15 @@ export default function CopyMythPage() {
           </p>
         </OurView>
 
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>
+          {" "}— the 45-day filing lag is baked into Section 13(f) statute.
+        </p>
+
+
         <CiteThisPage />
         <LearnReadNext currentSlug="copy-trading-myth" />
 

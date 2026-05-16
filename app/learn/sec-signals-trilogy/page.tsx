@@ -384,6 +384,15 @@ export default function SecSignalsTrilogyArticle() {
             cross-referencing three different data sources.
           </p>
         </OurView>
+
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn
+          </a>
+          {" "}— browse the full SEC filing dictionary.
+        </p>
+
       </div>
 
       <ShareStrip

@@ -225,6 +225,15 @@ export default function Article() {
         </p>
       </OurView>
 
+        <p className="text-muted text-sm border-l-2 border-border pl-4 mt-6">
+          Pure-reference encyclopedic entry on our sister site:{" "}
+          <a href="https://secfilingdex.com/learn/13f/" className="text-brand underline" rel="noopener">
+            secfilingdex.com/learn/13f
+          </a>
+          {" "}— ETF and fund managers both file via 13F.
+        </p>
+
+
       <hr className="mt-8" />
       <p className="text-xs text-dim">
         This is educational content, not investment advice. Overlap is one
