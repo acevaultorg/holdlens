@@ -1,64 +1,56 @@
 {
-  "generatedAt": "2026-04-28T21:36:53.381Z",
-  "totalRows": 1729,
+  "generatedAt": "2026-05-16T13:40:16.565Z",
+  "totalRows": 2090,
   "days": [
     {
-      "date": "2026-04-21",
-      "formsListed": 4265,
-      "form8ksFound": 307,
-      "parsed": 367,
-      "skipped": 26,
+      "date": "2026-05-11",
+      "formsListed": 5996,
+      "form8ksFound": 390,
+      "parsed": 442,
+      "skipped": 45,
       "skipReasons": {
-        "no_tracked_items": 26
+        "no_tracked_items": 45
       }
     },
     {
-      "date": "2026-04-22",
-      "formsListed": 4430,
-      "form8ksFound": 292,
-      "parsed": 359,
-      "skipped": 22,
+      "date": "2026-05-12",
+      "formsListed": 6324,
+      "form8ksFound": 434,
+      "parsed": 449,
+      "skipped": 66,
       "skipReasons": {
-        "no_tracked_items": 22
+        "no_tracked_items": 66
       }
     },
     {
-      "date": "2026-04-23",
-      "formsListed": 4938,
-      "form8ksFound": 371,
-      "parsed": 469,
-      "skipped": 41,
+      "date": "2026-05-13",
+      "formsListed": 6022,
+      "form8ksFound": 340,
+      "parsed": 360,
+      "skipped": 57,
       "skipReasons": {
-        "no_tracked_items": 41
+        "no_tracked_items": 57
       }
     },
     {
-      "date": "2026-04-24",
-      "formsListed": 5760,
-      "form8ksFound": 240,
-      "parsed": 235,
-      "skipped": 53,
+      "date": "2026-05-14",
+      "formsListed": 7620,
+      "form8ksFound": 445,
+      "parsed": 482,
+      "skipped": 77,
       "skipReasons": {
-        "no_tracked_items": 53
+        "no_tracked_items": 77
       }
     },
     {
-      "date": "2026-04-27",
-      "formsListed": 6172,
-      "form8ksFound": 248,
-      "parsed": 299,
-      "skipped": 26,
+      "date": "2026-05-15",
+      "formsListed": 11996,
+      "form8ksFound": 385,
+      "parsed": 357,
+      "skipped": 95,
       "skipReasons": {
-        "no_tracked_items": 26
+        "no_tracked_items": 95
       }
-    },
-    {
-      "date": "2026-04-28",
-      "formsListed": 0,
-      "form8ksFound": 0,
-      "parsed": 0,
-      "skipped": 0,
-      "skipReasons": {}
     }
   ]
 }

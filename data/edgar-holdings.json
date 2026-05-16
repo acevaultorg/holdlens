@@ -113,7 +113,7 @@
         "pctPortfolio": 1.1
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC",
         "cusip": "247361702",
         "shares": 39809456,
@@ -8037,7 +8037,7 @@
     "filingDate": "2026-05-15",
     "reportDate": "2026-03-31",
     "totalValueMn": 217397834.39,
-    "holdingCount": 3096,
+    "holdingCount": 3097,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -8448,7 +8448,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC",
         "cusip": "247361702",
         "shares": 8439142,
@@ -9085,14 +9085,6 @@
         "cusip": "458140100",
         "shares": 11470092,
         "valueMn": 487364.18,
-        "pctPortfolio": 0.2
-      },
-      {
-        "ticker": "INTU",
-        "name": "INTUIT",
-        "cusip": "461202103",
-        "shares": 919560,
-        "valueMn": 456014.97,
         "pctPortfolio": 0.2
       },
       {
@@ -10288,7 +10280,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "DELL TECHN",
+        "ticker": "DELL",
         "name": "DELL TECHNOLOGIES INC",
         "cusip": "24703L202",
         "shares": 1059684,
@@ -10744,6 +10736,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "INTU",
+        "name": "INTUIT",
+        "cusip": "461202103",
+        "shares": 504431,
+        "valueMn": 216410.97,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "IONQ",
         "name": "INTUITIVE SURGICAL INC",
         "cusip": "46120E602",
@@ -10765,6 +10765,14 @@
         "cusip": "G491BT108",
         "shares": 12524431,
         "valueMn": 299584.4,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "QQQ",
+        "name": "INVESCO QQQ TR",
+        "cusip": "46090E103",
+        "shares": 415129,
+        "valueMn": 239604,
         "pctPortfolio": 0.1
       },
       {
@@ -32816,7 +32824,7 @@
     "filingDate": "2026-02-17",
     "reportDate": "2025-12-31",
     "totalValueMn": 190157451.2,
-    "holdingCount": 2992,
+    "holdingCount": 2993,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -33739,7 +33747,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 6155776,
@@ -33864,14 +33872,6 @@
         "cusip": "459044103",
         "shares": 4197347,
         "valueMn": 467847.58,
-        "pctPortfolio": 0.2
-      },
-      {
-        "ticker": "INTU",
-        "name": "INTUIT",
-        "cusip": "461202103",
-        "shares": 575561,
-        "valueMn": 366970.16,
         "pctPortfolio": 0.2
       },
       {
@@ -34979,7 +34979,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "DELL TECHN",
+        "ticker": "DELL",
         "name": "DELL TECHNOLOGIES INC",
         "cusip": "24703L202",
         "shares": 1287402,
@@ -35451,6 +35451,14 @@
         "pctPortfolio": 0.1
       },
       {
+        "ticker": "INTU",
+        "name": "INTUIT",
+        "cusip": "461202103",
+        "shares": 278468,
+        "valueMn": 184463,
+        "pctPortfolio": 0.1
+      },
+      {
         "ticker": "INVESCO EX",
         "name": "INVESCO EXCH TRADED FD TR II",
         "cusip": "46138E842",
@@ -35464,6 +35472,14 @@
         "cusip": "G491BT108",
         "shares": 8882863,
         "valueMn": 233352.81,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "QQQ",
+        "name": "INVESCO QQQ TR",
+        "cusip": "46090E103",
+        "shares": 297093,
+        "valueMn": 182507.15,
         "pctPortfolio": 0.1
       },
       {
@@ -56763,7 +56779,7 @@
     "filingDate": "2025-11-14",
     "reportDate": "2025-09-30",
     "totalValueMn": 155639035.35,
-    "holdingCount": 2947,
+    "holdingCount": 2948,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -57278,14 +57294,6 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "INTU",
-        "name": "INTUIT",
-        "cusip": "461202103",
-        "shares": 814809,
-        "valueMn": 535539.65,
-        "pctPortfolio": 0.3
-      },
-      {
         "ticker": "JPM",
         "name": "JPMORGAN CHASE &amp; CO.",
         "cusip": "46625H100",
@@ -57614,7 +57622,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "DELL TECHN",
+        "ticker": "DELL",
         "name": "DELL TECHNOLOGIES INC",
         "cusip": "24703L202",
         "shares": 1781682,
@@ -57622,7 +57630,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 4265255,
@@ -57811,6 +57819,14 @@
         "cusip": "452327109",
         "shares": 3398027,
         "valueMn": 315914.57,
+        "pctPortfolio": 0.2
+      },
+      {
+        "ticker": "INTU",
+        "name": "INTUIT",
+        "cusip": "461202103",
+        "shares": 561583,
+        "valueMn": 383510.6,
         "pctPortfolio": 0.2
       },
       {
@@ -59403,6 +59419,14 @@
         "cusip": "G491BT108",
         "shares": 9818999,
         "valueMn": 225247.84,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "QQQ",
+        "name": "INVESCO QQQ TR",
+        "cusip": "46090E103",
+        "shares": 253226,
+        "valueMn": 152029.05,
         "pctPortfolio": 0.1
       },
       {
@@ -80350,7 +80374,7 @@
     "filingDate": "2025-08-14",
     "reportDate": "2025-06-30",
     "totalValueMn": 120622080.11,
-    "holdingCount": 2880,
+    "holdingCount": 2881,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -80865,14 +80889,6 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "INTU",
-        "name": "INTUIT",
-        "cusip": "461202103",
-        "shares": 440809,
-        "valueMn": 312619.87,
-        "pctPortfolio": 0.3
-      },
-      {
         "ticker": "JPM",
         "name": "JPMORGAN CHASE &amp; CO.",
         "cusip": "46625H100",
@@ -81265,7 +81281,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 6012856,
@@ -81446,6 +81462,14 @@
         "cusip": "456788108",
         "shares": 10393369,
         "valueMn": 192537.16,
+        "pctPortfolio": 0.2
+      },
+      {
+        "ticker": "INTU",
+        "name": "INTUIT",
+        "cusip": "461202103",
+        "shares": 298385,
+        "valueMn": 234053.19,
         "pctPortfolio": 0.2
       },
       {
@@ -82417,7 +82441,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "DELL TECHN",
+        "ticker": "DELL",
         "name": "DELL TECHNOLOGIES INC",
         "cusip": "24703L202",
         "shares": 1374078,
@@ -82934,6 +82958,14 @@
         "cusip": "46120E602",
         "shares": 206830,
         "valueMn": 87821.39,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "QQQ",
+        "name": "INVESCO QQQ TR",
+        "cusip": "46090E103",
+        "shares": 142424,
+        "valueMn": 78566.68,
         "pctPortfolio": 0.1
       },
       {
@@ -103401,7 +103433,7 @@
     "filingDate": "2025-05-15",
     "reportDate": "2025-03-31",
     "totalValueMn": 96908483.9,
-    "holdingCount": 2780,
+    "holdingCount": 2781,
     "holdings": [
       {
         "ticker": "AAPL",
@@ -103916,7 +103948,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 5963882,
@@ -105879,8 +105911,16 @@
         "ticker": "INTU",
         "name": "INTUIT",
         "cusip": "461202103",
-        "shares": 247715,
-        "valueMn": 134382.2,
+        "shares": 136988,
+        "valueMn": 82459.87,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "QQQ",
+        "name": "INVESCO QQQ TR",
+        "cusip": "46090E103",
+        "shares": 110727,
+        "valueMn": 51922.33,
         "pctPortfolio": 0.1
       },
       {
@@ -112052,7 +112092,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "DELL TECHN",
+        "ticker": "DELL",
         "name": "DELL TECHNOLOGIES INC",
         "cusip": "24703L202",
         "shares": 188624,
@@ -125652,7 +125692,7 @@
     "filingDate": "2025-02-14",
     "reportDate": "2024-12-31",
     "totalValueMn": 77526868.43,
-    "holdingCount": 2553,
+    "holdingCount": 2554,
     "holdings": [
       {
         "ticker": "AAPL",
@@ -126519,7 +126559,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 2386393,
@@ -127567,7 +127607,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "DELL TECHN",
+        "ticker": "DELL",
         "name": "DELL TECHNOLOGIES INC",
         "cusip": "24703L202",
         "shares": 345607,
@@ -128106,8 +128146,16 @@
         "ticker": "INTU",
         "name": "INTUIT",
         "cusip": "461202103",
-        "shares": 151179,
-        "valueMn": 84832.77,
+        "shares": 64347,
+        "valueMn": 40441.7,
+        "pctPortfolio": 0.1
+      },
+      {
+        "ticker": "QQQ",
+        "name": "INVESCO QQQ TR",
+        "cusip": "46090E103",
+        "shares": 86832,
+        "valueMn": 44391.07,
         "pctPortfolio": 0.1
       },
       {
@@ -146087,7 +146135,7 @@
     "filingDate": "2024-11-14",
     "reportDate": "2024-09-30",
     "totalValueMn": 72382044.85,
-    "holdingCount": 2481,
+    "holdingCount": 2482,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -146562,7 +146610,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 4443980,
@@ -146922,7 +146970,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "DELL TECHN",
+        "ticker": "DELL",
         "name": "DELL TECHNOLOGIES INC",
         "cusip": "24703L202",
         "shares": 1048108,
@@ -148557,8 +148605,8 @@
         "ticker": "INTU",
         "name": "INTUIT",
         "cusip": "461202103",
-        "shares": 100208,
-        "valueMn": 57043.79,
+        "shares": 61197,
+        "valueMn": 38003.49,
         "pctPortfolio": 0.1
       },
       {
@@ -157466,6 +157514,14 @@
         "pctPortfolio": 0
       },
       {
+        "ticker": "QQQ",
+        "name": "INVESCO QQQ TR",
+        "cusip": "46090E103",
+        "shares": 39011,
+        "valueMn": 19040.3,
+        "pctPortfolio": 0
+      },
+      {
         "ticker": "INVITATION",
         "name": "INVITATION HOMES INC",
         "cusip": "46187W107",
@@ -165946,7 +166002,7 @@
     "filingDate": "2024-08-14",
     "reportDate": "2024-06-30",
     "totalValueMn": 65201404.38,
-    "holdingCount": 2403,
+    "holdingCount": 2404,
     "holdings": [
       {
         "ticker": "NVDA",
@@ -166437,7 +166493,7 @@
         "pctPortfolio": 0.3
       },
       {
-        "ticker": "DELL TECHN",
+        "ticker": "DELL",
         "name": "DELL TECHNOLOGIES INC",
         "cusip": "24703L202",
         "shares": 1246331,
@@ -167805,7 +167861,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 777431,
@@ -168232,8 +168288,8 @@
         "ticker": "INTU",
         "name": "INTUIT",
         "cusip": "461202103",
-        "shares": 62528,
-        "valueMn": 38722.9,
+        "shares": 50487,
+        "valueMn": 32953.85,
         "pctPortfolio": 0.1
       },
       {
@@ -177074,6 +177130,14 @@
         "cusip": "46138G649",
         "shares": 113452,
         "valueMn": 10230.08,
+        "pctPortfolio": 0
+      },
+      {
+        "ticker": "QQQ",
+        "name": "INVESCO QQQ TR",
+        "cusip": "46090E103",
+        "shares": 12041,
+        "valueMn": 5769.05,
         "pctPortfolio": 0
       },
       {
@@ -186843,7 +186907,7 @@
         "pctPortfolio": 1.2
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "Delta Air Lines Inc Del",
         "cusip": "247361702",
         "shares": 650910,
@@ -187833,7 +187897,7 @@
         "pctPortfolio": 1
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "Delta Air Lines Inc Del",
         "cusip": "247361702",
         "shares": 793510,
@@ -188276,7 +188340,7 @@
         "pctPortfolio": 1.9
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "Delta Air Lines Inc Del",
         "cusip": "247361702",
         "shares": 1294635,
@@ -188623,7 +188687,7 @@
         "pctPortfolio": 3.3
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "Delta Air Lines Inc Del",
         "cusip": "247361702",
         "shares": 1767240,
@@ -191280,7 +191344,7 @@
         "pctPortfolio": 9.1
       },
       {
-        "ticker": "INTU",
+        "ticker": "QQQ",
         "name": "INVESCO QQQ TRUST SERIES 1",
         "cusip": "46090E103",
         "shares": 570000,
@@ -203048,7 +203112,7 @@
         "pctPortfolio": 1.8
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "",
         "cusip": "247361702",
         "shares": 18002954,
@@ -203707,7 +203771,7 @@
         "pctPortfolio": 1.8
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "",
         "cusip": "247361702",
         "shares": 19666515,
@@ -204430,7 +204494,7 @@
         "pctPortfolio": 1.3
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "",
         "cusip": "247361702",
         "shares": 13521870,
@@ -205153,7 +205217,7 @@
         "pctPortfolio": 1.2
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "",
         "cusip": "247361702",
         "shares": 14048629,
@@ -205828,7 +205892,7 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "",
         "cusip": "247361702",
         "shares": 11292182,
@@ -206391,7 +206455,7 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "",
         "cusip": "247361702",
         "shares": 9820652,
@@ -206922,7 +206986,7 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "",
         "cusip": "247361702",
         "shares": 12623907,
@@ -207461,7 +207525,7 @@
         "pctPortfolio": 0.9
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "",
         "cusip": "247361702",
         "shares": 11713545,
@@ -210475,7 +210539,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 475000,
@@ -210830,7 +210894,7 @@
         "pctPortfolio": 0.4
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 462500,
@@ -211153,7 +211217,7 @@
         "pctPortfolio": 0.5
       },
       {
-        "ticker": "DELL",
+        "ticker": "DAL",
         "name": "DELTA AIR LINES INC DEL",
         "cusip": "247361702",
         "shares": 550000,

@@ -1074,29 +1074,63 @@ function Q1Recap2026Body() {
         material thesis shift.
       </p>
 
-      <h2 className="text-2xl font-bold mt-10 mb-3">Berkshire — Delta Air Lines re-entry, Alphabet lifted, Chevron trimmed further</h2>
-      <p className="text-muted leading-relaxed">Berkshire Hathaway&apos;s Q1 2026 13F disclosed three notable moves:</p>
+      <h2 className="text-2xl font-bold mt-10 mb-3">Berkshire — Delta re-entry, Alphabet lifted, Chevron trimmed, payments-stack exited</h2>
+      <p className="text-muted leading-relaxed">
+        Berkshire Hathaway&apos;s Q1 2026 13F is the most active single quarter from Berkshire in
+        recent memory — at least seven materially-sized moves. Highlights:
+      </p>
+      <p className="text-muted leading-relaxed mt-3"><strong className="text-text">New positions:</strong></p>
       <ul className="text-muted space-y-2 list-disc list-inside mt-3">
         <li>
-          <strong className="text-text">Delta Air Lines (DAL) — new position</strong>: ~39.8 million
-          shares (about 1% of Berkshire&apos;s disclosed equity portfolio). Note: Berkshire previously
-          held a Delta Airlines position 2016-2020 that was sold in the 2020 COVID-disposal of all
-          four major US airlines. The Q1 2026 disclosure indicates a re-entry. (Verify name-vs-ticker
-          mapping via Berkshire&apos;s primary 13F-HR filing on EDGAR if the published ticker label
-          appears anomalous.)
+          <strong className="text-text">Delta Air Lines (DAL)</strong> — ~39.8 million shares, ~1%
+          of the portfolio. Re-entry: Berkshire previously held Delta 2016-2020 and exited in the
+          2020 COVID-disposal of all four major US airlines.
         </li>
         <li>
-          <strong className="text-text">Alphabet (GOOGL) — add</strong>: ~36.4 million shares added,
-          lifting Alphabet to <strong className="text-text">5.9% of the portfolio</strong>.
+          <strong className="text-text">Alphabet Class C (GOOG)</strong> — ~3.6 million shares, 0.4%
+          of the portfolio. Separate from the GOOGL Class A add (below). Two-share-class accumulation.
+        </li>
+        <li>
+          <strong className="text-text">Macy&apos;s (M)</strong> — ~3 million shares. Small initial
+          retail position.
+        </li>
+      </ul>
+      <p className="text-muted leading-relaxed mt-3"><strong className="text-text">Adds:</strong></p>
+      <ul className="text-muted space-y-2 list-disc list-inside mt-3">
+        <li>
+          <strong className="text-text">Alphabet Class A (GOOGL)</strong> — ~36.4 million shares
+          added, lifting Alphabet to <strong className="text-text">5.9% of the portfolio</strong>.
           Berkshire&apos;s Alphabet position was first disclosed Q1 2025; this is the second
           materially-sized add.
         </li>
         <li>
-          <strong className="text-text">Chevron (CVX) — trim</strong>: ~45.8 million shares sold.
-          Chevron remains at 6.6% of the portfolio post-trim, but the trim continues a 2-year-long
-          gradual reduction.
+          <strong className="text-text">New York Times (NYT)</strong> — ~10 million shares added.
+          0.5% of portfolio.
         </li>
       </ul>
+      <p className="text-muted leading-relaxed mt-3"><strong className="text-text">Trims / exits:</strong></p>
+      <ul className="text-muted space-y-2 list-disc list-inside mt-3">
+        <li>
+          <strong className="text-text">Chevron (CVX)</strong> — ~45.8 million shares sold. Still
+          6.6% of portfolio post-trim, but continues a 2-year gradual reduction.
+        </li>
+        <li>
+          <strong className="text-text">Constellation Brands (STZ)</strong> — ~12.4 million shares
+          trimmed.
+        </li>
+        <li>
+          <strong className="text-text">Visa (V) · Mastercard (MA) · UnitedHealth (UNH) · Aon — full exits</strong>.
+          The payments-network exit (V + MA together) is structurally notable: these were long-held,
+          slow-growing dividend-style positions; Berkshire fully exited both same-quarter. UnitedHealth
+          exit closes a multi-year health-insurance position.
+        </li>
+      </ul>
+      <p className="text-muted leading-relaxed mt-3">
+        The pattern across this quarter is consistent with Berkshire repositioning the equity
+        portfolio toward (a) AI-adjacent compute infrastructure (Alphabet both classes) and (b)
+        operating-cash-flow consumer-cyclicals (Delta, Macy&apos;s, NYT), while exiting four
+        payments + healthcare-services positions that had run their multi-year course.
+      </p>
 
       <h2 className="text-2xl font-bold mt-10 mb-3">Klarman (Baupost) — three new financial-services + healthcare positions</h2>
       <p className="text-muted leading-relaxed">

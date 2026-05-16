@@ -202,7 +202,8 @@ const CUSIP_TO_TICKER: Record<string, string> = {
   "125523100": "CVI",    // CVR Energy
   "927804102": "VST",    // Vistra
   "337738108": "FE",     // FirstEnergy
-  "46090E103": "INTU",   // Intuit
+  "46090E103": "QQQ",    // Invesco QQQ Trust (NOT Intuit — that's 461202103)
+  "24703L103": "DELL",   // Dell Technologies Class C (real Dell CUSIP)
   "78409V104": "SPY",    // S&P ETF (skip)
   "464287408": "IVV",    // iShares S&P ETF (skip)
   "922908363": "VTI",    // Vanguard Total Mkt (skip)
@@ -214,7 +215,7 @@ const CUSIP_TO_TICKER: Record<string, string> = {
   "12572Q105": "CRM",    // Salesforce
   "29379V103": "ENPH",   // Enphase
   "44919P508": "HUBS",
-  "247361702": "DELL",   // Dell Technologies
+  "247361702": "DAL",    // Delta Air Lines (NOT Dell — that's 24703L103)
   "460146103": "IRTC",   // iRhythm Technologies
   // Top 50 unmapped from first run — common large-cap institutional holdings
   "57636Q104": "MA",     // Mastercard
