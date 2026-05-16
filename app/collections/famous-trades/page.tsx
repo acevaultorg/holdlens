@@ -5,12 +5,12 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 export const metadata: Metadata = {
   title: "Famous trades — public-record case studies | HoldLens",
   description:
-    "Eight historical trades reconstructable from SEC EDGAR alone: Berkshire/Coca-Cola, Berkshire/Apple, Berkshire/Bank of America, Burry/Big Short, Ackman/Herbalife, Soros-Druckenmiller/GBP, Munger/Costco, Icahn/Apple. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+    "Nine historical trades reconstructable from SEC EDGAR alone: Berkshire/Coca-Cola, Berkshire/Apple, Berkshire/Bank of America, Tepper/2009 bank trade, Burry/Big Short, Ackman/Herbalife, Soros-Druckenmiller/GBP, Munger/Costco, Icahn/Apple. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
   alternates: { canonical: "https://holdlens.com/collections/famous-trades" },
   openGraph: {
     title: "Famous trades — public-record case studies",
     description:
-      "Eight historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+      "Nine historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
     url: "https://holdlens.com/collections/famous-trades",
     type: "website",
     images: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Famous trades — public-record case studies",
-    description: "Eight historical trades reconstructable from SEC EDGAR alone.",
+    description: "Nine historical trades reconstructable from SEC EDGAR alone.",
     images: ["/og/home.png"],
   },
 };
@@ -57,6 +57,14 @@ const TRADES: Trade[] = [
       "August 2011: Berkshire invested $5B in BAC preferred stock + warrants for 700M common shares at $7.14 strike. Six years later Berkshire exercised the warrants at ~$13B paper gain. The canonical 'structured private investment' template, joining Goldman 2008 + GE 2008 + Heinz 2013.",
     period: "2011 deal · 2017 warrant exercise · 2024 partial trim · ongoing",
     protagonist: "Warren Buffett · Berkshire Hathaway",
+  },
+  {
+    slug: "tepper-bank-stocks-2009",
+    title: "David Tepper's 2009 bank trade",
+    blurb:
+      "Q1 2009: with US bank common stocks at 20-30 cents on tangible book amid genuine nationalization fear, Appaloosa Management bought ~$2B of BAC + Citi + AIG. The trade returned ~$7B and reportedly delivered Tepper a $4B personal payday — second-largest single-year hedge-fund individual payout in modern history at the time.",
+    period: "2009 entry · 2010 unwind",
+    protagonist: "David Tepper · Appaloosa Management",
   },
   {
     slug: "burry-big-short",
@@ -115,7 +123,7 @@ const LD = [
     "@type": "CollectionPage",
     name: "Famous trades — public-record case studies",
     description:
-      "Eight historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+      "Nine historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
     url: "https://holdlens.com/collections/famous-trades",
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
@@ -152,7 +160,7 @@ export default function FamousTradesCollectionPage() {
         Famous trades — public-record case studies
       </h1>
       <p className="text-lg text-muted leading-relaxed mb-10">
-        Eight historical trades reconstructable from SEC EDGAR alone. Each essay traces the
+        Nine historical trades reconstructable from SEC EDGAR alone. Each essay traces the
         trade through 13F filings, Form 4 insider disclosures, and DEF 14A proxy statements —
         showing exactly what the public record reveals AND what it structurally cannot show
         (CDS positions, FX trades, derivatives, and shorts are all 13F-invisible).

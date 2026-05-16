@@ -76,6 +76,7 @@ const out = {
         "buffett-coca-cola-trade",
         "buffett-apple-position",
         "buffett-bank-of-america-2011",
+        "tepper-bank-stocks-2009",
         "burry-big-short",
         "ackman-herbalife-short",
         "soros-druckenmiller-gbp-1992",

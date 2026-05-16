@@ -21,6 +21,11 @@ const TRADES: Trade[] = [
     blurb: "The $5B preferred + 700M-share warrants at $7.14 strike. ~$13B paper gain at 2017 exercise.",
   },
   {
+    slug: "tepper-bank-stocks-2009",
+    title: "David Tepper's 2009 bank trade",
+    blurb: "Appaloosa's $2B March 2009 distressed-bank bet (BAC + C + AIG). ~$7B returned. $4B Tepper payday.",
+  },
+  {
     slug: "burry-big-short",
     title: "Michael Burry's Big Short",
     blurb: "Scion Capital's 2005-2008 subprime CDS trade — ~489% net return.",
