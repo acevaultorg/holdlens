@@ -66,7 +66,7 @@ const LD = [
     isPartOf: {
       "@type": "CreativeWorkSeries",
       name: "HoldLens famous trades — public-record case studies",
-      url: "https://holdlens.com/learn",
+      url: "https://holdlens.com/collections/famous-trades",
     },
     citation: [
       "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001067983&type=13F-HR",

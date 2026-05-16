@@ -65,6 +65,12 @@ export default function FamousTradesBlock({ currentSlug }: { currentSlug: string
           </a>
         ))}
       </div>
+      <a
+        href="/collections/famous-trades"
+        className="inline-block mt-5 text-sm text-brand font-semibold hover:underline"
+      >
+        See all 6 essays in the Famous Trades collection →
+      </a>
     </section>
   );
 }

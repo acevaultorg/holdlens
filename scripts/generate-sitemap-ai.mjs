@@ -46,6 +46,8 @@ const AI_PRIORITY_PATTERNS = [
   // Learn hub + articles
   /^https:\/\/holdlens\.com\/learn\/?$/,
   /^https:\/\/holdlens\.com\/learn\/[a-z0-9-]+\/?$/,
+  // Collection hubs (topical sub-clusters within /learn)
+  /^https:\/\/holdlens\.com\/collections\/famous-trades\/?$/,
   // Programmatic unique-data pages
   /^https:\/\/holdlens\.com\/rotation\/?$/,
   /^https:\/\/holdlens\.com\/quarterly\/?$/,
