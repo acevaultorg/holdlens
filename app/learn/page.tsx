@@ -41,6 +41,7 @@ const ARTICLES: Article[] = [
   { slug: "proxy-voting-def-14a", title: "Proxy voting and DEF 14A", desc: "The definitive proxy statement — what to read, what to skip, how to vote informed. Read the 1-page summary in 10 minutes." },
   { slug: "13f-securities-list", title: "The 13(f) securities list — what counts as a 13F holding?", desc: "The SEC's quarterly Official List defining what shows up on 13F. ~17,000 securities in scope; shorts, bonds, foreign equities, most derivatives all out of scope." },
   { slug: "rule-144-holding-period", title: "Rule 144 holding period — when insiders can sell", desc: "6 months for reporting issuers; 12 months for non-reporting. Volume limits, manner-of-sale, and three practical reading angles for tracking insider supply." },
+  { slug: "buffett-q1-2026-moves", title: "Warren Buffett's Q1 2026 13F moves", desc: "Berkshire's most active 13F quarter since 2024 — Delta Air Lines re-entry, Alphabet Class C add, Macy's + NYT adds, full exits of Visa + Mastercard + UnitedHealth + Aon, Chevron + Constellation trims. EDGAR-reconstructable." },
   { slug: "buffett-coca-cola-trade", title: "Warren Buffett's Coca-Cola trade", desc: "Berkshire's 1988-89 KO purchase — $1.3B invested, today ~$28B position, untouched for 37 years. Trade mechanics + 13F-traceable accumulation timeline." },
   { slug: "buffett-apple-position", title: "Warren Buffett's Apple position", desc: "Berkshire's 2016-onward Apple accumulation — built into the firm's largest-ever equity position. Q1 2016 entry · Q2/Q3 2024 partial trim · still Berkshire's #1 holding. Full 13F-traceable timeline." },
   { slug: "buffett-bank-of-america-2011", title: "Warren Buffett's Bank of America 2011 deal", desc: "August 2011: $5B preferred + warrants for 700M BAC shares at $7.14 strike. The cleanest example of Buffett's 'structured private investment' template, alongside Goldman 2008 + GE 2008. ~$13B paper gain at 2017 warrant exercise; top-3 Berkshire holding through 2024." },
@@ -143,7 +144,7 @@ export default function LearnIndex() {
       </div>
 
       <div className="text-[10px] uppercase tracking-widest text-muted font-semibold mb-3">
-        All essays (35)
+        All essays (36)
       </div>
       <div className="space-y-4">
         {ARTICLES.map((a) => (

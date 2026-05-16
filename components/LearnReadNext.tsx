@@ -47,6 +47,7 @@ const LEARN_SEQUENCE: Article[] = [
   { slug: "proxy-voting-def-14a", title: "Proxy voting and DEF 14A", desc: "The definitive proxy statement — read the 1-page summary in 10 minutes." },
   { slug: "13f-securities-list", title: "The 13(f) securities list", desc: "What counts as a 13F holding — and what doesn't." },
   { slug: "rule-144-holding-period", title: "Rule 144 holding period", desc: "When corporate insiders can sell — 6-month vs 12-month rules." },
+  { slug: "buffett-q1-2026-moves", title: "Warren Buffett's Q1 2026 13F moves", desc: "Berkshire's most active quarter in years — Delta re-entry + Alphabet add + V/MA/UNH/AON exits." },
   { slug: "buffett-coca-cola-trade", title: "Warren Buffett's Coca-Cola trade", desc: "Berkshire's 1988-89 KO purchase — $1.3B → $28B+ position, untouched for 37 years." },
   { slug: "buffett-apple-position", title: "Warren Buffett's Apple position", desc: "Berkshire's 2016-onward AAPL accumulation — largest equity position in firm history. Q1 2016 entry · 2024 partial trim · ongoing." },
   { slug: "buffett-bank-of-america-2011", title: "Warren Buffett's Bank of America 2011 deal", desc: "The $5B preferred + 700M-share warrants at $7.14 strike. ~$13B paper gain at 2017 warrant exercise. Top-3 Berkshire holding ever since." },
