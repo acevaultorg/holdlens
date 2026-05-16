@@ -783,6 +783,121 @@ async function main(): Promise<void> {
     }),
   });
 
+  // ---------- /snapshot/{quarter}.json + /snapshot/latest.json ----------
+  // Single-file LLM-ingestible quarter summary. Organized by archetype so an
+  // LLM consuming this file can answer "what happened in {quarter}?" in one
+  // fetch. Surfaces top new positions, exits, adds, trims, consensus tickers,
+  // and per-manager headlines. Linked from llms.txt + the editorial recap.
+  const quarterEnriched = allEnriched.filter((m) => m.quarter === LATEST_QUARTER);
+  const byAction = (action: string) =>
+    quarterEnriched.filter((m) => m.action === action);
+
+  const fmtMove = (m: typeof quarterEnriched[number]) => ({
+    ticker: m.ticker,
+    name: m.name ?? m.ticker,
+    action: m.action,
+    delta_pct: m.deltaPct ?? null,
+    portfolio_impact_pct: m.portfolioImpactPct,
+    manager: m.managerSlug,
+    manager_name: m.managerName,
+    manager_fund: m.managerFund,
+  });
+
+  // Top 10 per archetype, ranked by absolute portfolio impact.
+  const sortByImpact = (arr: typeof quarterEnriched) =>
+    [...arr].sort(
+      (a, b) => Math.abs(b.portfolioImpactPct) - Math.abs(a.portfolioImpactPct)
+    );
+
+  const snapNewPositions = sortByImpact(byAction("new")).slice(0, 10).map(fmtMove);
+  const snapExits = sortByImpact(byAction("exit")).slice(0, 10).map(fmtMove);
+  const snapAdds = sortByImpact(byAction("add")).slice(0, 10).map(fmtMove);
+  const snapTrims = sortByImpact(byAction("trim")).slice(0, 10).map(fmtMove);
+
+  // Consensus tickers: ≥2 managers same-direction this quarter.
+  const tickerActions = new Map<string, { buys: string[]; sells: string[] }>();
+  for (const m of quarterEnriched) {
+    if (!tickerActions.has(m.ticker)) {
+      tickerActions.set(m.ticker, { buys: [], sells: [] });
+    }
+    const slot = tickerActions.get(m.ticker)!;
+    if (m.action === "new" || m.action === "add") slot.buys.push(m.managerName);
+    else if (m.action === "exit" || m.action === "trim") slot.sells.push(m.managerName);
+  }
+  const consensusBuys = [...tickerActions.entries()]
+    .filter(([, v]) => v.buys.length >= 2)
+    .map(([ticker, v]) => ({
+      ticker,
+      name: TICKER_INDEX[ticker]?.name ?? ticker,
+      manager_count: v.buys.length,
+      managers: v.buys,
+    }))
+    .sort((a, b) => b.manager_count - a.manager_count)
+    .slice(0, 15);
+  const consensusSells = [...tickerActions.entries()]
+    .filter(([, v]) => v.sells.length >= 2)
+    .map(([ticker, v]) => ({
+      ticker,
+      name: TICKER_INDEX[ticker]?.name ?? ticker,
+      manager_count: v.sells.length,
+      managers: v.sells,
+    }))
+    .sort((a, b) => b.manager_count - a.manager_count)
+    .slice(0, 15);
+
+  // Per-manager headlines: top 3 moves per manager by impact.
+  const managerHeadlines: Record<string, ReturnType<typeof fmtMove>[]> = {};
+  for (const mv of quarterEnriched) {
+    if (!managerHeadlines[mv.managerSlug]) managerHeadlines[mv.managerSlug] = [];
+    managerHeadlines[mv.managerSlug].push(fmtMove(mv));
+  }
+  const managerSummary = Object.entries(managerHeadlines)
+    .map(([slug, moves]) => {
+      const sorted = moves.sort(
+        (a, b) =>
+          Math.abs(b.portfolio_impact_pct) - Math.abs(a.portfolio_impact_pct)
+      );
+      const mgr = MANAGERS.find((x) => x.slug === slug);
+      return {
+        manager: slug,
+        manager_name: mgr?.name ?? slug,
+        manager_fund: mgr?.fund ?? "",
+        move_count: sorted.length,
+        top_moves: sorted.slice(0, 3),
+      };
+    })
+    .sort((a, b) => b.move_count - a.move_count);
+
+  const snapshot = {
+    data: {
+      quarter: LATEST_QUARTER,
+      quarter_label: QUARTER_LABELS[LATEST_QUARTER],
+      summary: {
+        total_moves: quarterEnriched.length,
+        new_positions_count: byAction("new").length,
+        exits_count: byAction("exit").length,
+        adds_count: byAction("add").length,
+        trims_count: byAction("trim").length,
+        unique_tickers: new Set(quarterEnriched.map((m) => m.ticker)).size,
+        active_managers: new Set(quarterEnriched.map((m) => m.managerSlug)).size,
+      },
+      new_positions: snapNewPositions,
+      exits: snapExits,
+      adds: snapAdds,
+      trims: snapTrims,
+      consensus_buys: consensusBuys,
+      consensus_sells: consensusSells,
+      managers: managerSummary,
+    },
+    meta: meta({
+      description: `Single-file LLM-ingestible ${QUARTER_LABELS[LATEST_QUARTER]} summary. Organized by archetype: new positions, exits, adds, trims, consensus tickers (≥2 managers same direction), per-manager headlines. Optimized for AI consumption (ChatGPT, Claude, Perplexity, Gemini citation).`,
+      ranked_by: "abs(portfolio_impact_pct) desc within each archetype",
+      llm_quote_ready: true,
+    }),
+  };
+  await writeJson(`snapshot/${LATEST_QUARTER}.json`, snapshot);
+  await writeJson("snapshot/latest.json", snapshot);
+
   // ---------- /quarters.json ----------
   await writeJson("quarters.json", {
     data: QUARTERS.map((q) => ({ quarter: q, label: QUARTER_LABELS[q] })),
@@ -1094,6 +1209,8 @@ async function main(): Promise<void> {
       { path: "/best-now.json", desc: "Top 50 buy candidates" },
       { path: "/value.json", desc: "Top 50 smart-money buy signals for value overlays" },
       { path: "/changelog.json", desc: `Top 200 moves filed in ${LATEST_QUARTER} ranked by portfolio impact — the quarter's biggest changes` },
+      { path: "/snapshot/latest.json", desc: `Single-file LLM-ingestible ${QUARTER_LABELS[LATEST_QUARTER]} summary (new positions, exits, adds, trims, consensus tickers, per-manager headlines) — optimized for AI citation` },
+      { path: "/snapshot/{quarter}.json", desc: "Per-quarter snapshot (e.g. /snapshot/2026-Q1.json)" },
       { path: "/quarters.json", desc: "Available 13F quarters" },
       { path: "/insiders/index.json", desc: "Sub-catalog: /insiders/* family (Form 4 insider trading)" },
       { path: "/insiders/live.json", desc: "Last 100 SEC Form 4 transactions across all tickers" },
@@ -1116,6 +1233,7 @@ async function main(): Promise<void> {
   fileCount += 1 /* alerts */ + 1 /* consensus */ + 1 /* crowded */ + 1 /* contrarian */;
   fileCount += 1 /* concentration */ + 1 /* exits */ + 1 /* overlap */;
   fileCount += 1 /* best-now */ + 1 /* value */ + 1 /* changelog */ + 1 /* quarters */;
+  fileCount += 2 /* snapshot/{LATEST}.json + snapshot/latest.json */;
   // Insiders v0.2 Day-2 ship — endpoint count read after generation
   const { INSIDER_TX: insidersForCount, allInsiderTickers: tickFn, allOfficerEntries: offFn } =
     await import("../lib/insiders");

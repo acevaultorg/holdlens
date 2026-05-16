@@ -4,7 +4,7 @@
 
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
 **Branch:** main · clean · HEAD: `f50fadae3` (state: corrections — operator caught bot-inclusive vs organic conflation)
-**Working dir:** `/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens`
+**Working dir:** `/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens`
 **Production:** holdlens.com on Vercel (DNS flip Apr 27 preserved). 3 deploys this session, all READY at fra1.
 
 ### Operator correction applied 2026-04-29 ~12:15 UTC
@@ -89,7 +89,7 @@ Next-session candidates: 7 more signal-explorer pages still missing schema (hidd
 
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
 **Branch:** main · clean · HEAD: `2e81e2eb7` (feat: signal-explorer 4-page schema batch)
-**Working dir:** `/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens`
+**Working dir:** `/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens`
 **Production:** holdlens.com on Vercel (DNS flip Apr 27 preserved). 2 deploys this session, both READY at fra1.
 
 ### Shipped this session (4 atomic commits, 5 pages enhanced, all live + IndexNow-pinged 11,074 URLs)
@@ -161,7 +161,7 @@ Lean: option 2 if pages truly missing schema (one verifier curl test answers it)
 
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
 **Branch:** main · clean · HEAD: `e836a3ec5` (state: resolve /sector-rotation as duplicative)
-**Working dir:** `/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens`
+**Working dir:** `/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens`
 **Production:** holdlens.com on Vercel (DNS flip Apr 27 preserved). CF outage Day 6+ ongoing but irrelevant — Vercel path stable.
 
 ### Shipped this session (2 atomic commits, both pushed + deployed live)
@@ -224,7 +224,7 @@ Operator-data-blocked: 11 (`/brokers/`, `/robo-advisors/`, `/529-plans/`, `/hsa/
 **Mode:** auto (= sovereign auto) · continuing on next `/acepilot continue`
 **Branch:** main · clean
 **HEAD:** 35cf9f816 (data: dividend-tax batch TSV template)
-**Working dir:** `/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens`
+**Working dir:** `/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens`
 **Production:** **CF outage day 4** (`minor · Minor Service Outage` Europe + NA — checked 9× this session, never cleared). holdlens.com still serves pre-session content. **Vercel fallback `out-lac-delta.vercel.app` is operator-authorized live URL** per prior session's resolved Path-A/B/C card (still pending operator decision).
 
 ### Shipped this session (12 atomic commits, all pushed to origin/main + 11 deployed live to Vercel fallback)

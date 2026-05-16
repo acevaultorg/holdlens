@@ -26,7 +26,7 @@ HOW:
   4. Drop into Vercel env vars (production):
      Open Terminal, paste:
      ```bash
-     cd "/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens"
+     cd "/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens"
      echo "YOUR_TRACKING_URL_HERE" | vercel env add NEXT_PUBLIC_AFF_IBKR production
      vercel env pull .env.production.local --environment=production
      npm run build && rsync -a --delete out/ .vercel/output/static/ && vercel deploy --prebuilt --prod --archive=tgz
@@ -96,7 +96,7 @@ HOW:
      → Each unit gives you a numeric Slot ID (10-digit number).
      → Drop into Vercel env vars (production):
      ```bash
-     cd "/Users/paulodevries/Local/AceVault 260426/holdlens-com 26 apr/holdlens"
+     cd "/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens"
      echo "1234567890" | vercel env add NEXT_PUBLIC_ADSENSE_SLOT_HORIZONTAL production
      echo "2345678901" | vercel env add NEXT_PUBLIC_ADSENSE_SLOT_RECTANGLE production
      echo "3456789012" | vercel env add NEXT_PUBLIC_ADSENSE_SLOT_INARTICLE production

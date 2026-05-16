@@ -1,200 +1,42 @@
-# AUG.md — AUG v3 Score weekly log (HoldLens)
+# AUG.md — holdlens.com
+# AUG v3 audit per ~/.claude/rules/aceusergrowth.md Part 25
+# Source: brain-side fleet audit 2026-05-16 (see ~/.claude/fleet/FLEET_AUDIT_2026-05-16.md)
+# Schema: append-only weekly rows; brain re-audits via fleet-aug-audit scheduled task
 
-AUG (AceUserGrowth) v3 Score — 7-factor composite fleet-site health metric.
-Formula (geometric mean × 10, zero in any stage near-zeros the whole):
+## Latest audit · 2026-05-16
 
-```
-AUG_v3 = 10 × ( acq × act × eng × ret × adv × mon × perf ) ^ (1/7)
-```
+| Factor | Score (1-10) |
+|---|---:|
+| Acquisition  | 1 |
+| Activation   | 6 |
+| Engagement   | 8 |
+| Retention    | 4 |
+| Advocacy     | 3 |
+| Monetization | 1 |
+| Performance  | 8 |
 
-Where each factor is 0.0-1.0. Full rubric + per-stage scoring guide:
-`rules/aceusergrowth.md` v3 Part 25.
+**AUG composite:** 0.05 — Tier: Critical
 
-**Invariant:** I-35. If AUG_v3 <5 for **two consecutive weekly measurements**
-→ 90-day kill-criteria candidate. Auto-queues `[rollback-candidate]` to
-TASKS.md with Oracle tag `aug_floor`. Dispatches @reviewer + @craftsman +
-@distributor + @strategist for diagnostic pass.
+**Weakest factor:** Mon (1) — AdSense recrawl pending
 
-**Append-only.** Corrections go through `## Corrections` section at bottom
-with `corrects: <timestamp>` field (same pattern as ORACLE/RETENTION/
-DISTRIBUTION).
+**Diagnosis:** 92 UV/30d. Engagement is exceptional (7% bounce, 3.88 PV/session). Acquisition is the binding constraint. Monetization stuck at $0 because AdSense recrawl click hasn't happened post-compliance-fixes.
 
----
+**Recommended next fix:** Operator clicks AdSense recrawl request at https://www.google.com/adsense → My sites → holdlens.com. Expected Mon 1→3-4 within 30 days, AUG 0.05→~3 (60× lift).
 
-## Project context
+## Weekly history (append-only)
 
-- **Product:** HoldLens (holdlens.com) — quarterly 13F-tracking for 30
-  superinvestors; static Next.js export on Cloudflare Pages.
-- **Domain authority (DR):** ~5 estimated (new 2026 launch).
-- **Monetization:** ad-supported (AdSense approval pending) + founders
-  tier €9/mo (Stripe env-var operator-gated).
-- **Current baseline revenue:** €0/wk (pre-monetization).
-- **Current baseline traffic:** pre-analytics-data (GA4 live from
-  2026-04-16; Plausible pageview fix v1.10 verified).
-- **First measurable AUG score expected:** once GA4 + Plausible + GSC
-  accumulate ≥7d of data AND operator runs first Monday METRICS rollup.
+| Date | Acq | Act | Eng | Ret | Adv | Mon | Perf | AUG | Tier |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| 2026-05-16 | 1 | 6 | 8 | 4 | 3 | 1 | 8 | 0.05 | Critical |
 
----
+## Cross-reference
 
-## Weekly Score
+- Fleet audit: `~/.claude/fleet/FLEET_AUDIT_2026-05-16.md`
+- Public dogfood case study (anonymized): https://growthfriction.com/case-studies/
+- Framework rubric: https://growthfriction.com/method/scoring/
+- Auto-audit script: `~/.claude/fleet/audit-scripts/run-fleet-aug-audit.sh` (Sunday 06:00 local via fleet-aug-audit scheduled task)
 
-<!-- Format: YYYY-MM-DD | acq | act | eng | ret | adv | mon | perf | AUG_v3 | WoW delta | top_weakness | note -->
+## Caveat
 
-```
-2026-04-18 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.00 |  n/a  | pre-audit | v19.2 I-35 infrastructure stub initialized. 7 dimensions seeded at 0.0 pending first `/acepilot aug` deep-audit run. Confidence 0.0 (cold). Not an I-35 floor breach — pre-audit scores don't count toward the 2-consecutive-weeks threshold; first scored row starts the clock.
-```
-
----
-
-## Status
-
-**Current phase:** pre-audit. Infrastructure stub only.
-
-**Next action** (brain or operator): run `/acepilot aug` once the site has
-accumulated enough live analytics data to score all 7 dimensions
-honestly. Doing it earlier would produce noise, not signal.
-
-**Soft target timeline:**
-
-- Week of 2026-04-21 → first Plausible week-over-week + GSC 7d rollup
-  available → first real `/acepilot aug` deep-audit run viable
-- Weekly cadence after that; logs append to `## Weekly Score` above
-- I-35 floor monitoring begins on the second scored row (need 2 consecutive
-  weekly measurements <5 to trigger kill-criteria flag)
-
----
-
-## 7-factor rubric (quick reference)
-
-Per `rules/aceusergrowth.md` v3 Part 25:
-
-| Factor | Scale 0.0 - 1.0 | What it measures |
-|---|---|---|
-| **Acquisition** | 1=<500 unique/mo → 10=300k+ unique/mo (normalize /10) | Top-of-funnel traffic volume |
-| **Activation** | 1=<10% activation → 10=≥75% | % users taking first meaningful action in first session |
-| **Engagement** | Composite of bounce + pages/session + time + scroll (max 10 from 4 sub-dims × 2.5) | Session depth |
-| **Retention** | 1=<3% D7 return → 10=≥55% D7 return | Durable return-rate |
-| **Advocacy** | 1=k-factor 0 → 10=k-factor ≥0.80 | Share/referral coefficient |
-| **Monetization** | 1=$0/week → 10=$2,000+/week | Revenue per week |
-| **Performance** | Composite of LCP + INP + CLS + TTFB (max 10 from 4 sub-dims × 2.5) | CWV health |
-
-## Fleet-level scoring calibration
-
-Once HoldLens has its first real AUG row, the score becomes part of the
-fleet-wide rollup at `~/.claude/fleet/AUG_ROLLUP.md` (to be created by the
-first session that has cross-site AUG data).
-
-## Corrections
-
-<!-- Append-only. Format: corrects: <timestamp> | reason | new_value -->
-
----
-
-## Weekly Score · 2026-04-20 (first real audit)
-
-```
-2026-04-20 | 0.10 | 0.15 | 0.20 | 0.10 | 0.10 | 0.10 | 0.80 | 1.58 | n/a | acquisition | First scored row. Baseline starts I-35 clock (I-35 breach requires 2 consecutive <5.0 weeks; this row is week 1).
-```
-
-### Per-dimension evidence
-
-| Dim | Score | Evidence | Confidence |
-|---|---:|---|---|
-| **Acquisition (0.10)** | 1/10 | CF 7d: 6,315 unique IPs, 23,850 pageviews. Plausible (human-only JS beacon): ~12 humans/30d ≈ 3-20 humans/week. CF:human ratio ≈ 300:1 (the 6,315 "uniques" is 99%+ bots). Rubric: <500 humans/mo = tier 1. | High — Plausible sample small but CF/Plausible ratio consistent |
-| **Activation (0.15)** | 1.5/10 | No explicit activation event defined in Plausible goals or GA4 events. Proxy via pages/session (~1.2 per earlier session) suggests most visitors bounce before any meaningful action. | Low — no direct instrumentation; placeholder |
-| **Engagement (0.20)** | 2/10 | CF 7d avg: 3.78 pageviews per unique (but includes bots fetching N pages). Human-filtered: likely <1.5 pages/session + bounce >65%. Scroll depth + time-on-page not instrumented yet. Rubric composite = bounce 0.75 + pages 0.75 + time 0 + scroll 0 = 2/10. | Low — composite approximated from partial data |
-| **Retention (0.10)** | 1/10 | D7 return rate is statistically undefined with 3-20 humans/week. No returning-session event fires yet. | Cold — insufficient data |
-| **Advocacy (0.10)** | 1/10 | Zero shares, zero embeds, zero k-factor. Share cards shipped per-result but no share events logged. | High — verified absence |
-| **Monetization (0.10)** | 1/10 | €0/wk. AdSense application pending. Pro tier €9/mo live on page but no Stripe env vars in production (operator-gated). Pay-Per-Crawl waitlist pending. | High — verified |
-| **Performance (0.80)** | 8/10 | Lab estimates after v1.60-1.64 perf ships: LCP ~1.5s, INP <200ms, CLS ~0, TTFB ~100ms (CF edge). Composite 4×2.5 ≈ 8. Field data (CrUX) insufficient — needs more human traffic to populate. | Medium — lab-clean, field-unverified |
-
-### Computation
-
-```
-AUG_v3 = 10 × (0.10 × 0.15 × 0.20 × 0.10 × 0.10 × 0.10 × 0.80)^(1/7)
-       = 10 × (2.4e-6)^(1/7)
-       = 10 × 0.158
-       = 1.58
-```
-
-### Top weakness — acquisition (0.10)
-
-**Why it matters most:** acquisition is multiplicative with every other stage. Moving from 20 humans/wk → 500 humans/wk would:
-- Move acq score 1 → 3 (×3 on AUG)
-- Produce enough sample for honest activation/engagement/retention scoring (ending cold-start confidence floor)
-- Enable CrUX to populate field-data (currently "insufficient data")
-- Give monetization a chance (AdSense RPM needs ~10k monthly views to be meaningful)
-
-All other dimensions are downstream of having humans to measure.
-
-### Why technical fixes alone won't move acquisition
-
-The technical acquisition infrastructure is already in place:
-- ✅ Sitemap + sitemap-ai + robots.txt + llms.txt (v1.56-59)
-- ✅ Schema.org saturation (v1.57 Article/Person/ProfilePage)
-- ✅ freshness signals (v1.57 datePublished/dateModified)
-- ✅ IndexNow ping in every deploy (auto-scheduled)
-- ✅ Canonical set, duplicate-content clean
-- ✅ OG images on every page (v1.5x OG fleet-wide fix)
-- ✅ WP scanner noise silenced (v1.65)
-- ✅ Agent-ready score 100/100 (v1.60)
-
-Remaining levers are **operator-time** per `rules/aceusergrowth.md` Part 2:
-- HN Show HN (one-shot launch, 48h spike)
-- LinkedIn zero-click framework posts (×+65 archetype, weekly cadence)
-- Reddit organic comments in r/SecurityAnalysis, r/ValueInvesting (×+70)
-- HARO/Qwoted journalist pitches (×+35, 3/week)
-- Wikipedia citations on 13F-related pages (×+75, highest durability)
-- One podcast guest slot per quarter (×+50)
-
-See Clarity Cards queued in TASKS.md for operator sequencing.
-
-
----
-
-## 2026-04-29 — Week 6 score (CF beacon restored, schema gaps fixed)
-
-| Stage | Score (0-10) | Source / rationale | Confidence |
-|---|---|---|---|
-| **Acquisition** | 2 (was 1) | CF Web Analytics 30d pre-disable: 6,770 visitors. Plausible 30d still ~12 humans. CF/Plausible ratio ~560:1 implies most CF was bot-traffic; humans baseline still ~3-20/wk. Bumping +1 because CF beacon now restored — real human signal flows again from this point. | Medium |
-| **Activation** | 1.5 | Unchanged from Apr 20 (no instrumentation shipped) | Low |
-| **Engagement** | 2 | Unchanged. Plausible session shape pending real data flow. | Low |
-| **Retention** | 1 | Unchanged. D7 statistically undefined at <20 humans/wk. | Cold |
-| **Advocacy** | 1 | Unchanged. Zero shares, zero embeds, zero k-factor logged. | High |
-| **Monetization** | 1 | Unchanged. €0/wk. AdSense pending. TollBit 6mo/$0 (operator gate). Pro tier no Stripe live keys. | High |
-| **Performance** | 8 | Unchanged from Apr 20 lab estimates. v1.65+ ships preserved CWV envelope (LCP <1.5s, INP <200ms, CLS ~0). v0.1.36 audit added schema (no CWV impact). | Medium |
-
-### Computation
-
-```
-AUG_v3 = 10 × (0.20 × 0.15 × 0.20 × 0.10 × 0.10 × 0.10 × 0.80)^(1/7)
-       = 10 × (4.8e-7)^(1/7)
-       = 10 × 0.166
-       = 1.66
-```
-
-### WoW delta
-
-Week 5 (2026-04-20) AUG_v3 = 1.58. Week 6 (2026-04-29) AUG_v3 = **1.66**. **+0.08 WoW.** Marginal lift driven by Acquisition score bump (1→2) on CF beacon restoration. Not enough to break out of "Critical" status (<5).
-
-### Top weakness — STILL acquisition (score=2)
-
-**Why the same answer as Week 5:** technical infrastructure complete; remaining levers are operator-time (HN Show HN, LinkedIn weekly post, Reddit organic, HARO pitches, Wikipedia citations). No brain-side ship moves human acquisition meaningfully without those operator-time investments.
-
-**v0.1.36 audit ships that DID compound (Day-1-data-flywheel):**
-- ✅ CF Web Analytics beacon restored end-to-end (commit f26d5086a)
-- ✅ /about + /quarterly[period] JSON-LD shipped (this audit cycle)
-- ✅ ETF detail template quote-ready H2
-- ✅ EDGAR 8K + Form 4 refresh (within 28h)
-- ✅ Methodology v2.1.1 calibration row logged (3,530 v/wk vs 4,000 projected = 0.88 ratio)
-
-**v0.1.36 ships that DID NOT compound** (operator-only blockers):
-- ❌ TollBit license rates → 0 successful scrapes in 6 months
-- ❌ AdSense approval status → unknown / pending
-- ❌ Plausible Goals → operator click step pending
-- ❌ Pro-tier Stripe live keys → blocked by Pro-tier reframe decision
-- ❌ Mediavine Journey → blocked by 1,000 sessions/mo threshold (~currently 800/mo Plausible humans?)
-
-### Next AUG measurement window
-
-2026-05-06 (Week 7). Real CF beacon data should be flowing for 7+ days by then. Expect Acquisition score to either jump (3-4 if site is genuinely getting 100+ humans/wk per CF) OR confirm operator-action queue is the only path forward.
+Performance proxy from curl-probe (TTFB + page-weight, no PSI). Confidence 0.7.
+Activation + Engagement sub-components estimated where direct measurement absent.

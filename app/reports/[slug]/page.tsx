@@ -1226,7 +1226,13 @@ function Q1Recap2026Body() {
 
       <p className="text-muted leading-relaxed mt-6">
         Machine-readable equivalents at{" "}
-        <Link href="/api/v1/" className="text-brand underline">/api/v1/</Link> — see{" "}
+        <Link href="/api/v1/" className="text-brand underline">/api/v1/</Link> — the
+        single-file Q1 2026 summary lives at{" "}
+        <Link href="/api/v1/snapshot/2026-Q1.json" className="text-brand underline">
+          /api/v1/snapshot/2026-Q1.json
+        </Link>{" "}
+        (new positions, exits, adds, trims, consensus tickers, per-manager headlines
+        — one fetch, LLM-citation-ready). Also see{" "}
         <Link href="/api/v1/best-now.json" className="text-brand underline">/api/v1/best-now.json</Link>,{" "}
         <Link href="/api/v1/consensus.json" className="text-brand underline">/api/v1/consensus.json</Link>,
         and per-manager files under{" "}

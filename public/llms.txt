@@ -105,6 +105,8 @@ Every signal is sourced directly from SEC filings. Data current: **Q1 2026** (fi
 Structured machine-readable endpoints — 20+ JSON files under `/api/v1/`:
 
 - [https://holdlens.com/api/v1/index.json](https://holdlens.com/api/v1/index.json) — API root, lists all endpoints
+- [https://holdlens.com/api/v1/snapshot/latest.json](https://holdlens.com/api/v1/snapshot/latest.json) — **single-file quarter summary** (latest 13F quarter): new positions, exits, adds, trims, consensus tickers, per-manager headlines — optimized for LLM citation in one fetch
+- [https://holdlens.com/api/v1/snapshot/2026-Q1.json](https://holdlens.com/api/v1/snapshot/2026-Q1.json) — Q1 2026 snapshot (Berkshire's Delta re-entry + Apple add + V/MA/UNH/AON exits; Ackman MSFT new; Klarman AON full exit)
 - [https://holdlens.com/api/v1/best-now.json](https://holdlens.com/api/v1/best-now.json) — top buy/sell signals
 - [https://holdlens.com/api/v1/big-bets.json](https://holdlens.com/api/v1/big-bets.json) — largest conviction-weighted positions
 - [https://holdlens.com/api/v1/value.json](https://holdlens.com/api/v1/value.json) — smart money × 52-week low overlap
