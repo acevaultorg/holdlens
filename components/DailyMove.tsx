@@ -101,7 +101,7 @@ export function DailyMoveForInvestor({ slug }: { slug: string }) {
         )}
       </div>
       <div className="text-xs text-[#8892a0] mt-2">
-        Positions: Q4 2025 13F · Prices: EOD {daily.meta.trading_date}
+        Positions: Q1 2026 13F · Prices: EOD {daily.meta.trading_date}
       </div>
     </div>
   );

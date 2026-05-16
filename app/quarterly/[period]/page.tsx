@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ period: s
 // 13F filings due 45 days post-quarter-end; fileDate = first-week-after-deadline,
 // modDate = bumped on every recompute (top tickers / consensus shifts).
 const PERIOD_DATES: Record<string, { published: string; modified: string }> = {
-  "2026-q1": { published: "2026-05-16", modified: "2026-04-29" }, // pre-fill (filings rolling in May)
+  "2026-q1": { published: "2026-05-16", modified: "2026-05-16" }, // SEC deadline 2026-05-15; data refreshed 2026-05-16
   "2025-q4": { published: "2026-02-17", modified: "2026-04-29" }, // canonical Q4 filing window done
 };
 

@@ -377,8 +377,8 @@ export default function TrendStreakPage() {
         <h2 className="text-xl font-bold mb-3">Walk 8 quarters, count consecutive same-direction moves</h2>
         <ul className="text-sm text-muted space-y-2 leading-relaxed mb-4">
           <li>
-            <span className="text-text font-semibold">1. 8-quarter window.</span>{" "}
-            HoldLens tracks 2024-Q1 through 2025-Q4 &mdash; two full fiscal years of 13F data.
+            <span className="text-text font-semibold">1. 9-quarter window.</span>{" "}
+            HoldLens tracks 2024-Q1 through 2026-Q1 &mdash; two-and-a-quarter fiscal years of 13F data.
           </li>
           <li>
             <span className="text-text font-semibold">2. Walk forward.</span>{" "}

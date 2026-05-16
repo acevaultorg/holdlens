@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 // depends on the user's clock — build-time would drift.
 //
 // 13F rule: filings due 45 days after quarter-end.
-//   Q4 2025 ends 2025-12-31 → deadline 2026-02-14 (complete)
-//   Q1 2026 ends 2026-03-31 → deadline 2026-05-15
+//   Q1 2026 ends 2026-03-31 → deadline 2026-05-15 (complete)
+//   Q2 2026 ends 2026-06-30 → deadline 2026-08-14
 
-const CURRENT_QUARTER_LABEL = "Q4 2025";
-const CURRENT_FILED_AT = "2026-02-14"; // deadline for the current quarter
-const NEXT_QUARTER_LABEL = "Q1 2026";
-const NEXT_FILED_AT = "2026-05-15";
+const CURRENT_QUARTER_LABEL = "Q1 2026";
+const CURRENT_FILED_AT = "2026-05-15"; // deadline for the current quarter
+const NEXT_QUARTER_LABEL = "Q2 2026";
+const NEXT_FILED_AT = "2026-08-14";
 
 function daysBetween(a: Date, b: Date): number {
   const MS = 1000 * 60 * 60 * 24;

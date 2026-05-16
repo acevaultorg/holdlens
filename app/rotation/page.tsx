@@ -14,8 +14,8 @@ import { MANAGERS } from "@/lib/managers";
 // (v0.61 sector heatmap, see HEARTBEAT.log 2026-04-15 11:00); dateModified
 // updates with each EDGAR data refresh + structural ship.
 const DATE_PUBLISHED = "2026-04-15";
-const DATE_MODIFIED = "2026-04-29";
-const LATEST_QUARTER: Quarter = "2025-Q4";
+const DATE_MODIFIED = "2026-05-16";
+const LATEST_QUARTER: Quarter = "2026-Q1";
 
 export const metadata: Metadata = {
   title: "Sector rotation heatmap — where smart money is moving by quarter",
