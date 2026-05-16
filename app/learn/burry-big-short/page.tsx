@@ -52,6 +52,11 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001296576&type=13F-HR",
+      "https://en.wikipedia.org/wiki/Michael_Burry",
+      "https://en.wikipedia.org/wiki/The_Big_Short_(book)",
+    ],
     about: [
       {
         "@type": "Person",

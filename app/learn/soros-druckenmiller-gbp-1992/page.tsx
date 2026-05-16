@@ -52,6 +52,11 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Black_Wednesday",
+      "https://en.wikipedia.org/wiki/George_Soros",
+      "https://en.wikipedia.org/wiki/European_Exchange_Rate_Mechanism",
+    ],
     about: [
       {
         "@type": "Person",

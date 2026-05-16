@@ -52,6 +52,11 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001336528&type=13F-HR",
+      "https://en.wikipedia.org/wiki/Bill_Ackman",
+      "https://en.wikipedia.org/wiki/Herbalife_Nutrition",
+    ],
     about: [
       {
         "@type": "Person",

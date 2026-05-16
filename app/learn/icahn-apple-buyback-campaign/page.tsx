@@ -52,6 +52,11 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000921669&type=13F-HR",
+      "https://en.wikipedia.org/wiki/Carl_Icahn",
+      "https://en.wikipedia.org/wiki/Apple_Inc.",
+    ],
     about: [
       {
         "@type": "Person",
