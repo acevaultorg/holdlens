@@ -3,6 +3,7 @@
 # to project Settings > CI/CD > Variables.
 
 stages:
+  - refresh
   - build
   - deploy
 
@@ -66,6 +67,55 @@ build:
     expire_in: 1 day
   only:
     - main
+  except:
+    - schedules
+
+# Scheduled data refresh — runs ONLY when GitLab scheduled pipeline fires
+# (Project Settings > CI/CD > Schedules). Operator one-time:
+#   cron: 0 22 * * 1-5  (Mon-Fri 22:00 UTC = ~90 min after US market close)
+#   target branch: main
+#   variable REFRESH=1 (used by rules: below to gate this job)
+#
+# What it does:
+#   1. Fetch latest 13F filings from SEC EDGAR (~30 tracked managers)
+#   2. Fetch latest Form 4 insider trades
+#   3. Fetch latest 8-K material events
+#   4. Generate daily EOD price snapshot
+#   5. Commit data/* changes back to main → triggers regular build+deploy
+#      pipeline (build → deploy stages above) which picks up the fresh data.
+#
+# No deploy from this stage — the commit-back triggers the existing pipeline.
+refresh:
+  stage: refresh
+  image: node:24-bookworm-slim
+  before_script:
+    - apt-get update
+    - apt-get install -y --no-install-recommends git ca-certificates
+    - npm ci --no-audit --no-fund
+  script:
+    - echo "=== EDGAR 13F refresh ==="
+    - npx tsx scripts/fetch-edgar-13f.ts
+    - echo "=== EDGAR Form 4 refresh ==="
+    - npx tsx scripts/fetch-edgar-form4.ts
+    - echo "=== EDGAR 8-K refresh ==="
+    - npx tsx scripts/fetch-edgar-8k.ts
+    - echo "=== Daily snapshot ==="
+    - npx tsx scripts/generate-daily-snapshot.ts || true
+    - echo "=== Commit changes back to main ==="
+    - git config user.name "HoldLens Refresh Bot"
+    - git config user.email "bot@holdlens.com"
+    - git add data/ public/api/v1/daily.json public/api/v1/movers.json 2>/dev/null || true
+    - |
+      if git diff --cached --quiet; then
+        echo "No data changes — skipping commit."
+        exit 0
+      fi
+      git commit -m "chore(refresh): EDGAR + daily snapshot $(date -u +%Y-%m-%d)"
+      # Push back using job token + project-access token (operator must add
+      # PROJECT_ACCESS_TOKEN with write_repository scope to CI variables).
+      git push "https://oauth2:${PROJECT_ACCESS_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "HEAD:${CI_COMMIT_REF_NAME}"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
 
 deploy:
   stage: deploy
@@ -85,3 +135,5 @@ deploy:
     - wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
   only:
     - main
+  except:
+    - schedules
