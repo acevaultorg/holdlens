@@ -47,7 +47,11 @@ const AI_PRIORITY_PATTERNS = [
   /^https:\/\/holdlens\.com\/learn\/?$/,
   /^https:\/\/holdlens\.com\/learn\/[a-z0-9-]+\/?$/,
   // Collection hubs (topical sub-clusters within /learn)
+  /^https:\/\/holdlens\.com\/collections\/?$/,
   /^https:\/\/holdlens\.com\/collections\/famous-trades\/?$/,
+  /^https:\/\/holdlens\.com\/collections\/sec-filing-mechanics\/?$/,
+  /^https:\/\/holdlens\.com\/collections\/signals-and-methodology\/?$/,
+  /^https:\/\/holdlens\.com\/collections\/capital-allocation\/?$/,
   // Programmatic unique-data pages
   /^https:\/\/holdlens\.com\/rotation\/?$/,
   /^https:\/\/holdlens\.com\/quarterly\/?$/,
