@@ -53,6 +53,10 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Rule_144",
+      "https://www.sec.gov/about/forms/form144.pdf",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

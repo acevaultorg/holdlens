@@ -53,6 +53,10 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Proxy_statement",
+      "https://www.sec.gov/fast-answers/answersproxyhtfhtm.html",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

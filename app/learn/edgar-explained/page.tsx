@@ -53,6 +53,10 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://www.sec.gov/edgar",
+      "https://en.wikipedia.org/wiki/EDGAR",
+    ],
     about: [
       {
         "@type": "DefinedTerm",

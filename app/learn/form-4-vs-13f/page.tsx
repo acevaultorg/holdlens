@@ -76,6 +76,11 @@ const LD = [
     dateModified: "2026-04-25",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    citation: [
+      "https://en.wikipedia.org/wiki/Form_4",
+      "https://en.wikipedia.org/wiki/Form_13F",
+      "https://www.sec.gov/divisions/investment/13ffaq",
+    ],
     about: [
       {
         "@type": "DefinedTerm",
