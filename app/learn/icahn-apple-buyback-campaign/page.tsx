@@ -5,6 +5,7 @@ import AuthorByline from "@/components/AuthorByline";
 import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import FamousTradesBlock from "@/components/FamousTradesBlock";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
@@ -274,6 +275,7 @@ export default function IcahnApplePage() {
         </p>
 
         <CiteThisPage />
+        <FamousTradesBlock currentSlug="icahn-apple-buyback-campaign" />
         <LearnReadNext currentSlug="icahn-apple-buyback-campaign" />
 
         <ShareStrip url="https://holdlens.com/learn/icahn-apple-buyback-campaign" title="Carl Icahn's Apple buyback campaign" />

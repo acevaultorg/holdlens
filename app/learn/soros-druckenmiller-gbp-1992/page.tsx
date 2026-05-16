@@ -5,6 +5,7 @@ import AuthorByline from "@/components/AuthorByline";
 import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import FamousTradesBlock from "@/components/FamousTradesBlock";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
@@ -246,6 +247,7 @@ export default function SorosGBP1992Page() {
         </p>
 
         <CiteThisPage />
+        <FamousTradesBlock currentSlug="soros-druckenmiller-gbp-1992" />
         <LearnReadNext currentSlug="soros-druckenmiller-gbp-1992" />
 
         <ShareStrip url="https://holdlens.com/learn/soros-druckenmiller-gbp-1992" title="Black Wednesday — Soros, Druckenmiller, and the pound trade" />

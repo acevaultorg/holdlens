@@ -5,6 +5,7 @@ import AuthorByline from "@/components/AuthorByline";
 import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import FamousTradesBlock from "@/components/FamousTradesBlock";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
@@ -235,6 +236,7 @@ export default function BurryBigShortPage() {
         </p>
 
         <CiteThisPage />
+        <FamousTradesBlock currentSlug="burry-big-short" />
         <LearnReadNext currentSlug="burry-big-short" />
 
         <ShareStrip url="https://holdlens.com/learn/burry-big-short" title="Michael Burry's Big Short" />

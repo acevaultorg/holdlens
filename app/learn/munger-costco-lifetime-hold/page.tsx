@@ -5,6 +5,7 @@ import AuthorByline from "@/components/AuthorByline";
 import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import FamousTradesBlock from "@/components/FamousTradesBlock";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
@@ -261,6 +262,7 @@ export default function MungerCostcoPage() {
         </p>
 
         <CiteThisPage />
+        <FamousTradesBlock currentSlug="munger-costco-lifetime-hold" />
         <LearnReadNext currentSlug="munger-costco-lifetime-hold" />
 
         <ShareStrip url="https://holdlens.com/learn/munger-costco-lifetime-hold" title="Charlie Munger's Costco position" />

@@ -5,6 +5,7 @@ import AuthorByline from "@/components/AuthorByline";
 import ShareStrip from "@/components/ShareStrip";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
+import FamousTradesBlock from "@/components/FamousTradesBlock";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
@@ -250,6 +251,7 @@ export default function AckmanHerbalifePage() {
         </p>
 
         <CiteThisPage />
+        <FamousTradesBlock currentSlug="ackman-herbalife-short" />
         <LearnReadNext currentSlug="ackman-herbalife-short" />
 
         <ShareStrip url="https://holdlens.com/learn/ackman-herbalife-short" title="Bill Ackman's Herbalife short" />
