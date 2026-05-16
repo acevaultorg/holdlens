@@ -48,6 +48,13 @@ export default function BuybacksVsDividendsPage() {
       url: "https://holdlens.com",
       logo: { "@type": "ImageObject", url: "https://holdlens.com/logo.png" },
     },
+    keywords: [
+      "share repurchase",
+      "dividends",
+      "capital return",
+      "tax efficiency",
+      "compounding",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Share_repurchase",
       "https://en.wikipedia.org/wiki/Dividend",

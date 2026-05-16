@@ -67,6 +67,12 @@ const LD = [
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "SEC signals",
+      "13F + Form 4 + 8-K",
+      "multi-signal synthesis",
+      "filing trilogy",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Form_13F",
       "https://en.wikipedia.org/wiki/Form_4",

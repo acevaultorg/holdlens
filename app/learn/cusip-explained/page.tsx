@@ -53,6 +53,13 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "CUSIP",
+      "security identifier",
+      "9-character code",
+      "ticker normalization",
+      "EDGAR mapping",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/CUSIP",
       "https://www.cusip.com",

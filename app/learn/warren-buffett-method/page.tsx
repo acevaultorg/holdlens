@@ -61,6 +61,13 @@ const LD = [
     dateModified: "2026-04-17",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Warren Buffett",
+      "value investing",
+      "Berkshire Hathaway",
+      "moat",
+      "long-duration hold",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Warren_Buffett",
       "https://en.wikipedia.org/wiki/Berkshire_Hathaway",

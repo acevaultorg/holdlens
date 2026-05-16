@@ -62,6 +62,13 @@ const LD = [
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "InsiderScore",
+      "Form 4 scoring",
+      "insider trading metric",
+      "officer-weighted",
+      "cluster buys",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Form_4",
       "https://www.sec.gov/about/forms/form4data.pdf",

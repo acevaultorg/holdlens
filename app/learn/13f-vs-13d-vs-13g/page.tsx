@@ -89,6 +89,13 @@ const LD = [
     dateModified: "2026-04-17",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Form 13F",
+      "Schedule 13D",
+      "Schedule 13G",
+      "SEC ownership filings",
+      "5% threshold",
+    ],
     citation: [
       "https://www.sec.gov/divisions/investment/13ffaq",
       "https://en.wikipedia.org/wiki/Schedule_13D",

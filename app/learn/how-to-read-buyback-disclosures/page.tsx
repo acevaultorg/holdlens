@@ -49,6 +49,13 @@ export default function HowToReadBuybackDisclosuresPage() {
       url: "https://holdlens.com",
       logo: { "@type": "ImageObject", url: "https://holdlens.com/logo.png" },
     },
+    keywords: [
+      "share repurchase",
+      "10-K buyback",
+      "10-Q repurchase",
+      "8-K disclosure",
+      "treasury stock",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Share_repurchase",
       "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=10-K",

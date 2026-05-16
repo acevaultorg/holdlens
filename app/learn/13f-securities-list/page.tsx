@@ -53,6 +53,13 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "13(f) Official List",
+      "13F securities",
+      "Form 13F scope",
+      "shorts excluded",
+      "derivatives excluded",
+    ],
     citation: [
       "https://www.sec.gov/divisions/investment/13ffaq",
       "https://en.wikipedia.org/wiki/Form_13F",

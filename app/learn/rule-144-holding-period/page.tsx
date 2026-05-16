@@ -53,6 +53,13 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Rule 144",
+      "insider sales",
+      "restricted stock",
+      "6-month holding",
+      "12-month holding",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Rule_144",
       "https://www.sec.gov/about/forms/form144.pdf",

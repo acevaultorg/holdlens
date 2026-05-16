@@ -50,6 +50,15 @@ const LD = [
     dateModified: "2026-04-10",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Form 13F",
+      "13F-HR",
+      "institutional holdings",
+      "hedge fund disclosure",
+      "SEC filing",
+      "quarterly reporting",
+      "45-day lag",
+    ],
     citation: [
       "https://www.sec.gov/divisions/investment/13ffaq",
       "https://en.wikipedia.org/wiki/Form_13F",

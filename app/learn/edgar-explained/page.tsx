@@ -53,6 +53,16 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "SEC EDGAR",
+      "10-K",
+      "13F",
+      "Form 4",
+      "8-K",
+      "public filings",
+      "CIK",
+      "accession number",
+    ],
     citation: [
       "https://www.sec.gov/edgar",
       "https://en.wikipedia.org/wiki/EDGAR",

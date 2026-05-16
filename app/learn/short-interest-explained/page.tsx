@@ -29,6 +29,13 @@ export default function Article() {
     mainEntityOfPage: "https://holdlens.com/learn/short-interest-explained",
     description:
       "What short interest measures and how days-to-cover is calculated.",
+    keywords: [
+      "short interest",
+      "days to cover",
+      "short squeeze",
+      "FINRA",
+      "short ratio",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Short_(finance)",
       "https://en.wikipedia.org/wiki/Short_squeeze",

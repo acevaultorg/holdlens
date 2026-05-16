@@ -85,6 +85,13 @@ const LD = [
     dateModified: "2026-04-19",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "13F predictive value",
+      "backtest",
+      "smart money returns",
+      "Pearson r",
+      "alpha decay",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Form_13F",
       "https://en.wikipedia.org/wiki/Backtesting",

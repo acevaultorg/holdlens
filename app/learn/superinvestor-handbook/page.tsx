@@ -63,6 +63,14 @@ const JSONLD = {
     "@id": "https://holdlens.com/learn/superinvestor-handbook",
   },
   articleSection: "Investing",
+  keywords: [
+    "superinvestor",
+    "smart money",
+    "13F filings",
+    "hedge fund tracking",
+    "concentrated value",
+    "Berkshire Hathaway",
+  ],
   wordCount: 3400,
   citation: [
     "https://en.wikipedia.org/wiki/Form_13F",

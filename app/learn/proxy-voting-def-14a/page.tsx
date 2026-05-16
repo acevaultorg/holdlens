@@ -53,6 +53,13 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "DEF 14A",
+      "proxy statement",
+      "shareholder voting",
+      "annual meeting",
+      "say on pay",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Proxy_statement",
       "https://www.sec.gov/fast-answers/answersproxyhtfhtm.html",

@@ -76,6 +76,13 @@ const LD = [
     dateModified: "2026-04-25",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Form 4",
+      "Form 13F",
+      "insider trading",
+      "institutional disclosure",
+      "2-day disclosure",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Form_4",
       "https://en.wikipedia.org/wiki/Form_13F",

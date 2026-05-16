@@ -63,6 +63,13 @@ const LD = [
     dateModified: "2026-04-26",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "13F lag",
+      "SEC reporting deadline",
+      "Form 13F",
+      "stale signal",
+      "quarterly disclosure",
+    ],
     citation: [
       "https://www.sec.gov/divisions/investment/13ffaq",
       "https://en.wikipedia.org/wiki/Form_13F",

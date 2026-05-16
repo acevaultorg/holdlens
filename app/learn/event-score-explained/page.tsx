@@ -63,6 +63,13 @@ const LD = [
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Event Score",
+      "8-K scoring",
+      "material events",
+      "earnings surprise",
+      "corporate disclosure",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Form_8-K",
       "https://www.sec.gov/about/forms/form8-k.pdf",

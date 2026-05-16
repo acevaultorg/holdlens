@@ -29,6 +29,13 @@ export default function Article() {
       "https://holdlens.com/learn/13d-vs-13g-activist-filings",
     description:
       "When an investor crosses 5% of a public company they file 13D or 13G. The difference reveals intent.",
+    keywords: [
+      "Schedule 13D",
+      "Schedule 13G",
+      "activist investing",
+      "passive investing",
+      "5% threshold",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Schedule_13D",
       "https://en.wikipedia.org/wiki/Schedule_13G",

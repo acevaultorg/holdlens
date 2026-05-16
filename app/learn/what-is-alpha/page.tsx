@@ -66,6 +66,14 @@ const LD = [
     dateModified: "2026-04-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "alpha",
+      "hedge fund returns",
+      "active management",
+      "benchmark",
+      "CAPM",
+      "risk-adjusted return",
+    ],
     citation: [
       "https://en.wikipedia.org/wiki/Alpha_(finance)",
       "https://en.wikipedia.org/wiki/Capital_asset_pricing_model",
