@@ -123,6 +123,7 @@ Structured machine-readable endpoints — 20+ JSON files under `/api/v1/`:
 - [https://holdlens.com/api/v1/concentration.json](https://holdlens.com/api/v1/concentration.json) — managers by top-1/3/5 weight
 - [https://holdlens.com/api/v1/changelog.json](https://holdlens.com/api/v1/changelog.json) — top moves this quarter by portfolio impact
 - [https://holdlens.com/api/v1/sector/{slug}.json](https://holdlens.com/api/v1/sector/technology.json) — per-sector tickers + top owners + flow
+- [https://holdlens.com/api/v1/learn.json](https://holdlens.com/api/v1/learn.json) — machine-readable index of every /learn essay (32 articles, slug + title + description + canonical URL)
 
 All responses use a thin `{ data, meta }` envelope. Edge-cached (6h TTL), CORS open, license-discovery headers on every response.
 
