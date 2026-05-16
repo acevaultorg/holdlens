@@ -1,5 +1,5 @@
 {
-  "buildCommand": "rm -rf .next out && next build",
+  "buildCommand": "rm -rf .next out && npm run build",
   "outputDirectory": "out",
   "installCommand": "npm ci",
   "trailingSlash": true,
