@@ -62,6 +62,28 @@ const LD = [
         "@type": "Corporation",
         name: "Costco Wholesale Corporation",
       },
+      {
+        "@type": "Organization",
+        name: "Daily Journal Corporation",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Membership-renewal moat",
+        description:
+          "Costco's structural durability comes from its 90%+ annual membership renewal rate — an annuity-like revenue stream independent of merchandise margin. Munger cited this loop (low merchandise margins → loyal members → high renewals → pricing power → low merchandise margins) as the canonical self-reinforcing positive feedback system.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Pricing-power inversion",
+        description:
+          "Costco voluntarily caps merchandise margins at ~14% and passes scale economics to members rather than capturing them as profit. The inversion: caps on per-item margin produce uncapped membership-base growth, which produces uncapped cumulative annuity revenue.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Form 4 + DEF 14A trail",
+        description:
+          "Munger's 1997-2023 Costco position is one of the cleanest verifiable long-duration insider trails in the SEC record. Every personal share transaction filed via Form 4 within 2 business days; annual beneficial-ownership disclosure in Costco's DEF 14A proxy. Anyone can reconstruct the position quarter-by-quarter from EDGAR alone.",
+      },
     ],
   },
 ];

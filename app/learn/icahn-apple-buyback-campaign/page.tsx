@@ -66,6 +66,24 @@ const LD = [
         "@type": "Organization",
         name: "Icahn Enterprises",
       },
+      {
+        "@type": "DefinedTerm",
+        name: "Activist long",
+        description:
+          "An activist campaign argued from the LONG side — accumulate a meaningful equity stake, then publicly pressure management for specific capital-allocation changes (here: accelerated share buybacks). Distinct from activist shorts (Ackman/Herbalife) which argue for share-price decline.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Share repurchase",
+        description:
+          "A corporation buying its own shares from the public market, retiring them or holding as treasury stock. Reduces share count; mechanically raises EPS at constant net income. Icahn's Apple campaign argued Apple's then-cash hoard was best deployed as accelerated repurchases vs M&A or dividends.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Form 4 vs 13F disclosure",
+        description:
+          "Icahn's Apple position was disclosed via 13F filings from Icahn Enterprises (institutional, quarterly). Apple insiders' personal trades — Tim Cook's individual transactions — were disclosed separately via Form 4 (real-time, 2-business-day). Icahn was an external investor, not an insider; his trail is 13F only.",
+      },
     ],
   },
 ];

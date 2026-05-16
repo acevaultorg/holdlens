@@ -66,6 +66,24 @@ const LD = [
         "@type": "Organization",
         name: "Quantum Fund",
       },
+      {
+        "@type": "DefinedTerm",
+        name: "Black Wednesday",
+        description:
+          "September 16, 1992 — the day the Bank of England withdrew the British pound from the European Exchange Rate Mechanism after exhausting its reserves defending the GBP's currency peg. Quantum Fund's ~$10B short position reportedly netted ~$1B in a single day.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "European Exchange Rate Mechanism (ERM)",
+        description:
+          "A 1979-1999 currency-pegging system among most European Community member states, designed to reduce exchange-rate volatility ahead of monetary union. The pound entered in 1990 at an arguably overvalued rate; the macroeconomic stress of that mispricing is what Quantum's trade targeted.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "FX trade invisibility to 13F",
+        description:
+          "Foreign-exchange trades are NOT 13F-disclosable. Form 13F covers long equity positions in 13(f)-listed securities only. Currency, sovereign-debt shorts, and macro derivatives — the entire toolkit of a fund like Quantum — fall outside 13F's surface. This is why none of the Black Wednesday trade appears in any 13F filing.",
+      },
     ],
   },
 ];

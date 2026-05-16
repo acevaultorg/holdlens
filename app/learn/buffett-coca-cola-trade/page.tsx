@@ -66,6 +66,24 @@ const LD = [
         "@type": "Corporation",
         name: "The Coca-Cola Company",
       },
+      {
+        "@type": "DefinedTerm",
+        name: "Concentrated long-duration value position",
+        description:
+          "An investment style — exemplified by Berkshire's Coca-Cola trade — of identifying a wonderful business at fair price and holding for decades regardless of macro volatility. Compounds at the underlying business's earnings-growth rate, not at trading-volatility rates.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "13F-traceable accumulation",
+        description:
+          "A purchase pattern fully reconstructable from sequential 13F filings (quarterly). Berkshire's 1988-89 KO accumulation appears across four 13F-HR filings, each one disclosing the incremental share count at quarter-end.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Cost basis ($1.3B)",
+        description:
+          "Berkshire's cumulative investment in Coca-Cola across 1988-89: approximately $1.3 billion for ~6.7% of outstanding shares. The position has been untouched since; current mark-to-market is ~$28 billion before counting 37 years of dividends.",
+      },
     ],
   },
 ];

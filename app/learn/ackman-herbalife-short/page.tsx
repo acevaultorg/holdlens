@@ -62,6 +62,24 @@ const LD = [
         "@type": "Organization",
         name: "Pershing Square Capital Management",
       },
+      {
+        "@type": "DefinedTerm",
+        name: "Activist short",
+        description:
+          "A short position paired with a public campaign — research reports, press conferences, regulatory complaints — explicitly arguing for the target's decline. Ackman's Herbalife position (2012-2018) is the canonical public-record example.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Multi-level marketing (MLM)",
+        description:
+          "A distribution model where independent representatives earn commissions on both retail sales and downstream recruiter sales. Ackman's thesis argued Herbalife's commission structure functionally rewarded recruitment over retail — a pyramid pattern under FTC scrutiny.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Short squeeze",
+        description:
+          "An adverse price spike against a short position, often driven by counter-buying by other large investors. Carl Icahn's parallel long position in Herbalife — disclosed via 13F — became the structural source of the squeeze that eventually closed Ackman's campaign at a loss.",
+      },
     ],
   },
 ];

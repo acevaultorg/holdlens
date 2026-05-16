@@ -62,6 +62,24 @@ const LD = [
         "@type": "Organization",
         name: "Scion Capital",
       },
+      {
+        "@type": "DefinedTerm",
+        name: "Credit Default Swap (CDS)",
+        description:
+          "A derivative contract that pays out if a specific bond defaults. Scion's 2005-2007 CDS positions on subprime mortgage tranches were the structural vehicle for the Big Short — the trade itself was a synthetic short via insurance on collapsing collateral, not a stock short.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Subprime mortgage tranche",
+        description:
+          "A risk-segmented slice of a residential mortgage-backed security (RMBS), rated investment-grade by the rating agencies despite being collateralized by loans to high-default-probability borrowers. The mispricing here — investment-grade ratings on junk collateral — is what Scion's CDS positions targeted.",
+      },
+      {
+        "@type": "DefinedTerm",
+        name: "Form 13F invisibility",
+        description:
+          "Form 13F requires disclosure of long equity positions in 13(f)-listed securities. CDS contracts, short positions, and derivatives generally are NOT 13F-disclosable. This is why Scion's Big Short does not appear in any 13F filing — the trade was structurally outside the 13F surface.",
+      },
     ],
   },
 ];
