@@ -87,17 +87,18 @@ export function classifyScore(score: number): "BUY" | "SELL" | "NEUTRAL" {
 
 // ---------- HELPERS ----------
 
-// Continuous 0.6^distance decay across all 8 tracked quarters.
-// Q4 2025 = 1.0 (latest), Q1 2024 = 0.6^7 ≈ 0.028.
+// Continuous 0.6^distance decay across all 9 tracked quarters.
+// Q1 2026 = 1.0 (latest), Q1 2024 = 0.6^8 ≈ 0.017.
 const TIME_DECAY: Record<string, number> = {
-  "2025-Q4": 1.0,
-  "2025-Q3": 0.6,
-  "2025-Q2": 0.36,
-  "2025-Q1": 0.216,
-  "2024-Q4": 0.13,
-  "2024-Q3": 0.078,
-  "2024-Q2": 0.047,
-  "2024-Q1": 0.028,
+  "2026-Q1": 1.0,
+  "2025-Q4": 0.6,
+  "2025-Q3": 0.36,
+  "2025-Q2": 0.216,
+  "2025-Q1": 0.13,
+  "2024-Q4": 0.078,
+  "2024-Q3": 0.047,
+  "2024-Q2": 0.028,
+  "2024-Q1": 0.017,
 };
 
 function decayWeight(quarter: string): number {
@@ -510,6 +511,7 @@ const HISTORICAL_QUARTER_ORDER: Record<string, number> = {
   "2025-Q2": 6,
   "2025-Q3": 7,
   "2025-Q4": 8,
+  "2026-Q1": 9,
 };
 
 /**
@@ -620,6 +622,7 @@ export function getConvictionAtQuarter(ticker: string, asOfQuarter: Quarter): Co
     "2025-Q2",
     "2025-Q3",
     "2025-Q4",
+    "2026-Q1",
   ].slice(0, cutoff);
   let maxBuyStreak = 0;
   for (const b of buyerContribs) {

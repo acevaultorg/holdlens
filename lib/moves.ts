@@ -21,7 +21,7 @@ export type MoveAction = "new" | "add" | "trim" | "exit";
 
 export type Move = {
   managerSlug: string;
-  quarter: string;         // "2025-Q3" / "2025-Q4"
+  quarter: string;         // "2025-Q3" / "2025-Q4" / "2026-Q1"
   filedAt: string;         // ISO date when the 13F was filed
   ticker: string;
   name?: string;           // display name, fallback if ticker not in coverage
@@ -33,6 +33,7 @@ export type Move = {
 };
 
 export const QUARTERS = [
+  "2026-Q1",
   "2025-Q4",
   "2025-Q3",
   "2025-Q2",
@@ -45,6 +46,7 @@ export const QUARTERS = [
 export type Quarter = (typeof QUARTERS)[number];
 
 export const QUARTER_LABELS: Record<Quarter, string> = {
+  "2026-Q1": "Q1 2026",
   "2025-Q4": "Q4 2025",
   "2025-Q3": "Q3 2025",
   "2025-Q2": "Q2 2025",
@@ -56,6 +58,7 @@ export const QUARTER_LABELS: Record<Quarter, string> = {
 };
 
 export const QUARTER_FILED: Record<Quarter, string> = {
+  "2026-Q1": "2026-05-15",
   "2025-Q4": "2026-02-14",
   "2025-Q3": "2025-11-14",
   "2025-Q2": "2025-08-14",
@@ -68,6 +71,9 @@ export const QUARTER_FILED: Record<Quarter, string> = {
 
 // ---------- FLAT MOVES LIST ----------
 // Ordered newest → oldest for activity feeds.
+// Earlier quarters (Q2 2024 — Q4 2025) are hand-curated below with editorial
+// 'note' fields. Q1 2026 (and any newer auto-fetched data) flows in via
+// EDGAR_MOVES from lib/edgar-data.ts → MERGED_MOVES at the bottom of this file.
 export const ALL_MOVES: Move[] = [
   // ============ Q4 2025 ============
   // Warren Buffett
@@ -632,8 +638,8 @@ export function getMovesByAction(action: MoveAction, quarter?: Quarter): Move[] 
   return MERGED_MOVES.filter((m) => m.action === action && (!quarter || m.quarter === quarter));
 }
 
-/** Latest quarter with data. */
-export const LATEST_QUARTER: Quarter = "2025-Q4";
+/** Latest quarter with data. Bumped 2026-05-16 after EDGAR Q1 2026 13F fetch (4,023 moves across 27 tracked managers, filing deadline 2026-05-15). */
+export const LATEST_QUARTER: Quarter = "2026-Q1";
 
 /** All moves with manager display name + fund joined in. */
 // Module-level memo — MERGED_MOVES is thousands of rows and getConviction
