@@ -311,7 +311,7 @@ export default function DesignPage() {
         </p>
         <div className="grid md:grid-cols-3 gap-3">
           <div className="rounded-card border border-border bg-panel p-5">
-            <div className="text-eyebrow text-brand">Top signals · Q4 2025</div>
+            <div className="text-eyebrow text-brand">Top signals · Q1 2026</div>
             <div className="text-heading-2 mt-2 text-text">What to buy</div>
           </div>
           <div className="rounded-card border border-border bg-panel p-5">

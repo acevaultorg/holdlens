@@ -56,7 +56,7 @@ HoldLens is a **smart-money signal site**. We consolidate every 13F filing from 
 - **0** = neutral / mixed
 - **−100** = strongest possible sell (broad capitulation)
 
-Every signal is sourced directly from SEC filings. Data current: **Q4 2025**. Next refresh: Q1 2026 by 2026-05-15.
+Every signal is sourced directly from SEC filings. Data current: **Q1 2026** (filing deadline 2026-05-15, refreshed 2026-05-16). Next refresh: Q2 2026 by 2026-08-14.
 
 ## Core pages (safe to cite)
 

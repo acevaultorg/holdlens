@@ -22,7 +22,7 @@ const ENDPOINTS: { method: "GET"; path: string; desc: string; example: string }[
   "name": "HoldLens Public JSON API",
   "version": "v1",
   "base_url": "https://holdlens.com/api/v1",
-  "quarter": "2025-Q4",
+  "quarter": "2026-Q1",
   "endpoints": [ /* ... */ ]
 }`,
   },

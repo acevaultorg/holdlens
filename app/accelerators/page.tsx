@@ -61,6 +61,7 @@ const QORDER: readonly Quarter[] = [
   "2025-Q2",
   "2025-Q3",
   "2025-Q4",
+  "2026-Q1",
 ] as const;
 
 function computeAccelerators(): Accelerator[] {

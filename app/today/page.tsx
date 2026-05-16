@@ -127,7 +127,7 @@ export default function TodayPage() {
           Which portfolios moved today
         </h1>
         <p className="text-lg text-[#8892a0] max-w-3xl">
-          Positions are quarterly (from Q4 2025 13F filings). Prices are live. Here&apos;s how
+          Positions are quarterly (from Q1 2026 13F filings). Prices are live. Here&apos;s how
           each tracked superinvestor&apos;s portfolio performed today.
         </p>
       </div>
@@ -270,7 +270,7 @@ export default function TodayPage() {
       <div className="bg-[#0f141c] border border-[#1e2530] rounded-lg p-5 text-sm text-[#8892a0]">
         <p className="mb-2">
           <strong className="text-white">Data honesty:</strong> Superinvestor positions are from
-          Q4 2025 13F filings (SEC EDGAR). They do NOT change daily — only prices do. This page
+          Q1 2026 13F filings (SEC EDGAR). They do NOT change daily — only prices do. This page
           shows portfolio-weighted day changes based on today&apos;s EOD prices applied to the
           most recent filed positions.
         </p>
