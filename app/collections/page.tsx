@@ -4,12 +4,12 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 export const metadata: Metadata = {
   title: "Collections — topical clusters across /learn | HoldLens",
   description:
-    "Four topical collections covering all 33 HoldLens /learn essays: famous trades, SEC filing mechanics, HoldLens signals + methodology, and capital allocation.",
+    "Four topical collections covering all 34 HoldLens /learn essays: famous trades, SEC filing mechanics, HoldLens signals + methodology, and capital allocation.",
   alternates: { canonical: "https://holdlens.com/collections" },
   openGraph: {
-    title: "HoldLens Collections — 33 essays across 4 topical clusters",
+    title: "HoldLens Collections — 34 essays across 4 topical clusters",
     description:
-      "Four topical collections covering all 33 HoldLens /learn essays.",
+      "Four topical collections covering all 34 HoldLens /learn essays.",
     url: "https://holdlens.com/collections",
     type: "website",
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens Collections" }],
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "HoldLens Collections",
-    description: "33 essays across 4 topical clusters.",
+    description: "34 essays across 4 topical clusters.",
     images: ["/og/home.png"],
   },
 };
@@ -34,8 +34,8 @@ const COLLECTIONS: Collection[] = [
     slug: "famous-trades",
     name: "Famous trades",
     description:
-      "Seven historical trades reconstructable from SEC EDGAR alone — Berkshire/KO, Berkshire/Apple, Burry/Big Short, Ackman/Herbalife, Soros-Druckenmiller/GBP, Munger/Costco, Icahn/Apple.",
-    count: 7,
+      "Eight historical trades reconstructable from SEC EDGAR alone — Berkshire/KO, Berkshire/Apple, Berkshire/BAC 2011, Burry/Big Short, Ackman/Herbalife, Soros-Druckenmiller/GBP, Munger/Costco, Icahn/Apple.",
+    count: 8,
   },
   {
     slug: "sec-filing-mechanics",
@@ -74,7 +74,7 @@ const LD = [
     "@type": "CollectionPage",
     name: "HoldLens Collections — topical clusters",
     description:
-      "Four topical collections grouping the 33 HoldLens /learn essays by theme.",
+      "Four topical collections grouping the 34 HoldLens /learn essays by theme.",
     url: "https://holdlens.com/collections",
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
@@ -97,7 +97,7 @@ export default function CollectionsIndexPage() {
       </h1>
       <p className="text-lg text-muted leading-relaxed mb-10">
         Every HoldLens /learn essay is grouped into one of four topical clusters. Each
-        collection has its own hub page; the full /learn index (33 essays) is at{" "}
+        collection has its own hub page; the full /learn index (34 essays) is at{" "}
         <a href="/learn" className="text-brand underline">/learn</a>.
       </p>
 
@@ -123,7 +123,7 @@ export default function CollectionsIndexPage() {
       </div>
 
       <p className="text-xs text-dim pt-8 border-t border-border mt-8">
-        Machine-readable index of all 33 essays:{" "}
+        Machine-readable index of all 34 essays:{" "}
         <a href="/api/v1/learn.json" className="underline">
           /api/v1/learn.json
         </a>

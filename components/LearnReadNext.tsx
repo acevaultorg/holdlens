@@ -49,6 +49,7 @@ const LEARN_SEQUENCE: Article[] = [
   { slug: "rule-144-holding-period", title: "Rule 144 holding period", desc: "When corporate insiders can sell — 6-month vs 12-month rules." },
   { slug: "buffett-coca-cola-trade", title: "Warren Buffett's Coca-Cola trade", desc: "Berkshire's 1988-89 KO purchase — $1.3B → $28B+ position, untouched for 37 years." },
   { slug: "buffett-apple-position", title: "Warren Buffett's Apple position", desc: "Berkshire's 2016-onward AAPL accumulation — largest equity position in firm history. Q1 2016 entry · 2024 partial trim · ongoing." },
+  { slug: "buffett-bank-of-america-2011", title: "Warren Buffett's Bank of America 2011 deal", desc: "The $5B preferred + 700M-share warrants at $7.14 strike. ~$13B paper gain at 2017 warrant exercise. Top-3 Berkshire holding ever since." },
   { slug: "burry-big-short", title: "Michael Burry's Big Short", desc: "Scion Capital's 2005-2008 subprime CDS trade — ~489% net return." },
   { slug: "ackman-herbalife-short", title: "Bill Ackman's Herbalife short", desc: "Pershing Square's 2012-2018 multi-year activist short campaign." },
   { slug: "soros-druckenmiller-gbp-1992", title: "Black Wednesday — Soros, Druckenmiller, and the pound trade", desc: "The single-day macro trade that broke the Bank of England." },

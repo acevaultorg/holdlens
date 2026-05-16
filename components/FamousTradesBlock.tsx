@@ -16,6 +16,11 @@ const TRADES: Trade[] = [
     blurb: "Berkshire's 2016-onward AAPL accumulation — largest equity position in firm history.",
   },
   {
+    slug: "buffett-bank-of-america-2011",
+    title: "Warren Buffett's Bank of America 2011 deal",
+    blurb: "The $5B preferred + 700M-share warrants at $7.14 strike. ~$13B paper gain at 2017 exercise.",
+  },
+  {
     slug: "burry-big-short",
     title: "Michael Burry's Big Short",
     blurb: "Scion Capital's 2005-2008 subprime CDS trade — ~489% net return.",

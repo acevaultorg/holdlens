@@ -71,10 +71,11 @@ const out = {
   collections: {
     famous_trades: {
       name: "Famous trades — public-record case studies",
-      description: "Seven historical trades reconstructable from SEC EDGAR alone (Berkshire/KO 1988, Berkshire/Apple 2016-onward, Burry/Big Short 2005-08, Ackman/Herbalife 2012-18, Soros-Druckenmiller/GBP 1992, Munger/Costco 1997-2023, Icahn/Apple 2013-16). Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+      description: "Eight historical trades reconstructable from SEC EDGAR alone (Berkshire/KO 1988, Berkshire/Apple 2016-onward, Berkshire/BAC 2011 preferred+warrants, Burry/Big Short 2005-08, Ackman/Herbalife 2012-18, Soros-Druckenmiller/GBP 1992, Munger/Costco 1997-2023, Icahn/Apple 2013-16). Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
       slugs: [
         "buffett-coca-cola-trade",
         "buffett-apple-position",
+        "buffett-bank-of-america-2011",
         "burry-big-short",
         "ackman-herbalife-short",
         "soros-druckenmiller-gbp-1992",

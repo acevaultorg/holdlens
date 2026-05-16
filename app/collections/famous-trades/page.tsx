@@ -5,12 +5,12 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 export const metadata: Metadata = {
   title: "Famous trades — public-record case studies | HoldLens",
   description:
-    "Seven historical trades reconstructable from SEC EDGAR alone: Berkshire/Coca-Cola, Berkshire/Apple, Burry/Big Short, Ackman/Herbalife, Soros-Druckenmiller/GBP, Munger/Costco, Icahn/Apple. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+    "Eight historical trades reconstructable from SEC EDGAR alone: Berkshire/Coca-Cola, Berkshire/Apple, Berkshire/Bank of America, Burry/Big Short, Ackman/Herbalife, Soros-Druckenmiller/GBP, Munger/Costco, Icahn/Apple. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
   alternates: { canonical: "https://holdlens.com/collections/famous-trades" },
   openGraph: {
     title: "Famous trades — public-record case studies",
     description:
-      "Seven historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+      "Eight historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
     url: "https://holdlens.com/collections/famous-trades",
     type: "website",
     images: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Famous trades — public-record case studies",
-    description: "Seven historical trades reconstructable from SEC EDGAR alone.",
+    description: "Eight historical trades reconstructable from SEC EDGAR alone.",
     images: ["/og/home.png"],
   },
 };
@@ -48,6 +48,14 @@ const TRADES: Trade[] = [
     blurb:
       "Berkshire built Apple into its largest-ever equity position from a Q1 2016 ~9.8M-share entry. Peaked at ~5.5% of Apple's outstanding stock and ~50% of Berkshire's public-equity portfolio. Partial trim in 2024; still Berkshire's #1 holding.",
     period: "2016 entry · 2024 partial trim · ongoing",
+    protagonist: "Warren Buffett · Berkshire Hathaway",
+  },
+  {
+    slug: "buffett-bank-of-america-2011",
+    title: "Warren Buffett's Bank of America 2011 deal",
+    blurb:
+      "August 2011: Berkshire invested $5B in BAC preferred stock + warrants for 700M common shares at $7.14 strike. Six years later Berkshire exercised the warrants at ~$13B paper gain. The canonical 'structured private investment' template, joining Goldman 2008 + GE 2008 + Heinz 2013.",
+    period: "2011 deal · 2017 warrant exercise · 2024 partial trim · ongoing",
     protagonist: "Warren Buffett · Berkshire Hathaway",
   },
   {
@@ -107,7 +115,7 @@ const LD = [
     "@type": "CollectionPage",
     name: "Famous trades — public-record case studies",
     description:
-      "Seven historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
+      "Eight historical trades reconstructable from SEC EDGAR alone. Each essay traces the trade through 13F, Form 4, and DEF 14A filings.",
     url: "https://holdlens.com/collections/famous-trades",
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
@@ -144,7 +152,7 @@ export default function FamousTradesCollectionPage() {
         Famous trades — public-record case studies
       </h1>
       <p className="text-lg text-muted leading-relaxed mb-10">
-        Seven historical trades reconstructable from SEC EDGAR alone. Each essay traces the
+        Eight historical trades reconstructable from SEC EDGAR alone. Each essay traces the
         trade through 13F filings, Form 4 insider disclosures, and DEF 14A proxy statements —
         showing exactly what the public record reveals AND what it structurally cannot show
         (CDS positions, FX trades, derivatives, and shorts are all 13F-invisible).
