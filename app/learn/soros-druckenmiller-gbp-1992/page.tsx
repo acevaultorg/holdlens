@@ -52,6 +52,21 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "George Soros",
+      "Stanley Druckenmiller",
+      "Quantum Fund",
+      "Black Wednesday",
+      "British pound",
+      "European Exchange Rate Mechanism",
+      "Bank of England",
+      "macro trade",
+    ],
+    isPartOf: {
+      "@type": "CreativeWorkSeries",
+      name: "HoldLens famous trades — public-record case studies",
+      url: "https://holdlens.com/learn",
+    },
     citation: [
       "https://en.wikipedia.org/wiki/Black_Wednesday",
       "https://en.wikipedia.org/wiki/George_Soros",

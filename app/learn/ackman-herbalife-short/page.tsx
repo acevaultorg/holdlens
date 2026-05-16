@@ -52,6 +52,21 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Bill Ackman",
+      "Pershing Square",
+      "Herbalife",
+      "activist short",
+      "multi-level marketing",
+      "short squeeze",
+      "Carl Icahn",
+      "FTC investigation",
+    ],
+    isPartOf: {
+      "@type": "CreativeWorkSeries",
+      name: "HoldLens famous trades — public-record case studies",
+      url: "https://holdlens.com/learn",
+    },
     citation: [
       "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001336528&type=13F-HR",
       "https://en.wikipedia.org/wiki/Bill_Ackman",

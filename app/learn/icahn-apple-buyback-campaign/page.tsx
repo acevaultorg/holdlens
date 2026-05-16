@@ -52,6 +52,21 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Carl Icahn",
+      "Apple Inc.",
+      "share repurchase",
+      "activist long",
+      "Tim Cook letter",
+      "13F filing",
+      "Icahn Enterprises",
+      "buyback campaign",
+    ],
+    isPartOf: {
+      "@type": "CreativeWorkSeries",
+      name: "HoldLens famous trades — public-record case studies",
+      url: "https://holdlens.com/learn",
+    },
     citation: [
       "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000921669&type=13F-HR",
       "https://en.wikipedia.org/wiki/Carl_Icahn",

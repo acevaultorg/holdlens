@@ -52,6 +52,21 @@ const LD = [
     dateModified: "2026-05-16",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
+    keywords: [
+      "Warren Buffett",
+      "Berkshire Hathaway",
+      "Coca-Cola Company",
+      "KO 1988 purchase",
+      "13F filings",
+      "concentrated value investing",
+      "long-duration hold",
+      "dividend compounding",
+    ],
+    isPartOf: {
+      "@type": "CreativeWorkSeries",
+      name: "HoldLens famous trades — public-record case studies",
+      url: "https://holdlens.com/learn",
+    },
     citation: [
       "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001067983&type=13F-HR",
       "https://en.wikipedia.org/wiki/Berkshire_Hathaway",
