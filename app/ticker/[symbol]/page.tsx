@@ -73,10 +73,74 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
     ],
   };
 
+  // FAQPage + Speakable — AEO Part 14 minimums per rules/seo-geo-mastery.md.
+  // PAA-style questions for ticker-ownership queries drive Google rich-result
+  // + AI Overview + featured-snippet eligibility on high-volume "Who owns X?",
+  // "How many hedge funds hold X?", "biggest holder of X" search class.
+  // Visible FAQ below mirrors the schema. Speakable cssSelector targets the
+  // ticker description + FAQ answers. One FAQ block per page (v18 LEARNED
+  // faq_schema_spam × -10 respected). Factual answers only — no verdict
+  // labels (preserves Pivot A compliance per I-43 + rules/google-policy-
+  // compliance.md).
+  const topOwner = [...t.owners].sort((a, b) => b.pct - a.pct)[0];
+  const tickerUrl = `https://holdlens.com/ticker/${t.symbol}`;
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${tickerUrl}#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `Who owns ${t.symbol}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${t.ownerCount} tracked superinvestors hold ${t.name} (${t.symbol}) as a top position based on the latest SEC 13F filings. ${topOwner ? `Largest tracked holder: ${topOwner.manager} at ${topOwner.pct.toFixed(1)}% of portfolio.` : ""} Full ranking by % of portfolio shown in the table below.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How many hedge funds hold ${t.symbol}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${t.ownerCount} of HoldLens's tracked superinvestors hold ${t.symbol} according to the latest SEC 13F filings. The sum of conviction across those holders is ${t.totalConviction.toFixed(0)}% (sum of each manager's % of portfolio in ${t.symbol}).`,
+        },
+      },
+      ...(topOwner ? [{
+        "@type": "Question",
+        name: `Who is the biggest hedge-fund holder of ${t.symbol}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Among HoldLens's tracked superinvestors, ${topOwner.manager} holds the largest ${t.symbol} position at ${topOwner.pct.toFixed(1)}% of portfolio. ${topOwner.thesis || ""}`.trim(),
+        },
+      }] : []),
+      {
+        "@type": "Question",
+        name: `What sector is ${t.symbol}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${t.name} (${t.symbol}) is classified as ${t.sector || "Other"}. Smart-money activity, insider trades (SEC Form 4), buybacks, short interest, congressional trades, and ETF ownership for ${t.symbol} are all aggregated on this page.`,
+        },
+      },
+    ],
+  };
+  const speakableLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${tickerUrl}#webpage`,
+    url: tickerUrl,
+    name: `${t.symbol} hedge-fund ownership — HoldLens`,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".hl-ticker-summary", ".hl-faq-answer"],
+    },
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableLd) }} />
       <a href="/ticker" className="text-xs text-muted hover:text-text">← All tickers</a>
 
       <div className="mt-6 flex items-start justify-between gap-4 flex-wrap">
@@ -86,7 +150,7 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
             <TickerLogo symbol={t.symbol} size={48} />
             <span className="text-brand">{t.symbol}</span>
           </h1>
-          <p className="text-muted text-lg mt-2">{t.name} · {t.sector}</p>
+          <p className="hl-ticker-summary text-muted text-lg mt-2">{t.name} · {t.sector}</p>
         </div>
         <StarButton symbol={t.symbol} />
       </div>
@@ -249,6 +313,25 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
           into a second page-view without any new client JS. */}
       <section className="mt-16 pt-10 border-t border-border">
         <RelatedSignals symbol={t.symbol} />
+      </section>
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD for
+          Google rich-result + AI Overview eligibility on "Who owns X?" /
+          "How many hedge funds hold X?" / "biggest holder of X" queries
+          per Part 14.4). Factual answers only — no verdict labels per
+          Pivot A compliance (I-43). Visible <details> accordion. */}
+      <section className="mt-16">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4 open:border-brand/40">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">
+                {q.acceptedAnswer.text}
+              </p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <p className="text-xs text-dim mt-16">
