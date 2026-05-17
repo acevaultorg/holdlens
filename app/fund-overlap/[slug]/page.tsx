@@ -119,10 +119,56 @@ export default async function FundOverlapPair({
     ],
   };
 
+  // FAQPage — AEO Part 14 minimums per rules/seo-geo-mastery.md.
+  // PAA-style questions for fund-overlap pair lookups. Factual answers
+  // derived from pair.overlapCount, pair.jaccard, pair.shared[0],
+  // pair.jointConviction. No verdict labels (Pivot A safe per I-43).
+  const topShared = pair.shared[0];
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How many stocks do ${pair.a.name} and ${pair.b.name} both hold?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Both ${pair.a.name} (${pair.a.fund}) and ${pair.b.name} (${pair.b.fund}) hold ${pair.overlapCount} of the same stocks per their latest SEC Form 13F filings — a Jaccard overlap of ${(pair.jaccard * 100).toFixed(1)}% across portfolios of ${pair.sizeA} and ${pair.sizeB} positions.`,
+        },
+      },
+      ...(topShared ? [{
+        "@type": "Question",
+        name: `What is the biggest shared position between ${pair.a.name} and ${pair.b.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Highest joint-conviction shared position: ${topShared.ticker}. Joint conviction is the sum of each investor's portfolio weight in the same stock. The complete ranked list (top 25) is in the table below; full data sourced from each fund's latest 13F filing (45-day SEC lag applies).`,
+        },
+      }] : []),
+      {
+        "@type": "Question",
+        name: `What is the Jaccard overlap between ${pair.a.name} and ${pair.b.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${(pair.jaccard * 100).toFixed(1)}% — the Jaccard coefficient between ${pair.a.fund}'s and ${pair.b.fund}'s tracked long positions. Calculated as |A ∩ B| / |A ∪ B| over shared tickers. Higher means more portfolio convergence; 0% means no shared names.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What is "joint conviction" on HoldLens?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Joint conviction is the sum of ${pair.a.name}'s and ${pair.b.name}'s respective portfolio weights in a shared stock. ${pair.jointConviction.toFixed(1)}% is the combined weight across all shared names — a descriptive measure of how much portfolio capacity both managers concentrate in overlapping positions, not a recommendation.`,
+        },
+      },
+    ],
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
 
       <nav className="text-xs uppercase tracking-widest text-muted mb-4" aria-label="Breadcrumb">
         <Link href="/" className="hover:text-brand">HoldLens</Link>
@@ -252,6 +298,24 @@ export default async function FundOverlapPair({
           factual portfolio comparison, not investment advice. Always
           verify against the source filing before acting.
         </p>
+      </section>
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD for
+          Google rich-result + AI Overview eligibility on fund-overlap
+          pair queries per Part 14.4). Factual answers only — no verdict
+          labels (preserves Pivot A I-43 compliance). */}
+      <section className="mt-10">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4 open:border-brand/40">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">
+                {q.acceptedAnswer.text}
+              </p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <div className="mt-12 border-t border-border pt-6 text-sm">
