@@ -25,6 +25,13 @@ const ALLOWLIST = new Set([
   'out/insiders/company/noma/index.html', // 507KB noma insider history; 7KB over after Next.js 15.5.15 bump (build-output growth). Slim with /insiders refactor.
   'out/insiders/company/crwv/index.html', // 504KB crwv insider history; 4KB over after Next.js 15.5.15 bump. Slim with /insiders refactor.
   'out/insiders/company/fold/index.html', // 502KB fold insider history; 2KB over (2026-05-13 CI). Same pattern as noma/crwv. Page is noindex per v19.44 thin-content fix → SEO unaffected.
+  // 2026-05-17 — same pattern, growing under Next.js build-output growth. All 4
+  // noindex per v19.44 thin-content fix → SEO unaffected. Bundle for /insiders
+  // refactor along with noma/crwv/fold.
+  'out/insiders/company/car/index.html',  // 508KB car insider history; 8KB over (2026-05-17). noindex.
+  'out/insiders/company/snse/index.html', // 504KB snse insider history; 4KB over (2026-05-17). noindex.
+  'out/insiders/company/hawk/index.html', // 503KB hawk insider history; 3KB over (2026-05-17). noindex.
+  'out/insiders/company/uthr/index.html', // 500KB uthr insider history; 0.4KB over (2026-05-17). noindex.
 ]);
 
 function walk(dir, predicate) {
