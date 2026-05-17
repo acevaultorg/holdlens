@@ -228,6 +228,69 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
     mainEntity: { "@id": `https://holdlens.com/investor/${m.slug}#person` },
     ...(filing?.latestDate ? { datePublished: `${filing.latestDate}T00:00:00Z` } : {}),
     dateModified: BUILD_ISO,
+    // Speakable — AEO Part 14.5 voice-search eligibility per rules/seo-geo-mastery.md.
+    // cssSelector targets bio + TL;DR + FAQ answers. ProfilePage extends WebPage
+    // which natively accepts speakable. Voice assistants extract these on
+    // "who is [investor]" / "what does [investor] invest in" queries.
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".hl-investor-bio", ".hl-investor-tldr", ".hl-faq-answer"],
+    },
+  };
+
+  // FAQPage — AEO Part 14 minimums per rules/seo-geo-mastery.md.
+  // PAA-style questions for investor lookups ("Who is X?", "What does X
+  // invest in?", "What fund does X run?", "What is X's net worth?") drive
+  // Google rich-result + AI Overview + featured-snippet eligibility on the
+  // highest-volume superinvestor query class (291 investor pages × ownership
+  // queries). Factual answers only — no verdict labels (preserves Pivot A
+  // compliance per I-43 + rules/google-policy-compliance.md).
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `https://holdlens.com/investor/${m.slug}#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `Who is ${m.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${m.name} runs ${m.fund} as ${m.role.toLowerCase()}. ${m.bio || `${m.name} files SEC Form 13F-HR quarterly disclosing the firm's US-listed equity positions.`}`.slice(0, 500),
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What fund does ${m.name} run?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${m.name} is ${m.role.toLowerCase()} of ${m.fund}. ${m.fund} files SEC Form 13F-HR quarterly with the latest disclosure dated ${filing?.latestDate || "the most recent quarter"}${filing?.quarter ? ` (${filing.quarter})` : ""}. Full holdings, share counts, dollar values, and quarter-over-quarter changes are listed below.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What does ${m.name} invest in?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${m.name}'s ${m.fund} portfolio is disclosed quarterly via SEC Form 13F-HR. Each position below shows the ticker, share count, dollar value, percentage of portfolio, and quarter-over-quarter change. Data is sourced directly from SEC filings (public-domain regulatory disclosure).`,
+        },
+      },
+      ...(m.philosophy ? [{
+        "@type": "Question",
+        name: `What is ${m.name}'s investment philosophy?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${m.name}'s stated investment philosophy: "${m.philosophy}". ${m.name} has been ${m.role.toLowerCase()} of ${m.fund}${m.netWorth ? `; estimated net worth ${m.netWorth}` : ""}.`,
+        },
+      }] : []),
+      ...(m.netWorth ? [{
+        "@type": "Question",
+        name: `What is ${m.name}'s net worth?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${m.name}'s estimated net worth is ${m.netWorth}. ${m.name} runs ${m.fund} as ${m.role.toLowerCase()}; full 13F holdings disclosed quarterly with the SEC are listed below.`,
+        },
+      }] : []),
+    ],
   };
   // Dataset schema — the 13F holdings table IS unique structured data per
   // Aleyda 10-character LLM-citation checklist (#2 Useful, #8 Differentiated).
@@ -282,6 +345,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
         <a
@@ -297,7 +361,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">{m.name}</h1>
       </div>
       <p className="text-muted text-lg">{m.fund} · {m.role} · Net worth: {m.netWorth}</p>
-      <p className="mt-4 text-text leading-relaxed max-w-2xl">{m.bio}</p>
+      <p className="hl-investor-bio mt-4 text-text leading-relaxed max-w-2xl">{m.bio}</p>
       <div className="mt-3 text-sm text-muted italic">"{m.philosophy}"</div>
 
       {/* TL;DR — above-fold quote-ready summary. LLMs (GPTBot, ClaudeBot,
@@ -311,7 +375,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
         <div className="text-[10px] uppercase tracking-widest text-emerald-400 font-bold mb-2">
           TL;DR
         </div>
-        <p className="text-sm text-text leading-relaxed">
+        <p className="hl-investor-tldr text-sm text-text leading-relaxed">
           <strong>{m.name}</strong> runs <strong>{m.fund}</strong> as {m.role.toLowerCase()}.
           {tldrTopHolding && (
             <>
@@ -843,6 +907,25 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           </section>
         );
       })()}
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD for
+          Google rich-result + AI Overview eligibility on investor-lookup
+          queries: "Who is X?", "What does X invest in?", "What fund does X
+          run?" per Part 14.4). Factual answers only — no verdict labels
+          per Pivot A compliance (I-43). Visible <details> accordion. */}
+      <section className="mt-16">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4 open:border-brand/40">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">
+                {q.acceptedAnswer.text}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <p className="text-xs text-dim mt-16">
         Data sourced from {m.fund} 13F filings with the SEC. Approximate snapshot. Not investment advice.
