@@ -198,6 +198,52 @@ export default async function QuarterPage({
       inLanguage: "en-US",
       image: "https://holdlens.com/og/home.png",
     },
+    // FAQPage + Speakable per rules/seo-geo-mastery.md Part 14.
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": `${pageUrl}#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: `How many 13F moves filed in ${label}?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `${moves.length} tracked 13F moves filed in ${label}: ${news.length} new positions, ${adds.length} adds, ${trims.length} trims, ${exits.length} exits. Across ${activeManagers} active managers and ${uniqueTickers} unique tickers. Filed with SEC ${filedAt}.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `Were superinvestors net buyers or sellers in ${label}?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `${label} net action: ${buyCount} buy-side moves (${news.length} new + ${adds.length} adds) vs ${sellCount} sell-side moves (${trims.length} trims + ${exits.length} exits). Net: ${buyCount > sellCount ? `+${buyCount - sellCount} (net accumulation)` : `${buyCount - sellCount} (net distribution)`}. Full breakdown by sector + manager below.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `When are ${label} 13F filings released?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `Form 13F-HR is filed within 45 days of quarter-end per SEC regulation. ${label} filings completed by ${filedAt}. HoldLens aggregates positions across 82 tracked superinvestors as filings arrive — see /methodology for refresh cadence + lag windows.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `Where does ${label} 13F data come from?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `SEC EDGAR Form 13F-HR filings (45-day statutory lag from quarter-end). HoldLens federates positions across 82 tracked superinvestors and computes deltas (new / add / trim / exit) per ticker per filing. Quarterly cadence; ${label} = SEC filing window ending ${filedAt}.`,
+          },
+        },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${pageUrl}#speakable`,
+      speakable: { "@type": "SpeakableSpecification", cssSelector: [".hl-quarter-intro"] },
+    },
   ];
 
   return (
@@ -213,7 +259,7 @@ export default async function QuarterPage({
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         {label} — superinvestor 13F recap
       </h1>
-      <p className="text-muted text-lg max-w-2xl mb-4">
+      <p className="hl-quarter-intro text-muted text-lg max-w-2xl mb-4">
         {moves.length} tracked 13F moves filed by{" "}
         <span className="text-text font-semibold">{activeManagers}</span> managers across{" "}
         <span className="text-text font-semibold">{uniqueTickers}</span> tickers. Filed with
@@ -560,6 +606,19 @@ export default async function QuarterPage({
         url={pageUrl}
         via="holdlens"
       />
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD in LD[2]). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {((LD[2] as { mainEntity: Array<{ name: string; acceptedAnswer: { text: string } }> }).mainEntity).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">{q.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <p className="text-xs text-dim mt-12">
         Based on publicly filed 13Fs for {label}, filed with the SEC on{" "}

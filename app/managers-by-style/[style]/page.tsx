@@ -79,10 +79,59 @@ export default async function StylePage({ params }: { params: Promise<StyleParam
     },
   };
 
+  // FAQPage + Speakable per rules/seo-geo-mastery.md Part 14.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `https://holdlens.com/managers-by-style/${meta.slug}/#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `Who are the ${meta.name.toLowerCase()} superinvestors?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${managers.length} tracked superinvestors classified as ${meta.name.toLowerCase()} investors on HoldLens: ${managers.slice(0, 5).map((m) => `${m.name} (${m.fund})`).join(", ")}${managers.length > 5 ? `, plus ${managers.length - 5} more` : ""}. Each individual investor page lists their full SEC 13F holdings + recent activity.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What is ${meta.name.toLowerCase()} investing?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${meta.description} Signature behavior: ${meta.signature}`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How does ${meta.name.toLowerCase()} investing differ from other styles?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: meta.contrast,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How does HoldLens classify investing styles?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Style classifications reflect each manager's most-publicly-known posture from interviews, letters, and 13F-disclosed long-only equity book. Some managers operate across multiple styles; this taxonomy uses the most observable one. Other tracked styles: ${otherStyles.slice(0, 5).map((s) => s.name).join(", ")}.`,
+        },
+      },
+    ],
+  };
+  const speakableLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `https://holdlens.com/managers-by-style/${meta.slug}/#speakable`,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: [".hl-mbs-intro"] },
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableLd) }} />
 
       <nav className="text-xs text-muted">
         <Link href="/managers-by-style/" className="hover:text-text">All styles</Link>
@@ -97,7 +146,7 @@ export default async function StylePage({ params }: { params: Promise<StyleParam
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
           {meta.name} superinvestors: {managers.length} tracked on HoldLens
         </h1>
-        <p className="text-muted text-lg mt-4 leading-relaxed">{meta.description}</p>
+        <p className="hl-mbs-intro text-muted text-lg mt-4 leading-relaxed">{meta.description}</p>
       </header>
 
       <section className="mt-10">
@@ -152,6 +201,19 @@ export default async function StylePage({ params }: { params: Promise<StyleParam
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">{q.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <footer className="mt-16 pt-8 border-t border-border text-xs text-dim">

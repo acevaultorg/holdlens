@@ -103,6 +103,55 @@ export default async function BuybackTickerPage({
     ],
   };
 
+  // FAQPage + Speakable per rules/seo-geo-mastery.md Part 14.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${pageUrl}/#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How much did ${p.ticker} repurchase in ${p.latestFyLabel}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${p.companyName} (${p.ticker}) repurchased ${formatBuybackAmount(p.latestFyRepurchased)} of its own shares in ${p.latestFyLabel}${p.authorizationSize ? `. Board-authorized buyback ceiling: $${(p.authorizationSize / 1e9).toFixed(1)}B` : ""}${p.buybackYieldPct != null ? `. Buyback yield (annual repurchase / market cap): ${p.buybackYieldPct}%` : ""}. Source: ${p.source.filingType} filed ${p.source.filingDate}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What is ${p.ticker}'s buyback yield?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: p.buybackYieldPct != null
+            ? `${p.ticker} buyback yield is ${p.buybackYieldPct}% (annual repurchase ÷ market cap). HoldLens rank by yield: #${rankYield}; rank by $ repurchased: #${rankDollar} of ${BUYBACK_PROGRAMS.length} tracked buyback programs.`
+            : `${p.ticker} buyback yield is not yet computed (market cap data pending). Rank by $ repurchased: #${rankDollar} of ${BUYBACK_PROGRAMS.length} tracked buyback programs.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Does a buyback signal that ${p.ticker} is undervalued?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Buybacks are typically interpreted as a signal that management considers shares undervalued — but they can also reflect capital-return preference over reinvestment, or executive-comp dilution offset. The signal depends on price-discipline (buying low vs at peaks), payout ratio sustainability, and concurrent insider transactions. HoldLens displays the raw data without verdict labels; see /methodology for analytical framing.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Where does HoldLens get ${p.ticker} buyback data?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `SEC filings (${p.source.filingType} filed ${p.source.filingDate}). Buyback figures cross-checked against the company's annual report and quarterly 10-Q updates. HoldLens does not estimate — every figure cites its filing source. See /methodology for refresh cadence.`,
+        },
+      },
+    ],
+  };
+  const speakableLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${pageUrl}/#speakable`,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: [".hl-buyback-intro"] },
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-12">
       <script
@@ -113,6 +162,8 @@ export default async function BuybackTickerPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableLd) }} />
 
       <a href="/buybacks" className="text-xs text-muted hover:text-text">
         ← All buybacks
@@ -128,7 +179,7 @@ export default async function BuybackTickerPage({
             <span className="text-brand">{p.ticker}</span>{" "}
             <span className="text-muted">buyback program</span>
           </h1>
-          <p className="text-muted mt-1">
+          <p className="hl-buyback-intro text-muted mt-1">
             {p.companyName} · {p.sector}
             {getTicker(p.ticker) && (
               <>
@@ -267,6 +318,19 @@ export default async function BuybackTickerPage({
           buybacks vs dividends
         </a>
         .
+      </section>
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">{q.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
       </section>
     </div>
   );

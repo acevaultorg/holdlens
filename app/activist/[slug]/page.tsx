@@ -77,10 +77,59 @@ export default async function ActivistDetailPage({
     ],
   };
 
+  // FAQPage + Speakable per rules/seo-geo-mastery.md Part 14.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `https://holdlens.com/activist/${c.slug}/#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `What stake does ${c.activistFund} hold in ${c.targetTicker}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${c.activistFund} (${c.activistName}) holds ${formatStake(c.stakePct)} of ${c.targetCompany} (${c.targetTicker}) via ${c.filingType} filed ${c.filingDate}. Initial filing date: ${c.initialFilingDate}. ${c.intent === "active" ? "Active campaign — fund publicly seeks operational or governance changes." : c.intent === "event-driven" ? "Event-driven — fund positioning for an upcoming corporate event." : "Passive 13G — fund signals long-term holding without active campaign."}`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What is ${c.activistFund}'s thesis for ${c.targetTicker}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: c.thesis ?? `Public thesis not disclosed in filing. ${c.filingType} filings reveal the position but not always the rationale. Check ${c.activistFund}'s investor letters or media interviews for further context.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What's the difference between 13D and 13G filings?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Both are filed when a fund crosses 5% ownership of a public company. SCHEDULE 13D = active intent (the fund plans to influence management, board, M&A, or capital allocation). SCHEDULE 13G = passive intent (long-term position, no active influence). 13D filings carry stricter disclosure (10-day window from purchase); 13G is for long-only managers + index funds. ${c.targetTicker} filing type: ${c.filingType}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Where does HoldLens get activist filing data?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `SEC EDGAR Schedule 13D and 13G filings (10-day disclosure window for 13D; 45-day initial window for 13G then amendments as positions change). HoldLens federates campaigns across tracked activist funds and computes stake-change deltas over time. See /methodology for the full source list.`,
+        },
+      },
+    ],
+  };
+  const speakableLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `https://holdlens.com/activist/${c.slug}/#speakable`,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: [".hl-activist-intro"] },
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableLd) }} />
 
       <a href="/activist" className="text-xs text-muted hover:text-text">
         ← All activist campaigns
@@ -92,7 +141,7 @@ export default async function ActivistDetailPage({
       <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-3">
         {c.activistFund} → <span className="text-brand">{c.targetTicker}</span>
       </h1>
-      <p className="text-muted text-lg mb-8">
+      <p className="hl-activist-intro text-muted text-lg mb-8">
         {c.activistName} holds {formatStake(c.stakePct)} of {c.targetCompany}.
       </p>
 
@@ -191,6 +240,19 @@ export default async function ActivistDetailPage({
           </a>
         </section>
       )}
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">{q.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <p className="text-xs text-dim mt-16">
         Data sourced from SEC EDGAR 13D / 13G filings. Activist intent and

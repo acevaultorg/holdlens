@@ -190,6 +190,58 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
         })),
       },
     },
+    // FAQPage JSON-LD — AEO Part 14 minimums per rules/seo-geo-mastery.md.
+    // PAA-style factual questions for sector queries (no verdict labels —
+    // preserves I-43 Pivot A YMYL compliance: data-display only).
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": `${pageUrl}#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: `Which superinvestors hold the most ${sector.toLowerCase()} stocks?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `${tickers.length} ${sector.toLowerCase()} tickers are held across ${totalOwners} fund-holdings positions by tracked superinvestors${top3.length > 0 && top3[0] ? `. Top by ConvictionScore: ${top3.map(t => `${t.symbol} (${formatSignedScore(t.convictionScore)})`).join(", ")}` : ""}. Each ticker page lists every fund holding it with weight + recent buy/sell quarter.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `How many ${sector.toLowerCase()} stocks does HoldLens track?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `${tickers.length} ${sector.toLowerCase()} tickers with at least one tracked superinvestor holding. ${strongBuys} have ConvictionScore ≥+20 (strong accumulation signal); ${strongSells} ≤-20 (strong distribution). Sector-average ConvictionScore: ${avgConviction.toFixed(1)}.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `What is ConvictionScore for the ${sector.toLowerCase()} sector?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `ConvictionScore is HoldLens's composite signal aggregating SEC 13F filings: each fund's position size + weight + recent buy/sell direction. Computed per-ticker across 82 tracked superinvestors. Sector mean ${avgConviction.toFixed(1)}, range ${tickers[tickers.length-1].convictionScore} to ${tickers[0].convictionScore}. Methodology: /learn/how-conviction-score-works (positive = accumulation, negative = distribution; descriptive metric only, not investment advice).`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `Where does the ${sector.toLowerCase()} smart-money data come from?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `SEC 13F-HR filings (45-day lag per SEC regulation), updated quarterly. HoldLens federates positions across 82 tracked superinvestors + computes ConvictionScore deltas. Data is current as of the most recent filing window; see /methodology for full source list + refresh cadence.`,
+          },
+        },
+      ],
+    },
+    // Speakable schema — voice-assistant eligibility per AEO Part 14.5.
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${pageUrl}#speakable`,
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: [".hl-sector-intro"],
+      },
+    },
   ];
 
   return (
@@ -203,7 +255,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
         Sector · smart-money dashboard
       </div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">{sector}</h1>
-      <p className="text-muted text-lg max-w-2xl mb-4">
+      <p className="hl-sector-intro text-muted text-lg max-w-2xl mb-4">
         {tickers.length} {sector.toLowerCase()} tickers held by tracked superinvestors,
         ranked by <span className="text-brand font-semibold">ConvictionScore</span> —
         not by popularity or market cap.
@@ -538,6 +590,24 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
           <span className="text-rose-400">trims and exits count negative</span>. Positive
           net flow means smart money is increasing exposure to {sector.toLowerCase()}.
         </p>
+      </section>
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {((LD[2] as { mainEntity: Array<{ name: string; acceptedAnswer: { text: string } }> }).mainEntity).map((q, i) => (
+            <details
+              key={i}
+              className="rounded-xl border border-border bg-panel p-4"
+            >
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">
+                {q.acceptedAnswer.text}
+              </p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <p className="text-xs text-dim mt-12">

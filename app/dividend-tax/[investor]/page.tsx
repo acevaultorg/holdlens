@@ -96,10 +96,59 @@ export default async function InvestorCountryPage(
     (r) => r.cell && (r.cell.state === "verified" || r.cell.state === "derived"),
   ).length;
 
+  // FAQPage + Speakable per rules/seo-geo-mastery.md Part 14.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `https://holdlens.com/dividend-tax/${country.code.toLowerCase()}/#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `What dividend withholding tax do ${country.name} investors pay?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${country.name} investors receiving dividends from foreign companies typically face withholding tax at source. The exact rate depends on the bilateral tax treaty between ${country.name} and the payer country. HoldLens shows verified treaty rates for ${verifiedCount} of ${rows.length} payer countries, with primary-source citations. ${country.resident_note.slice(0, 200)}${country.resident_note.length > 200 ? "..." : ""}`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Where do the ${country.name} treaty rates come from?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Every cell with a verified rate cites a primary source: bilateral tax treaty text, OECD model commentary, or a country's tax authority. Cells flagged "needs_research" are NOT fabricated — they are shown as pending. Last verified: ${META.last_verified}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Can a ${country.name} resident reduce withholding tax on foreign dividends?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Often yes — via the treaty rate (vs statutory rate), correct broker custody documentation, and proper tax-residency proof at the payer's broker. Account type (taxable brokerage vs retirement) also affects net keep. Always consult a qualified tax professional for your specific situation; rules change frequently and depend on personal facts (residency, domicile, account structure).`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Is dividend tax different for ${country.name} retirement accounts?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Yes — many countries grant additional treaty protection or exemption for qualified retirement-vehicle dividends. The exact rules depend on the specific retirement-account type recognized by ${country.name} tax law AND its recognition by the payer-country treaty. See your country's tax authority for the qualifying-account list.`,
+        },
+      },
+    ],
+  };
+  const speakableLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `https://holdlens.com/dividend-tax/${country.code.toLowerCase()}/#speakable`,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: [".hl-dt-intro"] },
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableLd) }} />
 
       <a href="/dividend-tax/" className="text-xs text-muted hover:text-text">← All countries</a>
 
@@ -111,7 +160,7 @@ export default async function InvestorCountryPage(
           <span className="text-3xl" aria-hidden>{country.flag}</span>
           <span>Dividend tax for {country.name} investors</span>
         </h1>
-        <p className="text-muted text-lg mt-4 leading-relaxed">
+        <p className="hl-dt-intro text-muted text-lg mt-4 leading-relaxed">
           If you're a {country.name} resident receiving dividends from a company domiciled abroad, the payer country typically withholds tax at source. A bilateral tax treaty usually lowers that rate below the statutory ceiling. Below, we show what's cited from a primary source — and flag every cell where a rate is still pending verification.
         </p>
       </header>
@@ -269,6 +318,19 @@ export default async function InvestorCountryPage(
       <FoundersNudge tone="brand" context={`You're checking dividend withholding rates for a ${country.name} resident across 20 payer countries.`} />
       <BrokerCta context={`Brokerage matters for ${country.name} residents — some support treaty-rate filings automatically.`} />
       <AdSlot format="horizontal" />
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">{q.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <p className="mt-16 text-xs text-dim">
         Estimates for educational purposes only. Tax rules change; consult a qualified tax professional for your specific situation. Sources cited above were current as of {META.last_verified}. Not investment advice.

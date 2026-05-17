@@ -64,11 +64,61 @@ export default async function EtfDetailPage({
   };
 
   const top3Sum = e.topHoldings.slice(0, 3).reduce((s, h) => s + h.weightPct, 0);
+  const topHoldingsList = e.topHoldings.slice(0, 5).map((h) => h.ticker).join(", ");
+
+  // FAQPage JSON-LD + Speakable per rules/seo-geo-mastery.md Part 14.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `https://holdlens.com/etf/${e.ticker}/#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `What are the top holdings of ${e.ticker}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Top 5 holdings of ${e.name} (${e.ticker}): ${topHoldingsList}. Top-3 concentration: ${top3Sum.toFixed(1)}% of the fund. Full top-${e.topHoldings.length} list below with individual weights. Source: ${e.issuer} official disclosure as of ${e.asOfDate}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What is the AUM of ${e.ticker}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${e.name} (${e.ticker}) has ${formatAum(e.aumUsd)} in assets under management with a ${e.expenseRatioPct.toFixed(2)}% expense ratio. Category: ${e.category}${e.sector ? ` (${e.sector} sector)` : ""}. Issuer: ${e.issuer}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How concentrated is ${e.ticker}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Top-3 holdings account for ${top3Sum.toFixed(1)}% of ${e.ticker}. The full top-${e.topHoldings.length} list spans the rest of the publicly disclosed portfolio. ${top3Sum > 30 ? "Above 30% top-3 = concentrated fund — single-position risk is meaningful." : top3Sum > 15 ? "15-30% top-3 = moderately concentrated." : "Below 15% top-3 = broadly diversified."}`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Where does HoldLens get ${e.ticker} data?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Holdings sourced from ${e.issuer}'s official ETF disclosure (refreshed daily by the issuer). HoldLens verified ${e.asOfDate}. ETF disclosure lag varies by issuer but is typically 1-3 business days. See /methodology for full source list.`,
+        },
+      },
+    ],
+  };
+  const speakableLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `https://holdlens.com/etf/${e.ticker}/#speakable`,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: [".hl-etf-intro"] },
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableLd) }} />
 
       <a href="/etf" className="text-xs text-muted hover:text-text">
         ← All ETFs
@@ -82,7 +132,7 @@ export default async function EtfDetailPage({
         <TickerLogo symbol={e.ticker} size={40} />
         <span className="text-brand">{e.ticker}</span>
       </h1>
-      <p className="text-muted text-lg mb-8">{e.name}</p>
+      <p className="hl-etf-intro text-muted text-lg mb-8">{e.name}</p>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
         <Stat label="AUM" value={formatAum(e.aumUsd)} />
@@ -196,6 +246,19 @@ export default async function EtfDetailPage({
             <div className="text-xs text-muted mt-2">{e.source.note}</div>
           )}
         </a>
+      </section>
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">{q.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <p className="text-xs text-dim mt-16">

@@ -83,10 +83,62 @@ export default async function SimilarToPage(
     publisher: { "@id": "https://holdlens.com/#organization" },
   };
 
+  const topPeers = scores.slice(0, 3);
+  // FAQPage + Speakable per rules/seo-geo-mastery.md Part 14.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `https://holdlens.com/similar-to/${m.slug}/#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `Which investors are most similar to ${m.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: topPeers.length > 0
+            ? `Top portfolio-similarity peers to ${m.name} (${m.fund}): ${topPeers.map((s) => { const p = getManager(s.investor_b); return p ? `${p.name} (${p.fund}, ${Math.round(s.jaccard * 100)}% Jaccard)` : ""; }).filter(Boolean).join("; ")}. Full ranking of all 29 tracked peers below, by shared-ticker overlap.`
+            : `${m.name}'s portfolio doesn't have sufficient overlap with other tracked superinvestors to produce reliable similarity scores. View their full positions at /investor/${m.slug}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How is investor similarity calculated?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `HoldLens uses Jaccard similarity on shared tickers: |A ∩ B| / |A ∪ B|. For each pair of investors, count tickers held by both, divide by tickers held by either. Range 0% (no overlap) to 100% (identical portfolio). Computed from latest SEC 13F-HR filings for ${m.name} and the 29 other tracked superinvestors.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Why does ${m.name}'s portfolio overlap with these investors?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Portfolio overlap reflects shared investment thesis, sector orientation, or fund-of-funds inheritance. High Jaccard (>50%) is rare and usually signals tight thesis alignment; 20-40% suggests overlapping sectors; <10% means distinct strategies. Click each peer below for their full 13F positions and ConvictionScore.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How current is the ${m.name} similarity ranking?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Updated on each quarterly 13F-HR filing cycle (45-day statutory lag per SEC). Similarity scores refresh as new positions are added or exited. See /methodology for the federation cadence + 13F filing-window math.`,
+        },
+      },
+    ],
+  };
+  const speakableLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `https://holdlens.com/similar-to/${m.slug}/#speakable`,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: [".hl-similar-intro"] },
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableLd) }} />
 
       <a href={`/investor/${m.slug}`} className="text-xs text-muted hover:text-text">← {m.name}'s full portfolio</a>
 
@@ -97,7 +149,7 @@ export default async function SimilarToPage(
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
           Investors who trade like {m.name}
         </h1>
-        <p className="text-muted text-lg mt-4 leading-relaxed">
+        <p className="hl-similar-intro text-muted text-lg mt-4 leading-relaxed">
           The 29 other tracked superinvestors ranked by shared-ticker overlap with {m.name}'s ({m.fund}) latest 13F portfolio. Jaccard similarity — the fraction of tickers held by both investors out of the union of tickers held by either.
         </p>
       </header>
@@ -185,6 +237,19 @@ export default async function SimilarToPage(
             <div className="text-brand text-xs uppercase tracking-widest font-bold mb-1">All 30 superinvestors</div>
             <div className="font-semibold text-text">Ranked leaderboard</div>
           </a>
+        </div>
+      </section>
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">{q.acceptedAnswer.text}</p>
+            </details>
+          ))}
         </div>
       </section>
 
