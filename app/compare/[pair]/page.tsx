@@ -108,6 +108,50 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
   // pages. Publisher joins the site-wide @id. Image falls back to home OG
   // until a per-pair OG image is generated (follow-up).
   const pageUrl = `https://holdlens.com/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}`;
+  // FAQPage — AEO Part 14 minimums per rules/seo-geo-mastery.md.
+  // PAA-style questions for ticker X-vs-Y ownership lookups. Factual answers
+  // derived from ta.owners.length, tb.owners.length, shared, onlyA, onlyB.
+  // No verdict labels — preserves I-43 compliance (data-display-only per
+  // Pivot A). One FAQ block per page (v18 LEARNED faq_schema_spam × -10).
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `Which has more hedge-fund owners: ${a} or ${b}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${a} (${ta.name}) is held by ${ta.owners.length} tracked superinvestors; ${b} (${tb.name}) is held by ${tb.owners.length}. ${ta.owners.length > tb.owners.length ? a : (tb.owners.length > ta.owners.length ? b : "Both")} has ${Math.abs(ta.owners.length - tb.owners.length)} more tracked holder${Math.abs(ta.owners.length - tb.owners.length) === 1 ? "" : "s"}${ta.owners.length === tb.owners.length ? " (tied)" : ""}. Full ranking by % of portfolio in the table below.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What managers hold both ${a} and ${b}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${shared.length} tracked superinvestor${shared.length === 1 ? " holds" : "s hold"} both ${a} and ${b} based on the latest SEC 13F filings.${shared[0] ? ` Largest dual-holder: ${shared[0].manager} (${shared[0].aPct.toFixed(1)}% ${a} · ${shared[0].bPct.toFixed(1)}% ${b}).` : ""} Full overlap table below.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What is the overlap between ${a} and ${b} institutional ownership?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Across ${total} unique tracked holders: ${onlyA.length} hold only ${a} (${pctOnlyA}%), ${shared.length} hold both (${pctBoth}%), ${onlyB.length} hold only ${b} (${pctOnlyB}%). The full Venn split + per-manager position % is on this page.`,
+        },
+      },
+      ...(shared.length > 0 ? [{
+        "@type": "Question",
+        name: `Among managers holding both ${a} and ${b}, which do they prefer?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Of ${shared.length} managers holding both, ${preferA} weight ${a} higher and ${preferB} weight ${b} higher in their portfolios. ${preferA === preferB ? "Even split." : (preferA > preferB ? `${a} is the preferred conviction position for the majority.` : `${b} is the preferred conviction position for the majority.`)} Per-manager position %s in the convergence table below.`,
+        },
+      }] : []),
+    ],
+  };
   const LD = [
     {
       "@context": "https://schema.org",
@@ -133,6 +177,7 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
       inLanguage: "en-US",
       image: "https://holdlens.com/og/home.png",
     },
+    faqLd,
   ];
 
   return (
@@ -365,6 +410,24 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
           <div className="text-muted text-xs">{tb.name}</div>
         </a>
       </div>
+
+      {/* AEO FAQ — Frequently asked questions (mirrors faqLd JSON-LD for
+          Google rich-result + AI Overview eligibility on X-vs-Y ownership
+          queries per Part 14.4). Factual answers only — no verdict labels
+          (preserves Pivot A I-43 compliance). Visible <details> accordion. */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
+        <div className="space-y-3">
+          {(faqLd.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map((q, i) => (
+            <details key={i} className="rounded-xl border border-border bg-panel p-4 open:border-brand/40">
+              <summary className="cursor-pointer font-semibold text-text">{q.name}</summary>
+              <p className="hl-faq-answer mt-3 text-sm text-muted leading-relaxed">
+                {q.acceptedAnswer.text}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <p className="text-xs text-dim mt-12">
         Sourced from SEC 13F filings ({new Date().getFullYear()}). Not investment advice.{" "}
