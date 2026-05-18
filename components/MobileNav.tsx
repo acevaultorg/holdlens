@@ -352,12 +352,33 @@ export default function MobileNav() {
             • Native <details>/<summary> = zero client JS, built-in a11y
               (expanded/collapsed ARIA for free), keyboard-accessible.
             • Multiple groups can be open at once — users can compare. */}
+        {/* Composite pill — Ship VV 2026-05-19. KPI button per operator brief.
+            Sits ABOVE all nav groups (highest-intent primary on mobile). */}
+        <div className="px-5 py-5">
+          <a
+            href="/composite"
+            onClick={() => setOpen(false)}
+            className="block rounded-xl border border-brand/40 bg-brand/5 p-4 hover:border-brand/70 hover:bg-brand/10 transition"
+          >
+            <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold text-brand mb-1">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand animate-pulse" aria-hidden />
+              <span>Flagship · Live</span>
+            </div>
+            <div className="text-[15px] font-semibold text-text leading-tight">
+              The HoldLens Composite
+            </div>
+            <div className="text-xs text-muted mt-1 leading-snug">
+              30-position aggregate of what tracked superinvestors collectively own most. Sector-capped, equal-weighted, quarterly-rebalanced.
+            </div>
+          </a>
+        </div>
+
         {GROUPS.map((grp, idx) => {
           const [primary, ...secondary] = grp.links;
           return (
             <div
               key={grp.title}
-              className={`px-5 py-5${idx > 0 ? " border-t border-border mt-2 pt-6" : ""}`}
+              className={`px-5 py-5 border-t border-border mt-2 pt-6`}
             >
               {/* v1.09 — neutral eyebrow header. Previously colored per-group
                   (brand/emerald rotation), which shouted and doubled up with

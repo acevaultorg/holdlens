@@ -28,6 +28,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticUrls: MetadataRoute.Sitemap = [
     { url: `${base}/`, lastModified: now, changeFrequency: "daily", priority: 1 },
+    // Ship VV — The HoldLens Composite (flagship per operator KPI directive 2026-05-17)
+    { url: `${base}/composite`, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
+    // Ship PP+QQ+RR — every tracked stock ranked (canonical ranking surface)
+    { url: `${base}/scores`, lastModified: now, changeFrequency: "weekly", priority: 0.99 },
     // High-priority conversion surfaces — the unified score rankings
     { url: `${base}/best-now`, lastModified: now, changeFrequency: "daily", priority: 0.98 },
     { url: `${base}/buys`, lastModified: now, changeFrequency: "daily", priority: 0.97 },

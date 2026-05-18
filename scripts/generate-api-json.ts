@@ -898,6 +898,22 @@ async function main(): Promise<void> {
   await writeJson(`snapshot/${LATEST_QUARTER}.json`, snapshot);
   await writeJson("snapshot/latest.json", snapshot);
 
+  // ---------- /composite.json ----------
+  // The HoldLens Composite — Pivot-A-compliant 30-position aggregate.
+  // Machine-readable basket for LLMs + developers. Citation Oracle archetype
+  // `open_dataset_json_api × +65` per rules/seo-geo-mastery.md.
+  const { getComposite } = await import("../lib/composite");
+  const composite = getComposite();
+  await writeJson("composite.json", {
+    data: composite,
+    meta: meta({
+      description: `The HoldLens Composite — ${composite.total_positions}-position descriptive aggregate of which tickers ${MANAGERS.length} tracked superinvestors collectively own most. Sector-capped 25%, equal-weighted, quarterly-rebalanced. NOT a recommendation, NOT an "optimal" portfolio, NOT investment advice — pure data-display of public SEC 13F filings.`,
+      methodology: "https://holdlens.com/composite#how-composed",
+      rebalance_cadence: "quarterly (per SEC 13F-HR deadlines)",
+      compliance_note: "Pivot-A-compliant: descriptive, not prescriptive. HoldLens holds no licensed financial-advisor credentials.",
+    }),
+  });
+
   // ---------- /quarters.json ----------
   await writeJson("quarters.json", {
     data: QUARTERS.map((q) => ({ quarter: q, label: QUARTER_LABELS[q] })),
@@ -1211,6 +1227,7 @@ async function main(): Promise<void> {
       { path: "/changelog.json", desc: `Top 200 moves filed in ${LATEST_QUARTER} ranked by portfolio impact — the quarter's biggest changes` },
       { path: "/snapshot/latest.json", desc: `Single-file LLM-ingestible ${QUARTER_LABELS[LATEST_QUARTER]} summary (new positions, exits, adds, trims, consensus tickers, per-manager headlines) — optimized for AI citation` },
       { path: "/snapshot/{quarter}.json", desc: "Per-quarter snapshot (e.g. /snapshot/2026-Q1.json)" },
+      { path: "/composite.json", desc: "The HoldLens Composite — 30-position descriptive aggregate basket. Sector-capped, equal-weighted, quarterly-rebalanced. Machine-readable for LLMs + developers. Pivot-A-compliant: data-display, not advice." },
       { path: "/quarters.json", desc: "Available 13F quarters" },
       { path: "/insiders/index.json", desc: "Sub-catalog: /insiders/* family (Form 4 insider trading)" },
       { path: "/insiders/live.json", desc: "Last 100 SEC Form 4 transactions across all tickers" },
@@ -1234,6 +1251,7 @@ async function main(): Promise<void> {
   fileCount += 1 /* concentration */ + 1 /* exits */ + 1 /* overlap */;
   fileCount += 1 /* best-now */ + 1 /* value */ + 1 /* changelog */ + 1 /* quarters */;
   fileCount += 2 /* snapshot/{LATEST}.json + snapshot/latest.json */;
+  fileCount += 1 /* composite.json */;
   // Insiders v0.2 Day-2 ship — endpoint count read after generation
   const { INSIDER_TX: insidersForCount, allInsiderTickers: tickFn, allOfficerEntries: offFn } =
     await import("../lib/insiders");

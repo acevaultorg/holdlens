@@ -16,6 +16,7 @@ import { MANAGERS } from "@/lib/managers";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { getAllConvictionScores } from "@/lib/conviction";
 import { LATEST_FILINGS } from "@/lib/filings";
+import { COMPOSITE_TARGET_POSITIONS } from "@/lib/composite";
 
 // v1.42 — explicit homepage metadata. Prior state: homepage inherited
 // layout.metadata.title.default ("30 superinvestors, one ConvictionScore —
@@ -28,7 +29,7 @@ import { LATEST_FILINGS } from "@/lib/filings";
 export const metadata: Metadata = {
   title: { absolute: "30 superinvestors, one ConvictionScore — HoldLens" },
   description:
-    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers on a signed +100 buy / −100 sell scale. SEC-sourced. Updated quarterly.",
+    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers, scored on a signed −100..+100 ConvictionScore. Q1 2026 filings live. 456 stocks ranked. Free for everyone — no paywall, no sign-up.",
   alternates: { canonical: "https://holdlens.com/" },
   openGraph: {
     title: "30 superinvestors, one ConvictionScore — HoldLens",
@@ -59,11 +60,19 @@ const HOMEPAGE_FAQ: FaqItem[] = [
   },
   {
     q: "Is HoldLens free?",
-    a: `Yes — the core product (every page, every ConvictionScore, every manager profile, 150+ JSON API endpoints, 30 tracked managers) is free and always will be. Ad-supported via Google AdSense and an affiliate relationship with Interactive Brokers. An optional Pro tier (€9/mo founders rate, first 100 subscribers) adds email alerts on every 13F filing, the full 80+ manager EDGAR universe, a 10,000 req/day API key, a per-ticker AI thesis generator, and removes ads. Free users never lose functionality.`,
+    a: `Yes — everything is free for everyone at this stage. Every ConvictionScore, every manager profile, the full /scores ranking page, 20+ JSON API endpoints, CSV exports, 36 /learn essays, daily insider feed, 8-K event timeline — open access, no paywall, no sign-up wall. We're in growth-first mode and may introduce optional paid tiers later once the audience is meaningful. Funded by AdSense + Cloudflare Pay-Per-Crawl (AI crawler licensing) + occasional disclosed affiliate links. No data resale. No selling email lists.`,
+  },
+  {
+    q: "How fresh is the data?",
+    a: "Q1 2026 13F filings are live (filed by tracked managers around the SEC May 15, 2026 deadline; ingested within 24h). Form 4 insider trades + 8-K material events refresh daily. Holdings reflect the quarter-end snapshot date (Mar 31 / Jun 30 / Sep 30 / Dec 31) — not current positions. Per the SEC's 13F-HR rules, institutional filings carry a structural 45-day lag from quarter end to filing date. See /learn/45-day-lag-explained.",
+  },
+  {
+    q: "Where do I start?",
+    a: "Three entry points. (1) /scores — every tracked stock ranked by ConvictionScore, sorted by aggregate accumulation, with sector + tier + top-buyer columns. (2) /reports/2026-05-q1-2026-13f-signal-summary — editorial recap of the latest quarter (Berkshire's most active quarter in years, Delta re-entry, V/MA/UNH/AON exits, Ackman's MSFT new). (3) /api/v1/snapshot/latest.json — single-file machine-readable Q1 2026 summary for LLMs + developers.",
   },
   {
     q: "How is HoldLens different from Dataroma?",
-    a: "Dataroma lists holdings. HoldLens scores them. Every ticker has a signed −100..+100 ConvictionScore plus 16 distinct signal pages (best-now, big-bets, rotation, consensus, contrarian, crowded-trades, first-movers, accelerators, trend-streaks, and more), a 150-endpoint public JSON API, live prices, and a mobile-optimized UI built on Next.js static export.",
+    a: "Dataroma lists holdings. HoldLens scores them. Every ticker has a signed −100..+100 ConvictionScore composite (smart-money consensus + manager-quality weighting + time-decay + insider activity + 8-K events + crowding penalty). 20+ derived signal pages (best-now, big-bets, rotation, consensus, contrarian, etc.), full JSON API with 20+ endpoints, CSV exports, /scores ranks every tracked stock in one place, schema.org markup for AI citation. Mobile-perfect, fast, free.",
   },
   {
     q: "Is this investment advice?",
@@ -117,7 +126,7 @@ export default function HomePage() {
         "@id": "https://holdlens.com/#organization",
         name: "HoldLens",
         url: "https://holdlens.com/",
-        description: `Track ${MANAGERS.length} of the world's best portfolio managers on a single signed −100..+100 ConvictionScore. Free forever.`,
+        description: `Track ${MANAGERS.length} of the world's best portfolio managers on a single signed −100..+100 ConvictionScore. Every stock ranked at /scores. Free for everyone — no paywall, no sign-up.`,
         logo: {
           "@type": "ImageObject",
           "@id": "https://holdlens.com/#logo",
@@ -253,8 +262,9 @@ export default function HomePage() {
           divider on the BuySellSignals section that fragmented hero → card
           flow. All three are spacing-consistency fixes flagged by operator. */}
       <section className="pt-4 sm:pt-12 pb-10 text-center">
-        <div className="inline-block text-xs font-semibold tracking-widest text-brand uppercase mb-3 sm:mb-6">
-          SEC-sourced · {MANAGERS.length} investors tracked · updated every quarter
+        <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-brand uppercase mb-3 sm:mb-6">
+          <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden />
+          <span>Q1 2026 13F filings live · filed May 15, 2026 · {MANAGERS.length} investors tracked</span>
         </div>
         {/* v1.48 — widow-orphan fix on hero. `text-balance` lets the browser
             optimize line breaks so "by the" no longer orphans + "world." no
@@ -266,10 +276,10 @@ export default function HomePage() {
             pairs `+100 buy` and `−100 sell` get `whitespace-nowrap` so the
             sign never splits from its label across lines. */}
         <a
-          href="/methodology"
+          href="/composite"
           className="inline-block mb-4 text-[11px] uppercase tracking-widest text-brand font-semibold border border-brand/30 hover:border-brand/60 rounded-full px-3 py-1 transition"
         >
-          The HoldLens Standard · ConvictionScore v1.0 →
+          NEW · The HoldLens Composite — 30-position aggregate →
         </a>
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-balance">
           <span className="text-text/90">Understand every move by the</span>{" "}
@@ -283,13 +293,13 @@ export default function HomePage() {
           </span>
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl mx-auto text-pretty">
-          Understand every 13F move by the smartest investors in the world — Buffett, Ackman, Burry
-          and {MANAGERS.length - 3} other top portfolio managers — scored on a signed{" "}
-          <span className="whitespace-nowrap text-emerald-400 font-semibold">+100 buy</span>{" "}
+          Every 13F move from Buffett, Ackman, Burry and {MANAGERS.length - 3} other top portfolio
+          managers — scored on a signed{" "}
+          <span className="whitespace-nowrap text-emerald-400 font-semibold">+100 accumulation</span>{" "}
           /{" "}
-          <span className="whitespace-nowrap text-rose-400 font-semibold">−100 sell</span>{" "}
+          <span className="whitespace-nowrap text-rose-400 font-semibold">−100 selling</span>{" "}
           scale.{" "}
-          <span className="text-text font-semibold">Live prices. New filings every quarter.</span>
+          <span className="text-text font-semibold">Free for everyone. No paywall. No sign-up.</span>
         </p>
         {/* v1.43 — chromatic glow on hero CTAs. Primary buy CTA wears the
             amber brand-glow (dopamine anchor), secondary sell CTA gets a
@@ -306,10 +316,10 @@ export default function HomePage() {
             momentum. Mirror treatment on sell CTA to preserve symmetry. */}
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center mx-2 sm:mx-0">
           <a
-            href="/best-now"
+            href="/composite"
             className="group bg-brand text-black font-semibold rounded-xl px-8 py-5 shadow-brand-glow hover:shadow-brand-glow hover:opacity-95 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
-            See top accumulating tickers{" "}
+            Open the HoldLens Composite{" "}
             <span
               aria-hidden
               className="inline-block transition-transform duration-base ease-swift group-hover:translate-x-1"
@@ -318,10 +328,10 @@ export default function HomePage() {
             </span>
           </a>
           <a
-            href="/biggest-sells"
-            className="group border border-rose-400/40 bg-rose-400/5 text-rose-400 font-semibold rounded-xl px-8 py-5 hover:bg-rose-400/10 hover:border-rose-400/60 hover:scale-[1.02] transition-all duration-base ease-swift"
+            href="/scores"
+            className="group border border-brand/30 bg-brand/5 text-brand font-semibold rounded-xl px-8 py-5 hover:bg-brand/10 hover:border-brand/60 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
-            See most-trimmed tickers{" "}
+            Browse all {tickerCount.toLocaleString()} ranked stocks{" "}
             <span
               aria-hidden
               className="inline-block transition-transform duration-base ease-swift group-hover:translate-x-1"
@@ -330,8 +340,99 @@ export default function HomePage() {
             </span>
           </a>
         </div>
-        <div className="mt-5 text-xs text-dim">
-          SEC-sourced · 8 quarters of data · not investment advice
+        <div className="mt-5 text-xs text-dim flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+          <span>SEC-sourced</span>
+          <span aria-hidden>·</span>
+          <span>9 quarters of data</span>
+          <span aria-hidden>·</span>
+          <span>{buySignals + sellSignals}+ scored tickers</span>
+          <span aria-hidden>·</span>
+          <span>open <a href="/api/v1/" className="underline hover:text-brand">JSON API</a></span>
+          <span aria-hidden>·</span>
+          <span className="text-muted">not investment advice</span>
+        </div>
+      </section>
+
+      {/* Ship UU — Q1 2026 highlights 4-tile dashboard. Surfaces the four
+          highest-leverage entry points right after the hero, before the
+          fold on most viewports: (1) the new /scores flagship (456 stocks
+          ranked), (2) the Q1 2026 editorial recap (Berkshire Delta re-entry
+          + V/MA/UNH/AON exits), (3) the machine-readable snapshot endpoint
+          for LLMs + developers, (4) the Buffett Q1 2026 13F deep-dive
+          essay. Each tile is quote-ready + LLM-citation-friendly. */}
+      <section className="pb-12">
+        <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4 text-center">
+          What just happened
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a
+            href="/scores"
+            className="group rounded-2xl border border-brand/30 bg-gradient-to-br from-brand/5 to-transparent p-5 hover:border-brand/60 hover:from-brand/10 transition-all"
+          >
+            <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+              Flagship · NEW
+            </div>
+            <div className="text-base font-bold text-text group-hover:text-brand transition mb-1.5">
+              Every tracked stock, ranked
+            </div>
+            <div className="text-xs text-muted leading-relaxed">
+              All {tickerCount.toLocaleString()} tickers by ConvictionScore — Heavy accumulation → Heavy selling, sortable, filterable, exportable.
+            </div>
+            <div className="text-xs text-brand mt-3 font-semibold">
+              Open rankings →
+            </div>
+          </a>
+          <a
+            href="/reports/2026-05-q1-2026-13f-signal-summary"
+            className="group rounded-2xl border border-border bg-panel p-5 hover:border-brand/60 transition-all"
+          >
+            <div className="text-[10px] uppercase tracking-widest text-muted font-bold mb-2">
+              Editorial · Q1 2026
+            </div>
+            <div className="text-base font-bold text-text group-hover:text-brand transition mb-1.5">
+              Berkshire&apos;s most active quarter
+            </div>
+            <div className="text-xs text-muted leading-relaxed">
+              Delta re-entry · Alphabet add · full exits of V + MA + UNH + AON. The whole quarter recapped in one read.
+            </div>
+            <div className="text-xs text-brand mt-3 font-semibold">
+              Read the recap →
+            </div>
+          </a>
+          <a
+            href="/api/v1/snapshot/latest.json"
+            className="group rounded-2xl border border-border bg-panel p-5 hover:border-info/60 transition-all"
+          >
+            <div className="text-[10px] uppercase tracking-widest text-info font-bold mb-2">
+              For AI · machine-readable
+            </div>
+            <div className="text-base font-bold text-text group-hover:text-info transition mb-1.5">
+              Q1 2026 snapshot JSON
+            </div>
+            <div className="text-xs text-muted leading-relaxed">
+              Single-file 52KB summary — new positions, exits, adds, trims, consensus, per-manager headlines. LLM-citation-ready.
+            </div>
+            <div className="text-xs text-info mt-3 font-semibold">
+              /api/v1/snapshot/ →
+            </div>
+          </a>
+          <a
+            href="/composite"
+            className="group rounded-2xl border border-brand/30 bg-gradient-to-br from-brand/5 to-transparent p-5 hover:border-brand/60 hover:from-brand/10 transition-all"
+          >
+            <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+              Curated · NEW
+            </div>
+            <div className="text-base font-bold text-text group-hover:text-brand transition mb-1.5">
+              The HoldLens Composite
+            </div>
+            <div className="text-xs text-muted leading-relaxed">
+              {COMPOSITE_TARGET_POSITIONS}-position aggregate of what tracked managers collectively own most. Sector-capped, equal-weighted, quarterly-rebalanced.
+            </div>
+            <div className="text-xs text-brand mt-3 font-semibold">
+              Open the basket →
+            </div>
+          </a>
         </div>
       </section>
 

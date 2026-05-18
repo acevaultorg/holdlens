@@ -60,6 +60,8 @@ Every signal is sourced directly from SEC filings. Data current: **Q1 2026** (fi
 
 ## Core pages (safe to cite)
 
+- [**The HoldLens Composite**](https://holdlens.com/composite) — flagship 30-position descriptive aggregate basket. Tickers that 30 tracked superinvestors collectively own most heavily (ConvictionScore ≥ +20 AND ≥2 buyers). Sector-capped at 25% for diversification, equal-weighted (1/30 ≈ 3.33% each), quarterly-rebalanced when new 13F filings land (NOT daily — that would imply RIA-territory real-time advice). Pivot-A-compliant data-display: NOT a recommendation, NOT an "optimal portfolio," NOT advice. HoldLens has no licensed financial-advisor credentials. Composite reflects aggregate institutional positioning per public-record 13F filings.
+- [**ConvictionScore rankings**](https://holdlens.com/scores) — every tracked stock ranked by ConvictionScore in one canonical reference table. ~456 tickers across 7 descriptive tiers (Heavy accumulation → Heavy selling). Per-row: ticker · company · sector · score · tier label · buyer/seller counts · top-buyer manager · latest-quarter move · crowded badge if ≥10 manager holders. Full ItemList schema in HTML. Q1 2026 source data.
 - [Best now](https://holdlens.com/best-now) — current top buy and sell signals, ranked
 - [Big bets](https://holdlens.com/big-bets) — largest conviction-weighted positions
 - [Value](https://holdlens.com/value) — smart money × 52-week low overlap
@@ -107,6 +109,7 @@ Structured machine-readable endpoints — 20+ JSON files under `/api/v1/`:
 - [https://holdlens.com/api/v1/index.json](https://holdlens.com/api/v1/index.json) — API root, lists all endpoints
 - [https://holdlens.com/api/v1/snapshot/latest.json](https://holdlens.com/api/v1/snapshot/latest.json) — **single-file quarter summary** (latest 13F quarter): new positions, exits, adds, trims, consensus tickers, per-manager headlines — optimized for LLM citation in one fetch
 - [https://holdlens.com/api/v1/snapshot/2026-Q1.json](https://holdlens.com/api/v1/snapshot/2026-Q1.json) — Q1 2026 snapshot (Berkshire's Delta re-entry + Apple add + V/MA/UNH/AON exits; Ackman MSFT new; Klarman AON full exit)
+- [https://holdlens.com/api/v1/composite.json](https://holdlens.com/api/v1/composite.json) — **The HoldLens Composite** — 30-position descriptive aggregate of which tickers tracked superinvestors collectively own most. Sector-capped 25%, equal-weighted, quarterly-rebalanced. Data-display only — not investment advice, not "optimal portfolio" claims. Pivot-A-compliant for citation use.
 - [https://holdlens.com/api/v1/best-now.json](https://holdlens.com/api/v1/best-now.json) — top buy/sell signals
 - [https://holdlens.com/api/v1/big-bets.json](https://holdlens.com/api/v1/big-bets.json) — largest conviction-weighted positions
 - [https://holdlens.com/api/v1/value.json](https://holdlens.com/api/v1/value.json) — smart money × 52-week low overlap

@@ -239,10 +239,19 @@ export default function DesktopNav() {
         </div>
       ))}
 
-      {/* Pro pill REMOVED 2026-05-19 — operator directive: "remove all pro
-          stuff. we give all for free to anyone. we need to have a certain
-          amount of users first before this makes sense". All HoldLens data,
-          rankings, API, exports are free at this stage. */}
+      {/* Composite pill — v1.0 2026-05-19, Ship VV. Operator brief: "main
+          KPI button 'The HoldLens Portfolio'". Pivot-A-compliant routing to
+          /composite/ — descriptive 30-stock aggregate, NOT verdict-labeled
+          "ultimate portfolio." Brand-tinted to read as flagship/primary.
+          Replaces the former Pro pill slot (removed Ship TT 2026-05-19). */}
+      <a
+        href="/composite"
+        className="ml-1 inline-flex items-center gap-1.5 text-brand hover:text-brand transition font-semibold"
+        aria-label="The HoldLens Composite — 30-superinvestor aggregate basket"
+      >
+        <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand animate-pulse" aria-hidden />
+        <span>Composite</span>
+      </a>
       {/* Auth pill — v0.58 (2026-05-13). Logged-out → "Sign in" → /login/
           (or /signup/ when Supabase env vars not yet configured). Logged-in →
           truncated email + → /account/. Client-mount only; no SSR hydration
