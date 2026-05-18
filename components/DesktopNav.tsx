@@ -150,8 +150,6 @@ const ABOUT: NavGroup = {
     { href: "/docs", label: "API docs" },
     { href: "/for-ai", label: "For AI / LLM agents", color: "sky" },
     { href: "/api-terms", label: "API terms" },
-    { href: "/pricing", label: "Pricing", color: "brand" },
-    { href: "/premium", label: "Pro features" },
     { href: "/alerts", label: "Email alerts" },
   ],
 };
@@ -241,18 +239,10 @@ export default function DesktopNav() {
         </div>
       ))}
 
-      {/* Pro pill — subdued, discoverable. Amber dot + "Pro · €9" pricing
-          disclosure (v19.2) removes the ambiguity between free-core hero
-          copy and a bare "Pro" link that read as upsell-without-context. */}
-      <a
-        href="/pricing"
-        className="ml-1 inline-flex items-center gap-1.5 text-muted hover:text-text transition font-semibold"
-        aria-label="HoldLens Pro — optional €9/mo subscription"
-      >
-        <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand/70" aria-hidden />
-        <span>Pro</span>
-        <span className="text-dim font-normal">· €9</span>
-      </a>
+      {/* Pro pill REMOVED 2026-05-19 — operator directive: "remove all pro
+          stuff. we give all for free to anyone. we need to have a certain
+          amount of users first before this makes sense". All HoldLens data,
+          rankings, API, exports are free at this stage. */}
       {/* Auth pill — v0.58 (2026-05-13). Logged-out → "Sign in" → /login/
           (or /signup/ when Supabase env vars not yet configured). Logged-in →
           truncated email + → /account/. Client-mount only; no SSR hydration

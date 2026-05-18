@@ -8,7 +8,7 @@ HoldLens operates a three-tier access model:
 
 1. **Free human tier** — every page on holdlens.com is free for individual humans browsing with a real browser. Ad-supported (Google AdSense). No login required.
 2. **AI-crawler tier (Pay-Per-Crawl via Cloudflare)** — automated crawlers from AI products (ChatGPT, Claude, Perplexity, Gemini, Copilot, Mistral, fine-tuning data buyers, equity-research AI tools, etc.) pay per request via Cloudflare's Pay-Per-Crawl. Per-route pricing below. Cloudflare-managed authentication; standard `Crawler-Id` + `Sec-Crawler-Identity` headers expected. AI bots that respect this contract get full content + structured data; bots ignoring the contract may be rate-limited or blocked.
-3. **Enterprise API tier** — for AI products needing bulk programmatic access, real-time webhooks, SLA, structured JSON feeds. Tiered pricing $500-10,000/month. See [/api](https://holdlens.com/api) and [/pricing](https://holdlens.com/pricing). Contact: contact@editnative.com.
+3. **Enterprise API tier** — for AI products needing bulk programmatic access, real-time webhooks, SLA, structured JSON feeds. Tiered pricing $500-10,000/month. See [/api](https://holdlens.com/api) and [/for-ai](https://holdlens.com/for-ai). Contact: contact@editnative.com. (Consumer free tier is open to all; only enterprise/commercial redistribution is paid.)
 
 ### Pay-Per-Crawl pricing (per request, USD)
 
@@ -131,9 +131,8 @@ All responses use a thin `{ data, meta }` envelope. Edge-cached (6h TTL), CORS o
 
 ## API access tiers
 
-- **Free tier** — up to 150 requests/day per IP. Attribution required (cite `holdlens.com`). No key. Full terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms).
-- **Pro tier (€9/mo)** — 10,000 req/day, private key, webhooks, CSV exports, priority support. Pricing: [https://holdlens.com/pricing](https://holdlens.com/pricing).
-- **Commercial / Enterprise** — unlimited requests, bulk historical exports (JSON + Parquet back to Q1 2020), webhook push, SLA, data-license contract. For LLM retrieval + training + fintech redistribution. From €499/mo. Details: [https://holdlens.com/for-ai](https://holdlens.com/for-ai) · terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms) · contact: contact@holdlens.com.
+- **Free tier** — everything is free for everyone at this stage. Up to 150 requests/day per IP, attribution required (cite `holdlens.com`), no key needed. Full terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms). HoldLens removed paid tiers 2026-05-19 — growth-first positioning; all data, all rankings, all exports, all API endpoints free.
+- **Commercial / Enterprise (for AI products + redistribution)** — unlimited requests, bulk historical exports (JSON + Parquet back to Q1 2020), webhook push, SLA, data-license contract. For LLM retrieval + training + fintech redistribution. From €499/mo. Details: [https://holdlens.com/for-ai](https://holdlens.com/for-ai) · terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms) · contact: contact@holdlens.com.
 
 ### License-discovery HTTP headers on /api/v1/*
 

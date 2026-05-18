@@ -1,356 +1,179 @@
 import type { Metadata } from "next";
-import EmailCapture from "@/components/EmailCapture";
-import StripeCheckoutButton from "@/components/StripeCheckoutButton";
+import Link from "next/link";
 import { MANAGERS } from "@/lib/managers";
 
-export const metadata: Metadata = {
-  title: { absolute: "Pricing — HoldLens Free + Pro" },
-  description: `HoldLens is free forever for the full recommendation model, signal dossiers, and live data. Pro tier is €14/mo (€9/mo founders rate for the first 100 subscribers) with email alerts, EDGAR automation, custom watchlists, and API access. Live now.`,
-  openGraph: {
-    title: "HoldLens Pricing",
-    description: "Free forever core — the unified signed ConvictionScore is in Free, not Pro. Pro €9/mo founders.",
-    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
-  },
-  alternates: { canonical: "https://holdlens.com/pricing/" },
-};
+// /pricing — repurposed 2026-05-19 per operator directive: "remove all pro
+// stuff. we give all for free to anyone. we need to have a certain amount
+// of users first before this makes sense."
+//
+// Page preserved (not deleted) so inbound links + bookmarks + search-engine
+// results don't 404. Repositioned as "everything-free" landing. Original
+// Stripe checkout flow removed; restore from git history when monetization
+// re-launches.
 
-// LLM-citation infrastructure (audit 2026-04-29 fix)
-const PRICING_LD = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  url: "https://holdlens.com/pricing/",
-  name: "HoldLens pricing — Free + Pro tiers",
-  description: "HoldLens is free forever for the unified ConvictionScore + InsiderScore + 150 JSON API endpoints. Optional Pro tier €9/mo founders rate.",
-  inLanguage: "en-US",
-  isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
-  mainEntity: {
-    "@type": "Product",
-    name: "HoldLens Pro",
-    description: "Email alerts on every 13F filing, full 80+ manager EDGAR universe, 10,000 req/day API key, per-ticker AI thesis generator, ad-free.",
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Free tier",
-        price: "0",
-        priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
-        description: "Every page, every ConvictionScore, every manager profile, 150 JSON API endpoints. Free forever.",
-      },
-      {
-        "@type": "Offer",
-        name: "Pro tier (founders rate)",
-        price: "9",
-        priceCurrency: "EUR",
-        priceSpecification: { "@type": "UnitPriceSpecification", price: "9", priceCurrency: "EUR", unitCode: "MON" },
-        availability: "https://schema.org/InStock",
-        description: "First 100 subscribers €9/mo. Includes email alerts, expanded universe, API key.",
-      },
-    ],
+export const metadata: Metadata = {
+  title: "HoldLens is free — full access for everyone",
+  description: `Every HoldLens feature is free at this stage: ConvictionScore rankings for ${"500+"} tracked stocks, ${MANAGERS.length} superinvestor portfolios, signal dossiers, Form 4 insider trades, 8-K events, sector rotation, CSV exports, and the full JSON API. No paywall, no sign-up wall, no Pro tier.`,
+  alternates: { canonical: "https://holdlens.com/pricing" },
+  openGraph: {
+    title: "HoldLens — free for everyone",
+    description: "Full ConvictionScore + 30 superinvestor portfolios + JSON API + CSV exports. No paywall.",
+    url: "https://holdlens.com/pricing",
+    type: "website",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — free for everyone" }],
   },
-};
-const PRICING_BREADCRUMB_LD = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "HoldLens", item: "https://holdlens.com/" },
-    { "@type": "ListItem", position: 2, name: "Pricing", item: "https://holdlens.com/pricing/" },
-  ],
+  twitter: {
+    card: "summary_large_image",
+    title: "HoldLens — free for everyone",
+    description: "Full access, no paywall.",
+    images: ["/og/home.png"],
+  },
 };
 
 export default function PricingPage() {
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://holdlens.com" },
+      { "@type": "ListItem", position: 2, name: "Pricing", item: "https://holdlens.com/pricing" },
+    ],
+  };
+
   return (
-    <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PRICING_LD) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PRICING_BREADCRUMB_LD) }} />
-      <div className="text-center mb-10">
-        <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
-          Pricing
-        </div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
-          Free forever. Pro for €9/mo. Power coming soon.
-        </h1>
-        <p className="text-muted text-lg max-w-2xl mx-auto">
-          The full recommendation engine — unified signed ConvictionScore, signal dossiers,
-          live prices, multi-quarter trend detection — is free for everyone. Pro adds
-          email alerts, EDGAR automation, custom watchlists, and API access. Power
-          (coming soon) is the analyst tier with bigger API quotas, custom filters,
-          and portfolio sync.
-        </p>
+    <div className="max-w-3xl mx-auto px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+
+      <a href="/" className="text-xs text-muted hover:text-text">← Home</a>
+
+      <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-3">
+        Pricing
       </div>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+        HoldLens is <span className="text-brand">free</span>.
+      </h1>
+      <p className="text-muted text-lg leading-relaxed mb-4">
+        Every feature is open to everyone at this stage. No paywall, no sign-up wall,
+        no Pro tier, no trial timer.
+      </p>
+      <p className="text-dim text-sm leading-relaxed mb-10">
+        We&apos;re focused on getting the product right and growing the audience first.
+        We may introduce optional paid tiers later — when there&apos;s a meaningful
+        user base and the product clearly creates enough value to justify it. For now:
+        all features, all data, all exports, all API endpoints — free.
+      </p>
 
-      {/* Competitor anchor — establishes price context without trashing anyone.
-          Pure data. Readers orient: €9 is the price floor of this category. */}
-      <div className="max-w-3xl mx-auto mb-12">
-        <div className="text-center text-[11px] uppercase tracking-widest text-dim font-semibold mb-3">
-          The 13F-tracker market
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-          <div className="rounded-xl border border-border bg-panel/60 p-4 text-center">
-            <div className="text-text font-semibold mb-0.5">Dataroma</div>
-            <div className="text-xs text-dim">Free · manual · stale</div>
-          </div>
-          <div className="rounded-xl border border-border bg-panel/60 p-4 text-center">
-            <div className="text-text font-semibold mb-0.5">Stock Analysis</div>
-            <div className="text-xs text-dim">$24–40/mo · no 13F depth</div>
-          </div>
-          <div className="rounded-xl border border-border bg-panel/60 p-4 text-center">
-            <div className="text-text font-semibold mb-0.5">GuruFocus</div>
-            <div className="text-xs text-dim">$99–599/mo · legacy UI</div>
-          </div>
-          <div className="rounded-xl border-2 border-brand bg-brand/10 p-4 text-center">
-            <div className="text-brand font-bold mb-0.5">HoldLens Pro</div>
-            <div className="text-xs text-text">€9/mo · live · free core</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Annual discount strip — sits between competitor row and tier grid.
-          Anchors the "save 17%" psychology before the operator sees per-mo
-          numbers below. Standard SaaS price-ladder pattern. */}
-      <div className="max-w-3xl mx-auto mb-8">
-        <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/5 px-5 py-4 flex items-center justify-between flex-wrap gap-3">
-          <div>
-            <div className="text-sm text-text font-semibold">Annual save 17%</div>
-            <div className="text-xs text-muted mt-0.5">Pay yearly · 2 months free · same lifetime founders rate applies</div>
-          </div>
-          <div className="text-xs text-dim">
-            Toggle annual/monthly at checkout
-          </div>
-        </div>
-      </div>
-
-      {/* Pricing grid — 3 tiers (Free / Founders+Pro / Power) */}
-      <div className="grid md:grid-cols-3 gap-6 mb-16">
-        {/* Free */}
-        <div className="rounded-2xl border border-border bg-panel p-8">
-          <div className="text-xs uppercase tracking-widest text-dim font-semibold mb-2">
-            Free
-          </div>
-          <div className="text-4xl sm:text-5xl font-bold mb-1 tabular-nums">€0</div>
-          <div className="text-sm text-muted mb-6">forever, no card</div>
-
-          <a
-            href="/this-week"
-            className="block text-center bg-bg border border-border text-text font-semibold rounded-xl px-5 py-3 hover:border-brand transition mb-8"
-          >
-            Open HoldLens →
-          </a>
-
-          <ul className="space-y-3 text-sm">
-            <Feature text={`${MANAGERS.length} of the best portfolio managers in the world tracked`} />
-            <Feature text="Unified ConvictionScore on a single −100..+100 scale" />
-            <Feature text="Signal dossier per ticker with BUY / SELL / NEUTRAL verdict" />
-            <Feature text="Multi-quarter trend streaks (2Q, 3Q+, 4Q+)" />
-            <Feature text="Live Yahoo Finance quotes, charts, news per ticker" />
-            <Feature text="Manager leaderboard with realized 10y alpha vs S&P" />
-            <Feature text="Personal portfolio + watchlist (localStorage, no signup)" />
-            <Feature text="Screener, sector heatmap, activity feed, CSV export (10/month)" />
-            <Feature text="cmd+K search, RSS feeds (/buys.xml, /sells.xml)" />
-            <Feature text="Manager-vs-manager compare pages (all 105 pairs)" />
-          </ul>
-        </div>
-
-        {/* Pro */}
-        <div className="rounded-2xl border border-brand bg-brand/5 p-8 relative">
-          <div className="absolute -top-3 left-8 text-[10px] uppercase tracking-widest font-bold text-black bg-brand rounded-full px-3 py-1">
-            Live now
-          </div>
-          <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
-            Pro
-          </div>
-          <div className="flex items-baseline gap-2 mb-1">
-            <div className="text-4xl sm:text-5xl font-bold tabular-nums">€9</div>
-            <div className="text-sm text-muted">/month</div>
-            <div className="text-sm text-muted line-through tabular-nums ml-2">€14</div>
-          </div>
-          <div className="text-sm text-muted mb-6">
-            Founders rate · first 100 subscribers · cancel anytime
-          </div>
-
-          <div className="mb-6">
-            <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
-              Founders rate · 100 spots
-            </div>
-            <p className="text-xs text-muted mb-3">
-              First 100 subscribers lock in <span className="text-text font-semibold">€9/mo for life</span>.
-              Price steps up to €14/mo after the 100th spot. Cancel anytime.
-            </p>
-            <StripeCheckoutButton variant="founders" label="Subscribe — €9/mo founders rate →" />
-            {/* Trust strip under CTA — standard conversion-lift pattern.
-                Each marker removes a specific checkout objection. */}
-            <ul className="mt-3 flex items-center justify-center gap-x-4 gap-y-1 flex-wrap text-[10.5px] text-dim">
-              <li className="inline-flex items-center gap-1">
-                <span className="inline-block w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
-                Cancel anytime
-              </li>
-              <li className="inline-flex items-center gap-1">
-                <span className="inline-block w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
-                14-day refund
-              </li>
-              <li className="inline-flex items-center gap-1">
-                <span className="inline-block w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
-                Secure via Stripe
-              </li>
-              <li className="inline-flex items-center gap-1">
-                <span className="inline-block w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
-                EU VAT included
-              </li>
-            </ul>
-            <p className="text-[11px] text-dim mt-3 text-center">
-              or <a href="/alerts" className="underline hover:text-text transition">join the weekly digest</a> first
-            </p>
-          </div>
-
-          <ul className="space-y-3 text-sm">
-            <Feature text="Everything in Free, plus:" emphasis />
-            <Feature text="Email alerts the moment any tracked manager files a 13F" />
-            <Feature text="Custom watchlist alerts — email when YOUR holdings get a signal change" />
-            <Feature text="Weekly digest — top 10 buys + top 10 sells delivered every Monday" />
-            <Feature text="EDGAR automation — the full 80+ manager universe (not just 30)" />
-            <Feature text="Per-ticker thesis generator — AI-drafted buy/sell rationale" />
-            <Feature text="Historical score time series — see how a stock's signal evolved" />
-            <Feature text="API access — 10,000 req/day with private key (Free tier: 150 req/day, no key)" />
-            <Feature text="Priority feature requests + direct line to the builder" />
-            <Feature text="No ads, ever" />
-          </ul>
-          <p className="mt-6 text-[13px] text-dim text-center">
-            Want the full feature rundown?{" "}
-            <a
-              href="/premium"
-              className="text-brand hover:underline font-semibold"
-            >
-              See every Pro feature →
-            </a>
-          </p>
-        </div>
-
-        {/* Power — coming soon. Power-user tier signals upgrade path
-            without breaking €9 founders lifetime commitment. Operator
-            activates Stripe + features when fleet UV crosses funnel-
-            order math floor (~500 UV/30d minimum). */}
-        <div className="rounded-2xl border border-amber-400/40 bg-amber-400/5 p-8 relative">
-          <div className="absolute -top-3 left-8 text-[10px] uppercase tracking-widest font-bold text-bg bg-amber-400 rounded-full px-3 py-1">
-            Coming soon
-          </div>
-          <div className="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-2">
-            Power
-          </div>
-          <div className="flex items-baseline gap-2 mb-1">
-            <div className="text-4xl sm:text-5xl font-bold tabular-nums">€49</div>
-            <div className="text-sm text-muted">/month</div>
-          </div>
-          <div className="text-sm text-muted mb-6">
-            For analysts + RIAs · cancel anytime
-          </div>
-
-          <div className="mb-6">
-            <p className="text-xs text-muted mb-3">
-              Everything in Pro, plus higher API limits, custom filters,
-              portfolio sync, and priority support — built for users who
-              run real models on this data.
-            </p>
-            <button
-              type="button"
-              disabled
-              className="w-full text-center bg-bg border border-amber-400/40 text-amber-400/70 font-semibold rounded-xl px-5 py-3 cursor-not-allowed"
-            >
-              Notify me at launch →
-            </button>
-            <p className="text-[11px] text-dim mt-3 text-center">
-              <a href="/alerts" className="underline hover:text-text transition">
-                Get notified when Power ships
-              </a>
-            </p>
-          </div>
-
-          <ul className="space-y-3 text-sm">
-            <Feature text="Everything in Pro, plus:" emphasis />
-            <Feature text="100,000 req/day API (vs 10k Pro / 150 Free)" />
-            <Feature text="Custom filters — score ranges × sector × manager combos" />
-            <Feature text="Portfolio sync — match HoldLens signals to YOUR positions" />
-            <Feature text="Bulk CSV/JSON export — unlimited per month" />
-            <Feature text="Historical backtest API — programmatic /proof access" />
-            <Feature text="Priority email support · &lt;24h response" />
-            <Feature text="Direct line to the builder for feature requests" />
-          </ul>
-        </div>
-      </div>
-
-      {/* FAQ */}
-      <section className="max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-8">Pricing FAQ</h2>
-        <div className="space-y-6">
-          <FAQ
-            q="Is the free tier really free forever?"
-            a="Yes. The unified ConvictionScore is not a Pro upsell — it's the core product, free for everyone. That includes the recommendation model, multi-quarter trends, live prices, signal dossiers, activity feed, screener, compare pages, watchlist, portfolio, and the manager leaderboard with 10y realized alpha. Pro adds email alerts, EDGAR coverage expansion, custom watchlist triggers, thesis generation, and API access."
-          />
-          <FAQ
-            q="What's the founders price?"
-            a="The first 100 Pro subscribers lock in €9/mo for life — even when the standard price goes up. After the first 100 spots are gone, new subscribers pay €14/mo. Cancel anytime; your founders rate is kept as long as the subscription stays active."
-          />
-          <FAQ
-            q="Is Pro actually live now?"
-            a="Yes. Pro checkout runs through Stripe and activates the moment your payment goes through. Email alerts, EDGAR coverage expansion, custom watchlist triggers, and API access all ship incrementally; founders get every feature as it lands at no extra cost."
-          />
-          <FAQ
-            q="Why €14/mo and not €9 or €29?"
-            a="Below €10 it feels disposable, above €20 it requires justification. €14 is the sweet spot for an individual investor tool: about half a coffee per week. You'll save that on your first informed move. Founders pay €9/mo to reward early support."
-          />
-          <FAQ
-            q="Do you offer a team or family plan?"
-            a="Not yet. If you want to share Pro with your investing club or family, reach out — we'll set something up manually until we ship a real team plan."
-          />
-          <FAQ
-            q="When does Power tier launch?"
-            a="Power is in active development. It targets analysts, RIAs, and quants who run real models on the data — 100k req/day API, custom filters, portfolio sync, bulk export, historical backtest API, priority support. €49/mo. Join /alerts to be notified at launch. Existing Pro subscribers can upgrade with one click and keep their lifetime founders pricing on the Pro base."
-          />
-          <FAQ
-            q="Refund policy?"
-            a="Cancel anytime. Pro-rated refund within 14 days, no questions asked. After 14 days, your subscription runs to the end of the period and then stops."
-          />
-        </div>
+      <section className="rounded-card border border-border bg-surface-muted p-6 mb-10">
+        <h2 className="text-base font-bold text-text mb-3">What you get (everything)</h2>
+        <ul className="space-y-2 text-sm text-muted leading-relaxed">
+          <li>
+            <span className="text-emerald-400 mr-2">✓</span>
+            <Link href="/scores" className="text-brand underline">ConvictionScore</Link>{" "}
+            for every tracked stock — {MANAGERS.length} superinvestors, 9 quarters of 13F
+            history, full composite signal.
+          </li>
+          <li>
+            <span className="text-emerald-400 mr-2">✓</span>
+            Per-investor pages, per-ticker dossiers, per-sector flow heatmaps.
+          </li>
+          <li>
+            <span className="text-emerald-400 mr-2">✓</span>
+            Daily Form 4 insider feed + 8-K material event timeline (combined SEC + curated).
+          </li>
+          <li>
+            <span className="text-emerald-400 mr-2">✓</span>
+            Quarterly{" "}
+            <Link href="/reports/2026-05-q1-2026-13f-signal-summary" className="text-brand underline">
+              13F signal recaps
+            </Link>{" "}
+            + manager-specific deep dives.
+          </li>
+          <li>
+            <span className="text-emerald-400 mr-2">✓</span>
+            Full JSON API at{" "}
+            <Link href="/api/v1/" className="text-brand underline">/api/v1/</Link> — 20+
+            endpoints, CSV exports, machine-readable Q1 2026 snapshot.
+          </li>
+          <li>
+            <span className="text-emerald-400 mr-2">✓</span>
+            Email alerts at{" "}
+            <Link href="/alerts" className="text-brand underline">/alerts</Link> — optional
+            opt-in for new filings + signal changes.
+          </li>
+          <li>
+            <span className="text-emerald-400 mr-2">✓</span>
+            36+{" "}
+            <Link href="/learn" className="text-brand underline">/learn essays</Link>{" "}
+            covering SEC filing mechanics + famous trades + signal methodology.
+          </li>
+        </ul>
       </section>
 
-      <p className="text-xs text-dim mt-16 text-center">
-        HoldLens does not provide investment advice. We surface SEC 13F filings and live market data so you can decide for yourself.
+      <h2 className="text-2xl font-bold mb-4">Why free?</h2>
+      <p className="text-muted leading-relaxed mb-3">
+        HoldLens is in growth-first mode. We&apos;re tracking what helps investors most
+        and improving the product — not segmenting users into tiers. Paywalls before
+        you have meaningful usage create the wrong feedback loop: optimization for
+        conversion friction instead of for actual usefulness.
       </p>
-    </div>
-  );
-}
+      <p className="text-muted leading-relaxed mb-8">
+        When the audience and signal are strong enough, we&apos;ll likely introduce
+        an optional paid tier with extras (richer alerts, custom watchlists, full
+        EDGAR-wide universe expansion). Everything you see today will stay free.
+      </p>
 
-function Feature({ text, emphasis }: { text: string; emphasis?: boolean }) {
-  return (
-    <li className={`flex items-start gap-2 ${emphasis ? "text-text font-semibold" : "text-muted"}`}>
-      <CheckIcon />
-      <span>{text}</span>
-    </li>
-  );
-}
+      <h2 className="text-2xl font-bold mb-4">How HoldLens is funded</h2>
+      <p className="text-muted leading-relaxed mb-3">
+        At this stage: AdSense + Cloudflare Pay-Per-Crawl (AI crawler licensing) +
+        occasional non-intrusive affiliate links to brokers we use ourselves
+        (disclosed when present). No data resale. No selling email lists.
+      </p>
+      <p className="text-muted leading-relaxed mb-10">
+        Your usage is what matters most right now. The more people who find the
+        product useful, the more sense it makes to invest in keeping it free.
+      </p>
 
-function CheckIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-brand mt-0.5 shrink-0"
-      aria-hidden
-    >
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
+      <section className="rounded-card border border-border bg-surface p-6 mb-10">
+        <h2 className="text-base font-bold text-text mb-2">Start here</h2>
+        <ul className="space-y-1.5 text-sm">
+          <li>
+            →{" "}
+            <Link href="/scores" className="text-brand underline">
+              ConvictionScore rankings — every tracked stock
+            </Link>
+          </li>
+          <li>
+            →{" "}
+            <Link href="/best-now" className="text-brand underline">
+              Most-bought + most-sold this quarter
+            </Link>
+          </li>
+          <li>
+            →{" "}
+            <Link href="/leaderboard" className="text-brand underline">
+              Manager ROI leaderboard — who actually beats the market
+            </Link>
+          </li>
+          <li>
+            →{" "}
+            <Link href="/today" className="text-brand underline">
+              Today — daily-fresh insider + event feed
+            </Link>
+          </li>
+          <li>
+            →{" "}
+            <Link href="/api/v1/" className="text-brand underline">
+              JSON API — machine-readable everything
+            </Link>
+          </li>
+        </ul>
+      </section>
 
-function FAQ({ q, a }: { q: string; a: string }) {
-  return (
-    <div className="rounded-xl border border-border bg-panel p-5">
-      <div className="font-semibold text-text mb-2">{q}</div>
-      <div className="text-sm text-muted leading-relaxed">{a}</div>
+      <p className="text-xs text-dim pt-6 border-t border-border leading-relaxed">
+        Not investment advice. Sourced from public SEC EDGAR filings. See{" "}
+        <Link href="/methodology" className="text-brand underline">methodology</Link> +{" "}
+        <Link href="/disclaimer" className="text-brand underline">disclaimer</Link>.
+      </p>
     </div>
   );
 }

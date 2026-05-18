@@ -12,7 +12,47 @@ import {
 } from "@/lib/conviction";
 import { hasTickerPage, SECTOR_MAP } from "@/lib/tickers";
 import { MANAGERS } from "@/lib/managers";
-import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
+import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED, getAllMovesEnriched } from "@/lib/moves";
+
+// Latest-move lookup — per ticker, find the highest-impact move filed in
+// LATEST_QUARTER so we can render "Q1 2026: Buffett +new" inline in every
+// row. Quote-ready sentence per row = LLM-citation gold.
+type LatestMove = {
+  managerName: string;
+  managerSlug: string;
+  action: "new" | "add" | "trim" | "exit";
+  portfolioImpactPct: number;
+};
+function buildLatestMoveMap(): Map<string, LatestMove> {
+  const out = new Map<string, LatestMove>();
+  const quarterMoves = getAllMovesEnriched().filter((m) => m.quarter === LATEST_QUARTER);
+  for (const m of quarterMoves) {
+    const t = m.ticker.toUpperCase();
+    const existing = out.get(t);
+    const impact = Math.abs(m.portfolioImpactPct ?? 0);
+    if (!existing || impact > Math.abs(existing.portfolioImpactPct)) {
+      out.set(t, {
+        managerName: m.managerName,
+        managerSlug: m.managerSlug,
+        action: m.action,
+        portfolioImpactPct: m.portfolioImpactPct ?? 0,
+      });
+    }
+  }
+  return out;
+}
+const LATEST_MOVE_MAP = buildLatestMoveMap();
+function actionGlyph(action: LatestMove["action"]): string {
+  switch (action) {
+    case "new": return "+new";
+    case "add": return "+add";
+    case "trim": return "−trim";
+    case "exit": return "−exit";
+  }
+}
+function actionColor(action: LatestMove["action"]): string {
+  return action === "new" || action === "add" ? "text-emerald-400" : "text-rose-400";
+}
 
 // /scores — the canonical "all stocks ranked by ConvictionScore" reference
 // page. Every ticker tracked across the fleet's 30 superinvestors gets a
@@ -29,7 +69,7 @@ import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
 
 export const metadata: Metadata = {
   title: "ConvictionScore — every tracked stock ranked by smart-money signal",
-  description: `All ${"500+"} tickers held by ${MANAGERS.length} tracked superinvestors, ranked by a single −100..+100 composite signal. Updated quarterly from SEC Form 13F filings (Q1 2026, filed May 2026). Pure data-display — no buy/sell recommendations.`,
+  description: `Every ticker held across ${MANAGERS.length} tracked superinvestors' Q1 2026 13F filings, ranked by a −100..+100 composite signal. Each row shows: score, tier label, buyer + seller counts, top accumulating manager, sector, and a buyer-CAGR-proxy expected-return figure. Pure data-display — no buy/sell recommendations.`,
   alternates: { canonical: "https://holdlens.com/scores" },
   openGraph: {
     title: "ConvictionScore rankings — every tracked stock, one composite signal",
@@ -118,13 +158,13 @@ export default function ScoresPage() {
     name: `ConvictionScore rankings (${LATEST_LABEL})`,
     numberOfItems: total,
     itemListOrder: "https://schema.org/ItemListOrderDescending",
-    itemListElement: allScores.slice(0, 100).map((s, i) => ({
+    itemListElement: allScores.map((s, i) => ({
       "@type": "ListItem",
       position: i + 1,
       url: hasTickerPage(s.ticker)
         ? `https://holdlens.com/ticker/${s.ticker}/`
         : `https://holdlens.com/scores`,
-      name: `${s.ticker} — ${s.name} — ConvictionScore ${formatSignedScore(s.score)} (${convictionLabel(s.score).label})`,
+      name: `${s.ticker} — ${s.name} — ConvictionScore ${formatSignedScore(s.score)} (${convictionLabel(s.score).label}; ${s.buyerCount} buyer${s.buyerCount === 1 ? "" : "s"}, ${s.sellerCount} seller${s.sellerCount === 1 ? "" : "s"} across tracked managers)`,
     })),
   };
 
@@ -199,12 +239,70 @@ export default function ScoresPage() {
     ],
   };
 
+  // FAQPage schema — 6 Q&As for LLM voice/answer-engine extraction.
+  // Pairs with the on-page "How ConvictionScore is computed" section.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is a ConvictionScore?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `A ConvictionScore is a signed −100 to +100 composite signal aggregating six layers from public SEC 13F + Form 4 + 8-K filings: smart-money consensus (manager-quality-weighted buys vs sells, time-decayed across 9 quarters), insider activity, buyer track record (10-year CAGR), multi-quarter trend streak, position-size concentration, and 8-K material-event signal. Positive scores indicate aggregate accumulation by tracked managers; negative indicates aggregate selling. Computed by HoldLens for ${total} tickers held by ${MANAGERS.length} tracked superinvestors.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are ConvictionScores buy or sell recommendations?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Backtested correlation r against forward 1-year returns is −0.12 across 221 ticker-quarter pairs from Q4 2024 through Q1 2026. ConvictionScores describe what institutional managers have already done — aggregate smart-money positioning — not where the stock is going next. They are a positioning tracker, not a stock-picking tool. HoldLens has no licensed financial advice credentials and explicitly does not issue recommendations.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How often is the data updated?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Quarterly, anchored to SEC Form 13F-HR filing deadlines (45 days post-quarter-end). The latest update reflects ${LATEST_LABEL} filings, filed ${LATEST_FILED}. Holdings disclosed are as of the quarter-end snapshot date (${LATEST_QUARTER === "2026-Q1" ? "March 31, 2026" : "the quarter-end"}). New filings are ingested within 24 hours of SEC publication and recompute all ConvictionScores.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What do the seven tier labels mean?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Seven descriptive tiers anchored to score bands: Heavy accumulation (≥+70), Net accumulation (+40 to +69), Slight accumulation (+1 to +39), Mixed (0), Slight selling (−1 to −39), Net selling (−40 to −69), Heavy selling (≤−70). Labels describe the aggregate institutional behavior observed in 13F filings — they are not buy/sell recommendations. Tier color (emerald for accumulation, rose for selling, muted for mixed) is visual scaffolding only.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What does the B / S column show?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "B = count of tracked managers who acted as net buyers on the ticker across the last 9 quarters (added or initiated). S = count of managers who acted as net sellers (trimmed or exited). Sets are not mutually exclusive — a manager who added then trimmed counts in both. The score itself is time-decayed (recent moves weighted ~60× more than 9-quarter-old moves via 0.6^distance decay), but the B / S counts are absolute totals across the window.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why are some tickers marked 'crowded'?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Tickers held by ≥10 of the ${MANAGERS.length} tracked managers carry a crowded badge. Heavy institutional crowding mechanically caps upside (the marginal buyer has already bought) and amplifies downside during forced unwinds. The ConvictionScore itself applies a crowding-penalty layer (subtracts up to 10 points from the raw score for over-owned tickers), so a crowded ticker that still scores high has overcome that penalty.`,
+        },
+      },
+    ],
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
 
       <a href="/" className="text-xs text-muted hover:text-text">← Home</a>
 
@@ -404,6 +502,23 @@ export default function ScoresPage() {
             </p>
           </div>
           <div>
+            <h3 className="text-base font-bold mb-2">What the columns mean</h3>
+            <p className="text-muted">
+              <strong>Score</strong>: the composite −100..+100 ConvictionScore (sign-based, no
+              dead zone).{" "}
+              <strong>Tier</strong>: one of seven descriptive labels (Heavy accumulation → Heavy
+              selling) anchored to score bands at ±70 / ±40 / ±0.{" "}
+              <strong>B / S</strong>: count of tracked managers who acted as net buyers vs. net
+              sellers on this ticker across the last 9 quarters (time-decayed). Sets are not
+              mutually exclusive — a manager who added then trimmed counts in both.{" "}
+              <strong>Top buyer</strong>: the highest-weight buyer (manager-quality ×
+              concentration × time-decay) — or top seller prefixed with ↘ if no buyers.{" "}
+              <strong>Buyer-CAGR proxy</strong>: weighted-average 10-year CAGR of the buyer set,
+              weighted by position size — descriptive of the historical track record of the
+              managers holding this position, NOT a forward forecast for the stock itself.
+            </p>
+          </div>
+          <div>
             <h3 className="text-base font-bold mb-2">The 45-day lag</h3>
             <p className="text-muted">
               Form 13F-HR is filed within 45 days of quarter-end. Holdings reflect the
@@ -514,11 +629,13 @@ function TierLegend({ score, label, range }: { score: number; label: string; ran
   );
 }
 
+const VISIBLE_PER_SECTION = 50;
+
 function RankSection({
   id,
   title,
   subtitle,
-  rows,
+  rows: allRows,
   rankStart,
 }: {
   id: string;
@@ -527,7 +644,9 @@ function RankSection({
   rows: ReturnType<typeof getAllConvictionScores>;
   rankStart: number;
 }) {
-  if (rows.length === 0) {
+  const rows = allRows.slice(0, VISIBLE_PER_SECTION);
+  const overflow = allRows.slice(VISIBLE_PER_SECTION);
+  if (allRows.length === 0) {
     return (
       <section id={id} className="mt-12">
         <h2 className="text-2xl font-bold mb-2">{title}</h2>
@@ -542,22 +661,26 @@ function RankSection({
       <h2 className="text-2xl font-bold mb-2">
         {title}{" "}
         <span className="text-muted text-base font-normal tabular-nums">
-          ({rows.length})
+          ({allRows.length})
         </span>
       </h2>
       <p className="text-muted text-sm mb-5 max-w-3xl">{subtitle}</p>
 
-      <div className="overflow-x-auto rounded-card border border-border bg-surface">
+      {/* Desktop table — md+ */}
+      <div className="hidden md:block overflow-x-auto rounded-card border border-border bg-surface">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left border-b border-border">
-              <th scope="col" className="py-3 px-4 text-xs uppercase tracking-wider text-muted font-semibold w-12">#</th>
-              <th scope="col" className="py-3 px-4 text-xs uppercase tracking-wider text-muted font-semibold">Ticker</th>
-              <th scope="col" className="py-3 px-4 text-xs uppercase tracking-wider text-muted font-semibold hidden sm:table-cell">Company</th>
-              <th scope="col" className="py-3 px-4 text-xs uppercase tracking-wider text-muted font-semibold hidden md:table-cell">Sector</th>
-              <th scope="col" className="py-3 px-4 text-xs uppercase tracking-wider text-muted font-semibold text-right">Score</th>
-              <th scope="col" className="py-3 px-4 text-xs uppercase tracking-wider text-muted font-semibold hidden lg:table-cell">Tier</th>
-              <th scope="col" className="py-3 px-4 text-xs uppercase tracking-wider text-muted font-semibold text-right hidden md:table-cell">Owners</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold w-12">#</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold">Ticker</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold">Company</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold hidden lg:table-cell">Sector</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold text-right">Score</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold hidden xl:table-cell">Tier</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold text-right">B / S</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold hidden lg:table-cell">Top buyer</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold hidden xl:table-cell">{QUARTER_LABELS[LATEST_QUARTER]} latest move</th>
+              <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold text-right hidden xl:table-cell">Buyer-CAGR proxy</th>
             </tr>
           </thead>
           <tbody>
@@ -569,28 +692,79 @@ function RankSection({
                   : color === "rose"
                     ? "text-rose-400"
                     : "text-muted";
-              const Cell = hasTickerPage(r.ticker) ? Link : "span";
-              const cellProps = hasTickerPage(r.ticker)
-                ? { href: `/ticker/${r.ticker}/`, className: "text-brand hover:underline font-bold tabular-nums" }
-                : { className: "text-text font-bold tabular-nums" };
+              const topBuyer = r.topBuyers[0];
+              const topSeller = r.topSellers[0];
+              const hasPage = hasTickerPage(r.ticker);
+              const tickerCellText = (
+                <span className={hasPage ? "text-brand hover:underline font-bold tabular-nums" : "text-text font-bold tabular-nums"}>
+                  {r.ticker}
+                </span>
+              );
+              const erText =
+                r.expectedReturnPct != null
+                  ? `${r.expectedReturnPct > 0 ? "+" : ""}${r.expectedReturnPct.toFixed(1)}%/yr proxy from buyer CAGRs`
+                  : "no buyer data";
               return (
                 <tr
                   key={r.ticker}
                   className="border-b border-border last:border-b-0 hover:bg-surface-muted transition-colors"
                 >
-                  <td className="py-3 px-4 text-muted tabular-nums text-xs">{rankStart + i}</td>
-                  <td className="py-3 px-4">
-                    {/* @ts-expect-error — discriminated Cell union */}
-                    <Cell {...cellProps}>{r.ticker}</Cell>
+                  <td className="py-2.5 px-3 text-muted tabular-nums text-xs">{rankStart + i}</td>
+                  <td className="py-2.5 px-3">
+                    <div className="flex items-baseline gap-1.5">
+                      {hasPage ? (
+                        <Link href={`/ticker/${r.ticker}/`}>{tickerCellText}</Link>
+                      ) : (
+                        tickerCellText
+                      )}
+                      {r.ownerCount >= 10 && (
+                        <span
+                          className="text-[10px] text-amber-400 border border-amber-400/40 rounded px-1 tabular-nums leading-tight"
+                          title={`Crowded — held by ${r.ownerCount} of ${MANAGERS.length} tracked managers. Crowding mechanically caps upside.`}
+                        >
+                          {r.ownerCount}
+                        </span>
+                      )}
+                    </div>
                   </td>
-                  <td className="py-3 px-4 text-text hidden sm:table-cell">{r.name}</td>
-                  <td className="py-3 px-4 text-muted text-xs hidden md:table-cell">{r.sector || "—"}</td>
-                  <td className={`py-3 px-4 text-right font-bold tabular-nums ${colorClass}`}>
+                  <td className="py-2.5 px-3 text-text text-xs max-w-[200px] truncate">{r.name}</td>
+                  <td className="py-2.5 px-3 text-muted text-xs hidden lg:table-cell">{r.sector || "—"}</td>
+                  <td
+                    className={`py-2.5 px-3 text-right font-bold tabular-nums ${colorClass}`}
+                    title={erText}
+                  >
                     {formatSignedScore(r.score)}
                   </td>
-                  <td className={`py-3 px-4 text-xs hidden lg:table-cell ${colorClass}`}>{label}</td>
-                  <td className="py-3 px-4 text-right text-muted tabular-nums text-xs hidden md:table-cell">
-                    {r.ownerCount}
+                  <td className={`py-2.5 px-3 text-xs hidden xl:table-cell ${colorClass}`}>{label}</td>
+                  <td className="py-2.5 px-3 text-right text-muted tabular-nums text-xs">
+                    <span className="text-emerald-400">{r.buyerCount}</span>
+                    <span className="text-dim mx-1">/</span>
+                    <span className="text-rose-400">{r.sellerCount}</span>
+                  </td>
+                  <td className="py-2.5 px-3 text-xs text-muted hidden lg:table-cell max-w-[140px] truncate">
+                    {topBuyer ? topBuyer.name : topSeller ? `↘ ${topSeller.name}` : "—"}
+                  </td>
+                  <td className="py-2.5 px-3 text-xs hidden xl:table-cell max-w-[180px] truncate">
+                    {(() => {
+                      const lm = LATEST_MOVE_MAP.get(r.ticker);
+                      if (!lm) return <span className="text-dim">no move</span>;
+                      return (
+                        <span>
+                          <span className="text-muted">{lm.managerName.split(" ").slice(-1)[0]}</span>{" "}
+                          <span className={actionColor(lm.action)}>{actionGlyph(lm.action)}</span>
+                        </span>
+                      );
+                    })()}
+                  </td>
+                  <td className="py-2.5 px-3 text-right text-xs tabular-nums hidden xl:table-cell">
+                    {r.expectedReturnPct != null ? (
+                      <span className={r.expectedReturnPct >= 0 ? "text-emerald-400" : "text-rose-400"}>
+                        {r.expectedReturnPct > 0 ? "+" : ""}
+                        {r.expectedReturnPct.toFixed(1)}%
+                      </span>
+                    ) : (
+                      <span className="text-dim">—</span>
+                    )}
                   </td>
                 </tr>
               );
@@ -598,6 +772,127 @@ function RankSection({
           </tbody>
         </table>
       </div>
+
+      {/* Mobile cards — below md */}
+      <div className="md:hidden space-y-2">
+        {rows.map((r, i) => {
+          const { label, color } = convictionLabel(r.score);
+          const colorClass =
+            color === "emerald"
+              ? "text-emerald-400"
+              : color === "rose"
+                ? "text-rose-400"
+                : "text-muted";
+          const topBuyer = r.topBuyers[0];
+          const topSeller = r.topSellers[0];
+          const hasPage = hasTickerPage(r.ticker);
+          const tickerLink = hasPage ? (
+            <Link href={`/ticker/${r.ticker}/`} className="text-brand font-bold tabular-nums">
+              {r.ticker}
+            </Link>
+          ) : (
+            <span className="text-text font-bold tabular-nums">{r.ticker}</span>
+          );
+          return (
+            <div
+              key={r.ticker}
+              className="rounded-card border border-border bg-surface p-3"
+            >
+              <div className="flex items-center justify-between mb-1.5">
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <span className="text-muted tabular-nums text-xs">#{rankStart + i}</span>
+                  {tickerLink}
+                  {r.ownerCount >= 10 && (
+                    <span
+                      className="text-[10px] text-amber-400 border border-amber-400/40 rounded px-1 tabular-nums leading-tight"
+                      title={`Held by ${r.ownerCount} of ${MANAGERS.length} tracked managers`}
+                    >
+                      crowded {r.ownerCount}
+                    </span>
+                  )}
+                </div>
+                <div className={`text-lg font-bold tabular-nums ${colorClass}`}>
+                  {formatSignedScore(r.score)}
+                </div>
+              </div>
+              <div className="text-xs text-text mb-1 truncate">{r.name}</div>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
+                <span className={colorClass}>{label}</span>
+                <span className="text-dim">·</span>
+                <span>
+                  <span className="text-emerald-400">{r.buyerCount}B</span>
+                  <span className="text-dim mx-1">/</span>
+                  <span className="text-rose-400">{r.sellerCount}S</span>
+                </span>
+                {r.sector && (
+                  <>
+                    <span className="text-dim">·</span>
+                    <span>{r.sector}</span>
+                  </>
+                )}
+                {topBuyer && (
+                  <>
+                    <span className="text-dim">·</span>
+                    <span>↗ {topBuyer.name}</span>
+                  </>
+                )}
+                {!topBuyer && topSeller && (
+                  <>
+                    <span className="text-dim">·</span>
+                    <span>↘ {topSeller.name}</span>
+                  </>
+                )}
+                {r.expectedReturnPct != null && (
+                  <>
+                    <span className="text-dim">·</span>
+                    <span className={r.expectedReturnPct >= 0 ? "text-emerald-400" : "text-rose-400"}>
+                      {r.expectedReturnPct > 0 ? "+" : ""}
+                      {r.expectedReturnPct.toFixed(1)}%/yr
+                    </span>
+                  </>
+                )}
+                {(() => {
+                  const lm = LATEST_MOVE_MAP.get(r.ticker);
+                  if (!lm) return null;
+                  return (
+                    <>
+                      <span className="text-dim">·</span>
+                      <span>
+                        {QUARTER_LABELS[LATEST_QUARTER]}:{" "}
+                        <span className="text-muted">{lm.managerName.split(" ").slice(-1)[0]}</span>{" "}
+                        <span className={actionColor(lm.action)}>{actionGlyph(lm.action)}</span>
+                      </span>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {overflow.length > 0 && (
+        <div className="mt-3 text-xs text-muted leading-relaxed border-t border-border pt-3">
+          <span className="text-dim uppercase tracking-wider">+ {overflow.length} more in this tier:</span>{" "}
+          {overflow.map((r, i) => (
+            <span key={r.ticker}>
+              {hasTickerPage(r.ticker) ? (
+                <Link href={`/ticker/${r.ticker}/`} className="text-brand hover:underline tabular-nums">
+                  {r.ticker}
+                </Link>
+              ) : (
+                <span className="text-text tabular-nums">{r.ticker}</span>
+              )}
+              <span className="text-dim ml-0.5">({formatSignedScore(r.score)})</span>
+              {i < overflow.length - 1 ? <span className="text-dim">, </span> : null}
+            </span>
+          ))}
+          {". "}
+          <Link href="/api/v1/scores.json" className="text-brand underline whitespace-nowrap">
+            Full data via /api/v1/scores.json →
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

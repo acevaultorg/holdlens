@@ -32,6 +32,7 @@ const ALLOWLIST = new Set([
   'out/insiders/company/snse/index.html', // 504KB snse insider history; 4KB over (2026-05-17). noindex.
   'out/insiders/company/hawk/index.html', // 503KB hawk insider history; 3KB over (2026-05-17). noindex.
   'out/insiders/company/uthr/index.html', // 500KB uthr insider history; 0.4KB over (2026-05-17). noindex.
+  'out/scores/index.html', // 783KB canonical "all stocks ranked by ConvictionScore" page (Ship PP+QQ+RR, 2026-05-19). 456 tickers × 9 fields × desktop table + mobile cards. Spec is "every tracked stock visible". ItemList schema all 456; visible rows capped 50/section + overflow footer. Indexed (this is the canonical ranking surface — SEO + AEO win justifies budget). Consider client-side virtualization or section-paginated routes in a future refactor.
 ]);
 
 function walk(dir, predicate) {

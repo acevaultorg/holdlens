@@ -156,8 +156,6 @@ const GROUPS: MGroup[] = [
       { href: "/docs", label: "API docs" },
       { href: "/for-ai", label: "For AI / LLM agents", color: "info" },
       { href: "/api-terms", label: "API terms" },
-      { href: "/pricing", label: "Pricing", color: "brand" },
-      { href: "/premium", label: "Pro features", color: "brand" },
     ],
   },
 ];
@@ -461,30 +459,11 @@ export default function MobileNav() {
           );
         })}
 
-        {/* v1.08 — Pro CTA RELOCATED to post-groups position. Softer copy
-            ("Optional Pro" vs prior "Lock in €9/mo"), neutral border (not
-            brand-amber) so it reads as supporting information, not an
-            aggressive paywall. Users who want Pro after browsing reach it
-            here; users who don't care scroll past with zero cognitive
-            cost. Growth-first positioning per operator directive. */}
-        <div className="px-5 py-5 border-t border-border mt-2 pt-6">
-          <a
-            href="/pricing"
-            onClick={() => setOpen(false)}
-            className="block rounded-xl border border-border bg-panel/60 p-4 hover:border-brand/40 hover:bg-brand/5 transition"
-          >
-            <div className="text-[10px] uppercase tracking-widest font-semibold text-dim mb-1">
-              Support HoldLens · Optional
-            </div>
-            <div className="text-[14px] font-semibold text-text leading-tight">
-              Pro — €9/mo founders rate
-            </div>
-            <div className="text-xs text-muted mt-1 leading-snug">
-              Everything stays free forever. Pro adds email alerts + EDGAR-wide
-              universe for supporters.
-            </div>
-          </a>
-        </div>
+        {/* Pro CTA REMOVED 2026-05-19 — operator directive: "remove all pro
+            stuff. we give all for free to anyone. we need to have a certain
+            amount of users first before this makes sense". All HoldLens data
+            + API + exports are free at this stage. Revisit monetization
+            after meaningful user-base growth. */}
 
         {/* Legal */}
         <div className="px-5 py-5 border-t border-border mt-2 pt-6">
