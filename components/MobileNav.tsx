@@ -365,10 +365,10 @@ export default function MobileNav() {
               <span>Flagship · Live</span>
             </div>
             <div className="text-[15px] font-semibold text-text leading-tight">
-              The HoldLens Composite
+              The Conviction
             </div>
             <div className="text-xs text-muted mt-1 leading-snug">
-              30-position aggregate of what tracked superinvestors collectively own most. Sector-capped, equal-weighted, quarterly-rebalanced.
+              Up to 30 tickers tracked superinvestors most aggressively accumulate — conviction-weighted across all 9 quarters of 13F data, sector-capped, quarterly-rebalanced.
             </div>
           </a>
         </div>
@@ -525,6 +525,21 @@ export default function MobileNav() {
 
   return (
     <>
+      {/* The Conviction — KPI button next to hamburger. Brand-tinted pill,
+          mobile-only (md:hidden). Animated pulse dot signals "live basket."
+          Links to /composite (the conviction-weighted descriptive basket).
+          Sized to match the 44×44 hamburger touch target on the y-axis. */}
+      <a
+        href="/composite"
+        className="md:hidden inline-flex items-center gap-1.5 h-11 px-3 rounded-lg border border-brand/40 bg-brand/10 text-brand font-semibold text-sm hover:bg-brand/15 hover:border-brand/60 transition"
+        aria-label="The Conviction — superinvestor accumulation basket, conviction-weighted"
+      >
+        <span
+          className="inline-block w-1.5 h-1.5 rounded-full bg-brand animate-pulse"
+          aria-hidden
+        />
+        <span>Conviction</span>
+      </a>
       <button
         onClick={() => setOpen(true)}
         className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-border bg-panel text-text hover:border-brand/40 transition"

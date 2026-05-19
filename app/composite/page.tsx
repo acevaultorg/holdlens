@@ -8,6 +8,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import {
   getComposite,
   COMPOSITE_TARGET_POSITIONS,
+  COMPOSITE_MAX_PER_SECTOR,
   COMPOSITE_SECTOR_CAP_PCT,
   COMPOSITE_MIN_SCORE,
   COMPOSITE_MIN_BUYERS,
@@ -16,7 +17,7 @@ import { hasTickerPage } from "@/lib/tickers";
 import { MANAGERS } from "@/lib/managers";
 import { convictionLabel, formatSignedScore } from "@/lib/conviction";
 
-// /composite — "The HoldLens Composite" — a descriptive aggregate of which
+// /composite — "The Conviction" — a descriptive aggregate of which
 // tickers tracked superinvestors collectively own most. Pivot A compliant:
 // data-display, not advice. Quarterly rebalance (NOT daily/hourly — RIA
 // territory). No verdict labels, no "optimal" / "ultimate" / "highest ROI"
@@ -30,11 +31,11 @@ import { convictionLabel, formatSignedScore } from "@/lib/conviction";
 
 export const metadata: Metadata = {
   title:
-    "The HoldLens Composite — what 30 superinvestors collectively own most",
+    "The Conviction — what 30 superinvestors collectively own most",
   description: `A descriptive ${COMPOSITE_TARGET_POSITIONS}-stock basket aggregating the highest ConvictionScores across ${MANAGERS.length} tracked portfolio managers' 13F filings. Sector-capped at ${COMPOSITE_SECTOR_CAP_PCT}% for diversification. Equal-weighted. Rebalanced quarterly when new SEC filings land. Pure data-display — not investment advice, not "optimal," not recommended for purchase.`,
   alternates: { canonical: "https://holdlens.com/composite" },
   openGraph: {
-    title: "The HoldLens Composite — superinvestor consensus basket",
+    title: "The Conviction — superinvestor consensus basket",
     description: `${COMPOSITE_TARGET_POSITIONS} most-accumulated tickers across ${MANAGERS.length} tracked managers, sector-capped, quarterly-rebalanced.`,
     url: "https://holdlens.com/composite",
     type: "article",
@@ -43,13 +44,13 @@ export const metadata: Metadata = {
         url: "/og/home.png",
         width: 1200,
         height: 630,
-        alt: "HoldLens Composite — 30 superinvestors aggregated",
+        alt: "The Conviction — 30 superinvestors aggregated",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The HoldLens Composite",
+    title: "The Conviction",
     description: `${COMPOSITE_TARGET_POSITIONS} most-accumulated tickers, sector-capped, quarterly-rebalanced.`,
     images: ["/og/home.png"],
   },
@@ -62,7 +63,7 @@ export default function CompositePage() {
   const datasetLd = {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    name: `The HoldLens Composite — ${c.quarter_label}`,
+    name: `The Conviction — ${c.quarter_label}`,
     description: `Descriptive ${COMPOSITE_TARGET_POSITIONS}-stock aggregate of which tickers ${MANAGERS.length} tracked superinvestors collectively own most heavily, derived from public SEC 13F-HR filings. Sector-capped at ${COMPOSITE_SECTOR_CAP_PCT}%. Equal-weighted. Rebalanced quarterly. Data-display only — not investment advice.`,
     url: "https://holdlens.com/composite",
     keywords: [
@@ -102,7 +103,7 @@ export default function CompositePage() {
   const articleLd = {
     "@context": "https://schema.org",
     "@type": ["Article", "Report"],
-    headline: `The HoldLens Composite — ${c.quarter_label} (${COMPOSITE_TARGET_POSITIONS} positions)`,
+    headline: `The Conviction — ${c.quarter_label} (${COMPOSITE_TARGET_POSITIONS} positions)`,
     description: `Descriptive aggregate of which tickers ${MANAGERS.length} tracked superinvestors collectively own most heavily. Sector-capped, equal-weighted, quarterly-rebalanced. Data-display only.`,
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
@@ -112,7 +113,7 @@ export default function CompositePage() {
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
     keywords: [
-      "HoldLens Composite",
+      "The Conviction",
       "superinvestor consensus",
       "13F aggregate",
       "ConvictionScore basket",
@@ -133,7 +134,7 @@ export default function CompositePage() {
     about: [
       {
         "@type": "DefinedTerm",
-        name: "HoldLens Composite",
+        name: "The Conviction",
         description: `A descriptive ${COMPOSITE_TARGET_POSITIONS}-position aggregate reflecting which stocks ${MANAGERS.length} tracked superinvestors collectively own most heavily, sorted by ConvictionScore (≥${COMPOSITE_MIN_SCORE}) with ≥${COMPOSITE_MIN_BUYERS} manager buyers. NOT a recommendation; NOT an "optimal portfolio"; NOT advice. Pure data-display of public SEC 13F filings.`,
       },
       {
@@ -160,7 +161,7 @@ export default function CompositePage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://holdlens.com" },
-      { "@type": "ListItem", position: 2, name: "The HoldLens Composite", item: "https://holdlens.com/composite" },
+      { "@type": "ListItem", position: 2, name: "The Conviction", item: "https://holdlens.com/composite" },
     ],
   };
 
@@ -171,7 +172,7 @@ export default function CompositePage() {
     "@context": "https://schema.org",
     "@type": "Article",
     mainEntityOfPage: "https://holdlens.com/composite",
-    headline: `The HoldLens Composite — ${c.quarter_label}`,
+    headline: `The Conviction — ${c.quarter_label}`,
     speakable: {
       "@type": "SpeakableSpecification",
       cssSelector: [".composite-direct-answer"],
@@ -179,11 +180,11 @@ export default function CompositePage() {
   };
 
   // HowTo schema — AEO citation gold. Google Featured Snippet + AI Overview
-  // eligibility for "how does the HoldLens Composite work" voice + typed queries.
+  // eligibility for "how does the The Conviction work" voice + typed queries.
   const howToLd = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "How the HoldLens Composite is built",
+    name: "How the The Conviction is built",
     description: `A 6-step deterministic algorithm that aggregates the highest-ConvictionScore positions across ${MANAGERS.length} tracked superinvestors into a sector-capped, equal-weighted ${COMPOSITE_TARGET_POSITIONS}-position descriptive basket. Rebalances quarterly when new SEC 13F-HR filings land.`,
     totalTime: "PT0S",
     estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "0" },
@@ -247,15 +248,17 @@ export default function CompositePage() {
       </div>
 
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 text-balance">
-        The <span className="text-brand">HoldLens Composite</span>
+        The <span className="text-brand">The Conviction</span>
       </h1>
 
       <p className="composite-direct-answer text-muted text-lg leading-relaxed max-w-3xl mb-3 text-pretty">
-        A descriptive <strong>{c.total_positions}-position aggregate</strong> of which
-        stocks {MANAGERS.length} tracked superinvestors{" "}
-        <em>collectively own most heavily</em>, sorted by ConvictionScore (≥{COMPOSITE_MIN_SCORE}{" "}
-        with ≥{COMPOSITE_MIN_BUYERS} manager buyers), sector-capped at{" "}
-        {COMPOSITE_SECTOR_CAP_PCT}% for diversification, equal-weighted.
+        A descriptive basket of <strong>{c.total_positions} tickers</strong> that{" "}
+        {MANAGERS.length} tracked superinvestors{" "}
+        <em>most aggressively accumulate</em> — drawn from a universe of{" "}
+        {c.universe_size} positive-ConvictionScore positions across 9 quarters of 13F
+        data (time-decayed, 6 signal layers), sector-capped at {COMPOSITE_MAX_PER_SECTOR} per
+        sector, and <strong>conviction-weighted</strong> so each slot scales with the
+        intensity of cross-manager accumulation.
       </p>
 
       <p className="text-dim text-sm leading-relaxed max-w-3xl mb-8">
@@ -537,7 +540,7 @@ export default function CompositePage() {
       </section>
 
       <p className="text-xs text-dim pt-8 border-t border-border mt-12 leading-relaxed">
-        Not investment advice. The HoldLens Composite is a descriptive aggregate of
+        Not investment advice. The Conviction is a descriptive aggregate of
         public SEC 13F filings — what tracked managers <em>already did</em>, not what
         they will do, not what you should do. Position sizing is equal-weight by
         design; sector cap is the only risk discipline applied. 45-day filing lag

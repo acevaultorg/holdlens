@@ -247,10 +247,10 @@ export default function DesktopNav() {
       <a
         href="/composite"
         className="ml-1 inline-flex items-center gap-1.5 text-brand hover:text-brand transition font-semibold"
-        aria-label="The HoldLens Composite — 30-superinvestor aggregate basket"
+        aria-label="The Conviction — superinvestor accumulation basket, conviction-weighted"
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand animate-pulse" aria-hidden />
-        <span>Composite</span>
+        <span>Conviction</span>
       </a>
       {/* Auth pill — v0.58 (2026-05-13). Logged-out → "Sign in" → /login/
           (or /signup/ when Supabase env vars not yet configured). Logged-in →

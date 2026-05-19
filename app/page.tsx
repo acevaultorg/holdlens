@@ -279,7 +279,7 @@ export default function HomePage() {
           href="/composite"
           className="inline-block mb-4 text-[11px] uppercase tracking-widest text-brand font-semibold border border-brand/30 hover:border-brand/60 rounded-full px-3 py-1 transition"
         >
-          NEW · The HoldLens Composite — 30-position aggregate →
+          NEW · The Conviction — conviction-weighted basket →
         </a>
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-balance">
           <span className="text-text/90">Understand every move by the</span>{" "}
@@ -319,7 +319,7 @@ export default function HomePage() {
             href="/composite"
             className="group bg-brand text-black font-semibold rounded-xl px-8 py-5 shadow-brand-glow hover:shadow-brand-glow hover:opacity-95 hover:scale-[1.02] transition-all duration-base ease-swift"
           >
-            Open the HoldLens Composite{" "}
+            Open The Conviction{" "}
             <span
               aria-hidden
               className="inline-block transition-transform duration-base ease-swift group-hover:translate-x-1"
@@ -424,10 +424,10 @@ export default function HomePage() {
               Curated · NEW
             </div>
             <div className="text-base font-bold text-text group-hover:text-brand transition mb-1.5">
-              The HoldLens Composite
+              The Conviction
             </div>
             <div className="text-xs text-muted leading-relaxed">
-              {COMPOSITE_TARGET_POSITIONS}-position aggregate of what tracked managers collectively own most. Sector-capped, equal-weighted, quarterly-rebalanced.
+              Up to {COMPOSITE_TARGET_POSITIONS} tickers tracked managers most aggressively accumulate — conviction-weighted across 9 quarters of 13F data, sector-capped, quarterly-rebalanced.
             </div>
             <div className="text-xs text-brand mt-3 font-semibold">
               Open the basket →
