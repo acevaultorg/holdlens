@@ -381,6 +381,13 @@ export default function CompositePage() {
           {topWeightPct.toFixed(2)}%, bottom {bottomWeightPct.toFixed(2)}%. Click ticker
           for the per-stock dossier.
         </p>
+        <p className="text-xs text-dim mb-4">
+          <strong className="text-muted">Buyer CAGR</strong> column shows the
+          average 10-year historical compound annual return of the public-record
+          managers who built each position (sources: Berkshire annual reports,
+          PSH NAV, public mutual funds, partner letters). Backward-looking
+          public data only — not a forecast, not a recommendation.
+        </p>
 
         {/* Desktop table */}
         <div className="hidden md:block overflow-x-auto rounded-card border border-border bg-surface">
@@ -394,6 +401,13 @@ export default function CompositePage() {
                 <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold text-right">Score</th>
                 <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold hidden lg:table-cell">Tier</th>
                 <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold text-right">Buyers</th>
+                <th
+                  scope="col"
+                  className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold text-right hidden xl:table-cell"
+                  title="Average 10-year historical CAGR of the public-record managers who built this position. Backward-looking only — not a forecast."
+                >
+                  Buyer CAGR
+                </th>
                 <th scope="col" className="py-3 px-3 text-xs uppercase tracking-wider text-muted font-semibold text-right">Weight</th>
               </tr>
             </thead>
@@ -402,6 +416,10 @@ export default function CompositePage() {
                 const { label, color } = convictionLabel(h.score);
                 const colorClass = color === "emerald" ? "text-emerald-400" : color === "rose" ? "text-rose-400" : "text-muted";
                 const hasPage = hasTickerPage(h.ticker);
+                const avgBuyerCagr =
+                  h.topBuyers && h.topBuyers.length > 0
+                    ? h.topBuyers.reduce((s, b) => s + b.cagr, 0) / h.topBuyers.length
+                    : null;
                 return (
                   <tr key={h.ticker} className="border-b border-border last:border-b-0 hover:bg-surface-muted transition-colors">
                     <td className="py-2.5 px-3 text-muted tabular-nums text-xs">{h.rank_in_composite}</td>
@@ -421,6 +439,9 @@ export default function CompositePage() {
                     </td>
                     <td className={`py-2.5 px-3 text-xs hidden lg:table-cell ${colorClass}`}>{label}</td>
                     <td className="py-2.5 px-3 text-right text-emerald-400 tabular-nums text-xs">{h.buyerCount}</td>
+                    <td className="py-2.5 px-3 text-right text-muted tabular-nums text-xs hidden xl:table-cell">
+                      {avgBuyerCagr != null ? `${avgBuyerCagr >= 0 ? "+" : ""}${avgBuyerCagr.toFixed(1)}%` : "—"}
+                    </td>
                     <td className="py-2.5 px-3 text-right text-text tabular-nums text-xs">{h.weight_pct.toFixed(2)}%</td>
                   </tr>
                 );
@@ -457,6 +478,20 @@ export default function CompositePage() {
                   {h.sector && (<><span className="text-dim">·</span><span>{h.sector}</span></>)}
                   <span className="text-dim">·</span>
                   <span><span className="text-emerald-400">{h.buyerCount}</span> buyers</span>
+                  {h.topBuyers && h.topBuyers.length > 0 && (
+                    <>
+                      <span className="text-dim">·</span>
+                      <span>
+                        buyer CAGR{" "}
+                        <span className="text-text tabular-nums">
+                          {(() => {
+                            const avg = h.topBuyers.reduce((s, b) => s + b.cagr, 0) / h.topBuyers.length;
+                            return `${avg >= 0 ? "+" : ""}${avg.toFixed(1)}%`;
+                          })()}
+                        </span>
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             );
