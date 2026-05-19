@@ -9,9 +9,7 @@ import {
   getComposite,
   COMPOSITE_TARGET_POSITIONS,
   COMPOSITE_MAX_PER_SECTOR,
-  COMPOSITE_SECTOR_CAP_PCT,
   COMPOSITE_MIN_SCORE,
-  COMPOSITE_MIN_BUYERS,
 } from "@/lib/composite";
 import { hasTickerPage } from "@/lib/tickers";
 import { MANAGERS } from "@/lib/managers";
@@ -24,19 +22,20 @@ import { convictionLabel, formatSignedScore } from "@/lib/conviction";
 // framing. Composite serves curious readers; brain does not recommend
 // readers buy this basket.
 //
-// Operator directive 2026-05-17: "track the performance of this portfolio
-// and what stocks are in? based on all data the ultimate portfolio." Brain
-// shipped Pivot-A-compliant version: composite (not "ultimate"), quarterly
-// rebalance (not daily), data-display (not performance-promise).
+// Methodology v2 (2026-05-19): uses ALL available data — every ticker with
+// positive ConvictionScore across 9 time-decayed quarters, no arbitrary
+// buyer-count floor, no arbitrary score floor beyond "net-accumulation
+// positive". Sector-count cap (≤8 per sector ≈ 27% by count) for
+// concentration discipline. Conviction-weighted sizing — slot ∝ score.
 
 export const metadata: Metadata = {
   title:
     "The Conviction — what 30 superinvestors collectively own most",
-  description: `A descriptive ${COMPOSITE_TARGET_POSITIONS}-stock basket aggregating the highest ConvictionScores across ${MANAGERS.length} tracked portfolio managers' 13F filings. Sector-capped at ${COMPOSITE_SECTOR_CAP_PCT}% for diversification. Equal-weighted. Rebalanced quarterly when new SEC filings land. Pure data-display — not investment advice, not "optimal," not recommended for purchase.`,
+  description: `A descriptive ${COMPOSITE_TARGET_POSITIONS}-stock basket aggregating the highest ConvictionScores across ${MANAGERS.length} tracked portfolio managers' 13F filings. Conviction-weighted — each slot scales with cross-manager accumulation intensity. Sector-count cap (≤${COMPOSITE_MAX_PER_SECTOR} per sector) for concentration discipline. Rebalanced quarterly when new SEC filings land. Pure data-display — not investment advice, not "optimal," not recommended for purchase.`,
   alternates: { canonical: "https://holdlens.com/composite" },
   openGraph: {
     title: "The Conviction — superinvestor consensus basket",
-    description: `${COMPOSITE_TARGET_POSITIONS} most-accumulated tickers across ${MANAGERS.length} tracked managers, sector-capped, quarterly-rebalanced.`,
+    description: `${COMPOSITE_TARGET_POSITIONS} most-accumulated tickers across ${MANAGERS.length} tracked managers, conviction-weighted, sector-count-capped, quarterly-rebalanced.`,
     url: "https://holdlens.com/composite",
     type: "article",
     images: [
@@ -51,20 +50,22 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Conviction",
-    description: `${COMPOSITE_TARGET_POSITIONS} most-accumulated tickers, sector-capped, quarterly-rebalanced.`,
+    description: `${COMPOSITE_TARGET_POSITIONS} most-accumulated tickers, conviction-weighted, sector-count-capped, quarterly-rebalanced.`,
     images: ["/og/home.png"],
   },
 };
 
 export default function CompositePage() {
   const c = getComposite();
+  const topWeightPct = c.holdings[0]?.weight_pct ?? 0;
+  const bottomWeightPct = c.holdings[c.holdings.length - 1]?.weight_pct ?? 0;
 
   // LLM-citation schema — Dataset + DefinedTerm × 4 + BreadcrumbList + Article.
   const datasetLd = {
     "@context": "https://schema.org",
     "@type": "Dataset",
     name: `The Conviction — ${c.quarter_label}`,
-    description: `Descriptive ${COMPOSITE_TARGET_POSITIONS}-stock aggregate of which tickers ${MANAGERS.length} tracked superinvestors collectively own most heavily, derived from public SEC 13F-HR filings. Sector-capped at ${COMPOSITE_SECTOR_CAP_PCT}%. Equal-weighted. Rebalanced quarterly. Data-display only — not investment advice.`,
+    description: `Descriptive ${COMPOSITE_TARGET_POSITIONS}-stock aggregate of which tickers ${MANAGERS.length} tracked superinvestors collectively own most heavily, derived from public SEC 13F-HR filings. Conviction-weighted (slot ∝ score). Sector-count cap ≤${COMPOSITE_MAX_PER_SECTOR} positions per sector. Rebalanced quarterly. Data-display only — not investment advice.`,
     url: "https://holdlens.com/composite",
     keywords: [
       "13F",
@@ -85,17 +86,17 @@ export default function CompositePage() {
         "@type": "PropertyValue",
         name: "ConvictionScore",
         description:
-          "Signed −100..+100 composite signal aggregating smart-money consensus, manager quality, trend, concentration, insider activity, and 8-K events.",
+          "Signed −100..+100 composite signal aggregating smart-money consensus, manager quality, trend, concentration, insider activity, and 8-K events across 9 time-decayed quarters of 13F data.",
       },
       {
         "@type": "PropertyValue",
-        name: "Equal weight",
-        description: `Each of ${COMPOSITE_TARGET_POSITIONS} positions weighted at 1/${COMPOSITE_TARGET_POSITIONS} (${(100 / COMPOSITE_TARGET_POSITIONS).toFixed(2)}%).`,
+        name: "Conviction weight",
+        description: `Each position's slot scales with its ConvictionScore (slot = score ÷ sum-of-selected-scores × 100). Higher-conviction tickers carry larger weight. Top position currently ${topWeightPct.toFixed(2)}%, bottom ${bottomWeightPct.toFixed(2)}%.`,
       },
       {
         "@type": "PropertyValue",
-        name: "Sector cap",
-        description: `${COMPOSITE_SECTOR_CAP_PCT}% per sector — risk-aware diversification discipline.`,
+        name: "Sector count cap",
+        description: `Maximum ${COMPOSITE_MAX_PER_SECTOR} positions per sector — concentration discipline by count. Lower-ranked candidates from already-full sectors are skipped.`,
       },
     ],
   };
@@ -104,7 +105,7 @@ export default function CompositePage() {
     "@context": "https://schema.org",
     "@type": ["Article", "Report"],
     headline: `The Conviction — ${c.quarter_label} (${COMPOSITE_TARGET_POSITIONS} positions)`,
-    description: `Descriptive aggregate of which tickers ${MANAGERS.length} tracked superinvestors collectively own most heavily. Sector-capped, equal-weighted, quarterly-rebalanced. Data-display only.`,
+    description: `Descriptive aggregate of which tickers ${MANAGERS.length} tracked superinvestors collectively own most heavily. Conviction-weighted, sector-count-capped, quarterly-rebalanced. Data-display only.`,
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/composite",
@@ -135,12 +136,12 @@ export default function CompositePage() {
       {
         "@type": "DefinedTerm",
         name: "The Conviction",
-        description: `A descriptive ${COMPOSITE_TARGET_POSITIONS}-position aggregate reflecting which stocks ${MANAGERS.length} tracked superinvestors collectively own most heavily, sorted by ConvictionScore (≥${COMPOSITE_MIN_SCORE}) with ≥${COMPOSITE_MIN_BUYERS} manager buyers. NOT a recommendation; NOT an "optimal portfolio"; NOT advice. Pure data-display of public SEC 13F filings.`,
+        description: `A descriptive ${COMPOSITE_TARGET_POSITIONS}-position aggregate reflecting which stocks ${MANAGERS.length} tracked superinvestors collectively own most heavily, drawn from the universe of every ticker with positive ConvictionScore (≥${COMPOSITE_MIN_SCORE}). NOT a recommendation; NOT an "optimal portfolio"; NOT advice. Pure data-display of public SEC 13F filings.`,
       },
       {
         "@type": "DefinedTerm",
-        name: "Sector cap discipline",
-        description: `${COMPOSITE_SECTOR_CAP_PCT}% maximum sector concentration. When sorted ConvictionScore order would put more than ${Math.floor(COMPOSITE_SECTOR_CAP_PCT / (100 / COMPOSITE_TARGET_POSITIONS))} positions in one sector, lower-scored candidates are skipped to enforce diversification — a basic risk-aware discipline, not an active management decision.`,
+        name: "Sector count cap",
+        description: `Maximum ${COMPOSITE_MAX_PER_SECTOR} positions per sector. When sorted ConvictionScore order would put more than ${COMPOSITE_MAX_PER_SECTOR} positions in one sector, lower-scored candidates are skipped to enforce diversification — a basic risk-aware discipline, not an active management decision.`,
       },
       {
         "@type": "DefinedTerm",
@@ -150,8 +151,8 @@ export default function CompositePage() {
       },
       {
         "@type": "DefinedTerm",
-        name: "Equal weight",
-        description: `Each accepted position carries equal nominal weight (1/${COMPOSITE_TARGET_POSITIONS} ≈ ${(100 / COMPOSITE_TARGET_POSITIONS).toFixed(2)}%). Intentionally simple, transparent, no hidden optimization. Equal-weight prevents large-cap concentration bias that market-cap-weighted indexes carry.`,
+        name: "Conviction-weighted sizing",
+        description: `Each accepted position's slot = its ConvictionScore ÷ sum-of-selected-scores × 100. Higher conviction = larger weight. Methodology v2 uses ALL available data (9 time-decayed quarters, 6 signal layers per ticker) — the score already incorporates buyer agreement, manager quality, trend streak, and insider cross-check, so the size reflects intensity rather than treating every position equally.`,
       },
     ],
   };
@@ -180,12 +181,12 @@ export default function CompositePage() {
   };
 
   // HowTo schema — AEO citation gold. Google Featured Snippet + AI Overview
-  // eligibility for "how does the The Conviction work" voice + typed queries.
+  // eligibility for "how does The Conviction work" voice + typed queries.
   const howToLd = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "How the The Conviction is built",
-    description: `A 6-step deterministic algorithm that aggregates the highest-ConvictionScore positions across ${MANAGERS.length} tracked superinvestors into a sector-capped, equal-weighted ${COMPOSITE_TARGET_POSITIONS}-position descriptive basket. Rebalances quarterly when new SEC 13F-HR filings land.`,
+    name: "How The Conviction is built",
+    description: `A 5-step deterministic algorithm that aggregates the highest-ConvictionScore positions across ${MANAGERS.length} tracked superinvestors into a sector-count-capped, conviction-weighted ${COMPOSITE_TARGET_POSITIONS}-position descriptive basket. Rebalances quarterly when new SEC 13F-HR filings land.`,
     totalTime: "PT0S",
     estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "0" },
     tool: [
@@ -196,32 +197,32 @@ export default function CompositePage() {
       {
         "@type": "HowToStep",
         position: 1,
-        name: "Score every tracked stock",
-        text: `Compute ConvictionScore (−100..+100 composite) for every ticker held across ${MANAGERS.length} tracked superinvestor 13F filings. Filter to candidates with ConvictionScore ≥ +${COMPOSITE_MIN_SCORE} AND ≥${COMPOSITE_MIN_BUYERS} independent manager buyers.`,
+        name: "Define the universe",
+        text: `Every ticker with positive ConvictionScore (≥${COMPOSITE_MIN_SCORE}) across ${MANAGERS.length} tracked superinvestor 13F filings. ConvictionScore already aggregates 9 time-decayed quarters and 6 signal layers (smart money, contrarian flow, insider cross-check, trend streak, sector context, prior-score memory), so no arbitrary buyer-count floor is applied on top — the score itself is the gate.`,
       },
       {
         "@type": "HowToStep",
         position: 2,
-        name: "Sort by score descending",
+        name: "Sort by ConvictionScore descending",
         text: "Heaviest aggregate accumulation first. Sort order is purely the score; no tiebreakers, no factor tilts, no manual overrides.",
       },
       {
         "@type": "HowToStep",
         position: 3,
-        name: "Walk sorted list with sector cap",
-        text: `Accept each ticker in score order IF its sector hasn't reached the ${COMPOSITE_SECTOR_CAP_PCT}% cap. Skip lower-scored candidates from already-full sectors. This enforces baseline diversification — no sector exceeds ${Math.floor(COMPOSITE_SECTOR_CAP_PCT / (100 / COMPOSITE_TARGET_POSITIONS))} positions.`,
+        name: "Walk sorted list with sector-count cap",
+        text: `Accept each ticker in score order IF its sector hasn't reached ${COMPOSITE_MAX_PER_SECTOR} positions. Skip lower-scored candidates from already-full sectors. This enforces baseline diversification — no sector exceeds ${COMPOSITE_MAX_PER_SECTOR}/${COMPOSITE_TARGET_POSITIONS} ≈ ${Math.round((COMPOSITE_MAX_PER_SECTOR / COMPOSITE_TARGET_POSITIONS) * 100)}% by count.`,
       },
       {
         "@type": "HowToStep",
         position: 4,
         name: "Stop at 30 positions",
-        text: `Accept up to ${COMPOSITE_TARGET_POSITIONS} positions or until candidates exhausted, whichever comes first.`,
+        text: `Accept up to ${COMPOSITE_TARGET_POSITIONS} positions or until the positive-score universe is exhausted, whichever comes first.`,
       },
       {
         "@type": "HowToStep",
         position: 5,
-        name: "Equal-weight",
-        text: `Each accepted position carries nominal weight 1/${COMPOSITE_TARGET_POSITIONS} (${(100 / COMPOSITE_TARGET_POSITIONS).toFixed(2)}%). Equal-weight prevents single-position dominance and large-cap concentration bias.`,
+        name: "Conviction-weighted sizing",
+        text: `Each accepted position's slot = its ConvictionScore ÷ sum-of-selected-scores × 100. Higher-conviction tickers carry larger weight. The score already encodes buyer agreement, manager quality, and trend strength via the underlying signal layers, so size reflects intensity of cross-manager accumulation — not a flat equal-share rule.`,
       },
       {
         "@type": "HowToStep",
@@ -248,7 +249,7 @@ export default function CompositePage() {
       </div>
 
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 text-balance">
-        The <span className="text-brand">The Conviction</span>
+        The <span className="text-brand">Conviction</span>
       </h1>
 
       <p className="composite-direct-answer text-muted text-lg leading-relaxed max-w-3xl mb-3 text-pretty">
@@ -265,7 +266,7 @@ export default function CompositePage() {
         This is <strong>pure data-display</strong>, not investment advice. Not an
         &ldquo;optimal&rdquo; or &ldquo;ultimate&rdquo; portfolio. Not a buy
         recommendation. HoldLens has no licensed financial-advisor credentials. The
-        Composite reflects aggregate institutional positioning per the public-record
+        Conviction reflects aggregate institutional positioning per the public-record
         13F snapshot — already 45 days lagged per SEC rules. Rebalances quarterly when
         new filings land, never daily or hourly. Read the{" "}
         <Link href="/methodology" className="text-brand underline">methodology</Link>{" "}
@@ -295,18 +296,18 @@ export default function CompositePage() {
       <section className="rounded-card border border-border bg-surface-muted p-5 mb-10">
         <h2 className="text-base font-bold text-text mb-3">How this is composed</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-muted leading-relaxed">
-          <div><span className="text-emerald-400 mr-1">1.</span> Score every tracked stock with ConvictionScore ≥ +{COMPOSITE_MIN_SCORE} AND ≥{COMPOSITE_MIN_BUYERS} manager buyers</div>
+          <div><span className="text-emerald-400 mr-1">1.</span> Universe: every tracked stock with ConvictionScore ≥ +{COMPOSITE_MIN_SCORE} (positive net-accumulation across 9 time-decayed quarters)</div>
           <div><span className="text-emerald-400 mr-1">2.</span> Sort by score descending (heaviest aggregate accumulation first)</div>
-          <div><span className="text-emerald-400 mr-1">3.</span> Walk the list, accept each ticker IF its sector hasn&apos;t hit the {COMPOSITE_SECTOR_CAP_PCT}% cap</div>
-          <div><span className="text-emerald-400 mr-1">4.</span> Stop at {COMPOSITE_TARGET_POSITIONS} positions or candidates exhausted</div>
-          <div><span className="text-emerald-400 mr-1">5.</span> Equal-weight each accepted position ({(100 / COMPOSITE_TARGET_POSITIONS).toFixed(2)}% nominal)</div>
+          <div><span className="text-emerald-400 mr-1">3.</span> Walk the list, accept each ticker IF its sector hasn&apos;t hit {COMPOSITE_MAX_PER_SECTOR} positions (count cap)</div>
+          <div><span className="text-emerald-400 mr-1">4.</span> Stop at {COMPOSITE_TARGET_POSITIONS} positions or universe exhausted</div>
+          <div><span className="text-emerald-400 mr-1">5.</span> Conviction-weighted: each slot = score ÷ sum-of-scores × 100 (higher conviction = larger weight)</div>
           <div><span className="text-emerald-400 mr-1">6.</span> Refresh when new 13F filings land (quarterly only)</div>
         </div>
         <p className="text-xs text-dim mt-4 leading-relaxed">
-          Intentionally simple: equal-weight + sector cap. No active optimization, no
-          factor tilts, no leverage, no derivatives, no shorts, no &ldquo;alpha
-          generation&rdquo; claims. The discipline is the diversification cap; the
-          rest is descriptive.
+          Intentionally simple: conviction-weighted + sector-count cap. No active
+          optimization, no factor tilts, no leverage, no derivatives, no shorts, no
+          &ldquo;alpha generation&rdquo; claims. The discipline is the diversification
+          cap; sizing reflects intensity of cross-manager accumulation.
         </p>
       </section>
 
@@ -335,29 +336,36 @@ export default function CompositePage() {
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-2">Sector breakdown</h2>
         <p className="text-muted text-sm mb-5 max-w-3xl">
-          {COMPOSITE_SECTOR_CAP_PCT}% sector cap means no sector exceeds this share of
-          the composite. Diversification is the only risk discipline applied — there
-          is no factor model.
+          Sector-count cap (max {COMPOSITE_MAX_PER_SECTOR} positions per sector ≈ {Math.round((COMPOSITE_MAX_PER_SECTOR / COMPOSITE_TARGET_POSITIONS) * 100)}% by count)
+          forces baseline diversification. Bars below show aggregate weight per sector
+          under the conviction-weighted sizing — actual share varies by the
+          ConvictionScore intensity of each sector&apos;s positions.
         </p>
         <div className="space-y-2">
-          {c.sector_breakdown.map((s) => (
-            <div key={s.sector} className="flex items-center gap-3 text-sm">
-              <div className="w-32 sm:w-44 shrink-0 text-text">{s.sector}</div>
-              <div className="flex-1 rounded-full bg-surface-muted h-3 overflow-hidden">
-                <div
-                  className="h-full bg-brand/70"
-                  style={{ width: `${(s.weight_pct / COMPOSITE_SECTOR_CAP_PCT) * 100}%` }}
-                  aria-label={`${s.sector}: ${s.weight_pct.toFixed(1)}%`}
-                />
+          {c.sector_breakdown.map((s) => {
+            // Scale bar to the largest sector weight in the breakdown so the
+            // visual fills the row without overflowing. Pure display, not data.
+            const maxSectorWeight = c.sector_breakdown[0]?.weight_pct || 100;
+            const barPct = Math.min(100, (s.weight_pct / maxSectorWeight) * 100);
+            return (
+              <div key={s.sector} className="flex items-center gap-3 text-sm">
+                <div className="w-32 sm:w-44 shrink-0 text-text">{s.sector}</div>
+                <div className="flex-1 rounded-full bg-surface-muted h-3 overflow-hidden">
+                  <div
+                    className="h-full bg-brand/70"
+                    style={{ width: `${barPct}%` }}
+                    aria-label={`${s.sector}: ${s.weight_pct.toFixed(1)}% of composite weight`}
+                  />
+                </div>
+                <div className="w-20 text-right text-muted tabular-nums">
+                  {s.weight_pct.toFixed(1)}%
+                </div>
+                <div className="w-12 text-right text-dim text-xs tabular-nums">
+                  {s.ticker_count}×
+                </div>
               </div>
-              <div className="w-20 text-right text-muted tabular-nums">
-                {s.weight_pct.toFixed(1)}%
-              </div>
-              <div className="w-12 text-right text-dim text-xs tabular-nums">
-                {s.ticker_count}×
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -369,8 +377,9 @@ export default function CompositePage() {
           All {c.total_positions} positions
         </h2>
         <p className="text-muted text-sm mb-5 max-w-3xl">
-          Ordered by ConvictionScore. Each row carries {(100 / COMPOSITE_TARGET_POSITIONS).toFixed(2)}% nominal weight.
-          Click ticker for the per-stock dossier.
+          Ordered by ConvictionScore. Weight scales with score — top position{" "}
+          {topWeightPct.toFixed(2)}%, bottom {bottomWeightPct.toFixed(2)}%. Click ticker
+          for the per-stock dossier.
         </p>
 
         {/* Desktop table */}
@@ -461,38 +470,47 @@ export default function CompositePage() {
         <div className="space-y-6 text-text leading-relaxed">
           <div>
             <h3 className="text-base font-bold mb-2">
-              Why ConvictionScore ≥ +{COMPOSITE_MIN_SCORE} AND ≥{COMPOSITE_MIN_BUYERS} buyers
+              Why positive ConvictionScore (no arbitrary floors)
             </h3>
             <p className="text-muted">
-              ConvictionScore +{COMPOSITE_MIN_SCORE} is the floor between &ldquo;Slight
-              accumulation&rdquo; and &ldquo;Net accumulation&rdquo; tiers — a meaningful
-              positive signal, not noise. The ≥{COMPOSITE_MIN_BUYERS}-buyer requirement
-              filters out single-manager bets where one fund&apos;s conviction drives the
-              score. Composite requires at least two independent managers agreeing.
+              ConvictionScore already aggregates 9 time-decayed quarters of 13F data
+              across 6 signal layers — smart-money consensus, contrarian flow, insider
+              cross-check, trend streak, sector context, and prior-score persistence.
+              That composite is the gate. Layering an extra &ldquo;≥+20 score&rdquo; or
+              &ldquo;≥2 buyers&rdquo; floor on top would double-count what the score
+              already encodes and discard real signal. The universe is every ticker
+              with score ≥ +{COMPOSITE_MIN_SCORE} (net-accumulation positive). Currently{" "}
+              {c.universe_size} candidates pass before the sector cap.
             </p>
           </div>
           <div>
             <h3 className="text-base font-bold mb-2">
-              Why {COMPOSITE_SECTOR_CAP_PCT}% sector cap
+              Why {COMPOSITE_MAX_PER_SECTOR}-per-sector count cap
             </h3>
             <p className="text-muted">
               Without a cap, the composite would historically pile into whichever sector
-              the smartest investors are most concentrated in (often technology). A
-              {" "}{COMPOSITE_SECTOR_CAP_PCT}%
-              cap forces baseline diversification — no single sector exceeds {" "}{Math.floor(COMPOSITE_SECTOR_CAP_PCT / (100 / COMPOSITE_TARGET_POSITIONS))}
-              {" "}positions. This is risk-aware structure, not market timing.
+              the smartest investors are most concentrated in (often technology). Capping
+              by <em>count</em> (≤{COMPOSITE_MAX_PER_SECTOR} positions per sector ≈{" "}
+              {Math.round((COMPOSITE_MAX_PER_SECTOR / COMPOSITE_TARGET_POSITIONS) * 100)}%
+              by count) forces baseline diversification independent of how heavy any
+              individual position is. Count-based is simpler and more transparent than
+              a weight-based cap — you can see at a glance how many positions a sector
+              holds; the weight then varies by ConvictionScore intensity.
             </p>
           </div>
           <div>
             <h3 className="text-base font-bold mb-2">
-              Why equal-weighted (not score-weighted)
+              Why conviction-weighted (not equal-weight)
             </h3>
             <p className="text-muted">
-              Equal-weight is the most transparent allocation rule. Score-weighting would
-              introduce hidden bets — the highest-scored ticker would get disproportionate
-              influence, and the composite&apos;s returns would track that single
-              position. Equal-weight prevents that. Each accepted position contributes
-              equally; the diversification cap does the risk work.
+              Methodology v1 used flat equal-weight (1/30 ≈ 3.33% each). v2 (live since
+              2026-05-19) uses ALL available signal: a position&apos;s slot scales with
+              its ConvictionScore (slot = score ÷ sum-of-selected-scores × 100). Higher
+              conviction = larger weight. The score already encodes the multi-quarter,
+              multi-signal evidence — equal-weight would discard that information. Top
+              position currently {topWeightPct.toFixed(2)}%, bottom{" "}
+              {bottomWeightPct.toFixed(2)}%. Sizing reflects intensity of cross-manager
+              accumulation, not a uniform rule.
             </p>
           </div>
           <div>
@@ -542,10 +560,11 @@ export default function CompositePage() {
       <p className="text-xs text-dim pt-8 border-t border-border mt-12 leading-relaxed">
         Not investment advice. The Conviction is a descriptive aggregate of
         public SEC 13F filings — what tracked managers <em>already did</em>, not what
-        they will do, not what you should do. Position sizing is equal-weight by
-        design; sector cap is the only risk discipline applied. 45-day filing lag
-        applies to all underlying data. HoldLens holds no licensed-advisor credentials.
-        Consult a licensed financial advisor before acting on any of this. See{" "}
+        they will do, not what you should do. Position sizing is conviction-weighted
+        (slot ∝ ConvictionScore); sector-count cap is the only risk discipline applied.
+        45-day filing lag applies to all underlying data. HoldLens holds no
+        licensed-advisor credentials. Consult a licensed financial advisor before
+        acting on any of this. See{" "}
         <Link href="/methodology" className="text-brand underline">methodology</Link>{" "}
         +{" "}
         <Link href="/disclaimer" className="text-brand underline">disclaimer</Link>.
