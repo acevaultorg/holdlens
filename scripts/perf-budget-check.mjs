@@ -32,6 +32,11 @@ const ALLOWLIST = new Set([
   'out/insiders/company/snse/index.html', // 504KB snse insider history; 4KB over (2026-05-17). noindex.
   'out/insiders/company/hawk/index.html', // 503KB hawk insider history; 3KB over (2026-05-17). noindex.
   'out/insiders/company/uthr/index.html', // 500KB uthr insider history; 0.4KB over (2026-05-17). noindex.
+  // 2026-05-19 — same Linux CI vs macOS minification delta (CI ~10KB heavier). Pattern matches noma/crwv/fold/car/snse/hawk/uthr. Insider-company pages noindex per v19.44 thin-content fix → SEO unaffected. Bundle for /insiders refactor.
+  'out/insiders/company/apls/index.html', // 507KB apls insider history; 7KB over (2026-05-19 CI). noindex.
+  'out/insiders/company/crwd/index.html', // 501KB crwd insider history; 1KB over (2026-05-19 CI). noindex.
+  // Compare/managers/X-vs-Y is one of ~N(82,2) ≈ 600 deep long-tail combinations. Indexed (low individual SEO weight, but ItemList schema in aggregate). 501KB CI / 491KB local. Same Linux-vs-mac minification delta. Slim with /compare refactor when next touched.
+  'out/compare/managers/joel-greenblatt-vs-andreas-halvorsen/index.html', // 501KB manager-vs-manager comparison; 1KB over (2026-05-19 CI). Indexed but long-tail.
   'out/scores/index.html', // 783KB canonical "all stocks ranked by ConvictionScore" page (Ship PP+QQ+RR, 2026-05-19). 456 tickers × 9 fields × desktop table + mobile cards. Spec is "every tracked stock visible". ItemList schema all 456; visible rows capped 50/section + overflow footer. Indexed (this is the canonical ranking surface — SEO + AEO win justifies budget). Consider client-side virtualization or section-paginated routes in a future refactor.
 ]);
 
