@@ -677,3 +677,55 @@ interruptions are transient.
 Ultra-long HoldLens v0.30→v1.11 session history. Everything relevant
 migrated into permanent state files (KNOWLEDGE.md, DECISIONS.md,
 HUMAN_ACTIONS.md, PATTERNS.md where applicable).
+
+---
+
+## Session Handoff — 2026-05-19 21:30 UTC (HoldLens v2.0 charter session)
+
+**Mode:** brain (from AceVault worktree, cross-dir ops verified working)
+**Next session entry:** `/acepilot brain` at `/Users/paulodevries/Local/VAULT-Fleet/60-C1-finance/85-holdlens-com 26 apr/holdlens/` → resume HoldLens v2.0 charter at Phase 2 ship #1
+
+**This session shipped (atomic commits):**
+- `1c2a8dd5a` — Conviction schema-honesty cleanup (Pivot A schema audit closed)
+- `3dc37fb78` — Buyer CAGR column on Conviction holdings (per-position historical CAGR, NOT forecast)
+- `85efc31b2` — perf-budget allowlist fix (GitLab CI green after 30 failures)
+- `c3140995a` — CITATIONS.md seed with 20 LLM test queries (v20.3 GEO infrastructure)
+
+**Phase status (HoldLens v2.0 charter):**
+- ✅ Phase 1 — Pivot A verification GREEN (verdict-labels 0, schema honesty intact, /partners/ untouched)
+- ✅ Phase 6 #4 — CITATIONS.md seeded with 20 Test Queries (weekly poll fires Sat 2026-05-23 04:00 UTC)
+- 🔄 Phase 2 — Finance Q&A explainer corpus 80% complete (38 /learn/ pages live; 6 cornerstone missing — see queue below)
+- 🔄 Phase 3 — ConvictionScore methodology audit (composite page schema-honest; dedicated /methodology/conviction-score/ verification pending)
+- ⏳ Phase 4 — Person sameAs chain on /about (Person schema present, sameAs missing — needs LinkedIn / X / acevault.org chain)
+- ⏳ Phase 5 — Newsletter infra (lib/newsletter/ scaffold + Buttondown operator-action)
+- ⏳ Phase 6 #2, #3 — /sitemap-ai.xml + /api/v1/[endpoint]/.json twin endpoints
+- ⏳ Phase 7 — AdSense Auto Ads activation post-Google-approval (operator-action; ads.txt verified correct, Getting ready 11d since 2026-05-08, CSIL #31 14d threshold 2026-05-22)
+- ⏳ Phase 8 — Master roadmap ships #3 #4 #6 #7 #10 #11 #12 #13 (8 data-source pipelines pending)
+- ⏳ Phase 9 — Operator drafts per shipped page
+
+**Missing /learn/ cornerstones (Phase 2 next-ship queue, ranked):**
+1. what-is-an-insider/ — insider definition + role taxonomy (CEO/CFO/director/10%-owner)
+2. what-is-a-superinvestor/ — definition + curation criteria for HoldLens's 82-superinvestor cohort
+3. how-do-hedge-funds-disclose-positions/ — required vs voluntary 13F/13D/13G/Form 4 matrix
+4. why-13f-doesnt-show-shorts/ — disclosure gap explainer (longs-only)
+5. why-13f-is-quarterly-not-daily/ — SEC cadence + 45d-lag combined explainer
+6. how-to-interpret-changes-in-positions/ — read-the-delta methodology page
+
+**Constraints (binding all future sessions):**
+- I-43 Pivot A MAINTAINED — NO verdict labels, NO BUY/SELL/STRONG-X, NO target prices, NO advice framing
+- I-45 GEO Citation Floor — @geo mean ≥0.5; Dual Fit + Bot-Crawl Health 0.0 unbypassable
+- I-44 ship-moratorium — feature work only, no brain version bump
+- I-34 hard-rejects — auto-post to Wikipedia/Reddit/HN/LinkedIn forbidden, drafts only
+- AdSense-only business model · /partners/ inherited untouched · NO Stripe / paid services / new affiliate stack
+- VAULT02-Mediahuis HARD-EXCLUDED · TollBit / PPC excluded until operator re-enables
+
+**Compliance state (verified live 2026-05-19):**
+- @compliance mean 0.88 PASS (live state per `.claude/state/COMPLIANCE.md`)
+- YMYL_MEDIUM (Pivot A · downgraded from YMYL_HEAVY)
+- ads.txt OK · 1369 clean sitemap · 0 thin /insiders/ indexed · CF proxied · AI crawler allowlist (GPTBot + ClaudeBot + PerplexityBot)
+- GitLab CI green · all Vercel deploys live this session
+
+**Charter scope reality check:** Phase 2 corpus is 80%+ shipped already (38 explainers exist). 6 missing cornerstones queued above. Phase 8 master-roadmap data pipelines (#3-#13) are the deepest remaining work (5-7 days each per HOLDLENS_MASTER_ROADMAP.md). Realistic next-session output: 1-2 cornerstone /learn/ ships OR 1 master-roadmap data pipeline OR Phase 4 sameAs + Phase 5 newsletter scaffold.
+
+**Continuation contract:** brain inherits this Handoff at next session ABSORB. Charter has multi-week scope; atomic ships per session; operator queue (Wikipedia / Reddit / HARO / LinkedIn / Substack drafts) accumulates per shipped page per Phase 9.
+
