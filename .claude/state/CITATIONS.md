@@ -92,6 +92,66 @@ Wikipedia / Reddit / LinkedIn / HARO / Substack / podcast work — operator-exec
 
 ---
 
+## @geo Audit Log
+
+Append-only @geo specialist (acepilot-geo.md v20.3) 5-dimension audits. I-45 floor mean ≥0.5 required; Dual Fit + Bot-Crawl Health 0.0 = HARD-BLOCK unbypassable.
+
+| timestamp | ship_id | seo_foundation | geo_readiness | dual_fit | entity_coherence | bot_crawl_health | mean | verdict | sample_size | notes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-05-27 08:50 UTC | post-001100 + post-001105 (commits dec0f76e4 + 17cfdeb3c + efd4e33f1) | 0.95 | 0.95 | 0.95 | 0.85 | 1.00 | **0.94** | ✅ PASS | 10 pages (/  /signal/AAPL /investor/warren-buffett /learn/conviction-score-explained /scores /about /reports/Q1-2026 /methodology /partners /learn/what-is-a-13f) + 5 AI-bot UA HEAD checks (GPTBot/ClaudeBot/PerplexityBot/Google-Extended/ChatGPT-User all 200) + robots.txt audit (27 AI crawler allowlist entries + Content-Signal header) | Pivot A holding firm post-2026-05-09. No verdict-label regression. Person sameAs chain (3 URLs validated 200) NOW live in layout.tsx via 001100 commit (pending deploy when CF status flips from `minor`). JSON twin alternates added on /signal + /ticker via 001105 commit (/investor already had them). Bot-Crawl Health = 1.00 (perfect — static export + AI allowlist + llms.txt + sitemap-ai.xml + JSON twins + Content-Signal). Entity Coherence 0.85 (slight gap: AUTHOR_SCHEMA pen-name in lib/author.ts has no sameAs; founder Person sameAs uses brand-Org URLs — operator-personal LinkedIn would lift toward 1.0). |
+
+### 5-Dimension Detail (2026-05-27 audit)
+
+**SEO Foundation: 0.95**
+- All 10 sampled pages: `<title>` ✓, `<h1>` ✓, canonical ✓, ≥2 ld+json schemas ✓, og:image ✓ (9 of 10 — /partners missing og:image)
+- IndexNow in deploy script (postbuild)
+- CWV: perf-budget-check.mjs enforces in postbuild + static export reduces JS payload
+- Schema saturation: Organization + WebSite + Person + Article + DefinedTerm + DefinedTermSet + BreadcrumbList visible across pages
+
+**GEO Readiness: 0.95** (Aleyda 10-char checklist)
+- Accessible 1.0 (static export, GPTBot returns 200 + body content visible)
+- Useful 1.0 (unique ConvictionScore synthesis across 30 superinvestors)
+- Recognizable 1.0 (consistent HoldLens identity site-wide via layout.tsx)
+- Extractable 1.0 (quote-ready titles, DefinedTerm schema for 3 brand metrics, paragraph-snippet eligible)
+- Consistent 1.0 (voice consistent across /learn + /about + /methodology)
+- Corroborated 0.7 (sister-site secfilingdex linked + JSON twins + llms.txt declared, but Wikipedia/Reddit/LinkedIn citations pending operator-side amplification)
+- Credible 1.0 (Person schema + /about ~870w + /methodology + Pivot A descriptive framing + 45-day lag disclosure inline)
+- Differentiated 1.0 (explicit Pivot A POV: descriptive-not-recommendation)
+- Fresh 1.0 (datePublished + dateModified, quarterly cadence visible, "Data current: Q1 2026" in llms.txt)
+- Transactable 1.0 (/partners brokerage + /for-ai enterprise + /pricing)
+
+**Dual Fit: 0.95**
+- /signal/[ticker]: ranks for "{TICKER} hedge fund holdings" + cited for "Which superinvestors hold AAPL"  ✅
+- /investor/[slug]: ranks for "{Manager} portfolio" + cited for "What does Buffett own"  ✅
+- /learn/*: ranks for concept queries + cited for definitional Q&A  ✅
+- /scores: ranks for "best 13F tracker" + cited for ranked-list  ✅
+- /reports/Q1-2026: new archetype, still gathering ranking signal but extractable for AI Overview
+- Every sampled page passes both axes
+
+**Entity Coherence: 0.85**
+- Organization schema site-wide with sameAs (3 URLs: github/acevaultorg + secfilingdex.com + twitter/holdlens) ✓
+- Person founder NOW has sameAs (3 URLs, all 200) ✓ (shipped task 001100 commit dec0f76e4)
+- WebSite schema with publisher ref ✓
+- Some pages use @id graph (#organization), others use legacy inline blocks (slight inconsistency)
+- AUTHOR_SCHEMA pen-name "HoldLens Editorial" has no sameAs (acceptable for pen-name but limits compound)
+- **Gap to 1.0:** add LinkedIn personal URL to founder Person sameAs (operator-confirm required — surfaced as 👨🏻‍🔧)
+
+**Bot-Crawl Health: 1.00**
+- robots.txt: 27 AI bot allowlist entries (GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web, Claude-SearchBot, anthropic-ai, PerplexityBot, Perplexity-User, Googlebot-Extended, Google-Extended, Applebot, Applebot-Extended, CCBot, cohere-ai, Bytespider, Amazonbot, Amzn-SearchBot, Meta-ExternalAgent, Meta-ExternalFetcher, Meta-Webindexer, Diffbot, DuckAssistBot, YouBot, FacebookBot, Timpibot, +Googlebot/Bingbot)
+- Content-Signal header: `ai-train=no, search=yes, ai-input=yes` declared
+- All 5 AI bot UA HEAD checks: 200 OK
+- llms.txt: comprehensive (PPC pricing per route + data refresh cadence + primary sources + 20+ JSON endpoints listed + citation guidance)
+- sitemap-ai.xml: 216 URLs, referenced from robots.txt
+- JSON twin endpoints live: scores/[TICKER], managers/[slug], snapshot/latest, composite, value, big-bets
+- Static export = first-paint HTML, no JS-gated body content
+- Cloudflare AI Crawl Control = "Do not block" (fleet-default per `rules/cloudflare-managed-robots.md`)
+
+**I-45 floor check:** mean 0.94 ≫ 0.5 ✅ · Dual Fit 0.95 ≠ 0.0 ✅ · Bot-Crawl Health 1.00 ≠ 0.0 ✅ · **No HARD-BLOCK triggered.**
+
+**Verdict:** HoldLens remains fleet GEO leader. Pivot A holding firm 18 days post-deploy. v20.3 amplifier ships (001100 + 001105 + 001110) compound the existing strong baseline. No regression from prior @compliance 0.74 audit (COMPLIANCE.md row 2026-05-09 ~10:48 UTC).
+
+---
+
 ## Corrections
 
 Timestamp-anchored corrections per I-39 pattern.

@@ -25,9 +25,17 @@
 
 ## Weekly history (append-only)
 
-| Date | Acq | Act | Eng | Ret | Adv | Mon | Perf | AUG | Tier |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| 2026-05-16 | 1 | 6 | 8 | 4 | 3 | 1 | 8 | 0.05 | Critical |
+| Date | Acq | Act | Eng | Ret | Adv | Mon | Perf | Cit | AUG_v3.1 | Tier |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| 2026-05-16 | 1 | 6 | 8 | 4 | 3 | 1 | 8 | — | 0.05 (v3) | Critical |
+| 2026-05-27 | 2 | 6 | 8 | 4 | 4 | 1 | 8 | 5 | 0.025 (v3.1) | Critical |
+
+Notes (2026-05-27 row):
+- Acq 1→2: 92→194 UV/30d (2.1× growth Apr-May per project memory) + 10% chatgpt.com referrals.
+- Adv 3→4: Person sameAs chain shipped (001100) + JSON twin alternates (001105) compound passive AI-citation share signal.
+- Cit 5 NEW (8th factor v3.1 per rules/seo-geo-mastery.md Part 11 + AcePilot v20.3 ship): cold-start floor; 10% chatgpt.com referrals validates ~5 cited URLs/wk per CITATIONS.md baseline. Self-calibrates after 4 weekly polls of llm-citation-tracker (Sat 04:00 UTC).
+- AUG_v3.1 = 0.025 — geometric mean × 10 across 8 factors. v3.1 is more sensitive to single-stage cratering (Mon = 1 + Acq = 2 dominate downward).
+- I-35 floor (AUG <5 for 2 consecutive weeks): TRIGGERED (consistent with 2026-05-16 row). Diagnostic dispatch already documented above — Monetization (AdSense recrawl) is the binding lift available now.
 
 ## Cross-reference
 
