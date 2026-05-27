@@ -143,9 +143,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "foundingDate": "2026-04",
                 "founder": {
                   "@type": "Person",
+                  "@id": "https://holdlens.com/about#person",
                   "name": "Paulo de Vries",
                   "jobTitle": "Founder",
-                  "url": "https://holdlens.com/about"
+                  "url": "https://holdlens.com/about",
+                  "sameAs": [
+                    "https://github.com/acevaultorg",
+                    "https://secfilingdex.com/",
+                    "https://twitter.com/holdlens"
+                  ]
                 },
                 "sameAs": [
                   "https://twitter.com/holdlens",
