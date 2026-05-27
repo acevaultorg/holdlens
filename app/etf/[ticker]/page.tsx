@@ -29,7 +29,11 @@ export async function generateMetadata({
       url: `https://holdlens.com/etf/${e.ticker}`,
       type: "article",
     },
-    robots: { index: true, follow: true },
+    // 2026-05-27 AdSense thin-content remediation (round 3) per
+    // rules/adsense-thin-content-prevention.md Gate 2 + CSIL #30.
+    // Per-ETF pages average ~430 main words — below ≥600w substance
+    // floor. Pages stay live + accessible via /etf/ hub.
+    robots: { index: false, follow: true },
   };
 }
 

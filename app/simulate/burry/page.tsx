@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "What if you'd copied Michael Burry?",
   description: "Interactive backtest: Scion Asset Management returns vs the S&P 500. The Big Short protagonist's real track record.",
   twitter: { card: "summary_large_image", title: "What if you'd copied Michael Burry?" },
+  // 2026-05-27 AdSense thin-content remediation (round 3): /simulate/*
+  // interactive backtest widget — 189w main text, below thresholds.
+  robots: { index: false, follow: true },
 };
 
 export default function BurryPage() {

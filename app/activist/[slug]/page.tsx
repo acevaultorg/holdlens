@@ -34,7 +34,11 @@ export async function generateMetadata({
         { url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens" },
       ],
     },
-    robots: { index: true, follow: true },
+    // 2026-05-27 AdSense thin-content remediation (round 3) per
+    // rules/adsense-thin-content-prevention.md Gate 2 + CSIL #30.
+    // Per-campaign pages average ~380 main words — below ≥600w substance
+    // floor. Pages stay live + accessible via /activist/ hub.
+    robots: { index: false, follow: true },
   };
 }
 

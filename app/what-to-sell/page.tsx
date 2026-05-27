@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "What to sell — stocks the best portfolio managers are dumping",
   description: `${MANAGERS.length} of the best portfolio managers in the world and what they're selling. Ranked on a single signed −100..+100 ConvictionScore where −100 is the strongest possible sell.`,
   alternates: { canonical: "https://holdlens.com/sells" },
+  // 2026-05-27 AdSense thin-content remediation (round 3): ~248 main
+  // words — below ≥600w + below ≥250w hard-floor + this is a SEO-alias
+  // of /sells/ (canonical points there). Belt-and-suspenders noindex
+  // per rules/adsense-thin-content-prevention.md Gate 2.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "What to sell — HoldLens",
     description: "Stocks the best portfolio managers in the world are dumping, ranked on the unified signed ConvictionScore.",

@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }],
   },
   alternates: { canonical: "https://holdlens.com/this-week/" },
+  // 2026-05-27 AdSense thin-content remediation (round 3): ~228 main
+  // words — below ≥600w substance floor + below ≥250w hard-floor per
+  // rules/adsense-thin-content-prevention.md Gate 2. Page stays live
+  // via /best-now/, /buys/, /sells/ richer surfaces.
+  robots: { index: false, follow: true },
 };
 
 export default function ThisWeekPage() {

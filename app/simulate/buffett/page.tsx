@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   title: "What if you'd copied Warren Buffett?",
   description:
     "Interactive backtest: see how much $10,000 invested in Berkshire Hathaway would be worth today, vs the S&P 500.",
+  // 2026-05-27 AdSense thin-content remediation (round 3): /simulate/*
+  // pages = interactive backtest widgets (185-273 main words excluding
+  // widget JS). Below ≥250w hard-floor + ≥600w substance floor per
+  // rules/adsense-thin-content-prevention.md Gate 2. Widget value is
+  // interactive, not text. Noindex; reachable via /investor/[slug]/.
+  robots: { index: false, follow: true },
 };
 
 export default function BuffettBacktestPage() {

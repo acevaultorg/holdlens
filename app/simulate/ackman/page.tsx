@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "What if you'd copied Bill Ackman?",
   description: "Interactive backtest: see how much $10,000 invested with Pershing Square would be worth today, vs the S&P 500.",
   twitter: { card: "summary_large_image", title: "What if you'd copied Bill Ackman?" },
+  // 2026-05-27 AdSense thin-content remediation (round 3): /simulate/*
+  // pages are interactive backtest widgets — main text ~213w (below
+  // ≥250w hard-floor + ≥600w substance floor per
+  // rules/adsense-thin-content-prevention.md Gate 2). Widget value is
+  // interactive, not text. Noindex; reachable via /investor/bill-ackman/.
+  robots: { index: false, follow: true },
 };
 
 export default function AckmanBacktestPage() {

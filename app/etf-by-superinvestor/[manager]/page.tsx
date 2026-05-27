@@ -48,6 +48,12 @@ export async function generateMetadata({
       title,
       images: ["/og/home.png"],
     },
+    // 2026-05-27 AdSense thin-content remediation (round 3) per
+    // rules/adsense-thin-content-prevention.md Gate 2 + CSIL #30.
+    // Per-manager ETF-overlap pages average ~330 main words — below
+    // ≥600w substance floor. Pages stay live + accessible via
+    // /etf-by-superinvestor/ hub.
+    robots: { index: false, follow: true },
   };
 }
 

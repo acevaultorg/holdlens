@@ -36,10 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/best-now`, lastModified: now, changeFrequency: "daily", priority: 0.98 },
     { url: `${base}/buys`, lastModified: now, changeFrequency: "daily", priority: 0.97 },
     { url: `${base}/sells`, lastModified: now, changeFrequency: "daily", priority: 0.97 },
-    { url: `${base}/this-week`, lastModified: now, changeFrequency: "daily", priority: 0.95 },
-    { url: `${base}/what-to-buy`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
-    { url: `${base}/what-to-sell`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
-    { url: `${base}/top-picks`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    // 2026-05-27 AdSense thin-content remediation (round 3): /this-week,
+    // /what-to-buy, /what-to-sell, /top-picks REMOVED from sitemap +
+    // noindex'd at page level per rules/adsense-thin-content-prevention.md
+    // Gate 2 (228w, 349w, 248w, 448w — all below 600w substance floor).
+    // Pages remain live for internal navigation; same data lives richer
+    // on /best-now, /buys, /sells, /scores, /consensus.
     // Insiders hub — v0.2 promoted from weekly → daily because the live
     // feed + company + officer pages all refresh daily from Form 4 EDGAR.
     { url: `${base}/insiders`, lastModified: now, changeFrequency: "daily", priority: 0.88 },
@@ -111,13 +113,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/compare`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${base}/docs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/press-kit`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    // Backtests
-    { url: `${base}/simulate`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${base}/simulate/buffett`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/simulate/ackman`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/simulate/druckenmiller`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/simulate/klarman`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/simulate/burry`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    // 2026-05-27 AdSense thin-content remediation (round 3): /simulate
+    // hub + 5 per-manager backtest widgets REMOVED from sitemap +
+    // noindex'd at page level per
+    // rules/adsense-thin-content-prevention.md Gate 2 (185-273w main
+    // text — widget JS is the product, not the text). Reachable via
+    // /investor/[slug]/ pages.
+    { url: `${base}/simulate/`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     // Learn
     { url: `${base}/learn`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/learn/what-is-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
@@ -333,19 +335,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Reference etfTopReplicating to keep the import live (computation
   // happens at page render time per manager; sitemap just emits URLs).
   void etfTopReplicating;
+  // 2026-05-27 AdSense thin-content remediation (round 3): per-manager
+  // /etf-by-superinvestor/[slug] pages average ~330 main words — below
+  // ≥600w substance floor per rules/adsense-thin-content-prevention.md
+  // Gate 2. Hub stays indexed (508w; just below threshold but central
+  // navigation surface — content expansion deferred to operator).
+  // Per-manager URLs noindex'd at page level + removed from sitemap.
   const etfBySuperinvestorUrls: MetadataRoute.Sitemap = [
     {
-      url: `${base}/etf-by-superinvestor`,
+      url: `${base}/etf-by-superinvestor/`,
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.7,
     },
-    ...MANAGERS.map((m) => ({
-      url: `${base}/etf-by-superinvestor/${m.slug}`,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: 0.65,
-    })),
   ];
 
   // /embed/ — landing page listing every embeddable widget. Per-investor
@@ -416,48 +418,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/learn/buybacks-vs-dividends`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/learn/how-to-read-buyback-disclosures`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
   ];
-  const buybackTickerUrls: MetadataRoute.Sitemap = BUYBACK_PROGRAMS.map((p) => ({
-    url: `${base}/buybacks/${p.ticker}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
+  // 2026-05-27 AdSense thin-content remediation (round 3): per-ticker
+  // /buybacks/[ticker] pages average ~365 main words — below ≥600w
+  // substance floor per rules/adsense-thin-content-prevention.md
+  // Gate 2. Pages noindex'd at page level + removed from sitemap.
+  // Same template-driven thin pattern as v19.44 /insiders/[insider]/.
+  // Hub + /yield + /largest-authorizations stay indexed (substantive
+  // aggregation surfaces).
+  const buybackTickerUrls: MetadataRoute.Sitemap = [];
 
   // v1.54 — Activist 13D/13G tracker (/activist/*).
   const activistStaticUrls: MetadataRoute.Sitemap = [
     { url: `${base}/activist`, lastModified: now, changeFrequency: "weekly", priority: 0.88 },
     { url: `${base}/learn/13d-vs-13g-activist-filings`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
   ];
-  const activistDetailUrls: MetadataRoute.Sitemap = ACTIVIST_CAMPAIGNS.map((c) => ({
-    url: `${base}/activist/${c.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
+  // 2026-05-27 AdSense thin-content remediation (round 3): per-campaign
+  // /activist/[slug] pages average ~380 main words — below ≥600w
+  // substance floor per rules/adsense-thin-content-prevention.md
+  // Gate 2. Pages noindex'd at page level + removed from sitemap.
+  // Hub stays indexed (627w; substantive).
+  const activistDetailUrls: MetadataRoute.Sitemap = [];
 
   // v1.55 — Short Interest tracker (/short-interest/*).
   const shortStaticUrls: MetadataRoute.Sitemap = [
     { url: `${base}/short-interest`, lastModified: now, changeFrequency: "weekly", priority: 0.88 },
     { url: `${base}/learn/short-interest-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
   ];
-  const shortTickerUrls: MetadataRoute.Sitemap = SHORT_POSITIONS.map((p) => ({
-    url: `${base}/short-interest/${p.ticker}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
+  // 2026-05-27 AdSense thin-content remediation (round 3): per-ticker
+  // /short-interest/[ticker] pages average ~190 main words —
+  // EXTREMELY THIN (below ≥250w hard-floor + ≥600w substance floor) per
+  // rules/adsense-thin-content-prevention.md Gate 2. Highest-priority
+  // noindex; same template pattern as v19.44 /insiders/[insider]/.
+  // Pages noindex'd at page level + removed from sitemap.
+  const shortTickerUrls: MetadataRoute.Sitemap = [];
 
   // v1.56 — Congressional stock trades tracker (/congress/*).
   const congressStaticUrls: MetadataRoute.Sitemap = [
     { url: `${base}/congress`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/learn/congressional-stock-trading-stock-act`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
   ];
-  const congressMemberUrls: MetadataRoute.Sitemap = CONGRESS_MEMBERS.map((m) => ({
-    url: `${base}/congress/${m.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.85,
-  }));
+  // 2026-05-27 AdSense thin-content remediation (round 3): per-member
+  // /congress/[slug] pages average ~240 main words — below ≥250w
+  // hard-floor + ≥600w substance floor per
+  // rules/adsense-thin-content-prevention.md Gate 2. Pages noindex'd
+  // + removed from sitemap. Hub stays indexed (584w; just below
+  // threshold — borderline-acceptable, kept for now).
+  const congressMemberUrls: MetadataRoute.Sitemap = [];
 
   // v1.58 — ETF Holdings Tracker (/etf/*). Daily-disclosed top holdings
   // for 12 major US ETFs. Cross-links into every /ticker/ page that any
@@ -466,14 +472,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/etf`, lastModified: now, changeFrequency: "weekly", priority: 0.88 },
     { url: `${base}/learn/etf-overlap-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
   ];
-  const etfTickerUrls: MetadataRoute.Sitemap = ETFS.map((e) => ({
-    url: `${base}/etf/${e.ticker}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.82,
-  }));
+  // 2026-05-27 AdSense thin-content remediation (round 3): per-ETF
+  // /etf/[ticker] pages average ~430 main words — below ≥600w
+  // substance floor per rules/adsense-thin-content-prevention.md
+  // Gate 2. Pages noindex'd + removed from sitemap. /etf/ hub stays
+  // indexed (aggregation surface).
+  const etfTickerUrls: MetadataRoute.Sitemap = [];
 
-  return [
+  const allUrls: MetadataRoute.Sitemap = [
     ...staticUrls,
     ...sectorUrls,
     ...reportUrls,
@@ -516,4 +522,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
       })),
   ];
+
+  // 2026-05-27 AdSense thin-content remediation (round 3) — sitemap
+  // trailing-slash normalization. Production has `trailingSlash: true`
+  // in next.config.js: any URL without trailing slash returns HTTP 308
+  // → redirect to /URL/. Google honours 308 but the extra hop is a
+  // mild crawl-waste + cleanliness signal. Many sitemap entries above
+  // were written without trailing slashes. Single-pass post-processor
+  // appends `/` to any URL whose final path segment lacks an extension
+  // (i.e. excludes .xml feeds, .json, .ico, etc).
+  return allUrls.map((entry) => {
+    const u = entry.url;
+    const lastSeg = u.split("/").pop() || "";
+    // Skip if already ends with /, has a file-extension, or has a query string
+    if (u.endsWith("/") || /\.[a-z0-9]+(\?|$)/i.test(lastSeg) || u.includes("?")) {
+      return entry;
+    }
+    return { ...entry, url: u + "/" };
+  });
 }

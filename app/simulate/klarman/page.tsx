@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "What if you'd copied Seth Klarman?",
   description: "Interactive backtest: Baupost Group returns vs the S&P 500. Margin of safety in action.",
   twitter: { card: "summary_large_image", title: "What if you'd copied Seth Klarman?" },
+  // 2026-05-27 AdSense thin-content remediation (round 3): /simulate/*
+  // interactive backtest widget — 185w main text, below thresholds.
+  robots: { index: false, follow: true },
 };
 
 export default function KlarmanPage() {

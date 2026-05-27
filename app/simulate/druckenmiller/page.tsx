@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "What if you'd copied Stanley Druckenmiller?",
   description: "Interactive backtest: Druckenmiller's Duquesne Family Office returns vs the S&P 500.",
   twitter: { card: "summary_large_image", title: "What if you'd copied Stanley Druckenmiller?" },
+  // 2026-05-27 AdSense thin-content remediation (round 3): /simulate/*
+  // interactive backtest widget — 191w main text, below thresholds.
+  robots: { index: false, follow: true },
 };
 
 export default function DruckPage() {

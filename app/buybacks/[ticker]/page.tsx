@@ -50,7 +50,13 @@ export async function generateMetadata({
       creator: "@holdlens",
       images: ["/og/home.png"],
     },
-    robots: { index: true, follow: true },
+    // 2026-05-27 AdSense thin-content remediation (round 3) per
+    // rules/adsense-thin-content-prevention.md Gate 2 + CSIL #30.
+    // Per-ticker buyback pages average ~365 main words — below ≥600w
+    // substance floor. Same template-driven thin pattern as v19.44's
+    // /insiders/[insider]/* round-1. Pages stay live + accessible via
+    // /buybacks/, /buybacks/yield, /buybacks/largest-authorizations hubs.
+    robots: { index: false, follow: true },
   };
 }
 

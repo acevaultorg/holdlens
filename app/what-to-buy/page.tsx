@@ -10,6 +10,12 @@ export const metadata: Metadata = {
   title: "What to buy — stocks the best portfolio managers are buying",
   description: `${MANAGERS.length} of the best portfolio managers in the world and what they're buying. Ranked on a single signed −100..+100 ConvictionScore where +100 is the strongest possible buy. Live prices, multi-quarter trend streaks.`,
   alternates: { canonical: "https://holdlens.com/buys" },
+  // 2026-05-27 AdSense thin-content remediation (round 3): ~349 main
+  // words — below ≥600w + this is a SEO-alias of /buys/ (canonical
+  // points there). Belt-and-suspenders: noindex prevents Google from
+  // indexing this URL directly per rules/adsense-thin-content-
+  // prevention.md Gate 2.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "What to buy — HoldLens",
     description: "Stocks the best portfolio managers in the world are buying.",
