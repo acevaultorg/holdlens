@@ -381,12 +381,12 @@
     {
       "investor_country": "AU",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/P6 (US-AU Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "BE",
@@ -581,12 +581,12 @@
     {
       "investor_country": "BE",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2) (US-BE Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "CA",
@@ -781,12 +781,12 @@
     {
       "investor_country": "CA",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article X(2)/5P5(1) (US-CA Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "CH",
@@ -981,12 +981,12 @@
     {
       "investor_country": "CH",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2) (US-CH Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "DE",
@@ -1181,12 +1181,12 @@
     {
       "investor_country": "DE",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/PIV (US-DE Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "DK",
@@ -1381,12 +1381,12 @@
     {
       "investor_country": "DK",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/PII (US-DK Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "ES",
@@ -1581,12 +1581,12 @@
     {
       "investor_country": "ES",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/PIV (US-ES Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "FI",
@@ -1781,12 +1781,12 @@
     {
       "investor_country": "FI",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/PIII (US-FI Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "FR",
@@ -1981,12 +1981,12 @@
     {
       "investor_country": "FR",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/2P2 (US-FR Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "IE",
@@ -2181,12 +2181,12 @@
     {
       "investor_country": "IE",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2) (US-IE Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "IT",
@@ -2381,12 +2381,12 @@
     {
       "investor_country": "IT",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2) (US-IT Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "JP",
@@ -2581,12 +2581,12 @@
     {
       "investor_country": "JP",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 10,
+      "treaty_reference": "Article 10(2) (US-JP Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "LU",
@@ -2781,12 +2781,12 @@
     {
       "investor_country": "LU",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2) (US-LU Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "NL",
@@ -2981,12 +2981,12 @@
     {
       "investor_country": "NL",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/P3(a) (US-NL Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "NO",
@@ -3181,12 +3181,12 @@
     {
       "investor_country": "NO",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 8(2)/PIV(1) (US-NO Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "NZ",
@@ -3381,12 +3381,12 @@
     {
       "investor_country": "NZ",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/PVI (US-NZ Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "SE",
@@ -3581,12 +3581,12 @@
     {
       "investor_country": "SE",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2)/PIV (US-SE Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "SG",
@@ -3781,12 +3781,12 @@
     {
       "investor_country": "SG",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 30,
+      "treaty_reference": "No US-Singapore income tax treaty in force — statutory IRC §1441 rate",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "UK",
@@ -3981,12 +3981,12 @@
     {
       "investor_country": "UK",
       "payer_country": "US",
-      "withholding_rate_pct": 0,
-      "treaty_reference": "TBD — needs_research",
-      "source_citation": "TBD — needs_research",
-      "state": "needs_research",
-      "last_verified": "1970-01-01",
-      "notes": "Pre-seeded placeholder. Verify via PwC Tax Summaries / KPMG Worldwide Tax Guide / IRS Publication 901 (when investor=US)."
+      "withholding_rate_pct": 15,
+      "treaty_reference": "Article 10(2) (US-UK Income Tax Treaty)",
+      "source_citation": "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+      "state": "verified",
+      "last_verified": "2026-05-27",
+      "notes": "Portfolio (general) dividend rate per IRS Table 1. The lower direct/intercorporate rate (typically 5%) applies only for corporate holders of ≥10% voting stock; this is the rate retail/portfolio investors face."
     },
     {
       "investor_country": "US",
