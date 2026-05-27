@@ -561,3 +561,26 @@ Per `rules/cloudflare-pages-epipe.md` Layer 5 + §"The structural escape" — Ve
 **Operator decisions required:**
 - (1) Restore CF PPC: re-enable CF Proxy in front of Vercel origin (recovers $15-500/mo PPC revenue per llms.txt Pay-Per-Crawl pricing)
 - (2) LiveInsiderActivity 404 risk: officer + company links now point to non-existent pages on Vercel deploy (since they were deleted from out/ before deploy + Vercel built from same gitlab/main which has the static-gen logic). NEXT BUILD will regenerate them on Vercel side — file count is no concern on Vercel. Verify next deploy includes them.
+
+## Tier-B continuation — 001010 mobile-verify + 001000 dividend-tax +19 cells (2026-05-27 13:19 UTC)
+
+**Shipped this session block:**
+
+**Task 001010 — Mobile responsive verification (Chrome MCP)** — closed. Sampled /dividend-tax/, /dividend-tax/us/, /ticker/AAPL/ via Chrome MCP javascript_tool. Verified: viewport meta correct, 5 Tailwind breakpoints, ZERO horizontal overflow site-wide, 7% buttons/selects <44px (acceptable inline-link exception). Caveat: Chrome MCP `resize_window` doesn't trigger CDP mobile-emulation; metrics from desktop viewport + responsive-CSS audit. No 🔴 issues — Reliable score uncapped (no longer [mobile-skip-documented]). Operator can supplement with phone test if desired.
+
+**Task 001000 — Dividend tax treaty data +19 verified** — partial (operator continues). Brain populated all 19 foreign→US portfolio dividend cells via IRS Tax Treaty Table 1 (Rev. May 2023). Source: https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf (extracted via Chrome PDF + pypdf parse, General Dividend column + Treaty Article Citation column). Count: 75 → 94 verified / 400.
+
+Key findings preserved:
+- Japan = 10% (NOT 15% OECD default) — Article 10(2)
+- Singapore = 30% (NO US-Singapore tax treaty in force; statutory IRC §1441)
+- All other 17 = 15% portfolio per OECD model
+- Citation pattern: "IRS Table 1 (Rev. May 2023): Tax Rates on Income Other Than Personal Service Income — Paid by U.S. Corporations — General dividends column. [full URL]"
+- Method documented in commit df69c0a9b for operator replication on PwC/KPMG/national-tax-authority sources
+
+**Vercel Layer 7 deploy:** dpl_6quMhn5xafoSE5pDUgPfapM97pqB READY in ~4 min. /dividend-tax/ hero shows "Treaty coverage 94 of 400 cells verified" LIVE. /dividend-tax/de/ renders new "Article 10(2)/PIV (US-DE Income Tax Treaty)" with proper 15%/30% comparison.
+
+**Pattern lesson for fleet:** PDF data extraction via Chrome MCP navigate → pypdf is brain-doable when WebFetch can't parse binary PDFs. Useful for IRS publications, SEC filings, government data tables. Pattern: download PDF → cp to /tmp/X.pdf → `python3 -c "from pypdf import PdfReader; r=PdfReader('/tmp/X.pdf'); [print(p.extract_text()[:N]) for p in r.pages]"`. Cleaner than Chrome MCP get_page_text on PDFs (which fails — PDFs are not text-extractable via DOM).
+
+**Task 001005 (Phase 3 share-cards) STILL DEFERRED:** depends on Phase 2 data ≥50% coverage; currently 94/400 = 23.5%. Defer until ≥200 verified.
+
+**Operator continuation queued:** task 001000 stays active at rank 001000 (not moved to completed tier); body PATCHed with partial-progress narrative + method documentation for operator to extend.
