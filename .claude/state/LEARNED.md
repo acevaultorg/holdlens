@@ -216,6 +216,9 @@ AFTER:  (cf.verified_bot_category in {"Search Engine Crawler" "Search Engine Opt
 | 2026-04-29 | CF Web Analytics 7d | unique_visitors_per_week | 3,530 | 4,000-15,000 (low end) | 0.88 | At bottom of methodology v2.1.1 projection; validates ranking |
 | 2026-04-29 | CF Web Analytics 30d | unique_visitors_per_30d | 6,770 | n/a | n/a | Site live since 2026-04-08 (~21 active days) → ~322/active-day |
 | 2026-04-29 | trend | apr_17_peak → apr_28_baseline | 1,200 → 400 | n/a | n/a | -67% over 11 days; likely Google sandbox boost decay + bot-crawl normalization |
+| 2026-05-27 | brain v20.2 mode | tier-A-amplifier-batch | 4 ships (dec0f76e4 + 17cfdeb3c + efd4e33f1 + 9aa47a7e8) | per-task velocity multipliers #4 + #6 | n/a | Tier-A brain-doable batch (PromptPrio 001100-001115). Person sameAs chain + 124-page JSON twin alternates + Test Queries 20→32 + @geo audit log 0.94 ✅. Pivot A holding firm. CF deploy queued (status `minor`). |
+| 2026-05-27 | brain v20.2 mode | geo_oracle_audit | mean 0.94 (5-dim @geo) | I-45 floor 0.5 | 1.88 | Sample 10 pages + 5 AI-bot UAs. SEO 0.95 · GEO 0.95 · DualFit 0.95 · EntityCoh 0.85 · BotCrawl 1.00. No HARD-BLOCK. Pivot A 18d post-deploy holding firm. |
+| 2026-05-27 | project memory | concept_velocity_check | 194 UV/30d May 17 measurement | base 3,000 / bull 10,000 M12 (per task #25 [CONCEPT VELOCITY]) | tracking-on-curve | Apr 12 → May 17 = 2.1× growth in 30d (12 → 92 → 194). M12 base requires sustained ~1.4×/month. Currently above curve. Amplifier ships should compound. |
 
 ## Methodology v2.1.1 Calibration
 
