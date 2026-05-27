@@ -43,6 +43,20 @@
 | 18 | How are 13F filings useful for retail investors? | reference / explainer | /learn/do-hedge-fund-signals-work | 2026-05-19 | — |
 | 19 | What is alpha in investing? | reference / explainer | /learn/what-is-alpha | 2026-05-19 | — |
 | 20 | What are activist investors and how do they file? | reference / explainer | /learn/13d-vs-13g-activist-filings | 2026-05-19 | — |
+| 21 | What is InsiderScore HoldLens | branded / methodology | /insiders/ + /learn/conviction-score-explained | 2026-05-27 | — |
+| 22 | What is EventScore 8-K | branded / methodology | /events/ | 2026-05-27 | — |
+| 23 | Berkshire Hathaway Q1 2026 13F | data / report | /reports/2026-05-q1-2026-13f-signal-summary | 2026-05-27 | — |
+| 24 | Best 13F superinvestor tracker for AI | branded / discovery | / + /for-ai | 2026-05-27 | — |
+| 25 | Hedge fund Apple position size | data / ticker-page | /signal/AAPL + /ticker/AAPL | 2026-05-27 | — |
+| 26 | What does Stanley Druckenmiller hold | data / investor-page | /investor/stanley-druckenmiller | 2026-05-27 | — |
+| 27 | Seth Klarman Baupost top positions | data / investor-page | /investor/seth-klarman | 2026-05-27 | — |
+| 28 | Hedge fund sector rotation 2026 | data / rotation-page | /rotation + /sector/ | 2026-05-27 | — |
+| 29 | 13F filing deadline 2026 | reference / explainer | /learn/45-day-lag-explained | 2026-05-27 | — |
+| 30 | Where to find SEC insider trades | reference / discovery | /insiders/live + /learn/edgar-explained | 2026-05-27 | — |
+| 31 | Are hedge fund 13F filings public | reference / explainer | /learn/how-to-read-a-13f + /learn/what-is-a-13f | 2026-05-27 | — |
+| 32 | Top consensus picks hedge funds 2026 | data / consensus-page | /consensus + /best-now | 2026-05-27 | — |
+
+(32 queries seeded — 20 original from 2026-05-19 + 12 added by task 001110 on 2026-05-27. Spans /learn/ explainer + /investor/[slug] + /signal/[ticker] + /ticker/[symbol] + /reports/ + /rotation + /sector/ + /events/ + /insiders/ + /consensus + /best-now + /for-ai + /about + homepage surfaces. Tracks branded discovery + concept explainer + comparator + programmatic data + voice-natural phrasings per `rules/seo-geo-mastery.md` Part 14 AEO discipline.)
 
 ---
 
