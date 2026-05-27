@@ -97,6 +97,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/learn/buffett-q1-2026-moves`, lastModified: now, changeFrequency: "monthly", priority: 0.95 },
     { url: `${base}/learn/ackman-q1-2026-moves`, lastModified: now, changeFrequency: "monthly", priority: 0.95 },
     { url: `${base}/learn/druckenmiller-q1-2026-moves`, lastModified: now, changeFrequency: "monthly", priority: 0.95 },
+    { url: `${base}/learn/tepper-q1-2026-moves`, lastModified: now, changeFrequency: "monthly", priority: 0.95 },
     { url: `${base}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/grand`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/screener`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
