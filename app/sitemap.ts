@@ -94,6 +94,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/learn/soros-druckenmiller-gbp-1992`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/learn/munger-costco-lifetime-hold`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/learn/icahn-apple-buyback-campaign`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/learn/buffett-q1-2026-moves`, lastModified: now, changeFrequency: "monthly", priority: 0.95 },
+    { url: `${base}/learn/ackman-q1-2026-moves`, lastModified: now, changeFrequency: "monthly", priority: 0.95 },
     { url: `${base}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/grand`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${base}/screener`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
