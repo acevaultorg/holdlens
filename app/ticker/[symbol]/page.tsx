@@ -46,6 +46,10 @@ export async function generateMetadata({ params }: { params: Promise<{ symbol: s
       canonical: `https://holdlens.com/ticker/${t.symbol}`,
       types: {
         "application/rss+xml": `https://holdlens.com/ticker/${t.symbol}/feed.xml`,
+        // v20.3 task 001105 — JSON twin for LLM crawler discovery (GPTBot,
+        // ClaudeBot, PerplexityBot, Gemini-Ext). Citation Oracle archetype
+        // `open_dataset_json_api × +65`.
+        "application/json": `https://holdlens.com/api/v1/scores/${t.symbol}.json`,
       },
     },
   };

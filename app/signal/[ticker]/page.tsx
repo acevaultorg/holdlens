@@ -108,7 +108,14 @@ export async function generateMetadata({ params }: { params: Promise<{ ticker: s
   return {
     title,
     description,
-    alternates: { canonical: url },
+    // v20.3 task 001105 — JSON twin link for LLM crawler discovery.
+    // GPTBot/ClaudeBot/PerplexityBot/Gemini-Ext cache JSON cheaper than HTML;
+    // alternate signals the machine-readable mirror. Citation Oracle
+    // archetype `open_dataset_json_api × +65`.
+    alternates: {
+      canonical: url,
+      types: { "application/json": `/api/v1/scores/${t.symbol}.json` },
+    },
     openGraph: {
       title: `${t.symbol} · HoldLens Signal`,
       description,
