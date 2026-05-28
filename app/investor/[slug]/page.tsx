@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { deepDiveByInvestorSlug } from "@/lib/quarterDeepDives";
 import EmailCapture from "@/components/EmailCapture";
 import ShareStrip from "@/components/ShareStrip";
 import LiveQuote from "@/components/LiveQuote";
@@ -857,6 +858,32 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           ))}
         </div>
       </section>
+
+      {/* Latest quarterly deep-dive cross-link — appears only when this manager
+          has a per-investor [investor]-q1-2026-moves /learn analysis. Fresher +
+          higher-relevance than the historical essay below, so it renders first.
+          Closes the hub loop: the /learn analysis already back-links here; this
+          sends live-data visitors to the narrative breakdown of the same quarter. */}
+      {(() => {
+        const dd = deepDiveByInvestorSlug(m.slug);
+        if (!dd) return null;
+        return (
+          <section className="mt-12 rounded-2xl border border-brand/30 bg-surface-brand p-6 md:p-8">
+            <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+              Latest quarterly analysis
+            </div>
+            <a href={`/learn/${dd.slug}`} className="block group">
+              <h2 className="text-xl md:text-2xl font-bold text-text group-hover:text-brand transition-colors mb-2">
+                {dd.investor}&apos;s Q1 2026 13F moves
+              </h2>
+              <p className="text-sm text-muted leading-relaxed">{dd.hook}</p>
+              <div className="text-xs text-brand font-semibold mt-3">
+                Read the full breakdown →
+              </div>
+            </a>
+          </section>
+        );
+      })()}
 
       {/* Famous-trade essay cross-link — appears only when there's a matching
           /learn deep-dive page on the manager's most-cited historical position.

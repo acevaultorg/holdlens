@@ -57,6 +57,7 @@ const LEARN_SEQUENCE: Article[] = [
   { slug: "tepper-q1-2026-moves", title: "David Tepper's Q1 2026 13F moves", desc: "Amazon to #1, China unwind, memory + semis adds across Appaloosa's book." },
   { slug: "druckenmiller-q1-2026-moves", title: "Stanley Druckenmiller's Q1 2026 13F moves", desc: "Natera at 18%, YPF + Alcoa + STMicro adds — diversification pivot, AUM down 25%." },
   { slug: "hohn-q1-2026-moves", title: "Chris Hohn's Q1 2026 13F moves", desc: "TCI guts Microsoft, deepens GE + Visa to 58% of a famously concentrated book." },
+  { slug: "li-lu-q1-2026-moves", title: "Li Lu's Q1 2026 13F moves", desc: "Himalaya cuts its 15-year Bank of America anchor 71% (28.6%→4.6%); opens Moody's, MSCI, Tencent Music, H&R Block." },
   { slug: "buffett-coca-cola-trade", title: "Warren Buffett's Coca-Cola trade", desc: "Berkshire's 1988-89 KO purchase — $1.3B → $28B+ position, untouched for 37 years." },
   { slug: "buffett-apple-position", title: "Warren Buffett's Apple position", desc: "Berkshire's 2016-onward AAPL accumulation — largest equity position in firm history. Q1 2016 entry · 2024 partial trim · ongoing." },
   { slug: "buffett-bank-of-america-2011", title: "Warren Buffett's Bank of America 2011 deal", desc: "The $5B preferred + 700M-share warrants at $7.14 strike. ~$13B paper gain at 2017 warrant exercise. Top-3 Berkshire holding ever since." },

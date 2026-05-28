@@ -61,6 +61,14 @@ export const QUARTER_DEEP_DIVES: QuarterDeepDive[] = [
     hook: "TCI guts Microsoft, deepens GE + Visa to 58% of the book.",
     period: "2026-q1",
   },
+  {
+    slug: "li-lu-q1-2026-moves",
+    investor: "Li Lu",
+    investorSlug: "li-lu",
+    fund: "Himalaya Capital",
+    hook: "Cuts the 15-year Bank of America anchor 71% (28.6%→4.6%) — opens Moody's, MSCI, Tencent Music, H&R Block.",
+    period: "2026-q1",
+  },
 ];
 
 export function deepDivesForPeriod(period: string): QuarterDeepDive[] {
@@ -69,6 +77,16 @@ export function deepDivesForPeriod(period: string): QuarterDeepDive[] {
 
 export function deepDiveBySlug(slug: string): QuarterDeepDive | undefined {
   return QUARTER_DEEP_DIVES.find((d) => d.slug === slug);
+}
+
+// Latest deep-dive for an investor's /investor/[slug] page. When multiple
+// quarters ship for the same investor, returns the most recent by period.
+export function deepDiveByInvestorSlug(
+  investorSlug: string,
+): QuarterDeepDive | undefined {
+  return QUARTER_DEEP_DIVES.filter((d) => d.investorSlug === investorSlug).sort(
+    (a, b) => b.period.localeCompare(a.period),
+  )[0];
 }
 
 // Maps a deep-dive period slug to its human label + recap URL, for backlinks.

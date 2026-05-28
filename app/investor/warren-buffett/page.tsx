@@ -382,6 +382,27 @@ export default function BuffettPage() {
         </a>
       </section>
 
+      {/* Latest quarterly deep-dive — fresher + higher-relevance than the
+          historical essay, so it renders first. Closes the hub loop with the
+          buffett-q1-2026-moves /learn analysis. */}
+      <section className="mt-12 rounded-2xl border border-brand/30 bg-surface-brand p-6 md:p-8">
+        <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-2">
+          Latest quarterly analysis
+        </div>
+        <a href="/learn/buffett-q1-2026-moves" className="block group">
+          <h2 className="text-xl md:text-2xl font-bold text-text group-hover:text-brand transition-colors mb-2">
+            Warren Buffett&apos;s Q1 2026 13F moves
+          </h2>
+          <p className="text-sm text-muted leading-relaxed">
+            Berkshire&apos;s most active quarter in years — Delta re-entry, Alphabet add, and
+            Visa / Mastercard / UnitedHealth / Aon exits. Position-by-position breakdown.
+          </p>
+          <div className="text-xs text-brand font-semibold mt-3">
+            Read the full breakdown →
+          </div>
+        </a>
+      </section>
+
       {/* Famous-trade essay cross-link — Berkshire's 1988 Coca-Cola trade
           is the canonical Buffett position. Hub-spoke compound with the
           historical-analysis /learn essay. */}
