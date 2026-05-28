@@ -14,7 +14,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Li Lu's Q1 2026 13F moves — Himalaya cuts its 15-year Bank of America anchor 71%",
   description:
-    "Himalaya Capital's Q1 2026 13F (filed May 15, 2026) shows Li Lu — Munger's protégé and one of the most concentrated value investors tracked — trimming Bank of America 71% (from a ~28.6% top holding to 4.6%), the most significant de-concentration in years. Four new positions opened: Moody's, MSCI, Tencent Music, and H&R Block. Crocs added 41%. Reconstructable from public EDGAR filings.",
+    "Himalaya Capital's Q1 2026 13F (filed May 15, 2026) shows Li Lu — Munger's protégé and one of the most concentrated value investors tracked — trimming his 15-year Bank of America anchor 71% (from ~28.6% to 4.6%), his most significant single-position cut in years. Four new positions opened: Moody's, MSCI, Tencent Music, and H&R Block. Crocs added 41%. The book stays highly concentrated — Alphabet (GOOGL + GOOG) near 45% combined, Pinduoduo, Berkshire, and East West Bancorp held unchanged. Reconstructable from public EDGAR filings.",
   alternates: { canonical: "https://holdlens.com/learn/li-lu-q1-2026-moves" },
   openGraph: {
     title: "Li Lu's Q1 2026 moves — Himalaya cuts its 15-year BAC anchor 71%",
@@ -47,7 +47,7 @@ const LD = [
     "@type": ["Article", "Report"],
     headline: "Li Lu's Q1 2026 13F moves — Himalaya Capital cuts its 15-year Bank of America anchor by 71%",
     description:
-      "Himalaya Capital Q1 2026 13F: Bank of America trimmed 71% by share count (resulting weight ~28.6%→4.6%) — Li Lu's most significant single-position de-concentration in years. Four new positions opened: Moody's (MCO), MSCI, Tencent Music (TME), H&R Block (HRB). Crocs added 41%. Long-held Alphabet, Berkshire Hathaway, Meta, and Alibaba positions show no reported Q1 change. EDGAR-reconstructable.",
+      "Himalaya Capital Q1 2026 13F: Bank of America trimmed 71% by share count (resulting weight ~28.6%→4.6%) — Li Lu's most significant single-position cut in years, though East West Bancorp (9.4%) was held, so not a banking-sector exit. Four new positions opened: Moody's (MCO), MSCI, Tencent Music (TME), H&R Block (HRB). Crocs added 41%. Long-held Alphabet (GOOGL + GOOG, ~45% combined), Pinduoduo, Berkshire Hathaway, East West Bancorp, Occidental, and Apple show no reported Q1 change. EDGAR-reconstructable.",
     author: AUTHOR_SCHEMA,
     publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/li-lu-q1-2026-moves",
@@ -107,11 +107,13 @@ export default function LiLuQ12026Page() {
         <TldrCard>
           Himalaya Capital&apos;s Q1 2026 13F-HR (filed 2026-05-15) shows{" "}
           <strong>Li Lu cutting his 15-year Bank of America anchor by 71%</strong> — the position
-          drops from a roughly 28.6% top holding to 4.6% of the book, the most significant
-          de-concentration this famously patient investor has made in years. The freed capital
-          fans out into <strong>four brand-new positions</strong> — Moody&apos;s, MSCI, Tencent
-          Music, and H&amp;R Block — plus a 41% add to Crocs. Long-held Alphabet, Berkshire
-          Hathaway, Meta, and Alibaba show no reported Q1 change. Every move is{" "}
+          drops from roughly 28.6% of the book to 4.6%, his most significant single-position cut
+          in years. The freed capital fans out into <strong>four brand-new positions</strong> —
+          Moody&apos;s, MSCI, Tencent Music, and H&amp;R Block — plus a 41% add to Crocs. The book
+          stays highly concentrated: Alphabet (Class A + C) is now nearly 45% combined, with
+          Pinduoduo, Berkshire Hathaway, and East West Bancorp held unchanged. Notably he kept East
+          West Bancorp — another bank — so the BAC trim is position-specific, not a banking-sector
+          exit. Every move is{" "}
           <Link href="/learn/edgar-explained" className="text-brand underline">
             reconstructable from EDGAR
           </Link>{" "}
@@ -129,12 +131,12 @@ export default function LiLuQ12026Page() {
         <p>
           The single dominant move is the{" "}
           <Link href="/ticker/BAC" className="text-brand underline">Bank of America</Link> trim.
-          BAC had been Himalaya&apos;s largest position and its longest-held name (since 2009),
-          built up across multiple consecutive quarters. In Q1 2026 it was cut by 71% of its share
-          count — roughly 7.4 million shares sold — collapsing its portfolio weight from about
-          28.6% at the end of Q4 2025 to 4.6%. For an investor whose entire reputation rests on
-          conviction and patience, taking a near-double-digit-year anchor from one-quarter-of-the-book
-          to a small residual is the headline.
+          BAC had been one of Himalaya&apos;s largest positions and its longest-held name (since
+          2009), built up across multiple consecutive quarters. In Q1 2026 it was cut by 71% of its
+          share count — roughly 7.4 million shares sold — collapsing its portfolio weight from
+          about 28.6% at the end of Q4 2025 to 4.6%. For an investor whose entire reputation rests
+          on conviction and patience, taking a 15-year, quarter-of-the-book anchor down to a small
+          residual is the headline.
         </p>
 
         <div className="rounded-card border border-border bg-surface-muted p-5 my-4">
@@ -170,8 +172,9 @@ export default function LiLuQ12026Page() {
             </li>
             <li>
               <strong className="text-text">Tencent Music Entertainment (TME)</strong> — brand-new
-              at 1.9% (~6.6M shares). A return to China-listed exposure, consistent with Li Lu&apos;s
-              long-standing China expertise (he has held Alibaba for years).
+              at 1.9% (~6.6M shares). It deepens Li Lu&apos;s China exposure, which already runs
+              through his large Pinduoduo position — consistent with the China expertise he is
+              known for.
             </li>
             <li>
               <strong className="text-text">H&amp;R Block (HRB)</strong> — brand-new at 1.6% (~1.6M
@@ -188,28 +191,35 @@ export default function LiLuQ12026Page() {
               (~259k shares), bringing the position to 2.3% of the book.
             </li>
             <li>
-              <strong className="text-text">Alphabet, Berkshire Hathaway, Meta, Alibaba</strong> —
-              no reported Q1 change. These long-held positions did not trade this quarter; with BAC
-              cut to 4.6%, they mechanically become a larger share of the book and now anchor the
-              top of the portfolio.
+              <strong className="text-text">Alphabet (GOOGL ~23.2% + GOOG ~22.3%), Pinduoduo
+              (PDD ~14.9%), Berkshire Hathaway (~13.7%), East West Bancorp (EWBC ~9.4%), Occidental
+              (~3.0%), Apple (~0.9%)</strong> — no reported Q1 change. These long-held positions
+              did not trade this quarter; with BAC cut to 4.6%, they become a larger share of the
+              book, and Alphabet&apos;s two share classes now make up nearly 45% of the portfolio
+              between them. Notably, East West Bancorp — also a bank — was left untouched, so the
+              BAC reduction is a position-specific call, not a retreat from the banking sector.
             </li>
           </ul>
         </div>
 
         <h2 className="text-2xl font-bold mt-12 mb-3">What the pattern signals</h2>
         <p>
-          The shape of the quarter is <strong>de-concentration into quality-compounder
-          breadth</strong>. A single oversized bank position is cut down, and the proceeds seed a
-          set of smaller, durable, toll-booth-style franchises — Moody&apos;s and MSCI are textbook
-          wide-moat data businesses, and the China and tax-services additions round out the new
-          names. It is the rare Himalaya quarter where the holding count rises and the top position
-          shrinks at the same time.
+          The shape of the quarter is a <strong>position-specific exit from the BAC anchor</strong>,
+          not a broad de-concentration. The book stays intensely concentrated — Alphabet&apos;s two
+          share classes alone are near 45%, and Pinduoduo, Berkshire, and East West Bancorp round
+          out a top-heavy portfolio. What changed is that the single oldest holding was cut down and
+          the proceeds seeded four small, durable franchises: Moody&apos;s and MSCI are textbook
+          wide-moat &ldquo;toll-booth&rdquo; data businesses, Tencent Music adds China exposure
+          alongside the long-held Pinduoduo stake, and H&amp;R Block is a cash-generative consumer
+          franchise. Himalaya added names this quarter rather than thinning the book.
         </p>
         <p>
           The 13F alone cannot tell us <em>why</em>. The BAC trim could be valuation discipline
-          after a long run, a risk-reduction in financials, or a reallocation toward businesses Li
-          Lu rates as higher-quality at current prices. What the public record establishes is the
-          direction: less concentrated, more compounder-flavored than a quarter ago.
+          after a long run, or a reallocation toward businesses Li Lu rates as higher-quality at
+          current prices. One thing it is <em>not</em>: a retreat from banking — East West Bancorp,
+          a 9.4% position, was left untouched. The public record establishes the direction: the
+          15-year BAC anchor is no longer a core position, while the Alphabet-and-China core
+          remains firmly in place.
         </p>
         <p>
           For comparison, this quarter&apos;s recaps show several distinct value-investor moves.
@@ -263,15 +273,16 @@ export default function LiLuQ12026Page() {
         </ol>
 
         <OurView>
-          For most managers, a 71% trim of the top position would be unremarkable. For Li Lu it is
-          the loudest signal the 13F can carry, precisely because he so rarely moves. Cutting a
-          15-year Bank of America anchor from ~28.6% to 4.6% while opening four new
-          quality-franchise positions reads as a deliberate shift from single-name concentration
-          toward compounder breadth — not a panic, given the patient way the proceeds were
-          redeployed. Whether the call proves correct is something only time and subsequent
-          filings can answer; the public record tells us how Himalaya is positioned{" "}
-          <em>right now</em>, and the positioning is materially less bank-concentrated than a
-          quarter ago.
+          For most managers, a 71% trim of a major position would be unremarkable. For Li Lu it is
+          the loudest signal the 13F can carry, precisely because he so rarely moves. Cutting his
+          15-year Bank of America anchor from ~28.6% to 4.6% is the headline — but read it
+          carefully: this is not a turn toward diversification. Alphabet&apos;s two share classes
+          alone are near 45% of the book, and the China-heavy, top-concentrated character is fully
+          intact. What we see is the patient retirement of the single oldest position into four
+          small quality-franchise starters, not a fire sale. Whether the call proves correct is
+          something only time and subsequent filings can answer; the public record tells us how
+          Himalaya is positioned <em>right now</em> — the BAC anchor is no longer core, while the
+          Alphabet-and-China conviction stays firmly in place.
         </OurView>
 
         <FamousTradesBlock currentSlug="li-lu-q1-2026-moves" />

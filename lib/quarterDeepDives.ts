@@ -69,6 +69,30 @@ export const QUARTER_DEEP_DIVES: QuarterDeepDive[] = [
     hook: "Cuts the 15-year Bank of America anchor 71% (28.6%→4.6%) — opens Moody's, MSCI, Tencent Music, H&R Block.",
     period: "2026-q1",
   },
+  {
+    slug: "coleman-q1-2026-moves",
+    investor: "Chase Coleman",
+    investorSlug: "chase-coleman",
+    fund: "Tiger Global Management",
+    hook: "Piles into AI hardware (Nvidia, TSMC +49%, Applied Materials +85%) and halves Microsoft (−54% to 4.1%); trims software + fintech. Alphabet stays #1.",
+    period: "2026-q1",
+  },
+  {
+    slug: "halvorsen-q1-2026-moves",
+    investor: "Andreas Halvorsen",
+    investorSlug: "andreas-halvorsen",
+    fund: "Viking Global Investors",
+    hook: "Pushes Visa to #1 (+59%), builds quality industrials (Danaher, Fortive, Thermo Fisher +110%, Air Products new); trims Microsoft + Alphabet. New Apple.",
+    period: "2026-q1",
+  },
+  {
+    slug: "mandel-q1-2026-moves",
+    investor: "Stephen Mandel",
+    investorSlug: "stephen-mandel",
+    fund: "Lone Pine Capital",
+    hook: "Bets on AI's infrastructure — Vistra + Talen (power), ASML + new Teradyne/Corning/MasTec (equipment + materials) — while halving TSMC.",
+    period: "2026-q1",
+  },
 ];
 
 export function deepDivesForPeriod(period: string): QuarterDeepDive[] {
