@@ -93,6 +93,38 @@ export const QUARTER_DEEP_DIVES: QuarterDeepDive[] = [
     hook: "Bets on AI's infrastructure — Vistra + Talen (power), ASML + new Teradyne/Corning/MasTec (equipment + materials) — while halving TSMC.",
     period: "2026-q1",
   },
+  {
+    slug: "klarman-q1-2026-moves",
+    investor: "Seth Klarman",
+    investorSlug: "seth-klarman",
+    fund: "Baupost Group",
+    hook: "Makes Amazon the top holding (+47%, 12.7%), adds Alphabet + Ferguson, opens new Aon / Visa / Teleflex. A value legend leaning into quality.",
+    period: "2026-q1",
+  },
+  {
+    slug: "pabrai-q1-2026-moves",
+    investor: "Mohnish Pabrai",
+    investorSlug: "monish-pabrai",
+    fund: "Pabrai Investment Funds",
+    hook: "A three-stock US book — 68% metallurgical coal (Warrior + Alpha), Transocean trimmed, Valaris exited. The most concentrated 13F we track.",
+    period: "2026-q1",
+  },
+  {
+    slug: "terry-smith-q1-2026-moves",
+    investor: "Terry Smith",
+    investorSlug: "terry-smith",
+    fund: "Fundsmith",
+    hook: "The 'English Buffett' trims almost his entire US book — Marriott, Stryker, Visa, Alphabet, Pfizer all reduced. A uniform pullback.",
+    period: "2026-q1",
+  },
+  {
+    slug: "ainslie-q1-2026-moves",
+    investor: "Lee Ainslie",
+    investorSlug: "lee-ainslie",
+    fund: "Maverick Capital",
+    hook: "Trims broadly (Carpenter −61%, MasTec −65%, Live Nation −73%) and opens new Meta + Alphabet + Hut 8. Rotation into mega-cap tech.",
+    period: "2026-q1",
+  },
 ];
 
 export function deepDivesForPeriod(period: string): QuarterDeepDive[] {
