@@ -91,8 +91,12 @@ export default function LearnReadNext({ currentSlug }: { currentSlug: string }) 
   // GEO-winning analyses to the /quarterly hub and to the long-tail investor
   // pages (per rules/aceusergrowth.md Part 22 — Retention→Advocacy loop).
   const dive = deepDiveBySlug(currentSlug);
+  // Cap sibling chips so the recap block stays light as the series grows —
+  // the "Full recap →" card already links to all deep-dives for the period.
   const siblings = dive
-    ? deepDivesForPeriod(dive.period).filter((d) => d.slug !== dive.slug)
+    ? deepDivesForPeriod(dive.period)
+        .filter((d) => d.slug !== dive.slug)
+        .slice(0, 5)
     : [];
   const periodLabel = dive ? PERIOD_LABELS[dive.period] ?? dive.period : "";
 
