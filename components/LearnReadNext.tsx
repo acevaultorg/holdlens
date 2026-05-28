@@ -1,4 +1,9 @@
 import Link from "next/link";
+import {
+  deepDiveBySlug,
+  deepDivesForPeriod,
+  PERIOD_LABELS,
+} from "@/lib/quarterDeepDives";
 
 // v1.43 LearnReadNext — the single highest-leverage bounce fix per the
 // strategist exit audit. Previously, a user who finished reading any /learn
@@ -48,6 +53,10 @@ const LEARN_SEQUENCE: Article[] = [
   { slug: "13f-securities-list", title: "The 13(f) securities list", desc: "What counts as a 13F holding — and what doesn't." },
   { slug: "rule-144-holding-period", title: "Rule 144 holding period", desc: "When corporate insiders can sell — 6-month vs 12-month rules." },
   { slug: "buffett-q1-2026-moves", title: "Warren Buffett's Q1 2026 13F moves", desc: "Berkshire's most active quarter in years — Delta re-entry + Alphabet add + V/MA/UNH/AON exits." },
+  { slug: "ackman-q1-2026-moves", title: "Bill Ackman's Q1 2026 13F moves", desc: "Microsoft new at 15% of book, Alphabet near-exit — Pershing Square's most assertive entry in years." },
+  { slug: "tepper-q1-2026-moves", title: "David Tepper's Q1 2026 13F moves", desc: "Amazon to #1, China unwind, memory + semis adds across Appaloosa's book." },
+  { slug: "druckenmiller-q1-2026-moves", title: "Stanley Druckenmiller's Q1 2026 13F moves", desc: "Natera at 18%, YPF + Alcoa + STMicro adds — diversification pivot, AUM down 25%." },
+  { slug: "hohn-q1-2026-moves", title: "Chris Hohn's Q1 2026 13F moves", desc: "TCI guts Microsoft, deepens GE + Visa to 58% of a famously concentrated book." },
   { slug: "buffett-coca-cola-trade", title: "Warren Buffett's Coca-Cola trade", desc: "Berkshire's 1988-89 KO purchase — $1.3B → $28B+ position, untouched for 37 years." },
   { slug: "buffett-apple-position", title: "Warren Buffett's Apple position", desc: "Berkshire's 2016-onward AAPL accumulation — largest equity position in firm history. Q1 2016 entry · 2024 partial trim · ongoing." },
   { slug: "buffett-bank-of-america-2011", title: "Warren Buffett's Bank of America 2011 deal", desc: "The $5B preferred + 700M-share warrants at $7.14 strike. ~$13B paper gain at 2017 warrant exercise. Top-3 Berkshire holding ever since." },
@@ -69,7 +78,76 @@ export default function LearnReadNext({ currentSlug }: { currentSlug: string }) 
       ? LEARN_SEQUENCE[0]
       : LEARN_SEQUENCE[(idx + 1) % LEARN_SEQUENCE.length];
 
+  // If this article is a per-investor quarterly deep-dive, surface its parent
+  // recap + sibling deep-dives + the investor's live profile. Connects the
+  // GEO-winning analyses to the /quarterly hub and to the long-tail investor
+  // pages (per rules/aceusergrowth.md Part 22 — Retention→Advocacy loop).
+  const dive = deepDiveBySlug(currentSlug);
+  const siblings = dive
+    ? deepDivesForPeriod(dive.period).filter((d) => d.slug !== dive.slug)
+    : [];
+  const periodLabel = dive ? PERIOD_LABELS[dive.period] ?? dive.period : "";
+
   return (
+    <>
+      {dive && (
+        <section
+          aria-label={`Part of the ${periodLabel} superinvestor recap`}
+          className="mt-16 pt-8 border-t border-border"
+        >
+          <div className="text-[10px] uppercase tracking-widest text-brand font-bold mb-4">
+            Part of the {periodLabel} recap
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link
+              href={`/quarterly/${dive.period}/`}
+              className="group block rounded-card border border-brand/30 bg-surface-brand p-5 hover:border-brand/60 hover:bg-brand/10 transition-all duration-base ease-swift"
+            >
+              <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-1.5">
+                Full recap →
+              </div>
+              <div className="text-lg font-bold text-text group-hover:text-brand transition-colors">
+                {periodLabel} superinvestor recap
+              </div>
+              <p className="text-sm text-muted mt-1.5 leading-relaxed">
+                Every tracked manager&apos;s {periodLabel} moves + top consensus positions, in one place.
+              </p>
+            </Link>
+            <Link
+              href={`/investor/${dive.investorSlug}`}
+              className="group block rounded-card border border-border bg-panel p-5 hover:border-brand/60 transition-all duration-base ease-swift"
+            >
+              <div className="text-[10px] uppercase tracking-widest text-muted font-semibold mb-1.5">
+                Live portfolio →
+              </div>
+              <div className="text-lg font-bold text-text group-hover:text-brand transition-colors">
+                {dive.investor}&apos;s full {dive.fund} portfolio
+              </div>
+              <p className="text-sm text-muted mt-1.5 leading-relaxed">
+                Every position, ConvictionScore, and quarter-over-quarter change — live, SEC-sourced.
+              </p>
+            </Link>
+          </div>
+          {siblings.length > 0 && (
+            <div className="mt-4">
+              <div className="text-xs text-dim mb-2">
+                Other {periodLabel} deep dives:
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {siblings.map((s) => (
+                  <Link
+                    key={s.slug}
+                    href={`/learn/${s.slug}`}
+                    className="text-sm rounded-full border border-border bg-panel px-3 py-1.5 text-muted hover:border-brand hover:text-brand transition"
+                  >
+                    {s.investor} →
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+      )}
     <section
       aria-label="What to read next"
       className="mt-16 pt-8 border-t border-border"
@@ -109,5 +187,6 @@ export default function LearnReadNext({ currentSlug }: { currentSlug: string }) 
         </Link>
       </div>
     </section>
+    </>
   );
 }

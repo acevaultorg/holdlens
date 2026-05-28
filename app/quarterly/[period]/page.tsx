@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import { MANAGERS } from "@/lib/managers";
 import { topTickers } from "@/lib/tickers";
+import { deepDivesForPeriod } from "@/lib/quarterDeepDives";
 
 type Period = { slug: string; label: string; title: string; intro: string };
 
@@ -52,6 +53,7 @@ export default async function QuarterlyPage({ params }: { params: Promise<{ peri
   if (!p) notFound();
 
   const top = topTickers(10);
+  const deepDives = deepDivesForPeriod(period);
   const dates = PERIOD_DATES[period] ?? { published: "2026-04-01", modified: "2026-04-29" };
 
   // LLM-citation infrastructure (per rules/concept-finder-methodology.md v2.1
@@ -152,6 +154,39 @@ export default async function QuarterlyPage({ params }: { params: Promise<{ peri
               <div className="text-xs text-dim mt-2">Top: <span className="font-mono text-brand">{m.topHoldings[0]?.ticker}</span> ({m.topHoldings[0]?.pct.toFixed(1)}%)</div>
             </a>
           ))}
+        </div>
+      </section>
+
+      {deepDives.length > 0 && (
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-4">{p.label} deep dives</h2>
+          <p className="text-muted text-sm mb-6">
+            Position-by-position breakdowns of what each manager actually changed this quarter —
+            every move verifiable from their Form 13F-HR alone.
+          </p>
+          <div className="grid md:grid-cols-2 gap-3">
+            {deepDives.map((d) => (
+              <a key={d.slug} href={`/learn/${d.slug}`}
+                 className="rounded-xl border border-border bg-panel p-5 hover:border-brand transition">
+                <div className="font-semibold text-text">{d.investor}&apos;s {p.label} moves</div>
+                <div className="text-xs text-muted mt-0.5">{d.fund}</div>
+                <p className="text-sm text-muted mt-2 leading-relaxed">{d.hook}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="mb-16 rounded-2xl border border-border bg-bg/50 p-6">
+        <h2 className="text-lg font-bold mb-2">New to 13F filings?</h2>
+        <p className="text-muted text-sm mb-4">
+          A 13F is the quarterly SEC form every large fund must file. Two quick reads before you dig in:
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <a href="/learn/what-is-a-13f" className="text-sm rounded-full border border-border bg-panel px-3 py-1.5 text-muted hover:border-brand hover:text-brand transition">What is a 13F? →</a>
+          <a href="/learn/how-to-read-a-13f" className="text-sm rounded-full border border-border bg-panel px-3 py-1.5 text-muted hover:border-brand hover:text-brand transition">How to read one in 5 min →</a>
+          <a href="/learn/45-day-lag-explained" className="text-sm rounded-full border border-border bg-panel px-3 py-1.5 text-muted hover:border-brand hover:text-brand transition">Why it's 45 days late →</a>
+          <a href="/learn" className="text-sm rounded-full border border-border bg-panel px-3 py-1.5 text-muted hover:border-brand hover:text-brand transition">All guides →</a>
         </div>
       </section>
 
