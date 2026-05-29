@@ -220,6 +220,26 @@ export default async function FundOverlapPair({
         </div>
       </div>
 
+      {/* Interpretation — information-gain enrichment (2026-05-29). Descriptive,
+          no verdict labels (Pivot A / I-43). */}
+      <div className="rounded-2xl border border-border bg-panel p-6 mb-10 text-muted leading-relaxed space-y-3 text-[15px]">
+        <p>
+          {pair.jaccard >= 0.25 ? (
+            <>At {(pair.jaccard * 100).toFixed(1)}% Jaccard, {pair.a.name} and {pair.b.name} run notably convergent books — a large share of their disclosed long positions overlap.</>
+          ) : pair.jaccard >= 0.10 ? (
+            <>At {(pair.jaccard * 100).toFixed(1)}% Jaccard, the two share a moderate slice of their portfolios while keeping mostly independent books.</>
+          ) : (
+            <>At {(pair.jaccard * 100).toFixed(1)}% Jaccard, {pair.a.name} and {pair.b.name} run largely independent books — they intersect on only {pair.overlapCount} name{pair.overlapCount === 1 ? "" : "s"}.</>
+          )}{" "}
+          Those {pair.overlapCount} shared name{pair.overlapCount === 1 ? "" : "s"} carry {pair.jointConviction.toFixed(1)}% of combined portfolio weight, so the overlap is{" "}
+          {pair.jointConviction >= 30 ? "concentrated in high-conviction positions for both managers" : "spread across smaller positions rather than core holdings"}.
+          {topShared ? <> The name both size most heavily by joint weight is {topShared.ticker}.</> : null}
+        </p>
+        <p className="text-dim text-xs">
+          Jaccard = shared tickers ÷ all distinct tickers across both books (long positions only; 13F excludes shorts, most options, and sub-threshold stakes). Descriptive overlap measure, not investment advice.
+        </p>
+      </div>
+
       <h2 className="text-2xl font-bold mb-4">Shared positions, ranked by joint conviction</h2>
       <p className="text-sm text-muted mb-5 leading-relaxed">
         Joint conviction = {pair.a.name}&apos;s portfolio weight +{" "}

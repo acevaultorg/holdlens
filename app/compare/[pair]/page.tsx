@@ -47,11 +47,14 @@ export async function generateMetadata({ params }: { params: Promise<{ pair: str
   // low-traffic pairs (Google + X re-fetch the fallback on 404).
   const ogImage = `/og/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}.png`;
   return {
-    // Thin-content gate (information-gain audit 2026-05-29): ticker-vs-ticker
-    // comparison is a mechanical Venn of data already on /signal + /ticker, and
-    // many pairs share 0 holders (~264 body words). noindex keeps the page live
-    // for users but out of the index + sitemap (the pruner drops noindex URLs).
-    robots: { index: false, follow: true },
+    // Information-gain gate (2026-05-29): compare pages carry real ownership data
+    // (median 11, range 5-19 tracked holders) plus a data-derived synthesis section,
+    // so they are indexed. The >=4-holder floor noindexes only genuinely sparse
+    // future pairs (kept live for users; pruner drops noindex from the sitemap).
+    robots: {
+      index: new Set([...ta.owners.map((o) => o.slug), ...tb.owners.map((o) => o.slug)]).size >= 4,
+      follow: true,
+    },
     title: `${a} vs ${b} — Hedge fund ownership compared · HoldLens`,
     description: `Compare ${a} (${ta.name}) vs ${b} (${tb.name}) by superinvestor ownership, conviction signals, and shared managers. ${a}: ${formatSignedScore(convA.score)} signal. ${b}: ${formatSignedScore(convB.score)} signal.`,
     alternates: { canonical: `https://holdlens.com/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}` },
@@ -213,6 +216,49 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
         <ConvictionCard symbol={a} name={ta.name} score={convA.score} label={labelA.label} color={labelA.color} sector={ta.sector} ownerCount={ta.ownerCount} />
         <ConvictionCard symbol={b} name={tb.name} score={convB.score} label={labelB.label} color={labelB.color} sector={tb.sector} ownerCount={tb.ownerCount} />
       </div>
+
+      {/* Synthesis — data-derived interpretation (information-gain enrichment).
+          Descriptive cohort-behavior language only; no verdict labels (Pivot A / I-43). */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-3">What the ownership overlap reveals</h2>
+        <div className="rounded-2xl border border-border bg-panel p-6 text-muted leading-relaxed space-y-3 text-[15px]">
+          <p>
+            Across {total} tracked superinvestor{total === 1 ? "" : "s"},{" "}
+            {shared.length === 0 ? (
+              <>no manager holds both {a} and {b} — the two names draw on entirely separate pools of smart money.</>
+            ) : (
+              <>
+                {shared.length} hold both {a} and {b} ({pctBoth}% of the combined holder base)
+                {shared[0] ? <>, led by {shared[0].manager} ({shared[0].aPct.toFixed(1)}% {a} · {shared[0].bPct.toFixed(1)}% {b})</> : null}.
+              </>
+            )}{" "}
+            {a} appears in {ta.owners.length} tracked {ta.owners.length === 1 ? "portfolio" : "portfolios"};{" "}
+            {b} in {tb.owners.length}
+            {ta.owners.length !== tb.owners.length ? <>, so {ta.owners.length > tb.owners.length ? a : b} is the more widely held of the two among tracked managers</> : <> — an even split in breadth of ownership</>}.
+          </p>
+          <p>
+            {ta.sector === tb.sector ? (
+              <>Both sit in {ta.sector}, so the overlap reflects manager preference <em>within</em> one sector rather than a cross-sector divide.</>
+            ) : (
+              <>{a} is a {ta.sector} holding while {b} sits in {tb.sector} — the overlap (or lack of it) partly tracks how each manager allocates across sectors.</>
+            )}{" "}
+            On the latest 13F cohort, {a}&rsquo;s ConvictionScore reads {formatSignedScore(convA.score)} ({labelA.label.toLowerCase()}) against {b}&rsquo;s {formatSignedScore(convB.score)} ({labelB.label.toLowerCase()});{" "}
+            {convA.score === convB.score
+              ? <>the two carry the same net reading across tracked managers</>
+              : <>{convA.score > convB.score ? a : b} shows the stronger net-accumulation reading of the pair</>}.
+          </p>
+          {shared.length > 0 && (
+            <p>
+              Among the {shared.length} manager{shared.length === 1 ? "" : "s"} holding both, {preferA} size {a} larger and {preferB} size {b} larger —{" "}
+              {preferA === preferB ? "an even conviction split" : (preferA > preferB ? <>a lean toward {a}</> : <>a lean toward {b}</>)}.
+              {" "}A name held with higher weight by managers who own both is one the shared cohort is more concentrated in.
+            </p>
+          )}
+          <p className="text-dim text-xs">
+            Descriptive comparison of SEC Form 13F filings (45-day reporting lag; filings can be 1&ndash;3 months old). Not investment advice — see <a href="/methodology" className="underline hover:text-text">methodology</a>.
+          </p>
+        </div>
+      </section>
 
       {/* Venn-style ownership fingerprint */}
       <section className="mt-12">
