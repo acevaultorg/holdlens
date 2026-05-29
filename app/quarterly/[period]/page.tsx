@@ -164,6 +164,14 @@ export default async function QuarterlyPage({ params }: { params: Promise<{ peri
             Position-by-position breakdowns of what each manager actually changed this quarter —
             every move verifiable from their Form 13F-HR alone.
           </p>
+          {period === "2026-q1" && (
+            <a href="/learn/superinvestors-q1-2026-moves"
+               className="block mb-6 rounded-xl border border-brand/30 bg-surface-brand p-5 hover:border-brand/60 transition">
+              <div className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-1">Start here · cross-fund synthesis</div>
+              <div className="font-bold text-text">What superinvestors bought in Q1 2026</div>
+              <p className="text-sm text-muted mt-1">All 13 deep dives read together — the AI trade split four ways, the value investors, the concentrated bets, and the net seller. →</p>
+            </a>
+          )}
           <div className="grid md:grid-cols-2 gap-3">
             {deepDives.map((d) => (
               <a key={d.slug} href={`/learn/${d.slug}`}

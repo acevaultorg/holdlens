@@ -52,6 +52,7 @@ const LEARN_SEQUENCE: Article[] = [
   { slug: "proxy-voting-def-14a", title: "Proxy voting and DEF 14A", desc: "The definitive proxy statement — read the 1-page summary in 10 minutes." },
   { slug: "13f-securities-list", title: "The 13(f) securities list", desc: "What counts as a 13F holding — and what doesn't." },
   { slug: "rule-144-holding-period", title: "Rule 144 holding period", desc: "When corporate insiders can sell — 6-month vs 12-month rules." },
+  { slug: "superinvestors-q1-2026-moves", title: "What superinvestors bought in Q1 2026", desc: "13 hedge fund 13F filings read together — the AI trade split four ways, plus the value investors, the deep-value bets, and the net sellers." },
   { slug: "buffett-q1-2026-moves", title: "Warren Buffett's Q1 2026 13F moves", desc: "Berkshire's most active quarter in years — Delta re-entry + Alphabet add + V/MA/UNH/AON exits." },
   { slug: "ackman-q1-2026-moves", title: "Bill Ackman's Q1 2026 13F moves", desc: "Microsoft new at 15% of book, Alphabet near-exit — Pershing Square's most assertive entry in years." },
   { slug: "tepper-q1-2026-moves", title: "David Tepper's Q1 2026 13F moves", desc: "Amazon to #1, China unwind, memory + semis adds across Appaloosa's book." },
