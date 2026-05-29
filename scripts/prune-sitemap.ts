@@ -69,11 +69,27 @@ function urlToCandidatePaths(url: string): string[] {
   ];
 }
 
+// A sitemap must advertise only indexable URLs. Pages that set robots:noindex in
+// their route metadata (thin-content gate — information-gain audit 2026-05-29) stay
+// live for users but must NOT appear in the sitemap. This is a general rule: any
+// noindex page auto-drops, so future noindex'd routes need no pruner change.
+function htmlIsNoindex(filePath: string): boolean {
+  try {
+    const head = readFileSync(filePath, "utf-8").slice(0, 20000);
+    return /<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(head);
+  } catch {
+    return false; // unreadable — treat as indexable to avoid false drops
+  }
+}
+
 function isUrlAlive(url: string): boolean {
   const candidates = urlToCandidatePaths(url);
   if (candidates.length === 0) return false;
   if (candidates[0] === "__WHITELISTED__") return true;
-  return candidates.some((p) => existsSync(p));
+  const existing = candidates.find((p) => existsSync(p));
+  if (!existing) return false;
+  if (htmlIsNoindex(existing)) return false; // live page, but not for the sitemap
+  return true;
 }
 
 function pruneSitemap(filePath: string, label: string): { kept: number; dropped: number; droppedUrls: string[] } {

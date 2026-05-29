@@ -47,6 +47,11 @@ export async function generateMetadata({ params }: { params: Promise<{ pair: str
   // low-traffic pairs (Google + X re-fetch the fallback on 404).
   const ogImage = `/og/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}.png`;
   return {
+    // Thin-content gate (information-gain audit 2026-05-29): ticker-vs-ticker
+    // comparison is a mechanical Venn of data already on /signal + /ticker, and
+    // many pairs share 0 holders (~264 body words). noindex keeps the page live
+    // for users but out of the index + sitemap (the pruner drops noindex URLs).
+    robots: { index: false, follow: true },
     title: `${a} vs ${b} — Hedge fund ownership compared · HoldLens`,
     description: `Compare ${a} (${ta.name}) vs ${b} (${tb.name}) by superinvestor ownership, conviction signals, and shared managers. ${a}: ${formatSignedScore(convA.score)} signal. ${b}: ${formatSignedScore(convB.score)} signal.`,
     alternates: { canonical: `https://holdlens.com/compare/${a.toLowerCase()}-vs-${b.toLowerCase()}` },

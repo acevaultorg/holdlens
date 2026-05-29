@@ -72,9 +72,16 @@ export async function generateMetadata({
   const description = `Bilateral withholding tax on dividends paid from ${pay.name} companies to ${inv.name} residents — ${titleRate} per ${cell.treaty_reference}. Sourced from primary tax authority. Last verified ${cell.last_verified}.`;
   const canonical = `https://holdlens.com/dividend-tax/${inv.code.toLowerCase()}/${pay.code.toLowerCase()}/`;
 
+  // Thin-content gate (information-gain audit 2026-05-29): same-country (domestic)
+  // pairs are degenerate ("not a cross-border scenario", ~0% withholding, ~180 body
+  // words). noindex keeps them live for users but out of index + sitemap. Cross-border
+  // pairs carry real treaty-rate data (citation-worthy) and stay indexed.
+  const isDomestic = inv.code === pay.code;
+
   return {
     title,
     description,
+    robots: { index: !isDomestic, follow: true },
     alternates: { canonical },
     openGraph: {
       title,
