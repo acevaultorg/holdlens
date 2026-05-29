@@ -43,23 +43,29 @@ if (ageHours > 24) {
   process.exit(1);
 }
 
-// HoldLens-specific compliance integrity check (AdSense review window hardening):
-// Verify Pivot A state holds — no verdict labels leaked into out/signal/ pages.
+// Compliance integrity check (AdSense review window hardening):
+// Verify Pivot A holds — no verdict labels in any user-facing surface.
+// Extended 2026-05-29 to /sector + /insiders: a residual "Strong buy/sell signal"
+// leak survived there because the guard previously scanned ONLY /signal. The
+// pattern matches verdict phrasings ("STRONG BUY" also matches "strong buy
+// signal" / "strong buys"); descriptive cohort labels ("Net accumulation",
+// "strongly accumulated") are intentionally allowed.
 import { readFileSync, readdirSync } from "node:fs";
-const signalDir = resolve(root, "out/signal");
-if (existsSync(signalDir)) {
-  const verdictPattern = /(STRONG BUY|STRONG SELL|WEAK BUY|WEAK SELL)/i;
-  const sampleTickers = readdirSync(signalDir).slice(0, 5);
-  for (const ticker of sampleTickers) {
-    const idx = resolve(signalDir, ticker, "index.html");
-    if (existsSync(idx)) {
-      const html = readFileSync(idx, "utf-8");
-      if (verdictPattern.test(html)) {
-        console.error(`❌ predeploy-guard: COMPLIANCE BREACH — verdict label found in out/signal/${ticker}/index.html`);
-        console.error("This would surface to Google during AdSense review window. Block deploy.");
-        console.error("Investigate: did a recent commit reintroduce STRONG BUY/SELL/WEAK BUY/WEAK SELL labels?");
-        process.exit(1);
-      }
+const verdictPattern = /(STRONG BUY|STRONG SELL|WEAK BUY|WEAK SELL)/i;
+for (const dir of ["signal", "sector", "insiders"]) {
+  const scanDir = resolve(root, "out", dir);
+  if (!existsSync(scanDir)) continue;
+  const samples = readdirSync(scanDir)
+    .filter((s) => existsSync(resolve(scanDir, s, "index.html")))
+    .slice(0, 8);
+  for (const s of samples) {
+    const idx = resolve(scanDir, s, "index.html");
+    const html = readFileSync(idx, "utf-8");
+    if (verdictPattern.test(html)) {
+      console.error(`❌ predeploy-guard: COMPLIANCE BREACH — verdict label found in out/${dir}/${s}/index.html`);
+      console.error("This would surface to Google during the AdSense review window. Block deploy.");
+      console.error("Investigate: did a recent commit reintroduce BUY/SELL/STRONG/WEAK verdict labels? (Pivot A / I-43)");
+      process.exit(1);
     }
   }
 }
