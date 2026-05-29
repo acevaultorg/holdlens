@@ -72,12 +72,14 @@ function scoreColorClass(score: number): string {
   return "text-muted";
 }
 
+// Pivot A: descriptive cohort-behavior labels only — never investment verdicts.
+// Describes the insider's observed net Form 4 transaction pattern, not a recommendation.
 function scoreLabel(score: number): string {
-  if (score >= 60) return "Strong buy signal";
-  if (score >= 20) return "Buy signal";
-  if (score >= -10) return "Neutral";
-  if (score >= -40) return "Sell signal";
-  return "Strong sell signal";
+  if (score >= 60) return "Heavy net accumulation";
+  if (score >= 20) return "Net accumulation";
+  if (score >= -10) return "Mixed activity";
+  if (score >= -40) return "Net selling";
+  return "Heavy net selling";
 }
 
 export default async function InsiderPage(

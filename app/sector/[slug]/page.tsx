@@ -211,7 +211,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
           name: `How many ${sector.toLowerCase()} stocks does HoldLens track?`,
           acceptedAnswer: {
             "@type": "Answer",
-            text: `${tickers.length} ${sector.toLowerCase()} tickers with at least one tracked superinvestor holding. ${strongBuys} have ConvictionScore ≥+20 (strong accumulation signal); ${strongSells} ≤-20 (strong distribution). Sector-average ConvictionScore: ${avgConviction.toFixed(1)}.`,
+            text: `${tickers.length} ${sector.toLowerCase()} tickers with at least one tracked superinvestor holding. ${strongBuys} have ConvictionScore ≥+20 (strong accumulation); ${strongSells} ≤-20 (strong distribution). Sector-average ConvictionScore: ${avgConviction.toFixed(1)}.`,
           },
         },
         {
@@ -273,7 +273,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
         >
           {formatSignedScore(Math.round(avgConviction))}
         </span>{" "}
-        · {strongBuys} strong buys · {strongSells} strong sells.
+        · {strongBuys} strongly accumulated · {strongSells} strongly reduced.
       </p>
 
       {/* Stats strip */}
