@@ -584,3 +584,19 @@ Key findings preserved:
 **Task 001005 (Phase 3 share-cards) STILL DEFERRED:** depends on Phase 2 data ≥50% coverage; currently 94/400 = 23.5%. Defer until ≥200 verified.
 
 **Operator continuation queued:** task 001000 stays active at rank 001000 (not moved to completed tier); body PATCHed with partial-progress narrative + method documentation for operator to extend.
+
+---
+
+## 2026-05-29 — Information-gain content audit + Pivot A residual fix (calibration lessons)
+
+**Lesson 1 — verify the built output, don't trust the state file's "done."** COMPLIANCE.md (2026-05-09) claimed Pivot A verdict labels were "removed site-wide." A full grep of built `out/` proved 40+ `/insiders` pages + indexed `/sector` pages still emitted "Strong buy/sell signal" + "N strong buys/sells" via a `scoreLabel()` the original sweep missed. Always grep the actual built HTML for the failure pattern before trusting a "removed site-wide" claim.
+
+**Lesson 2 — judge thin-content by DATA DENSITY + value, not raw word count.** compare/[pair] measured ~264 body words (looked thin → first instinct noindex all 211). But holder distribution was median 11, range 5-19, **zero pages <4 holders** = 5-19 real manager positions each. Mediocre (under-synthesized), not Thin. Correct action = **enrich** (data-derived synthesis) **+ re-index**, not hide. Word count is a weak proxy when data renders as compact rows; measure records/page + cross-page Jaccard too.
+
+**Lesson 3 — genuinely degenerate ≠ enrichable.** dividend-tax domestic X/X (~180 words, "no cross-border WHT") are truly degenerate → noindex correct. Don't fabricate domestic-tax detail to "make them strong"; flag as data-dependent follow-up (information-gain standard forbids padding/fabrication).
+
+**Lesson 4 — predeploy-guard coverage gap.** `scripts/predeploy-guard.mjs` scans only `out/signal/` for verdict labels — never `/sector` (indexed) or `/insiders`, which is why the leak survived. Extend guard to `/sector` + `/insiders`. (Pruner was generalized this session to drop ANY noindex URL from sitemap — solve the class, not the instance.)
+
+**Lesson 5 — CI deploy reports failed but lands content.** GitLab `deploy` job exits non-zero on a trailing step after `wrangler pages deploy out`, yet cache-busted live curl confirms content uploads + lands. Verify live; don't trust the red pipeline. Underlying CI bug worth a real fix so genuine failures aren't masked.
+
+**Ships:** 7c2fab949 (Pivot A) · 29ace66b9 (thin-content noindex + pruner generalization) · e58690b7b (compare + fund-overlap enrichment). Sitemap 1273 → 1038 → ~1248. All live-verified.

@@ -729,3 +729,25 @@ HUMAN_ACTIONS.md, PATTERNS.md where applicable).
 
 **Continuation contract:** brain inherits this Handoff at next session ABSORB. Charter has multi-week scope; atomic ships per session; operator queue (Wikipedia / Reddit / HARO / LinkedIn / Substack drafts) accumulates per shipped page per Phase 9.
 
+---
+
+## Session Handoff — 2026-05-29 (auto c · Pivot A fix + information-gain audit + enrichment)
+
+**Mode:** brain `auto c`. **Ships (all live-verified via cache-busted curl unless noted):**
+- `7c2fab949` — Pivot A residual verdict-label fix on `/insiders/[insider]` (scoreLabel) + `/sector` → descriptive cohort-behavior labels. ✅ LIVE.
+- `29ace66b9` — information-gain thin-content audit: noindex+de-sitemap dividend-tax domestic X/X (20); `scripts/prune-sitemap.ts` generalized to drop ANY noindex URL from sitemaps. ✅ LIVE.
+- `e58690b7b` — "make everything strong" enrichment: compare/[pair] (synthesis + re-index, ≥4-holder floor) + fund-overlap/[slug] (convergence interpretation). Pushed; CI pipeline 2562282883 building at handoff — verify live next.
+
+**Current indexed surface:** sitemap 1273 → ~1248. All major types Strong (investor ~2300w · ticker ~1600 · signal · learn · dividend-tax country · fund-overlap 538 · compare 393-737 · similar-to/sector ~900). Only dividend-tax domestic X/X (20) + 5 noindex utility pages stay out of index.
+
+**CORRECTIONS to prior handoff (2026-05-19):**
+- "GitLab CI green" was WRONG — the CI `deploy` job has been **failing** (red) for ≥2 commits (5bf6867ab + 2562219930) on a trailing step after `wrangler pages deploy`, BUT content uploads + lands live. Verify deploys via cache-busted curl, not pipeline status. **Real fix needed** so genuine failures aren't masked.
+- Sitemap is ~1248 now (not 1369); /insiders correctly noindex (verdict labels also now removed from them).
+
+**Next-session candidates (unchanged charter + new):**
+- Extend `predeploy-guard.mjs` compliance scan to `/sector` + `/insiders` (caught a real leak this session).
+- Fix the GitLab CI deploy trailing-step failure (so pipeline reports green).
+- dividend-tax domestic (20): enrich with real domestic-tax framework IF data added (else stays noindex — do NOT fabricate).
+- Charter Phases 2/4/5/6 (Finance Q&A cornerstones · Person sameAs · newsletter · AI-citation amplifier) per Task mpmplt00z8n19s.
+- AdSense: operator still needs to click "Request review" (Task mpnsqs1a0dzqe9 / rank 002005) — content surface is now cleaner (verdict-free + thin pages out).
+

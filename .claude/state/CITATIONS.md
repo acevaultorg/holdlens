@@ -55,8 +55,12 @@
 | 30 | Where to find SEC insider trades | reference / discovery | /insiders/live + /learn/edgar-explained | 2026-05-27 | — |
 | 31 | Are hedge fund 13F filings public | reference / explainer | /learn/how-to-read-a-13f + /learn/what-is-a-13f | 2026-05-27 | — |
 | 32 | Top consensus picks hedge funds 2026 | data / consensus-page | /consensus + /best-now | 2026-05-27 | — |
+| 33 | Withholding tax on German dividends for US investors | data / dividend-tax-page | /dividend-tax/us/de | 2026-05-29 | — |
+| 34 | Which superinvestors hold both Microsoft and Meta | data / compare-page | /compare/meta-vs-msft | 2026-05-29 | — |
+| 35 | What stocks do Chris Hohn and Seth Klarman both own | data / fund-overlap | /fund-overlap/chris-hohn-vs-seth-klarman | 2026-05-29 | — |
+| 36 | Which superinvestors own technology stocks | data / sector-page | /sector/technology | 2026-05-29 | — |
 
-(32 queries seeded — 20 original from 2026-05-19 + 12 added by task 001110 on 2026-05-27. Spans /learn/ explainer + /investor/[slug] + /signal/[ticker] + /ticker/[symbol] + /reports/ + /rotation + /sector/ + /events/ + /insiders/ + /consensus + /best-now + /for-ai + /about + homepage surfaces. Tracks branded discovery + concept explainer + comparator + programmatic data + voice-natural phrasings per `rules/seo-geo-mastery.md` Part 14 AEO discipline.)
+(36 queries seeded — 20 original from 2026-05-19 + 12 added 2026-05-27 + 4 added 2026-05-29 (dividend-tax cross-border + enriched compare + fund-overlap + sector coverage). Spans /learn/ explainer + /investor/[slug] + /signal/[ticker] + /ticker/[symbol] + /reports/ + /rotation + /sector/ + /events/ + /insiders/ + /consensus + /best-now + /for-ai + /about + homepage surfaces. Tracks branded discovery + concept explainer + comparator + programmatic data + voice-natural phrasings per `rules/seo-geo-mastery.md` Part 14 AEO discipline.)
 
 ---
 
