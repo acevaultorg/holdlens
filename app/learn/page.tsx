@@ -137,6 +137,10 @@ export default function LearnIndex() {
           Browse by topic
         </div>
         <div className="grid sm:grid-cols-2 gap-2">
+          <a href="/learn/superinvestors-q1-2026-moves" className="block rounded-card border border-brand/40 bg-surface-brand p-3 hover:border-brand hover:bg-brand/10 transition-all duration-base ease-swift group sm:col-span-2">
+            <div className="text-sm font-bold text-text group-hover:text-brand transition-colors">Q1 2026 superinvestor moves →</div>
+            <div className="text-xs text-muted mt-0.5">13 deep dives · what every tracked fund bought + sold this quarter</div>
+          </a>
           <a href="/collections/sec-filing-mechanics" className="block rounded-card border border-border bg-surface p-3 hover:border-brand/60 hover:bg-brand/5 transition-all duration-base ease-swift group">
             <div className="text-sm font-bold text-text group-hover:text-brand transition-colors">SEC filing mechanics</div>
             <div className="text-xs text-muted mt-0.5">11 essays · 13F, Form 4, DEF 14A, EDGAR</div>
