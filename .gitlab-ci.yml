@@ -1,11 +1,19 @@
-# GitLab CI auto-deploy holdlens.com to CF Pages on push to main.
-# Operator one-time setup: add CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID
-# to project Settings > CI/CD > Variables.
+# HoldLens deploys via VERCEL — the Vercel project is git-linked to GitLab `main`
+# with auto-deploy on every push; holdlens.com + www are verified on the Vercel
+# project and served behind the Cloudflare proxy. Verified 2026-05-31: every push
+# this session produced a READY Vercel production deploy.
+#
+# This CI therefore does NOT deploy. It only runs the scheduled EDGAR data refresh
+# (and a build-validation gate). The old CF-Pages `deploy` stage (wrangler pages
+# deploy) was REMOVED 2026-05-31 — it was redundant (Vercel already deploys every
+# push) AND always failed (wrangler EPIPE at ~13k pages, per
+# rules/cloudflare-pages-epipe.md), which is what produced the persistent red
+# pipelines + hung/concurrent-pipeline noise + the EPIPE worry. CF Pages is not
+# the live origin for holdlens.com.
 
 stages:
   - refresh
   - build
-  - deploy
 
 variables:
   NODE_VERSION: "24"
@@ -117,23 +125,6 @@ refresh:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
 
-deploy:
-  stage: deploy
-  image: node:24-bookworm-slim
-  needs:
-    - build
-  before_script:
-    - apt-get update
-    - apt-get install -y --no-install-recommends ca-certificates
-    - npm install -g wrangler@4
-  script:
-    - test -d out
-    - test -n "$CLOUDFLARE_API_TOKEN"
-    - test -n "$CLOUDFLARE_ACCOUNT_ID"
-    # Defensive re-run of guard at deploy stage — catches stale artifacts between build + deploy.
-    - node scripts/predeploy-guard.mjs
-    - wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
-  only:
-    - main
-  except:
-    - schedules
+# (CF-Pages `deploy` stage removed 2026-05-31 — Vercel is the live deploy path.
+#  See header note. Deploys happen automatically on push via the git-linked
+#  Vercel project; no wrangler step is needed or wanted.)
