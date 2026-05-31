@@ -18,6 +18,7 @@ const ARTICLES: Article[] = [
   { slug: "superinvestor-handbook", title: "The Superinvestor Handbook", desc: "The full 10-section guide — 13F filings, conviction signals, copy-trading myths, and the honest limits of smart-money data. ~15 min read." },
   { slug: "what-is-a-13f", title: "What is a 13F filing?", desc: "Plain English guide to SEC Form 13F. What's in it, when it drops, what it does and doesn't show." },
   { slug: "how-to-read-a-13f", title: "How to read a 13F filing in 5 minutes", desc: "Step-by-step: open any 13F on EDGAR and know what every field means. With real Berkshire examples." },
+  { slug: "how-to-find-hedge-fund-holdings", title: "How to find what hedge funds are buying", desc: "The free, step-by-step way to pull any manager's holdings from SEC EDGAR — and the limits of the data before you act on it." },
   { slug: "who-files-a-13f", title: "Who has to file a 13F?", desc: "The $100 million threshold, who counts as an institutional investment manager, the 45-day deadline, and who is exempt." },
   { slug: "what-is-an-insider", title: "What is a corporate insider?", desc: "Officers, directors, 10%+ owners — the SEC Section 16 definition, the Form 3/4/5 rules, and how legal insider trading differs from illegal." },
   { slug: "why-13f-doesnt-show-shorts", title: "Why doesn't a 13F show short positions?", desc: "13Fs are long-only by design. What that hides — shorts, swaps, hedges — and why a visible long never tells you the whole bet." },
