@@ -18,6 +18,7 @@ const ARTICLES: Article[] = [
   { slug: "superinvestor-handbook", title: "The Superinvestor Handbook", desc: "The full 10-section guide — 13F filings, conviction signals, copy-trading myths, and the honest limits of smart-money data. ~15 min read." },
   { slug: "what-is-a-13f", title: "What is a 13F filing?", desc: "Plain English guide to SEC Form 13F. What's in it, when it drops, what it does and doesn't show." },
   { slug: "how-to-read-a-13f", title: "How to read a 13F filing in 5 minutes", desc: "Step-by-step: open any 13F on EDGAR and know what every field means. With real Berkshire examples." },
+  { slug: "who-files-a-13f", title: "Who has to file a 13F?", desc: "The $100 million threshold, who counts as an institutional investment manager, the 45-day deadline, and who is exempt." },
   { slug: "what-is-alpha", title: "What is alpha?", desc: "The hedge fund edge explained without jargon. Why 85% of managers have none — and what the 15% have in common." },
   { slug: "45-day-lag-explained", title: "The 45-day lag in 13F filings", desc: "Why every 13F is six weeks late by design — and how to use lagged data without getting burned." },
   { slug: "warren-buffett-method", title: "The Warren Buffett method", desc: "Which Buffett principles are actually transferable to a retail account, and which depend on structural edges you don't have." },

@@ -75,6 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/learn/superinvestor-handbook`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/learn/what-is-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/learn/how-to-read-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/learn/who-files-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/learn/what-is-alpha`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/learn/45-day-lag-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/learn/warren-buffett-method`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },

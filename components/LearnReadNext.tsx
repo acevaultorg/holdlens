@@ -29,6 +29,7 @@ const LEARN_SEQUENCE: Article[] = [
   { slug: "superinvestor-handbook", title: "The Superinvestor Handbook", desc: "The full 10-section guide — 13F filings, conviction signals, copy-trading myths." },
   { slug: "what-is-a-13f", title: "What is a 13F filing?", desc: "Plain English guide to SEC Form 13F." },
   { slug: "how-to-read-a-13f", title: "How to read a 13F in 5 minutes", desc: "Step-by-step with real Berkshire examples." },
+  { slug: "who-files-a-13f", title: "Who has to file a 13F?", desc: "The $100M threshold, who qualifies as an institutional manager, and who is exempt." },
   { slug: "what-is-alpha", title: "What is alpha?", desc: "The hedge fund edge explained without jargon." },
   { slug: "45-day-lag-explained", title: "The 45-day lag in 13F filings", desc: "Why every 13F is six weeks late by design." },
   { slug: "warren-buffett-method", title: "The Warren Buffett method", desc: "Which Buffett principles are actually transferable." },
