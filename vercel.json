@@ -1,5 +1,5 @@
 {
-  "buildCommand": "rm -rf .next out && npm run build",
+  "buildCommand": "rm -rf out && npm run build",
   "outputDirectory": "out",
   "installCommand": "npm ci",
   "ignoreCommand": "git diff --quiet HEAD^ HEAD -- . ':(exclude).claude/' ':(exclude)*.md' ':(exclude).gitlab-ci.yml'",
