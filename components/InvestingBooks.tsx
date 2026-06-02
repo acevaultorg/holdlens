@@ -7,11 +7,11 @@
 // NEXT_PUBLIC_BOOKSHOP_AFFILIATE_ID is set at build time. Without the
 // id the links go to plain Bookshop search (still works, no commission).
 //
-// Per I-38 (Bookshop default, NOT Amazon): Bookshop.org is fleet-default
-// affiliate. Amazon's 2025 commission gutting (1-4%) makes Bookshop the
-// dominant choice for the entire fleet. Same NEXT_PUBLIC_BOOKSHOP_AFFILIATE_ID
-// env var activates revenue across HoldLens + readinglist.school + readminute.com
-// from a SINGLE Bookshop shop signup.
+// Operator directive 2026-06-02: "no bookshop. only amazon." Bookshop.org
+// removed fleet-wide; all book links are now Amazon Associates. (Books pay
+// ~4.5% on Amazon vs Bookshop's 10% — operator chose Amazon-only for catalog
+// breadth, Prime, 24h-basket attribution, and single-CTA consistency across
+// the read family. I-38 exception (a): explicit operator directive.)
 //
 // Revenue model: 10% commission on every Bookshop purchase via affiliate-
 // tagged links. Finance-and-investment is one of the higher-converting
@@ -24,7 +24,7 @@
 // day review).
 
 type Book = {
-  isbn13: string;     // Canonical Bookshop product key (also used by readinglist.school + readminute.com)
+  isbn13: string;     // ISBN-13 → ASIN (ISBN-10) for Amazon /dp/ links
   title: string;
   author: string;
   why: string;
@@ -74,20 +74,28 @@ const BOOKS: Book[] = [
   },
 ];
 
-// Bookshop URL builder — affiliate-tagged when AFFID is set, plain search
-// otherwise. ISBN-13 path is preferred (direct product attribution); title
-// search is a defensive fallback if Bookshop ever retires an edition.
-function bookshopUrl(book: Book): string {
-  const affid = process.env.NEXT_PUBLIC_BOOKSHOP_AFFILIATE_ID || "";
-  const base = "https://bookshop.org";
-  if (book.isbn13 && affid) {
-    return `${base}/a/${affid}/${book.isbn13}`;
-  }
-  if (affid) {
-    return `${base}/a/${affid}?keywords=${encodeURIComponent(`${book.title} ${book.author}`)}`;
-  }
-  // No affiliate ID yet — plain search so the link still works pre-approval
-  return `${base}/search?keywords=${encodeURIComponent(`${book.title} ${book.author}`)}`;
+// Amazon URL builder. ISBN-13 → ISBN-10 (= ASIN for most books) → /dp/ direct
+// product page (highest CVR); title-author search fallback (still attributes
+// via tag). Tag: NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || global074-20 (account-wide;
+// set holdlens-20 later for per-site attribution). www.amazon.com geo-redirects
+// to the reader's local store via OneLink when enabled.
+const AMAZON_TAG =
+  process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || "global074-20";
+
+function isbn13to10(isbn13: string): string | null {
+  if (isbn13.length !== 13 || !isbn13.startsWith("978")) return null;
+  const core = isbn13.slice(3, 12);
+  let sum = 0;
+  for (let i = 0; i < 9; i++) sum += (10 - i) * parseInt(core[i]!, 10);
+  const checkNum = (11 - (sum % 11)) % 11;
+  return core + (checkNum === 10 ? "X" : String(checkNum));
+}
+
+function amazonUrl(book: Book): string {
+  const base = "https://www.amazon.com";
+  const asin = book.isbn13 ? isbn13to10(book.isbn13) : null;
+  if (asin) return `${base}/dp/${asin}?tag=${AMAZON_TAG}`;
+  return `${base}/s?k=${encodeURIComponent(`${book.title} ${book.author}`)}&tag=${AMAZON_TAG}`;
 }
 
 export default function InvestingBooks({
@@ -108,7 +116,7 @@ export default function InvestingBooks({
         {BOOKS.map((b) => (
           <a
             key={b.isbn13}
-            href={bookshopUrl(b)}
+            href={amazonUrl(b)}
             target="_blank"
             rel="noopener sponsored nofollow"
             // Tagged-events: fires "Book Click" with isbn + title props on
@@ -124,17 +132,17 @@ export default function InvestingBooks({
               {b.title}
             </div>
             <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-            <div className="text-[11px] text-dim mt-2">View on Bookshop.org →</div>
+            <div className="text-[11px] text-dim mt-2">View on Amazon →</div>
           </a>
         ))}
       </div>
       <p className="text-[11px] text-dim mt-5 leading-relaxed">
-        Bookshop.org affiliate links — HoldLens earns a 10% commission if you buy, at no
-        extra cost to you. Bookshop.org is the indie-bookseller consortium that supports
-        local bookstores. These are the books we actually recommend. Always do your own
-        research.
+        Amazon affiliate links — as an Amazon Associate, HoldLens earns from qualifying
+        purchases at no extra cost to you. These are the books we actually recommend.
+        Always do your own research.
       </p>
     </section>
   );
 }
-// Bookshop AFFID activation: 124121 (set 2026-05-12 via Vercel env)
+// Amazon Associates tag via NEXT_PUBLIC_AMAZON_AFFILIATE_TAG (default global074-20).
+// Converted from Bookshop.org 2026-06-02 per operator directive "no bookshop, only amazon".
