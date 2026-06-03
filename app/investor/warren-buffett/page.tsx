@@ -170,6 +170,34 @@ export default function BuffettPage() {
       </div>
       <p className="text-muted text-lg">Berkshire Hathaway · CEO since 1970 · Net worth: ~$140B</p>
 
+      {/* TL;DR — above-fold quote-ready summary. LLMs (GPTBot, ClaudeBot,
+          PerplexityBot, Googlebot-Extended) extract this paragraph as the
+          canonical answer to "what is Warren Buffett's portfolio?". Brings the
+          dedicated Buffett page to parity with the hl-investor-tldr block on
+          app/investor/[slug]/page.tsx — the flagship page was the only investor
+          page missing an answer-first prose summary. Every fact is SEC 13F-sourced
+          from BUFFETT_TOP / buffettFiling (no fabrication; AP-3 compliant). 2026 AI-
+          citation research: answer-first + definitive + stats in the first ~100 words
+          drives citation (cited pages get +120% clicks; ~10% of holdlens traffic
+          already arrives via ChatGPT, which indexes from Bing). */}
+      <aside
+        aria-label="Portfolio summary"
+        className="mt-6 rounded-2xl border border-emerald-400/25 bg-emerald-400/[0.04] px-5 py-4"
+      >
+        <div className="text-[10px] uppercase tracking-widest text-emerald-400 font-bold mb-2">
+          TL;DR
+        </div>
+        <p className="hl-investor-tldr text-sm text-text leading-relaxed">
+          <strong>Warren Buffett</strong> runs <strong>Berkshire Hathaway</strong> as chairman and CEO.
+          The largest disclosed position{buffettFiling?.quarter ? ` as of ${buffettFiling.quarter}` : ""} is{" "}
+          <strong className="font-mono">{BUFFETT_TOP[0].ticker}</strong> ({BUFFETT_TOP[0].name}) at{" "}
+          <strong>{BUFFETT_TOP[0].pctPortfolio.toFixed(1)}%</strong> of the {BUFFETT_TOP.length}-position
+          tracked book, and the top holdings make up <strong>{total.toFixed(0)}%</strong> of the disclosed
+          portfolio. Buffett's portfolio is a value-investing book concentrated in consumer brands,
+          financials, and energy.
+        </p>
+      </aside>
+
       {/* Pivot A YMYL compliance (2026-05-09) — every result page that
           surfaces ConvictionScore numbers + smart-money positioning data
           must inline the "Informational only / not investment advice /
