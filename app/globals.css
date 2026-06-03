@@ -109,3 +109,17 @@ html { scroll-behavior: smooth; }
 a, button, [role="button"], input, textarea, select {
   -webkit-tap-highlight-color: rgba(251, 191, 36, 0.12);
 }
+
+/* Perf (2026-06-03): skip layout/paint of far-below-the-fold homepage
+   sections until they scroll near the viewport. The homepage renders a very
+   large DOM (a 25-card signal grid, 30 manager cards, several long-form
+   sections, FAQ) which made the browser do a lot of style/layout/paint work
+   before the hero could paint. `content-visibility:auto` defers that work for
+   off-screen subtrees; `contain-intrinsic-size: auto …` makes the browser
+   remember each section's real height after first render so re-layout on
+   scroll doesn't shift content (CLS-safe). Content stays in the DOM, so there
+   is zero SEO/crawl impact. No-op in browsers that don't support it. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}

@@ -502,7 +502,7 @@ export default function HomePage() {
       {/* Signal explorer — discovery grid for the forward-looking pages.
           This is what Dataroma does not have: eight distinct views on smart
           money, each answering a different question. */}
-      <section className="py-16 border-t border-border">
+      <section className="py-16 border-t border-border cv-auto">
         <div className="flex items-end justify-between mb-8 flex-wrap gap-3">
           <div>
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
@@ -713,7 +713,7 @@ export default function HomePage() {
       </section>
 
       {/* Backtest gallery — the viral wedge front and center */}
-      <section className="py-20">
+      <section className="py-20 cv-auto">
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
@@ -732,7 +732,7 @@ export default function HomePage() {
       </section>
 
       {/* Top picks preview */}
-      <section className="py-16 border-t border-border">
+      <section className="py-16 border-t border-border cv-auto">
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
@@ -773,7 +773,7 @@ export default function HomePage() {
       </section>
 
       {/* Manager grid */}
-      <section className="py-16 border-t border-border">
+      <section className="py-16 border-t border-border cv-auto">
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
@@ -806,7 +806,7 @@ export default function HomePage() {
       </section>
 
       {/* Activity CTA */}
-      <section className="py-12 border-t border-border">
+      <section className="py-12 border-t border-border cv-auto">
         <div className="rounded-2xl border border-border bg-panel p-8 md:p-10 text-center">
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
             Every buy, every sell, every quarter
@@ -827,14 +827,14 @@ export default function HomePage() {
       </section>
 
       {/* Why different */}
-      <section className="py-16 border-t border-border grid md:grid-cols-3 gap-8">
+      <section className="py-16 border-t border-border grid md:grid-cols-3 gap-8 cv-auto">
         <Feature title="One signed score" body="Every stock gets one number on a −100..+100 scale. A ticker shows up on exactly one list — never both sides at once. The META problem is solved." />
         <Feature title="Always current" body="SEC filings parsed within hours. Email alerts fire the moment Buffett, Ackman, or Icahn file a new 13F." />
         <Feature title="Backtest anything" body="Interactive simulators: 'If you had copied Buffett starting in 2010, you'd have…' — share-ready charts for every manager." />
       </section>
 
       {/* Social proof — real numbers */}
-      <section className="py-16 border-t border-border">
+      <section className="py-16 border-t border-border cv-auto">
         <div className="text-center mb-10">
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
             By the numbers
@@ -853,7 +853,7 @@ export default function HomePage() {
       </section>
 
       {/* Social proof — trust + founders urgency */}
-      <section className="py-16 border-t border-border">
+      <section className="py-16 border-t border-border cv-auto">
         <div className="grid md:grid-cols-2 gap-8 items-start">
           {/* Data source trust */}
           <div>
@@ -950,7 +950,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ — visible copy + matching JSON-LD for Google rich results */}
-      <section className="py-16 border-t border-border">
+      <section className="py-16 border-t border-border cv-auto">
         <div className="mb-8">
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
             Frequently asked

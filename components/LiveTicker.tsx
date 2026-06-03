@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { getQuotes, fmtPrice, fmtPct, type LiveQuote } from "@/lib/live";
+import { useInView } from "@/lib/useInView";
 import TickerLogo from "@/components/TickerLogo";
 
 type Props = {
@@ -20,8 +21,14 @@ export default function LiveTicker({ symbols }: Props) {
   const [loaded, setLoaded] = useState(false);
   const symKey = symbols.join(",");
   const tickingRef = useRef(true);
+  // Perf: only fetch the 15 ticker quotes once the strip is actually on
+  // screen. The strip is `hidden sm:block` (display:none < 640px), so on
+  // mobile it never intersects → never fetches — which previously cost 15
+  // wasted fetches per page load on every mobile visitor. See lib/useInView.ts.
+  const [rootRef, inView] = useInView<HTMLDivElement>({ rootMargin: "200px" });
 
   useEffect(() => {
+    if (!inView) return; // wait until the ticker is near/on screen
     let cancelled = false;
     async function load() {
       if (!tickingRef.current) return; // tab hidden
@@ -45,7 +52,7 @@ export default function LiveTicker({ symbols }: Props) {
       document.removeEventListener("visibilitychange", onVis);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [symKey]);
+  }, [symKey, inView]);
 
   // Duplicate list for seamless scroll
   const items = symbols.concat(symbols);
@@ -58,7 +65,7 @@ export default function LiveTicker({ symbols }: Props) {
     // info-density tradeoff: users don't need a real-time ticker on a 375px
     // viewport. Desktop ≥640px keeps the original marquee. Operator iPhone
     // 2026-05-06 23:05 surfaced the issue.
-    <div className="hidden sm:block border-b border-border bg-panel/60 overflow-hidden" aria-label="Live market ticker">
+    <div ref={rootRef} className="hidden sm:block border-b border-border bg-panel/60 overflow-hidden" aria-label="Live market ticker">
       <div className="relative">
         <div
           className="flex gap-8 py-2.5 whitespace-nowrap animate-marquee will-change-transform"
