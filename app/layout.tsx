@@ -188,9 +188,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://query1.finance.yahoo.com" crossOrigin="anonymous" />
+        {/* parqet serves ~40 ticker logos per holdings table as plain <img>
+            (no CORS) — preconnect WITHOUT crossOrigin so the warmed connection
+            is reused by the image fetches instead of opening a second one. */}
+        <link rel="preconnect" href="https://assets.parqet.com" />
         <link rel="dns-prefetch" href="https://plausible.io" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://query1.finance.yahoo.com" />
+        <link rel="dns-prefetch" href="https://assets.parqet.com" />
         {/* Google Consent Mode v2 — default "denied" until CookieConsent banner grants.
             Required by Google for EU traffic serving ads via AdSense. Must run before
             any Google scripts load, so strategy is beforeInteractive. */}
