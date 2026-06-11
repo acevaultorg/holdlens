@@ -751,3 +751,19 @@ HUMAN_ACTIONS.md, PATTERNS.md where applicable).
 - Charter Phases 2/4/5/6 (Finance Q&A cornerstones · Person sameAs · newsletter · AI-citation amplifier) per Task mpmplt00z8n19s.
 - AdSense: operator still needs to click "Request review" (Task mpnsqs1a0dzqe9 / rank 002005) — content surface is now cleaner (verdict-free + thin pages out).
 
+
+## Session Handoff — 2026-06-11 (affiliate-autopilot · TaskPrio never-stop · Phase 2 cornerstone queue EXHAUSTED)
+
+**Mode:** TaskPrio autopilot (Affiliate team scope) working charter task mpmplt00z8n19s.
+
+**Ships (commit `18407f9f8` → main → Vercel auto-deploy):**
+- /learn/what-is-a-superinvestor — 1984 Graham-and-Doddsville origin + modern 13F-tracking definition + cohort-of-30 curation criteria. Full LD chain (Breadcrumb + Article/Report + 3 DefinedTerms + FAQPage), SEC + Columbia citations.
+- /learn/how-do-hedge-funds-disclose-positions — required-vs-voluntary disclosure matrix (13F · 13D · 13G · Form 4) incl. the SEC's 2023 amendments (13D now 5 business days, effective Feb 2024 — NOTE: older sibling pages 13d-vs-13g + 13f-vs-13d-vs-13g still say "10 days"; staleness fix queued on TaskPrio).
+- /learn/how-to-interpret-changes-in-positions — read-the-delta methodology (4 delta types · share-counts-not-values · portfolio-weight · 5 traps · cluster logic · boring-explanations-first). Links the r=−0.12 backtest; descriptive, no advice.
+- Registries synced: LearnReadNext LEARN_SEQUENCE + app/learn ARTICLES + sitemap.ts + sitemap-ai.ts (3 entries each).
+
+**Verify:** local build exit 0 · predeploy-guard ✓ Pivot A compliance · perf-budget ✓ 12,945 pages <500KB · rendered word counts 1518/1532/1548. Live-verify + IndexNow per this session's log.
+
+**Phase 2 status: the 2026-05-29 cornerstone queue is now EXHAUSTED** — #1 what-is-an-insider (prior), #2/#3/#6 shipped today, #4 why-13f-doesnt-show-shorts (prior), #5 why-13f-is-quarterly-not-daily DELIBERATELY FOLDED into the disclosure-matrix page + 45-day-lag-explained (a standalone page would be an information-gain duplicate — judgment call, revisit only if GSC shows distinct query demand).
+
+**Remaining charter (mpmplt00z8n19s):** Phase 5 newsletter (operator Buttondown gate) · Phase 6 #3 /api/v1 JSON twins · Phase 8 master-roadmap data pipelines · Phase 9 operator drafts. Phase 4 sameAs largely in place via AUTHOR_SCHEMA.

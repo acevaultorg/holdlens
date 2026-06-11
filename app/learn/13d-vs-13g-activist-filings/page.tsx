@@ -46,7 +46,7 @@ export default function Article() {
         "@type": "DefinedTerm",
         name: "Schedule 13D",
         description:
-          "SEC filing required when an investor crosses 5% beneficial ownership with intent to influence control. Filed within 10 days; amended on every material change. Item 4 (Purpose of Transaction) is where activist theses are declared.",
+          "SEC filing required when an investor crosses 5% beneficial ownership with intent to influence control. Filed within 5 business days (accelerated from 10 calendar days by the SEC's 2023 amendments, effective February 2024); amended within 2 business days of every material change. Item 4 (Purpose of Transaction) is where activist theses are declared.",
       },
       {
         "@type": "DefinedTerm",
@@ -83,7 +83,7 @@ export default function Article() {
         name: "What is the 5% ownership threshold for SEC 13D and 13G filings?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Section 13(d) of the Securities Exchange Act (1934) requires anyone beneficially owning more than 5% of a public company's voting shares to disclose the position within 10 calendar days. The point is to give the market and company management early warning of large accumulations that could change control.",
+          text: "Section 13(d) of the Securities Exchange Act (1934) requires anyone beneficially owning more than 5% of a public company's voting shares to disclose the position within 5 business days (10 calendar days before the SEC's 2023 amendments took effect in February 2024). The point is to give the market and company management early warning of large accumulations that could change control.",
         },
       },
       {
@@ -107,7 +107,7 @@ export default function Article() {
         name: "What's the difference between 13D and 13G?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Intent. 13D = activist with right to influence (board changes, breakup, sale). 13G = passive holder explicitly disclaiming influence. 13D is detailed (Items 1-7 including Plans). 13G is short-form. 13D amendments must file within 1 business day of material changes; 13G amendments within 10 days. A 13G holder switching to 13D is itself a high-signal event — it means intent shifted.",
+          text: "Intent. 13D = activist with right to influence (board changes, breakup, sale). 13G = passive holder explicitly disclaiming influence. 13D is detailed (Items 1-7 including Plans). 13G is short-form. 13D amendments must file within 2 business days of material changes; 13G amendments within 45 days after the end of the quarter in which a material change occurred. A 13G holder switching to 13D is itself a high-signal event — it means intent shifted.",
         },
       },
       {
@@ -123,7 +123,7 @@ export default function Article() {
         name: "Why does 13D matter more than 13F for tracking smart money?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "13F is a 45-day-lagged quarterly snapshot of a portfolio. 13D/13G filings drop within 10 days of crossing 5%, and 13D/A amendments file within 1 business day of material changes. They are the closest thing to real-time smart-money disclosure in the US market. For activist or large-position situations, 13D beats 13F by 35+ days.",
+          text: "13F is a 45-day-lagged quarterly snapshot of a portfolio. 13D filings drop within 5 business days of crossing 5%, and 13D/A amendments file within 2 business days of material changes. They are the closest thing to real-time smart-money disclosure in the US market. For activist or large-position situations, 13D beats 13F by 35+ days.",
         },
       },
     ],
@@ -158,7 +158,7 @@ export default function Article() {
       </h1>
       <p className="text-muted text-lg">
         When any investor crosses 5% of a public company&rsquo;s outstanding
-        shares, the SEC requires a filing within 10 calendar days. Which
+        shares, the SEC requires a filing within days — 5 business days for a 13D. Which
         filing — 13D or 13G — tells you everything about why they bought.
       </p>
 
@@ -166,7 +166,7 @@ export default function Article() {
         Both 13D and 13G are filed when an investor crosses 5% of a public company&rsquo;s
         voting shares (<a href="https://www.law.cornell.edu/uscode/text/15/78m" className="text-brand underline" rel="noopener">Section 13(d) of the Securities Exchange Act of 1934, 15 U.S.C. § 78m(d)</a>; implementing rules at <a href="https://www.ecfr.gov/current/title-17/chapter-II/part-240/subject-group-ECFR82e9d3afb9a8d54/section-240.13d-1" className="text-brand underline" rel="noopener">17 CFR § 240.13d-1</a>). 13D: investor
         intends to influence — board seats, strategy changes, takeover, restructuring; must
-        file within 10 days; must amend on every material change. 13G: investor is explicitly
+        file within 5 business days; must amend within 2 business days of material changes. 13G: investor is explicitly
         passive — index funds, pension allocations, ETFs; no activist intent; lighter filing
         burden. The difference is intent. The same 5% stake in Apple is a yawn on 13G and a
         takeover threat on 13D. Activists (Ackman, Icahn, Loeb, Elliott) file 13D; institutional
@@ -233,7 +233,7 @@ export default function Article() {
       <h2>13D/A and 13G/A — the amendments</h2>
       <p>
         The <strong>/A</strong> suffix means &ldquo;amendment.&rdquo; Filers
-        must amend within 1 business day (13D) or 10 days (13G) when:
+        must amend within 2 business days (13D) or 45 days after the quarter of the change (13G) when:
       </p>
       <ul>
         <li>Position changes by 1% or more of outstanding shares</li>
@@ -276,8 +276,8 @@ export default function Article() {
       <h2>Why this matters more than 13F</h2>
       <p>
         13F (the quarterly hedge-fund position report) is a 45-day-lagged
-        snapshot of a portfolio. 13D/13G filings drop within 10 days of
-        crossing 5% — and 13D/A amendments file within 1 business day of
+        snapshot of a portfolio. 13D filings drop within 5 business days of
+        crossing 5% — and 13D/A amendments file within 2 business days of
         material changes. They are the closest thing to real-time
         smart-money disclosure in the U.S. market.
       </p>
@@ -301,7 +301,7 @@ export default function Article() {
         <p>
           13D filings are the most under-weighted disclosure in retail investing. Everyone
           watches 13Fs, which are quarterly and 45 days late, while ignoring 13Ds which arrive
-          within 10 days and explicitly declare intent. When an activist files a 13D, the
+          within 5 business days and explicitly declare intent. When an activist files a 13D, the
           investor has effectively pre-committed to a public campaign. That commitment is
           information you can act on; the same investor showing up on a 13F three months later
           is information that&rsquo;s already old.

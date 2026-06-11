@@ -112,7 +112,7 @@ const LD = [
         "@type": "DefinedTerm",
         name: "Schedule 13D",
         description:
-          "An SEC filing required when a person or group acquires beneficial ownership of more than 5% of a company's voting shares with intent to influence control. Filed within 10 days of crossing the 5% threshold.",
+          "An SEC filing required when a person or group acquires beneficial ownership of more than 5% of a company's voting shares with intent to influence control. Filed within 5 business days of crossing the 5% threshold (accelerated from 10 calendar days by the SEC's 2023 amendments, effective February 2024).",
       },
       {
         "@type": "DefinedTerm",
@@ -147,7 +147,7 @@ const LD = [
         name: "How fast does each filing arrive?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "13D is fastest — 10 calendar days after crossing the 5% threshold. 13G varies by filer type — qualified institutional investors file within 45 days of year-end (or 10 days after quarter-end if ownership exceeds 10%). 13F is slowest — 45 days after calendar quarter end, snapshotting a portfolio that was already 45 days old when frozen.",
+          text: "13D is fastest — 5 business days after crossing the 5% threshold (10 calendar days before the SEC's 2023 amendments took effect in February 2024). 13G varies by filer type — qualified institutional investors file within 45 days after the end of the quarter in which they cross 5% (or 5 business days after the month-end on which ownership exceeds 10%). 13F is slowest — 45 days after calendar quarter end, snapshotting a portfolio that was already 45 days old when frozen.",
         },
       },
       {
@@ -155,7 +155,7 @@ const LD = [
         name: "Can a filer switch from 13G to 13D?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, and it's one of the strongest signals in 13-series filings. If a passive 13G filer decides to engage management — push for a board seat, advocate a spin-off, campaign for a sale — they must refile as 13D within 10 days. A 13G-to-13D switch is a public declaration of activism.",
+          text: "Yes, and it's one of the strongest signals in 13-series filings. If a passive 13G filer decides to engage management — push for a board seat, advocate a spin-off, campaign for a sale — they must refile as 13D within 5 business days. A 13G-to-13D switch is a public declaration of activism.",
         },
       },
     ],
@@ -218,7 +218,7 @@ export default function ThirteenFvsDvsGPage() {
               <div className="text-text font-semibold">Schedule 13D</div>
               <div className="text-muted">
                 Who: anyone who crosses 5% ownership of a public company with
-                intent to influence control. When: within 10 days. What: a
+                intent to influence control. When: within 5 business days. What: a
                 detailed disclosure on that single position, including
                 intent. Why you care: it&apos;s the activist&apos;s calling
                 card.
@@ -261,7 +261,7 @@ export default function ThirteenFvsDvsGPage() {
                   13D
                 </span>
                 <span className="text-xs text-muted font-mono">
-                  10 calendar days
+                  5 business days
                 </span>
               </div>
               <div
@@ -424,7 +424,7 @@ export default function ThirteenFvsDvsGPage() {
           version. It contains the filer&apos;s identity and share count, but
           omits the purpose section. The filer is legally certifying that
           they do not intend to influence control of the company. If that
-          changes, they must refile as 13D within 10 days.
+          changes, they must refile as 13D within 5 business days.
         </p>
 
         {/* Section 3 */}
@@ -465,9 +465,10 @@ export default function ThirteenFvsDvsGPage() {
         </p>
         <ul className="list-disc ml-6 text-muted space-y-2">
           <li>
-            <strong className="text-text">13D: 10 calendar days</strong> after
-            crossing the 5% threshold. Amendments are required &quot;promptly&quot;
-            — in practice, within days — after any material change in
+            <strong className="text-text">13D: 5 business days</strong> after
+            crossing the 5% threshold (10 calendar days before the SEC's 2023
+            amendments took effect in February 2024). Amendments are required
+            within 2 business days of any material change in
             ownership or intent. This is the fastest SEC filing you&apos;ll
             encounter in this series.
           </li>
@@ -559,7 +560,7 @@ export default function ThirteenFvsDvsGPage() {
           When a filer originally certifies that their stake is passive and
           later decides to engage — push for a board seat, oppose a merger,
           advocate a spin-off, campaign for a CEO change — they are legally
-          required to refile as Schedule 13D within 10 days. The switch is a
+          required to refile as Schedule 13D within 5 business days. The switch is a
           public declaration that a previously passive position has turned
           active.
         </p>
@@ -794,7 +795,7 @@ export default function ThirteenFvsDvsGPage() {
         <p>
           Most retail investors over-weight 13Fs and under-weight 13D/13G. The mistake is
           intuitive — 13Fs are easier to read and there are more of them — but 13Ds are
-          structurally the higher-information filing. A 13D arrives within 10 days of crossing
+          structurally the higher-information filing. A 13D arrives within 5 business days of crossing
           5%, requires the investor to declare intent, and triggers update amendments on every
           material change. By the time a 13F shows you the same position, the activist has
           already moved the price.

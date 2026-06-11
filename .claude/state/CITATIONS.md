@@ -59,6 +59,9 @@
 | 34 | Which superinvestors hold both Microsoft and Meta | data / compare-page | /compare/meta-vs-msft | 2026-05-29 | — |
 | 35 | What stocks do Chris Hohn and Seth Klarman both own | data / fund-overlap | /fund-overlap/chris-hohn-vs-seth-klarman | 2026-05-29 | — |
 | 36 | Which superinvestors own technology stocks | data / sector-page | /sector/technology | 2026-05-29 | — |
+| 37 | What is a superinvestor? | reference / explainer | /learn/what-is-a-superinvestor | 2026-06-11 | — |
+| 38 | How do hedge funds disclose their positions? | reference / explainer | /learn/how-do-hedge-funds-disclose-positions | 2026-06-11 | — |
+| 39 | How do I interpret position changes in a 13F? | reference / methodology | /learn/how-to-interpret-changes-in-positions | 2026-06-11 | — |
 
 (36 queries seeded — 20 original from 2026-05-19 + 12 added 2026-05-27 + 4 added 2026-05-29 (dividend-tax cross-border + enriched compare + fund-overlap + sector coverage). Spans /learn/ explainer + /investor/[slug] + /signal/[ticker] + /ticker/[symbol] + /reports/ + /rotation + /sector/ + /events/ + /insiders/ + /consensus + /best-now + /for-ai + /about + homepage surfaces. Tracks branded discovery + concept explainer + comparator + programmatic data + voice-natural phrasings per `rules/seo-geo-mastery.md` Part 14 AEO discipline.)
 
