@@ -141,8 +141,30 @@ export default function HomePage() {
         // vs analysis). Declares brand-family graph for Google + LLM citation #3
         // Recognizable + #6 Corroborated.
         sameAs: ["https://secfilingdex.com/"],
+        founder: { "@id": "https://holdlens.com/about/#person-founder" },
         // The operator is not directly promoting; brand handle only surfaces
         // through the X share flow when a ship goes viral.
+      },
+      {
+        // Person schema — surface the named operator on the home entry surface
+        // (it already lives on /about) so the Credible (E-E-A-T) + Entity-
+        // Coherence axes resolve to a real human, not an anonymous tool. Same
+        // @id as /about → one canonical entity across the graph, no duplicate.
+        "@type": "Person",
+        "@id": "https://holdlens.com/about/#person-founder",
+        name: "Paulo de Vries",
+        url: "https://holdlens.com/about/",
+        jobTitle: "Founder",
+        worksFor: { "@id": "https://holdlens.com/#organization" },
+        knowsAbout: [
+          "SEC 13F filings",
+          "SEC Form 4 insider transactions",
+          "Portfolio analysis",
+          "Hedge fund tracking",
+          "Conviction-weighted scoring methodology",
+          "Value investing",
+        ],
+        email: "hello@holdlens.com",
       },
       {
         "@type": "WebSite",
@@ -264,7 +286,7 @@ export default function HomePage() {
       <section className="pt-4 sm:pt-12 pb-10 text-center">
         <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-brand uppercase mb-3 sm:mb-6">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden />
-          <span>Q1 2026 13F filings live · filed May 15, 2026 · {MANAGERS.length} investors tracked</span>
+          <span>Q1 2026 13F filings live · filed <time dateTime="2026-05-15">May 15, 2026</time> · {MANAGERS.length} investors tracked</span>
         </div>
         {/* v1.48 — widow-orphan fix on hero. `text-balance` lets the browser
             optimize line breaks so "by the" no longer orphans + "world." no
