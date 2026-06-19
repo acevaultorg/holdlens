@@ -6,6 +6,7 @@ import MobileNav from "@/components/MobileNav";
 import PlausiblePageView from "@/components/PlausiblePageView";
 import EngagementTracker from "@/components/EngagementTracker";
 import DesktopNav from "@/components/DesktopNav";
+import SiteSearch from "@/components/SiteSearch";
 import DataFreshness from "@/components/DataFreshness";
 import SupportBar from "@/components/SupportBar";
 import CookieConsent from "@/components/CookieConsent";
@@ -563,6 +564,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
             {/* Desktop nav — grouped dropdowns at md and up */}
             <DesktopNav />
+            {/* Investor command-palette search (Fleet Search Standard) —
+                `/` shortcut, dual-sink monitored, mobile-perfect overlay. */}
+            <SiteSearch />
             {/* Mobile hamburger — below md */}
             <MobileNav />
           </div>
