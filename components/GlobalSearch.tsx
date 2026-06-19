@@ -53,11 +53,46 @@ function scoreItem(item: Item, q: string): number {
   return 0;
 }
 
+// Fleet Search Standard — privacy-clean dual-sink monitoring. The query is the
+// demand signal (esp. zero-result → what users want that we don't cover yet);
+// fire to BOTH Plausible AND Clarity so the signal survives either analytics
+// vendor lapsing (e.g. the 2026-06-28 Plausible expiry). Query is PII-scrubbed
+// + truncated, aggregated by value, never tied to a user.
+function scrubQuery(s: string): string {
+  return s
+    .replace(/[\w.+-]+@[\w.-]+\.\w+/g, "")
+    .replace(/\d{7,}/g, "")
+    .trim()
+    .toLowerCase()
+    .slice(0, 60);
+}
+function logSearch(raw: string, count: number) {
+  if (typeof window === "undefined") return;
+  const sq = scrubQuery(raw);
+  if (!sq) return;
+  const zero = count === 0;
+  const w = window as unknown as {
+    plausible?: (e: string, o?: { props?: Record<string, unknown> }) => void;
+    clarity?: (...a: unknown[]) => void;
+  };
+  if (typeof w.plausible === "function") {
+    w.plausible(zero ? "SearchNoResults" : "Search", {
+      props: zero ? { q: sq } : { q: sq, results: count },
+    });
+  }
+  if (typeof w.clarity === "function") {
+    w.clarity("event", zero ? "SearchNoResults" : "Search");
+    w.clarity("set", zero ? "search_noresult" : "search_query", sq);
+  }
+}
+
 export default function GlobalSearch() {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const [activeIdx, setActiveIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const loggedRef = useRef("");
+  const debRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const index = useMemo(buildIndex, []);
 
@@ -104,6 +139,23 @@ export default function GlobalSearch() {
   useEffect(() => {
     setActiveIdx(0);
   }, [q]);
+
+  // Monitor settled queries (debounced, ≥2 chars — not per keystroke, and the
+  // default empty-state list is excluded). Zero-result fires SearchNoResults.
+  useEffect(() => {
+    const query = q.trim();
+    if (query.length < 2) return;
+    if (debRef.current) clearTimeout(debRef.current);
+    debRef.current = setTimeout(() => {
+      if (query.toLowerCase() === loggedRef.current) return;
+      loggedRef.current = query.toLowerCase();
+      logSearch(query, results.length);
+    }, 650);
+    return () => {
+      if (debRef.current) clearTimeout(debRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q, results.length]);
 
   function onInputKey(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "ArrowDown") {
