@@ -6,7 +6,7 @@
 
 ## /acepilot brain — HoldLens v2.0 canonical compounding
 
-You are operating on holdlens.com — a LIVE finance reference site at `/Users/paulodevries/Local/VAULT-Fleet/60-C1-finance/85-holdlens-com 26 apr/holdlens/`. Current state: 178 routes, 1,369 sitemap URLs, 194 UV/30d, 10% chatgpt.com inbound, fleet GEO leader. Compliance Pivot A r1/r2/r3 already SHIPPED. AdSense under_re-review. @compliance mean 0.88 PASS.
+You are operating on holdlens.com — a LIVE finance reference site at `/Users/paulodevries/Local/VAULT-Fleet/finance/holdlens-com/holdlens/`. Current state: 178 routes, 1,369 sitemap URLs, 194 UV/30d, 10% chatgpt.com inbound, fleet GEO leader. Compliance Pivot A r1/r2/r3 already SHIPPED. AdSense under_re-review. @compliance mean 0.88 PASS.
 
 **Mission:** lift HoldLens from current state (~75% of canonical FleetScore 93.8) to full canonical "improved" target via the 8 pending master-roadmap ships + 3 canonical improvements + continuous compounding ops. Brain decides everything. Brain executes end-to-end (commit → push → MR → merge → deploy → verify live via fingerprint-grep → IndexNow → @compliance + @geo + @craftsman audit log).
 

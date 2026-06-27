@@ -104,7 +104,7 @@ HOW:
      [https://supabase.com/dashboard/project/pguombwsbacsupkokjka/sql/new](https://supabase.com/dashboard/project/pguombwsbacsupkokjka/sql/new)
      Paste the contents of `supabase/migrations/0001_holdlens_auth_v0_58.sql`:
      ```bash
-     cat "/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens/supabase/migrations/0001_holdlens_auth_v0_58.sql" | pbcopy
+     cat "/Users/paulodevries/Local/VAULT-AceVault/finance/holdlens-com/holdlens/supabase/migrations/0001_holdlens_auth_v0_58.sql" | pbcopy
      ```
      Now Cmd+V into the Supabase SQL editor → click "Run" (or Cmd+Enter)
      → expected: "Success. No rows returned." + 4 tables created in the
@@ -115,7 +115,7 @@ HOW:
      Either reply `c` to me here (brain will retry wrangler) or run
      from your terminal:
      ```bash
-     cd "/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens"
+     cd "/Users/paulodevries/Local/VAULT-AceVault/finance/holdlens-com/holdlens"
      npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
      ```
      → expected: "Deployment complete!" (or EPIPE — but per memory
@@ -217,7 +217,7 @@ HOW:
      Supabase dashboard → SQL Editor → "+ New query"
      Open this file from your terminal:
        ```bash
-       cat "/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens/supabase/migrations/0001_holdlens_auth_v0_58.sql"
+       cat "/Users/paulodevries/Local/VAULT-AceVault/finance/holdlens-com/holdlens/supabase/migrations/0001_holdlens_auth_v0_58.sql"
        ```
      Copy the whole output, paste into SQL Editor, click "Run" (or Cmd+Enter).
      → expected: "Success. No rows returned." + 4 tables created (profiles,
@@ -320,7 +320,7 @@ HOW:
      → expected: `none` (currently `minor`)
   2. From YOUR terminal (NOT inside Claude Code):
      ```bash
-     cd "/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens"
+     cd "/Users/paulodevries/Local/VAULT-AceVault/finance/holdlens-com/holdlens"
      npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
      ```
      → expected: `Deployment complete!` (don't trust the EPIPE
@@ -1629,7 +1629,7 @@ HOW (operator-side terminal, fastest path):
      wrapper block per Layer 6, even though it works from background
      bash, terminal is more reliable when CF is degraded):
      ```bash
-     cd "/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens"
+     cd "/Users/paulodevries/Local/VAULT-AceVault/finance/holdlens-com/holdlens"
      npx wrangler pages deploy out --project-name holdlens --branch main --commit-dirty=true
      ```
      → expected: `Success! Uploaded XXXX files (... already uploaded)`

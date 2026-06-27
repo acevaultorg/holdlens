@@ -616,7 +616,7 @@ Calibration window: re-check 2026-05-04 (7d post-deploy when CF clears) for Dist
 
 **Mode:** auto = sovereign auto · Death Guard pre-flight ok (L1:98 Edit + 84 Write rules ok · L2:heartbeat 9d stale-not-fatal-since-runner-anomaly-pattern-known · L3:MODE=sovereign-auto · L4:CIRCUIT closed · L5:active)
 **Branch:** main · clean before + clean after (2 atomic commits pushed)
-**Working dir:** `/Users/paulodevries/Local/VAULT-AceVault/60-C1-finance/85-holdlens-com 26 apr/holdlens`
+**Working dir:** `/Users/paulodevries/Local/VAULT-AceVault/finance/holdlens-com/holdlens`
 **Production:** holdlens.com on Vercel (Apr 27 DNS flip preserved). CF outage Day 6+ ongoing but irrelevant to deploy path.
 
 ### Behavior Log
