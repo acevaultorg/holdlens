@@ -20,6 +20,7 @@ import InvestorConcentration from "@/components/InvestorConcentration";
 import DividendTaxCalc from "@/components/DividendTaxCalc";
 import PositionIntelligence from "@/components/PositionIntelligence";
 import ConvictionFactorTable from "@/components/ConvictionFactorTable";
+import InvestingBooks from "@/components/InvestingBooks";
 import { getPairsForManager } from "@/lib/fund-overlap-pairs";
 import { DailyMoveForInvestor, getDailySnapshotTimestamp } from "@/components/DailyMove";
 import { MANAGERS, getManager, type Manager } from "@/lib/managers";
@@ -651,6 +652,12 @@ export default async function InvestorPage({ params }: { params: Promise<{ slug:
           </table>
         </div>
       </section>
+
+      <InvestingBooks
+        slug={m.slug}
+        heading={`The books behind ${m.name.split(" ")[0]}'s thinking`}
+        sub={`${m.philosophy} These are the books that map ${m.name.split(" ")[0]}'s approach.`}
+      />
 
       <FoundersNudge context={`You're reading ${m.name}'s full 13F portfolio and conviction signals.`} />
       <BrokerCta context={`Want to mirror ${m.name}'s top positions? Compare brokers with low-friction execution.`} />
