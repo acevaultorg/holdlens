@@ -14,6 +14,7 @@ import TickerLink from "@/components/TickerLink";
 import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
 import PositionIntelligence from "@/components/PositionIntelligence";
 import ConvictionFactorTable from "@/components/ConvictionFactorTable";
+import InvestingBooks from "@/components/InvestingBooks";
 import Link from "next/link";
 import { BUFFETT_TOP } from "@/lib/holdings";
 import { LATEST_FILINGS, nextFilingDeadline, daysSince } from "@/lib/filings";
@@ -384,6 +385,12 @@ export default function BuffettPage() {
           </table>
         </div>
       </section>
+
+      <InvestingBooks
+        slug="warren-buffett"
+        heading="The books behind Buffett's thinking"
+        sub="Buy wonderful companies at fair prices. Hold forever. These are the books that map Buffett's approach."
+      />
 
       <FoundersNudge context="You're reading Warren Buffett's full 13F portfolio and conviction signals." />
 
