@@ -1,0 +1,234 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import ShareStrip from "@/components/ShareStrip";
+import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
+import {
+  BOOKS,
+  BOOK_GROUPS,
+  resolveAmazonUrl,
+  AUDIBLE_URL,
+} from "@/data/books";
+
+// /reading — the curated value-investing reading list. The site's canonical
+// book hub: an ACQUISITION page (ranks for "best value investing books",
+// "books Warren Buffett recommends", "how to read 13F filings books") AND the
+// CONVERSION target every /learn essay + /investor page links to. Amazon
+// Associates only. Editorial framing (YMYL-safe). Static export, zero external
+// images (text cards keep CWV perfect), zero JS.
+
+const CANONICAL = "https://holdlens.com/reading";
+const LAST_VERIFIED = "2026-07-03";
+
+export const metadata: Metadata = {
+  title: "The Value Investor's Reading List — the books behind every 13F",
+  description:
+    "A curated reading list for anyone who tracks 13F filings and superinvestors: the value-investing canon, the mental-model classics, and the books the managers on this site wrote or live by. Free, no fluff.",
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    title: "The Value Investor's Reading List",
+    description:
+      "The value-investing canon + the books the superinvestors on this site wrote or live by. Curated, no fluff.",
+    type: "website",
+    images: [
+      {
+        url: "/og/home.png",
+        width: 1200,
+        height: 630,
+        alt: "HoldLens — the value investor's reading list",
+      },
+    ],
+  },
+  robots: { index: true, follow: true },
+};
+
+const COLLECTION_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "The Value Investor's Reading List",
+  url: CANONICAL,
+  description:
+    "A curated reading list of value-investing and mental-model classics for readers who track 13F filings and superinvestors.",
+  author: AUTHOR_SCHEMA,
+  publisher: PUBLISHER_REF,
+  dateModified: LAST_VERIFIED,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: BOOKS.map((b, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Book",
+        name: b.title,
+        author: { "@type": "Person", name: b.author },
+      },
+    })),
+  },
+};
+
+const BREADCRUMB_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://holdlens.com/" },
+    { "@type": "ListItem", position: 2, name: "Reading list", item: CANONICAL },
+  ],
+};
+
+// Managers on this site whose own/defining book is on the list — cross-links the
+// hub back into the /investor entity pages (acquisition → conversion loop).
+const FEATURED_INVESTORS: { slug: string; name: string; book: string }[] = [
+  { slug: "warren-buffett", name: "Warren Buffett", book: "The Essays of Warren Buffett" },
+  { slug: "seth-klarman", name: "Seth Klarman", book: "Margin of Safety" },
+  { slug: "howard-marks", name: "Howard Marks", book: "The Most Important Thing" },
+  { slug: "joel-greenblatt", name: "Joel Greenblatt", book: "The Little Book That Beats the Market" },
+  { slug: "michael-burry", name: "Michael Burry", book: "The Big Short" },
+  { slug: "monish-pabrai", name: "Mohnish Pabrai", book: "The Dhandho Investor" },
+];
+
+export default function ReadingListPage() {
+  return (
+    <article className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(COLLECTION_JSONLD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSONLD) }}
+      />
+
+      {/* Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="text-xs text-dim mb-6">
+        <Link href="/" className="hover:text-brand">
+          Home
+        </Link>
+        <span className="mx-1.5" aria-hidden>
+          /
+        </span>
+        <span className="text-muted">Reading list</span>
+      </nav>
+
+      {/* Hero */}
+      <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
+        Reading list · Updated {LAST_VERIFIED}
+      </div>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+        The value investor&apos;s reading list.
+      </h1>
+      <p className="text-base sm:text-lg text-muted leading-relaxed mb-4">
+        Every 13F on this site is downstream of a way of thinking. These are the books that map it —
+        the value-investing canon, the mental-model classics, and the books the managers we track
+        actually wrote or live by. It&apos;s the reading behind the{" "}
+        <Link href="/learn/superinvestor-handbook" className="text-brand hover:underline">
+          Superinvestor Handbook
+        </Link>{" "}
+        and the{" "}
+        <Link href="/methodology" className="text-brand hover:underline">
+          ConvictionScore methodology
+        </Link>
+        .
+      </p>
+      <p className="text-sm text-dim leading-relaxed mb-8">
+        Curated, not exhaustive — the shortlist we&apos;d hand a serious investor, not a padded
+        top-100. Start at the top of Foundations and work down.
+      </p>
+
+      <ShareStrip
+        title="The Value Investor's Reading List — the books behind every 13F"
+        url={CANONICAL}
+        via="holdlens"
+      />
+
+      {/* Audible bounty — prominent, honest. The highest-$ affiliate action, so
+          it earns its place near the top; framed as an option, not a demand. */}
+      <div className="my-8 rounded-2xl border border-amber-500/40 bg-amber-500/5 p-5">
+        <div className="text-sm font-semibold text-text mb-1">Prefer to listen?</div>
+        <p className="text-[13px] text-muted leading-relaxed mb-3">
+          Most of these have strong audiobook editions. A free Audible trial covers many of them —
+          a low-friction way to start (Poor Charlie&apos;s Almanack, The Snowball, and The Big Short
+          all read especially well).
+        </p>
+        <a
+          href={AUDIBLE_URL}
+          target="_blank"
+          rel="noopener sponsored nofollow"
+          className="plausible-event-name=Audible+Click plausible-event-from=reading-hub inline-flex w-fit items-center gap-2 rounded-lg border border-amber-500/60 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/20 transition"
+        >
+          Start a free 30-day Audible trial
+          <span aria-hidden>→</span>
+        </a>
+        <p className="mt-2 text-[11px] text-dim">
+          New Audible members only · cancel anytime · many assigned titles included with membership.
+        </p>
+      </div>
+
+      {/* Grouped book list */}
+      {BOOK_GROUPS.map((group) => {
+        const groupBooks = BOOKS.filter((b) => b.group === group);
+        if (groupBooks.length === 0) return null;
+        return (
+          <section key={group} className="mb-10">
+            <h2 className="text-lg md:text-xl font-bold mb-4 pb-2 border-b border-border">
+              {group}
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {groupBooks.map((b) => {
+                const { url, resolution } = resolveAmazonUrl(b);
+                return (
+                  <a
+                    key={b.title}
+                    href={url}
+                    target="_blank"
+                    rel="noopener sponsored nofollow"
+                    className={`plausible-event-name=Book+Click plausible-event-title=${encodeURIComponent(
+                      b.title,
+                    )} plausible-event-resolution=${resolution} plausible-event-from=reading-hub block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand/40 transition group`}
+                  >
+                    <div className="text-[10px] uppercase tracking-widest text-dim font-semibold mb-1">
+                      {b.author}
+                    </div>
+                    <div className="font-semibold text-text group-hover:text-brand transition mb-1.5">
+                      {b.title}
+                    </div>
+                    <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
+                    <div className="text-[11px] text-dim mt-2">View on Amazon →</div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
+
+      {/* Cross-link into the investor entity pages */}
+      <section className="mb-10">
+        <h2 className="text-lg md:text-xl font-bold mb-2">Whose books?</h2>
+        <p className="text-sm text-muted leading-relaxed mb-4">
+          Several of these were written by — or are about — managers we track. Each profile shows
+          their live 13F holdings alongside the reading behind their thinking.
+        </p>
+        <div className="grid gap-2 sm:grid-cols-2">
+          {FEATURED_INVESTORS.map((inv) => (
+            <Link
+              key={inv.slug}
+              href={`/investor/${inv.slug}`}
+              className="block rounded-xl border border-border bg-panel p-4 hover:border-brand/40 transition group"
+            >
+              <div className="font-semibold text-text group-hover:text-brand transition">
+                {inv.name}
+              </div>
+              <div className="text-[12px] text-dim mt-0.5">{inv.book} →</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* FTC disclosure */}
+      <p className="text-[11px] text-dim leading-relaxed border-t border-border pt-6">
+        Amazon affiliate links — as an Amazon Associate, HoldLens earns from qualifying purchases and
+        membership trials at no extra cost to you. These are books we genuinely recommend, chosen on
+        merit, never paid placements. Nothing here is investment advice — always do your own research.
+      </p>
+    </article>
+  );
+}
