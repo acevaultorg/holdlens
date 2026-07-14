@@ -14,6 +14,7 @@ import { CONGRESS_MEMBERS } from "@/lib/congress";
 import { ETFS } from "@/lib/etfs";
 import { REPORTS } from "@/lib/reports";
 import { getAllOverlapPairs } from "@/lib/fund-overlap-pairs";
+import { GROUP_META } from "@/data/books";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -72,6 +73,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/activity`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     // Learn hub — evergreen SEO content, high long-term value
     { url: `${base}/learn`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    // Reading list — Amazon-affiliate book hub + per-topic shelves. Editorial
+    // (YMYL-safe) acquisition + conversion surfaces; each shelf ranks for a
+    // "best books about X" cluster and links back into the hub + investor pages.
+    { url: `${base}/reading`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    ...GROUP_META.map((g) => ({
+      url: `${base}/reading/${g.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     { url: `${base}/learn/superinvestor-handbook`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/learn/what-is-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/learn/how-to-read-a-13f`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },

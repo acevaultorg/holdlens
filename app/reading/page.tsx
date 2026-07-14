@@ -5,6 +5,7 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import {
   BOOKS,
   BOOK_GROUPS,
+  GROUP_META,
   resolveAmazonUrl,
   AUDIBLE_URL,
 } from "@/data/books";
@@ -139,6 +140,24 @@ export default function ReadingListPage() {
         via="holdlens"
       />
 
+      {/* Browse by topic — the shelf cluster (each is its own indexable page) */}
+      <nav aria-label="Reading list topics" className="my-8">
+        <div className="text-xs uppercase tracking-widest text-dim font-semibold mb-3">
+          Browse by topic
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {GROUP_META.map((g) => (
+            <Link
+              key={g.slug}
+              href={`/reading/${g.slug}`}
+              className="inline-flex items-center rounded-lg border border-border bg-panel px-3 py-1.5 text-sm text-muted hover:border-brand/40 hover:text-brand transition"
+            >
+              {g.group}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
       {/* Audible bounty — prominent, honest. The highest-$ affiliate action, so
           it earns its place near the top; framed as an option, not a demand. */}
       <div className="my-8 rounded-2xl border border-amber-500/40 bg-amber-500/5 p-5">
@@ -166,11 +185,28 @@ export default function ReadingListPage() {
       {BOOK_GROUPS.map((group) => {
         const groupBooks = BOOKS.filter((b) => b.group === group);
         if (groupBooks.length === 0) return null;
+        const shelf = GROUP_META.find((g) => g.group === group);
         return (
           <section key={group} className="mb-10">
-            <h2 className="text-lg md:text-xl font-bold mb-4 pb-2 border-b border-border">
-              {group}
-            </h2>
+            <div className="flex items-baseline justify-between gap-3 mb-4 pb-2 border-b border-border">
+              <h2 className="text-lg md:text-xl font-bold">
+                {shelf ? (
+                  <Link href={`/reading/${shelf.slug}`} className="hover:text-brand transition">
+                    {group}
+                  </Link>
+                ) : (
+                  group
+                )}
+              </h2>
+              {shelf && (
+                <Link
+                  href={`/reading/${shelf.slug}`}
+                  className="shrink-0 text-xs text-dim hover:text-brand transition"
+                >
+                  See all →
+                </Link>
+              )}
+            </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {groupBooks.map((b) => {
                 const { url, resolution } = resolveAmazonUrl(b);
