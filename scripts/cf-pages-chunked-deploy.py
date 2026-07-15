@@ -46,8 +46,11 @@ def _load_token() -> str:
     return (os.environ.get("CLOUDFLARE_API_TOKEN") or "").strip()
 
 API_TOKEN = _load_token()
-MAX_BATCH_FILES = 1000
-MAX_BATCH_BYTES = 20 * 1024 * 1024  # 20MB raw (~27MB base64 body) — stays well under
+MAX_BATCH_FILES = int(os.environ.get("CF_BATCH_FILES", "1000"))
+# CF_BATCH_MB env override: shrink batches to grind through a degraded CF upload
+# window (20MB batches retry-loop/timeout on a bad window; 1MB "grinds through" —
+# documented fleet lesson, color-lane 2026-07-14). Default 20MB (fast, good window).
+MAX_BATCH_BYTES = int(float(os.environ.get("CF_BATCH_MB", "20")) * 1024 * 1024)  # was 20MB — stays well under
 # the ~56MB/connection cap (each batch is a fresh Connection: close), but drops the
 # batch COUNT ~25× (1MB/8-file → ~1600 batches ≈ 23min; 20MB → ~48 batches ≈ 2-4min).
 # The per-batch connection/SSL-handshake overhead (~0.85s) dominated total upload time,
