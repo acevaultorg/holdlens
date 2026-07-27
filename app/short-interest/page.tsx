@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import InvestingBooks from "@/components/InvestingBooks";
 import TickerLogo from "@/components/TickerLogo";
 import {
   SHORT_POSITIONS,
@@ -286,6 +287,17 @@ export default function ShortInterestLanding() {
           </a>
         </div>
       </section>
+
+      {/* Reading module added 2026-07-27. WHY: Bing WMT "AI Performance" ranks
+          /short-interest/ the 2nd most-cited page on the site (468
+          Copilot/ChatGPT-grounding citations in 3 months) and it carried no
+          monetization at all, while every /learn/ article already had this
+          module. Genuine fit — someone reading a short-interest table is
+          researching how crowded shorts and squeezes actually work. */}
+      <InvestingBooks
+        heading="How short selling actually works"
+        sub="Crowded shorts, squeezes and the psychology behind them — the books that explain the mechanics on this page."
+      />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import InvestingBooks from "@/components/InvestingBooks";
 import LeaderboardTable from "./LeaderboardTable";
 import { getAllManagerROI, SP500_CAGR_10Y } from "@/lib/manager-roi";
 import { MANAGERS } from "@/lib/managers";
@@ -106,6 +107,18 @@ export default function LeaderboardPage() {
           less-proven manager. Not investment advice.
         </p>
       </section>
+
+      {/* Reading module added 2026-07-27. WHY THIS PAGE: Bing WMT "AI Performance"
+          shows /leaderboard/ is the single most-cited page on the site — 827
+          Copilot/ChatGPT-grounding citations in 3 months, and holdlens holds
+          76.4% citation share on its top grounding query. It carried zero
+          monetization while every /learn/ article already carried this module.
+          The fit is genuine: a reader ranking superinvestors by long-run alpha
+          is the exact reader for the canon those managers built their process on. */}
+      <InvestingBooks
+        heading="The canon behind the rankings"
+        sub="Every manager on this leaderboard built a process on the same handful of books. These are them."
+      />
     </div>
   );
 }
