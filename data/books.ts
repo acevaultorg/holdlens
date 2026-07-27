@@ -547,16 +547,17 @@ export function coreCanonBooks(): Book[] {
 // Tag: default `global074-20` (account-wide, earns today). Override per-site via
 // NEXT_PUBLIC_AMAZON_AFFILIATE_TAG once a `holdlens-20` tracking ID exists.
 export const AMAZON_TAG =
-  process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || "global074-20";
+  process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || "holdlens-20";
 
 // Audible Premium Plus free-trial BOUNTY link — a flat ~$5-15 bounty per
 // qualified trial (far higher $/click than ~4.5% on a book). MUST be an operator
 // SiteStripe-generated link (linkCode/linkId attribution); a hand-built ?tag=
-// Audible URL earns $0. Default = the operator's verified fleet bounty link
-// (also shipped on readinglist / Read Stacks, tag global074-20). Override with a
-// holdlens-tagged SiteStripe link via NEXT_PUBLIC_AUDIBLE_URL for per-site credit.
+// Audible URL earns $0. Regenerated 2026-07-27 under holdlens's OWN tracking ID
+// (was https://amzn.to/4e5EMgF — the fleet-shared short link resolving to
+// tag=global074-20, which made every bounty untraceable to the earning site).
 export const AUDIBLE_URL =
-  process.env.NEXT_PUBLIC_AUDIBLE_URL || "https://amzn.to/4e5EMgF";
+  process.env.NEXT_PUBLIC_AUDIBLE_URL ||
+  "https://www.amazon.com/hz/audible/arya/mlp?purchaseType=MTRIAL&linkCode=ll2&tag=holdlens-20&linkId=b2894376c47827fee26909adc1c3a55d&language=en_US&ref_=as_li_ss_tl";
 
 /** ISBN-13 (978 prefix) → ISBN-10. ISBN-10 === ASIN for most print books. */
 function isbn13to10(isbn13: string): string | null {
