@@ -196,9 +196,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://query1.finance.yahoo.com" />
         <link rel="dns-prefetch" href="https://assets.parqet.com" />
-        {/* Google Consent Mode v2 — default "denied" until CookieConsent banner grants.
-            Required by Google for EU traffic serving ads via AdSense. Must run before
-            any Google scripts load, so strategy is beforeInteractive. */}
+        {/* Google Consent Mode v2 — denied by default ONLY in consent-required regions
+            (EEA + UK/CH + US-CA), where the CookieConsent banner then grants. Granted by
+            default everywhere else. Required by Google for EU traffic serving ads via
+            AdSense. Must run before any Google scripts load, so beforeInteractive.
+
+            2026-07-27: the denial used to be GLOBAL with no region list, so every visitor
+            who never touched the banner was unmeasured — GA4 reported 19 visitors/30d
+            against ~990 from CF-RUM (52x). Region-scoping keeps the EU/AdSense obligation
+            exactly as it was while making the rest of the audience visible again. The
+            banner's 'update' below is unchanged and still governs the denied regions. */}
         <Script id="gtag-consent-default" strategy="beforeInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
             gtag('consent','default',{
@@ -206,7 +213,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ad_user_data:'denied',
               ad_personalization:'denied',
               analytics_storage:'denied',
-              wait_for_update:500
+              functionality_storage:'granted',
+              security_storage:'granted',
+              wait_for_update:500,
+              region:['BE','BG','CZ','DK','DE','EE','IE','EL','GR','ES','FR','HR','IT','CY','LV','LT','LU','HU','MT','NL','AT','PL','PT','RO','SI','SK','FI','SE','IS','LI','NO','GB','CH','US-CA']
+            });
+            gtag('consent','default',{
+              ad_storage:'granted',
+              ad_user_data:'granted',
+              ad_personalization:'granted',
+              analytics_storage:'granted',
+              functionality_storage:'granted',
+              security_storage:'granted'
             });
             try{var c=localStorage.getItem('holdlens_cookie_consent_v1');
               if(c==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
