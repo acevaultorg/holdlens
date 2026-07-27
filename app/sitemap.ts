@@ -43,10 +43,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Gate 2 (228w, 349w, 248w, 448w — all below 600w substance floor).
     // Pages remain live for internal navigation; same data lives richer
     // on /best-now, /buys, /sells, /scores, /consensus.
-    // Insiders hub — v0.2 promoted from weekly → daily because the live
-    // feed + company + officer pages all refresh daily from Form 4 EDGAR.
-    { url: `${base}/insiders`, lastModified: now, changeFrequency: "daily", priority: 0.88 },
-    { url: `${base}/insiders/live`, lastModified: now, changeFrequency: "daily", priority: 0.85 },
+    // Insiders hub — REMOVED from the sitemap 2026-07-27. scripts/deploy-cf.sh
+    // moves the entire out/insiders tree aside before deploying (the AdSense
+    // thin-content remediation), so /insiders and /insiders/live are not on the
+    // live site at all — both returned HTTP 404 while still being advertised
+    // here. A sitemap that points at 404s is a quality signal we cannot afford
+    // on a domain with an AdSense thin-content history.
+    //
+    // If the hubs are ever wanted back, the fix belongs in deploy-cf.sh (hold
+    // back only out/insiders/[insider]/*, not the whole tree) — NOT here.
+    // Re-adding these URLs without that change just re-advertises 404s.
     // SEC-data product hubs — the 6-concept stack (13F + Form 4 + 8-K +
     // 13D/G + DEF 14A + Ch 11). All canonical for their filing-type
     // keyword cluster + EDGAR-sourced. Pre-fix: only /insiders/ was in
