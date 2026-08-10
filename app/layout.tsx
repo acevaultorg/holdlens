@@ -697,8 +697,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {/* Pivot A YMYL compliance (2026-05-09) — affiliate disclosure
                     canonical surface. FTC rule + Google Publisher Policies
                     favor visible footer link to affiliate-relationship page
-                    from every page. */}
+                    from every page. 2026-08-10: explicit "Affiliate disclosure"
+                    link added alongside Partners so the FTC disclosure is
+                    reachable under its own clear title from every page. */}
                 <a href="/partners" className="hover:text-text transition">Partners</a>
+                <a href="/disclaimer#affiliate-disclosure" className="hover:text-text transition">Affiliate disclosure</a>
                 <a href="/privacy" className="hover:text-text transition">Privacy</a>
                 <a href="/terms" className="hover:text-text transition">Terms</a>
               </div>

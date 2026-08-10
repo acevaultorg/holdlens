@@ -39,6 +39,11 @@ const ORGANIZATION_LD = {
   description:
     "Quarterly 13F-tracking + daily Form 4 insider tracking for 30 superinvestors. Original ConvictionScore + InsiderScore methodology. Free + ad-supported.",
   foundingDate: "2026-04",
+  parentOrganization: {
+    "@type": "Organization",
+    name: "Caslon Media",
+    description: "Independent network of data and reference sites, registered in the Netherlands.",
+  },
   sameAs: ["https://github.com/acevaultorg/holdlens"],
   contactPoint: {
     "@type": "ContactPoint",
@@ -162,6 +167,10 @@ export default function AboutPage() {
         </ul>
 
         <h2 className="text-2xl font-bold mt-10 mb-3 text-text">Operator + contact</h2>
+        <p>
+          HoldLens is published by <strong>Caslon Media</strong>, an independent network of data and reference
+          sites registered in the Netherlands and operated by Paulo de Vries.
+        </p>
         <p>
           HoldLens is built and maintained by Paulo de Vries (founder). Identity, methodology, and contact info
           are visible on every page; we don&apos;t hide behind a brand. Reach the operator at

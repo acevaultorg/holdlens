@@ -21,7 +21,7 @@ export default function DisclaimerPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Legal</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Disclaimer</h1>
-      <p className="text-sm text-dim mb-10">Last updated: 2026-04-23</p>
+      <p className="text-sm text-dim mb-10">Last updated: 2026-08-10</p>
 
       <div className="space-y-6 text-text leading-relaxed">
         <p className="text-muted">
@@ -114,19 +114,26 @@ export default function DisclaimerPage() {
           news coverage. We do not control and are not responsible for the content of external sites.
         </p>
 
-        <h2 className="text-2xl font-bold mt-10 mb-3">Affiliate disclosures</h2>
+        <h2 id="affiliate-disclosure" className="text-2xl font-bold mt-10 mb-3">Affiliate disclosure</h2>
         <p className="text-muted">
-          Where HoldLens links to broker partners (Interactive Brokers, Tastytrade, Webull, M1 Finance, Public.com, or
-          others), we may receive affiliate compensation if you open an account. This does not influence which
-          superinvestors or tickers we cover, how ConvictionScore / InsiderScore / EventScore are calculated, or the
-          content of our reports. Affiliate links are marked as such.
+          Some links on HoldLens may become affiliate links: if you open an account or make a purchase through
+          one, we may earn a commission, at no extra cost to you. As of this update, no affiliate links are live
+          anywhere on the site — partnerships are launching and are listed for transparency on the{" "}
+          <Link href="/partners" className="text-brand underline">partners page</Link>, the only page where broker
+          partnerships appear.
+        </p>
+        <p className="text-muted">
+          Affiliate compensation never changes what we publish. It does not influence which superinvestors or
+          tickers we cover, how ConvictionScore / InsiderScore / EventScore are calculated, or the content of our
+          reports — and we never accept payment to alter data or scores. When affiliate links go live, each one
+          will be marked as such and will carry <code className="text-xs">rel=&quot;sponsored nofollow noopener&quot;</code>.
         </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Corrections</h2>
         <p className="text-muted">
           If you believe a specific data point on HoldLens is wrong, email{" "}
-          <a href="mailto:contact@editnative.com" className="text-brand underline">
-            contact@editnative.com
+          <a href="mailto:hello@holdlens.com" className="text-brand underline">
+            hello@holdlens.com
           </a>{" "}
           with the URL and the specific SEC filing that contradicts what we publish. We correct verified errors
           within 48 hours.

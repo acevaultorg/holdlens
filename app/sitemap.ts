@@ -179,6 +179,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Legal + contact (required for AdSense + GDPR compliance)
     { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
+    // FTC affiliate disclosure lives at /disclaimer#affiliate-disclosure —
+    // page was footer-linked but missing from the sitemap (fixed 2026-08-10).
+    { url: `${base}/disclaimer`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     // Pivot A YMYL compliance (2026-05-09) — /partners is the canonical
     // home for brokerage affiliate links, moved off result pages to

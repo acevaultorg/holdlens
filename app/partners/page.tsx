@@ -26,14 +26,14 @@ import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
 // brokers are configured.
 
 export const metadata: Metadata = {
-  title: "Partner Brokers — HoldLens Affiliate Disclosure",
+  title: "Partner with HoldLens — Media Kit & Affiliate Disclosure",
   description:
-    "HoldLens does not execute trades. These are the brokerage accounts our team uses to act on the public 13F + Form 4 filings we track. Independent brokers, real disclosure, no recommendation.",
+    "Audience, publisher, and editorial-standards information for partners, plus our full affiliate disclosure. HoldLens is published by Caslon Media. Partnerships are launching now.",
   alternates: { canonical: "https://holdlens.com/partners" },
   openGraph: {
-    title: "Partner Brokers — HoldLens",
+    title: "Partner with HoldLens — Media Kit & Affiliate Disclosure",
     description:
-      "Independent brokerage partnerships disclosed. HoldLens earns a small affiliate bonus if you fund an account at zero extra cost to you.",
+      "Audience, publisher, and editorial-standards information for partners, plus our full affiliate disclosure. Partnerships are launching now.",
     url: "https://holdlens.com/partners",
     type: "website",
   },
@@ -168,11 +168,16 @@ const PARTNERS_LD = {
   "@type": "WebPage",
   "@id": "https://holdlens.com/partners",
   url: "https://holdlens.com/partners",
-  name: "Partner Brokers — HoldLens Affiliate Disclosure",
+  name: "Partner with HoldLens — Media Kit & Affiliate Disclosure",
   description:
-    "Independent brokerage partnerships used by the HoldLens team. Affiliate disclosure included; no broker recommendation made.",
+    "Audience, publisher, and editorial-standards information for partners, plus the HoldLens affiliate disclosure. Published by Caslon Media.",
   inLanguage: "en-US",
   isPartOf: { "@type": "WebSite", url: "https://holdlens.com/", name: "HoldLens" },
+  publisher: {
+    "@type": "Organization",
+    name: "Caslon Media",
+    description: "Independent network of data and reference sites. Operated by Paulo de Vries.",
+  },
 };
 
 const BREADCRUMB_LD = {
@@ -193,19 +198,85 @@ export default function PartnersPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PARTNERS_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
 
-      <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Affiliate disclosure</div>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">Our partner brokers.</h1>
+      <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Partners &amp; media kit</div>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">Partner with HoldLens.</h1>
       <p className="text-lg text-muted leading-relaxed mb-8">
-        HoldLens is informational only — we do not execute trades, hold client funds, or act as an investment
-        advisor. This page lists the brokerage accounts our team has personally evaluated and uses. If you choose
-        to open an account through one of the links on this page, HoldLens may receive a small affiliate bonus
-        from the broker, at zero additional cost to you. That income helps fund the editorial work behind the
-        site.
+        HoldLens tracks the public SEC 13F filings of 30 superinvestors plus daily Form 4 insider transactions,
+        and turns them into per-ticker, per-investor, and per-insider dossiers with an original ConvictionScore
+        synthesis. It is read by retail investors and finance-curious professionals who want to see where
+        institutional money is positioned — without a Bloomberg terminal. This page is our media kit for
+        prospective partners, followed by our full affiliate disclosure.
       </p>
 
       <MethodologyDisclaimer />
 
       <div className="space-y-6 text-text leading-relaxed">
+        <h2 className="text-2xl font-bold mt-10 mb-3 text-text">Who reads HoldLens</h2>
+        <div className="rounded-2xl border border-border bg-panel p-6">
+          <dl className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+            <div>
+              <dt className="text-[11px] uppercase tracking-widest font-bold text-dim mb-1">Monthly visitors</dt>
+              <dd className="text-2xl font-bold text-text">1,758</dd>
+              <dd className="text-xs text-dim mt-1">human visitors, last 30 days (GA4, August 2026)</dd>
+            </div>
+            <div>
+              <dt className="text-[11px] uppercase tracking-widest font-bold text-dim mb-1">Geography</dt>
+              <dd className="text-2xl font-bold text-text">US</dd>
+              <dd className="text-xs text-dim mt-1">predominantly US audience</dd>
+            </div>
+            <div>
+              <dt className="text-[11px] uppercase tracking-widest font-bold text-dim mb-1">Reader persona</dt>
+              <dd className="text-sm text-muted leading-relaxed">
+                Retail investors and finance professionals researching institutional 13F positioning and insider
+                activity before making their own decisions.
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-10 mb-3 text-text">About the publisher</h2>
+        <p>
+          HoldLens is published by <strong>Caslon Media</strong>, an independent network of data and reference
+          sites operated by Paulo de Vries and registered in the Netherlands. Operator identity, mission, and
+          editorial principles are documented on the{" "}
+          <Link href="/about" className="text-brand hover:underline">about page</Link>. Partnership contact:{" "}
+          <a href="mailto:hello@holdlens.com" className="text-brand hover:underline">hello@holdlens.com</a>.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-10 mb-3 text-text">Editorial standards</h2>
+        <p>
+          Every data point on HoldLens is derived from public SEC filings and links back to its source filing on
+          EDGAR. The scoring computation is fully documented on the{" "}
+          <Link href="/methodology" className="text-brand hover:underline">methodology page</Link> — including a
+          published backtest that openly reports the ConvictionScore&apos;s lack of predictive signal. A data-freshness
+          band in the site footer shows when the underlying filing data was last refreshed, and verified data errors
+          are corrected within 48 hours (see <Link href="/contact" className="text-brand hover:underline">contact</Link>).
+          We use plain-English descriptive labels, never BUY/SELL recommendation labels.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-10 mb-3 text-text">How we partner</h2>
+        <ul className="space-y-2 list-disc list-inside text-muted">
+          <li>Partner placements live on this dedicated page only — never adjacent to scores, signals, or positioning data anywhere else on the site.</li>
+          <li>Every affiliate link is FTC-disclosed in plain English, on the page where it appears.</li>
+          <li>All affiliate links carry <code className="text-xs">rel=&quot;sponsored nofollow noopener&quot;</code>.</li>
+          <li>We never incentivize clicks, never use fake urgency or scarcity, and never accept payment to alter data, scores, or coverage.</li>
+          <li>We do not bid on partner brand terms in paid search.</li>
+        </ul>
+        <p className="text-muted">
+          <strong className="text-text">Partnership status:</strong> partnerships are launching now. If you run a
+          partner program that fits our audience, contact{" "}
+          <a href="mailto:hello@holdlens.com" className="text-brand hover:underline">hello@holdlens.com</a>.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-12 mb-3 text-text">Affiliate disclosure</h2>
+        <p>
+          HoldLens is informational only — we do not execute trades, hold client funds, or act as an investment
+          advisor. Below are the brokerage platforms our team has personally evaluated and uses. If you choose
+          to open an account through a link on this page once partnerships are active, HoldLens may receive a
+          small affiliate bonus from the broker, at zero additional cost to you. That income helps fund the
+          editorial work behind the site.
+        </p>
+
         <h2 className="text-2xl font-bold mt-10 mb-3 text-text">What this page is — and what it is not</h2>
         <p>
           <strong>What it is:</strong> a disclosed list of regulated brokerage platforms (each independently
@@ -237,10 +308,10 @@ export default function PartnersPage() {
 
         {liveCount === 0 && (
           <div className="rounded-2xl border border-amber-400/40 bg-amber-400/5 p-5 text-sm text-muted my-6">
-            <strong className="text-text">Affiliate links pending activation.</strong> Our broker partnerships
-            are listed below for transparency. Direct sign-up links activate on this page once each broker&apos;s
-            referral program completes operator-side approval. In the meantime you can search for any of the
-            broker names below directly to evaluate them.
+            <strong className="text-text">Partnerships launching now — no affiliate links are live yet.</strong>{" "}
+            Our broker partnerships are listed below for transparency. Direct sign-up links activate on this
+            page once each broker&apos;s referral program completes approval. In the meantime you can search for any
+            of the broker names below directly to evaluate them.
           </div>
         )}
 
