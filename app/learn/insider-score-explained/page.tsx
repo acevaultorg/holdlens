@@ -359,8 +359,8 @@ export default function InsiderScoreExplainedArticle() {
           Every per-trade row on /insiders/ links back to its source SEC Form 4 filing by accession number.
           If a trade looks mis-scored, click to the source filing and verify. If you find an error — wrong
           role classification, wrong action code, wrong 10b5-1 flag — email{" "}
-          <a href="mailto:contact@editnative.com" className="text-brand underline">
-            contact@editnative.com
+          <a href="mailto:hello@caslonmedia.com" className="text-brand underline">
+            hello@caslonmedia.com
           </a>{" "}
           and we correct verified errors within 48 hours.
         </p>

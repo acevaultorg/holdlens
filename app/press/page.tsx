@@ -63,8 +63,8 @@ export default function PressPage() {
         <section>
           <h2 className="text-2xl font-bold mb-3">Contact</h2>
           <p className="text-muted">
-            Press inquiries: <a href="mailto:press@holdlens.com" className="text-brand underline">press@holdlens.com</a><br />
-            General: <a href="mailto:hello@holdlens.com" className="text-brand underline">hello@holdlens.com</a>
+            Press and general inquiries: <a href="mailto:hello@holdlens.com" className="text-brand underline">hello@holdlens.com</a><br />
+            Published by <a href="https://caslonmedia.com/" className="text-brand underline">Caslon Media</a> (KvK 64708101), Amsterdam.
           </p>
         </section>
 

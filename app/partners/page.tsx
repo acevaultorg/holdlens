@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import MethodologyDisclaimer from "@/components/MethodologyDisclaimer";
+import AffiliateLink from "@/components/AffiliateLink";
 
 // Pivot A — "Data Display Only" YMYL compliance refactor (2026-05-09)
 //
@@ -237,7 +238,8 @@ export default function PartnersPage() {
         <h2 className="text-2xl font-bold mt-10 mb-3 text-text">About the publisher</h2>
         <p>
           HoldLens is published by <strong>Caslon Media</strong>, an independent network of data and reference
-          sites operated by Paulo de Vries and registered in the Netherlands. Operator identity, mission, and
+          sites operated by Paulo de Vries and registered in the Netherlands (Chamber of Commerce / KvK
+          64708101, Amsterdam). Operator identity, mission, and
           editorial principles are documented on the{" "}
           <Link href="/about" className="text-brand hover:underline">about page</Link>. Partnership contact:{" "}
           <a href="mailto:hello@holdlens.com" className="text-brand hover:underline">hello@holdlens.com</a>.
@@ -337,17 +339,21 @@ export default function PartnersPage() {
 
               {b.href ? (
                 <div className="mt-4 pt-4 border-t border-border">
-                  <a
+                  <AffiliateLink
                     href={b.href}
-                    target="_blank"
-                    rel="noopener sponsored nofollow"
-                    className={`plausible-event-name=Broker+Click plausible-event-broker=${b.key} plausible-event-source=partners-page inline-flex items-center gap-1 text-brand hover:underline font-semibold text-sm`}
+                    partner={b.key}
+                    surface="partners-page"
+                    className="inline-flex items-center gap-1 text-brand hover:underline font-semibold text-sm"
                   >
                     Open a {b.name} account →
-                  </a>
+                  </AffiliateLink>
                   <div className="text-[11px] text-dim mt-2">
                     Affiliate link — HoldLens may receive a referral bonus at no extra cost to you. This is not a
-                    recommendation; read {b.name}&apos;s own disclosures before funding an account.
+                    recommendation; read {b.name}&apos;s own disclosures before funding an account. See our{" "}
+                    <a href="/disclaimer#affiliate-disclosure" className="underline hover:text-muted">
+                      affiliate disclosure
+                    </a>
+                    .
                   </div>
                 </div>
               ) : (

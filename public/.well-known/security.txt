@@ -2,7 +2,7 @@
 # RFC 9116: https://www.rfc-editor.org/rfc/rfc9116
 # Closes Cloudflare Security Insights finding: "Security.txt not configured".
 
-Contact: mailto:contact@editnative.com
+Contact: mailto:hello@caslonmedia.com
 Expires: 2027-04-20T00:00:00Z
 Preferred-Languages: en
 Canonical: https://holdlens.com/.well-known/security.txt
@@ -12,7 +12,7 @@ Canonical: https://holdlens.com/.well-known/security.txt
 # surface is limited to client-side concerns (XSS in structured-data
 # fields, supply-chain deps, misconfigured redirects).
 #
-# If you find a security issue, please email contact@editnative.com with:
+# If you find a security issue, please email hello@caslonmedia.com with:
 # - A clear description
 # - Steps to reproduce
 # - Your preferred disclosure timeline

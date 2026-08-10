@@ -169,7 +169,8 @@ export default function AboutPage() {
         <h2 className="text-2xl font-bold mt-10 mb-3 text-text">Operator + contact</h2>
         <p>
           HoldLens is published by <strong>Caslon Media</strong>, an independent network of data and reference
-          sites registered in the Netherlands and operated by Paulo de Vries.
+          sites operated by Paulo de Vries and registered in the Netherlands (Chamber of Commerce / KvK
+          64708101, Amsterdam).
         </p>
         <p>
           HoldLens is built and maintained by Paulo de Vries (founder). Identity, methodology, and contact info

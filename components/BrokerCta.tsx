@@ -18,6 +18,11 @@
 //
 // The /partners page is the canonical home for the affiliate links.
 // This component is the (minimal, non-YMYL-violating) cross-link.
+//
+// 2026-08-11: the cross-link now routes through PartnersLink so the top of
+// the affiliate funnel is instrumented in GA4 + Clarity, not Plausible only.
+
+import { PartnersLink } from "@/components/AffiliateLink";
 
 const AFF_ENV_VARS = [
   "NEXT_PUBLIC_AFF_IBKR",
@@ -64,14 +69,14 @@ export default function BrokerCta(_props: { ticker?: string; context?: string })
 
   return (
     <div className="my-8 text-center text-xs text-dim">
-      <a
-        href="/partners"
-        className="plausible-event-name=Partners+Link plausible-event-source=broker-cta inline-flex items-center gap-1 text-muted hover:text-brand transition"
-        aria-label="See HoldLens partner brokers and affiliate disclosure"
+      <PartnersLink
+        source="broker-cta"
+        className="inline-flex items-center gap-1 text-muted hover:text-brand transition"
+        ariaLabel="See HoldLens partner brokers and affiliate disclosure"
       >
         See our partner brokers
         <span aria-hidden>→</span>
-      </a>
+      </PartnersLink>
     </div>
   );
 }

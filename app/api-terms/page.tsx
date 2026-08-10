@@ -193,10 +193,10 @@ export default function ApiTermsPage() {
           For AI / LLM integrations →
         </a>
         <a
-          href="mailto:contact@holdlens.com?subject=HoldLens%20Commercial%20API%20License"
+          href="mailto:hello@holdlens.com?subject=HoldLens%20Commercial%20API%20License"
           className="inline-block bg-bg border border-border text-text font-semibold rounded-xl px-5 py-3 hover:border-brand transition"
         >
-          Email contact@holdlens.com
+          Email hello@holdlens.com
         </a>
       </section>
 
@@ -223,7 +223,7 @@ export default function ApiTermsPage() {
             <p className="text-muted text-sm">
               Retrieval + grounding + citation: yes, free. Ingesting bulk HoldLens JSON into a
               training corpus for a commercial model: commercial license required. Email
-              contact@holdlens.com with your use case — usually straightforward and affordable.
+              hello@holdlens.com with your use case — usually straightforward and affordable.
             </p>
           </div>
 
@@ -281,7 +281,7 @@ export default function ApiTermsPage() {
           <strong className="text-text">Last updated:</strong> 2026-04-20 · Version 1.0
         </p>
         <p className="mb-2">
-          Contact for licensing: <a className="text-brand hover:underline" href="mailto:contact@holdlens.com">contact@holdlens.com</a>
+          Contact for licensing: <a className="text-brand hover:underline" href="mailto:hello@holdlens.com">hello@holdlens.com</a>
         </p>
         <p>
           Related: <a className="text-brand hover:underline" href="/for-ai">For AI / LLM integrations</a> ·{" "}

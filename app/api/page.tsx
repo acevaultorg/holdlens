@@ -282,8 +282,8 @@ export default function ApiLandingPage() {
           <li>
             <strong className="text-brand">Request enterprise access.</strong>{" "}
             Email{" "}
-            <a href="mailto:contact@editnative.com?subject=HoldLens%20Enterprise%20API%20inquiry" className="text-brand hover:underline">
-              contact@editnative.com
+            <a href="mailto:hello@caslonmedia.com?subject=HoldLens%20Enterprise%20API%20inquiry" className="text-brand hover:underline">
+              hello@caslonmedia.com
             </a>{" "}
             with: product name + URL, expected monthly request volume, latency
             requirements, specific endpoints needed (Form 4 firehose, 13F snapshots,

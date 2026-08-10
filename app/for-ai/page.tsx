@@ -245,10 +245,10 @@ export default function ForAiPage() {
           and what scale you need. Most licenses close in a week.
         </p>
         <a
-          href="mailto:contact@holdlens.com?subject=HoldLens%20AI%2FLLM%20Integration&body=Hi%20HoldLens%20team%2C%0A%0AI%27m%20building%20%5B...%5D%20and%20would%20like%20to%20discuss%20%5Bretrieval%20%2F%20training%20%2F%20redistribution%20%2F%20webhook%20access%5D.%0A%0AExpected%20request%20volume%3A%20%5B...%5D%2Fmonth%0AUse%20case%3A%20%5B...%5D%0AProduct%20link%20(if%20any)%3A%20%5B...%5D%0A%0AThanks%2C%0A%5BName%5D"
+          href="mailto:hello@holdlens.com?subject=HoldLens%20AI%2FLLM%20Integration&body=Hi%20HoldLens%20team%2C%0A%0AI%27m%20building%20%5B...%5D%20and%20would%20like%20to%20discuss%20%5Bretrieval%20%2F%20training%20%2F%20redistribution%20%2F%20webhook%20access%5D.%0A%0AExpected%20request%20volume%3A%20%5B...%5D%2Fmonth%0AUse%20case%3A%20%5B...%5D%0AProduct%20link%20(if%20any)%3A%20%5B...%5D%0A%0AThanks%2C%0A%5BName%5D"
           className="inline-block bg-brand text-bg font-semibold rounded-xl px-6 py-3 hover:opacity-90 transition mr-3"
         >
-          Email contact@holdlens.com
+          Email hello@holdlens.com
         </a>
         <a
           href="/api-terms"

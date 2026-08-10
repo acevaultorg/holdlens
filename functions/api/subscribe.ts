@@ -24,7 +24,7 @@
 interface Env {
   RESEND_API_KEY?: string;
   RESEND_AUDIENCE_ID?: string;
-  RESEND_FROM?: string; // e.g. "HoldLens <alerts@holdlens.com>"
+  RESEND_FROM?: string; // e.g. "HoldLens <hello@holdlens.com>"
 }
 
 interface SubscribeBody {
@@ -77,7 +77,7 @@ export const onRequestPost = async ({ request, env }: PagesCtx): Promise<Respons
     return json({ ok: true, pending: true });
   }
 
-  const from = env.RESEND_FROM || "HoldLens <alerts@holdlens.com>";
+  const from = env.RESEND_FROM || "HoldLens <hello@holdlens.com>";
   const audienceId = env.RESEND_AUDIENCE_ID || "";
 
   // Kick off both requests in parallel — contact add + welcome email.
@@ -118,7 +118,7 @@ export const onRequestPost = async ({ request, env }: PagesCtx): Promise<Respons
     .replace(/\//g, "_")
     .replace(/=+$/, "");
   const unsubUrl = `https://holdlens.com/api/unsubscribe?t=${unsubToken}&e=${encodeURIComponent(email)}`;
-  const unsubMailto = "mailto:alerts@holdlens.com?subject=unsubscribe";
+  const unsubMailto = "mailto:hello@holdlens.com?subject=unsubscribe";
 
   tasks.push(
     fetch("https://api.resend.com/emails", {

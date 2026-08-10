@@ -1173,7 +1173,7 @@ async function main(): Promise<void> {
         pricing_usd: { starter: 500, growth: 2500, scale: 10000 },
         pricing_url: "https://holdlens.com/pricing",
         landing: "https://holdlens.com/for-ai",
-        contact: "contact@editnative.com",
+        contact: "hello@caslonmedia.com",
         delivery: "Structured JSON feeds + webhooks on filing publication + SLA + attribution-free commercial license",
       },
     },
@@ -1200,7 +1200,7 @@ async function main(): Promise<void> {
       attribution_includes: "Source page link on holdlens.com AND the word 'HoldLens'.",
     },
     contact: {
-      commercial: "contact@editnative.com",
+      commercial: "hello@caslonmedia.com",
       commercial_landing: "https://holdlens.com/for-ai",
       terms: "https://holdlens.com/api-terms",
     },

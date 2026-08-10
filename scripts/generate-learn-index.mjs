@@ -47,7 +47,7 @@ const out = {
   description: "Machine-readable index of every HoldLens /learn essay. Designed for LLM crawlers, research agents, and citation lookups. Each entry is canonical, public, and free to cite with attribution.",
   base_url: "https://holdlens.com/learn",
   count: articles.length,
-  license: "All content © HoldLens / editnative.com. Free to cite with link attribution to the canonical URL. Not investment advice — historical SEC-filing analysis only.",
+  license: "All content © HoldLens / Caslon Media. Free to cite with link attribution to the canonical URL. Not investment advice — historical SEC-filing analysis only.",
   topics: [
     "SEC filings (10-K, 10-Q, 13F, 8-K, Form 4, DEF 14A, etc.)",
     "Superinvestor portfolios (Buffett, Ackman, Burry, Klarman, Druckenmiller, and 26 more)",

@@ -98,17 +98,32 @@ export default function PrivacyPolicyPage() {
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Cookies</h2>
         <p className="text-muted">
-          A cookie is a small text file placed on your device by a website. HoldLens itself does not set any
-          first-party cookies. However, the third-party services we use may set their own cookies:
+          A cookie is a small text file placed on your device by a website. HoldLens does not use cookies for
+          any of its own features — your watchlist, portfolio, and preferences live in localStorage, not in
+          cookies. The third-party services embedded in the Service do set cookies, some of them first-party
+          (set on the holdlens.com domain by a third-party script):
         </p>
         <ul className="text-muted space-y-2 list-disc list-inside">
           <li>
             <strong className="text-text">Google AdSense</strong> sets cookies to serve and measure ads, and to
-            prevent the same ad from being shown repeatedly.
+            prevent the same ad from being shown repeatedly. Advertising cookies are only set after you grant
+            advertising consent in the cookie banner.
           </li>
           <li>
-            <strong className="text-text">Plausible Analytics</strong> is a privacy-first, cookie-free analytics
-            provider that does not use cookies or collect personal data.
+            <strong className="text-text">Google Analytics 4</strong> sets first-party cookies
+            (<code className="text-xs">_ga</code>, <code className="text-xs">_ga_*</code>) to distinguish
+            returning visitors and measure the conversion funnel. These are only set after you grant analytics
+            consent; until then Google Consent Mode holds analytics storage in a denied state.
+          </li>
+          <li>
+            <strong className="text-text">Microsoft Clarity</strong> sets first-party cookies
+            (<code className="text-xs">_clck</code>, <code className="text-xs">_clsk</code>) to stitch together
+            the pages of a single visit for heatmaps and session replay.
+          </li>
+          <li>
+            <strong className="text-text">Plausible Analytics</strong> and{" "}
+            <strong className="text-text">Cloudflare Web Analytics</strong> are cookie-free. Neither sets a
+            cookie nor collects personal data.
           </li>
         </ul>
         <p className="text-muted">
@@ -187,20 +202,69 @@ export default function PrivacyPolicyPage() {
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Analytics</h2>
         <p className="text-muted">
-          We use <strong className="text-text">Plausible Analytics</strong>, a privacy-focused analytics service
-          hosted in the European Union. Plausible does not use cookies, does not collect personal data, and does
-          not track users across websites. It gives us aggregate metrics like page views and referrer sources,
-          nothing more. See the{" "}
-          <a
-            href="https://plausible.io/data-policy"
-            className="text-brand underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Plausible data policy
-          </a>
-          .
+          Four analytics services run on HoldLens. Each is listed below with what it collects and its own data
+          policy. Together they tell us which pages get read and where the site is confusing — we do not use
+          any of them to build advertising profiles.
         </p>
+        <ul className="text-muted space-y-2 list-disc list-inside mt-3">
+          <li>
+            <strong className="text-text">Plausible Analytics</strong> — privacy-focused, EU-hosted,
+            cookie-free. Aggregate page views and referrer sources only; no personal data, no cross-site
+            tracking.{" "}
+            <a
+              href="https://plausible.io/data-policy"
+              className="text-brand underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Plausible data policy
+            </a>
+            .
+          </li>
+          <li>
+            <strong className="text-text">Google Analytics 4</strong> — measures the conversion funnel and
+            returning-visitor counts. IP addresses are anonymised (<code className="text-xs">anonymize_ip</code>).
+            Runs under Google Consent Mode v2: analytics and advertising storage stay denied until you consent.{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              className="text-brand underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google privacy policy
+            </a>
+            .
+          </li>
+          <li>
+            <strong className="text-text">Microsoft Clarity</strong> — heatmaps and{" "}
+            <strong className="text-text">session replay</strong>. Clarity records an anonymised reconstruction
+            of your interaction with the page (clicks, scrolls, mouse movement) so we can find broken layouts
+            and dead ends. Email inputs are masked before they leave your browser, and payment fields sit in a
+            Stripe iframe Clarity cannot read. We do not use it to identify individuals.{" "}
+            <a
+              href="https://privacy.microsoft.com/privacystatement"
+              className="text-brand underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Microsoft privacy statement
+            </a>
+            .
+          </li>
+          <li>
+            <strong className="text-text">Cloudflare Web Analytics</strong> — cookie-free page-view and Core
+            Web Vitals measurement from our CDN. No cookies, no fingerprinting, no cross-site tracking.{" "}
+            <a
+              href="https://www.cloudflare.com/privacypolicy/"
+              className="text-brand underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Cloudflare privacy policy
+            </a>
+            .
+          </li>
+        </ul>
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Email data</h2>
         <p className="text-muted">

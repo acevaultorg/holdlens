@@ -8,7 +8,7 @@ HoldLens operates a three-tier access model:
 
 1. **Free human tier** — every page on holdlens.com is free for individual humans browsing with a real browser. Ad-supported (Google AdSense). No login required.
 2. **AI-crawler tier (Pay-Per-Crawl via Cloudflare)** — automated crawlers from AI products (ChatGPT, Claude, Perplexity, Gemini, Copilot, Mistral, fine-tuning data buyers, equity-research AI tools, etc.) pay per request via Cloudflare's Pay-Per-Crawl. Per-route pricing below. Cloudflare-managed authentication; standard `Crawler-Id` + `Sec-Crawler-Identity` headers expected. AI bots that respect this contract get full content + structured data; bots ignoring the contract may be rate-limited or blocked.
-3. **Enterprise API tier** — for AI products needing bulk programmatic access, real-time webhooks, SLA, structured JSON feeds. Tiered pricing $500-10,000/month. See [/api](https://holdlens.com/api) and [/for-ai](https://holdlens.com/for-ai). Contact: contact@editnative.com. (Consumer free tier is open to all; only enterprise/commercial redistribution is paid.)
+3. **Enterprise API tier** — for AI products needing bulk programmatic access, real-time webhooks, SLA, structured JSON feeds. Tiered pricing $500-10,000/month. See [/api](https://holdlens.com/api) and [/for-ai](https://holdlens.com/for-ai). Contact: hello@caslonmedia.com. (Consumer free tier is open to all; only enterprise/commercial redistribution is paid.)
 
 ### Pay-Per-Crawl pricing (per request, USD)
 
@@ -23,7 +23,7 @@ HoldLens operates a three-tier access model:
 | `/api/v1/*` (other) | **Public JSON API — free-core tier** | $0.001 |
 
 *Pricing calibrated intentionally low — per Stack Overflow + Cloudflare 2026 PPC launch learnings, "bots may abandon rather than pay" at high per-crawl costs. HoldLens targets high-volume × low-per-crawl over the alternative. Per-tier prices may adjust upward after 30 days of observed bot-willingness-to-pay data; AI platforms preferring predictable rates should use the enterprise monthly tier below.*
-| Enterprise bulk access / webhooks / SLA | Contact: contact@editnative.com | $500–10,000 / month |
+| Enterprise bulk access / webhooks / SLA | Contact: hello@caslonmedia.com | $500–10,000 / month |
 
 Pricing is set via Cloudflare Pay-Per-Crawl configuration; this `llms.txt` declaration is the canonical source-of-truth. AI products evaluating bulk access should use the enterprise API tier instead — flat monthly rate is materially cheaper above ~10k requests/month.
 
@@ -135,7 +135,7 @@ All responses use a thin `{ data, meta }` envelope. Edge-cached (6h TTL), CORS o
 ## API access tiers
 
 - **Free tier** — everything is free for everyone at this stage. Up to 150 requests/day per IP, attribution required (cite `holdlens.com`), no key needed. Full terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms). HoldLens removed paid tiers 2026-05-19 — growth-first positioning; all data, all rankings, all exports, all API endpoints free.
-- **Commercial / Enterprise (for AI products + redistribution)** — unlimited requests, bulk historical exports (JSON + Parquet back to Q1 2020), webhook push, SLA, data-license contract. For LLM retrieval + training + fintech redistribution. From €499/mo. Details: [https://holdlens.com/for-ai](https://holdlens.com/for-ai) · terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms) · contact: contact@holdlens.com.
+- **Commercial / Enterprise (for AI products + redistribution)** — unlimited requests, bulk historical exports (JSON + Parquet back to Q1 2020), webhook push, SLA, data-license contract. For LLM retrieval + training + fintech redistribution. From €499/mo. Details: [https://holdlens.com/for-ai](https://holdlens.com/for-ai) · terms: [https://holdlens.com/api-terms](https://holdlens.com/api-terms) · contact: hello@holdlens.com.
 
 ### License-discovery HTTP headers on /api/v1/*
 

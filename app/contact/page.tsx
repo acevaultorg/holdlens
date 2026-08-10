@@ -22,7 +22,7 @@ const CONTACT_LD = {
     name: "HoldLens",
     contactPoint: [
       { "@type": "ContactPoint", contactType: "customer support", email: "hello@holdlens.com" },
-      { "@type": "ContactPoint", contactType: "press", email: "press@holdlens.com" },
+      { "@type": "ContactPoint", contactType: "press", email: "hello@holdlens.com" },
     ],
   },
 };

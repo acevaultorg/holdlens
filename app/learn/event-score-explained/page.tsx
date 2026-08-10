@@ -289,8 +289,8 @@ export default function EventScoreExplainedArticle() {
           Every data row on /events/ links back to the source SEC EDGAR filing by accession number. If you
           want to verify a score, click through to the 8-K itself. If you find a scoring error — wrong
           item-type classification, wrong base severity — email{" "}
-          <a href="mailto:contact@editnative.com" className="text-brand underline">
-            contact@editnative.com
+          <a href="mailto:hello@caslonmedia.com" className="text-brand underline">
+            hello@caslonmedia.com
           </a>{" "}
           with the accession number and we correct verified errors within 48 hours.
         </p>
