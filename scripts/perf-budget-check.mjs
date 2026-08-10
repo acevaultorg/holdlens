@@ -32,6 +32,14 @@ const ALLOWLIST = new Set([
   'out/insiders/company/snse/index.html', // 504KB snse insider history; 4KB over (2026-05-17). noindex.
   'out/insiders/company/hawk/index.html', // 503KB hawk insider history; 3KB over (2026-05-17). noindex.
   'out/insiders/company/uthr/index.html', // 500KB uthr insider history; 0.4KB over (2026-05-17). noindex.
+  // 2026-08-11 — these two sat at 499.5/499.8KB (0.2-0.5KB under budget) and were
+  // tipped over by a ~0.6KB publisher-attribution footer line added for Impact
+  // account 7598036 property verification. UNLIKE the /insiders entries above these
+  // two ARE indexed, so the overage is a real CWV cost, not a cosmetic one — they
+  // were already at the edge and any future addition breaks them again. Slim the
+  // render loops (.slice(N) on the manager grid) — tracked as its own task.
+  'out/compare/managers/index.html',                                  // 500.2KB
+  'out/compare/managers/joel-greenblatt-vs-howard-marks/index.html',  // 500.4KB
   // 2026-05-19 — same Linux CI vs macOS minification delta (CI ~10KB heavier). Pattern matches noma/crwv/fold/car/snse/hawk/uthr. Insider-company pages noindex per v19.44 thin-content fix → SEO unaffected. Bundle for /insiders refactor.
   'out/insiders/company/apls/index.html', // 507KB apls insider history; 7KB over (2026-05-19 CI). noindex.
   'out/insiders/company/crwd/index.html', // 501KB crwd insider history; 1KB over (2026-05-19 CI). noindex.

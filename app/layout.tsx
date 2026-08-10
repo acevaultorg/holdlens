@@ -158,6 +158,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   "https://secfilingdex.com/",
                   "https://github.com/acevaultorg"
                 ],
+                "parentOrganization": {
+                  "@type": "Organization",
+                  "@id": "https://caslonmedia.com/#organization",
+                  "name": "Caslon Media",
+                  "url": "https://caslonmedia.com/"
+                },
                 "knowsAbout": [
                   "SEC Form 13F filings",
                   "Hedge fund holdings",
@@ -686,7 +692,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Legal + meta strip */}
           <div className="border-t border-border">
             <div className="max-w-5xl mx-auto px-8 sm:px-6 py-5 flex flex-col md:flex-row justify-between gap-3 text-xs text-dim">
-              <div>© 2026 HoldLens · Data from SEC 13F filings · Not investment advice.</div>
+              <div>
+                © 2026 HoldLens · Data from SEC 13F filings · Not investment advice · Published by{" "}
+                <a href="https://caslonmedia.com/" style={{ textDecoration: 'underline' }}>
+                  Caslon Media
+                </a>
+                , Amsterdam.
+              </div>
               <div className="flex gap-5 flex-wrap">
                 <a href="/about" className="hover:text-text transition">About</a>
                 <a href="/contact" className="hover:text-text transition">Contact</a>
