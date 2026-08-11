@@ -9,11 +9,14 @@
 // AFFILIATE COMPLIANCE (shared Amazon Associates account — one breach risks the
 // whole fleet):
 //   - Every link carries the affiliate tag (NEXT_PUBLIC_AMAZON_AFFILIATE_TAG,
-//     default `global074-20` = the account-wide tag that ACTUALLY earns today).
-//     Do NOT change the default to an un-created per-site tag (e.g. `holdlens-20`)
-//     — an unregistered tag earns $0. When the operator creates `holdlens-20` in
-//     Amazon Associates, set NEXT_PUBLIC_AMAZON_AFFILIATE_TAG=holdlens-20 for
-//     per-site attribution.
+//     default `holdlens-20`). Superseded 2026-08-11: `holdlens-20` IS registered
+//     in Amazon Associates and earning-capable, and is what the live site serves
+//     — so the per-site tag is correct and gives per-tag attribution. Do NOT
+//     "fix" it back to the account-wide `global074-20`; that would collapse this
+//     site's earnings into the un-attributable shared bucket.
+//   - SEARCH links (`/s?k=`) MUST pin a department (`i=stripbooks` for books).
+//     A bare search spans all departments and is a measured conversion leak.
+//     Product links (`/dp/<ASIN>`) and the Audible bounty must NOT carry `i=`.
 //   - rel="sponsored nofollow noopener" is applied at the render site.
 //   - Inline FTC disclosure is rendered adjacent to every CTA block.
 //   - NO price display. No fake scarcity. No incentivizing clicks. Books are
@@ -544,8 +547,9 @@ export function coreCanonBooks(): Book[] {
 }
 
 // ── Amazon link resolution ────────────────────────────────────────────────
-// Tag: default `global074-20` (account-wide, earns today). Override per-site via
-// NEXT_PUBLIC_AMAZON_AFFILIATE_TAG once a `holdlens-20` tracking ID exists.
+// Tag: default `holdlens-20` — this site's OWN registered tracking ID, which is
+// what earns and what the live site serves. Overridable via
+// NEXT_PUBLIC_AMAZON_AFFILIATE_TAG, but the per-site default is the correct one.
 export const AMAZON_TAG =
   process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || "holdlens-20";
 
@@ -571,15 +575,26 @@ function isbn13to10(isbn13: string): string | null {
 
 export type AmazonResolution = "asin_direct" | "title_author_search";
 
+/** Amazon department pin for SEARCH links. A bare `/s?k=<title author>` drops the
+ *  reader into an ALL-departments result set, where the print book competes with
+ *  Kindle editions, audiobooks, merch and unrelated matches — the measured fleet
+ *  leak. `i=stripbooks` pins the search to print books, which is what every
+ *  earning fleet site does (readinglist.school, secfilingdex, readglobe). Applies
+ *  to SEARCH URLs only — `/dp/<ASIN>` product links and the `/hz/audible/` bounty
+ *  link must NOT carry it. */
+const AMAZON_BOOKS_DEPT = "stripbooks";
+
 /** Resolve a Book to its best affiliate-tagged Amazon URL. Direct /dp/ when we
- *  hold a verified ISBN (highest CVR); an affiliate-tagged title+author search
- *  otherwise (still attributed, honest — no false 'direct product' promise). */
+ *  hold a verified ISBN (highest CVR); a department-pinned, affiliate-tagged
+ *  title+author search otherwise (still attributed, honest — no false 'direct
+ *  product' promise). */
 export function resolveAmazonUrl(book: Book): { url: string; resolution: AmazonResolution } {
   const base = "https://www.amazon.com";
   const asin = book.isbn13 ? isbn13to10(book.isbn13) : null;
   if (asin) return { url: `${base}/dp/${asin}?tag=${AMAZON_TAG}`, resolution: "asin_direct" };
+  const q = encodeURIComponent(`${book.title} ${book.author}`);
   return {
-    url: `${base}/s?k=${encodeURIComponent(`${book.title} ${book.author}`)}&tag=${AMAZON_TAG}`,
+    url: `${base}/s?k=${q}&i=${AMAZON_BOOKS_DEPT}&tag=${AMAZON_TAG}`,
     resolution: "title_author_search",
   };
 }

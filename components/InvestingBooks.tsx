@@ -10,7 +10,9 @@
 //
 // Compliance: rel="noopener sponsored nofollow" on every link · inline FTC
 // disclosure below · no price display · Amazon tag via NEXT_PUBLIC_AMAZON_
-// AFFILIATE_TAG (default global074-20). Server component — zero JS, no CLS.
+// AFFILIATE_TAG (default holdlens-20, this site's own registered tracking ID).
+// Search links are department-pinned (i=stripbooks) in resolveAmazonUrl.
+// Server component — zero JS, no CLS.
 //
 // Props:
 //   slug        — a manager slug → renders THAT manager's curated books
