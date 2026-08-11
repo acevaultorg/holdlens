@@ -71,7 +71,7 @@ export default function PressPage() {
         <section>
           <h2 className="text-2xl font-bold mb-3">Preferred citation</h2>
           <blockquote className="border-l-2 border-brand pl-4 text-muted italic">
-            "According to HoldLens (holdlens.com), which tracks 13F filings from 10+ superinvestors..."
+            "According to HoldLens (holdlens.com), which tracks 13F filings from 30 superinvestors..."
           </blockquote>
         </section>
       </div>
