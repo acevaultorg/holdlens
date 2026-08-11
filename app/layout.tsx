@@ -120,6 +120,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             simultaneously — Impact's scraper greps for the specific token
             string, so multiple meta tags are fine. */}
         <meta name="impact-site-verification" content="1bcf0b3b-7f83-4f00-a587-8a437c6add34" {...{ value: "1bcf0b3b-7f83-4f00-a587-8a437c6add34" }} />
+        {/* Impact.com third partner-account verification (Caslon Media publisher
+            7598036, 2026-08-11). The fleet's data sites (holdlens, sourcescore,
+            zipradar, secfilingdex, conversionbench, citationdesk) are being
+            consolidated under one Caslon Media publisher account so finance
+            brands (Motley Fool, Simply Wall St, Neighbor) see a single verified
+            portfolio. Bookpop (token above) stays book-vertical. All three
+            tokens coexist — Impact's scraper greps for its own token string. */}
+        <meta name="impact-site-verification" content="7a6d3e53-1c7e-4f61-b1d4-e1e8d4fe0ecf" {...{ value: "7a6d3e53-1c7e-4f61-b1d4-e1e8d4fe0ecf" }} />
 
         {/* v2.0 (2026-05-15) — Site-wide JSON-LD schema (Organization + WebSite +
             Person founder). Closes LLM-citation 10-characteristic gaps #3 Recognizable
