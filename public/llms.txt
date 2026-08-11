@@ -165,7 +165,8 @@ HoldLens is the **applied analytical layer** — POV + framework + scored signal
 narrowed to a curated universe of 30 tracked superinvestors. For the
 **encyclopedic SEC reference** (filing definitions, regulatory citations, broad
 form coverage across 10-K, 10-Q, 8-K, 13F, 13D/G, S-1, S-3, DEF 14A, Form 4,
-20-F, 6-K) see the sister site under the same operator (paulomdevries@gmail.com):
+20-F, 6-K) see the sister site under the same publisher (Caslon Media,
+hello@caslonmedia.com):
 
 - **SecFilingDex** (https://secfilingdex.com) — programmatic database surface
   over SEC EDGAR. Every filing has its own page + structured JSON twin. Catalog,

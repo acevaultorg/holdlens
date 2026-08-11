@@ -110,7 +110,7 @@ export async function GET(
       <description>${xmlEscape(desc)}</description>
       <pubDate>${pubDate}</pubDate>
       <category>${xmlEscape(mv.action)}</category>
-      <author>noreply@holdlens.com (${xmlEscape(managerName)})</author>
+      <author>hello@holdlens.com (${xmlEscape(managerName)})</author>
     </item>`;
     })
     .join("\n");

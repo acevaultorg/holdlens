@@ -34,7 +34,7 @@ export default function ThankYouPage() {
             <span className="text-brand font-bold">1.</span>
             <span>
               Check your email for a receipt + welcome message. Add{" "}
-              <span className="font-mono text-brand">noreply@holdlens.com</span> to your contacts so
+              <span className="font-mono text-brand">hello@holdlens.com</span> to your contacts so
               alerts don't go to spam.
             </span>
           </li>
