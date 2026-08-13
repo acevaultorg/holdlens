@@ -275,6 +275,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           window.plausible.init = function(){};
           window.plausible.init();
         `}</Script>
+        {/* Revives the ELEVEN className-based tagged events that died with Plausible on
+            2026-06-28 (Book/Audible/Affiliate Click, Tip, Share, Partners, Reading Hub,
+            FilingBanner, PWA Install/Dismiss/Dismiss iOS — 10 files). The shim above only
+            rescues explicit plausible(...) calls; these were bound by the tracker to the
+            class attribute, so they need a real listener. Also installs the fleet /c
+            beacon, which holdlens never had — its affiliate clicks were unmeasured. */}
+        <Script src="/click-track.js" strategy="afterInteractive" />
         {/* Google Analytics 4 — conversion funnel + audience building. Fires
             only when NEXT_PUBLIC_GA4_ID is set, so it's a no-op until the
             operator drops in a measurement ID. Consent Mode defaults above
