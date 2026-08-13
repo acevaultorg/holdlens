@@ -116,17 +116,21 @@ export default function DisclaimerPage() {
 
         <h2 id="affiliate-disclosure" className="text-2xl font-bold mt-10 mb-3">Affiliate disclosure</h2>
         <p className="text-muted">
-          Some links on HoldLens may become affiliate links: if you open an account or make a purchase through
-          one, we may earn a commission, at no extra cost to you. As of this update, no affiliate links are live
-          anywhere on the site — partnerships are launching and are listed for transparency on the{" "}
-          <Link href="/partners" className="text-brand underline">partners page</Link>, the only page where broker
-          partnerships appear.
+          HoldLens is a participant in the Amazon Services LLC Associates Program. Book links in our reading
+          lists and research articles are affiliate links, as is the Audible free-trial link: if you buy or sign
+          up through one, we may earn a commission, at no extra cost to you. These links are live today across
+          our reading and learn pages. Broker partnerships are a separate matter and are not live — those are
+          listed for transparency on the{" "}
+          <Link href="/partners" className="text-brand underline">partners page</Link>.
         </p>
         <p className="text-muted">
           Affiliate compensation never changes what we publish. It does not influence which superinvestors or
           tickers we cover, how ConvictionScore / InsiderScore / EventScore are calculated, or the content of our
-          reports — and we never accept payment to alter data or scores. When affiliate links go live, each one
-          will be marked as such and will carry <code className="text-xs">rel=&quot;sponsored nofollow noopener&quot;</code>.
+          reports — and we never accept payment to alter data or scores. Every affiliate link is marked as such
+          and carries <code className="text-xs">rel=&quot;sponsored nofollow noopener&quot;</code>.
+        </p>
+        <p className="text-muted text-sm">
+          Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.
         </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Corrections</h2>
