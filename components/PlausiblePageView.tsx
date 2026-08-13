@@ -3,6 +3,14 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
+// PlausiblePageView — NOW A NO-OP. Kept only so the layout import and route wiring stay
+// intact; delete it in a dedicated cleanup.
+//
+// 2026-08-13: Plausible was retired 2026-06-28 and its loader removed from app/layout.tsx.
+// The replacement shim deliberately DROPS the "pageview" name (GA4 tracks page_view
+// natively, so forwarding it would double-count as a non-standard event). Every call this
+// component makes therefore returns immediately. The history below is left for context.
+//
 // PlausiblePageView v1.0 — manual pageview fire on every route.
 //
 // WHY THIS EXISTS: from v0.86 (commit a75e659a0) onward, holdlens.com loaded

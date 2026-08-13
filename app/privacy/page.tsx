@@ -121,9 +121,8 @@ export default function PrivacyPolicyPage() {
             the pages of a single visit for heatmaps and session replay.
           </li>
           <li>
-            <strong className="text-text">Plausible Analytics</strong> and{" "}
-            <strong className="text-text">Cloudflare Web Analytics</strong> are cookie-free. Neither sets a
-            cookie nor collects personal data.
+            <strong className="text-text">Cloudflare Web Analytics</strong> is cookie-free — it sets no
+            cookie and collects no personal data.
           </li>
         </ul>
         <p className="text-muted">
@@ -202,25 +201,11 @@ export default function PrivacyPolicyPage() {
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Analytics</h2>
         <p className="text-muted">
-          Four analytics services run on HoldLens. Each is listed below with what it collects and its own data
+          Three analytics services run on HoldLens. (Plausible Analytics was retired on 28 June 2026 and no longer runs here.) Each is listed below with what it collects and its own data
           policy. Together they tell us which pages get read and where the site is confusing — we do not use
           any of them to build advertising profiles.
         </p>
         <ul className="text-muted space-y-2 list-disc list-inside mt-3">
-          <li>
-            <strong className="text-text">Plausible Analytics</strong> — privacy-focused, EU-hosted,
-            cookie-free. Aggregate page views and referrer sources only; no personal data, no cross-site
-            tracking.{" "}
-            <a
-              href="https://plausible.io/data-policy"
-              className="text-brand underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Plausible data policy
-            </a>
-            .
-          </li>
           <li>
             <strong className="text-text">Google Analytics 4</strong> — measures the conversion funnel and
             returning-visitor counts. IP addresses are anonymised (<code className="text-xs">anonymize_ip</code>).

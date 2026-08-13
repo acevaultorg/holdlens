@@ -199,14 +199,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Perf: preconnect to the origins we WILL hit, so the DNS + TLS
             handshake overlaps with critical rendering instead of blocking it. */}
-        <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://query1.finance.yahoo.com" crossOrigin="anonymous" />
         {/* parqet serves ~40 ticker logos per holdings table as plain <img>
             (no CORS) — preconnect WITHOUT crossOrigin so the warmed connection
             is reused by the image fetches instead of opening a second one. */}
         <link rel="preconnect" href="https://assets.parqet.com" />
-        <link rel="dns-prefetch" href="https://plausible.io" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://query1.finance.yahoo.com" />
         <link rel="dns-prefetch" href="https://assets.parqet.com" />
@@ -244,37 +242,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               if(c==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
             }catch(e){}`}
         </Script>
-        {/* Plausible v2 tracker (v1.11 — migrated from legacy
-            script.outbound-links.tagged-events.js → pa-<ID>.js).
-            WHY: Plausible rolled out a new per-site tracker + SDK-style
-            init (queue → plausible.init). The new dashboard's verifier
-            REQUIRES this script src to mark the install verified. Legacy
-            scripts still work for data (events flow, dashboard receives),
-            but the verifier fails with "Script not detected" — bad UX.
-            WHAT THIS SCRIPT GIVES US:
-            - Pageview auto-tracking (first-party, single source of truth)
-            - Outbound link tracking
-            - File download tracking (new — legacy script didn't have this)
-            - Form submission tracking (new)
-            - Tagged events (className="plausible-event-name=X ...") still
-              work identically — preserved in the new tracker for BC.
-            The init stub queues calls before the async script loads,
-            so `window.plausible(...)` is safe to call from any component
-            at any time (e.g., PlausiblePageView below, BacktestShareCard,
-            AdSlot, etc. — all existing call sites keep working). */}
-        <Script
-          id="plausible-init"
-          strategy="beforeInteractive"
-        >{`
-          window.plausible = window.plausible || function(){(plausible.q = plausible.q || []).push(arguments)};
-          plausible.init = plausible.init || function(i){plausible.o=i||{}};
-          plausible.init();
+        {/* Plausible RETIRED 2026-06-28 (subscription lapsed) — the pa-<ID>.js loader is gone.
+            It was still being requested on every pageview: a third-party round-trip to a dead
+            account, for nothing.
+
+            This shim keeps `window.plausible(...)` alive and forwards to the sinks that ARE
+            live (GA4 + Clarity). WHY a shim rather than editing the call sites: there are 9
+            explicit ones across app/ + components/, and they include the LIVE Pricing-View
+            A/B test (`variant`) plus the Backtest-Share and Search/SearchNoResults events.
+            Rewriting them all would risk the running experiment for no benefit; this keeps
+            every call site byte-identical and simply re-points where the events land.
+
+            'pageview' is deliberately DROPPED: GA4 tracks page_view natively, so forwarding
+            it would inject a duplicate non-standard event. PlausiblePageView therefore
+            becomes a no-op rather than double-counting.
+
+            ⚠️ NOT covered by this shim, and NOT a regression: the className-based tagged
+            events (`plausible-event-name=Book+Click` / `Audible+Click` / `Tip+Click`, 10
+            files) were bound by the real tracker's DOM hooks. They have been dead since
+            2026-06-28 already, so removing the loader loses nothing — but holdlens has NO
+            first-party /c beacon (`grep -rl sendBeacon app components lib` → 0), which means
+            its AFFILIATE clicks are currently unmeasured. Installing the /c beacon is a
+            separate task; see the Plausible-removal card. */}
+        <Script id="plausible-shim" strategy="beforeInteractive">{`
+          window.plausible = function(n, o){
+            var raw = String(n || "").trim();
+            if (!raw || raw.toLowerCase() === "pageview") return;
+            var e = raw.replace(/[^a-z0-9]+/gi, "_").replace(/^_+|_+$/g, "").toLowerCase().slice(0, 40);
+            try { if (window.gtag) gtag("event", e, (o && o.props) || {}); } catch (_) {}
+            try { if (window.clarity) clarity("event", e); } catch (_) {}
+          };
+          window.plausible.init = function(){};
+          window.plausible.init();
         `}</Script>
-        <Script
-          async
-          src="https://plausible.io/js/pa--4UvPgnqn5WWDVjuzKOoW.js"
-          strategy="afterInteractive"
-        />
         {/* Google Analytics 4 — conversion funnel + audience building. Fires
             only when NEXT_PUBLIC_GA4_ID is set, so it's a no-op until the
             operator drops in a measurement ID. Consent Mode defaults above
