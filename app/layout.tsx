@@ -713,6 +713,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   Caslon Media
                 </a>
                 , Amsterdam.
+                {/* Amazon trademark attribution. It already sits on
+                    /disclaimer/, but the mark is USED on /reading/ (174
+                    mentions, tag=holdlens-20) and /learn/ — and the notice
+                    belongs where the mark appears, not one click away. The
+                    homepage does not use the mark at all; site-wide in the
+                    footer is the simplest way to cover every page that does. */}
+                <br />
+                Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.
               </div>
               <div className="flex gap-5 flex-wrap">
                 <a href="/about" className="hover:text-text transition">About</a>
