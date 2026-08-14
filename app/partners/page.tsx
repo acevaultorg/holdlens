@@ -258,7 +258,7 @@ export default function PartnersPage() {
 
         <h2 className="text-2xl font-bold mt-10 mb-3 text-text">How we partner</h2>
         <ul className="space-y-2 list-disc list-inside text-muted">
-          <li>Partner placements live on this dedicated page only — never adjacent to scores, signals, or positioning data anywhere else on the site.</li>
+          <li><strong>Broker</strong> placements live on this dedicated page only — never adjacent to scores, signals, or positioning data anywhere else on the site. Book links (Amazon Associates, and the Audible free trial) do appear in our reading lists and research articles, where a book is the subject rather than a financial product.</li>
           <li>Every affiliate link is FTC-disclosed in plain English, on the page where it appears.</li>
           <li>All affiliate links carry <code className="text-xs">rel=&quot;sponsored nofollow noopener&quot;</code>.</li>
           <li>We never incentivize clicks, never use fake urgency or scarcity, and never accept payment to alter data, scores, or coverage.</li>
@@ -273,7 +273,7 @@ export default function PartnersPage() {
         <h2 className="text-2xl font-bold mt-12 mb-3 text-text">Affiliate disclosure</h2>
         <p>
           HoldLens is informational only — we do not execute trades, hold client funds, or act as an investment
-          advisor. Below are the brokerage platforms our team has personally evaluated and uses. If you choose
+          advisor. Below are the brokerage platforms we assessed against the three filters described above. If you choose
           to open an account through a link on this page once partnerships are active, HoldLens may receive a
           small affiliate bonus from the broker, at zero additional cost to you. That income helps fund the
           editorial work behind the site.
@@ -300,8 +300,11 @@ export default function PartnersPage() {
           Three filters: (1) the broker must be licensed in at least one major regulatory regime — US (FINRA /
           SIPC), UK (FCA), EU (CySEC, BaFin, AMF, or equivalent), Australia (ASIC), or Asia-Pacific
           (MAS / SFC / FSA-Japan); (2) the broker must publish a transparent fee schedule and a clear customer
-          agreement; (3) at least one member of the HoldLens team must have personally opened, funded, and
-          executed a trade with the broker. The list deliberately mixes US-only platforms (Schwab, Robinhood),
+          agreement; (3) the broker must have a multi-year public operating history with no unresolved
+          regulatory action we could find in its primary regulator&apos;s public register. We assess brokers from
+          their published documentation and regulatory filings — we do not claim to have personally held an
+          account with each one, and you should not read a listing here as a personal endorsement.
+          The list deliberately mixes US-only platforms (Schwab, Robinhood),
           EU-only platforms (Trade Republic), and globally-available platforms (IBKR, eToro, Public, moomoo) so
           that visitors from different regions can find a broker that actually serves their jurisdiction.
         </p>
