@@ -600,3 +600,14 @@ Key findings preserved:
 **Lesson 5 — CI deploy reports failed but lands content.** GitLab `deploy` job exits non-zero on a trailing step after `wrangler pages deploy out`, yet cache-busted live curl confirms content uploads + lands. Verify live; don't trust the red pipeline. Underlying CI bug worth a real fix so genuine failures aren't masked.
 
 **Ships:** 7c2fab949 (Pivot A) · 29ace66b9 (thin-content noindex + pruner generalization) · e58690b7b (compare + fund-overlap enrichment). Sitemap 1273 → 1038 → ~1248. All live-verified.
+
+---
+
+## Quarterly Refresh Log
+
+### 2026-08-14 — Q2 2026 refresh, pass 1 (deadline day, ran 04:30 ET)
+
+- **Coverage:** 6/30 managers with Q2 filings (john-armitage, monish-pabrai, polen-capital, seth-klarman, tom-slater, william-von-mueffling). 24 pending — most file during US hours on deadline day; **follow-up pass scheduled 2026-08-18** (TaskPeace `mssp6th2finwxj`).
+- **Fetch:** 30/30 managers, 0 errors, 236 filings, 26,046 moves (+268 vs May). Pre-existing gap: jeffrey-ubben has "No info table found" on 4 filings (only 4 quarters parse) — CIK 0001817187 filing format quirk, worth a look someday.
+- **Ship:** data commit `0394a6014` → `deploy-cf.sh` → CF Pages deployment `f73b5779` (18,123 files, 53 batches, 490s) → live-verified `Q2 2026` on investor pages (12 mentions, cache-busted, cf-cache-status DYNAMIC) → IndexNow 1,262 URLs HTTP 200.
+- **Lesson (deploy-path truth):** the TaskPeace project card said "push to main → Vercel auto-deploys (~220s)" — **Vercel is dead for this project since 2026-07-03** (API shows last deployment 07-03; a pushed commit sat undeployed for 8 min while `/partners/` content proved deploy-cf.sh is the real path). Card corrected (commands + definitionOfDone) 2026-08-14. Verify the deploy path against the platform API, not the context card.
