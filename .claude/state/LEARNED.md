@@ -605,6 +605,17 @@ Key findings preserved:
 
 ## Quarterly Refresh Log
 
+### 2026-08-24 — Q2 2026 refresh, pass 2 (late filers, 10 days past deadline)
+
+- **Coverage: 6/30 → 26/30.** 20 managers filed after the Aug-14 pass: warren-buffett, david-tepper, howard-marks, stanley-druckenmiller, carl-icahn, li-lu, chase-coleman, terry-smith, prem-watsa, andreas-halvorsen, bill-nygren, chris-hohn, chuck-akre, david-rolfe, dev-kantesaria, francois-rochon, glenn-greenberg, joel-greenblatt, lee-ainslie, stephen-mandel.
+- **Still unfiled (4):** bill-ackman, david-einhorn, jeffrey-ubben, michael-burry. (jeffrey-ubben is the known CIK 0001817187 "No info table found" parse quirk from pass 1, not a late filing — it will not resolve by waiting. The other three are genuinely late/NT filers.)
+- **Fetch:** 30/30 managers, 0 errors, 234 filings, 26,717 moves. Ran ~7 min, SEC-rate-limited.
+- **⚠️ Row count DROPPED 236 → 234 and this is CORRECT — verify before panicking.** The fetcher keeps a rolling 8-quarter window per manager, so each of the 20 managers that gained 2026-Q2 rolled off its oldest quarter. Confirmed by diffing pre/post: 2024-Q2 fell 23 → 3 (−20) while 2026-Q2 rose 6 → 26 (+20); `quartersSpanned` unchanged at 18; oldest still 2022-Q1; 28/30 managers hold the full 8. **A naive "total rows went down" read looks like data loss on the site's own dataset moat — always diff by quarter, not by total.**
+- **Ship:** build verified BEFORE commit (13,091 static pages, `predeploy-guard ✓ Pivot A compliance verified`, perf-budget ✓ 12,960 pages <500KB, homepage-dedupe ✓) → data commit `27d3086b0` → push main → `bash scripts/deploy-cf.sh` → CF Pages deployment `3bc226c8-1e79-48f5-9b95-b82db9876d65` (18,137 files, 54 batches, 311s) → IndexNow 1,269 URLs HTTP 200. One transient `curl 56 LibreSSL` on batch 1/40 auto-retried and recovered — the known CF-upload SSL flake, not an outage.
+- **Live verification used a CONTROL, not just a positive.** Cache-busted, `cf-cache-status: DYNAMIC` on all three: warren-buffett `Q2 2026`×2 (**newly live**), john-armitage `Q2 2026`×2 (pre-existing filer, intact), michael-burry `Q2 2026`×0 (**genuinely unfiled — correctly absent**). The negative control is the point: it proves the page renders real per-manager data and I am not just matching a hardcoded "Q2 2026" string in a template. A positive-only check would have passed identically on a broken build.
+- **Deploy-path truth re-confirmed (3rd time):** the TaskPeace task body still said "push to main → Vercel auto-deploys (~220s)". That is stale and silently no-ops — Vercel has been dead for this project since 2026-07-03. `scripts/deploy-cf.sh` is the only path. The project card's `commands` field is right; the task body was not.
+- **Waiter trap avoided:** `npm run fetch-edgar` was launched with `nohup … &`, and the *wrapper* exits 0 immediately while the real work continues — a completion notification on the wrapper is NOT the job finishing. Waited on the concrete PID (`until ! kill -0 $PID`). Same for the build and the deploy. This is the same trap the task body warns about for `pgrep -f`, in a different guise.
+
 ### 2026-08-14 — Q2 2026 refresh, pass 1 (deadline day, ran 04:30 ET)
 
 - **Coverage:** 6/30 managers with Q2 filings (john-armitage, monish-pabrai, polen-capital, seth-klarman, tom-slater, william-von-mueffling). 24 pending — most file during US hours on deadline day; **follow-up pass scheduled 2026-08-18** (TaskPeace `mssp6th2finwxj`).
