@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "13D vs 13G — what the difference actually means",
@@ -323,6 +325,11 @@ export default function Article() {
         outcomes vary widely and historical performance does not predict
         future results.
       </p>
+      <InvestingBooks
+        books={booksForLearn("13d-vs-13g-activist-filings")}
+        sub={`Understanding the filing is step one; knowing what to do with what it shows is step two. These are the references that help with the second part.`}
+      />
+
     </article>
   );
 }

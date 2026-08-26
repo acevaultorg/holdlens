@@ -4,6 +4,8 @@ import ShareStrip from "@/components/ShareStrip";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "How to read buyback disclosures — a plain-English SEC filing guide",
@@ -292,6 +294,11 @@ export default function HowToReadBuybackDisclosuresPage() {
           url={url}
         />
       </section>
+      <InvestingBooks
+        books={booksForLearn("how-to-read-buyback-disclosures")}
+        sub={`The disclosure is only as useful as your ability to read the statements around it.`}
+      />
+
     </article>
   );
 }

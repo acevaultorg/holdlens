@@ -6,6 +6,8 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // /learn/survivorship-bias-in-hedge-funds
 //
@@ -593,6 +595,11 @@ export default function SurvivorshipBiasPage() {
           {" — historical returns shown alongside drawdowns, not just compounded peaks."}
         </p>
       </section>
+      <InvestingBooks
+        books={booksForLearn("survivorship-bias-in-hedge-funds")}
+        sub={`The bias described here is the subject of these books — Taleb on randomness, Lowenstein on LTCM, Mallaby on the industry.`}
+      />
+
     </div>
   );
 }

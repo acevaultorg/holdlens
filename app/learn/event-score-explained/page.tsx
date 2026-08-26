@@ -7,6 +7,8 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // /learn/event-score-explained
 //
@@ -341,6 +343,11 @@ export default function EventScoreExplainedArticle() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }}
       />
+      <InvestingBooks
+        books={booksForLearn("event-score-explained")}
+        sub={`Understanding the filing is step one; knowing what to do with what it shows is step two. These are the references that help with the second part.`}
+      />
+
     </article>
   );
 }

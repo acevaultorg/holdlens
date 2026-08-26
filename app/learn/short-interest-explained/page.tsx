@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "Short interest, days-to-cover, and squeeze setups — plain English",
@@ -296,6 +298,11 @@ export default function Article() {
         This is educational content, not investment advice. Short interest
         signals carry risk on both sides — long and short.
       </p>
+      <InvestingBooks
+        books={booksForLearn("short-interest-explained")}
+        sub={`Short interest is easier to read once you have seen how the famous shorts actually played out.`}
+      />
+
     </article>
   );
 }

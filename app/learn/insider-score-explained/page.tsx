@@ -7,6 +7,8 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // /learn/insider-score-explained
 //
@@ -413,6 +415,11 @@ export default function InsiderScoreExplainedArticle() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }}
       />
+      <InvestingBooks
+        books={booksForLearn("insider-score-explained")}
+        sub={`Understanding the filing is step one; knowing what to do with what it shows is step two. These are the references that help with the second part.`}
+      />
+
     </article>
   );
 }

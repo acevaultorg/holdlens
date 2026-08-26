@@ -6,6 +6,8 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // /learn/form-4-vs-13f
 //
@@ -462,6 +464,11 @@ export default function Form4vs13FPage() {
 
         <CiteThisPage />
       <LearnReadNext currentSlug="form-4-vs-13f" />
+      <InvestingBooks
+        books={booksForLearn("form-4-vs-13f")}
+        sub={`Understanding the filing is step one; knowing what to do with what it shows is step two. These are the references that help with the second part.`}
+      />
+
     </div>
   );
 }

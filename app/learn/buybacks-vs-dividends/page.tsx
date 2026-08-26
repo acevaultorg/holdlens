@@ -3,6 +3,8 @@ import AdSlot from "@/components/AdSlot";
 import ShareStrip from "@/components/ShareStrip";
 import TldrCard from "@/components/learn/TldrCard";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "Buybacks vs dividends — what's the real difference?",
@@ -278,6 +280,11 @@ export default function BuybacksVsDividendsPage() {
           url={url}
         />
       </section>
+      <InvestingBooks
+        books={booksForLearn("buybacks-vs-dividends")}
+        sub={`Reading a buyback properly is financial-statement work before it is capital-allocation opinion.`}
+      />
+
     </article>
   );
 }

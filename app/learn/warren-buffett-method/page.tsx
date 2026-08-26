@@ -6,6 +6,8 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // v1.29 — new /learn article. "Warren Buffett method" gets ~6,500 monthly
 // search queries. HoldLens has authority to answer because we hold the
@@ -415,6 +417,11 @@ export default function WarrenBuffettMethodPage() {
           {" with each manager's signal alongside Berkshire."}
         </p>
       </section>
+      <InvestingBooks
+        books={booksForLearn("warren-buffett-method")}
+        sub={`The method on this page is drawn from these; Buffett's own essays and the Schroeder biography are the primary sources.`}
+      />
+
     </div>
   );
 }

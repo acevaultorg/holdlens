@@ -6,6 +6,8 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // v1.26 — new /learn/ article. The 45-day lag is the single most misunderstood
 // fact about 13F data, and also the one that separates honest sites from
@@ -475,6 +477,11 @@ export default function FortyFiveDayLagPage() {
           {" (4-day filing window)."}
         </p>
       </section>
+      <InvestingBooks
+        books={booksForLearn("45-day-lag-explained")}
+        sub={`Understanding the filing is step one; knowing what to do with what it shows is step two. These are the references that help with the second part.`}
+      />
+
     </div>
   );
 }

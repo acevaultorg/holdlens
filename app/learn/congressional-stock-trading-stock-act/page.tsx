@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "How the STOCK Act works — Congressional stock trading, plain English",
@@ -308,6 +310,11 @@ export default function Article() {
         This is educational content, not investment advice. Congressional
         trading data is a transparency signal, not a forecast.
       </p>
+      <InvestingBooks
+        books={booksForLearn("congressional-stock-trading-stock-act")}
+        sub={`Understanding the filing is step one; knowing what to do with what it shows is step two. These are the references that help with the second part.`}
+      />
+
     </article>
   );
 }

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "ETF overlap explained — why owning multiple ETFs doesn't always diversify",
@@ -253,6 +255,11 @@ export default function Article() {
         geographic concentration, factor exposure, and correlation under
         stress.
       </p>
+      <InvestingBooks
+        books={booksForLearn("etf-overlap-explained")}
+        sub={`Overlap is a low-cost-indexing problem; Bogle and Malkiel are where that argument is made.`}
+      />
+
     </article>
   );
 }

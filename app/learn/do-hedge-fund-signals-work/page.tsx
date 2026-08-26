@@ -5,6 +5,8 @@ import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import LearnReadNext from "@/components/LearnReadNext";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // /learn/do-hedge-fund-signals-work
 //
@@ -515,6 +517,11 @@ export default function BacktestArticle() {
 
         <CiteThisPage />
       <LearnReadNext currentSlug="do-hedge-fund-signals-work" />
+      <InvestingBooks
+        books={booksForLearn("do-hedge-fund-signals-work")}
+        sub={`Whether manager skill survives the fees is an old argument; these are the books that make it well.`}
+      />
+
     </div>
   );
 }

@@ -6,6 +6,8 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // v1.24 — new /learn/ article. "What is alpha?" is a foundational concept
 // that every investing site promises to explain and almost every one does it
@@ -388,6 +390,11 @@ export default function WhatIsAlphaPage() {
           {" — every quarterly filing scored on the −100..+100 ConvictionScore."}
         </p>
       </section>
+      <InvestingBooks
+        books={booksForLearn("what-is-alpha")}
+        sub={`Alpha only means something against a benchmark — these are the books that define the benchmark case.`}
+      />
+
     </div>
   );
 }

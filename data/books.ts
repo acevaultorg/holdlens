@@ -541,6 +541,64 @@ export function booksForInvestor(slug: string): Book[] {
   return titles.map((t) => BY_TITLE.get(t)).filter((b): b is Book => Boolean(b));
 }
 
+// Per-/learn-article book map. Byte-for-byte the same shape as INVESTOR_BOOKS
+// above: titles are resolved through BY_TITLE, and anything unmapped falls back
+// to CORE_CANON — so a typo yields the canon, never a broken or invented link.
+// Every title here ALREADY exists in BOOKS; this map adds zero new titles and
+// zero new ASINs. It exists because 17 of the 56 /learn articles carried no
+// affiliate affordance at all while the other 39 already did.
+export const LEARN_BOOKS: Record<string, string[]> = {
+  "warren-buffett-method": [
+    "The Warren Buffett Way",
+    "The Essays of Warren Buffett",
+    "The Snowball",
+  ],
+  "survivorship-bias-in-hedge-funds": [
+    "Fooled by Randomness",
+    "When Genius Failed",
+    "More Money Than God",
+  ],
+  "do-hedge-fund-signals-work": [
+    "More Money Than God",
+    "Fooled by Randomness",
+    "The Most Important Thing",
+  ],
+  "short-interest-explained": [
+    "The Big Short",
+    "Fooling Some of the People All of the Time",
+    "Reminiscences of a Stock Operator",
+  ],
+  "what-is-alpha": [
+    "A Random Walk Down Wall Street",
+    "The Little Book of Common Sense Investing",
+    "Common Sense on Mutual Funds",
+  ],
+  "etf-overlap-explained": [
+    "The Little Book of Common Sense Investing",
+    "Common Sense on Mutual Funds",
+    "A Random Walk Down Wall Street",
+  ],
+  "buybacks-vs-dividends": [
+    "Financial Statement Analysis",
+    "The Five Rules for Successful Stock Investing",
+    "Damodaran on Valuation",
+  ],
+  "how-to-read-buyback-disclosures": [
+    "Financial Statement Analysis",
+    "The Five Rules for Successful Stock Investing",
+    "The Little Book of Valuation",
+  ],
+  // The 13F / Form-4 / scoring explainers are disclosure-mechanics pieces with no
+  // single defining book — CORE_CANON is the honest answer, so they are left
+  // unmapped and fall through below.
+};
+
+/** Books for a /learn article. Unmapped slugs get CORE_CANON. */
+export function booksForLearn(slug: string): Book[] {
+  const titles = LEARN_BOOKS[slug] ?? CORE_CANON;
+  return titles.map((t) => BY_TITLE.get(t)).filter((b): b is Book => Boolean(b));
+}
+
 /** Return the CORE_CANON as Book[] (default widget set). */
 export function coreCanonBooks(): Book[] {
   return CORE_CANON.map((t) => BY_TITLE.get(t)).filter((b): b is Book => Boolean(b));

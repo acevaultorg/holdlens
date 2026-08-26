@@ -6,6 +6,8 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksForLearn } from "@/data/books";
 
 // /learn/13f-vs-13d-vs-13g
 //
@@ -840,6 +842,11 @@ export default function ThirteenFvsDvsGPage() {
           {" for the proxy-statement filing required at every annual meeting."}
         </p>
       </section>
+      <InvestingBooks
+        books={booksForLearn("13f-vs-13d-vs-13g")}
+        sub={`Understanding the filing is step one; knowing what to do with what it shows is step two. These are the references that help with the second part.`}
+      />
+
     </div>
   );
 }
