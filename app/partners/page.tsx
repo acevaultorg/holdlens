@@ -216,9 +216,9 @@ export default function PartnersPage() {
         <div className="rounded-2xl border border-border bg-panel p-6">
           <dl className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
             <div>
-              <dt className="text-[11px] uppercase tracking-widest font-bold text-dim mb-1">Monthly visitors</dt>
-              <dd className="text-2xl font-bold text-text">1,758</dd>
-              <dd className="text-xs text-dim mt-1">human visitors, last 30 days (GA4, August 2026)</dd>
+              <dt className="text-[11px] uppercase tracking-widest font-bold text-dim mb-1">Traffic</dt>
+              <dd className="text-2xl font-bold text-text">3,191</dd>
+              <dd className="text-xs text-dim mt-1">GA4 users, last 30 days (August 2026)</dd>
             </div>
             <div>
               <dt className="text-[11px] uppercase tracking-widest font-bold text-dim mb-1">Geography</dt>
@@ -233,6 +233,14 @@ export default function PartnersPage() {
               </dd>
             </div>
           </dl>
+          <p className="text-xs text-dim mt-4 leading-relaxed">
+            What that number is, and what it is not: those sessions are predominantly direct at roughly one
+            pageview each (0.99 sessions/user, 1.04 pageviews/session over the same window) — the shape of a
+            fetch, not a browsing visit. Search Console records 2 clicks from 1,059 impressions at an average
+            position in the 50s over the same window, so organic search is not yet the source. A same-window
+            Clarity read (a separate, bot-filtering instrument) shows roughly 42% of sampled sessions flagged as
+            bots. Read the 3,191 figure as reach, not as 3,000 engaged retail-investor readers.
+          </p>
         </div>
 
         <h2 className="text-2xl font-bold mt-10 mb-3 text-text">About the publisher</h2>
