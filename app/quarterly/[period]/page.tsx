@@ -2,25 +2,46 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import { MANAGERS } from "@/lib/managers";
+import { QUARTERS, QUARTER_LABELS, QUARTER_FILED } from "@/lib/moves";
 import { topTickers } from "@/lib/tickers";
 import { deepDivesForPeriod } from "@/lib/quarterDeepDives";
 
 type Period = { slug: string; label: string; title: string; intro: string };
 
-const PERIODS: Period[] = [
-  {
-    slug: "2026-q1",
-    label: "Q1 2026",
-    title: "Q1 2026 superinvestor recap",
-    intro: "What the 10 tracked superinvestors bought, sold, and held in Q1 2026. 13F filings are due 45 days after quarter-end, so this recap reflects filings through May 15, 2026.",
-  },
-  {
-    slug: "2025-q4",
-    label: "Q4 2025",
-    title: "Q4 2025 superinvestor recap",
-    intro: "Year-end 2025 positions across tracked superinvestors. Filed between January and mid-February 2026.",
-  },
-];
+// DERIVED from QUARTERS — this list used to be hand-written and it drifted.
+//
+// It held exactly two entries (2026-q1, 2025-q4) while the holdings data had a complete
+// Q2 2026 filed 2026-08-14, so /quarterly/2026-q2/ 404'd. It was the fifth place in this
+// repo that had to be hand-edited every quarter, after QUARTERS/QUARTER_LABELS/
+// QUARTER_FILED (x2 files) and DataFreshness.
+//
+// The Q1 intro also claimed "the 10 tracked superinvestors" while MANAGERS has 30 and the
+// page renders all 30 — a stale number stated as fact. The derived intro reads the real
+// count, so it cannot go stale again.
+//
+// Hand-written intros are PRESERVED: anything in INTRO_OVERRIDES wins, so genuine editorial
+// copy is never replaced by a template. Quarters without one get an accurate derived intro.
+const INTRO_OVERRIDES: Record<string, string> = {
+  "2025-q4":
+    "Year-end 2025 positions across tracked superinvestors. Filed between January and mid-February 2026.",
+};
+
+const PERIODS: Period[] = QUARTERS.map((q) => {
+  const slug = q.toLowerCase();
+  const label = QUARTER_LABELS[q];
+  const filed = QUARTER_FILED[q];
+  const filedPretty = new Date(filed + "T00:00:00Z").toLocaleDateString("en-US", {
+    month: "long", day: "numeric", year: "numeric", timeZone: "UTC",
+  });
+  return {
+    slug,
+    label,
+    title: `${label} superinvestor recap`,
+    intro:
+      INTRO_OVERRIDES[slug] ??
+      `What the ${MANAGERS.length} tracked superinvestors bought, sold, and held in ${label}. 13F filings are due 45 days after quarter-end, so this recap reflects filings through ${filedPretty}.`,
+  };
+});
 
 export async function generateStaticParams() {
   return PERIODS.map((p) => ({ period: p.slug }));

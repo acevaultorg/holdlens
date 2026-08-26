@@ -8,7 +8,7 @@
     "fetch-edgar": "npx tsx scripts/fetch-edgar-13f.ts",
     "generate-api": "npx tsx scripts/generate-api-json.ts",
     "prebuild": "npx tsx scripts/generate-og-images.ts && npx tsx scripts/generate-api-json.ts",
-    "build": "next build",
+    "build": "node scripts/check-quarters-cover-data.mjs && next build",
     "postbuild": "npx tsx scripts/strip-broken-links.ts && node scripts/add-content-signals.mjs && node scripts/generate-sitemap-ai.mjs && node scripts/generate-learn-index.mjs && npx tsx scripts/prune-sitemap.ts && npx tsx scripts/audit-homepage-dedupe.ts && node scripts/perf-budget-check.mjs && node scripts/predeploy-guard.mjs",
     "start": "next start",
     "lint": "next lint",

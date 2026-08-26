@@ -6,14 +6,36 @@ import { useEffect, useState } from "react";
 // always know where they stand on data age. Client-rendered because "today"
 // depends on the user's clock — build-time would drift.
 //
-// 13F rule: filings due 45 days after quarter-end.
-//   Q1 2026 ends 2026-03-31 → deadline 2026-05-15 (complete)
-//   Q2 2026 ends 2026-06-30 → deadline 2026-08-14
+// 13F rule: filings due 45 days after quarter-end. All DERIVED — nothing hand-written.
+//
+// These were four literal constants. The quarter rolled over on 2026-08-14 and none of
+// them moved, so on 2026-08-26 every page (this renders from app/layout.tsx) footer-
+// stamped "Data current: Q1 2026 · filed 2026-05-15" and "Next: Q2 2026 overdue 12d",
+// while the holdings data had held a complete Q2 for twelve days. On a site whose whole
+// value is quarterly freshness — and which is read largely by AI answer engines that
+// weight recency — a stale freshness stamp is worse than no stamp.
+//
+// Now read from lib/moves-types, where QUARTER_LABELS/QUARTER_FILED are themselves
+// derived from QUARTERS, which scripts/check-quarters-cover-data.mjs proves at build time
+// is the newest quarter in the holdings data. Ingest a quarter and this advances itself;
+// forget to publish one and the build fails.
+import { QUARTERS, QUARTER_LABELS, QUARTER_FILED, type Quarter } from "@/lib/moves-types";
 
-const CURRENT_QUARTER_LABEL = "Q1 2026";
-const CURRENT_FILED_AT = "2026-05-15"; // deadline for the current quarter
-const NEXT_QUARTER_LABEL = "Q2 2026";
-const NEXT_FILED_AT = "2026-08-14";
+const CURRENT_QUARTER = QUARTERS[0] as Quarter;
+const CURRENT_QUARTER_LABEL = QUARTER_LABELS[CURRENT_QUARTER];
+const CURRENT_FILED_AT = QUARTER_FILED[CURRENT_QUARTER];
+
+// The next quarter is deliberately NOT in QUARTERS (it has no data yet), so its label and
+// deadline are computed rather than looked up.
+const [_y, _n] = CURRENT_QUARTER.split("-Q").map(Number);
+const NEXT_Q = _n === 4 ? `${_y + 1}-Q1` : `${_y}-Q${_n + 1}`;
+const NEXT_QUARTER_LABEL = `Q${NEXT_Q.split("-Q")[1]} ${NEXT_Q.split("-Q")[0]}`;
+const NEXT_FILED_AT = (() => {
+  const [y, n] = NEXT_Q.split("-Q").map(Number);
+  const end = new Date(Date.UTC(y, [2, 5, 8, 11][n - 1] + 1, 0));
+  end.setUTCDate(end.getUTCDate() + 45);
+  return end.toISOString().slice(0, 10);
+})();
 
 function daysBetween(a: Date, b: Date): number {
   const MS = 1000 * 60 * 60 * 24;
