@@ -156,6 +156,20 @@ def main():
     t0 = time.time()
     print(f"[+] chunked deploy · project={PROJECT} · out={OUT_DIR}")
     entries = walk(OUT_DIR); print(f"[+] {len(entries)} files")
+    # Fail-fast BEFORE the (expensive, ~minutes-long) upload: CF Pages create_deployment
+    # rejects a manifest >20,000 files (HTTP 400) -- and per
+    # positive-control-before-absence.md this failure is otherwise SILENT: the uploader
+    # runs its full length and no deployment ever appears, which reads exactly like a
+    # hung upload. Measured 2026-09-03: this tree is 37,920 files (190% of the cap), of
+    # which 12,997 are RSC soft-nav .txt payloads -- dropping those alone is not enough
+    # to clear the cap here, so this is a hard abort, not a warning.
+    if len(entries) > 20000:
+        print(f"ERROR: {len(entries)} files exceeds CF Pages' 20,000/deployment cap.\n"
+              f"  Prune the out/ tree before deploying (RSC .txt soft-nav payloads and/or\n"
+              f"  unindexed page-type twins -- prune by CONTENT SIGNATURE, never by filename:\n"
+              f"  robots.txt/ads.txt/llms.txt/IndexNow-key files are also .txt).",
+              file=sys.stderr)
+        sys.exit(2)
     manifest = {rel: sha for rel, _, sha in entries}
     idx = {}
     for rel, c, sha in entries: idx.setdefault(sha, (c, rel))
