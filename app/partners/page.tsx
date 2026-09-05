@@ -143,6 +143,31 @@ const BROKERS: Broker[] = [
   },
 ];
 
+type ResearchTool = {
+  key: string;
+  name: string;
+  href: string;
+  whatItIs: string;
+  whoItsFor: string;
+};
+
+// Research & data tools — approved 2026-09-05 (source card mt7awcb23xkabb).
+// Deliberately separate from BROKERS: these are financial-data / research
+// products, not brokerages, and never carry a rating, price target, or
+// verdict on any ticker (per rules/google-policy-compliance.md — the same
+// YMYL concern this page's Pivot A refactor already exists to prevent).
+const RESEARCH_TOOLS: ResearchTool[] = [
+  {
+    key: "eodhd",
+    name: "EODHD",
+    href: "https://eodhd.com?via=caslonmedia",
+    whatItIs:
+      "An end-of-day and fundamentals market-data API covering global exchanges — the kind of raw data feed that powers screeners, backtests, and the 13F/Form-4 pipelines behind sites like HoldLens.",
+    whoItsFor:
+      "Developers and quant-curious investors who want programmatic access to price history, fundamentals, and corporate-actions data rather than a point-and-click terminal.",
+  },
+];
+
 function readRef(envCanonical: string, envLegacy?: string): string | undefined {
   switch (envCanonical) {
     case "NEXT_PUBLIC_AFF_IBKR":
@@ -372,6 +397,45 @@ export default function PartnersPage() {
                   Sign-up link not yet active. Search for {b.name} directly to evaluate the platform.
                 </div>
               )}
+            </article>
+          ))}
+        </div>
+
+        <h2 className="text-2xl font-bold mt-12 mb-3 text-text">Research &amp; data tools</h2>
+        <p>
+          Separately from brokerage accounts, we also partner with a small number of data and
+          research products the HoldLens team actually uses. These are informational products,
+          not brokerages — none of them execute trades, and none of them are used to generate a
+          rating, price target, or buy/sell verdict published anywhere on HoldLens.
+        </p>
+
+        <div className="space-y-8 mt-6">
+          {RESEARCH_TOOLS.map((t) => (
+            <article key={t.key} className="rounded-2xl border border-border bg-panel p-6">
+              <h3 className="text-xl font-bold text-text mb-2">{t.name}</h3>
+              <div className="space-y-3 text-sm text-muted leading-relaxed">
+                <p>
+                  <strong className="text-text">What it is.</strong> {t.whatItIs}
+                </p>
+                <p>
+                  <strong className="text-text">Who it tends to fit.</strong> {t.whoItsFor}
+                </p>
+              </div>
+              <div className="mt-4 pt-4 border-t border-border">
+                <a
+                  href={t.href}
+                  target="_blank"
+                  rel="noopener sponsored nofollow"
+                  className={`plausible-event-name=Broker+Click plausible-event-broker=${t.key} plausible-event-source=partners-page inline-flex items-center gap-1 text-brand hover:underline font-semibold text-sm`}
+                >
+                  Visit {t.name} →
+                </a>
+                <div className="text-[11px] text-dim mt-2">
+                  Affiliate link — HoldLens may receive a referral commission at no extra cost to
+                  you. This is not a recommendation; read {t.name}&apos;s own terms before signing
+                  up.
+                </div>
+              </div>
             </article>
           ))}
         </div>
