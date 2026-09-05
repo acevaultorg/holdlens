@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-"""CF Pages chunked-upload deployer for readinglist.school.
+"""CF Pages chunked-upload deployer for holdlens.com (copy-forked from readinglist.school).
+
+PAGES FUNCTIONS (2026-09-06, card mtotsyge1hnu5o): this uploader used to ship STATIC ASSETS
+ONLY — the manifest, nothing else — so every deploy silently dropped functions/_middleware.ts
++ functions/api/{subscribe,thesis,unsubscribe}.ts from production (POST /api/subscribe 405,
+GET /api/thesis 404, the WordPress-probe 410 gone, measured 2026-09-05 22:50Z; the same
+failure class as readstacks 2026-07-03 and conversionbench). It now (a) recompiles functions/
+into out/_worker.js with `wrangler pages functions build` on every run, (b) REFUSES to deploy
+when functions/ is non-empty but no worker could be built, (c) posts _worker.js + _routes.json
+as dedicated multipart FILE parts (as an asset the worker is INERT — Pages never enters
+advanced mode), and (d) probes the live Functions after the deploy with a 404 control.
 
 WHY: readinglist out/ is ~962MB / 11,981 files. `wrangler pages deploy` closes
 the upload socket at a hard ~56MB PER CONNECTION (log-verified EPIPE), and Next's
@@ -22,11 +32,16 @@ Then: python3 scripts/cf-pages-chunked-deploy.py   (after `npm run build` + RSC 
 
 Run-from-clean wrapper: scripts/deploy-cf-chunked.sh (build + prune + this).
 """
-import base64, hashlib, json, mimetypes, os, pathlib, sys, time, uuid, urllib.request, urllib.error
+import base64, hashlib, json, mimetypes, os, pathlib, re, subprocess, sys, tempfile, time, uuid, urllib.request, urllib.error
 
 ACCOUNT = "72bfd26c5f3c935393a25e5c0dea6039"
-PROJECT = "holdlens"
-BRANCH = "main"
+PROJECT = os.environ.get("CF_PAGES_PROJECT", "holdlens")
+# Branch is the production/preview selector: CF Pages treats the project's production branch
+# as LIVE and any other branch as an isolated preview URL. Overridable so a risky change (e.g.
+# a _worker.js that takes over ALL routing) is proven on a preview URL before it touches main.
+BRANCH = os.environ.get("CF_PAGES_BRANCH", "main")
+# Where the post-deploy Functions probe runs when BRANCH is the production branch.
+PROD_URL = os.environ.get("PROD_URL", "https://holdlens.com").rstrip("/")
 OUT_DIR = pathlib.Path(os.environ.get("OUT_DIR",
     str(pathlib.Path(__file__).resolve().parent.parent / "out"))).resolve()
 
@@ -138,11 +153,62 @@ def upload(jwt, batch, attempts=40):
             time.sleep(s)
     raise RuntimeError(f"batch failed after {attempts}: {last}")
 
-def create_deployment(manifest):
+# CF Pages treats these two as CONFIGURATION, not static assets. They must be posted as their
+# own multipart FILE parts on create-deployment; left in the asset manifest they are stored as
+# inert files and never executed (sculptclub's deployer records the A/B: worker-as-asset →
+# /api 404/405; worker-as-form-field → live). _headers/_redirects are NOT moved — holdlens
+# has documented that _redirects wildcards broke production once; leave them as assets.
+SPECIAL_FILES = ("_worker.js", "_routes.json")
+
+def regenerate_worker_from_functions():
+    """Recompile functions/ → out/_worker.js on every run (ported from readstacks 2026-07-27).
+    Refuse to deploy when functions/ has files but no worker could be built: shipping a
+    Functions-less deploy would silently kill /api/subscribe, /api/thesis and the middleware
+    with exit 0 (cloudflare-pages-epipe.md guard). ALLOW_STALE_WORKER=1 keeps whatever is
+    already in out/_worker.js (only for a deploy where wrangler is genuinely unavailable)."""
+    functions_dir = OUT_DIR.parent / "functions"
+    fn_files = [p for p in functions_dir.rglob("*") if p.is_file()] if functions_dir.is_dir() else []
+    if not fn_files:
+        return None
+    target = OUT_DIR / "_worker.js"
+    if os.environ.get("ALLOW_STALE_WORKER") == "1":
+        print("[!] ALLOW_STALE_WORKER=1 — not recompiling functions/ (using out/_worker.js as-is)")
+    else:
+        with tempfile.TemporaryDirectory() as tmp:
+            print(f"[+] functions/ has {len(fn_files)} file(s) — compiling to out/_worker.js…")
+            r = subprocess.run(["npx", "wrangler", "pages", "functions", "build", f"--outdir={tmp}"],
+                               cwd=str(OUT_DIR.parent), capture_output=True, text=True)
+            compiled = pathlib.Path(tmp) / "index.js"
+            if r.returncode != 0 or not compiled.exists():
+                sys.exit(f"[x] REFUSING TO DEPLOY: functions/ has {len(fn_files)} file(s) but "
+                         f"`wrangler pages functions build` failed — deploying now would ship a site "
+                         f"with NO Functions (/api/subscribe, /api/thesis, middleware).\n{r.stderr[-2000:]}\n"
+                         f"Override only for a deliberate stale-worker deploy: ALLOW_STALE_WORKER=1")
+            target.write_bytes(compiled.read_bytes())
+            print(f"[+] out/_worker.js written ({target.stat().st_size}B)")
+    if not target.is_file() or target.stat().st_size < 1000:
+        sys.exit(f"[x] REFUSING TO DEPLOY: functions/ is non-empty but {target} is missing/empty — "
+                 f"a Functions-less deploy would take /api/* down with exit 0.")
+    routes = OUT_DIR / "_routes.json"
+    if not routes.is_file():
+        src = OUT_DIR.parent / "public" / "_routes.json"
+        if src.is_file():
+            routes.write_bytes(src.read_bytes()); print("[+] out/_routes.json copied from public/")
+        else:
+            print("[!] no _routes.json — the worker will receive EVERY request (no static bypass list)")
+    return target.read_bytes()
+
+def create_deployment(manifest, specials=None):
     b = f"----cf{uuid.uuid4().hex}"; parts = []
     def fld(n, v):
         parts.append(f"--{b}\r\nContent-Disposition: form-data; name=\"{n}\"\r\n\r\n{v}\r\n".encode())
+    def filefld(n, content, ctype):
+        parts.append(f"--{b}\r\nContent-Disposition: form-data; name=\"{n}\"; filename=\"{n}\"\r\n"
+                     f"Content-Type: {ctype}\r\n\r\n".encode() + content + b"\r\n")
     fld("manifest", json.dumps(manifest)); fld("branch", BRANCH)
+    for name, content in (specials or {}).items():
+        ctype = "application/javascript+module" if name.endswith(".js") else ("application/json" if name.endswith(".json") else "text/plain")
+        filefld(name, content, ctype)
     parts.append(f"--{b}--\r\n".encode())
     return http(f"https://api.cloudflare.com/client/v4/accounts/{ACCOUNT}/pages/projects/{PROJECT}/deployments",
                 method="POST", data=b"".join(parts),
@@ -155,7 +221,18 @@ def mime(p):
 def main():
     t0 = time.time()
     print(f"[+] chunked deploy · project={PROJECT} · out={OUT_DIR}")
-    entries = walk(OUT_DIR); print(f"[+] {len(entries)} files")
+    regenerate_worker_from_functions()
+    entries = walk(OUT_DIR)
+    # Pull the advanced-mode files OUT of the asset manifest — they go as form fields.
+    specials, kept = {}, []
+    for rel, c, sha in entries:
+        if rel.lstrip("/") in SPECIAL_FILES: specials[rel.lstrip("/")] = c
+        else: kept.append((rel, c, sha))
+    entries = kept
+    fn_dir = OUT_DIR.parent / "functions"
+    if fn_dir.is_dir() and any(fn_dir.rglob("*")) and "_worker.js" not in specials:
+        sys.exit("[x] REFUSING TO DEPLOY: functions/ is non-empty but out/_worker.js is not in the deploy set.")
+    print(f"[+] {len(entries)} files" + (f" + specials: {sorted(specials)}" if specials else " (no _worker.js/_routes.json)"))
     # Fail-fast BEFORE the (expensive, ~minutes-long) upload: CF Pages create_deployment
     # rejects a manifest >20,000 files (HTTP 400) -- and per
     # positive-control-before-absence.md this failure is otherwise SILENT: the uploader
@@ -193,11 +270,50 @@ def main():
             upload(jwt, batch); nb += 1; up += len(batch)
         print(f"[+] uploaded {up} files in {nb} batches · {int(time.time()-t0)}s")
     print("[+] creating deployment…")
-    r = create_deployment(manifest)
+    r = create_deployment(manifest, specials)
     if not r.get("success"):
         print(f"ERROR: create-deployment failed: {r}", file=sys.stderr); sys.exit(1)
     res = r["result"]
     print(f"[✓] DEPLOYED · id={res.get('id')} · {res.get('url')} · {int(time.time()-t0)}s")
+    if "_worker.js" in specials:
+        verify_functions_live(PROD_URL if BRANCH == "main" else str(res.get("url") or "").rstrip("/"))
+
+def _looks_html(body, ctype):
+    return "text/html" in (ctype or "").lower() or body.lstrip()[:15].lower().startswith(b"<!doctype html")
+
+def verify_functions_live(base):
+    """Probe the deployed Functions. Status alone cannot discriminate (a live Function rejecting a
+    method returns 405 with a non-HTML body; an ABSENT route falls through to the framework's HTML
+    404 page), so the body type is read too, and a bogus path is the 404 control. Probes chosen
+    for holdlens: POST /api/subscribe with an empty body → the handler's own 400 JSON (never the
+    framework 405); GET /wp-login.php → the middleware's 410. SKIP_FUNCTIONS_PROBE=1 skips."""
+    if os.environ.get("SKIP_FUNCTIONS_PROBE") == "1" or not base:
+        print("[i] Functions probe skipped."); return
+    def probe(u, method="GET", data=None):
+        try:
+            req = urllib.request.Request(u, method=method, data=data, headers={"User-Agent": "cf-deploy-verify", "content-type": "application/json"})
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                return resp.status, _looks_html(resp.read(2048), resp.headers.get("Content-Type", ""))
+        except urllib.error.HTTPError as e:
+            try: body = e.read(2048)
+            except Exception: body = b""
+            return e.code, _looks_html(body, e.headers.get("Content-Type", "") if e.headers else "")
+        except Exception as e:
+            return f"ERR:{type(e).__name__}", False
+    print(f"[+] verifying Functions at {base} (propagation pause 20s)…"); time.sleep(20)
+    ctrl = probe(f"{base}/__deploy_probe_should_404__{uuid.uuid4().hex[:8]}")[0]
+    sub, sub_html = probe(f"{base}/api/subscribe", "POST", b"{}")
+    gone = probe(f"{base}/wp-login.php")[0]
+    print(f"    control(bogus)={ctrl}  POST /api/subscribe={sub} body={'HTML' if sub_html else 'non-HTML'}  GET /wp-login.php={gone} (expect 404 / 400 non-HTML / 410)")
+    if ctrl != 404:
+        print("[!] INCONCLUSIVE: the 404 control did not return 404 — verify by hand.", file=sys.stderr); return
+    if sub == 400 and not sub_html and gone == 410:
+        print("[✓] Functions LIVE."); return
+    if (sub in (404, 405) and sub_html) or gone == 404:
+        print(f"[X] FUNCTIONS ARE DEAD on {base}: the framework's HTML 404/405 answered where the Function should have.\n"
+              f"    The site still serves HTML 200, so this does not look broken from a browser. Rebuild + redeploy.", file=sys.stderr)
+        sys.exit(4)
+    print(f"[!] Functions probe mismatch (subscribe={sub}, wp-login={gone}) — not the dead-worker signature; check by hand.", file=sys.stderr)
 
 if __name__ == "__main__":
     main()
