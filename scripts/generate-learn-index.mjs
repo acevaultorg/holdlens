@@ -1,7 +1,7 @@
 // Builds public/api/v1/learn.json from the canonical LEARN_SEQUENCE
 // inside components/LearnReadNext.tsx. Run via postbuild.
 import { readFile, writeFile, mkdir } from "node:fs/promises";
-import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const ROOT = new URL("..", import.meta.url);
 const SRC = new URL("./components/LearnReadNext.tsx", ROOT);
@@ -133,6 +133,6 @@ const out = {
   articles,
 };
 
-await mkdir(dirname(OUT.pathname), { recursive: true });
+await mkdir(new URL(".", OUT), { recursive: true });
 await writeFile(OUT, JSON.stringify(out, null, 2) + "\n");
-console.log(`✓ learn.json — ${articles.length} articles → ${OUT.pathname}`);
+console.log(`✓ learn.json — ${articles.length} articles → ${fileURLToPath(OUT)}`);
