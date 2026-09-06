@@ -43,16 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Gate 2 (228w, 349w, 248w, 448w — all below 600w substance floor).
     // Pages remain live for internal navigation; same data lives richer
     // on /best-now, /buys, /sells, /scores, /consensus.
-    // Insiders hub — REMOVED from the sitemap 2026-07-27. scripts/deploy-cf.sh
-    // moves the entire out/insiders tree aside before deploying (the AdSense
-    // thin-content remediation), so /insiders and /insiders/live are not on the
-    // live site at all — both returned HTTP 404 while still being advertised
-    // here. A sitemap that points at 404s is a quality signal we cannot afford
-    // on a domain with an AdSense thin-content history.
-    //
-    // If the hubs are ever wanted back, the fix belongs in deploy-cf.sh (hold
-    // back only out/insiders/[insider]/*, not the whole tree) — NOT here.
-    // Re-adding these URLs without that change just re-advertises 404s.
+    // Insiders hub — was REMOVED from the sitemap 2026-07-27 because
+    // scripts/deploy-cf.sh moved the entire out/insiders tree aside before
+    // deploying, so /insiders + /insiders/live both 404'd while still being
+    // advertised here. RESTORED 2026-09-06 (task ms3od37n8jl3ve):
+    // deploy-cf.sh now holds back only out/insiders/[insider]/* (the actual
+    // thin per-entity pages), so both hubs are live again — see the
+    // `insidersUrls` array below for the current entries.
     // SEC-data product hubs — the 6-concept stack (13F + Form 4 + 8-K +
     // 13D/G + DEF 14A + Ch 11). All canonical for their filing-type
     // keyword cluster + EDGAR-sourced. Pre-fix: only /insiders/ was in
@@ -424,7 +421,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // for users via internal navigation; only Googlebot indexing is suppressed.
   // /investor/[slug]/* (1,150 main words) + /signal/[ticker]/* (1,339 main words)
   // are substantive — STAY indexed.
-  const insidersUrls: MetadataRoute.Sitemap = [];
+  //
+  // RESTORED 2026-09-06 (task ms3od37n8jl3ve): /insiders (the hub) and
+  // /insiders/live were removed from the sitemap 2026-07-27 because
+  // deploy-cf.sh's blunt full-tree exclusion made them 404 in production —
+  // NOT because they were thin. Neither page sets a page-level noindex
+  // (app/insiders/page.tsx + app/insiders/live/page.tsx both carry full
+  // canonical + OpenGraph metadata meant to be indexed). deploy-cf.sh now
+  // holds back only the ~4,199 per-insider ENTITY dirs (the actual thin
+  // pages, unaffected by this restore) and prune-insiders-rsc.mjs drops the
+  // RSC .txt twins on the noindexed company/officer/live pages to stay
+  // under CF Pages' 20k-file cap. Verify live before ever removing these
+  // two again: `curl -sI holdlens.com/insiders/` + `/insiders/live/`.
+  const insidersUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/insiders`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.75,
+    },
+    {
+      url: `${base}/insiders/live`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    },
+  ];
 
   // /insiders/company/[ticker]/ — REMOVED from sitemap (still live; noindexed
   // at page level; ~239 main words = thin per AdSense thin-content gate).
