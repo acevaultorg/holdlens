@@ -153,12 +153,29 @@ def upload(jwt, batch, attempts=40):
             time.sleep(s)
     raise RuntimeError(f"batch failed after {attempts}: {last}")
 
-# CF Pages treats these two as CONFIGURATION, not static assets. They must be posted as their
+# CF Pages treats all four as CONFIGURATION, not static assets. They must be posted as their
 # own multipart FILE parts on create-deployment; left in the asset manifest they are stored as
 # inert files and never executed (sculptclub's deployer records the A/B: worker-as-asset →
-# /api 404/405; worker-as-form-field → live). _headers/_redirects are NOT moved — holdlens
-# has documented that _redirects wildcards broke production once; leave them as assets.
-SPECIAL_FILES = ("_worker.js", "_routes.json")
+# /api 404/405; worker-as-form-field → live).
+#
+# CORRECTED 2026-09-06 (task mtpgtssqyumit5): a prior version of this comment excluded
+# _headers/_redirects here, citing "holdlens documented that _redirects wildcards broke
+# production once." Checked against this repo's own history: the real 2026-04-20 incident
+# was a BROAD catch-all rule (`/section/:slug 302`) over-matching real static pages under
+# plain wrangler/Vercel deploy — nothing to do with manifest-vs-config-part placement. That
+# rule was removed same-day (out/_redirects "404 RECOVERY removed 2026-04-20" comment) and
+# every rule shipped since is scoped to a specific path prefix (`/stock/:ticker`,
+# `/investor/:slug/q/*`, etc.) — none are section-root catch-alls.
+#
+# Meanwhile leaving _redirects OUT of SPECIAL_FILES here (this deployer has been the sole
+# holdlens deploy path since e6b034cef, 2026-06-28) means it has sat as an INERT asset the
+# whole time: verified live 2026-09-06, `curl -sIL holdlens.com/stock/AAPL` serves the
+# disabled Next.js __next_error__ placeholder shell (200) instead of the intended 301 to
+# /signal/AAPL/ — every /stock/*, /stocks/*, /investors/* and BRK.A alias redirect has been
+# silently broken for ~2 months. Moving _redirects (and _headers) into SPECIAL_FILES fixes
+# that live regression; it does not reintroduce the 04-20 incident, whose actual cause
+# (an over-broad wildcard) is absent from the current file.
+SPECIAL_FILES = ("_worker.js", "_routes.json", "_headers", "_redirects")
 
 def regenerate_worker_from_functions():
     """Recompile functions/ → out/_worker.js on every run (ported from readstacks 2026-07-27).
