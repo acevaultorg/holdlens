@@ -1033,7 +1033,7 @@ async function main(): Promise<void> {
         },
         {
           path: "/insiders/officer/{slug}.json",
-          desc: "Per-officer transaction history + InsiderScore",
+          desc: "Per-officer transaction history + InsiderScore — generated at build but NOT deployed to holdlens.com (Cloudflare Pages 20,000-file cap; see scripts/deploy-cf.sh)",
         },
         {
           path: "/insiders/cluster.json",
@@ -1232,7 +1232,7 @@ async function main(): Promise<void> {
       { path: "/insiders/index.json", desc: "Sub-catalog: /insiders/* family (Form 4 insider trading)" },
       { path: "/insiders/live.json", desc: "Last 100 SEC Form 4 transactions across all tickers" },
       { path: "/insiders/company/{ticker}.json", desc: "Per-ticker insider-trade aggregate + transaction list" },
-      { path: "/insiders/officer/{slug}.json", desc: "Per-officer transaction history + InsiderScore" },
+      { path: "/insiders/officer/{slug}.json", desc: "Per-officer transaction history + InsiderScore — generated at build but NOT deployed to holdlens.com (Cloudflare Pages 20,000-file cap; see scripts/deploy-cf.sh)" },
       { path: "/insiders/cluster.json", desc: "Cluster-buy detection: ≥3 same-direction insiders within 30 days at same company" },
       { path: "/events/index.json", desc: "Sub-catalog: /events/* family (SEC Form 8-K material events)" },
       { path: "/events/live.json", desc: "Last 100 SEC Form 8-K material events across all tracked tickers" },

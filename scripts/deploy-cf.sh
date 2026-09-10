@@ -20,6 +20,10 @@ HOLD="${TMPDIR:-/tmp}/holdlens-insiders-hold"
 rm -rf "$HOLD"; mkdir -p "$HOLD"
 restore() {
   [ -d "$HOLD" ] || return 0
+  if [ -d "$HOLD/__api_insiders_officer/officer" ] && [ ! -e out/api/v1/insiders/officer ]; then
+    mkdir -p out/api/v1/insiders && mv "$HOLD/__api_insiders_officer/officer" out/api/v1/insiders/officer
+  fi
+  rmdir "$HOLD/__api_insiders_officer" 2>/dev/null || true
   for d in "$HOLD"/*/; do
     [ -d "$d" ] || continue
     name="$(basename "$d")"
@@ -32,6 +36,18 @@ if [ -d out/insiders ]; then
     ! -name company ! -name officer ! -name live \
     -exec mv {} "$HOLD/" \;
 fi
+# WIDENED 2026-09-10 (card mtpiejkpiimrnv): b60e5884a restored /insiders/company/* +
+# /insiders/officer/* HTML (5,604 files, noindexed, linked from 7,031 pages incl. the
+# homepage) and the upload overshot the cap at 23,917. Measured on that build, the
+# cheapest class with ZERO shipped references is out/api/v1/insiders/officer/ —
+# 6,248 per-officer JSON twins of the noindexed officer pages: referenced by 0 built
+# HTML files, absent from sitemap-ai.xml and llms.txt, only listed in the API
+# catalog (whose desc now says so). Holding it takes the upload to ~17.7k. Restored
+# on exit like the entity dirs, so a local out/ is never left mutilated.
+if [ -d out/api/v1/insiders/officer ]; then
+  mkdir -p "$HOLD/__api_insiders_officer"
+  mv out/api/v1/insiders/officer "$HOLD/__api_insiders_officer/officer"
+fi
 # Analytics-tag guard (2026-09-10): refuse to ship an out/ built without GA4/Clarity
 # (a worktree or fresh clone drops the gitignored env file; the build then exits 0 untagged).
 node scripts/predeploy-guard.mjs
@@ -42,6 +58,6 @@ if [ "$TOTAL_FILES" -gt "$CAP" ]; then
        "(CF Pages hard-limits a deployment at 20,000). Prune further or widen the exclusion." >&2
   exit 1
 fi
-echo "[+] deploying $TOTAL_FILES files (company/officer/live restored, per-insider entity pages excluded)"
+echo "[+] deploying $TOTAL_FILES files (company/officer/live HTML restored; per-insider entity pages + per-officer API JSON excluded)"
 OUT_DIR="$PWD/out" python3 scripts/cf-pages-chunked-deploy.py
 npm run indexnow 2>/dev/null || true
