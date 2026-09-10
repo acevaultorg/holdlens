@@ -21,6 +21,12 @@ variables:
   # Baked into static export at build time; layout.tsx loads Clarity script
   # only when this is set. Project: holdlens (wk6syntdl3).
   NEXT_PUBLIC_CLARITY_ID: "wk6syntdl3"
+  # GA4 measurement ID (public client-side identifier, not a secret — it is in
+  # every served <head>). 2026-09-11: scripts/predeploy-guard.mjs (43386205a)
+  # now refuses an out/ built without the GA4 tag, and the runner has no
+  # .env.production.local, so main went red on 43386205a + 80093348. Same
+  # hard-coded pattern as CLARITY_ID above; mirrors .env.production.local.
+  NEXT_PUBLIC_GA4_ID: "G-HDK5CHBQEY"
   # Stripe Payment Links — PUBLIC URLs (not secrets); inlined at build time by
   # components/StripeCheckoutButton.tsx via process.env.NEXT_PUBLIC_*.
   # Without these in CI variables, the GitLab runner's `next build` produces
@@ -44,11 +50,12 @@ variables:
   NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_3L0A5QVO_3TVf_0ceBwx5g_R5i5yso8"
 
 cache:
-  # v3 = invalidate when NEXT_PUBLIC_* env-baked vars change.
+  # v4 = invalidate when NEXT_PUBLIC_* env-baked vars change (2026-09-11: GA4 ID added).
+  # v3 = the previous bump:
   # 2026-05-13: bumped from v2 to force fresh build with Supabase auth keys
   # newly inlined above. v2 cache would otherwise serve stale signup/page-*.js
   # chunks compiled without the publishable key embedded.
-  key: holdlens-cache-v3
+  key: holdlens-cache-v4
   paths:
     - node_modules/
     - .next/cache/
