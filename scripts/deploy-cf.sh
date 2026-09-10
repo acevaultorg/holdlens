@@ -32,6 +32,9 @@ if [ -d out/insiders ]; then
     ! -name company ! -name officer ! -name live \
     -exec mv {} "$HOLD/" \;
 fi
+# Analytics-tag guard (2026-09-10): refuse to ship an out/ built without GA4/Clarity
+# (a worktree or fresh clone drops the gitignored env file; the build then exits 0 untagged).
+node scripts/predeploy-guard.mjs
 TOTAL_FILES=$(find out -type f | wc -l | tr -d ' ')
 CAP=19900
 if [ "$TOTAL_FILES" -gt "$CAP" ]; then
