@@ -191,6 +191,14 @@ export default function AboutPage() {
           when you want applied analysis on tracked superinvestor positions, you&apos;re already here. The two sites
           do not duplicate content — they complement.
         </p>
+        <p>
+          HoldLens is published by <a href="https://caslonmedia.com/" className="text-brand hover:underline">Caslon Media</a>,
+          which also runs{" "}
+          <a href="https://sourcescore.org/" className="text-brand hover:underline" rel="noopener">SourceScore</a> (AI-citation
+          readiness scoring) and{" "}
+          <a href="https://zipradar.org/" className="text-brand hover:underline" rel="noopener">zipradar</a> (federated
+          neighborhood data). See the <a href="https://caslonmedia.com/brands" className="text-brand hover:underline">full network</a>.
+        </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-3 text-text">Not investment advice</h2>
         <p className="text-muted">
