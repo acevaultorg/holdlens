@@ -1,15 +1,22 @@
 # Affiliate activation — HoldLens
 
-**Going live with an approved program is one environment variable. No code edit, no PR, no rebuild-and-wait beyond the normal deploy.**
+**Going live with an approved program is an environment-only site change, but the value must be present during the local production build and the resulting artifact must pass the normal guarded Cloudflare deploy.**
 
-Every affiliate surface on the site is already built and already instrumented. It renders **nothing** — no heading, no empty container, no whitespace, no layout shift — until the matching env var is set. As of 2026-08-11 **zero programs are approved and zero affiliate links render anywhere on the site.**
+Every affiliate surface on the site is already built and already instrumented. It renders **nothing** — no heading, no empty container, no whitespace, no layout shift — until the matching env var is set. Simply Wall St was approved on 2026-09-08 but is not active; as of 2026-09-11 **zero affiliate links render anywhere on the site.**
 
 ---
 
-## 1. Set the env var
+## 1. Capture the provider URL, then set the local build variable
 
-Cloudflare Pages → project `holdlens` → **Settings → Variables and Secrets** → Production → Add.
-Then redeploy (`npm run deploy`, or push to `main` for CI).
+Create the approved program's tracking URL inside its provider dashboard. Never hand-build an affiliate URL and never commit it. Store the exact URL and display name in the canonical main checkout's gitignored `.env.production.local` file.
+
+HoldLens is a static export built locally. Cloudflare Pages dashboard variables do **not** reach that build, and a push to `main` runs GitLab build validation but does **not** deploy production. From the canonical main checkout, run the guarded production path:
+
+```bash
+npm run deploy
+```
+
+That command cleans and rebuilds the site, validates the newly built/pruned artifact, uploads it through `scripts/deploy-cf.sh`, and then pings IndexNow. Do not call the Python uploader or bare Wrangler command directly.
 
 ### Brokerage partners — render on `/partners` only
 
@@ -31,12 +38,14 @@ The value is the raw affiliate URL, e.g. `https://www.interactivebrokers.com/mkt
 
 ### Research / data tools — render inline, below data tables
 
-A research tool is not a brokerage (no funded financial account), so it is allowed to render inline on ticker and insider pages — placed **below** the data table, never beside a score.
+A research tool is not a brokerage (no funded financial account), so it is allowed to render inline on ticker and signal pages — placed **below** the data table, never beside a score.
 
 | Env var | Purpose |
 |---|---|
 | `NEXT_PUBLIC_AFF_RESEARCH` | The affiliate URL. **Setting this alone activates the slot.** |
-| `NEXT_PUBLIC_AFF_RESEARCH_NAME` | Display name, e.g. `Seeking Alpha`. Optional — defaults to "our research partner". |
+| `NEXT_PUBLIC_AFF_RESEARCH_NAME` | Display name, e.g. `Simply Wall St`. Optional — defaults to "our research partner". |
+
+Before upload, inspect representative built `/ticker/*` and `/signal/*` HTML and prove that the provider-generated destination, display name, `rel="sponsored nofollow noopener"`, and adjacent disclosure are present only on the intended below-table surface. Do not follow the affiliate destination during QA.
 
 ---
 
@@ -71,7 +80,7 @@ Tracking both steps means the funnel — result page → `/partners` → broker 
 
 ## 4. Turning a partner off
 
-Delete the env var and redeploy. The surface disappears cleanly — the render-nothing path is the default, not a special case.
+Delete both partner variables from the canonical main checkout's `.env.production.local`, run `npm run deploy`, and verify representative live ticker and signal pages no longer contain the card. The render-nothing path is the default, not a special case.
 
 ---
 

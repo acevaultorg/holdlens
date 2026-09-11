@@ -8,8 +8,9 @@ node_modules
 next-env.d.ts
 scripts/.indexnow-key
 # Static export build output — regenerated on every build.
-# Deployed via `wrangler pages deploy out/` straight from build artifacts;
-# tracking this churns 2500 files per commit and bloats PR diffs.
+# Deployed only through `npm run deploy` -> scripts/deploy-cf.sh after its
+# pruning, cap, and post-build checks; tracking this churns thousands of files
+# per commit and bloats diffs.
 out/
 # Cloudflare Wrangler temp files — ephemeral per deploy.
 .wrangler/

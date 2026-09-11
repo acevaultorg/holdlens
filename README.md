@@ -7,7 +7,7 @@ See what the smartest investors are buying. Track 82+ superinvestors with convic
 ## Stack
 - Next.js 15 (App Router, TypeScript)
 - Tailwind CSS (dark mode default)
-- Vercel deployment
+- Cloudflare Pages static deployment via the guarded local build path
 - Zero DB in v0 (hardcoded BRK data); EDGAR parser + Postgres in v0.2
 
 ## Quickstart
@@ -17,13 +17,16 @@ npm run dev
 # → http://localhost:3000
 ```
 
-## Deploy (first time)
+## Deploy
+
+Production does not auto-deploy from GitLab or Vercel. Use the canonical main checkout with its gitignored production environment and Cloudflare credentials:
+
 ```bash
-npm install -g vercel
-vercel link
-vercel --prod
-# Then in Cloudflare dashboard: point holdlens.com A/CNAME to Vercel
+npm ci
+npm run deploy
 ```
+
+`npm run deploy` delegates to `scripts/deploy-cf.sh`: clean → build → post-build guard → pruned/capped Cloudflare upload → IndexNow. Do not upload `out/` with bare Wrangler or the Python uploader, and do not expect Cloudflare dashboard variables to be injected into this locally built static export.
 
 ## Roadmap
 - v0.1 (now) — landing + Buffett backtest + Buffett profile + email capture

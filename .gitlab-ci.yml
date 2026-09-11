@@ -1,15 +1,9 @@
-# HoldLens deploys via VERCEL — the Vercel project is git-linked to GitLab `main`
-# with auto-deploy on every push; holdlens.com + www are verified on the Vercel
-# project and served behind the Cloudflare proxy. Verified 2026-05-31: every push
-# this session produced a READY Vercel production deploy.
-#
-# This CI therefore does NOT deploy. It only runs the scheduled EDGAR data refresh
-# (and a build-validation gate). The old CF-Pages `deploy` stage (wrangler pages
-# deploy) was REMOVED 2026-05-31 — it was redundant (Vercel already deploys every
-# push) AND always failed (wrangler EPIPE at ~13k pages, per
-# rules/cloudflare-pages-epipe.md), which is what produced the persistent red
-# pipelines + hung/concurrent-pipeline noise + the EPIPE worry. CF Pages is not
-# the live origin for holdlens.com.
+# HoldLens production is a Cloudflare Pages static export built and uploaded from
+# the canonical main checkout with `npm run deploy` -> scripts/deploy-cf.sh.
+# Vercel has not served this project since 2026-07-03. A GitLab push does NOT
+# deploy production: this file runs the scheduled EDGAR refresh and validates a
+# build only. The production script applies the required pruning/file-cap logic
+# and checks the exact artifact after build, immediately before upload.
 
 stages:
   - refresh
@@ -29,10 +23,10 @@ variables:
   NEXT_PUBLIC_GA4_ID: "G-HDK5CHBQEY"
   # Stripe Payment Links — PUBLIC URLs (not secrets); inlined at build time by
   # components/StripeCheckoutButton.tsx via process.env.NEXT_PUBLIC_*.
-  # Without these in CI variables, the GitLab runner's `next build` produces
-  # empty strings → live /pricing CTA falls through to /alerts email-capture
-  # instead of Stripe Checkout. CF Pages env vars don't help here because the
-  # build happens in the GitLab runner before wrangler ships the artifact.
+  # Without these in CI variables, the GitLab validation build produces empty
+  # strings and cannot prove the /pricing CTA. Production is built separately in
+  # the canonical main checkout; CF Pages dashboard vars do not reach either
+  # static build.
   # Hard-coded mirrors the CLARITY_ID pattern above + the values in
   # .env.production.local. 2026-05-13 fix following 27 days of broken CTA.
   NEXT_PUBLIC_STRIPE_PAYMENT_LINK: "https://buy.stripe.com/9B6eVcavmcspgsSaIJfIs00"
@@ -96,10 +90,10 @@ build:
 #   2. Fetch latest Form 4 insider trades
 #   3. Fetch latest 8-K material events
 #   4. Generate daily EOD price snapshot
-#   5. Commit data/* changes back to main → triggers regular build+deploy
-#      pipeline (build → deploy stages above) which picks up the fresh data.
+#   5. Commit data/* changes back to main → triggers the build-validation job.
+#      Production remains unchanged until an explicit guarded local deploy.
 #
-# No deploy from this stage — the commit-back triggers the existing pipeline.
+# No production deploy occurs in this pipeline.
 refresh:
   stage: refresh
   image: node:24-bookworm-slim
@@ -132,6 +126,7 @@ refresh:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
 
-# (CF-Pages `deploy` stage removed 2026-05-31 — Vercel is the live deploy path.
-#  See header note. Deploys happen automatically on push via the git-linked
-#  Vercel project; no wrangler step is needed or wanted.)
+# Production deployment is deliberately absent. Use `npm run deploy` from the
+# canonical main checkout; do not add a bare Wrangler upload here because the
+# production script owns pruning, the file-cap gate, post-build validation, and
+# the chunked uploader.

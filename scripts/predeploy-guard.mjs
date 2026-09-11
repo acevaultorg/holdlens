@@ -9,8 +9,10 @@
 // hardened Pivot A compliance state; a stale-deploy clobber would surface old
 // verdict-labels + thin-content templates to the reviewer).
 //
-// Wire-up: invoked as predeploy + as part of CI deploy step + as a safety check
-// in any future deploy automation. Pattern replicated from sourcescore-org.
+// Wire-up: invoked by postbuild and again inside scripts/deploy-cf.sh after its
+// upload-set pruning, immediately before the chunked uploader. It is deliberately
+// not an npm `predeploy` lifecycle hook: npm runs that hook before the deploy
+// script has performed its fresh build. Pattern replicated from sourcescore-org.
 
 import { existsSync, statSync } from "node:fs";
 import { resolve } from "node:path";
@@ -30,7 +32,7 @@ if (missing.length > 0) {
   for (const p of missing) console.error(`   - ${p}`);
   console.error("");
   console.error("Fix: run `npm run build` first (which runs prebuild + postbuild generators), then retry deploy.");
-  console.error("Or use `npm run deploy` which does clean → build → wrangler → indexnow as one chain.");
+  console.error("Or use `npm run deploy` which does clean → build → guard → chunked Cloudflare upload → IndexNow as one chain.");
   process.exit(1);
 }
 
