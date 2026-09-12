@@ -14,6 +14,26 @@
 # only client-side soft-nav) to make room under the 20k cap.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+
+# ── rg-freeze-guard hook v1 (2026-09-12) ────────────────────────────────────────
+# Refuse to deploy over an RG-frozen experiment or a local deploy hold. holdlens was
+# the ONLY site with an active RG freeze (RG-IMPACT-HOLDLENS-SWS-20260911-R1) whose
+# deploy path never read RG_CONTROL_REGISTER.json — 14 sibling sites already hook it
+# via scripts/predeploy-git-guard.mjs, which this repo does not have. Overrides are the
+# guard's own: RG_FREEZE_ACK / RG_FREEZE_OVERRIDE / DEPLOY_HOLD_OVERRIDE.
+# Called twice on purpose: once here to fail fast before a ~30min build (holds +
+# acknowledgement only), and once just before upload with the FRESH out/ so the
+# built-vs-live page compare is meaningful.
+RG_GUARD=""
+for _p in "$HOME/.claude/bin/rg-freeze-guard.mjs" "$HOME/Local/VAULT-Fleet/scripts/rg-freeze-guard.mjs"; do
+  if [ -f "$_p" ]; then RG_GUARD="$_p"; break; fi
+done
+if [ -z "$RG_GUARD" ]; then
+  echo "⚠️  rg-freeze-guard not found (~/.claude/bin or ~/Local/VAULT-Fleet/scripts) — RG freeze check SKIPPED on this Mac"
+else
+  node "$RG_GUARD" --site holdlens.com || { echo "❌ deploy-cf: DEPLOY BLOCKED by rg-freeze-guard (pre-build)"; exit 1; }
+fi
+# ── end rg-freeze-guard hook v1 ─────────────────────────────────────────────────
 npm run clean 2>/dev/null || true
 npm run build
 HOLD="${TMPDIR:-/tmp}/holdlens-insiders-hold"
@@ -59,5 +79,9 @@ if [ "$TOTAL_FILES" -gt "$CAP" ]; then
   exit 1
 fi
 echo "[+] deploying $TOTAL_FILES files (company/officer/live HTML restored; per-insider entity pages + per-officer API JSON excluded)"
+if [ -n "$RG_GUARD" ]; then
+  node "$RG_GUARD" --site holdlens.com --out "$PWD/out" \
+    || { echo "❌ deploy-cf: DEPLOY BLOCKED by rg-freeze-guard (built-vs-live)"; exit 1; }
+fi
 OUT_DIR="$PWD/out" python3 scripts/cf-pages-chunked-deploy.py
 npm run indexnow 2>/dev/null || true
