@@ -202,11 +202,19 @@ function MovesColumn({
     if (aBuy !== bBuy) return aBuy ? -1 : 1;
     return Math.abs(b.deltaPct ?? 0) - Math.abs(a.deltaPct ?? 0);
   });
+  // MOVES_CAP: some managers (e.g. Greenblatt's Magic Formula) file 13Fs with
+  // hundreds of small position changes in one quarter — rendering all of them
+  // pushed this page's HTML past the 500KB perf budget (measured 2026-09-15:
+  // Greenblatt alone carried 489 moves). Same cap + "+N more" convention as
+  // app/activity/page.tsx's PER_QUARTER_CAP, applied here for the same reason.
+  const MOVES_CAP = 20;
+  const shown = sorted.slice(0, MOVES_CAP);
+  const hiddenCount = sorted.length - shown.length;
   return (
     <div className="rounded-2xl border border-border bg-panel overflow-hidden">
       <div className="px-5 py-3 border-b border-border text-xs font-bold text-text">{name}</div>
       <ul className="divide-y divide-border">
-        {sorted.map((mv, i) => {
+        {shown.map((mv, i) => {
           const isBuy = mv.action === "new" || mv.action === "add";
           const color = isBuy ? "text-emerald-400" : "text-rose-400";
           const label =
@@ -230,6 +238,11 @@ function MovesColumn({
           );
         })}
       </ul>
+      {hiddenCount > 0 && (
+        <div className="px-5 py-3 border-t border-border text-xs text-dim">
+          + {hiddenCount} more moves this quarter (showing the {MOVES_CAP} highest-conviction)
+        </div>
+      )}
     </div>
   );
 }

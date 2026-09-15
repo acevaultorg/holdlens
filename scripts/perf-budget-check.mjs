@@ -32,19 +32,22 @@ const ALLOWLIST = new Set([
   'out/insiders/company/snse/index.html', // 504KB snse insider history; 4KB over (2026-05-17). noindex.
   'out/insiders/company/hawk/index.html', // 503KB hawk insider history; 3KB over (2026-05-17). noindex.
   'out/insiders/company/uthr/index.html', // 500KB uthr insider history; 0.4KB over (2026-05-17). noindex.
-  // 2026-08-11 — these two sat at 499.5/499.8KB (0.2-0.5KB under budget) and were
-  // tipped over by a ~0.6KB publisher-attribution footer line added for Impact
-  // account 7598036 property verification. UNLIKE the /insiders entries above these
-  // two ARE indexed, so the overage is a real CWV cost, not a cosmetic one — they
-  // were already at the edge and any future addition breaks them again. Slim the
-  // render loops (.slice(N) on the manager grid) — tracked as its own task.
-  'out/compare/managers/index.html',                                  // 500.2KB
-  'out/compare/managers/joel-greenblatt-vs-howard-marks/index.html',  // 500.4KB
+  // 2026-08-11 — this page sat at 499.5KB (0.2KB under budget) and was tipped over
+  // by a ~0.6KB publisher-attribution footer line added for Impact account 7598036
+  // property verification. Indexed, so the overage is a real CWV cost, not cosmetic.
+  // 2026-09-15 — the SIBLING per-pair pages (joel-greenblatt-vs-howard-marks,
+  // joel-greenblatt-vs-andreas-halvorsen) were removed from this list: root-caused
+  // to Greenblatt's Magic Formula filing 489 quarterly moves vs the fleet norm of
+  // 2-47, all rendered unbounded in MovesColumn. Fixed with a MOVES_CAP=20 +
+  // "+N more" footer (same pattern as app/activity/page.tsx's PER_QUARTER_CAP).
+  // Verified: joel-greenblatt-vs-howard-marks 519,043B -> 175,652B (66% cut),
+  // joel-greenblatt-vs-andreas-halvorsen -> 181,843B. THIS index page is a
+  // DIFFERENT root cause (it renders the whole N(82,2)≈600-pair grid, not one
+  // manager's moves) and remains open — do not assume the MovesColumn fix touches it.
+  'out/compare/managers/index.html',                                  // 512.8KB
   // 2026-05-19 — same Linux CI vs macOS minification delta (CI ~10KB heavier). Pattern matches noma/crwv/fold/car/snse/hawk/uthr. Insider-company pages noindex per v19.44 thin-content fix → SEO unaffected. Bundle for /insiders refactor.
   'out/insiders/company/apls/index.html', // 507KB apls insider history; 7KB over (2026-05-19 CI). noindex.
   'out/insiders/company/crwd/index.html', // 501KB crwd insider history; 1KB over (2026-05-19 CI). noindex.
-  // Compare/managers/X-vs-Y is one of ~N(82,2) ≈ 600 deep long-tail combinations. Indexed (low individual SEO weight, but ItemList schema in aggregate). 501KB CI / 491KB local. Same Linux-vs-mac minification delta. Slim with /compare refactor when next touched.
-  'out/compare/managers/joel-greenblatt-vs-andreas-halvorsen/index.html', // 501KB manager-vs-manager comparison; 1KB over (2026-05-19 CI). Indexed but long-tail.
   'out/scores/index.html', // 783KB canonical "all stocks ranked by ConvictionScore" page (Ship PP+QQ+RR, 2026-05-19). 456 tickers × 9 fields × desktop table + mobile cards. Spec is "every tracked stock visible". ItemList schema all 456; visible rows capped 50/section + overflow footer. Indexed (this is the canonical ranking surface — SEO + AEO win justifies budget). Consider client-side virtualization or section-paginated routes in a future refactor.
 ]);
 
