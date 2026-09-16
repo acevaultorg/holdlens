@@ -588,8 +588,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return allUrls.map((entry) => {
     const u = entry.url;
     const lastSeg = u.split("/").pop() || "";
-    // Skip if already ends with /, has a file-extension, or has a query string
-    if (u.endsWith("/") || /\.[a-z0-9]+(\?|$)/i.test(lastSeg) || u.includes("?")) {
+    // Skip if already ends with /, has a real file extension, or has a query string.
+    // Only KNOWN extensions count: a bare /\.[a-z0-9]+$/i also matched dotted tickers
+    // (BRK.B, CSU.TO), which left them slash-less in the sitemap and 308-redirecting
+    // (Search Console "page with redirect", 2026-09).
+    if (u.endsWith("/") || /\.(xml|json|txt|ico|png|jpe?g|gif|svg|webp|avif|pdf|csv|rss|atom|webmanifest)(\?|$)/i.test(lastSeg) || u.includes("?")) {
       return entry;
     }
     return { ...entry, url: u + "/" };
