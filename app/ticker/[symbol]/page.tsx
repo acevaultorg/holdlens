@@ -22,6 +22,8 @@ import AffiliateCTA from "@/components/AffiliateCTA";
 import RelatedSignals from "@/components/RelatedSignals";
 import DividendTaxCalc from "@/components/DividendTaxCalc";
 import { TICKER_INDEX, getTicker } from "@/lib/tickers";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_FILINGS } from "@/data/books";
 
 export async function generateStaticParams() {
   return Object.keys(TICKER_INDEX).map((symbol) => ({ symbol }));
@@ -342,6 +344,7 @@ export default async function TickerPage({ params }: { params: Promise<{ symbol:
         Data sourced from SEC 13F filings. {t.symbol} ownership reflects publicly disclosed long positions only.
         Not investment advice.
       </p>
+      <InvestingBooks heading="Read the filings like an analyst" sub="The two books that teach how to read what a company and its holders actually disclose." books={booksByTitles(BOOKS_FILINGS)} />
     </div>
   );
 }

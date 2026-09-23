@@ -112,6 +112,10 @@ export default function LiveTicker({ symbols }: Props) {
                 <span className={`tabular-nums font-semibold ${color}`}>
                   {up ? "▲" : "▼"} {fmtPct(q.dayChangePct)}
                 </span>
+                {/* The quote comes from a 1-month chart (getQuotes range "1mo"), so this
+                    is a ONE-MONTH change, not a daily move; unlabeled it read as absurd
+                    daily swings (design pass 2026-09-23). */}
+                <span className="text-[10px] text-dim">1M</span>
               </a>
             );
           })}

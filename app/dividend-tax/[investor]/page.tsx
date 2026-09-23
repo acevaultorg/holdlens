@@ -12,6 +12,8 @@ import {
   type CountryCode,
 } from "@/lib/dividend-tax";
 import { AUTHOR_SCHEMA } from "@/lib/author";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_DIVIDEND } from "@/data/books";
 
 // Programmatic per-investor-country page for the dividend-tax section.
 // Each page shows that investor's withholding matrix across all supported
@@ -335,6 +337,7 @@ export default async function InvestorCountryPage(
       <p className="mt-16 text-xs text-dim">
         Estimates for educational purposes only. Tax rules change; consult a qualified tax professional for your specific situation. Sources cited above were current as of {META.last_verified}. Not investment advice.
       </p>
+      <InvestingBooks heading="Recommended reading on long-term investing" sub="On why taxes and costs, not picks, decide most long-term returns." books={booksByTitles(BOOKS_DIVIDEND)} />
     </div>
   );
 }

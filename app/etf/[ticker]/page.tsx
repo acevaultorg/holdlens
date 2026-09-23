@@ -5,6 +5,8 @@ import TickerLogo from "@/components/TickerLogo";
 import TickerLink from "@/components/TickerLink";
 import ShareStrip from "@/components/ShareStrip";
 import { ETFS, getEtf, formatAum } from "@/lib/etfs";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_ETF } from "@/data/books";
 
 export async function generateStaticParams() {
   return ETFS.map((e) => ({ ticker: e.ticker }));
@@ -270,6 +272,7 @@ export default async function EtfDetailPage({
         page as of {e.asOfDate}. ETFs publish full holdings daily; weights
         shown are snapshot. Not investment advice.
       </p>
+      <InvestingBooks heading="Before you pick an index fund" sub="Two books on why low-cost index funds beat most active managers, by the man who built them." books={booksByTitles(BOOKS_ETF)} />
     </div>
   );
 }

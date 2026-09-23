@@ -9,6 +9,8 @@ import {
   formatBuybackAmount,
   BUYBACK_PROGRAMS,
 } from "@/lib/buybacks";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_FILINGS } from "@/data/books";
 
 // /buybacks/ — landing for the Corporate Buyback Tracker sub-vertical.
 // The one question a retail investor asks: "which companies are repurchasing
@@ -280,6 +282,7 @@ export default function BuybacksLanding() {
           </a>
         </div>
       </section>
+      <InvestingBooks heading="Read the filings like an analyst" sub="The two books that teach how to read what a company and its holders actually disclose." books={booksByTitles(BOOKS_FILINGS)} />
     </div>
   );
 }

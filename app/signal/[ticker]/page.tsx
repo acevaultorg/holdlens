@@ -29,6 +29,8 @@ import { getTickerSignals, getTickerTrend, getNetSignal, ratingLabel, MANAGER_QU
 import { formatSignedScore, convictionLabel, getConviction } from "@/lib/conviction";
 import { MANAGERS } from "@/lib/managers";
 import { QUARTER_LABELS, LATEST_QUARTER, QUARTER_FILED } from "@/lib/moves";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_FILINGS } from "@/data/books";
 
 // Build-time timestamp — signals to LLM crawlers + Googlebot when this
 // static page was last regenerated. Per v19.4 freshness_per_page archetype.
@@ -790,6 +792,7 @@ export default async function SignalPage({ params }: { params: Promise<{ ticker:
         {" "}— the encyclopedic reference for every SEC form variant (13F-HR / 13F-NT / 13F-HR/A) and the
         regulatory citation behind the data on this page.
       </p>
+      <InvestingBooks heading="Read the filings like an analyst" sub="The two books that teach how to read what a company and its holders actually disclose." books={booksByTitles(BOOKS_FILINGS)} />
     </div>
   );
 }

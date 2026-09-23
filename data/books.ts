@@ -656,3 +656,15 @@ export function resolveAmazonUrl(book: Book): { url: string; resolution: AmazonR
     resolution: "title_author_search",
   };
 }
+
+// ── Topic sets for the non-editorial templates (2026-09-23) ────────────────
+// Paulo: "give every page an Amazon affiliate UX element". Ticker, filing and
+// fund pages get ONE block of two classics chosen for that page's job, never a
+// "buy this stock" CTA next to data (YMYL): filings pages get the two books
+// that teach reading disclosures; ETF pages get Bogle on index funds.
+export const BOOKS_FILINGS = ["Security Analysis", "The Intelligent Investor"];
+export const BOOKS_ETF = ["The Little Book of Common Sense Investing", "Common Sense on Mutual Funds"];
+export const BOOKS_DIVIDEND = ["The Intelligent Investor", "The Little Book of Common Sense Investing"];
+export function booksByTitles(titles: string[]): Book[] {
+  return titles.map((t) => BY_TITLE.get(t)).filter((b): b is Book => Boolean(b));
+}

@@ -115,8 +115,8 @@ export default function InvestingBooks({
 
       <p className="text-[11px] text-dim mt-5 leading-relaxed">
         Amazon affiliate links — as an Amazon Associate, HoldLens earns from qualifying purchases and
-        membership trials at no extra cost to you. These are books we genuinely recommend. Always do
-        your own research.
+        membership trials at no extra cost to you. These are books we genuinely recommend. Not investment
+        advice; always do your own research.
       </p>
     </section>
   );

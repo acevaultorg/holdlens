@@ -9,6 +9,8 @@ import {
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import BrokerCta from "@/components/BrokerCta";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_FILINGS } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "Insider Activity — Recent CEO/CFO Buys & Sells",
@@ -508,6 +510,7 @@ export default function InsidersPage() {
 
       <FoundersNudge tone="brand" context="You're reading curated CEO/CFO insider Form 4 transactions across major tickers." />
       <BrokerCta context="Want to act on insider buy signals? Compare brokers with low-friction execution." />
+      <InvestingBooks heading="Read the filings like an analyst" sub="The two books that teach how to read what a company and its holders actually disclose." books={booksByTitles(BOOKS_FILINGS)} />
     </div>
   );
 }

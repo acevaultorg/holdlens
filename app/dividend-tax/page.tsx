@@ -4,6 +4,8 @@ import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import BrokerCta from "@/components/BrokerCta";
 import { COUNTRIES, getCoverageStats, META } from "@/lib/dividend-tax";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_DIVIDEND } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "Dividend tax by country — what you actually keep per $100",
@@ -228,6 +230,7 @@ export default function DividendTaxHub() {
       <p className="mt-16 text-xs text-dim">
         Estimates for educational purposes only. Tax rules change; consult a qualified tax professional for your specific situation. Not investment advice.
       </p>
+      <InvestingBooks heading="Recommended reading on long-term investing" sub="On why taxes and costs, not picks, decide most long-term returns." books={booksByTitles(BOOKS_DIVIDEND)} />
     </div>
   );
 }

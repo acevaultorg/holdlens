@@ -13,10 +13,12 @@ import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
 import BrokerCta from "@/components/BrokerCta";
 import { MANAGERS } from "@/lib/managers";
+import { LATEST_QUARTER, QUARTER_LABELS, QUARTER_FILED } from "@/lib/moves";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { getAllConvictionScores } from "@/lib/conviction";
 import { LATEST_FILINGS } from "@/lib/filings";
 import { COMPOSITE_TARGET_POSITIONS } from "@/lib/composite";
+import InvestingBooks from "@/components/InvestingBooks";
 
 // v1.42 — explicit homepage metadata. Prior state: homepage inherited
 // layout.metadata.title.default ("30 superinvestors, one ConvictionScore —
@@ -29,7 +31,7 @@ import { COMPOSITE_TARGET_POSITIONS } from "@/lib/composite";
 export const metadata: Metadata = {
   title: { absolute: "30 superinvestors, one ConvictionScore — HoldLens" },
   description:
-    "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers, scored on a signed −100..+100 ConvictionScore. Q1 2026 filings live. 456 stocks ranked. Free for everyone — no paywall, no sign-up.",
+    `Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers, scored on a signed −100..+100 ConvictionScore. ${QUARTER_LABELS[LATEST_QUARTER]} filings live. 456 stocks ranked. Free for everyone — no paywall, no sign-up.`,
   alternates: { canonical: "https://holdlens.com/" },
   openGraph: {
     title: "30 superinvestors, one ConvictionScore — HoldLens",
@@ -64,7 +66,7 @@ const HOMEPAGE_FAQ: FaqItem[] = [
   },
   {
     q: "How fresh is the data?",
-    a: "Q1 2026 13F filings are live (filed by tracked managers around the SEC May 15, 2026 deadline; ingested within 24h). Form 4 insider trades + 8-K material events refresh daily. Holdings reflect the quarter-end snapshot date (Mar 31 / Jun 30 / Sep 30 / Dec 31) — not current positions. Per the SEC's 13F-HR rules, institutional filings carry a structural 45-day lag from quarter end to filing date. See /learn/45-day-lag-explained.",
+    a: `${QUARTER_LABELS[LATEST_QUARTER]} 13F filings are live (filed by tracked managers around the SEC ${QUARTER_FILED[LATEST_QUARTER]} deadline; ingested within 24h). Form 4 insider trades + 8-K material events refresh daily. Holdings reflect the quarter-end snapshot date (Mar 31 / Jun 30 / Sep 30 / Dec 31) — not current positions. Per the SEC's 13F-HR rules, institutional filings carry a structural 45-day lag from quarter end to filing date. See /learn/45-day-lag-explained.`,
   },
   {
     q: "Where do I start?",
@@ -286,7 +288,7 @@ export default function HomePage() {
       <section className="pt-4 sm:pt-12 pb-10 text-center">
         <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-brand uppercase mb-3 sm:mb-6">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden />
-          <span>Q1 2026 13F filings live · filed <time dateTime="2026-05-15">May 15, 2026</time> · {MANAGERS.length} investors tracked</span>
+          <span>{QUARTER_LABELS[LATEST_QUARTER]} 13F filings live · deadline <time dateTime={QUARTER_FILED[LATEST_QUARTER]}>{new Date(QUARTER_FILED[LATEST_QUARTER] + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</time> · {MANAGERS.length} investors tracked</span>
         </div>
         {/* v1.48 — widow-orphan fix on hero. `text-balance` lets the browser
             optimize line breaks so "by the" no longer orphans + "world." no
@@ -422,20 +424,20 @@ export default function HomePage() {
             </div>
           </a>
           <a
-            href="/api/v1/snapshot/latest.json"
-            className="group rounded-2xl border border-border bg-panel p-5 hover:border-info/60 transition-all"
+            href="/reading"
+            className="group rounded-2xl border border-border bg-panel p-5 hover:border-brand/60 transition-all"
           >
-            <div className="text-[10px] uppercase tracking-widest text-info font-bold mb-2">
-              For AI · machine-readable
+            <div className="text-[10px] uppercase tracking-widest text-muted font-bold mb-2">
+              Reading list
             </div>
-            <div className="text-base font-bold text-text group-hover:text-info transition mb-1.5">
-              Q1 2026 snapshot JSON
+            <div className="text-base font-bold text-text group-hover:text-brand transition mb-1.5">
+              The books behind the 13Fs
             </div>
             <div className="text-xs text-muted leading-relaxed">
-              Single-file 52KB summary — new positions, exits, adds, trims, consensus, per-manager headlines. LLM-citation-ready.
+              Graham, Buffett&apos;s letters, Marks, Klarman: the reading the managers on this site built their process on.
             </div>
-            <div className="text-xs text-info mt-3 font-semibold">
-              /api/v1/snapshot/ →
+            <div className="text-xs text-brand mt-3 font-semibold">
+              Open the reading list →
             </div>
           </a>
           <a
@@ -996,6 +998,7 @@ export default function HomePage() {
       </section>
 
       <FaqSchema id="homepage-faq-ld" items={HOMEPAGE_FAQ} />
+      <InvestingBooks />
     </div>
   );
 }

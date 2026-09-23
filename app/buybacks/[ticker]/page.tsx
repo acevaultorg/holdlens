@@ -10,6 +10,8 @@ import {
   topBuybackYields,
 } from "@/lib/buybacks";
 import { getTicker } from "@/lib/tickers";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_FILINGS } from "@/data/books";
 
 // /buybacks/[ticker] — per-company deep-dive on a single buyback program.
 // Pulls the full detail row + adjacent comparisons (rank in top dollar,
@@ -338,6 +340,7 @@ export default async function BuybackTickerPage({
           ))}
         </div>
       </section>
+      <InvestingBooks heading="Read the filings like an analyst" sub="The two books that teach how to read what a company and its holders actually disclose." books={booksByTitles(BOOKS_FILINGS)} />
     </div>
   );
 }

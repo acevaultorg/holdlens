@@ -10,6 +10,8 @@ import {
   etfsByCategory,
   formatAum,
 } from "@/lib/etfs";
+import InvestingBooks from "@/components/InvestingBooks";
+import { booksByTitles, BOOKS_ETF } from "@/data/books";
 
 export const metadata: Metadata = {
   title: "ETF Holdings Tracker — which ETFs hold which stocks",
@@ -224,6 +226,7 @@ export default function EtfLanding() {
       <FoundersNudge tone="brand" context="You're researching the most-held tickers across major ETFs — passive flows + active conviction." />
       <BrokerCta context="Need a broker to actually buy these ETFs commission-free? Compare options." />
       <AdSlot format="horizontal" />
+      <InvestingBooks heading="Before you pick an index fund" sub="Two books on why low-cost index funds beat most active managers, by the man who built them." books={booksByTitles(BOOKS_ETF)} />
     </div>
   );
 }
