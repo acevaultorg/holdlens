@@ -44,6 +44,19 @@ export const FUND_DOMAINS: Record<string, string> = {
   "tom-slater": "bailliegifford.com",
 };
 
+// Domains whose favicon DuckDuckGo does not have: it answers 200 with its own
+// grey-chevron placeholder (md5 ab1fb25b…, 1,478 B, byte-identical to a junk-domain
+// control, measured 2026-09-23), so <img onError> never fires and e.g. Buffett's
+// profile showed a grey chevron as his "photo". These fall back to the initials
+// monogram. Re-test with: curl -s https://icons.duckduckgo.com/ip3/<domain>.ico | md5
+const NO_FAVICON = new Set([
+  "warren-buffett", "david-einhorn", "seth-klarman", "monish-pabrai", "joel-greenblatt",
+  "stanley-druckenmiller", "glenn-greenberg", "andreas-halvorsen", "chris-hohn",
+  "jeffrey-ubben", "polen-capital", "david-tepper", "david-rolfe", "francois-rochon",
+  "dev-kantesaria",
+]);
+
 export function fundDomainFor(slug: string): string | null {
+  if (NO_FAVICON.has(slug)) return null;
   return FUND_DOMAINS[slug] ?? null;
 }
