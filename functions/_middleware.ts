@@ -13,6 +13,7 @@
 interface PagesContext {
   request: Request;
   next: () => Promise<Response>;
+  env?: { ASSETS?: { fetch: (req: Request) => Promise<Response> } };
 }
 
 const TRACKED_SAMPLE = [
@@ -34,7 +35,7 @@ const SOFT_404_HEADERS = {
 // catch `//shop/wp-includes/wlwmanifest.xml` style double-slash probes.
 const ATTACK_PATH_RE = /\/(?:wp-(?:admin|includes|login|content|config)|wordpress|xmlrpc\.php|wp-login\.php|wp-config\.php|\.env(?:\.bak)?|\.git\/config)(?:$|\/)/i;
 
-export const onRequest = async ({ request, next }: PagesContext): Promise<Response> => {
+export const onRequest = async ({ request, next, env }: PagesContext): Promise<Response> => {
   const url = new URL(request.url);
   const normalizedPath = url.pathname.replace(/\/+/g, "/");
   if (ATTACK_PATH_RE.test(normalizedPath)) {
@@ -54,6 +55,23 @@ export const onRequest = async ({ request, next }: PagesContext): Promise<Respon
   if (response.status === 404) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, "");
+    // Retired /insiders/company/<ticker>/ pages (2026-09-23, RG-VISITED-PAGES-NOT-LOADING-20260917-R1,
+    // card mudt7oghwa76dr). The register rule is "301 only where a successor exists, otherwise leave
+    // the 404", so the redirect fires ONLY when the same company's /ticker/<t>/ page is a real static
+    // asset (checked via ASSETS, not assumed). CIK-style ids (_cik_…) have no ticker successor and
+    // keep their 404. Measured live that day: 476 of 764 visited /insiders/company/ URLs returned 404;
+    // 439 had a live /ticker/ page (655 GA4 views in 60d); 37 were CIK ids.
+    const ins = path.match(/^\/insiders\/company\/([^/]+)$/);
+    if (ins && env?.ASSETS) {
+      const t = decodeURIComponent(ins[1] || "").toLowerCase();
+      if (/^[a-z0-9.\-]{1,10}$/.test(t)) {
+        const target = new URL(`/ticker/${t}/`, url.origin);
+        try {
+          const probe = await env.ASSETS.fetch(new Request(target.toString(), { method: "GET" }));
+          if (probe.ok) return Response.redirect(target.toString(), 301);
+        } catch { /* fall through to the 404 */ }
+      }
+    }
     const match = path.match(/^\/(signal|ticker)\/([^/]+)$/);
     if (match) {
       const type = match[1] as "signal" | "ticker";
