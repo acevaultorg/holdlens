@@ -44,6 +44,10 @@ restore() {
     mkdir -p out/api/v1/insiders && mv "$HOLD/__api_insiders_officer/officer" out/api/v1/insiders/officer
   fi
   rmdir "$HOLD/__api_insiders_officer" 2>/dev/null || true
+  if [ -d "$HOLD/__api_events_company/company" ] && [ ! -e out/api/v1/events/company ]; then
+    mkdir -p out/api/v1/events && mv "$HOLD/__api_events_company/company" out/api/v1/events/company
+  fi
+  rmdir "$HOLD/__api_events_company" 2>/dev/null || true
   for d in "$HOLD"/*/; do
     [ -d "$d" ] || continue
     name="$(basename "$d")"
@@ -67,6 +71,20 @@ fi
 if [ -d out/api/v1/insiders/officer ]; then
   mkdir -p "$HOLD/__api_insiders_officer"
   mv out/api/v1/insiders/officer "$HOLD/__api_insiders_officer/officer"
+fi
+# WIDENED AGAIN 2026-09-23 (card mudk7borsf8hwq): restarting the EDGAR ingest after
+# a 93-business-day gap grew the 8-K corpus 1,442 -> 2,158 tracked tickers and the
+# Form 4 corpus 1,270 -> 2,111, taking the upload from ~17.7k to 24,095 files.
+# prune-insiders-rsc.mjs now also drops the events/company RSC .txt twins (-2,165),
+# which leaves it still over. out/api/v1/events/company/ is the same class as the
+# officer JSON above and was verified the same way on this build: referenced by 0 of
+# the 260 built HTML files that mention api/v1, absent from sitemap.xml,
+# sitemap-ai.xml and llms.txt, listed only in the API catalog — whose desc now says
+# it is not deployed, exactly as the officer entry does. Holding it takes the upload
+# to ~18.9k. Restored on exit like the rest, so a local out/ is never left mutilated.
+if [ -d out/api/v1/events/company ]; then
+  mkdir -p "$HOLD/__api_events_company"
+  mv out/api/v1/events/company "$HOLD/__api_events_company/company"
 fi
 # Analytics-tag guard (2026-09-10): refuse to ship an out/ built without GA4/Clarity
 # (a worktree or fresh clone drops the gitignored env file; the build then exits 0 untagged).

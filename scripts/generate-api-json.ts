@@ -1236,7 +1236,7 @@ async function main(): Promise<void> {
       { path: "/insiders/cluster.json", desc: "Cluster-buy detection: ≥3 same-direction insiders within 30 days at same company" },
       { path: "/events/index.json", desc: "Sub-catalog: /events/* family (SEC Form 8-K material events)" },
       { path: "/events/live.json", desc: "Last 100 SEC Form 8-K material events across all tracked tickers" },
-      { path: "/events/company/{ticker}.json", desc: "Per-ticker 8-K event timeline + EventScore-rankable list" },
+      { path: "/events/company/{ticker}.json", desc: "Per-ticker 8-K event timeline + EventScore-rankable list — generated at build but NOT deployed to holdlens.com (Cloudflare Pages 20,000-file cap; see scripts/deploy-cf.sh)" },
       { path: "/events/type/{slug}.json", desc: "Per-item-type 8-K events (cybersecurity, bankruptcy, m-and-a, restatement, etc.)" },
     ],
     meta: meta(),

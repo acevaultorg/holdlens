@@ -31,7 +31,22 @@ import { readdirSync, statSync, readFileSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
 
 const OUT_DIR = "out";
-const TARGETS = ["insiders/company", "insiders/officer", "insiders/live"];
+// 2026-09-23: events/company + events/live added. Restarting the EDGAR ingest
+// after a 93-business-day gap took the 8-K corpus from 1,442 tracked tickers to
+// 2,158, and out/ went from ~17.7k deployable files to 24,095 — back over the
+// 20,000 CF Pages cap this script exists to stay under. Note the difference
+// from the insiders targets above: /events/company/* is NOT noindexed. That
+// does not change the trade, because the .txt twin is never the indexed
+// artifact — it is the RSC soft-nav payload, the .html beside it still ships,
+// and a crawler only ever reads the .html. Cost is the same as above: client
+// -side soft navigation falls back to a normal page load.
+const TARGETS = [
+  "insiders/company",
+  "insiders/officer",
+  "insiders/live",
+  "events/company",
+  "events/live",
+];
 // RSC flight payloads start with a numbered stream chunk: "1:...", "2:I[...", etc.
 const RSC_SIGNATURE = /^\d+:(I\[|\[|"\$S|HL\[|\{)/;
 
