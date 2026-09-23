@@ -1,57 +1,7 @@
 {
-  "generatedAt": "2026-09-23T07:55:15.888Z",
-  "totalRows": 20072,
+  "generatedAt": "2026-09-23T09:41:17.062Z",
+  "totalRows": 3847,
   "days": [
-    {
-      "date": "2026-09-14",
-      "formsListed": 3981,
-      "form4sFound": 1261,
-      "parsed": 2178,
-      "skipped": 6,
-      "skipReasons": {
-        "parse_failed": 6
-      }
-    },
-    {
-      "date": "2026-09-15",
-      "formsListed": 4307,
-      "form4sFound": 1090,
-      "parsed": 3190,
-      "skipped": 15,
-      "skipReasons": {
-        "parse_failed": 15
-      }
-    },
-    {
-      "date": "2026-09-16",
-      "formsListed": 3617,
-      "form4sFound": 1303,
-      "parsed": 3770,
-      "skipped": 4,
-      "skipReasons": {
-        "parse_failed": 4
-      }
-    },
-    {
-      "date": "2026-09-17",
-      "formsListed": 4149,
-      "form4sFound": 1481,
-      "parsed": 4600,
-      "skipped": 4,
-      "skipReasons": {
-        "parse_failed": 4
-      }
-    },
-    {
-      "date": "2026-09-18",
-      "formsListed": 3819,
-      "form4sFound": 936,
-      "parsed": 2487,
-      "skipped": 9,
-      "skipReasons": {
-        "parse_failed": 9
-      }
-    },
     {
       "date": "2026-09-21",
       "formsListed": 2867,
