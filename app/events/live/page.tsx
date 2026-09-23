@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  CURATED_EVENTS,
+  ALL_EVENTS,
   EVENT_ITEMS_BY_CODE,
   fmtEventDate,
   type Form8KEvent,
@@ -34,10 +34,23 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-static";
 
+// Page-weight cap, mirroring /insiders/live/ FEED_CAP for the same reason: an
+// uncapped firehose rendered every row of the EDGAR corpus, which blew past
+// 3MB, tanked mobile LCP and blocked AdSense crawlers. Older events stay
+// reachable via /events/company/[ticker]/ and /events/type/[item]/, both
+// statically generated from the full ALL_EVENTS set, so SEO surface is intact.
+const FEED_CAP = 150;
+
 export default function EventsLivePage() {
-  const feed: Form8KEvent[] = [...CURATED_EVENTS].sort((a, b) =>
+  // 2026-09-23: was [...CURATED_EVENTS] — the eight hand-curated seed rows from
+  // the v0.1 ship, newest Aug 7 2025. The Day-2 EDGAR scraper has populated
+  // ALL_EVENTS (= curated + data/edgar-8k.json) since May 2026 and every other
+  // events surface reads it, but this page was never switched over, so the
+  // "re-indexes intra-day" firehose was serving a year-old static seed.
+  const fullFeed: Form8KEvent[] = [...ALL_EVENTS].sort((a, b) =>
     a.filedAt < b.filedAt ? 1 : -1,
   );
+  const feed: Form8KEvent[] = fullFeed.slice(0, FEED_CAP);
   const freshestIso = feed[0]?.filedAt ?? new Date().toISOString().slice(0, 10);
 
   const jsonLd = {

@@ -1,10 +1,21 @@
 // Server component — deterministic, reads from lib/insiders.ts
 import { getInsiderTx, fmtInsiderValue, fmtInsiderDate } from "@/lib/insiders";
 
+// Rows rendered in the table. The summary counts above it stay computed over
+// the FULL set — only the table is capped. Added 2026-09-23: this component is
+// embedded on every /signal/[ticker]/ page and rendered the whole per-ticker
+// history, so restarting the EDGAR ingest after a 93-business-day gap pushed
+// /signal/STX/ (58 -> 183 rows) and /signal/SE/ (114 -> 185) past the 500KB
+// perf budget the moment the corpus grew. Full history stays one click away on
+// /insiders/company/[ticker]/, which is linked below the table.
+const VISIBLE_TX = 40;
+
 export default function InsiderActivity({ symbol }: { symbol: string }) {
   const txs = getInsiderTx(symbol);
 
   if (txs.length === 0) return null;
+
+  const visible = txs.slice(0, VISIBLE_TX);
 
   const buys = txs.filter((t) => t.action === "buy");
   const sells = txs.filter((t) => t.action === "sell");
@@ -45,7 +56,7 @@ export default function InsiderActivity({ symbol }: { symbol: string }) {
           </tr>
         </thead>
         <tbody>
-          {txs.map((tx, i) => {
+          {visible.map((tx, i) => {
             const isBuy = tx.action === "buy";
             const color = isBuy ? "text-emerald-400" : "text-rose-400";
             return (
@@ -74,6 +85,19 @@ export default function InsiderActivity({ symbol }: { symbol: string }) {
           })}
         </tbody>
       </table>
+
+      {txs.length > VISIBLE_TX && (
+        <div className="px-5 py-3 border-t border-border text-xs text-dim">
+          Showing the {VISIBLE_TX} most recent of {txs.length.toLocaleString("en-US")} tracked
+          Form 4 transactions.{" "}
+          <a
+            href={`/insiders/company/${symbol.toLowerCase()}/`}
+            className="text-brand hover:underline"
+          >
+            Full {symbol.toUpperCase()} insider history →
+          </a>
+        </div>
+      )}
     </div>
   );
 }

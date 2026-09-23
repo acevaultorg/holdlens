@@ -251,9 +251,14 @@ export default async function InsidersCompanyPage({ params }: Props) {
               </tr>
             </thead>
             <tbody>
-              {/* v1.91 perf-fix: cap per-ticker page to 200 most-recent transactions
-                  (some high-activity tickers like CRWV had >1MB pages). */}
-              {transactions.slice(0, 200).map((tx, i) => {
+              {/* v1.91 perf-fix: cap per-ticker page to the most-recent transactions
+                  (some high-activity tickers like CRWV had >1MB pages).
+                  2026-09-23: 200 -> 150. Restarting the EDGAR ingest after a
+                  93-business-day gap took DELL from absent to 493 tracked rows,
+                  and 200 rendered rows put out/insiders/company/dell/ at 520KB,
+                  over the 500KB perf budget. 150 matches FEED_CAP on
+                  /insiders/live/, which was tuned against the same budget. */}
+              {transactions.slice(0, 150).map((tx, i) => {
                 const disc = isDiscretionary(tx);
                 const isBuy = tx.action === "buy";
                 return (

@@ -1,56 +1,84 @@
 {
-  "generatedAt": "2026-05-16T14:22:56.053Z",
-  "totalRows": 20674,
+  "generatedAt": "2026-09-23T07:55:15.888Z",
+  "totalRows": 20072,
   "days": [
     {
-      "date": "2026-05-11",
-      "formsListed": 5996,
-      "form4sFound": 2096,
-      "parsed": 4314,
-      "skipped": 8,
-      "skipReasons": {
-        "parse_failed": 8
-      }
-    },
-    {
-      "date": "2026-05-12",
-      "formsListed": 6324,
-      "form4sFound": 1915,
-      "parsed": 4744,
-      "skipped": 32,
-      "skipReasons": {
-        "parse_failed": 32
-      }
-    },
-    {
-      "date": "2026-05-13",
-      "formsListed": 6022,
-      "form4sFound": 1688,
-      "parsed": 3427,
-      "skipped": 15,
-      "skipReasons": {
-        "parse_failed": 15
-      }
-    },
-    {
-      "date": "2026-05-14",
-      "formsListed": 7620,
-      "form4sFound": 1608,
-      "parsed": 3425,
+      "date": "2026-09-14",
+      "formsListed": 3981,
+      "form4sFound": 1261,
+      "parsed": 2178,
       "skipped": 6,
       "skipReasons": {
         "parse_failed": 6
       }
     },
     {
-      "date": "2026-05-15",
-      "formsListed": 11996,
-      "form4sFound": 2147,
-      "parsed": 4764,
-      "skipped": 38,
+      "date": "2026-09-15",
+      "formsListed": 4307,
+      "form4sFound": 1090,
+      "parsed": 3190,
+      "skipped": 15,
       "skipReasons": {
-        "parse_failed": 38
+        "parse_failed": 15
       }
+    },
+    {
+      "date": "2026-09-16",
+      "formsListed": 3617,
+      "form4sFound": 1303,
+      "parsed": 3770,
+      "skipped": 4,
+      "skipReasons": {
+        "parse_failed": 4
+      }
+    },
+    {
+      "date": "2026-09-17",
+      "formsListed": 4149,
+      "form4sFound": 1481,
+      "parsed": 4600,
+      "skipped": 4,
+      "skipReasons": {
+        "parse_failed": 4
+      }
+    },
+    {
+      "date": "2026-09-18",
+      "formsListed": 3819,
+      "form4sFound": 936,
+      "parsed": 2487,
+      "skipped": 9,
+      "skipReasons": {
+        "parse_failed": 9
+      }
+    },
+    {
+      "date": "2026-09-21",
+      "formsListed": 2867,
+      "form4sFound": 817,
+      "parsed": 2175,
+      "skipped": 16,
+      "skipReasons": {
+        "parse_failed": 16
+      }
+    },
+    {
+      "date": "2026-09-22",
+      "formsListed": 3407,
+      "form4sFound": 853,
+      "parsed": 1672,
+      "skipped": 6,
+      "skipReasons": {
+        "parse_failed": 6
+      }
+    },
+    {
+      "date": "2026-09-23",
+      "formsListed": 0,
+      "form4sFound": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "skipReasons": {}
     }
   ]
 }
