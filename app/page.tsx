@@ -325,6 +325,22 @@ export default function HomePage() {
           scale.{" "}
           <span className="text-text font-semibold">Free for everyone. No paywall. No sign-up.</span>
         </p>
+        {/* Finding box (Paulo 2026-09-23: every earner needs one). Plain GET form,
+            zero JS; /search runs the client-side index. */}
+        <form action="/search/" method="get" role="search" className="mt-6 mx-auto flex max-w-xl gap-2">
+          <label htmlFor="hero-search" className="sr-only">Search investors, tickers and guides</label>
+          <input
+            id="hero-search"
+            name="q"
+            type="search"
+            placeholder="Search Buffett, AAPL, a 13F guide…"
+            className="flex-1 rounded-xl border border-border bg-panel px-4 text-base text-text"
+            style={{ minHeight: 48 }}
+          />
+          <button type="submit" className="rounded-xl bg-brand px-5 font-semibold text-black" style={{ minHeight: 48 }}>
+            Search
+          </button>
+        </form>
         {/* v1.43 — chromatic glow on hero CTAs. Primary buy CTA wears the
             amber brand-glow (dopamine anchor), secondary sell CTA gets a
             softer rose tint on hover. First-paint warmth + clear primary/
