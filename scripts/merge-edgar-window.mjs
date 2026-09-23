@@ -84,7 +84,20 @@ for (const row of fetched) {
   appended.push(row);
 }
 
-const merged = [...existing, ...appended].sort((a, b) => (dateOf(a) < dateOf(b) ? 1 : -1));
+// Newest first. The comparator MUST return 0 on a tie: the obvious
+// `a < b ? 1 : -1` one-liner (copied from the page-level sorts) never does, so
+// it claims a > b AND b > a for equal dates, and V8's TimSort then produces a
+// different permutation of the tied rows on every run. Measured 2026-09-23:
+// re-running the ingest with ZERO new rows still rewrote both corpora and
+// committed a 700,000-line diff of pure reordering. A scheduled job that does
+// that three times a day is a repo-bloat machine. With a correct comparator the
+// sort is stable, so an unchanged corpus serialises byte-identically and the
+// ingest's "no new filings" branch can actually fire.
+const merged = [...existing, ...appended].sort((a, b) => {
+  const da = dateOf(a);
+  const db = dateOf(b);
+  return da === db ? 0 : da < db ? 1 : -1;
+});
 
 // The whole point of merging is that nothing is lost. Assert it.
 if (merged.length < existing.length) {
