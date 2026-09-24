@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AskAmili from "@/components/AskAmili";
 import { MANAGERS } from "@/lib/managers";
 import AdSlot from "@/components/AdSlot";
 
@@ -44,6 +45,7 @@ export default function InvestorsIndex() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">All investors</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">{MANAGERS.length} superinvestors tracked</h1>
+      <AskAmili />
       <p className="text-muted text-lg max-w-2xl mb-12">
         Curated list of the most important investors to follow. Click any name for their full portfolio,
         conviction analysis, and quarterly moves.

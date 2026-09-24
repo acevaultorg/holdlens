@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AskAmili from "@/components/AskAmili";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import AdSlot from "@/components/AdSlot";
 
@@ -47,6 +48,7 @@ export default function TickerIndex() {
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
         Most-owned stocks
       </h1>
+      <AskAmili />
       <p className="text-muted text-lg max-w-2xl mb-12">
         {Object.keys(TICKER_INDEX).length} stocks ranked by how many tracked superinvestors hold them.
       </p>

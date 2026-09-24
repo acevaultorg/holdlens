@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PRIVACY_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Legal</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Privacy Policy</h1>
-      <p className="text-sm text-dim mb-10">Last updated: 2026-05-12</p>
+      <p className="text-sm text-dim mb-10">Last updated: 2026-09-24</p>
 
       <div className="space-y-6 text-text leading-relaxed">
         <p className="text-muted">
@@ -250,6 +250,13 @@ export default function PrivacyPolicyPage() {
             .
           </li>
         </ul>
+
+        <h2 className="text-2xl font-bold mt-10 mb-3">Ask Amili</h2>
+        <p className="text-muted">
+          Questions typed into the Ask Amili box are stored anonymously (the question text only,
+          no IP address or cookie) to improve our answers. Answers come only from pages on this
+          site.
+        </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-3">Email data</h2>
         <p className="text-muted">

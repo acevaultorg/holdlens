@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AskAmili from "@/components/AskAmili";
 
 export const metadata: Metadata = {
   title: "Learn — Plain English guides to hedge fund investing",
@@ -115,6 +116,7 @@ export default function LearnIndex() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Learn</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Plain English guides</h1>
+      <AskAmili />
       <p className="text-muted text-lg max-w-2xl mb-10">
         Everything you need to know about following smart money. No jargon, no fluff.
       </p>
