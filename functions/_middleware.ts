@@ -59,13 +59,15 @@ export const onRequest = async ({ request, next, env }: PagesContext): Promise<R
     // card mudt7oghwa76dr). The register rule is "301 only where a successor exists, otherwise leave
     // the 404", so the redirect fires ONLY when the same company's /ticker/<t>/ page is a real static
     // asset (checked via ASSETS, not assumed). CIK-style ids (_cik_…) have no ticker successor and
-    // keep their 404. Measured live that day: 476 of 764 visited /insiders/company/ URLs returned 404;
-    // 439 had a live /ticker/ page (655 GA4 views in 60d); 37 were CIK ids.
+    // keep their 404. Measured live that day: 476 of 764 visited /insiders/company/ URLs returned 404.
+    // ~~"439 had a live /ticker/ page"~~ (corrected 2026-09-24: those 200s were this middleware's own
+    // "not tracked" soft-200, not real pages. Only 96 real /ticker/ pages exist, stored UPPERCASE, and
+    // just 3 of the 476 (AXP, DIS, KW) have one. The probe therefore checks the UPPERCASE asset path.)
     const ins = path.match(/^\/insiders\/company\/([^/]+)$/);
     if (ins && env?.ASSETS) {
       const t = decodeURIComponent(ins[1] || "").toLowerCase();
       if (/^[a-z0-9.\-]{1,10}$/.test(t)) {
-        const target = new URL(`/ticker/${t}/`, url.origin);
+        const target = new URL(`/ticker/${t.toUpperCase()}/`, url.origin); // real pages are UPPERCASE dirs
         try {
           const probe = await env.ASSETS.fetch(new Request(target.toString(), { method: "GET" }));
           if (probe.ok) return Response.redirect(target.toString(), 301);
