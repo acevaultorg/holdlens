@@ -24,6 +24,7 @@ for (const u of urls) {
 }
 const json = JSON.stringify(out);
 if (!out.length) { console.error("build-amili-index: 0 entries, refusing"); process.exit(1); }
-if (json.length > 300 * 1024) { console.error(`build-amili-index: ${(json.length / 1024).toFixed(0)} KB > 300 KB budget, refusing`); process.exit(1); }
+const bytes = Buffer.byteLength(json); // bytes, not characters: multi-byte text would otherwise slip past the budget
+if (bytes > 300 * 1024) { console.error(`build-amili-index: ${(bytes / 1024).toFixed(0)} KB > 300 KB budget, refusing`); process.exit(1); }
 await writeFile(path.join(OUT, "amili-index.json"), json);
-console.log(`build-amili-index: ${out.length} of ${urls.length} sitemap pages, ${(json.length / 1024).toFixed(0)} KB`);
+console.log(`build-amili-index: ${out.length} of ${urls.length} sitemap pages, ${(bytes / 1024).toFixed(0)} KB`);
