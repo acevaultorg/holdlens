@@ -43,26 +43,26 @@ variables:
   NEXT_PUBLIC_SUPABASE_URL: "https://pguombwsbacsupkokjka.supabase.co"
   NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_3L0A5QVO_3TVf_0ceBwx5g_R5i5yso8"
 
+# 2026-09-24 CI-minutes cut: the old cache (node_modules/ + .next/cache/, key
+# holdlens-cache-v4) was pure overhead — `npm ci` deletes node_modules/ and the
+# build script ran `rm -rf .next/cache`, so ~35 s/run went to restoring and
+# re-archiving a cache nothing used. Now only the npm tarball cache is kept,
+# keyed on package-lock.json, and `npm ci` reads it with --prefer-offline.
 cache:
-  # v4 = invalidate when NEXT_PUBLIC_* env-baked vars change (2026-09-11: GA4 ID added).
-  # v3 = the previous bump:
-  # 2026-05-13: bumped from v2 to force fresh build with Supabase auth keys
-  # newly inlined above. v2 cache would otherwise serve stale signup/page-*.js
-  # chunks compiled without the publishable key embedded.
-  key: holdlens-cache-v4
+  key:
+    files: [package-lock.json]
   paths:
-    - node_modules/
-    - .next/cache/
+    - .npm/
 
 build:
   stage: build
   image: node:24-bookworm-slim
+  interruptible: true
   before_script:
     - apt-get update
     - apt-get install -y --no-install-recommends git ca-certificates
   script:
-    - npm ci --no-audit --no-fund
-    - rm -rf .next/cache
+    - npm ci --no-audit --no-fund --cache .npm --prefer-offline
     - npm run build
     - test -d out
     - test -f out/investor/michael-burry/index.html
@@ -70,14 +70,36 @@ build:
     # HIGH RISK during AdSense review window (submitted 2026-05-08): stale-deploy clobber would surface
     # pre-Pivot-A verdict labels to Google reviewer and flip the review to rejection.
     - node scripts/predeploy-guard.mjs
-  artifacts:
-    paths:
-      - out/
-    expire_in: 1 day
-  only:
-    - main
-  except:
-    - schedules
+  # No `artifacts: out/` any more (2026-09-24): no job downloads it — production is
+  # built and uploaded locally by `npm run deploy` — and archiving ~20k files cost
+  # ~25 s of runner time per push.
+  #
+  # PATH FILTER (2026-09-24): the validation build runs only when something that
+  # changes the code or build changed. A data-only push (the daily
+  # "data(edgar): scheduled ingest" commits, ~13 min each) no longer triggers a
+  # full validation build: production is never deployed from CI, and the local
+  # `npm run deploy` runs the same build + scripts/predeploy-guard.mjs on the exact
+  # artifact before upload, so no data change reaches production unvalidated.
+  # .gitlab-ci.yml is listed so a CI change verifies itself.
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
+        - .gitlab-ci.yml
+        - app/**/*
+        - components/**/*
+        - lib/**/*
+        - functions/**/*
+        - workers/**/*
+        - scripts/**/*
+        - public/**/*
+        - next.config.js
+        - package.json
+        - package-lock.json
+        - tsconfig.json
+        - tailwind.config.ts
+        - postcss.config.js
 
 # Scheduled data refresh — runs ONLY when GitLab scheduled pipeline fires
 # (Project Settings > CI/CD > Schedules). Operator one-time:
@@ -100,7 +122,7 @@ refresh:
   before_script:
     - apt-get update
     - apt-get install -y --no-install-recommends git ca-certificates
-    - npm ci --no-audit --no-fund
+    - npm ci --no-audit --no-fund --cache .npm --prefer-offline
   script:
     - echo "=== EDGAR 13F refresh ==="
     - npx tsx scripts/fetch-edgar-13f.ts
