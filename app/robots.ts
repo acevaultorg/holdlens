@@ -58,7 +58,7 @@ export default function robots(): MetadataRoute.Robots {
       // IMPORTANT: never disallow /_next/ for the wildcard — Googlebot /
       // Bingbot must fetch CSS + JS chunks under /_next/static/ to render
       // pages for ranking. /admin/ is the only real secret surface.
-      { userAgent: "*", allow: "/", disallow: ["/admin/"] },
+      { userAgent: "*", allow: "/", disallow: ["/admin/", "/go/"] }, // /go/ = affiliate gate (2026-09-25)
       // AI crawlers (LLM_BOTS) do NOT execute JS — the static export puts
       // all content in HTML, so /_next/static/* is pure waste for them.
       // CF AI Crawl Control 2026-04-20 observed 16.75k 404s (55% of 7d
@@ -68,14 +68,14 @@ export default function robots(): MetadataRoute.Robots {
       ...LLM_BOTS.map((ua) => ({
         userAgent: ua,
         allow: "/",
-        disallow: ["/_next/", "/admin/"],
+        disallow: ["/_next/", "/admin/", "/go/"],
       })),
       // Google + Bing search/ad bots — explicit allow with /_next/ ACCESSIBLE
       // (they render JS for ranking and ad-quality scoring).
       ...SEARCH_AD_BOTS.map((ua) => ({
         userAgent: ua,
         allow: "/",
-        disallow: ["/admin/"],
+        disallow: ["/admin/", "/go/"],
       })),
     ],
     sitemap: [

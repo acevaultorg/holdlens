@@ -608,8 +608,9 @@ export function coreCanonBooks(): Book[] {
 // Tag: default `holdlens-20` — this site's OWN registered tracking ID, which is
 // what earns and what the live site serves. Overridable via
 // NEXT_PUBLIC_AMAZON_AFFILIATE_TAG, but the per-site default is the correct one.
-export const AMAZON_TAG =
-  process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || "holdlens-20";
+// Gated 2026-09-25: the tag lives in lib/amazon-gate.ts and is attached at the
+// edge by functions/go/[[path]].ts; page HTML carries only internal /go/ paths.
+export { AMAZON_TAG } from "@/lib/amazon-gate";
 
 // Audible Premium Plus free-trial BOUNTY link — a flat ~$5-15 bounty per
 // qualified trial (far higher $/click than ~4.5% on a book). MUST be an operator
@@ -617,9 +618,7 @@ export const AMAZON_TAG =
 // Audible URL earns $0. Regenerated 2026-07-27 under holdlens's OWN tracking ID
 // (was https://amzn.to/4e5EMgF — the fleet-shared short link resolving to
 // tag=global074-20, which made every bounty untraceable to the earning site).
-export const AUDIBLE_URL =
-  process.env.NEXT_PUBLIC_AUDIBLE_URL ||
-  "https://www.amazon.com/hz/audible/arya/mlp?purchaseType=MTRIAL&linkCode=ll2&tag=holdlens-20&linkId=b2894376c47827fee26909adc1c3a55d&language=en_US&ref_=as_li_ss_tl";
+export const AUDIBLE_URL = "/go/audible"; // → AUDIBLE_DEST, verbatim, via the gate
 
 /** ISBN-13 (978 prefix) → ISBN-10. ISBN-10 === ASIN for most print books. */
 function isbn13to10(isbn13: string): string | null {
@@ -640,21 +639,17 @@ export type AmazonResolution = "asin_direct" | "title_author_search";
  *  earning fleet site does (readinglist.school, secfilingdex, readglobe). Applies
  *  to SEARCH URLs only — `/dp/<ASIN>` product links and the `/hz/audible/` bounty
  *  link must NOT carry it. */
-const AMAZON_BOOKS_DEPT = "stripbooks";
+// AMAZON_BOOKS_DEPT ("stripbooks") now lives in lib/amazon-gate.ts; the gate adds it.
 
 /** Resolve a Book to its best affiliate-tagged Amazon URL. Direct /dp/ when we
  *  hold a verified ISBN (highest CVR); a department-pinned, affiliate-tagged
  *  title+author search otherwise (still attributed, honest — no false 'direct
  *  product' promise). */
 export function resolveAmazonUrl(book: Book): { url: string; resolution: AmazonResolution } {
-  const base = "https://www.amazon.com";
   const asin = book.isbn13 ? isbn13to10(book.isbn13) : null;
-  if (asin) return { url: `${base}/dp/${asin}?tag=${AMAZON_TAG}`, resolution: "asin_direct" };
+  if (asin) return { url: `/go/dp?a=${asin}`, resolution: "asin_direct" };
   const q = encodeURIComponent(`${book.title} ${book.author}`);
-  return {
-    url: `${base}/s?k=${q}&i=${AMAZON_BOOKS_DEPT}&tag=${AMAZON_TAG}`,
-    resolution: "title_author_search",
-  };
+  return { url: `/go/s?k=${q}`, resolution: "title_author_search" };
 }
 
 // ── Topic sets for the non-editorial templates (2026-09-23) ────────────────
