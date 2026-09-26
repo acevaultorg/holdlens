@@ -31,3 +31,6 @@ tsconfig.tsbuildinfo
 *\ 2
 *\ 3
 *\ 4
+
+# Persistent inode for the OS-managed deployment mutex
+.deploy.lock
