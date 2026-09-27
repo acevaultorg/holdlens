@@ -136,6 +136,23 @@ async function processFile(file: string): Promise<{ rewrites: number }> {
     return '[\\"$\\",\\"span\\",null,{';
   });
 
+  // Next.js Flight encodes `next/link` as a client-reference marker such as
+  // `$L62`, rather than the literal `a` marker above. When the post-build
+  // pass strips a broken Link from the server HTML, convert that Flight
+  // fragment too; otherwise hydration restores the `<a>` and React reports
+  // a mismatch on every page carrying the broken destination.
+  const FLIGHT_LINK_RE =
+    /\[\\"\$\\",\\"(\$L[^\\"]+)\\",null,\{\\"href\\":\\"(\/[^\\"#?]*?)\\"/g;
+  for (const match of next.matchAll(FLIGHT_LINK_RE)) {
+    await linkResolves(match[2]);
+  }
+  next = next.replace(FLIGHT_LINK_RE, (full, _marker, href) => {
+    const resolves = resolveCache.get(href);
+    if (resolves === true || resolves === undefined) return full;
+    rewrites++;
+    return '[\\"$\\",\\"span\\",null,{';
+  });
+
   // Clean up any trailing comma left after the href drop: `,{`
   // followed by `,"className"` becomes `{"className"`.
   next = next.replace(/\[\\"\$\\",\\"span\\",null,\{,/g, '[\\"$\\",\\"span\\",null,{');
