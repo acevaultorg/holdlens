@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
@@ -115,7 +116,7 @@ export default async function QuarterlyPage({ params }: { params: Promise<{ peri
     ],
   };
 
-  return (
+  return <> {(
     <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
@@ -233,5 +234,5 @@ export default async function QuarterlyPage({ params }: { params: Promise<{ peri
         Based on public SEC 13F filings. <a href="/methodology" className="underline">Methodology</a>. Not investment advice.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

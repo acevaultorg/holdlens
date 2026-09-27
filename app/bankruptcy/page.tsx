@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ALL_EVENTS, fmtEventDate } from "@/lib/events";
@@ -85,7 +86,7 @@ export default function BankruptcyHub() {
     isBasedOn: "https://www.sec.gov/cgi-bin/browse-edgar",
   };
 
-  return (
+  return <> {(
     <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Distress
@@ -272,5 +273,5 @@ export default function BankruptcyHub() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

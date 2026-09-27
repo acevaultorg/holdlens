@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import SinceFilingDelta from "@/components/SinceFilingDelta";
@@ -41,7 +42,7 @@ export default function BuysPage() {
     })),
   };
 
-  return (
+  return <> {(
     <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
 
@@ -189,5 +190,5 @@ export default function BuysPage() {
         Not investment advice.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

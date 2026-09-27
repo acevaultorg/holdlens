@@ -1,9 +1,11 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import Backtest from "@/components/Backtest";
 import EmailCapture from "@/components/EmailCapture";
 import ShareButtons from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://holdlens.com/simulate/buffett/" },
   title: "What if you'd copied Warren Buffett?",
   description:
     "Interactive backtest: see how much $10,000 invested in Berkshire Hathaway would be worth today, vs the S&P 500.",
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default function BuffettBacktestPage() {
-  return (
+  return <> {(
     <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Backtest · Warren Buffett
@@ -58,5 +60,5 @@ export default function BuffettBacktestPage() {
         </p>
       </section>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

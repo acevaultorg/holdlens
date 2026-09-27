@@ -25,8 +25,9 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export function generateMetadata({ params }: { params: { topic: string } }): Metadata {
-  const meta = groupMetaBySlug(params.topic);
+export async function generateMetadata({ params }: { params: Promise<{ topic: string }> }): Promise<Metadata> {
+  const { topic } = await params;
+  const meta = groupMetaBySlug(topic);
   if (!meta) return {};
   const canonical = `https://holdlens.com/reading/${meta.slug}`;
   return {
@@ -45,8 +46,9 @@ export function generateMetadata({ params }: { params: { topic: string } }): Met
   };
 }
 
-export default function ShelfPage({ params }: { params: { topic: string } }) {
-  const meta = groupMetaBySlug(params.topic);
+export default async function ShelfPage({ params }: { params: Promise<{ topic: string }> }) {
+  const { topic } = await params;
+  const meta = groupMetaBySlug(topic);
   if (!meta) notFound();
 
   const books = booksInGroup(meta.group);

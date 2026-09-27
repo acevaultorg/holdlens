@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import LiveQuote from "@/components/LiveQuote";
 import TrendBadge from "@/components/TrendBadge";
@@ -30,7 +31,7 @@ export default function WhatToBuyPage() {
   const signals = getBuySignals().slice(0, 10);
   const quarterLabel = QUARTER_LABELS[LATEST_QUARTER];
 
-  return (
+  return <> {(
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-4">
         What to buy · {quarterLabel}
@@ -109,5 +110,5 @@ export default function WhatToBuyPage() {
         Not investment advice. <a href="/methodology" className="underline">Methodology</a>.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

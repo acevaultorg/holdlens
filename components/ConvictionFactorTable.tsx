@@ -60,7 +60,7 @@ export default function ConvictionFactorTable({
           ticker: h.ticker,
           name: h.name,
           pct: h.pct,
-          score: conv.signedScore,
+          score: conv.score,
           breakdown: conv.breakdown,
         };
       } catch {

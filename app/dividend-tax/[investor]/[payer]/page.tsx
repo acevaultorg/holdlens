@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -160,7 +161,7 @@ export default async function PairPage({ params }: { params: Promise<PairParams>
     citation: cell.source_citation,
   };
 
-  return (
+  return <> {(
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }} />
@@ -307,5 +308,5 @@ export default async function PairPage({ params }: { params: Promise<PairParams>
         </p>
       </footer>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

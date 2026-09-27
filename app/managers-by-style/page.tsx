@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
@@ -55,7 +56,7 @@ const COLLECTION_LD = {
 export default function ManagersByStyleHub() {
   const rows = styleCounts();
 
-  return (
+  return <> {(
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COLLECTION_LD) }} />
@@ -154,5 +155,5 @@ export default function ManagersByStyleHub() {
         Style classifications are editorial and reflect the manager&apos;s most-publicly-known posture. Some managers operate across multiple styles; this taxonomy uses the one most observable in their 13F-disclosed long-only equity book.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

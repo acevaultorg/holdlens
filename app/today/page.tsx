@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { readFileSync, existsSync } from "node:fs";
@@ -71,14 +72,14 @@ export default function TodayPage() {
   const { daily, movers } = loadSnapshot();
 
   if (!daily) {
-    return (
+    return <> {(
       <main className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
         <h1 className="text-3xl font-bold mb-3">Today</h1>
         <p className="text-[#8892a0]">
           Daily snapshot not yet generated. Check back after US market close.
         </p>
       </main>
-    );
+    )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
   }
 
   const breadcrumbLd = {
@@ -102,7 +103,7 @@ export default function TodayPage() {
     mainEntityOfPage: "https://holdlens.com/today/",
   };
 
-  return (
+  return <> {(
     <main className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       <script
         type="application/ld+json"
@@ -284,5 +285,5 @@ export default function TodayPage() {
         </p>
       </div>
     </main>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

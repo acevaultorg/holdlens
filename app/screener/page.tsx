@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import ScreenerClient from "./ScreenerClient";
@@ -34,7 +35,7 @@ const SCREENER_BREADCRUMB_LD = {
 };
 
 export default function ScreenerPage() {
-  return (
+  return <> {(
     <div className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCREENER_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCREENER_BREADCRUMB_LD) }} />
@@ -52,5 +53,5 @@ export default function ScreenerPage() {
 
       <AdSlot format="horizontal" />
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

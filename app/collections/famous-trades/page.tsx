@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
@@ -149,7 +150,7 @@ const LD = [
 ];
 
 export default function FamousTradesCollectionPage() {
-  return (
+  return <> {(
     <div className="max-w-3xl mx-auto px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
       <a href="/" className="text-xs text-muted hover:text-text">← Home</a>
@@ -209,5 +210,5 @@ export default function FamousTradesCollectionPage() {
         <a href="/methodology" className="underline">Methodology</a>.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

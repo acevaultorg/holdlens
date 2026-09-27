@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -65,7 +66,7 @@ export default async function ReportPage({ params }: Props) {
     wordCount: report.wordCount,
   };
 
-  return (
+  return <> {(
     <article className="max-w-2xl mx-auto px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Weekly commentary
@@ -103,7 +104,7 @@ export default async function ReportPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
       />
     </article>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }
 
 function Week17Body() {

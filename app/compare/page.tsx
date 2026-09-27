@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import { topTickers, TICKER_INDEX } from "@/lib/tickers";
 import { MANAGERS } from "@/lib/managers";
@@ -73,7 +74,7 @@ export default function CompareIndex() {
   }
   const curatedMgrPairs = managerPairs.slice(0, 4);
 
-  return (
+  return <> {(
     <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COMPARE_LD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COMPARE_BREADCRUMB_LD) }} />
@@ -215,5 +216,5 @@ export default function CompareIndex() {
         Ownership data derived from SEC Form 13F filings. Not investment advice.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FoundersNudge from "@/components/FoundersNudge";
@@ -115,7 +116,7 @@ export default function NewPositionsPage() {
     ],
   };
 
-  return (
+  return <> {(
     <div className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
@@ -416,5 +417,5 @@ export default function NewPositionsPage() {
         </div>
       </section>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

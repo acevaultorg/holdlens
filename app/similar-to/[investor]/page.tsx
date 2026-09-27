@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import FundLogo from "@/components/FundLogo";
@@ -133,7 +134,7 @@ export default async function SimilarToPage(
     speakable: { "@type": "SpeakableSpecification", cssSelector: [".hl-similar-intro"] },
   };
 
-  return (
+  return <> {(
     <div className="max-w-4xl mx-auto px-8 sm:px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }} />
@@ -257,5 +258,5 @@ export default async function SimilarToPage(
         Similarity computed from publicly filed 13F portfolios. 13F filings show long US equity positions only (no shorts, no cash, no non-US positions). Not investment advice.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

@@ -36,6 +36,7 @@ export default function InvestingBooks({
   books,
   showAudible = true,
   moreHref = "/reading",
+  limit,
 }: {
   heading?: string;
   sub?: string;
@@ -43,8 +44,9 @@ export default function InvestingBooks({
   books?: Book[];
   showAudible?: boolean;
   moreHref?: string | null;
+  limit?: number;
 }) {
-  const set: Book[] = books ?? (slug ? booksForInvestor(slug) : coreCanonBooks());
+  const set: Book[] = (books ?? (slug ? booksForInvestor(slug) : coreCanonBooks())).slice(0, limit);
   if (set.length === 0) return null;
 
   return (
@@ -54,6 +56,12 @@ export default function InvestingBooks({
       </div>
       <h2 className="text-xl md:text-2xl font-bold mb-2">{heading}</h2>
       <p className="text-sm text-muted mb-6">{sub}</p>
+
+      <p className="text-[11px] text-dim mt-5 leading-relaxed">
+        Amazon affiliate links — as an Amazon Associate, HoldLens earns from qualifying purchases and
+        membership trials at no extra cost to you. These are books we genuinely recommend. Not investment
+        advice; always do your own research.
+      </p>
 
       <div className="grid gap-3 sm:grid-cols-2">
         {set.map((b) => {
@@ -113,11 +121,7 @@ export default function InvestingBooks({
         </div>
       )}
 
-      <p className="text-[11px] text-dim mt-5 leading-relaxed">
-        Amazon affiliate links — as an Amazon Associate, HoldLens earns from qualifying purchases and
-        membership trials at no extra cost to you. These are books we genuinely recommend. Not investment
-        advice; always do your own research.
-      </p>
+
     </section>
   );
 }

@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -26,7 +27,7 @@ export default function AdvisersHub() {
     publisher: { "@type": "Organization", name: "HoldLens", url: "https://holdlens.com/" },
   };
 
-  return (
+  return <> {(
     <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">RIA</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Form ADV Tracker</h1>
@@ -76,5 +77,5 @@ export default function AdvisersHub() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

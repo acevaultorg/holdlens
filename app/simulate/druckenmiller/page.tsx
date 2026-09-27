@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import ManagerBacktest from "@/components/ManagerBacktest";
 import EmailCapture from "@/components/EmailCapture";
@@ -5,6 +6,7 @@ import ShareButtons from "@/components/ShareButtons";
 import { DRUCK_RETURNS } from "@/lib/returns";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://holdlens.com/simulate/druckenmiller/" },
   title: "What if you'd copied Stanley Druckenmiller?",
   description: "Interactive backtest: Druckenmiller's Duquesne Family Office returns vs the S&P 500.",
   twitter: { card: "summary_large_image", title: "What if you'd copied Stanley Druckenmiller?" },
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function DruckPage() {
-  return (
+  return <> {(
     <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Backtest · Stanley Druckenmiller</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
@@ -57,5 +59,5 @@ export default function DruckPage() {
         <EmailCapture />
       </section>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

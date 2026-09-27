@@ -113,3 +113,9 @@
 /activism/               /activist/                       301
 /activists               /activist                        301
 /activists/              /activist/                       301
+
+# Legacy signal hub: preserve readers arriving from old links.
+/signals /collections/signals-and-methodology/ 301
+/signals/ /collections/signals-and-methodology/ 301
+/rankings /manager-rankings/ 301
+/rankings/ /manager-rankings/ 301

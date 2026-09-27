@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -75,9 +76,9 @@ export default async function FundOverlapPair({
   const sharedWithScores = pair.shared.slice(0, 25).map((h) => {
     try {
       const conv = getConviction(h.ticker);
-      return { ...h, score: conv.signedScore, label: conv.label };
+      return { ...h, score: conv.score };
     } catch {
-      return { ...h, score: 0, label: "n/a" };
+      return { ...h, score: null };
     }
   });
 
@@ -164,7 +165,7 @@ export default async function FundOverlapPair({
     ],
   };
 
-  return (
+  return <> {(
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
@@ -273,7 +274,7 @@ export default async function FundOverlapPair({
                 <td className="p-3 text-right tabular-nums">{h.pctB.toFixed(1)}%</td>
                 <td className="p-3 text-right tabular-nums font-semibold">{h.combinedPct.toFixed(1)}%</td>
                 <td className="p-3 text-right tabular-nums text-muted">
-                  {formatSignedScore(h.score)}
+                  {h.score === null ? "—" : formatSignedScore(h.score)}
                 </td>
               </tr>
             ))}
@@ -344,5 +345,5 @@ export default async function FundOverlapPair({
         </Link>
       </div>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

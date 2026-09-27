@@ -20,9 +20,9 @@ import { useEffect, useRef, useState } from "react";
 // since a hidden widget has nothing to render anyway.
 export function useInView<T extends Element = HTMLDivElement>(
   opts: { rootMargin?: string; once?: boolean } = {},
-): [React.RefObject<T | null>, boolean] {
+): [React.RefObject<T>, boolean] {
   const { rootMargin = "300px", once = true } = opts;
-  const ref = useRef<T | null>(null);
+  const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {

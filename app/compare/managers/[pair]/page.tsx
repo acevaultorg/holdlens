@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
@@ -67,7 +68,7 @@ export default async function ComparePage({ params }: { params: Promise<{ pair: 
   const aTickers = new Set(a.topHoldings.map((h) => h.ticker.toUpperCase()));
   const shared = b.topHoldings.filter((h) => aTickers.has(h.ticker.toUpperCase()));
 
-  return (
+  return <> {(
     <div className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       <a href="/investor" className="text-xs text-muted hover:text-text">← All investors</a>
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mt-6 mb-4">
@@ -155,7 +156,7 @@ export default async function ComparePage({ params }: { params: Promise<{ pair: 
         concrete consensus signal, not investment advice.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }
 
 function ManagerCard({ m }: { m: Manager }) {

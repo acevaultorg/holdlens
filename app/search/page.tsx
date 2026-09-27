@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import sitemap from "../sitemap";
 import { MANAGERS } from "@/lib/managers";
@@ -35,11 +36,11 @@ export default async function SearchPage() {
     const t = titleFor(p);
     items.push({ u: p, t, s: p.startsWith("/learn/") ? "Guide" : "Page", k: lc(`${t} ${p.replace(/[/-]/g, " ")}`) });
   }
-  return (
+  return <> {(
     <div className="mx-auto max-w-3xl px-4 py-10">
       <h1 className="text-3xl font-bold mb-2">Search</h1>
       <p className="text-muted mb-6">{MANAGERS.length} investors, {Object.keys(TICKER_INDEX).length} tickers and every guide.</p>
       <SiteSearch items={items} />
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

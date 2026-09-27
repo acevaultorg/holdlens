@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import EmailCapture from "@/components/EmailCapture";
 import { MANAGERS } from "@/lib/managers";
@@ -20,7 +21,7 @@ export default function AlertsPage() {
   const next = nextFilingDeadline();
   const nextDeadline = `${next.quarter} (filing by ${next.date})`;
 
-  return (
+  return <> {(
     <div className="max-w-3xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-center mb-12">
         <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
@@ -122,7 +123,7 @@ export default function AlertsPage() {
         device until then; it's never sold or shared.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }
 
 function Feature({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {

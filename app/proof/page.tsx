@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import BacktestProof from "@/components/BacktestProof";
 import { getBacktestQuarters } from "@/lib/backtest";
@@ -18,7 +19,7 @@ export default function ProofPage() {
   // computed client-side from live Yahoo Finance data via the Worker proxy.
   const quarters = getBacktestQuarters(5);
 
-  return (
+  return <> {(
     <div className="max-w-5xl mx-auto px-8 sm:px-6 py-12">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-3">
         The proof
@@ -159,5 +160,5 @@ export default function ProofPage() {
         Not investment advice. <a href="/methodology" className="underline">Full methodology →</a>
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

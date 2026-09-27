@@ -1,3 +1,4 @@
+import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import FundLogo from "@/components/FundLogo";
@@ -5,6 +6,7 @@ import { MANAGERS, type Manager } from "@/lib/managers";
 import { MANAGER_QUALITY } from "@/lib/signals";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://holdlens.com/compare/managers/" },
   title: "Compare portfolio managers — side-by-side holdings",
   description: "Side-by-side comparisons of the best portfolio managers in the world. Shared convictions, overlap matrix heatmap, live portfolio values, recent moves.",
   openGraph: { title: "Compare portfolio managers — HoldLens" , images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "HoldLens — 30 superinvestors, one ConvictionScore" }]},
@@ -79,7 +81,7 @@ export default function CompareManagersIndex() {
   }
   const mostSimilar = pairingList.sort((x, y) => y.shared.length - x.shared.length).slice(0, 8);
 
-  return (
+  return <> {(
     <div className="max-w-5xl mx-auto px-8 sm:px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
         Head-to-head
@@ -328,5 +330,5 @@ export default function CompareManagersIndex() {
         All comparisons include live portfolio values computed from current market prices. Not investment advice.
       </p>
     </div>
-  );
+  )} <div className="mx-auto max-w-5xl px-6"><InvestingBooks heading="Reading for your research" sub="Optional background reading on interpreting company disclosures and investing methods. These books do not validate a signal or predict returns." showAudible={false} limit={2} /></div> </>;
 }

@@ -67,6 +67,14 @@ export const onRequest = async ({ request, next, env }: PagesContext): Promise<R
     if (ins && env?.ASSETS) {
       const t = decodeURIComponent(ins[1] || "").toLowerCase();
       if (/^[a-z0-9.\-]{1,10}$/.test(t)) {
+        // Preserve the company dossier when only ticker casing differs.
+        const companyTarget = new URL(`/insiders/company/${t.toUpperCase()}/`, url.origin);
+        if (companyTarget.pathname.replace(/\/+$/, "") !== path) {
+          try {
+            const company = await env.ASSETS.fetch(new Request(companyTarget.toString(), { method: "GET" }));
+            if (company.ok) return Response.redirect(companyTarget.toString(), 301);
+          } catch { /* preserve the existing successor check below */ }
+        }
         const target = new URL(`/ticker/${t.toUpperCase()}/`, url.origin); // real pages are UPPERCASE dirs
         try {
           const probe = await env.ASSETS.fetch(new Request(target.toString(), { method: "GET" }));
