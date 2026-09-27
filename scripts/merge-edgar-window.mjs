@@ -20,13 +20,14 @@
 //   because one filing legitimately emits a non-derivative buy leg and a
 //   derivative sell leg carrying identical numbers.
 //
-//   Note while you are here: even whole-row identity dedupes that corpus to
-//   9,565, i.e. ~54% of the rows already in data/edgar-form4.json are
-//   byte-identical repeats, one transaction appearing up to sixteen times.
-//   That is a real defect in scripts/fetch-edgar-form4.ts and it is NOT this
-//   script's to fix — silently halving the corpus would change every count on
-//   the insider surfaces as a side effect of a freshness job. Preserving
-//   existing rows verbatim keeps that decision where it belongs.
+//   ~~Note while you are here: ~54% of the rows already in data/edgar-form4.json
+//   are byte-identical repeats~~ (FIXED 2026-09-27, card mue3scew2g5ppr: the
+//   fetcher parsed each filing once per daily-index row, i.e. once per filer.
+//   fetch-edgar-form4.ts now fetches each accession once, and
+//   scripts/dedupe-form4-corpus.mjs removed the 11,011 repeats, 30,595 -> 19,584
+//   rows, as a deliberate one-time commit.) The rule still holds: this script
+//   never dedupes EXISTING rows, because a freshness job must not silently change
+//   the counts on the insider surfaces.
 //
 // Usage:  node scripts/merge-edgar-window.mjs <existing.json> <fetched.json> <out.json> <form4|8k>
 

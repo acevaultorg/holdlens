@@ -495,7 +495,20 @@ async function main() {
     const idxText = await idxRes.text();
     const rows = parseDailyIndex(idxText);
     dayStat.formsListed = rows.length;
-    const form4s = rows.filter((r) => r.formType === "4" || r.formType === "4/A");
+    // The daily index lists a filing once PER FILER: the issuer's CIK and every
+    // reporting owner's CIK each get a row, same accession, different
+    // edgar/data/<cik>/ path. Parsing every row emitted each filing's
+    // transactions 2-14x (measured 2026-09-27: 11,109 of 30,595 corpus rows were
+    // such repeats, all from the May backfill). One accession = one fetch.
+    const seenAccessions = new Set<string>();
+    const form4s = rows.filter((r) => {
+      if (r.formType !== "4" && r.formType !== "4/A") return false;
+      const acc = r.filename.match(/([\d-]+)(?:-index\.htm|\.txt)$/)?.[1];
+      if (!acc) return true; // let the loop below count it as bad_index_path
+      if (seenAccessions.has(acc)) return false;
+      seenAccessions.add(acc);
+      return true;
+    });
     dayStat.form4sFound = form4s.length;
 
     console.log(
