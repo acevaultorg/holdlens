@@ -53,9 +53,13 @@ async function pathExists(p: string): Promise<boolean> {
 const resolveCache = new Map<string, boolean>();
 async function linkResolves(internalPath: string): Promise<boolean> {
   if (resolveCache.has(internalPath)) return resolveCache.get(internalPath)!;
+  // Regex captures can be V8 sliced strings retaining the entire HTML page.
+  // This cache spans the whole export; detach each new key so thousands of
+  // unique links do not retain gigabytes of already-processed page bodies.
+  const cacheKey = Buffer.from(internalPath, "utf8").toString("utf8");
   const clean = internalPath.replace(/^\/+/, "").replace(/\/+$/, "");
   if (!clean) {
-    resolveCache.set(internalPath, true);
+    resolveCache.set(cacheKey, true);
     return true;
   }
   // Try index.html, plain file, then .html suffix — in that order
@@ -66,11 +70,11 @@ async function linkResolves(internalPath: string): Promise<boolean> {
   ];
   for (const c of candidates) {
     if (await pathExists(c)) {
-      resolveCache.set(internalPath, true);
+      resolveCache.set(cacheKey, true);
       return true;
     }
   }
-  resolveCache.set(internalPath, false);
+  resolveCache.set(cacheKey, false);
   return false;
 }
 

@@ -234,15 +234,15 @@ export default async function InsidersOfficerPage({ params }: Props) {
       <h2 className="text-2xl font-bold text-text mb-4">Transaction history</h2>
       <div className="rounded-2xl border border-border bg-panel overflow-x-auto mb-10">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm [&_td]:px-4 [&_td]:py-3 [&_th]:px-4 [&_th]:py-3">
             <thead className="text-dim text-[10px] uppercase tracking-wider">
               <tr className="border-b border-border">
-                <th className="text-left px-4 py-3 font-semibold">Date</th>
-                <th className="text-center px-4 py-3 font-semibold">Action</th>
-                <th className="text-right px-4 py-3 font-semibold">Shares</th>
-                <th className="text-right px-4 py-3 font-semibold">Price</th>
-                <th className="text-right px-4 py-3 font-semibold">Value</th>
-                <th className="text-left px-4 py-3 font-semibold hidden lg:table-cell">Note</th>
+                <th className="text-left font-semibold">Date</th>
+                <th className="text-center font-semibold">Action</th>
+                <th className="text-right font-semibold">Shares</th>
+                <th className="text-right font-semibold">Price</th>
+                <th className="text-right font-semibold">Value</th>
+                <th className="text-left font-semibold hidden lg:table-cell">Note</th>
               </tr>
             </thead>
             <tbody>
@@ -256,10 +256,10 @@ export default async function InsidersOfficerPage({ params }: Props) {
                     key={`${tx.date}-${i}`}
                     className="border-b border-border last:border-0 hover:bg-bg/40 transition"
                   >
-                    <td className="px-4 py-3 font-mono text-[11px] text-dim whitespace-nowrap">
+                    <td className="font-mono text-[11px] text-dim whitespace-nowrap">
                       {fmtInsiderDate(tx.date)}
                     </td>
-                    <td className="px-4 py-3 text-center">
+                    <td className="text-center">
                       <span
                         className={`inline-block rounded px-2 py-0.5 text-[10px] uppercase tracking-wider font-bold ${
                           isBuy
@@ -272,14 +272,14 @@ export default async function InsidersOfficerPage({ params }: Props) {
                         {isBuy ? "BUY" : disc ? "SELL" : "10b5-1"}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-right font-mono tabular-nums text-text">
+                    <td className="text-right font-mono tabular-nums text-text">
                       {tx.shares.toLocaleString("en-US")}
                     </td>
-                    <td className="px-4 py-3 text-right font-mono text-muted tabular-nums">
+                    <td className="text-right font-mono text-muted tabular-nums">
                       ${tx.pricePerShare}
                     </td>
                     <td
-                      className={`px-4 py-3 text-right font-mono tabular-nums ${
+                      className={`text-right font-mono tabular-nums ${
                         isBuy
                           ? "text-emerald-400 font-semibold"
                           : disc
@@ -289,7 +289,7 @@ export default async function InsidersOfficerPage({ params }: Props) {
                     >
                       {fmtInsiderValue(tx.value)}
                     </td>
-                    <td className="px-4 py-3 text-xs text-muted hidden lg:table-cell">
+                    <td className="text-xs text-muted hidden lg:table-cell">
                       {tx.note || ""}
                     </td>
                   </tr>
