@@ -208,6 +208,34 @@ for (const ds of DATASETS) {
   }
 }
 
+// ETF top-10 snapshots (lib/etfs.ts) are hand-curated per ETF with an asOfDate, and
+// /etf/<T>/ prints "refreshed daily by the issuer. HoldLens verified <asOfDate>".
+// Added 2026-09-28: all 12 sat at 2026-03-31 for six months (SPY showed AAPL #1 at 7.1%
+// while State Street's own file had NVDA #1 at 8.19%). Warn past one quarter.
+const ETF_MAX_AGE_DAYS = 100;
+{
+  let etfSrc = null;
+  try { etfSrc = readFileSync(join(process.cwd(), "lib", "etfs.ts"), "utf8"); } catch {}
+  const dated = etfSrc
+    ? [...etfSrc.matchAll(/\n    ticker: "([A-Z.]+)",[^]*?asOfDate: "(\d{4}-\d{2}-\d{2})"/g)]
+    : [];
+  if (dated.length === 0) {
+    problems.push(`CANNOT MEASURE — ETF snapshots: no asOfDate read from lib/etfs.ts. This is NOT a pass.`);
+  } else {
+    const cutoff = addDays(today, -ETF_MAX_AGE_DAYS);
+    const stale = dated.filter((m) => m[2] < cutoff).map((m) => `${m[1]} ${m[2]}`);
+    if (stale.length) {
+      problems.push(
+        `STALE — ETF top-10 snapshots: ${stale.length} of ${dated.length} older than ${ETF_MAX_AGE_DAYS} days: ${stale.join(", ")}\n` +
+          `    Claimed on: /etf/<T>/ — "refreshed daily by the issuer". Fix: update topHoldings + asOfDate\n` +
+          `    in lib/etfs.ts from each issuer's holdings file (SSGA xlsx and ARK csv download without login).`
+      );
+    } else {
+      lines.push(`[data-freshness] OK — ETF snapshots: ${dated.length} dated, all within ${ETF_MAX_AGE_DAYS} days.`);
+    }
+  }
+}
+
 for (const l of lines) console.log(l);
 
 if (problems.length > 0) {
