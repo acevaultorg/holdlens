@@ -707,7 +707,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a href="https://caslonmedia.com/" style={{ textDecoration: 'underline' }}>
                   Caslon Media
                 </a>
-                , Amsterdam.
+                , Amsterdam · KvK 64708101 · VAT NL002250100B57.
                 {/* Amazon trademark attribution. It already sits on
                     /disclaimer/, but the mark is USED on /reading/ (174
                     mentions, tag=holdlens-20) and /learn/ — and the notice
