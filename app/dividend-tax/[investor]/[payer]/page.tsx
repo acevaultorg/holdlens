@@ -185,7 +185,13 @@ export default async function PairPage({ params }: { params: Promise<PairParams>
           {inv.name} investor receiving {pay.name} dividends: {effective.rate_pct}% withholding
         </h1>
         <p className="text-muted text-lg mt-4 leading-relaxed">
-          If you're a {inv.name} resident receiving dividends from a {pay.name}-domiciled company, the {pay.name} tax authority withholds {effective.rate_pct}% at source under {cell.treaty_reference}. The statutory non-treaty ceiling is {effective.statutory_rate_pct}% — the bilateral treaty saves you {reductionVsStatutory} percentage points. Verified {cell.last_verified}.
+          {effective.rate_pct === 0 ? (
+            <>If you're a {inv.name} resident receiving dividends from a {pay.name}-domiciled company, {pay.name} does not withhold tax on them ({cell.treaty_reference}). Verified {cell.last_verified}.</>
+          ) : reductionVsStatutory > 0 ? (
+            <>If you're a {inv.name} resident receiving dividends from a {pay.name}-domiciled company, {cell.treaty_reference} caps the {pay.name} tax at {effective.rate_pct}%, against a non-treaty rate of {effective.statutory_rate_pct}%. How you get the lower rate depends on {pay.name} and your broker: some countries apply it at source once the relief paperwork is filed, others withhold the full {effective.statutory_rate_pct}% first and refund the difference on a reclaim. Verified {cell.last_verified}.</>
+          ) : (
+            <>If you're a {inv.name} resident receiving dividends from a {pay.name}-domiciled company, the {pay.name} tax authority withholds {effective.rate_pct}% at source ({cell.treaty_reference}); the treaty does not lower it further. Verified {cell.last_verified}.</>
+          )}
         </p>
       </header>
 
@@ -199,7 +205,7 @@ export default async function PairPage({ params }: { params: Promise<PairParams>
               ${per100.net.toFixed(2)} <span className="text-lg text-muted font-normal">net</span>
             </div>
             <div className="text-xs text-dim mt-1">
-              ${per100.withheld.toFixed(2)} withheld at source
+              ${per100.withheld.toFixed(2)} {reductionVsStatutory > 0 ? "tax after treaty relief" : "withheld at source"}
             </div>
           </div>
           <div className="rounded-xl border border-border bg-panel px-5 py-5">
