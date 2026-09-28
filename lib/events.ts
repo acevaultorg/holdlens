@@ -397,10 +397,12 @@ export function allEventTickers(): string[] {
 
 export function fmtEventDate(iso: string): string {
   const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
 export function fmtEventDateTime(iso: string): string {
   const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }

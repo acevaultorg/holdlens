@@ -156,7 +156,7 @@ export default async function ComparePairPage({ params }: { params: Promise<{ pa
         name: `Among managers holding both ${a} and ${b}, which do they prefer?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Of ${shared.length} managers holding both, ${preferA} weight ${a} higher and ${preferB} weight ${b} higher in their portfolios. ${preferA === preferB ? "Even split." : (preferA > preferB ? `${a} is the preferred conviction position for the majority.` : `${b} is the preferred conviction position for the majority.`)} Per-manager position %s in the convergence table below.`,
+          text: `Of ${shared.length} managers holding both, ${preferA} weight ${a} higher and ${preferB} weight ${b} higher in their portfolios. ${preferA === preferB ? "Even split." : (preferA > preferB ? `${a} is the preferred conviction position for the majority.` : `${b} is the preferred conviction position for the majority.`)} Per-manager positions are in the convergence table below.`,
         },
       }] : []),
     ],

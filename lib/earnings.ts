@@ -127,6 +127,7 @@ export function fmtEarningsRelative(epochSec: number | null): string {
   if (diffDays > 0 && diffDays <= 14) return `in ${diffDays} days`;
   if (diffDays < 0 && diffDays >= -14) return `${Math.abs(diffDays)} days ago`;
   const d = new Date(epochSec * 1000);
+  if (isNaN(d.getTime())) return "—";
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
@@ -134,5 +135,6 @@ export function fmtEarningsRelative(epochSec: number | null): string {
 export function fmtEarningsDate(epochSec: number | null): string {
   if (!epochSec) return "—";
   const d = new Date(epochSec * 1000);
+  if (isNaN(d.getTime())) return "—";
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
