@@ -62,6 +62,13 @@ async function linkResolves(internalPath: string): Promise<boolean> {
     resolveCache.set(cacheKey, true);
     return true;
   }
+  // /go/* is served by the affiliate gate worker, not by a file in out/, so it never
+  // "resolves" here. Stripping it turned the Audible bounty CTA into a <span> site-wide
+  // (card mulbf0qeott3t3, 2026-09-28). Worker routes are exempt.
+  if (clean === "go" || clean.startsWith("go/")) {
+    resolveCache.set(cacheKey, true);
+    return true;
+  }
   // Try index.html, plain file, then .html suffix — in that order
   const candidates = [
     path.join(OUT_DIR, clean, "index.html"),
