@@ -34,6 +34,9 @@ else
   python3 scripts/deploy-safety.py guard node "$RG_GUARD" --site holdlens.com || { echo "❌ deploy-cf: DEPLOY BLOCKED by rg-freeze-guard (pre-build)"; exit 1; }
 fi
 # ── end rg-freeze-guard hook v1 ─────────────────────────────────────────────────
+# Stale-checkout guard (2026-09-28): refuse a checkout missing commits on origin/main, which a
+# Pages deploy would revert live. Runs again just before upload (origin moves during the build).
+node scripts/predeploy-git-guard.mjs
 npm run clean 2>/dev/null || true
 npm run build
 HOLD="$(mktemp -d "${TMPDIR:-/tmp}/holdlens-insiders-hold.XXXXXX")"
@@ -119,5 +122,6 @@ if [ -n "$RG_GUARD" ]; then
   python3 scripts/deploy-safety.py guard node "$RG_GUARD" --site holdlens.com --out "$PWD/out" \
     || { echo "❌ deploy-cf: DEPLOY BLOCKED by rg-freeze-guard (built-vs-live)"; exit 1; }
 fi
+node scripts/predeploy-git-guard.mjs
 OUT_DIR="$PWD/out" python3 scripts/cf-pages-chunked-deploy.py
 npm run indexnow 2>/dev/null || true
