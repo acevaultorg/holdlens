@@ -69,7 +69,13 @@ function toYahooSymbol(symbol: string): string {
 
 class UnknownSymbol extends Error {}
 
+// 13F rows whose CUSIP has no resolvable US listing keep a truncated issuer
+// name as their ticker ("SKYWATER T", "CARNIVAL"). No exchange symbol has a
+// space or a 6+ letter root, so those can only 404: skip the request.
+const REAL_SYMBOL = /^[A-Z0-9]{1,5}([.\-/][A-Z0-9]{1,3})?$/;
+
 async function fetchFromYahoo(symbol: string, range: string): Promise<LiveQuote> {
+  if (!REAL_SYMBOL.test(symbol.toUpperCase().trim())) throw new UnknownSymbol(symbol);
   const yahooSym = toYahooSymbol(symbol);
   const endpoints = [
     `${PROXY_BASE}/quote/${encodeURIComponent(yahooSym)}?range=${range}`,

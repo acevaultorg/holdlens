@@ -7412,7 +7412,7 @@
         "pctPortfolio": 1.4
       },
       {
-        "ticker": "AMCOR",
+        "ticker": "AMCR",
         "name": "AMCOR PLC",
         "cusip": "G0250X107",
         "shares": 5500000,
@@ -22520,7 +22520,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BEYOND MEA",
+        "ticker": "BYND",
         "name": "BEYOND MEAT INC",
         "cusip": "08862E109",
         "shares": 6850918,
@@ -25656,7 +25656,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GOSSAMER B",
+        "ticker": "GOSS",
         "name": "GOSSAMER BIO INC",
         "cusip": "38341P102",
         "shares": 15629993,
@@ -29584,7 +29584,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "THERAVANCE",
+        "ticker": "TBPH",
         "name": "THERAVANCE BIOPHARMA INC",
         "cusip": "G8807B106",
         "shares": 47820,
@@ -29608,7 +29608,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NERDY",
+        "ticker": "NRDY",
         "name": "NERDY INC",
         "cusip": "64081V109",
         "shares": 878617,
@@ -31880,7 +31880,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "MICROVISIO",
+        "ticker": "MVIS",
         "name": "MICROVISION INC DEL",
         "cusip": "594960304",
         "shares": 940382,
@@ -34787,7 +34787,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "HONEYWELL ",
+        "ticker": "HON",
         "name": "HONEYWELL INTL INC",
         "cusip": "438516106",
         "shares": 1421386,
@@ -35363,7 +35363,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 9374948,
@@ -45867,7 +45867,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BEYOND MEA",
+        "ticker": "BYND",
         "name": "BEYOND MEAT INC",
         "cusip": "08862E109",
         "shares": 8309767,
@@ -48083,7 +48083,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GOSSAMER B",
+        "ticker": "GOSS",
         "name": "GOSSAMER BIO INC",
         "cusip": "38341P102",
         "shares": 10126897,
@@ -51763,7 +51763,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ENVIRI",
+        "ticker": "NVRI",
         "name": "ENVIRI CORP",
         "cusip": "415864107",
         "shares": 70789,
@@ -55123,7 +55123,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "THERAVANCE",
+        "ticker": "TBPH",
         "name": "THERAVANCE BIOPHARMA INC",
         "cusip": "G8807B106",
         "shares": 27357,
@@ -55675,7 +55675,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NERDY",
+        "ticker": "NRDY",
         "name": "NERDY INC",
         "cusip": "64081V109",
         "shares": 445918,
@@ -55859,7 +55859,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "MICROVISIO",
+        "ticker": "MVIS",
         "name": "MICROVISION INC DEL",
         "cusip": "594960304",
         "shares": 521041,
@@ -61598,7 +61598,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 3588079,
@@ -62646,7 +62646,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HONEYWELL ",
+        "ticker": "HON",
         "name": "HONEYWELL INTL INC",
         "cusip": "438516106",
         "shares": 358598,
@@ -64134,7 +64134,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "AMCOR",
+        "ticker": "AMCR",
         "name": "AMCOR PLC",
         "cusip": "G0250X107",
         "shares": 4238186,
@@ -65638,7 +65638,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "QIAGEN",
+        "ticker": "QGEN",
         "name": "QIAGEN NV",
         "cusip": "N72482206",
         "shares": 397993,
@@ -71358,7 +71358,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GOSSAMER B",
+        "ticker": "GOSS",
         "name": "GOSSAMER BIO INC",
         "cusip": "38341P102",
         "shares": 1119240,
@@ -76134,7 +76134,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ENVIRI",
+        "ticker": "NVRI",
         "name": "ENVIRI CORP",
         "cusip": "415864107",
         "shares": 57740,
@@ -78566,7 +78566,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "THERAVANCE",
+        "ticker": "TBPH",
         "name": "THERAVANCE BIOPHARMA INC",
         "cusip": "G8807B106",
         "shares": 24684,
@@ -78790,7 +78790,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FUBOTV",
+        "ticker": "FUBO",
         "name": "FUBOTV INC",
         "cusip": "35953D104",
         "shares": 168656,
@@ -78966,7 +78966,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BEYOND MEA",
+        "ticker": "BYND",
         "name": "BEYOND MEAT INC",
         "cusip": "08862E109",
         "shares": 484596,
@@ -81742,7 +81742,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NERDY",
+        "ticker": "NRDY",
         "name": "NERDY INC",
         "cusip": "64081V109",
         "shares": 38564,
@@ -85273,7 +85273,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 3551372,
@@ -86721,7 +86721,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "AMCOR",
+        "ticker": "AMCR",
         "name": "AMCOR PLC",
         "cusip": "G0250X107",
         "shares": 6351077,
@@ -88225,7 +88225,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HONEYWELL ",
+        "ticker": "HON",
         "name": "HONEYWELL INTL INC",
         "cusip": "438516106",
         "shares": 118779,
@@ -93137,7 +93137,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "QIAGEN",
+        "ticker": "QGEN",
         "name": "QIAGEN NV",
         "cusip": "N72482206",
         "shares": 108806,
@@ -96897,7 +96897,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TILRAY BRA",
+        "ticker": "TLRY",
         "name": "TILRAY BRANDS INC",
         "cusip": "88688T100",
         "shares": 1066562,
@@ -97345,7 +97345,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GOSSAMER B",
+        "ticker": "GOSS",
         "name": "GOSSAMER BIO INC",
         "cusip": "38341P102",
         "shares": 646615,
@@ -100849,7 +100849,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FUBOTV",
+        "ticker": "FUBO",
         "name": "FUBOTV INC",
         "cusip": "35953D104",
         "shares": 165705,
@@ -100961,7 +100961,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ENVIRI",
+        "ticker": "NVRI",
         "name": "ENVIRI CORP",
         "cusip": "415864107",
         "shares": 52188,
@@ -103401,7 +103401,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "THERAVANCE",
+        "ticker": "TBPH",
         "name": "THERAVANCE BIOPHARMA INC",
         "cusip": "G8807B106",
         "shares": 18835,
@@ -104897,7 +104897,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BEYOND MEA",
+        "ticker": "BYND",
         "name": "BEYOND MEAT INC",
         "cusip": "08862E109",
         "shares": 55267,
@@ -105425,7 +105425,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NERDY",
+        "ticker": "NRDY",
         "name": "NERDY INC",
         "cusip": "64081V109",
         "shares": 30861,
@@ -107412,7 +107412,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "AMCOR",
+        "ticker": "AMCR",
         "name": "AMCOR PLC",
         "cusip": "G0250X107",
         "shares": 16015722,
@@ -109052,7 +109052,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 2685861,
@@ -110988,7 +110988,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SOUTHSTATE",
+        "ticker": "SSB",
         "name": "SOUTHSTATE CORPORATION",
         "cusip": "840441109",
         "shares": 330037,
@@ -111876,7 +111876,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HONEYWELL ",
+        "ticker": "HON",
         "name": "HONEYWELL INTL INC",
         "cusip": "438516106",
         "shares": 85459,
@@ -114300,7 +114300,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "QIAGEN",
+        "ticker": "QGEN",
         "name": "QIAGEN NV",
         "cusip": "N72482206",
         "shares": 140601,
@@ -117492,7 +117492,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "LUCID",
+        "ticker": "LCID",
         "name": "LUCID GROUP INC",
         "cusip": "549498103",
         "shares": 1366621,
@@ -123364,7 +123364,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GRAFTECH I",
+        "ticker": "EAF",
         "name": "GRAFTECH INTL LTD",
         "cusip": "384313508",
         "shares": 651615,
@@ -123980,7 +123980,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FUBOTV",
+        "ticker": "FUBO",
         "name": "FUBOTV INC",
         "cusip": "35953D104",
         "shares": 142670,
@@ -124356,7 +124356,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TILRAY BRA",
+        "ticker": "TLRY",
         "name": "TILRAY BRANDS INC",
         "cusip": "88688T100",
         "shares": 1158537,
@@ -124988,7 +124988,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ENVIRI",
+        "ticker": "NVRI",
         "name": "ENVIRI CORP",
         "cusip": "415864107",
         "shares": 44745,
@@ -125324,7 +125324,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "WHEELS UP ",
+        "ticker": "UP",
         "name": "WHEELS UP EXPERIENCE INC",
         "cusip": "96328L205",
         "shares": 324963,
@@ -126596,7 +126596,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BEYOND MEA",
+        "ticker": "BYND",
         "name": "BEYOND MEAT INC",
         "cusip": "08862E109",
         "shares": 62556,
@@ -127396,7 +127396,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "THERAVANCE",
+        "ticker": "TBPH",
         "name": "THERAVANCE BIOPHARMA INC",
         "cusip": "G8807B106",
         "shares": 12249,
@@ -128060,7 +128060,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NERDY",
+        "ticker": "NRDY",
         "name": "NERDY INC",
         "cusip": "64081V109",
         "shares": 43791,
@@ -128308,7 +128308,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ATOSSA THE",
+        "ticker": "ATOS",
         "name": "ATOSSA THERAPEUTICS INC",
         "cusip": "04962H506",
         "shares": 48329,
@@ -128388,7 +128388,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "LIVEONE",
+        "ticker": "LVO",
         "name": "LIVEONE INC",
         "cusip": "53814X102",
         "shares": 45877,
@@ -128460,7 +128460,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "PURPLE INN",
+        "ticker": "PRPL",
         "name": "PURPLE INNOVATION INC",
         "cusip": "74640Y106",
         "shares": 41176,
@@ -128556,7 +128556,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "WOLFSPEED",
+        "ticker": "WOLF",
         "name": "WOLFSPEED INC",
         "cusip": "977852102",
         "shares": 51732,
@@ -128580,7 +128580,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HARVARD BI",
+        "ticker": "HBIO",
         "name": "HARVARD BIOSCIENCE INC",
         "cusip": "416906105",
         "shares": 45706,
@@ -131135,7 +131135,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 4410202,
@@ -133255,7 +133255,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "AMCOR",
+        "ticker": "AMCR",
         "name": "AMCOR PLC",
         "cusip": "G0250X107",
         "shares": 3211937,
@@ -134927,7 +134927,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SOUTHSTATE",
+        "ticker": "SSB",
         "name": "SOUTHSTATE CORPORATION",
         "cusip": "840441109",
         "shares": 140929,
@@ -135023,7 +135023,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HONEYWELL ",
+        "ticker": "HON",
         "name": "HONEYWELL INTL INC",
         "cusip": "438516106",
         "shares": 57353,
@@ -136295,7 +136295,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "QIAGEN",
+        "ticker": "QGEN",
         "name": "QIAGEN NV",
         "cusip": "N72482206",
         "shares": 178425,
@@ -139967,7 +139967,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NEKTAR THE",
+        "ticker": "NKTR",
         "name": "NEKTAR THERAPEUTICS",
         "cusip": "640268108",
         "shares": 3640851,
@@ -142727,7 +142727,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "LUCID",
+        "ticker": "LCID",
         "name": "LUCID GROUP INC",
         "cusip": "549498103",
         "shares": 537801,
@@ -145407,7 +145407,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "BEYOND MEA",
+        "ticker": "BYND",
         "name": "BEYOND MEAT INC",
         "cusip": "08862E109",
         "shares": 193594,
@@ -145647,7 +145647,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GRAFTECH I",
+        "ticker": "EAF",
         "name": "GRAFTECH INTL LTD",
         "cusip": "384313508",
         "shares": 635663,
@@ -146767,7 +146767,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TILRAY BRA",
+        "ticker": "TLRY",
         "name": "TILRAY BRANDS INC",
         "cusip": "88688T100",
         "shares": 607054,
@@ -147303,7 +147303,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FUBOTV",
+        "ticker": "FUBO",
         "name": "FUBOTV INC",
         "cusip": "35953D104",
         "shares": 116287,
@@ -148863,7 +148863,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FORWARD AI",
+        "ticker": "FWRD",
         "name": "FORWARD AIR CORP",
         "cusip": "349853101",
         "shares": 10009,
@@ -149247,7 +149247,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "WHEELS UP ",
+        "ticker": "UP",
         "name": "WHEELS UP EXPERIENCE INC",
         "cusip": "96328L205",
         "shares": 154758,
@@ -149823,7 +149823,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "THERAVANCE",
+        "ticker": "TBPH",
         "name": "THERAVANCE BIOPHARMA INC",
         "cusip": "G8807B106",
         "shares": 11270,
@@ -150319,7 +150319,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NERDY",
+        "ticker": "NRDY",
         "name": "NERDY INC",
         "cusip": "64081V109",
         "shares": 37660,
@@ -150599,7 +150599,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "PURPLE INN",
+        "ticker": "PRPL",
         "name": "PURPLE INNOVATION INC",
         "cusip": "74640Y106",
         "shares": 36465,
@@ -150695,7 +150695,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "X4 PHARMAC",
+        "ticker": "XFOR",
         "name": "X4 PHARMACEUTICALS INC",
         "cusip": "98420X103",
         "shares": 86963,
@@ -150791,7 +150791,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HARVARD BI",
+        "ticker": "HBIO",
         "name": "HARVARD BIOSCIENCE INC",
         "cusip": "416906105",
         "shares": 22780,
@@ -150815,7 +150815,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "LIVEONE",
+        "ticker": "LVO",
         "name": "LIVEONE INC",
         "cusip": "53814X102",
         "shares": 17002,
@@ -150823,7 +150823,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ATOSSA THE",
+        "ticker": "ATOS",
         "name": "ATOSSA THERAPEUTICS INC",
         "cusip": "04962H506",
         "shares": 16240,
@@ -152314,7 +152314,7 @@
         "pctPortfolio": 0.2
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 4689305,
@@ -153834,7 +153834,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "DKNG",
+        "ticker": "DD",
         "name": "DUPONT DE NEMOURS INC",
         "cusip": "26614N102",
         "shares": 779486,
@@ -156810,7 +156810,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "AMCOR",
+        "ticker": "AMCR",
         "name": "AMCOR PLC",
         "cusip": "G0250X107",
         "shares": 1438872,
@@ -157170,7 +157170,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HONEYWELL ",
+        "ticker": "HON",
         "name": "HONEYWELL INTL INC",
         "cusip": "438516106",
         "shares": 49565,
@@ -158418,7 +158418,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SOUTHSTATE",
+        "ticker": "SSB",
         "name": "SOUTHSTATE CORPORATION",
         "cusip": "840441109",
         "shares": 70762,
@@ -165426,7 +165426,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "LUCID",
+        "ticker": "LCID",
         "name": "LUCID GROUP INC",
         "cusip": "549498103",
         "shares": 283250,
@@ -165818,7 +165818,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NEKTAR THE",
+        "ticker": "NKTR",
         "name": "NEKTAR THERAPEUTICS",
         "cusip": "640268108",
         "shares": 833256,
@@ -166146,7 +166146,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GLOBALSTAR",
+        "ticker": "GSAT",
         "name": "GLOBALSTAR INC",
         "cusip": "378973408",
         "shares": 340289,
@@ -168210,7 +168210,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FUBOTV",
+        "ticker": "FUBO",
         "name": "FUBOTV INC",
         "cusip": "35953D104",
         "shares": 285885,
@@ -168666,7 +168666,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FORWARD AI",
+        "ticker": "FWRD",
         "name": "FORWARD AIR CORP",
         "cusip": "349853101",
         "shares": 9355,
@@ -170186,7 +170186,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ENVIRI",
+        "ticker": "NVRI",
         "name": "ENVIRI CORP",
         "cusip": "415864107",
         "shares": 19123,
@@ -170978,7 +170978,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TILRAY BRA",
+        "ticker": "TLRY",
         "name": "TILRAY BRANDS INC",
         "cusip": "88688T100",
         "shares": 31297,
@@ -171050,7 +171050,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NERDY",
+        "ticker": "NRDY",
         "name": "NERDY INC",
         "cusip": "64081V109",
         "shares": 22426,
@@ -171170,7 +171170,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GRAFTECH I",
+        "ticker": "EAF",
         "name": "GRAFTECH INTL LTD",
         "cusip": "384313508",
         "shares": 12264,
@@ -171186,7 +171186,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "X4 PHARMAC",
+        "ticker": "XFOR",
         "name": "X4 PHARMACEUTICALS INC",
         "cusip": "98420X103",
         "shares": 26839,
@@ -174021,7 +174021,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "BLACKROCK",
+        "ticker": "BLK",
         "name": "BLACKROCK INC",
         "cusip": "09247X101",
         "shares": 58653,
@@ -174069,7 +174069,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "DKNG",
+        "ticker": "DD",
         "name": "DUPONT DE NEMOURS INC",
         "cusip": "26614N102",
         "shares": 753448,
@@ -174309,7 +174309,7 @@
         "pctPortfolio": 0.1
       },
       {
-        "ticker": "AMCOR",
+        "ticker": "AMCR",
         "name": "AMCOR PLC",
         "cusip": "G0250X107",
         "shares": 4336444,
@@ -175741,7 +175741,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 1426101,
@@ -176685,7 +176685,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "HONEYWELL ",
+        "ticker": "HON",
         "name": "HONEYWELL INTL INC",
         "cusip": "438516106",
         "shares": 78562,
@@ -179037,7 +179037,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "SOUTHSTATE",
+        "ticker": "SSB",
         "name": "SOUTHSTATE CORPORATION",
         "cusip": "840441109",
         "shares": 59948,
@@ -181701,7 +181701,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TEEKAY TAN",
+        "ticker": "TNK",
         "name": "TEEKAY TANKERS LTD",
         "cusip": "Y8565N300",
         "shares": 47249,
@@ -183717,7 +183717,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "ENVIRI",
+        "ticker": "NVRI",
         "name": "ENVIRI CORP",
         "cusip": "415864107",
         "shares": 149512,
@@ -184077,7 +184077,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FUBOTV",
+        "ticker": "FUBO",
         "name": "FUBOTV INC",
         "cusip": "35953D104",
         "shares": 991817,
@@ -186413,7 +186413,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "GLOBALSTAR",
+        "ticker": "GSAT",
         "name": "GLOBALSTAR INC",
         "cusip": "378973408",
         "shares": 558447,
@@ -186669,7 +186669,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "NEKTAR THE",
+        "ticker": "NKTR",
         "name": "NEKTAR THERAPEUTICS",
         "cusip": "640268108",
         "shares": 501590,
@@ -187405,7 +187405,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "X4 PHARMAC",
+        "ticker": "XFOR",
         "name": "X4 PHARMACEUTICALS INC",
         "cusip": "98420X103",
         "shares": 715722,
@@ -188757,7 +188757,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "FORWARD AI",
+        "ticker": "FWRD",
         "name": "FORWARD AIR CORP",
         "cusip": "349853101",
         "shares": 7992,
@@ -190381,7 +190381,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "TILRAY BRA",
+        "ticker": "TLRY",
         "name": "TILRAY BRANDS INC",
         "cusip": "88688T100",
         "shares": 58206,
@@ -190605,7 +190605,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "WHEELS UP ",
+        "ticker": "UP",
         "name": "WHEELS UP EXPERIENCE INC",
         "cusip": "96328L205",
         "shares": 30065,
@@ -190837,7 +190837,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "LUCID",
+        "ticker": "LCID",
         "name": "LUCID GROUP INC",
         "cusip": "549498103",
         "shares": 12536,
@@ -190933,7 +190933,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CARPARTS C",
+        "ticker": "PRTS",
         "name": "CARPARTS COM INC",
         "cusip": "14427M107",
         "shares": 38132,
@@ -191117,7 +191117,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "KARYOPHARM",
+        "ticker": "KPTI",
         "name": "KARYOPHARM THERAPEUTICS INC",
         "cusip": "48576U106",
         "shares": 12221,
@@ -191663,7 +191663,7 @@
         "pctPortfolio": 2.9
       },
       {
-        "ticker": "BIOATLA",
+        "ticker": "BCAB",
         "name": "BIOATLA INC",
         "cusip": "09077B104",
         "shares": 633959,
@@ -224891,7 +224891,7 @@
         "pctPortfolio": 1
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 13721348,
@@ -225518,7 +225518,7 @@
         "pctPortfolio": 1.2
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 14061827,
@@ -226748,7 +226748,7 @@
         "pctPortfolio": 1.1
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 13207267,
@@ -227495,7 +227495,7 @@
         "pctPortfolio": 0.8
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 12408817,
@@ -228909,7 +228909,7 @@
         "pctPortfolio": 0.6
       },
       {
-        "ticker": "CARNIVAL",
+        "ticker": "CCL",
         "name": "CARNIVAL CORP",
         "cusip": "143658300",
         "shares": 9559560,
@@ -259960,7 +259960,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CARDLYTICS",
+        "ticker": "CDLX",
         "name": "Cardlytics Inc",
         "cusip": "14161W105",
         "shares": 50413,
@@ -262003,7 +262003,7 @@
         "pctPortfolio": 0
       },
       {
-        "ticker": "CARDLYTICS",
+        "ticker": "CDLX",
         "name": "Cardlytics Inc",
         "cusip": "14161W105",
         "shares": 567396,
@@ -264443,7 +264443,7 @@
         "pctPortfolio": 3.1
       },
       {
-        "ticker": "BLACKROCK",
+        "ticker": "BLK",
         "name": "BLACKROCK INC",
         "cusip": "09247X101",
         "shares": 488699,

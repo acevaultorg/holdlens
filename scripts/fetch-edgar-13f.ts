@@ -633,8 +633,10 @@ function reportDateToQuarter(reportDate: string): string {
 // OpenFIGI answers cached by scripts/resolve-cusips-openfigi.mjs. They win over
 // the hand map below, which carried wrong entries (Broadcom as "BN", SPDR S&P 500
 // as "SPG", Church & Dwight as "CHK"). Run that script after a 13F refresh so new
-// CUSIPs get resolved; an unresolved CUSIP still falls through to the hand map.
-const FIGI_CACHE: Record<string, { ticker: string } | null> = existsSync(resolve(DATA_DIR, "cusip-ticker-figi.json"))
+// CUSIPs get resolved, then scripts/resolve-cusips-fallback.mjs for the nulls
+// (US-exchange lines + SEC names, each checked against a live quote; debt-coded
+// CUSIPs become { debt: true }). An unresolved CUSIP still falls through to the hand map.
+const FIGI_CACHE: Record<string, { ticker?: string; debt?: boolean } | null> = existsSync(resolve(DATA_DIR, "cusip-ticker-figi.json"))
   ? JSON.parse(readFileSync(resolve(DATA_DIR, "cusip-ticker-figi.json"), "utf8"))
   : {};
 
