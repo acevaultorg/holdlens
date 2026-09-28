@@ -67,11 +67,14 @@ function toYahooSymbol(symbol: string): string {
   return symbol.toUpperCase().trim().replace(/[./]/g, "-");
 }
 
+class UnknownSymbol extends Error {}
+
 async function fetchFromYahoo(symbol: string, range: string): Promise<LiveQuote> {
   const yahooSym = toYahooSymbol(symbol);
   const endpoints = [
     `${PROXY_BASE}/quote/${encodeURIComponent(yahooSym)}?range=${range}`,
-    `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(yahooSym)}?interval=1d&range=${range}`,
+    // No direct query1.finance.yahoo.com endpoint: it sends no CORS header, so
+    // from a browser it can only ever fail (and log a console error per call).
     `https://corsproxy.io/?url=${encodeURIComponent(
       `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSym}?interval=1d&range=${range}`
     )}`,
@@ -81,6 +84,9 @@ async function fetchFromYahoo(symbol: string, range: string): Promise<LiveQuote>
   for (const url of endpoints) {
     try {
       const res = await fetch(url, { method: "GET" });
+      // The proxy passes Yahoo's status through: 404 means Yahoo does not know
+      // the symbol, so a second endpoint cannot help. Stop instead of retrying.
+      if (res.status === 404 && url.startsWith(PROXY_BASE)) throw new UnknownSymbol(yahooSym);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       const result = data?.chart?.result?.[0];
@@ -117,6 +123,7 @@ async function fetchFromYahoo(symbol: string, range: string): Promise<LiveQuote>
         fetchedAt: Date.now(),
       };
     } catch (e) {
+      if (e instanceof UnknownSymbol) throw e;
       lastErr = e;
       continue;
     }

@@ -46,7 +46,7 @@ async function fetchYahooNews(symbol: string, count = 8): Promise<NewsItem[]> {
   )}&quotesCount=0&newsCount=${count}&enableFuzzyQuery=false&lang=en-US&region=US`;
   const endpoints = [
     `${PROXY_BASE}/search/${encodeURIComponent(symbol)}?count=${count}`,
-    base,
+    // No direct Yahoo endpoint: it sends no CORS header, so a browser call can only fail.
     `https://corsproxy.io/?url=${encodeURIComponent(base)}`,
   ];
 

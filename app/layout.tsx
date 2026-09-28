@@ -200,13 +200,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Perf: preconnect to the origins we WILL hit, so the DNS + TLS
             handshake overlaps with critical rendering instead of blocking it. */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://query1.finance.yahoo.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://holdlens-yahoo-proxy.paulomdevries.workers.dev" crossOrigin="anonymous" />
         {/* parqet serves ~40 ticker logos per holdings table as plain <img>
             (no CORS) — preconnect WITHOUT crossOrigin so the warmed connection
             is reused by the image fetches instead of opening a second one. */}
         <link rel="preconnect" href="https://assets.parqet.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-        <link rel="dns-prefetch" href="https://query1.finance.yahoo.com" />
+        <link rel="dns-prefetch" href="https://holdlens-yahoo-proxy.paulomdevries.workers.dev" />
         <link rel="dns-prefetch" href="https://assets.parqet.com" />
         {/* Google Consent Mode v2 — denied by default ONLY in consent-required regions
             (EEA + UK/CH + US-CA), where the CookieConsent banner then grants. Granted by

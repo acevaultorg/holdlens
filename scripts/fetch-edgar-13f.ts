@@ -630,11 +630,27 @@ function reportDateToQuarter(reportDate: string): string {
   return `${y}-Q4`;
 }
 
+// OpenFIGI answers cached by scripts/resolve-cusips-openfigi.mjs. They win over
+// the hand map below, which carried wrong entries (Broadcom as "BN", SPDR S&P 500
+// as "SPG", Church & Dwight as "CHK"). Run that script after a 13F refresh so new
+// CUSIPs get resolved; an unresolved CUSIP still falls through to the hand map.
+const FIGI_CACHE: Record<string, { ticker: string } | null> = existsSync(resolve(DATA_DIR, "cusip-ticker-figi.json"))
+  ? JSON.parse(readFileSync(resolve(DATA_DIR, "cusip-ticker-figi.json"), "utf8"))
+  : {};
+
+// OpenFIGI writes share classes with a slash ("BRK/B"); HoldLens uses a dot.
+function figiTicker(cusip: string): string | undefined {
+  const hit = FIGI_CACHE[cusip.toUpperCase()];
+  return hit?.ticker ? hit.ticker.replace("/", ".") : undefined;
+}
+
 function cusipToTicker(cusip: string, issuerName: string): string {
   // EDGAR filings mix uppercase/lowercase CUSIPs (e.g. "48251W104" vs
   // "48251w104"). Normalize to uppercase before lookup so the same issuer
   // isn't duplicated into separate unmapped rows.
   const cu = cusip.toUpperCase();
+  const figi = figiTicker(cu);
+  if (figi) return figi;
   const c6 = cu.substring(0, 6); // 6-digit issuer
   // Try exact match first
   if (CUSIP_TO_TICKER[cu]) return CUSIP_TO_TICKER[cu];
@@ -1001,8 +1017,9 @@ function getUnmappedCusips(filings: OutputFiling[]): string[] {
   const unmapped = new Set<string>();
   for (const f of filings) {
     for (const h of f.holdings) {
-      // If ticker looks like a cleaned issuer name (all caps, > 4 chars, has spaces)
-      if (h.ticker.length > 5 || h.ticker.includes(" ") || /[^A-Z.]/.test(h.ticker)) {
+      // Unmapped = no OpenFIGI answer. The old shape test (length > 5, spaces)
+      // missed short issuer words such as "BLOCK", "FIGMA" and "CHEWY".
+      if (!figiTicker(h.cusip)) {
         unmapped.add(`${h.cusip}=${h.name}`);
       }
     }

@@ -58,7 +58,7 @@ async function fetchFromYahoo(symbol: string): Promise<EarningsInfo> {
   )}?modules=calendarEvents,earnings,defaultKeyStatistics`;
   const endpoints = [
     `${PROXY_BASE}/summary/${encodeURIComponent(yahooSym)}`,
-    base,
+    // No direct Yahoo endpoint: it sends no CORS header, so a browser call can only fail.
     `https://corsproxy.io/?url=${encodeURIComponent(base)}`,
   ];
 
