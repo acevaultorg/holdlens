@@ -334,10 +334,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             PII safety (Finance industry per Clarity Additional Terms):
               <input type="email"> elements wear data-clarity-mask in EmailCapture +
               ProfileClient. Stripe iframe is auto-masked by Clarity (cross-origin).
-              No SSN/account/card fields anywhere on the site. */}
+              No SSN/account/card fields anywhere on the site.
+            EU/EEA/UK/CH gate (2026-09-28, card mul2evvrypcxuk): no consent banner, so a
+            European (or unknown) browser time zone never loads Clarity; window.clarity
+            stays a no-op so the clarity("event") calls below never throw. */}
         {process.env.NEXT_PUBLIC_CLARITY_ID && (
           <Script id="ms-clarity" strategy="afterInteractive">
             {`(function(c,l,a,r,i,t,y){
+                try{var z=Intl.DateTimeFormat().resolvedOptions().timeZone||"";if(!z||/^(Europe\\/|Atlantic\\/(Reykjavik|Faroe|Canary|Madeira|Azores|Jan_Mayen)|Arctic\\/Longyearbyen|Africa\\/Ceuta|Asia\\/(Nicosia|Famagusta)|Indian\\/(Reunion|Mayotte)|America\\/(Guadeloupe|Martinique|Cayenne|St_Barthelemy|Marigot))/.test(z)){c[a]=c[a]||function(){};return}}catch(e){c[a]=c[a]||function(){};return}
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);

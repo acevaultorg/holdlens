@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PRIVACY_BREADCRUMB_LD) }} />
       <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Legal</div>
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">Privacy Policy</h1>
-      <p className="text-sm text-dim mb-10">Last updated: 2026-09-24</p>
+      <p className="text-sm text-dim mb-10">Last updated: 2026-09-28</p>
 
       <div className="space-y-6 text-text leading-relaxed">
         <p className="text-muted">
@@ -118,7 +118,8 @@ export default function PrivacyPolicyPage() {
           <li>
             <strong className="text-text">Microsoft Clarity</strong> sets first-party cookies
             (<code className="text-xs">_clck</code>, <code className="text-xs">_clsk</code>) to stitch together
-            the pages of a single visit for heatmaps and session replay.
+            the pages of a single visit for heatmaps and session replay. Clarity does not load at all for
+            visitors whose browser time zone is in the EU, EEA, UK or Switzerland.
           </li>
           <li>
             <strong className="text-text">Cloudflare Web Analytics</strong> is cookie-free — it sets no
@@ -225,7 +226,8 @@ export default function PrivacyPolicyPage() {
             <strong className="text-text">session replay</strong>. Clarity records an anonymised reconstruction
             of your interaction with the page (clicks, scrolls, mouse movement) so we can find broken layouts
             and dead ends. Email inputs are masked before they leave your browser, and payment fields sit in a
-            Stripe iframe Clarity cannot read. We do not use it to identify individuals.{" "}
+            Stripe iframe Clarity cannot read. We do not use it to identify individuals. It does not load for
+            visitors in the EU, EEA, UK or Switzerland.{" "}
             <a
               href="https://privacy.microsoft.com/privacystatement"
               className="text-brand underline"
