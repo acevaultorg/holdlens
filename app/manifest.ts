@@ -12,7 +12,7 @@ export const dynamic = "force-static";
 // installed PWA users open the app 5-10x more often than browser-bookmark
 // users. On iOS Safari + Chrome Android, the install prompt appears
 // automatically once the manifest + icons + serviceWorker criteria are met.
-// We already ship the icon (app/icon.svg + app/apple-icon.svg). Manifest is
+// We already ship the icon (app/icon.svg + public/apple-icon.png). Manifest is
 // the piece that turns a visit into a durable home-screen presence.
 //
 // Retention Oracle: archetype = core_loop_improvement × +0.060 × user_reach
@@ -39,7 +39,7 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "portrait-primary",
     categories: ["finance", "business", "productivity"],
     lang: "en",
-    // Icons are served by app/icon.svg + app/apple-icon.svg. SVG is preferable
+    // Icons are served by app/icon.svg + public/apple-icon.png. SVG is preferable
     // to PNG bundles because it scales to every device without bloat. Browsers
     // that need rasterized PNGs for the home screen rasterize the SVG on the
     // fly — this works on iOS 16.4+ and every major Android browser.
@@ -51,9 +51,9 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any",
       },
       {
-        src: "/apple-icon.svg",
+        src: "/apple-icon.png",
         sizes: "180x180",
-        type: "image/svg+xml",
+        type: "image/png",
         purpose: "any",
       },
     ],

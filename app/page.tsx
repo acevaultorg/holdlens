@@ -132,8 +132,8 @@ export default function HomePage() {
         logo: {
           "@type": "ImageObject",
           "@id": "https://holdlens.com/#logo",
-          url: "https://holdlens.com/apple-icon.svg",
-          contentUrl: "https://holdlens.com/apple-icon.svg",
+          url: "https://holdlens.com/apple-icon.png",
+          contentUrl: "https://holdlens.com/apple-icon.png",
           caption: "HoldLens",
           width: 180,
           height: 180,
