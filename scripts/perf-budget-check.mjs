@@ -21,6 +21,10 @@ const HTML_BUDGET_BYTES = 500 * 1024; // 500 KB per page HTML
 const JS_BUDGET_BYTES = 250 * 1024; // 250 KB per JS chunk
 const ALLOWLIST = new Set([
   // path → reason (keep this list short, intentional)
+  // 2026-09-28 — Kit 3 gesture-gate mint (app/layout.tsx, ~0.5KB inline <head> script on every page,
+  // carried twice via the RSC payload) tipped /overlap/ from 511.0KB live to 512.008KB built, 8 bytes over.
+  // Security fix for the /go/ affiliate gate; slim the overlap matrix next time it is touched.
+  'out/overlap/index.html',
   'out/insiders/live/index.html', // 502KB live insider feed; 2KB over budget after CF beacon hardcode 2026-05-05. Slim to <500KB next /insiders refactor.
   'out/insiders/company/noma/index.html', // 507KB noma insider history; 7KB over after Next.js 15.5.15 bump (build-output growth). Slim with /insiders refactor.
   'out/insiders/company/crwv/index.html', // 504KB crwv insider history; 4KB over after Next.js 15.5.15 bump. Slim with /insiders refactor.
