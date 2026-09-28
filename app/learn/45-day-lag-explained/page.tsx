@@ -8,6 +8,7 @@ import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
 import InvestingBooks from "@/components/InvestingBooks";
 import { booksForLearn } from "@/data/books";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 // v1.26 — new /learn/ article. The 45-day lag is the single most misunderstood
 // fact about 13F data, and also the one that separates honest sites from
@@ -454,6 +455,7 @@ export default function FortyFiveDayLagPage() {
 
 
         <CiteThisPage />
+      <FilingGuidesBlock currentSlug="45-day-lag-explained" />
       <LearnReadNext currentSlug="45-day-lag-explained" />
 
       <ShareStrip

@@ -8,6 +8,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 export const metadata: Metadata = {
   title: "What is a CUSIP? — Plain English for retail investors",
@@ -222,6 +223,7 @@ export default function CusipExplainedPage() {
         </p>
 
         <CiteThisPage />
+        <FilingGuidesBlock currentSlug="cusip-explained" />
         <LearnReadNext currentSlug="cusip-explained" />
 
         <ShareStrip url="https://holdlens.com/learn/cusip-explained" title="What is a CUSIP?" />

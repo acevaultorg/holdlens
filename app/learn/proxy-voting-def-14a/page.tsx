@@ -8,6 +8,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 export const metadata: Metadata = {
   title: "Proxy voting and DEF 14A — Plain English guide",
@@ -247,6 +248,7 @@ export default function ProxyVotingDef14aPage() {
         </p>
 
         <CiteThisPage />
+        <FilingGuidesBlock currentSlug="proxy-voting-def-14a" />
         <LearnReadNext currentSlug="proxy-voting-def-14a" />
 
         <ShareStrip url="https://holdlens.com/learn/proxy-voting-def-14a" title="Proxy voting and DEF 14A" />

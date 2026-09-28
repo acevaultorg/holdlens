@@ -8,6 +8,7 @@ import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
 import InvestingBooks from "@/components/InvestingBooks";
 import { booksForLearn } from "@/data/books";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 // /learn/13f-vs-13d-vs-13g
 //
@@ -820,6 +821,7 @@ export default function ThirteenFvsDvsGPage() {
 
 
         <CiteThisPage />
+      <FilingGuidesBlock currentSlug="13f-vs-13d-vs-13g" />
       <LearnReadNext currentSlug="13f-vs-13d-vs-13g" />
 
       <ShareStrip

@@ -8,6 +8,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 export const metadata: Metadata = {
   title: "Rule 144 holding period — when insiders can sell, and how to read it",
@@ -246,6 +247,7 @@ export default function Rule144Page() {
         </p>
 
         <CiteThisPage />
+        <FilingGuidesBlock currentSlug="rule-144-holding-period" />
         <LearnReadNext currentSlug="rule-144-holding-period" />
 
         <ShareStrip url="https://holdlens.com/learn/rule-144-holding-period" title="Rule 144 holding period explained" />

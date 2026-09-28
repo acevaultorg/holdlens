@@ -8,6 +8,7 @@ import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
 import InvestingBooks from "@/components/InvestingBooks";
 import { booksForLearn } from "@/data/books";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 // /learn/form-4-vs-13f
 //
@@ -463,6 +464,7 @@ export default function Form4vs13FPage() {
       </div>
 
         <CiteThisPage />
+      <FilingGuidesBlock currentSlug="form-4-vs-13f" />
       <LearnReadNext currentSlug="form-4-vs-13f" />
       <InvestingBooks
         books={booksForLearn("form-4-vs-13f")}

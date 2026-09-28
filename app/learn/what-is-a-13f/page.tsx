@@ -8,6 +8,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 export const metadata: Metadata = {
   title: "What is a 13F filing? — Plain English guide for retail investors",
@@ -200,6 +201,7 @@ export default function What13FPage() {
         </p>
 
         <CiteThisPage />
+        <FilingGuidesBlock currentSlug="what-is-a-13f" />
         <LearnReadNext currentSlug="what-is-a-13f" />
 
         <ShareStrip url="https://holdlens.com/learn/what-is-a-13f" title="What is a 13F filing?" />

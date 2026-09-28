@@ -8,6 +8,7 @@ import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
 import InvestingBooks from "@/components/InvestingBooks";
 import { booksForLearn } from "@/data/books";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 // v1.23 — new /learn/ article. "How to read a 13F in 5 minutes" is a high-volume
 // practical query ("how to read 13f filing", "13f filing explained", "hedge fund
@@ -483,6 +484,7 @@ export default function HowToReadA13FPage() {
 
 
         <CiteThisPage />
+      <FilingGuidesBlock currentSlug="how-to-read-a-13f" />
       <LearnReadNext currentSlug="how-to-read-a-13f" />
 
       <ShareStrip

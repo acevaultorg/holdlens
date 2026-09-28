@@ -8,6 +8,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 export const metadata: Metadata = {
   title: "Who has to file a 13F? The $100 million threshold explained",
@@ -261,6 +262,7 @@ export default function WhoFiles13FPage() {
         </p>
 
         <CiteThisPage />
+        <FilingGuidesBlock currentSlug="who-files-a-13f" />
         <LearnReadNext currentSlug="who-files-a-13f" />
 
         <ShareStrip url="https://holdlens.com/learn/who-files-a-13f" title="Who has to file a 13F?" />

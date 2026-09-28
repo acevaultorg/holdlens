@@ -8,6 +8,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 export const metadata: Metadata = {
   title: "What is SEC EDGAR? — Plain English guide for investors",
@@ -230,6 +231,7 @@ export default function EdgarExplainedPage() {
         </p>
 
         <CiteThisPage />
+        <FilingGuidesBlock currentSlug="edgar-explained" />
         <LearnReadNext currentSlug="edgar-explained" />
 
         <ShareStrip url="https://holdlens.com/learn/edgar-explained" title="What is SEC EDGAR?" />

@@ -4,6 +4,7 @@ import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
 import InvestingBooks from "@/components/InvestingBooks";
 import { booksForLearn } from "@/data/books";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 export const metadata: Metadata = {
   title: "13D vs 13G — what the difference actually means",
@@ -329,6 +330,7 @@ export default function Article() {
         books={booksForLearn("13d-vs-13g-activist-filings")}
         sub={`Understanding the filing is step one; knowing what to do with what it shows is step two. These are the references that help with the second part.`}
       />
+        <FilingGuidesBlock currentSlug="13d-vs-13g-activist-filings" />
 
     </article>
   );

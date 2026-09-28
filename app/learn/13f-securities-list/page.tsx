@@ -8,6 +8,7 @@ import LearnReadNext from "@/components/LearnReadNext";
 import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
+import FilingGuidesBlock from "@/components/FilingGuidesBlock";
 
 export const metadata: Metadata = {
   title: "The 13(f) securities list — what counts as a 13F holding?",
@@ -210,6 +211,7 @@ export default function SecuritiesListPage() {
         </p>
 
         <CiteThisPage />
+        <FilingGuidesBlock currentSlug="13f-securities-list" />
         <LearnReadNext currentSlug="13f-securities-list" />
 
         <ShareStrip url="https://holdlens.com/learn/13f-securities-list" title="The 13(f) securities list" />
