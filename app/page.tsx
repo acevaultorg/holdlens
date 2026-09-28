@@ -70,7 +70,7 @@ const HOMEPAGE_FAQ: FaqItem[] = [
   },
   {
     q: "Where do I start?",
-    a: "Three entry points. (1) /scores — every tracked stock ranked by ConvictionScore, sorted by aggregate accumulation, with sector + tier + top-buyer columns. (2) /reports/2026-05-q1-2026-13f-signal-summary — editorial recap of the latest quarter (Berkshire's most active quarter in years, Delta re-entry, V/MA/UNH/AON exits, Ackman's MSFT new). (3) /api/v1/snapshot/latest.json — single-file machine-readable Q1 2026 summary for LLMs + developers.",
+    a: `Three entry points. (1) /scores — every tracked stock ranked by ConvictionScore, sorted by aggregate accumulation, with sector + tier + top-buyer columns. (2) /quarter/${LATEST_QUARTER.toLowerCase()} — the ${QUARTER_LABELS[LATEST_QUARTER]} digest: every new position, exit, add and trim from the latest filing cycle. (3) /api/v1/snapshot/latest.json — single-file machine-readable ${QUARTER_LABELS[LATEST_QUARTER]} summary for LLMs + developers.`,
   },
   {
     q: "How is HoldLens different from Dataroma?",

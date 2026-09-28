@@ -2,6 +2,7 @@ import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MANAGERS } from "@/lib/managers";
+import { LATEST_QUARTER, QUARTER_LABELS } from "@/lib/moves";
 
 // /pricing — repurposed 2026-05-19 per operator directive: "remove all pro
 // stuff. we give all for free to anyone. we need to have a certain amount
@@ -93,7 +94,7 @@ export default function PricingPage() {
             <span className="text-emerald-400 mr-2">✓</span>
             Full JSON API at{" "}
             <Link href="/api/v1/" className="text-brand underline">/api/v1/</Link> — 20+
-            endpoints, CSV exports, machine-readable Q1 2026 snapshot.
+            endpoints, CSV exports, machine-readable {QUARTER_LABELS[LATEST_QUARTER]} snapshot.
           </li>
           <li>
             <span className="text-emerald-400 mr-2">✓</span>
