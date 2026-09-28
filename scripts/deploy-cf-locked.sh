@@ -47,6 +47,10 @@ restore() {
     mkdir -p out/api/v1/events && mv "$HOLD/__api_events_company/company" out/api/v1/events/company
   fi
   rmdir "$HOLD/__api_events_company" 2>/dev/null || true
+  if [ -d "$HOLD/__api_insiders_company/company" ] && [ ! -e out/api/v1/insiders/company ]; then
+    mkdir -p out/api/v1/insiders && mv "$HOLD/__api_insiders_company/company" out/api/v1/insiders/company
+  fi
+  rmdir "$HOLD/__api_insiders_company" 2>/dev/null || true
   for d in "$HOLD"/*/; do
     [ -d "$d" ] || continue
     name="$(basename "$d")"
@@ -88,6 +92,17 @@ fi
 if [ -d out/api/v1/events/company ]; then
   mkdir -p "$HOLD/__api_events_company"
   mv out/api/v1/events/company "$HOLD/__api_events_company/company"
+fi
+# WIDENED A THIRD TIME 2026-09-28 (card mukttjkwwauk79): daily EDGAR ingests took the
+# upload to 20,092 files and every deploy since has refused at the cap below.
+# out/api/v1/insiders/company/ (2,598 per-ticker Form 4 JSON twins) is the same class as
+# the two holds above and was verified the same way on that build: referenced by 0 built
+# HTML files, absent from sitemap.xml, sitemap-ai.xml and llms.txt, listed only in the API
+# catalog, whose desc now says it is not deployed. Holding it takes the upload to ~17.5k,
+# which buys headroom for the ingest to keep growing. Restored on exit like the rest.
+if [ -d out/api/v1/insiders/company ]; then
+  mkdir -p "$HOLD/__api_insiders_company"
+  mv out/api/v1/insiders/company "$HOLD/__api_insiders_company/company"
 fi
 # Analytics-tag guard (2026-09-10): refuse to ship an out/ built without GA4/Clarity
 # (a worktree or fresh clone drops the gitignored env file; the build then exits 0 untagged).
