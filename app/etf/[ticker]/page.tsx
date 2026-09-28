@@ -107,7 +107,7 @@ export default async function EtfDetailPage({
         name: `Where does HoldLens get ${e.ticker} data?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Holdings sourced from ${e.issuer}'s official ETF disclosure (refreshed daily by the issuer). HoldLens verified ${e.asOfDate}. ETF disclosure lag varies by issuer but is typically 1-3 business days. See /methodology for full source list.`,
+          text: `Holdings sourced from ${e.issuer}'s official ETF disclosure, as of ${e.asOfDate}. Issuers publish on their own schedule: most post full holdings daily, Vanguard posts them monthly. See /methodology for full source list.`,
         },
       },
     ],
@@ -269,8 +269,8 @@ export default async function EtfDetailPage({
 
       <p className="text-xs text-dim mt-16">
         Holdings data from {e.issuer}&rsquo;s official ETF holdings-disclosure
-        page as of {e.asOfDate}. ETFs publish full holdings daily; weights
-        shown are snapshot. Not investment advice.
+        page as of {e.asOfDate}. Issuers publish holdings on their own schedule
+        (most daily, Vanguard monthly); weights shown are a snapshot. Not investment advice.
       </p>
       <InvestingBooks heading="Before you pick an index fund" sub="Two books on why low-cost index funds beat most active managers, by the man who built them." books={booksByTitles(BOOKS_ETF)} />
     </div>
