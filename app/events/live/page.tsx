@@ -129,7 +129,7 @@ export default function EventsLivePage() {
         Freshest tracked filing:{" "}
         <span className="text-text font-mono">{fmtEventDate(freshestIso)}</span>. 8-K
         filings are required by SEC within 4 business days of the material event; this
-        feed re-indexes intra-day when new filings post to EDGAR.
+        feed is refreshed from EDGAR’s daily filing index, published after each business day closes.
       </p>
 
       <div className="rounded-2xl border border-border bg-panel overflow-x-auto mb-10">

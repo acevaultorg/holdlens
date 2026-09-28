@@ -215,7 +215,7 @@ export default function EventsHubPage() {
               <li>Not ML — deterministic and reproducible from public SEC data</li>
               <li>Not a price predictor — directional signal, not a forecast</li>
               <li>Not investment advice — read every filing for yourself before acting</li>
-              <li>Not quarterly — refreshes intra-day as 8-Ks publish on EDGAR</li>
+              <li>Not quarterly — refreshed every business day from EDGAR’s daily filing index</li>
             </ul>
           </div>
         </div>

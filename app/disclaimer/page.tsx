@@ -64,7 +64,7 @@ export default function DisclaimerPage() {
           <li>
             <strong className="text-text">Form 8-K material events</strong> must be filed within{" "}
             <strong className="text-text">4 business days</strong> of a material event. Our /events/ surface
-            publishes intra-day.
+            is refreshed from EDGAR’s daily filing index, which the SEC publishes after each business day closes.
           </li>
           <li>
             <strong className="text-text">13D/13G activist filings</strong> must be filed within 10 days of crossing
