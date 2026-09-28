@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers on a signed +100 buy / −100 sell scale. SEC-sourced. Updated every quarter.",
   icons: {
     icon: "/icon.svg",
-    apple: "/apple-icon.svg",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     // v1.40 — honest reframe. Prior "before the market does" implied an info
