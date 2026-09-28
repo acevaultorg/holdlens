@@ -66,8 +66,15 @@ const OWN_HOLDINGS: Record<string, string> = {
   "carl-icahn": "IEP",
 };
 
+// "Right now" means the latest filing cycle (2026-09-28: the list ranked every
+// quarter back to 2022, so the homepage showed 2024 trims under "right now").
+// Falls back to all quarters only if the latest cycle has fewer than 8 qualifying moves.
 function computeRows(): Row[] {
-  const moves = getAllMovesEnriched();
+  const latest = rankRows(getAllMovesEnriched().filter((mv) => mv.quarter === LATEST_QUARTER));
+  return latest.length >= 8 ? latest : rankRows(getAllMovesEnriched());
+}
+
+function rankRows(moves: ReturnType<typeof getAllMovesEnriched>): Row[] {
   const out: Row[] = [];
   for (const mv of moves) {
     const impact = mv.portfolioImpactPct ?? 0;
