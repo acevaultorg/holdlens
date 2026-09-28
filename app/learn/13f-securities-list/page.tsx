@@ -9,6 +9,43 @@ import TldrCard from "@/components/learn/TldrCard";
 import OurView from "@/components/learn/OurView";
 import CiteThisPage from "@/components/learn/CiteThisPage";
 import FilingGuidesBlock from "@/components/FilingGuidesBlock";
+import { getTicker } from "@/lib/tickers";
+
+// Read from the SEC's own file on 2026-09-28: the Q2 2026 Official List (TXT), 25,333 rows.
+// Counts are that file's rows; the sample is the 25 stocks held by the most tracked superinvestors
+// in HoldLens's 2026-Q2 13F data (26 managers), each matched to the list by CUSIP. Issuer and class
+// text is the SEC's, verbatim. Refresh when the SEC publishes the next quarter's list.
+const LIST_PAGE = "https://www.sec.gov/rules-regulations/staff-guidance/official-list-section-13f-securities";
+const LIST_TXT = "https://www.sec.gov/files/investment/13flist2026q2-txt.txt";
+const LIST_PDF = "https://www.sec.gov/files/investment/13flist2026q2.pdf";
+const LIST_STATS = { quarter: "Q2 2026", rows: 25333, securities: 13113, optionRows: 12220, added: 1351, deleted: 844 };
+const LIST_SAMPLE: { t: string; issuer: string; cusip: string; cls: string; added?: boolean; holders: number }[] = [
+  { t: "GOOGL", issuer: "ALPHABET INC", cusip: "02079K305", cls: "CAP STK CL A", holders: 16 },
+  { t: "V", issuer: "VISA INC", cusip: "92826C839", cls: "COM CL A", holders: 15 },
+  { t: "TSM", issuer: "TAIWAN SEMICONDUCTOR MANUFAC", cusip: "874039100", cls: "SPONSORED ADS", holders: 14 },
+  { t: "GOOG", issuer: "ALPHABET INC", cusip: "02079K107", cls: "CAP STK CL C", holders: 12 },
+  { t: "AMZN", issuer: "AMAZON COM INC", cusip: "023135106", cls: "COM", holders: 12 },
+  { t: "META", issuer: "META PLATFORMS INC", cusip: "30303M102", cls: "CL A", holders: 12 },
+  { t: "MSFT", issuer: "MICROSOFT CORP", cusip: "594918104", cls: "COM", holders: 11 },
+  { t: "AAPL", issuer: "APPLE INC", cusip: "037833100", cls: "COM", holders: 9 },
+  { t: "MCO", issuer: "MOODYS CORP", cusip: "615369105", cls: "COM", holders: 9 },
+  { t: "SE", issuer: "SEA LTD", cusip: "81141R100", cls: "SPONSORD ADS", holders: 9 },
+  { t: "UBER", issuer: "UBER TECHNOLOGIES INC", cusip: "90353T100", cls: "COM", holders: 8 },
+  { t: "AVGO", issuer: "BROADCOM INC", cusip: "11135F101", cls: "COM", holders: 7 },
+  { t: "AMD", issuer: "ADVANCED MICRO DEVICES INC", cusip: "007903107", cls: "COM", holders: 7 },
+  { t: "SPY", issuer: "STATE STR SPDR S&P 500 ETF T", cusip: "78462F103", cls: "TR UNIT", holders: 7 },
+  { t: "AMAT", issuer: "APPLIED MATLS INC", cusip: "038222105", cls: "COM", holders: 7 },
+  { t: "MA", issuer: "MASTERCARD INCORPORATED", cusip: "57636Q104", cls: "CL A", holders: 7 },
+  { t: "COF", issuer: "CAPITAL ONE FINL CORP", cusip: "14040H105", cls: "COM", holders: 6 },
+  { t: "NVDA", issuer: "NVIDIA CORPORATION", cusip: "67066G104", cls: "COM", holders: 6 },
+  { t: "LRCX", issuer: "LAM RESEARCH CORP", cusip: "512807306", cls: "COM NEW", holders: 6 },
+  { t: "DHR", issuer: "DANAHER CORP DEL", cusip: "235851102", cls: "COM", holders: 6 },
+  { t: "ASML", issuer: "ASML HLDG NV", cusip: "N07059210", cls: "N Y REGISTRY SHS", holders: 6 },
+  { t: "SPOT", issuer: "SPOTIFY TECHNOLOGY S A", cusip: "L8681T102", cls: "SHS", holders: 6 },
+  { t: "NU", issuer: "NU HLDGS LTD", cusip: "G6683N103", cls: "ORD SHS CL A", holders: 6 },
+  { t: "BRK.B", issuer: "BERKSHIRE HATHAWAY INC DEL", cusip: "084670702", cls: "CL B NEW", holders: 6 },
+  { t: "SPCX", issuer: "SPACE EXPLORATION TECHN CORP", cusip: "84615Q103", cls: "CLASS A COM STK", added: true, holders: 6 },
+];
 
 export const metadata: Metadata = {
   title: "The 13(f) securities list — what counts as a 13F holding?",
@@ -51,7 +88,7 @@ const LD = [
     publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/13f-securities-list",
     datePublished: "2026-05-16",
-    dateModified: "2026-05-16",
+    dateModified: "2026-09-28",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
     keywords: [
@@ -76,7 +113,7 @@ const LD = [
         "@type": "DefinedTerm",
         name: "Official List",
         description:
-          "The SEC's quarterly publication identifying every security subject to Form 13F reporting. Published shortly after each calendar quarter-end at sec.gov/divisions/investment/13f/13flist.txt. Categories: equity securities, fund shares, ADRs, convertible debt, and select options.",
+          "The SEC's quarterly publication identifying every security subject to Form 13F reporting, as a PDF and a fixed-width text file on sec.gov (Official List of Section 13(f) Securities page). The Q2 2026 list has 25,333 rows: 13,113 securities plus 12,220 listed call and put option entries. Categories: equity securities, fund shares, ADRs, convertible debt, and select options.",
       },
       {
         "@type": "DefinedTerm",
@@ -106,15 +143,12 @@ export default function SecuritiesListPage() {
           Not every asset a hedge fund owns shows up on a 13F filing. The SEC publishes a quarterly{" "}
           <strong className="text-text">Official List of Section 13(f) Securities</strong> defining
           which securities trigger reporting:{" "}
-          <a
-            href="https://www.sec.gov/divisions/investment/13f/13flist.txt"
-            className="text-brand underline"
-            rel="noopener"
-          >
-            sec.gov/divisions/investment/13f/13flist.txt
-          </a>. Roughly 17,000 securities — all U.S.-exchange-listed equities, ADRs, certain
-          convertibles, certain ETFs, and a small set of options. Everything off this list is
-          off-13F and invisible to retail readers tracking smart money.
+          <a href={LIST_PAGE} className="text-brand underline" rel="noopener">
+            the Official List page on sec.gov
+          </a>. The {LIST_STATS.quarter} list has {LIST_STATS.securities.toLocaleString("en-US")} securities
+          (U.S.-listed stocks, ADRs, certain convertibles, ETFs and closed-end funds) plus{" "}
+          {LIST_STATS.optionRows.toLocaleString("en-US")} entries for their listed calls and puts. Everything
+          off this list is off-13F and invisible to readers tracking smart money.
         </TldrCard>
 
         <p className="text-lg text-muted">
@@ -126,9 +160,70 @@ export default function SecuritiesListPage() {
 
         <AuthorByline date="2026-05-16" />
 
+        <h2 className="text-2xl font-bold mt-10 mb-3">The list itself: {LIST_STATS.quarter} in numbers</h2>
+        <p className="text-muted">
+          The SEC publishes each quarter&apos;s list as a PDF and as a fixed-width text file. Counted from
+          the {LIST_STATS.quarter} text file:
+        </p>
+        <ul className="text-muted space-y-2 list-disc list-inside">
+          <li><strong className="text-text">{LIST_STATS.rows.toLocaleString("en-US")} rows</strong> in total</li>
+          <li><strong className="text-text">{LIST_STATS.securities.toLocaleString("en-US")} securities</strong>, each identified by its 9-character CUSIP</li>
+          <li><strong className="text-text">{LIST_STATS.optionRows.toLocaleString("en-US")} option entries</strong>, one CALL and one PUT row for every security with listed options</li>
+          <li><strong className="text-text">{LIST_STATS.added.toLocaleString("en-US")} additions</strong> and <strong className="text-text">{LIST_STATS.deleted.toLocaleString("en-US")} deletions</strong> versus the previous quarter (flagged *A* and *D* in the file)</li>
+        </ul>
+        <p className="text-muted">
+          Download the official file:{" "}
+          <a href={LIST_TXT} className="text-brand underline" rel="noopener">{LIST_STATS.quarter} TXT</a>
+          {" · "}
+          <a href={LIST_PDF} className="text-brand underline" rel="noopener">{LIST_STATS.quarter} PDF</a>
+          {" · "}
+          <a href={LIST_PAGE} className="text-brand underline" rel="noopener">all quarters since 1996</a>.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-2">The 25 most-held stocks, checked against the list</h3>
+        <p className="text-muted text-sm">
+          The 25 stocks owned by the most superinvestors HoldLens tracks (2026-Q2 filings), each matched to
+          the {LIST_STATS.quarter} list by CUSIP. All 25 are on it, and every one also has listed options on
+          the list. Issuer and class are the SEC&apos;s own text.
+        </p>
+        <div className="rounded-lg border border-border overflow-x-auto my-4">
+          <table className="w-full text-sm">
+            <thead className="text-dim text-xs uppercase tracking-wider">
+              <tr className="border-b border-border">
+                <th className="text-left px-3 py-3">Ticker</th>
+                <th className="text-left px-3 py-3">Issuer (SEC list)</th>
+                <th className="text-left px-3 py-3">CUSIP</th>
+                <th className="text-left px-3 py-3">Class</th>
+                <th className="text-left px-3 py-3">On list</th>
+              </tr>
+            </thead>
+            <tbody>
+              {LIST_SAMPLE.map((r) => (
+                <tr key={r.cusip} className="border-b border-border">
+                  <td className="px-3 py-2 font-semibold whitespace-nowrap">
+                    {getTicker(r.t) ? (
+                      <a href={`/ticker/${r.t}`} className="text-brand hover:underline">{r.t}</a>
+                    ) : (
+                      r.t
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-muted">{r.issuer}</td>
+                  <td className="px-3 py-2 font-mono text-xs tabular-nums whitespace-nowrap">{r.cusip}</td>
+                  <td className="px-3 py-2 text-muted text-xs">{r.cls}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">{r.added ? "Yes, added this quarter" : "Yes"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-muted text-sm">
+          To check any other security, search the TXT file for its CUSIP. A security that is not on the list
+          does not have to be reported on Form 13F, however large the position.
+        </p>
+
         <h2 className="text-2xl font-bold mt-10 mb-3">What&apos;s on the list</h2>
         <ul className="text-muted space-y-2 list-disc list-inside">
-          <li><strong className="text-text">U.S. exchange-listed common stocks</strong> (NYSE, Nasdaq, Cboe Equities) — the largest category, ~9,000 entries</li>
+          <li><strong className="text-text">U.S. exchange-listed common stocks</strong> (NYSE, Nasdaq, Cboe Equities) — the largest category</li>
           <li><strong className="text-text">American Depositary Receipts (ADRs)</strong> — foreign stocks held via U.S. depository banks</li>
           <li><strong className="text-text">Certain convertible debt</strong> — corporate bonds convertible into 13(f)-listed equity</li>
           <li><strong className="text-text">Closed-end fund shares</strong> — equity-traded RICs (not the underlying fund holdings)</li>
