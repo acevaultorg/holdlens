@@ -3993,7 +3993,7 @@
       "payer_country": "AU",
       "withholding_rate_pct": 15,
       "treaty_reference": "1982 US-Australia Tax Treaty (as amended 2001 Protocol), Article 10",
-      "source_citation": "IRS Publication 901 Table 1 (Australia row, Dividends column)",
+      "source_citation": "1982 US-Australia Tax Treaty (as amended 2001 Protocol), Article 10: the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Australia's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Australia row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on franked or unfranked portfolio dividends."
@@ -4003,7 +4003,7 @@
       "payer_country": "BE",
       "withholding_rate_pct": 15,
       "treaty_reference": "2006 US-Belgium Tax Treaty, Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Belgium row, Dividends column)",
+      "source_citation": "2006 US-Belgium Tax Treaty, Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Belgium's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Belgium row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends. Belgium's statutory 30% précompte is reduced via treaty."
@@ -4013,7 +4013,7 @@
       "payer_country": "CA",
       "withholding_rate_pct": 15,
       "treaty_reference": "1980 US-Canada Tax Convention, Article X (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Canada row, Dividends column)",
+      "source_citation": "1980 US-Canada Tax Convention, Article X (Dividends): the Article X cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Canada's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Canada row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on direct portfolio investment. 5% available to corporate shareholders with ≥10% ownership."
@@ -4023,7 +4023,7 @@
       "payer_country": "CH",
       "withholding_rate_pct": 15,
       "treaty_reference": "1996 US-Switzerland Tax Treaty, Article 10",
-      "source_citation": "IRS Publication 901 Table 1 (Switzerland row, Dividends column)",
+      "source_citation": "1996 US-Switzerland Tax Treaty, Article 10: the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Switzerland's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Switzerland row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends. Switzerland's statutory 35% is reduced via refund (Form 82 series) or at-source with a qualified intermediary."
@@ -4033,7 +4033,7 @@
       "payer_country": "DE",
       "withholding_rate_pct": 15,
       "treaty_reference": "1989 US-Germany Tax Treaty (as amended 2006 Protocol), Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Germany row, Dividends column)",
+      "source_citation": "1989 US-Germany Tax Treaty (as amended 2006 Protocol), Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Germany's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Germany row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends. Germany's statutory 26.375% is reduced via refund claim (Erstattung) or at-source certification."
@@ -4043,7 +4043,7 @@
       "payer_country": "DK",
       "withholding_rate_pct": 15,
       "treaty_reference": "US-Denmark Tax Treaty (as amended by 2006 Protocol), Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Denmark row, Dividends column)",
+      "source_citation": "US-Denmark Tax Treaty (as amended by 2006 Protocol), Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Denmark's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Denmark row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends. Denmark's statutory 27% is reduced via treaty."
@@ -4053,7 +4053,7 @@
       "payer_country": "ES",
       "withholding_rate_pct": 15,
       "treaty_reference": "US-Spain Tax Treaty (as amended by 2013 Protocol), Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Spain row, Dividends column)",
+      "source_citation": "US-Spain Tax Treaty (as amended by 2013 Protocol), Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Spain's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Spain row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends under the amended treaty; 0% may apply to qualified pensions."
@@ -4063,7 +4063,7 @@
       "payer_country": "FI",
       "withholding_rate_pct": 15,
       "treaty_reference": "US-Finland Tax Treaty, Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Finland row, Dividends column)",
+      "source_citation": "US-Finland Tax Treaty, Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Finland's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Finland row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends."
@@ -4073,7 +4073,7 @@
       "payer_country": "FR",
       "withholding_rate_pct": 15,
       "treaty_reference": "1994 US-France Tax Treaty (as amended 2009 Protocol), Article 10",
-      "source_citation": "IRS Publication 901 Table 1 (France row, Dividends column)",
+      "source_citation": "1994 US-France Tax Treaty (as amended 2009 Protocol), Article 10: the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits France's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (France row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends."
@@ -4083,7 +4083,7 @@
       "payer_country": "IE",
       "withholding_rate_pct": 15,
       "treaty_reference": "1997 US-Ireland Tax Treaty, Article 10",
-      "source_citation": "IRS Publication 901 Table 1 (Ireland row, Dividends column)",
+      "source_citation": "1997 US-Ireland Tax Treaty, Article 10: the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Ireland's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Ireland row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends. Ireland is also a major fund-domicile jurisdiction; Irish-domiciled ETFs are subject to separate fund-level tax mechanics."
@@ -4093,7 +4093,7 @@
       "payer_country": "IT",
       "withholding_rate_pct": 15,
       "treaty_reference": "US-Italy Tax Treaty, Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Italy row, Dividends column)",
+      "source_citation": "US-Italy Tax Treaty, Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Italy's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Italy row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends."
@@ -4103,7 +4103,7 @@
       "payer_country": "JP",
       "withholding_rate_pct": 10,
       "treaty_reference": "2003 US-Japan Tax Treaty (as amended 2013 Protocol), Article 10",
-      "source_citation": "IRS Publication 901 Table 1 (Japan row, Dividends column)",
+      "source_citation": "2003 US-Japan Tax Treaty (as amended 2013 Protocol), Article 10: the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 10% limits Japan's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Japan row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "10% on portfolio dividends; 0% for pension funds under Article 10(3)."
@@ -4113,7 +4113,7 @@
       "payer_country": "LU",
       "withholding_rate_pct": 15,
       "treaty_reference": "US-Luxembourg Tax Treaty, Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Luxembourg row, Dividends column)",
+      "source_citation": "US-Luxembourg Tax Treaty, Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Luxembourg's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Luxembourg row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends. Luxembourg is a common fund-domicile jurisdiction; separate fund-level tax mechanics may apply."
@@ -4123,7 +4123,7 @@
       "payer_country": "NL",
       "withholding_rate_pct": 15,
       "treaty_reference": "1992 US-Netherlands Tax Treaty, Article 10",
-      "source_citation": "IRS Publication 901 Table 1 (Netherlands row, Dividends column)",
+      "source_citation": "1992 US-Netherlands Tax Treaty, Article 10: the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Netherlands's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Netherlands row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends."
@@ -4133,7 +4133,7 @@
       "payer_country": "NO",
       "withholding_rate_pct": 15,
       "treaty_reference": "US-Norway Tax Treaty, Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Norway row, Dividends column)",
+      "source_citation": "US-Norway Tax Treaty, Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Norway's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Norway row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends. Norway's statutory 25% is reduced via treaty."
@@ -4143,7 +4143,7 @@
       "payer_country": "NZ",
       "withholding_rate_pct": 15,
       "treaty_reference": "US-New Zealand Tax Treaty (as amended by 2008 Protocol), Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (New Zealand row, Dividends column)",
+      "source_citation": "US-New Zealand Tax Treaty (as amended by 2008 Protocol), Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits New Zealand's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (New Zealand row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends."
@@ -4153,7 +4153,7 @@
       "payer_country": "SE",
       "withholding_rate_pct": 15,
       "treaty_reference": "US-Sweden Tax Treaty, Article 10 (Dividends)",
-      "source_citation": "IRS Publication 901 Table 1 (Sweden row, Dividends column)",
+      "source_citation": "US-Sweden Tax Treaty, Article 10 (Dividends): the Article 10 cap on portfolio dividends applies to dividends paid by a company resident in either country, so the same 15% limits Sweden's tax on dividends paid to U.S. residents. Cross-check: IRS Publication 901 Table 1 (Sweden row, Dividends column) lists the same rate for the U.S. side.",
       "state": "verified",
       "last_verified": "2026-04-19",
       "notes": "15% on portfolio dividends. Sweden's statutory 30% is reduced via treaty."
