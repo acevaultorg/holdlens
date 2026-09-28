@@ -1,0 +1,14 @@
+{
+  "outDir": "out",
+  "placementAttrs": ["data-event-from", "data-from"],
+  "tracker": [
+    "fleet\\.promptprio\\.com/c\\?s=holdlens\\.com",
+    "'&f=' \\+ encodeURIComponent\\(from",
+    "'&p=' \\+ pageClass\\(\\)",
+    "getAttribute\\('data-event-from'\\)"
+  ],
+  "gate": "required",
+  "ungatedAllow": [],
+  "skipFiles": [],
+  "minLinks": 2000
+}

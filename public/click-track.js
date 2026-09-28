@@ -67,7 +67,14 @@
     return /amazon\.|amzn\.to|amzn\.eu|audible\.|\/go\//i.test(href || '');
   }
 
-  function send(name, props, affiliate) {
+  // Page class for the /c beacon (2026-09-28 · card muksgphls3y3tw): the first path segment
+  // ("home" for /), format-tested so it can never carry a raw URL — the fleet p= convention.
+  function pageClass() {
+    var seg = (location.pathname.split('/')[1] || 'home');
+    return /^[a-z0-9][a-z0-9-]{0,39}$/.test(seg) ? seg : 'other';
+  }
+
+  function send(name, props, affiliate, from) {
     var e = ga4Name(name);
     if (!e) return;
     try { if (window.clarity) { window.clarity('event', e); } } catch (_) {}
@@ -84,7 +91,11 @@
         if (navigator.sendBeacon) {
           // __FLEET_AGENT__ is the fleet's self-declared agent gate: our own
           // verification traffic marks itself so it is not counted as human.
-          navigator.sendBeacon(BEACON + (window.__FLEET_AGENT__ ? '&a=1' : ''));
+          // &f=<placement> from the link's data-event-from (falls back to the legacy
+          // plausible-event-from class prop) and &p=<page class>: 0 of holdlens's beacon
+          // clicks carried either, so no placement or template could be judged (2026-09-28).
+          navigator.sendBeacon(BEACON + '&f=' + encodeURIComponent(from || 'untagged') +
+            (window.__FLEET_AGENT__ ? '&a=1' : '') + '&p=' + pageClass());
         }
       } catch (_) {}
     }
@@ -103,7 +114,9 @@
       if (!m) return;
       var name = m[1];
       var href = el.getAttribute ? (el.getAttribute('href') || '') : '';
-      send(name, propsFrom(el), isAffiliate(name, href));
+      var props = propsFrom(el);
+      var from = (el.getAttribute && el.getAttribute('data-event-from')) || props.from || '';
+      send(name, props, isAffiliate(name, href), from);
     } catch (_) {}
   }
 

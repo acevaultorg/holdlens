@@ -72,6 +72,7 @@ export default function InvestingBooks({
               href={url}
               target="_blank"
               rel="noopener sponsored nofollow"
+              data-event-from="investing-books"
               // Plausible tagged-event: Book Click with title + resolution props.
               // Outbound-links script also fires "Outbound Link: Click".
               className={`plausible-event-name=Book+Click plausible-event-title=${encodeURIComponent(
@@ -97,6 +98,7 @@ export default function InvestingBooks({
             href={AUDIBLE_URL}
             target="_blank"
             rel="noopener sponsored nofollow"
+            data-event-from="investing-books-audible"
             className="plausible-event-name=Audible+Click plausible-event-from=investing-books inline-flex w-fit items-center gap-2 rounded-lg border border-amber-500/50 bg-amber-500/5 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/10 hover:border-amber-500/70 transition"
           >
             Prefer to listen? Start a free Audible trial

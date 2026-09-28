@@ -147,6 +147,7 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
           href={AUDIBLE_URL}
           target="_blank"
           rel="noopener sponsored nofollow"
+          data-event-from={`shelf-${meta.slug}-audible`}
           className={`plausible-event-name=Audible+Click plausible-event-from=shelf-${meta.slug} inline-flex w-fit items-center gap-2 rounded-lg border border-amber-500/60 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/20 transition`}
         >
           Start a free 30-day Audible trial
@@ -168,6 +169,7 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
                 href={url}
                 target="_blank"
                 rel="noopener sponsored nofollow"
+                data-event-from={`shelf-${meta.slug}`}
                 className={`plausible-event-name=Book+Click plausible-event-title=${encodeURIComponent(
                   b.title,
                 )} plausible-event-resolution=${resolution} plausible-event-from=shelf-${meta.slug} block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand/40 transition group`}

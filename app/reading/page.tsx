@@ -171,6 +171,7 @@ export default function ReadingListPage() {
           href={AUDIBLE_URL}
           target="_blank"
           rel="noopener sponsored nofollow"
+          data-event-from="reading-hub-audible"
           className="plausible-event-name=Audible+Click plausible-event-from=reading-hub inline-flex w-fit items-center gap-2 rounded-lg border border-amber-500/60 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/20 transition"
         >
           Start a free 30-day Audible trial
@@ -216,6 +217,7 @@ export default function ReadingListPage() {
                     href={url}
                     target="_blank"
                     rel="noopener sponsored nofollow"
+                    data-event-from="reading-hub"
                     className={`plausible-event-name=Book+Click plausible-event-title=${encodeURIComponent(
                       b.title,
                     )} plausible-event-resolution=${resolution} plausible-event-from=reading-hub block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand/40 transition group`}

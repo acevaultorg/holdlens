@@ -110,6 +110,10 @@ fi
 # Analytics-tag guard (2026-09-10): refuse to ship an out/ built without GA4/Clarity
 # (a worktree or fresh clone drops the gitignored env file; the build then exits 0 untagged).
 node scripts/predeploy-guard.mjs
+# Amazon click-tracking guard (2026-09-28 · card muksgphls3y3tw): every /go/ Amazon link on every built page
+# carries data-event-from, sits on a page that loads public/click-track.js, and that tracker sends p= and f=.
+# set -e stops the upload when it refuses.
+node scripts/amazon-tracking-guard.mjs
 TOTAL_FILES=$(find out -type f | wc -l | tr -d ' ')
 CAP=19900
 if [ "$TOTAL_FILES" -gt "$CAP" ]; then

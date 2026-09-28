@@ -18,7 +18,8 @@
     "deploy": "bash scripts/deploy-cf.sh",
     "verify:deploy-artifact": "node scripts/predeploy-guard.mjs",
     "dt:add": "tsx scripts/dt-add.ts",
-    "dt:stats": "tsx scripts/dt-stats.ts"
+    "dt:stats": "tsx scripts/dt-stats.ts",
+    "guard:amazon": "node scripts/amazon-tracking-guard.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.4",
