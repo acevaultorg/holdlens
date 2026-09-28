@@ -31,7 +31,10 @@ import { getConviction, formatSignedScore } from "@/lib/conviction";
 // ~3,000 positions (polen-capital ~240, howard-marks ~158), which at ~5-8
 // KB per MoveCard would blow the static HTML past 4 MB/page. Top 50 by
 // position-change magnitude shows all the signal.
-const MAX_MOVES_PER_SECTION = 50;
+// 40, not 50 (2026-09-28): once CUSIPs resolved through OpenFIGI, moves that
+// used to be dropped for name-word tickers render, and Greenblatt's and
+// Polen's quarter pages went to 508-530 KB against the 500 KB budget.
+const MAX_MOVES_PER_SECTION = 40;
 
 type Props = {
   params: Promise<{ slug: string; quarter: string }>;
