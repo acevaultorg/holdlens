@@ -77,7 +77,10 @@ function logSearch(raw: string, count: number) {
   };
   if (typeof w.plausible === "function") {
     w.plausible(zero ? "SearchNoResults" : "Search", {
-      props: zero ? { q: sq } : { q: sq, results: count },
+      // search_term: GA4 fills its searchTerm report only from this reserved name; the
+      // layout bridge forwards these props to gtag, and `q` alone left all 7 zero-result
+      // searches of 08-29..09-27 blank in GA4 (queue-b 2026-09-28).
+      props: zero ? { q: sq, search_term: sq } : { q: sq, search_term: sq, results: count },
     });
   }
   if (typeof w.clarity === "function") {
