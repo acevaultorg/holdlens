@@ -23,6 +23,9 @@ const CONTROLS = { "30231G102": "XOM" }; // Exxon: no US composite line in OpenF
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const CLEAN = /^[A-Z]{1,5}([./][A-Z]{1,2})?$/;
 const isDebt = (c) => /[A-Z]/.test(c.slice(6, 8));
+// Warrants/rights/units carry their own CUSIP but a stock-looking row ticker
+// ("EVGO" on CLIMATE CHANGE CRISIS -CW25): quoting the common stock is the wrong instrument.
+const isWarrant = (...names) => names.some((n) => /-CW\d|\bWTS?\b|WARRANT|\bRIGHTS?\b|\bUNITS?\b/i.test(n || ""));
 
 const nulls = Object.keys(cache).filter((c) => cache[c] === null);
 let debt = 0;
@@ -93,7 +96,12 @@ async function quoteMatches(ticker, name) {
   } catch { return false; }
 }
 
-let viaFigi = 0, viaSec = 0, still = 0;
+let viaFigi = 0, viaSec = 0, viaRow = 0, still = 0;
+const rowTicker = new Map(), rowName = new Map();
+for (const f of JSON.parse(readFileSync(new URL("edgar-holdings.json", DATA)))) for (const h of f.holdings) {
+  const c = h.cusip.toUpperCase();
+  if (!rowTicker.has(c)) { rowTicker.set(c, h.ticker.toUpperCase()); rowName.set(c, h.name); }
+}
 for (const c of todo) {
   const f = found[c];
   let v = f?.hit || null;
@@ -103,6 +111,11 @@ for (const c of todo) {
     if (t?.size === 1 && CLEAN.test([...t][0].replace("-", "."))) { v = { ticker: [...t][0].replace("-", "."), name: f.name, type: null, via: "sec-name" }; viaSec++; }
   }
   if (v && !(await quoteMatches(v.ticker, v.name))) { rejected.push(`${c} ${v.ticker} (${v.name})`); v = null; }
+  // 4. The ticker the 13F row already carries (hand map / name word), if the live
+  //    quote confirms it is this issuer: "ORLA" for ORLA MNG LTD NEW is right.
+  if (!v && !isWarrant(f?.name, rowName.get(c)) && rowTicker.get(c) && CLEAN.test(rowTicker.get(c)) && (await quoteMatches(rowTicker.get(c), rowName.get(c)))) {
+    v = { ticker: rowTicker.get(c), name: rowName.get(c), type: null, via: "row-ticker-quote-checked" }; viaRow++;
+  }
   if (!v) still++;
   if (cache[c] === null) cache[c] = v; // never overwrite a primary-pass answer
 }
@@ -113,4 +126,4 @@ for (const [c, t] of Object.entries(CONTROLS)) {
   if (got !== t) { console.error(`CONTROL FAILED: ${c} expected ${t}, got ${got}. Not writing.`); process.exit(1); }
 }
 writeFileSync(CACHE, JSON.stringify(Object.fromEntries(Object.entries(cache).sort()), null, 0) + "\n");
-console.log(`control ok · resolved via OpenFIGI US exchange: ${viaFigi} · via SEC name: ${viaSec} · still unresolved: ${still}`);
+console.log(`control ok · resolved via OpenFIGI US exchange: ${viaFigi} · via SEC name: ${viaSec} · via row ticker: ${viaRow} · still unresolved: ${still}`);

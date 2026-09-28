@@ -57,6 +57,26 @@ for (const m of moves) {
   if (next && next !== m.ticker) { m.ticker = next; mChanged++; }
 }
 
+// Tickers that only ever sit on a debt-coded or unresolved CUSIP row are issuer-name
+// words or an issuer's stock symbol attached to its notes ("FIVE9", "Q2", "KW"). A
+// live quote for them is either a 404 or the wrong instrument, so lib/live.ts skips
+// them. Only the short ones matter there: its shape guard already drops the rest.
+const SHAPE = /^[A-Z0-9]{1,5}([.\-/][A-Z0-9]{1,3})?$/;
+// Kept narrow on purpose: a ticker goes on the list only if it IS the issuer's name
+// word (FIVE9 for "FIVE9 INC") and SEC does not list it as a symbol. That keeps real
+// symbols quoted elsewhere on the site (TEVA on insider pages, KW on a manager page).
+const secTickers = new Set(Object.values(read("sec-ticker-map.json")).map((v) => String(v.ticker).toUpperCase()));
+const nameWord = (t, name) => (name || "").toUpperCase().replace(/[^A-Z0-9.& ]/g, " ").trim().startsWith(t);
+const quoted = new Set(), unq = new Set();
+for (const f of holdings) for (const h of f.holdings) {
+  const t = h.ticker.toUpperCase();
+  if (cache[h.cusip.toUpperCase()]?.ticker) quoted.add(t);
+  else if (SHAPE.test(t) && nameWord(t, h.name) && !secTickers.has(t)) unq.add(t);
+}
+const unquotable = [...unq].filter((t) => !quoted.has(t)).sort();
+writeFileSync(new URL("unquotable-tickers.json", DATA), JSON.stringify(unquotable) + "\n");
+console.log(`unquotable short tickers: ${unquotable.length} -> data/unquotable-tickers.json`);
+
 writeFileSync(new URL("edgar-holdings.json", DATA), JSON.stringify(holdings, null, 2) + "\n");
 writeFileSync(new URL("edgar-moves.json", DATA), JSON.stringify(moves, null, 2) + "\n");
 console.log(`holdings: ${rows} rows · ${changed} ticker changes · ${merged} merged into a sibling row`);
