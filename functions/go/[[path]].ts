@@ -3,8 +3,10 @@
 // unless the request carries browser navigation metadata. A harvester sends no
 // Sec-Fetch-* headers and is bounced home untagged; an unknown /go/ shape also
 // goes home, never a dead end on a money path. Hosts are hardcoded, so this can
-// never become an open redirect.
+// never become an open redirect. Since 2026-09-28 (Kit 3) it also requires a fresh
+// cc_g gesture cookie, minted by the inline <head> script in app/layout.tsx.
 import { AMAZON_TAG, AMAZON_BOOKS_DEPT, AUDIBLE_DEST } from "../../lib/amazon-gate";
+import { hasFreshGesture } from "../../lib/gesture-gate";
 
 const ASIN = /^[A-Z0-9]{10}$/;
 
@@ -24,6 +26,9 @@ export const onRequest = async ({ request }: { request: Request }): Promise<Resp
   const site = request.headers.get("sec-fetch-site");
   const navOk = mode === "navigate" && (site === "same-origin" || site === "same-site");
   if (!navOk) return home;
+  // Kit 3 (2026-09-28): Sec-Fetch alone is forgeable by any HTTP client. Every affiliate route
+  // below also requires the cc_g cookie that only page JS mints on a trusted click (lib/gesture-gate.ts).
+  if (!hasFreshGesture(request)) return home;
 
   if (path === "/go/audible") return go(AUDIBLE_DEST);
   if (path === "/go/dp") {

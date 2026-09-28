@@ -15,6 +15,7 @@ import InstallPrompt from "@/components/InstallPrompt";
 import WebMCP from "@/components/WebMCP";
 import Logo from "@/components/Logo";
 import "./globals.css";
+import { MINT_JS } from "@/lib/gesture-gate";
 
 const TICKER_SCROLL = ["AAPL", "MSFT", "GOOGL", "META", "NVDA", "BRK-B", "AMZN", "JPM", "BAC", "KO", "CVX", "OXY", "AXP", "CMG", "V"];
 
@@ -102,6 +103,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <head>
+        {/* Kit 3 gesture gate (2026-09-28): mints the cc_g cookie on a trusted click on a /go/ link;
+            functions/go/[[path]].ts refuses every affiliate route without it. One mint per page. */}
+        <script dangerouslySetInnerHTML={{ __html: MINT_JS }} />
         {/* v1.88 — Impact.com affiliate marketplace verification (literal
             `value=` attribute form). Impact's snippet UI emits the meta tag
             with `value=` instead of the HTML5-standard `content=` (which the
