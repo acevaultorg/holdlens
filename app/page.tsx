@@ -19,6 +19,7 @@ import { getAllConvictionScores } from "@/lib/conviction";
 import { LATEST_FILINGS } from "@/lib/filings";
 import { COMPOSITE_TARGET_POSITIONS } from "@/lib/composite";
 import InvestingBooks from "@/components/InvestingBooks";
+import AmazonTopBar from "@/components/AmazonTopBar";
 
 // v1.42 — explicit homepage metadata. Prior state: homepage inherited
 // layout.metadata.title.default ("30 superinvestors, one ConvictionScore —
@@ -392,6 +393,11 @@ export default function HomePage() {
           <span className="text-muted">not investment advice</span>
         </div>
       </section>
+
+      {/* Amili Kit Amazon ad — top card (Paulo mumlcoqwh2pkpm, 2026-09-29).
+          After the hero (search box + CTAs), never above/inside it — see
+          components/AmazonTopBar.tsx for the fold-safety rationale. */}
+      <AmazonTopBar />
 
       {/* Ship UU — Q1 2026 highlights 4-tile dashboard. Surfaces the four
           highest-leverage entry points right after the hero, before the
