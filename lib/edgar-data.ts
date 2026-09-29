@@ -9,6 +9,7 @@
  */
 
 import type { Move, MoveAction, Quarter } from "./moves";
+import { decodeDeep } from "./decode-entities";
 
 // Import pre-fetched JSON data
 import edgarHoldings from "../data/edgar-holdings.json";
@@ -54,10 +55,10 @@ interface EdgarMoveJson {
 // ---------------------------------------------------------------------------
 
 /** All EDGAR holdings organized by filing (manager × quarter). */
-export const EDGAR_FILINGS = edgarHoldings as EdgarFilingJson[];
+export const EDGAR_FILINGS = decodeDeep(edgarHoldings as EdgarFilingJson[]);
 
 /** Metadata about the last EDGAR fetch (timestamp, coverage, errors). */
-export const EDGAR_META = edgarMeta as {
+export const EDGAR_META = decodeDeep(edgarMeta) as {
   fetchedAt: string;
   managersTotal: number;
   managersSuccess: number;
@@ -72,7 +73,7 @@ export const EDGAR_META = edgarMeta as {
  * All EDGAR moves converted to the app's Move type.
  * Filtered to only include moves with valid ticker symbols (≤5 chars, no spaces).
  */
-export const EDGAR_MOVES: Move[] = (edgarMoves as EdgarMoveJson[])
+export const EDGAR_MOVES: Move[] = decodeDeep(edgarMoves as EdgarMoveJson[])
   .filter((m) => m.ticker.length >= 1 && m.ticker.length <= 5 && !m.ticker.includes(" "))
   .map((m) => ({
     managerSlug: m.managerSlug,

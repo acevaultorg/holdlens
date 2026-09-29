@@ -83,6 +83,7 @@ export type InsiderTx = {
 // cash component but do count as insider activity for InsiderScore + cluster
 // signal purposes).
 import edgarRaw from "../data/edgar-form4.json";
+import { decodeDeep } from "./decode-entities";
 const PRICE_SANITY_MAX = 10_000;    // USD per share
 const VALUE_SANITY_MAX = 5_000_000_000;  // $5B per single insider transaction
 function isPlausibleInsiderTx(tx: InsiderTx): boolean {
@@ -91,7 +92,7 @@ function isPlausibleInsiderTx(tx: InsiderTx): boolean {
   return true;
 }
 export const EDGAR_INSIDER_TX: InsiderTx[] =
-  ((edgarRaw as InsiderTx[]) ?? []).filter(isPlausibleInsiderTx);
+  decodeDeep((edgarRaw as InsiderTx[]) ?? []).filter(isPlausibleInsiderTx);
 
 export const CURATED_INSIDER_TX: InsiderTx[] = [
   // META
