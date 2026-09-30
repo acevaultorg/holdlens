@@ -111,7 +111,14 @@ export const BOOKS: Book[] = [
 
   // ── Mental models & temperament ─────────────────────────────────────────
   {
-    isbn13: "9781578643646",
+    // Corrected 2026-09-29 (coordinator flag): the prior ISBN "9781578643646" converts to a
+    // valid-looking ISBN-10/ASIN (1578643643) that is nonetheless a DIFFERENT, unrelated book
+    // ("Diocese of Atlanta Centennial Celebration") — a stale/mistyped source ISBN, not a
+    // conversion bug (the isbn13to10 checksum math was correct; the input digits were wrong).
+    // 9781953953575 is the Stripe Press edition (ASIN/ISBN-10 1953953573, verified against the
+    // fleet's shared amili-amazon-ad Worker allow-list + live price). Checksum-verified here,
+    // not fetched (rules/affiliate-link-gate.md: never fetch an amazon.* URL from this session).
+    isbn13: "9781953953575",
     title: "Poor Charlie's Almanack",
     author: "Charles T. Munger",
     why: "The latticework of mental models Munger used to sanity-check every bet Berkshire ever made.",
