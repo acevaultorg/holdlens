@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ShareStrip from "@/components/ShareStrip";
+import ReadingFaq, { type FaqItem } from "@/components/ReadingFaq";
+import { MANAGERS } from "@/lib/managers";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import {
   BOOKS,
@@ -8,6 +10,9 @@ import {
   GROUP_META,
   resolveAmazonUrl,
   AUDIBLE_URL,
+  booksInGroup,
+  booksForInvestor,
+  type Book,
 } from "@/data/books";
 
 // /reading — the curated value-investing reading list. The site's canonical
@@ -20,10 +25,37 @@ import {
 const CANONICAL = "https://holdlens.com/reading";
 const LAST_VERIFIED = "2026-07-03";
 
+// Everything the page says about "where to start" comes from the canon order in
+// data/books.ts: the first book of a shelf is the one we'd hand a new reader.
+const FIRST = booksInGroup("Foundations")[0]!;
+const NEXT = booksInGroup("Foundations").slice(1, 3);
+const VALUATION_FIRST = booksInGroup("Valuation")[0]!;
+const BUFFETT_BOOKS = booksForInvestor("warren-buffett");
+
+// Books on the list written by a manager whose 13F we track — matched on the
+// author field (first + last name), so it can't claim authorship the data
+// doesn't show.
+const BY_TRACKED_MANAGER: { slug: string; name: string; books: Book[] }[] = MANAGERS.map((m) => {
+  const parts = m.name.split(" ");
+  const first = parts[0]!;
+  const last = parts[parts.length - 1]!;
+  return {
+    slug: m.slug,
+    name: m.name,
+    books: BOOKS.filter((b) => b.author.includes(first) && b.author.includes(last)),
+  };
+}).filter((x) => x.books.length > 0);
+
+const joinTitles = (bs: Book[]) => {
+  const t = bs.map((b) => b.title);
+  return t.length <= 1 ? t.join("") : `${t.slice(0, -1).join(", ")} and ${t[t.length - 1]}`;
+};
+
 export const metadata: Metadata = {
-  title: "The Value Investor's Reading List — the books behind every 13F",
-  description:
-    "A curated reading list for anyone who tracks 13F filings and superinvestors: the value-investing canon, the mental-model classics, and the books the managers on this site wrote or live by. Free, no fluff.",
+  title: `Best Value Investing Books: ${BOOKS.length} Classics by Topic`,
+  description: `Where to start with value investing books: ${FIRST.title} first, then ${joinTitles(
+    NEXT,
+  )}. ${BOOKS.length} books in six topics, from Buffett's letters and Howard Marks to Damodaran on valuation.`,
   alternates: { canonical: CANONICAL },
   openGraph: {
     title: "The Value Investor's Reading List",
@@ -61,6 +93,7 @@ const COLLECTION_JSONLD = {
         "@type": "Book",
         name: b.title,
         author: { "@type": "Person", name: b.author },
+        ...(b.isbn13 ? { isbn: b.isbn13 } : {}),
       },
     })),
   },
@@ -84,6 +117,82 @@ const FEATURED_INVESTORS: { slug: string; name: string; book: string }[] = [
   { slug: "joel-greenblatt", name: "Joel Greenblatt", book: "The Little Book That Beats the Market" },
   { slug: "michael-burry", name: "Michael Burry", book: "The Big Short" },
   { slug: "monish-pabrai", name: "Mohnish Pabrai", book: "The Dhandho Investor" },
+];
+
+const FAQ: FaqItem[] = [
+  {
+    q: "What is the best book on value investing for a beginner?",
+    text: `Start with ${FIRST.title} by ${FIRST.author}. ${FIRST.why} After it, read ${joinTitles(NEXT)}.`,
+    answer: (
+      <p>
+        Start with {FIRST.title} by {FIRST.author}. {FIRST.why} After it, read {joinTitles(NEXT)}{" "}
+        — the rest of the{" "}
+        <Link href="/reading/foundations" className="text-brand hover:underline">
+          foundations shelf
+        </Link>{" "}
+        is in the order we&apos;d read it.
+      </p>
+    ),
+  },
+  {
+    q: "Which of these books were written by investors HoldLens tracks?",
+    text: `${BY_TRACKED_MANAGER.map((x) => `${x.name} wrote ${joinTitles(x.books)}`).join("; ")}. Each has a profile on HoldLens with their latest 13F holdings.`,
+    answer: (
+      <>
+        <ul className="space-y-1">
+          {BY_TRACKED_MANAGER.map((x) => (
+            <li key={x.slug}>
+              <Link
+                href={`/investor/${x.slug}`}
+                className="inline-flex min-h-[44px] items-center text-brand hover:underline"
+              >
+                {x.name}
+              </Link>{" "}
+              — {joinTitles(x.books)}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2">Each profile shows that investor&apos;s latest 13F holdings.</p>
+      </>
+    ),
+  },
+  {
+    q: "What should I read to understand Warren Buffett?",
+    text: `On this list: ${joinTitles(BUFFETT_BOOKS)}. The Berkshire Hathaway shareholder letters are also here.`,
+    answer: (
+      <p>
+        On this list: {joinTitles(BUFFETT_BOOKS)}. The Berkshire Hathaway shareholder letters are
+        also here, and{" "}
+        <Link href="/investor/warren-buffett" className="text-brand hover:underline">
+          Berkshire&apos;s latest 13F holdings
+        </Link>{" "}
+        are on HoldLens.
+      </p>
+    ),
+  },
+  {
+    q: "What is the best book on how to value a stock?",
+    text: `Start with ${VALUATION_FIRST.title} by ${VALUATION_FIRST.author}. ${VALUATION_FIRST.why}`,
+    answer: (
+      <p>
+        Start with {VALUATION_FIRST.title} by {VALUATION_FIRST.author}. {VALUATION_FIRST.why} The{" "}
+        <Link href="/reading/valuation" className="text-brand hover:underline">
+          valuation shelf
+        </Link>{" "}
+        has the rest, from plain-language guides to the professional texts.
+      </p>
+    ),
+  },
+  {
+    q: "Does HoldLens earn money from these book links?",
+    text: "Yes. The book links go to Amazon, and as an Amazon Associate HoldLens earns from qualifying purchases at no extra cost to you. Books are chosen on merit, never paid placements.",
+    answer: (
+      <p>
+        Yes. The book links go to Amazon, and as an Amazon Associate HoldLens earns from qualifying
+        purchases at no extra cost to you. Books are chosen on merit, never paid placements.
+      </p>
+    ),
+  },
 ];
 
 export default function ReadingListPage() {
@@ -116,6 +225,11 @@ export default function ReadingListPage() {
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
         The value investor&apos;s reading list.
       </h1>
+      <p className="text-base sm:text-lg text-text leading-relaxed mb-4">
+        If you read one investing book, make it <strong>{FIRST.title}</strong> by {FIRST.author}.{" "}
+        {FIRST.why} After it, read {joinTitles(NEXT)}. The full list below holds {BOOKS.length}{" "}
+        books in six topics, each in the order we&apos;d read them.
+      </p>
       <p className="text-base sm:text-lg text-muted leading-relaxed mb-4">
         Every 13F on this site is downstream of a way of thinking. These are the books that map it —
         the value-investing canon, the mental-model classics, and the books the managers we track
@@ -157,6 +271,46 @@ export default function ReadingListPage() {
           ))}
         </div>
       </nav>
+
+      {/* At a glance — one row per shelf, answering "where do I start?" */}
+      <section aria-labelledby="reading-glance" className="my-8">
+        <h2 id="reading-glance" className="text-lg md:text-xl font-bold mb-3">
+          The list at a glance
+        </h2>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-sm">
+            <thead className="bg-panel text-left text-dim">
+              <tr>
+                <th scope="col" className="px-3 py-2.5 font-semibold">Topic</th>
+                <th scope="col" className="px-3 py-2.5 font-semibold text-right">Books</th>
+                <th scope="col" className="px-3 py-2.5 font-semibold">Start with</th>
+              </tr>
+            </thead>
+            <tbody>
+              {GROUP_META.map((g) => {
+                const shelf = booksInGroup(g.group);
+                return (
+                  <tr key={g.slug} className="border-t border-border align-top">
+                    <td className="px-3 py-1">
+                      <Link
+                        href={`/reading/${g.slug}`}
+                        className="inline-flex min-h-[44px] items-center text-brand hover:underline"
+                      >
+                        {g.group}
+                      </Link>
+                    </td>
+                    <td className="px-3 py-3 text-right tabular-nums text-muted">{shelf.length}</td>
+                    <td className="px-3 py-3 text-muted">
+                      {shelf[0]?.title}
+                      <span className="block text-[12px] text-dim">{shelf[0]?.author}</span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       {/* Audible bounty — prominent, honest. The highest-$ affiliate action, so
           it earns its place near the top; framed as an option, not a demand. */}
@@ -229,7 +383,7 @@ export default function ReadingListPage() {
                       {b.title}
                     </div>
                     <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-                    <div className="text-[11px] text-dim mt-2">View on Amazon →</div>
+                    <div className="text-[11px] text-dim mt-2">See price on Amazon →</div>
                   </a>
                 );
               })}
@@ -260,6 +414,8 @@ export default function ReadingListPage() {
           ))}
         </div>
       </section>
+
+      <ReadingFaq items={FAQ} />
 
       {/* FTC disclosure */}
       <p className="text-[11px] text-dim leading-relaxed border-t border-border pt-6">

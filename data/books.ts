@@ -392,12 +392,16 @@ export type GroupMeta = {
   description: string;
   /** 2-paragraph editorial intro — unique per shelf, not a template */
   intro: string[];
+  /** The plain question a reader types for this shelf — answered on the page
+   *  (and in its FAQPage JSON-LD) by the shelf's first book, in reading order. */
+  question: string;
 };
 
 export const GROUP_META: GroupMeta[] = [
   {
     group: "Foundations",
     slug: "foundations",
+    question: "What is the best value investing book to start with?",
     h1: "The best value-investing books to start with",
     title: "The Best Value Investing Books — the foundational canon",
     description:
@@ -410,6 +414,7 @@ export const GROUP_META: GroupMeta[] = [
   {
     group: "Mental models & temperament",
     slug: "mental-models",
+    question: "What is the best book on investing mental models?",
     h1: "Books on the mental models behind great investing",
     title: "Books on Investing Mental Models & Temperament",
     description:
@@ -422,6 +427,7 @@ export const GROUP_META: GroupMeta[] = [
   {
     group: "Behavioral finance",
     slug: "behavioral-finance",
+    question: "What is the best behavioral finance book for investors?",
     h1: "The best behavioral finance books for investors",
     title: "The Best Behavioral Finance Books — the psychology of investing",
     description:
@@ -434,6 +440,7 @@ export const GROUP_META: GroupMeta[] = [
   {
     group: "In their own words",
     slug: "in-their-own-words",
+    question: "Which book by a great investor should I read first?",
     h1: "Books by the superinvestors we track",
     title: "Books by the Best Investors — in their own words",
     description:
@@ -446,6 +453,7 @@ export const GROUP_META: GroupMeta[] = [
   {
     group: "Macro & memoirs",
     slug: "macro-and-memoirs",
+    question: "What is the best book on market history and financial crashes?",
     h1: "Investing history, macro and market-crash books",
     title: "The Best Books on Market History, Macro & Financial Crashes",
     description:
@@ -458,6 +466,7 @@ export const GROUP_META: GroupMeta[] = [
   {
     group: "Valuation",
     slug: "valuation",
+    question: "What is the best book on how to value a stock?",
     h1: "The best books on valuing a stock",
     title: "The Best Valuation Books — how to value a stock",
     description:
