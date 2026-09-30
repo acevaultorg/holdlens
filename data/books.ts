@@ -453,7 +453,7 @@ export const GROUP_META: GroupMeta[] = [
   {
     group: "Macro & memoirs",
     slug: "macro-and-memoirs",
-    question: "What is the best book on market history and financial crashes?",
+    question: "Where should I start with investing history and memoirs?",
     h1: "Investing history, macro and market-crash books",
     title: "The Best Books on Market History, Macro & Financial Crashes",
     description:
