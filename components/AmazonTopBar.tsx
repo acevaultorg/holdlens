@@ -42,25 +42,25 @@ type AmazonAdProduct = { asin: string; name: string; why: string; expect: string
 // AD_JS on the image's load event). Fixed heights for both states, so nothing shifts.
 // Colours follow the site's dark palette instead of the kit's white card.
 const TOPBAR_CSS = `
-.hl-books .ak-ad{--ak-ad-page:transparent;--ak-ad-bg:#141414;--ak-ad-fg:#e5e5e5;--ak-ad-muted:#9ca3af;--ak-ad-line:#262626;--ak-ad-cta-bg:#fbbf24;--ak-ad-cta-fg:#0a0a0a;--ak-ad-h1d:308px}
+.hl-books .ak-ad{--ak-ad-page:transparent;--ak-ad-bg:#141414;--ak-ad-fg:#e5e5e5;--ak-ad-muted:#9ca3af;--ak-ad-line:#262626;--ak-ad-cta-bg:#fbbf24;--ak-ad-cta-fg:#0a0a0a;--ak-ad-h1d:344px}
 .hl-books .ak-ad-v1.ak-duo{padding:0}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-in{max-width:none}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-track{gap:12px}
-.hl-books .ak-ad-v1.ak-duo .ak-ad-link{height:264px;padding:12px;gap:8px;border-radius:14px}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-link{height:300px;padding:12px;gap:8px;border-radius:14px}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-link:hover{border-color:rgba(251,191,36,.4)}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-card .ak-ad-img{display:none}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-card.has-img .ak-ad-img{display:flex;height:64px;background:transparent}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-body{flex:1;gap:4px}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-brand{display:block;height:auto;font-size:11px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;white-space:normal}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-title{font-size:14px;line-height:1.25;height:auto;max-height:none;-webkit-line-clamp:3;overflow-wrap:anywhere}
-.hl-books .ak-ad-v1.ak-duo .ak-ad-why{display:-webkit-box;-webkit-line-clamp:3;font-size:12.5px;line-height:1.4;margin-top:2px}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-why{display:-webkit-box;-webkit-line-clamp:7;font-size:12.5px;line-height:1.4;margin-top:2px}
 .hl-books .ak-ad-v1.ak-duo .has-img .ak-ad-why{display:none}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-price{height:auto;font-size:15px;margin-top:auto}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-cta{display:flex;align-items:center;justify-content:center;gap:6px;align-self:stretch;min-height:44px;margin-top:auto;padding:0 8px;border-radius:12px;font-size:12.5px;text-align:center;white-space:normal;line-height:1.2}
 .hl-books .ak-ad-v1.ak-duo .has-price .ak-ad-cta{margin-top:6px}
 .hl-books .ak-ad-foot{justify-content:flex-start}
 .hl-books .ak-ad-asof{white-space:normal;line-height:1.25;text-overflow:clip;margin-right:auto}
-@media (min-width:40rem){.hl-books .ak-ad{--ak-ad-h1d:256px}.hl-books .ak-ad-v1.ak-duo .ak-ad-link{height:212px;padding:16px}.hl-books .ak-ad-v1.ak-duo .ak-ad-cta{align-self:flex-start;padding:0 20px;border-radius:999px;font-size:13px}.hl-books .ak-ad-v1.ak-duo .ak-ad-why{-webkit-line-clamp:2}.hl-books .ak-ad-v1.ak-duo .ak-ad-img{justify-content:flex-start}}
+@media (min-width:40rem){.hl-books .ak-ad{--ak-ad-h1d:256px}.hl-books .ak-ad-v1.ak-duo .ak-ad-link{height:212px;padding:16px}.hl-books .ak-ad-v1.ak-duo .ak-ad-cta{align-self:flex-start;padding:0 20px;border-radius:999px;font-size:13px}.hl-books .ak-ad-v1.ak-duo .ak-ad-why{-webkit-line-clamp:3}.hl-books .ak-ad-v1.ak-duo .ak-ad-img{justify-content:flex-start}}
 `;
 
 export default function AmazonTopBar() {
