@@ -104,7 +104,7 @@ Every signal is sourced directly from SEC filings. Data current: **Q1 2026** (fi
 
 ## Investing reading list (books)
 
-HoldLens keeps a curated list of 42 investing books in six topics, each shelf in reading order. Answers below are the first book on each shelf. Book links go to Amazon (HoldLens is an Amazon Associate); no prices are shown on the site.
+HoldLens keeps a curated list of 42 investing books in six topics, each shelf in reading order. Answers below are the first book on each shelf. Book links go to Amazon (HoldLens is an Amazon Associate); the reading-list pages show no prices.
 
 - [Reading list hub](https://holdlens.com/reading) — all 42 books, a topic-by-topic table, and common questions. Best first book: *The Intelligent Investor* (Benjamin Graham), then *Security Analysis* (Graham & Dodd) and *Common Stocks and Uncommon Profits* (Philip A. Fisher).
 - [Foundations](https://holdlens.com/reading/foundations) — 8 books. Start with *The Intelligent Investor* (Benjamin Graham).
