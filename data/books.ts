@@ -125,7 +125,12 @@ export const BOOKS: Book[] = [
     group: "Mental models & temperament",
   },
   {
-    isbn13: "9780470181751",
+    // Was "9780470181751" until 2026-09-30. That ISBN carries the 978-0-470 registrant
+    // prefix (John Wiley & Sons), but Marks's book is published by Columbia Business School
+    // Publishing — so the /dp/ link could not point at this title. Same fault class as the
+    // Poor Charlie's "Diocese of Atlanta" ASIN. Until an ISBN is verified against the real
+    // edition, the title + author search below always lands on the right book.
+    isbn13: null,
     title: "The Most Important Thing",
     author: "Howard Marks",
     why: "Oaktree's Marks on risk, cycles, and second-level thinking — the framework behind reading any 13F.",
@@ -637,6 +642,58 @@ function isbn13to10(isbn13: string): string | null {
   return core + (checkNum === 10 ? "X" : String(checkNum));
 }
 
+/** The Amazon ASIN for a book's verified ISBN, or null (→ title + author search). */
+export function amazonAsin(book: Book): string | null {
+  return book.isbn13 ? isbn13to10(book.isbn13) : null;
+}
+
+// ── Product matching guard (runs at build time) ────────────────────────────
+// A book block must always show the book it names. A wrong ISBN still passes Amazon's
+// own checks — it is a real product, just a different one (the old Poor Charlie's ISBN
+// resolved to "Diocese of Atlanta Centennial Celebration"). So the build refuses:
+//   - an ISBN-13 with a bad checksum or without the 978 prefix (no ASIN can be derived);
+//   - two different titles that resolve to the same ASIN;
+//   - an ASIN known to be a different book than the one it was attached to.
+// The browser half of this guard lives in lib/kit/amazon-ad.ts (data-expect): live
+// product data whose title does not match the intended book is ignored there.
+const KNOWN_WRONG_ASINS: Record<string, string> = {
+  "1578643643": "Diocese of Atlanta Centennial Celebration (was attached to Poor Charlie's Almanack)",
+};
+
+function isbn13ChecksumOk(isbn13: string): boolean {
+  if (!/^\d{13}$/.test(isbn13)) return false;
+  let sum = 0;
+  for (let i = 0; i < 12; i++) sum += Number(isbn13[i]) * (i % 2 ? 3 : 1);
+  return (10 - (sum % 10)) % 10 === Number(isbn13[12]);
+}
+
+export function bookIntegrityErrors(books: Book[] = BOOKS): string[] {
+  const errs: string[] = [];
+  const titles = new Set<string>();
+  const byAsin = new Map<string, string>();
+  for (const b of books) {
+    if (titles.has(b.title)) errs.push(`duplicate title: ${b.title}`);
+    titles.add(b.title);
+    if (!b.title.trim() || !b.author.trim()) errs.push(`title and author are required: ${JSON.stringify(b)}`);
+    if (!b.isbn13) continue;
+    if (!isbn13ChecksumOk(b.isbn13) || !b.isbn13.startsWith("978")) {
+      errs.push(`${b.title}: ISBN-13 ${b.isbn13} is not a valid 978 ISBN`);
+      continue;
+    }
+    const asin = amazonAsin(b)!;
+    if (KNOWN_WRONG_ASINS[asin]) errs.push(`${b.title}: ASIN ${asin} is a different book — ${KNOWN_WRONG_ASINS[asin]}`);
+    const other = byAsin.get(asin);
+    if (other) errs.push(`${b.title} and ${other} both resolve to ASIN ${asin}`);
+    byAsin.set(asin, b.title);
+  }
+  return errs;
+}
+
+{
+  const errs = bookIntegrityErrors();
+  if (errs.length) throw new Error(`data/books.ts product matching guard:\n  ${errs.join("\n  ")}`);
+}
+
 export type AmazonResolution = "asin_direct" | "title_author_search";
 
 /** Amazon department pin for SEARCH links. A bare `/s?k=<title author>` drops the
@@ -653,7 +710,7 @@ export type AmazonResolution = "asin_direct" | "title_author_search";
  *  title+author search otherwise (still attributed, honest — no false 'direct
  *  product' promise). */
 export function resolveAmazonUrl(book: Book): { url: string; resolution: AmazonResolution } {
-  const asin = book.isbn13 ? isbn13to10(book.isbn13) : null;
+  const asin = amazonAsin(book);
   if (asin) return { url: `/go/dp?a=${asin}`, resolution: "asin_direct" };
   const q = encodeURIComponent(`${book.title} ${book.author}`);
   return { url: `/go/s?k=${q}`, resolution: "title_author_search" };
