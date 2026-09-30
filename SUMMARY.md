@@ -100,3 +100,10 @@ The repo's typecheck (`tsc --noEmit`) shows the same 52 errors before and after.
 3. **Optionally restore a direct link for The Most Important Thing** once its ISBN is verified (Columbia Business School Publishing edition). Until then it uses the title + author search.
 4. **Build with the real env file** (`.env.production.local` holding the GA4/Clarity IDs) and confirm `npm run build` exits 0.
 5. **Check with live data.** Once `/amz/items` answers for holdlens.com, load `/` and confirm that real covers and prices appear and that a price shows "View on Amazon" plus the "Price as of" time.
+
+## Review follow-up (same day)
+A review pass on this branch fixed two layout issues on the homepage book card and retook every screenshot. See `REVIEW.md`.
+- Descriptions are no longer cut mid-sentence at phone and tablet widths.
+- The button stays inside the card when a live price shows without a cover.
+- New screenshot: `review/home-simulated-price-no-cover-{375,390}.png`.
+- Page count is still 22,291. The build still exits 1, only at `predeploy-guard` (no env file in a fresh clone).
