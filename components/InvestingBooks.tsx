@@ -126,7 +126,7 @@ export default function InvestingBooks({
           </a>
           {shelves.length > 0 && (
             <div className="mt-2 flex flex-wrap items-center gap-x-4 text-sm text-dim">
-              <span>More by topic:</span>
+              <span className="basis-full">More by topic:</span>
               {shelves.map((g) => (
                 <a
                   key={g.slug}

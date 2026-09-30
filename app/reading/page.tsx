@@ -139,16 +139,16 @@ const FAQ: FaqItem[] = [
     text: `${BY_TRACKED_MANAGER.map((x) => `${x.name} wrote ${joinTitles(x.books)}`).join("; ")}. Each has a profile on HoldLens with their latest 13F holdings.`,
     answer: (
       <>
-        <ul className="space-y-1">
+        <ul className="divide-y divide-border">
           {BY_TRACKED_MANAGER.map((x) => (
             <li key={x.slug}>
               <Link
                 href={`/investor/${x.slug}`}
-                className="inline-flex min-h-[44px] items-center text-brand hover:underline"
+                className="flex min-h-[44px] flex-col justify-center py-2 group"
               >
-                {x.name}
-              </Link>{" "}
-              — {joinTitles(x.books)}
+                <span className="text-brand group-hover:underline">{x.name}</span>
+                <span className="text-dim">{joinTitles(x.books)}</span>
+              </Link>
             </li>
           ))}
         </ul>
