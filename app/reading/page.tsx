@@ -33,8 +33,10 @@ const VALUATION_FIRST = booksInGroup("Valuation")[0]!;
 const BUFFETT_BOOKS = booksForInvestor("warren-buffett");
 
 // Books on the list written by a manager whose 13F we track — matched on the
-// author field (first + last name), so it can't claim authorship the data
-// doesn't show.
+// author field (first + last name as whole words), so it can't claim authorship
+// the data doesn't show. Whole words matter for short names: "Li Lu" must not
+// match an author who merely contains the letters "li" and "lu".
+const words = (s: string) => new Set(s.split(/[^\p{L}]+/u).filter(Boolean));
 const BY_TRACKED_MANAGER: { slug: string; name: string; books: Book[] }[] = MANAGERS.map((m) => {
   const parts = m.name.split(" ");
   const first = parts[0]!;
@@ -42,7 +44,10 @@ const BY_TRACKED_MANAGER: { slug: string; name: string; books: Book[] }[] = MANA
   return {
     slug: m.slug,
     name: m.name,
-    books: BOOKS.filter((b) => b.author.includes(first) && b.author.includes(last)),
+    books: BOOKS.filter((b) => {
+      const w = words(b.author);
+      return w.has(first) && w.has(last);
+    }),
   };
 }).filter((x) => x.books.length > 0);
 
@@ -55,7 +60,7 @@ export const metadata: Metadata = {
   title: `Best Value Investing Books: ${BOOKS.length} Classics by Topic`,
   description: `Where to start with value investing books: ${FIRST.title} first, then ${joinTitles(
     NEXT,
-  )}. ${BOOKS.length} books in six topics, from Buffett's letters and Howard Marks to Damodaran on valuation.`,
+  )}. ${BOOKS.length} books in ${GROUP_META.length} topics, from Buffett's letters and Howard Marks to Damodaran on valuation.`,
   alternates: { canonical: CANONICAL },
   openGraph: {
     title: "The Value Investor's Reading List",
@@ -158,11 +163,11 @@ const FAQ: FaqItem[] = [
   },
   {
     q: "What should I read to understand Warren Buffett?",
-    text: `On this list: ${joinTitles(BUFFETT_BOOKS)}. The Berkshire Hathaway shareholder letters are also here.`,
+    text: `On this list: ${joinTitles(BUFFETT_BOOKS)}. The complete Berkshire Hathaway shareholder letters are on the list too.`,
     answer: (
       <p>
-        On this list: {joinTitles(BUFFETT_BOOKS)}. The Berkshire Hathaway shareholder letters are
-        also here, and{" "}
+        On this list: {joinTitles(BUFFETT_BOOKS)}. The complete Berkshire Hathaway shareholder
+        letters are on the list too, and{" "}
         <Link href="/investor/warren-buffett" className="text-brand hover:underline">
           Berkshire&apos;s latest 13F holdings
         </Link>{" "}
@@ -228,7 +233,7 @@ export default function ReadingListPage() {
       <p className="text-base sm:text-lg text-text leading-relaxed mb-4">
         If you read one investing book, make it <strong>{FIRST.title}</strong> by {FIRST.author}.{" "}
         {FIRST.why} After it, read {joinTitles(NEXT)}. The full list below holds {BOOKS.length}{" "}
-        books in six topics, each in the order we&apos;d read them.
+        books in {GROUP_META.length} topics, each in the order we&apos;d read them.
       </p>
       <p className="text-base sm:text-lg text-muted leading-relaxed mb-4">
         Every 13F on this site is downstream of a way of thinking. These are the books that map it —
