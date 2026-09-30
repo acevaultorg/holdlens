@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ShareStrip from "@/components/ShareStrip";
+import ReadingFaq from "@/components/ReadingFaq";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import {
   GROUP_META,
@@ -54,6 +55,49 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
   const books = booksInGroup(meta.group);
   const canonical = `https://holdlens.com/reading/${meta.slug}`;
   const others = GROUP_META.filter((g) => g.slug !== meta.slug);
+  const first = books[0]!;
+  const then = books.slice(1, 3).map((b) => b.title);
+  const thenText = then.length === 2 ? `${then[0]} and ${then[1]}` : then.join("");
+  const faq = [
+    {
+      q: meta.question,
+      text: `Start with ${first.title} by ${first.author}. ${first.why}${
+        thenText ? ` Then read ${thenText}.` : ""
+      }`,
+      answer: (
+        <p>
+          Start with {first.title} by {first.author}. {first.why}
+          {thenText ? ` Then read ${thenText}.` : ""}
+        </p>
+      ),
+    },
+    {
+      q: `Which books are on this list, and in what order?`,
+      text: `${books.length} books, in the order we'd read them: ${books
+        .map((b) => `${b.title} (${b.author})`)
+        .join("; ")}.`,
+      answer: (
+        <p>
+          {books.length} books, in the order we&apos;d read them — see the table at the top of this
+          page. The{" "}
+          <Link href="/reading" className="text-brand hover:underline">
+            full reading list
+          </Link>{" "}
+          has {GROUP_META.length - 1} more topics.
+        </p>
+      ),
+    },
+    {
+      q: "Does HoldLens earn money from these book links?",
+      text: "Yes. The book links go to Amazon, and as an Amazon Associate HoldLens earns from qualifying purchases at no extra cost to you. Books are chosen on merit, never paid placements.",
+      answer: (
+        <p>
+          Yes. The book links go to Amazon, and as an Amazon Associate HoldLens earns from qualifying
+          purchases at no extra cost to you. Books are chosen on merit, never paid placements.
+        </p>
+      ),
+    },
+  ];
 
   const ITEMLIST_JSONLD = {
     "@context": "https://schema.org",
@@ -73,6 +117,7 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
           "@type": "Book",
           name: b.title,
           author: { "@type": "Person", name: b.author },
+          ...(b.isbn13 ? { isbn: b.isbn13 } : {}),
         },
       })),
     },
@@ -123,6 +168,36 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
         {meta.h1}
       </h1>
+      <p className="text-base sm:text-lg text-text leading-relaxed mb-6">
+        Start with <strong>{first.title}</strong> by {first.author}. {first.why}
+      </p>
+
+      <section aria-labelledby="shelf-order" className="mb-8">
+        <h2 id="shelf-order" className="text-base font-semibold mb-3">
+          The {books.length} books, in reading order
+        </h2>
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-sm">
+            <thead className="bg-panel text-left text-dim">
+              <tr>
+                <th scope="col" className="px-3 py-2.5 font-semibold w-10">#</th>
+                <th scope="col" className="px-3 py-2.5 font-semibold">Book</th>
+                <th scope="col" className="px-3 py-2.5 font-semibold">Author</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((b, i) => (
+                <tr key={b.title} className="border-t border-border align-top">
+                  <td className="px-3 py-2.5 tabular-nums text-dim">{i + 1}</td>
+                  <td className="px-3 py-2.5 text-text">{b.title}</td>
+                  <td className="px-3 py-2.5 text-muted">{b.author}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       {meta.intro.map((p, i) => (
         <p
           key={i}
@@ -181,7 +256,7 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
                   {b.title}
                 </div>
                 <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-                <div className="text-[11px] text-dim mt-2">View on Amazon →</div>
+                <div className="text-[11px] text-dim mt-2">See price on Amazon →</div>
               </a>
             );
           })}
@@ -213,6 +288,8 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
           ))}
         </div>
       </section>
+
+      <ReadingFaq items={faq} />
 
       {/* FTC disclosure */}
       <p className="text-[11px] text-dim leading-relaxed border-t border-border pt-6">
