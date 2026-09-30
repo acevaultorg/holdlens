@@ -266,7 +266,7 @@ if(it.title)c.querySelector('[data-ak-title]').textContent=it.title;if(it.brand)
 if(it.price){c.querySelector('[data-ak-price]').textContent=it.price;c.classList.add('has-price')}}
 fetch(s.getAttribute('data-api')+'?a='+want.slice().sort().join(','),{credentials:'omit'}).then(function(r){return r.json()}).then(function(j){
 if(!j||!j.ok||!j.asOf||Date.now()-Date.parse(j.asOf)>${MAX_AGE_MS})return;var items=j.items||{},pool=want.filter(function(a){return items[a]}),used=0,any=0;
-cards.forEach(function(c){var a=pool[used++];if(!a)return;fill(c,a,items[a]);if(items[a].price)any=1});
+var fx=!!s.getAttribute('data-fixed');cards.forEach(function(c){var a=fx?c.getAttribute('data-asin'):pool[used++];if(!a||!items[a])return;fill(c,a,items[a]);if(items[a].price)any=1});
 if(any){var p=s.querySelector('[data-ak-asof]');p.querySelector('time').setAttribute('datetime',j.asOf);p.querySelector('time').textContent=fmt(j.asOf);p.hidden=false;s.querySelector('[data-ak-disc]').hidden=false}
 var pm=j.promo,nw=Date.now();if(pm&&pm.text&&nw>=Date.parse(pm.from)&&nw<=Date.parse(pm.to)&&(!pm.paths||new RegExp(pm.paths).test(location.pathname))){var pe=s.querySelector('[data-ak-promo]');if(pe){pe.textContent=pm.text;pe.hidden=false}}
 s.classList.add('is-live')}).catch(function(){});
