@@ -58,6 +58,7 @@ const TOPBAR_CSS = `
 .hl-books .ak-ad-v1.ak-duo .ak-ad-price{height:auto;font-size:15px;margin-top:auto}
 .hl-books .ak-ad-v1.ak-duo .ak-ad-cta{display:flex;align-items:center;justify-content:center;gap:6px;align-self:stretch;min-height:44px;margin-top:auto;padding:0 8px;border-radius:12px;font-size:12.5px;text-align:center;white-space:normal;line-height:1.2}
 .hl-books .ak-ad-v1.ak-duo .has-price .ak-ad-cta{margin-top:6px}
+@media (max-width:39.99rem){.hl-books .ak-ad-v1.ak-duo .has-price .ak-ad-why{-webkit-line-clamp:5}}
 .hl-books .ak-ad-foot{justify-content:flex-start}
 .hl-books .ak-ad-asof{white-space:normal;line-height:1.25;text-overflow:clip;margin-right:auto}
 @media (min-width:40rem){.hl-books .ak-ad{--ak-ad-h1d:256px}.hl-books .ak-ad-v1.ak-duo .ak-ad-link{height:212px;padding:16px}.hl-books .ak-ad-v1.ak-duo .ak-ad-cta{align-self:flex-start;padding:0 20px;border-radius:999px;font-size:13px}.hl-books .ak-ad-v1.ak-duo .ak-ad-why{-webkit-line-clamp:3}.hl-books .ak-ad-v1.ak-duo .ak-ad-img{justify-content:flex-start}}
