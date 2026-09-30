@@ -35,7 +35,7 @@ const BUFFETT_BOOKS = booksForInvestor("warren-buffett");
 // Books on the list written by a manager whose 13F we track — matched on the
 // author field (first + last name as whole words), so it can't claim authorship
 // the data doesn't show. Whole words matter for short names: "Li Lu" must not
-// match an author who merely contains the letters "li" and "lu".
+// match an author whose name merely contains "Li" and "Lu".
 const words = (s: string) => new Set(s.split(/[^\p{L}]+/u).filter(Boolean));
 const BY_TRACKED_MANAGER: { slug: string; name: string; books: Book[] }[] = MANAGERS.map((m) => {
   const parts = m.name.split(" ");

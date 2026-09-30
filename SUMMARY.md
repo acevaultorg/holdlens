@@ -121,9 +121,9 @@ scroll sideways at either width.
 - `/investor/warren-buffett/` and `/learn/what-is-alpha/`: examples of the book widget
 - `/`: homepage, which also carries the widget
 
-The widget appears on thousands of pages, so these are examples, not every page. The
-cookie banner and the sticky header appear in the full-page shots because the
-screenshots start from a fresh visit.
+The widget appears on thousands of pages, so these are examples, not every page.
+The review pass retook all of them with the cookie banner dismissed, and added close
+crops of only the new sections in `review/sections/`.
 
 ## Skipped, and why
 
@@ -142,9 +142,9 @@ screenshots start from a fresh visit.
 2. **Read the new visible copy on `/reading` and one topic page:**
    - "The list at a glance" table
    - the "Common questions" block
-   - on "Macro & memoirs", the first answer to "What is the best book on market
-     history and financial crashes?" is "Start with The Big Short", because it is first
-     in reading order. Reorder the shelf in `data/books.ts` if you'd rather lead with
+   - on "Macro & memoirs", the first answer to "Where should I start with investing
+     history and memoirs?" is "Start with The Big Short", because it is first in
+     reading order. Reorder the shelf in `data/books.ts` if you'd rather lead with
      another book.
 3. **The Buffett answer** lists what `INVESTOR_BOOKS["warren-buffett"]` holds:
    - The Essays of Warren Buffett
@@ -154,3 +154,22 @@ screenshots start from a fresh visit.
 4. **The label change to "See price on Amazon"** affects every book card sitewide.
    Confirm that is what you want.
 5. **Run the Rich Results Test** on `/reading` for FAQPage and ItemList once it is deployed.
+
+## Review pass (same day)
+
+A second session reviewed this branch and fixed what it found in small commits. See
+`REVIEW.md` for the details. In short:
+
+- Three book "why" lines quoted in the new answers used product jargon ("conviction
+  score", "13F-copier", "ConvictionScore input"). They are rewritten in plain language.
+- The macro shelf's question now matches its answer.
+- `llms.txt` no longer claims the site shows no prices. The homepage kit card shows
+  live prices.
+- The tracked-manager author match uses whole words instead of substrings. The output
+  is the same six managers.
+- The topic count comes from the data, and the Buffett answer is worded more clearly.
+
+Build after the fixes: 22,291 pages, the same as before. Every step passes except
+`predeploy-guard`, which exits 1 because this clone has no analytics env file. It
+fails the same way on `main`. Affiliate links, canonicals and robots.txt are identical
+before and after the fixes.
