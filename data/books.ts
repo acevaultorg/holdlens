@@ -158,7 +158,7 @@ export const BOOKS: Book[] = [
     isbn13: null,
     title: "The Psychology of Money",
     author: "Morgan Housel",
-    why: "Timeless: doing well with money is about behaviour, not IQ — and about the patience that no filing can copy for you.",
+    why: "Timeless: doing well with money is about behaviour and patience, not IQ.",
     group: "Behavioral finance",
   },
   {
