@@ -3,6 +3,7 @@
 // /amz/items is intercepted locally (never reaches the network); "mock" shots simulate
 // a live response: "wrong-book" = one product has the WRONG title and one cover fails to load;
 // "covers" = both titles match and both covers load (placeholder test covers, served locally).
+// "price" = both titles match with a price but no cover (the tallest card state at phone width).
 // Prices in simulated shots are test values, not real prices.
 // Playwright is resolved from the global install when it is not a project dependency.
 import { createRequire } from "node:module";
@@ -29,7 +30,10 @@ async function shoot(name, path, width, mock) {
   await page.route(/^https?:\/\/(?!127\.0\.0\.1|localhost)/, (r) => r.abort());
   await page.route("**/amz/items*", (r) =>
     mock
-      ? r.fulfill({ contentType: "application/json", body: JSON.stringify({ ok: true, asOf: new Date().toISOString(), items: mock === "covers" ? {
+      ? r.fulfill({ contentType: "application/json", body: JSON.stringify({ ok: true, asOf: new Date().toISOString(), items: mock === "price" ? {
+          "0060555661": { title: "The Intelligent Investor", brand: "", price: "$12.34" },
+          "1953953573": { title: "Poor Charlie's Almanack", brand: "", price: "$23.45" },
+        } : mock === "covers" ? {
           "0060555661": { title: "The Intelligent Investor Rev Ed.", brand: "", img: { url: "https://m.media-amazon.com/images/I/test-cover-a.svg", w: 330, h: 500 }, price: "$12.34" },
           "1953953573": { title: "Poor Charlie's Almanack: The Essential Wit and Wisdom of Charles T. Munger", brand: "", img: { url: "https://m.media-amazon.com/images/I/test-cover-b.svg", w: 330, h: 500 }, price: null },
         } : {
@@ -55,7 +59,7 @@ async function shoot(name, path, width, mock) {
   if (await block.count()) await block.scrollIntoViewIfNeeded();
   const el = page.locator("section.hl-books").first();
   const target = (await el.count()) ? el : page.locator("section:has(a[href^='/go/'])").first();
-  const file = `${dir}/${prefix}${name}${mock === "covers" ? "-simulated-covers" : mock ? "-simulated-wrong-book" : ""}-${width}.png`;
+  const file = `${dir}/${prefix}${name}${mock === "covers" ? "-simulated-covers" : mock === "price" ? "-simulated-price-no-cover" : mock ? "-simulated-wrong-book" : ""}-${width}.png`;
   if (await target.count()) await target.screenshot({ path: file });
   else await page.screenshot({ path: file });
   const text = (await target.count()) ? (await target.innerText()).replace(/\s+/g, " ").slice(0, 400) : "";
@@ -70,5 +74,6 @@ for (const w of [375, 390]) {
   for (const [n, p] of PAGES) await shoot(n, p, w, false);
   await shoot("home", "/", w, "wrong");
   await shoot("home", "/", w, "covers");
+  await shoot("home", "/", w, "price");
 }
 await browser.close();
