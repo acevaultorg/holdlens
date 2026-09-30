@@ -28,6 +28,7 @@ import {
   resolveAmazonUrl,
   AUDIBLE_URL,
 } from "@/data/books";
+import SeePriceOnAmazon from "@/components/SeePriceOnAmazon";
 
 export default function InvestingBooks({
   heading = "Recommended reading",
@@ -86,7 +87,7 @@ export default function InvestingBooks({
                 {b.title}
               </div>
               <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-              <div className="text-[11px] text-dim mt-2">View on Amazon →</div>
+              <SeePriceOnAmazon />
             </a>
           );
         })}
