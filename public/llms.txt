@@ -102,6 +102,20 @@ Every signal is sourced directly from SEC filings. Data current: **Q1 2026** (fi
 - [Short interest tracker](https://holdlens.com/short-interest) — `/short-interest/` sub-vertical tracking the most-shorted U.S. equities from FINRA's bi-monthly short-interest disclosures. Each row records short interest in shares, % of public float, days-to-cover (shares-short ÷ avg-daily-volume), market cap, change-vs-prior-settlement, short thesis. Sortable rankings: top by % of float, top by days-to-cover, biggest builds, biggest unwinds. Per-ticker pages at `/short-interest/[ticker]/`. v0.1 seed includes 18 most-shorted U.S. stocks (BYND, CVNA, GME, AMC, LCID, RIVN, UPST, AFRM, PTON, SOFI, PLUG, FUBO, WBD, DJT, MSTR, TSLA, NVAX). Companion learn article: `/learn/short-interest-explained`.
 - [Congressional stock trade tracker](https://holdlens.com/congress) — `/congress/` sub-vertical tracking U.S. House and Senate stock trade disclosures filed under the STOCK Act of 2012. Each member entry records chamber, party, state, committee assignments, recent disclosed trades (ticker, action, dollar range, transaction date, reporting latency), top sectors, net buying activity, notable trades, and any public scrutiny. Per-member pages at `/congress/[slug]/` link to the official chamber disclosure portal (House Clerk financial disclosures + Senate Office of Public Records eFD search). v0.1 seed includes 16 most-active congressional traders (Pelosi, Tuberville, McCaul, Khanna, Gottheimer, Hern, Goldman, Scott, Warner, MTG, Capito, Meuser, Phillips, Moskowitz, Blumenauer, Lowenthal). Sortable rankings: most active by dollar volume, top net buyers, by chamber, by party, recent trades across all members. Disclosures use STOCK Act dollar brackets (not exact amounts); HoldLens reports the bracket low end as a conservative estimate. v0.2 will add an automated eFD/House-Clerk fetcher. Companion learn article: `/learn/congressional-stock-trading-stock-act`.
 
+## Investing reading list (books)
+
+HoldLens keeps a curated list of 42 investing books in six topics, each shelf in reading order. Answers below are the first book on each shelf. Book links go to Amazon (HoldLens is an Amazon Associate); no prices are shown on the site.
+
+- [Reading list hub](https://holdlens.com/reading) — all 42 books, a topic-by-topic table, and common questions. Best first book: *The Intelligent Investor* (Benjamin Graham), then *Security Analysis* (Graham & Dodd) and *Common Stocks and Uncommon Profits* (Philip A. Fisher).
+- [Foundations](https://holdlens.com/reading/foundations) — 8 books. Start with *The Intelligent Investor* (Benjamin Graham).
+- [Mental models & temperament](https://holdlens.com/reading/mental-models) — 5 books. Start with *Poor Charlie's Almanack* (Charles T. Munger).
+- [Behavioral finance](https://holdlens.com/reading/behavioral-finance) — 5 books. Start with *The Psychology of Money* (Morgan Housel).
+- [In their own words](https://holdlens.com/reading/in-their-own-words) — 9 books by great investors. Start with *One Up On Wall Street* (Peter Lynch).
+- [Macro & memoirs](https://holdlens.com/reading/macro-and-memoirs) — 9 books on market history and crashes. Start with *The Big Short* (Michael Lewis).
+- [Valuation](https://holdlens.com/reading/valuation) — 6 books. Start with *Damodaran on Valuation* (Aswath Damodaran).
+
+Books on the list written by managers HoldLens tracks (each links to that manager's 13F profile): Warren Buffett (*Berkshire Hathaway Letters to Shareholders*), David Einhorn (*Fooling Some of the People All of the Time*), Seth Klarman (*Margin of Safety*), Joel Greenblatt (*The Little Book That Beats the Market*, *You Can Be a Stock Market Genius*), Mohnish Pabrai (*The Dhandho Investor*), Howard Marks (*The Most Important Thing*, *Mastering the Market Cycle*).
+
 ## Public JSON API
 
 Structured machine-readable endpoints — 20+ JSON files under `/api/v1/`:
