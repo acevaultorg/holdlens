@@ -10,6 +10,7 @@ import {
   resolveAmazonUrl,
   AUDIBLE_URL,
 } from "@/data/books";
+import SeePriceOnAmazon from "@/components/SeePriceOnAmazon";
 
 // /reading/[topic] — one curated "books about X" shelf per BookGroup. Each is an
 // indexable ACQUISITION surface (ranks for "best value investing books", "best
@@ -181,7 +182,7 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
                   {b.title}
                 </div>
                 <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-                <div className="text-[11px] text-dim mt-2">View on Amazon →</div>
+                <SeePriceOnAmazon />
               </a>
             );
           })}
