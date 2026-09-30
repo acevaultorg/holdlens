@@ -158,7 +158,7 @@ export const BOOKS: Book[] = [
     isbn13: null,
     title: "The Psychology of Money",
     author: "Morgan Housel",
-    why: "Timeless: doing well with money is about behaviour, not IQ — the temperament every 13F-copier lacks.",
+    why: "Timeless: doing well with money is about behaviour, not IQ — and about the patience that no filing can copy for you.",
     group: "Behavioral finance",
   },
   {
@@ -325,7 +325,7 @@ export const BOOKS: Book[] = [
     isbn13: null,
     title: "Damodaran on Valuation",
     author: "Aswath Damodaran",
-    why: "The reference for putting a number on a business — the discipline behind any conviction score.",
+    why: "The standard reference for putting a number on a business, from cash flows to multiples.",
     group: "Valuation",
   },
   {
@@ -353,7 +353,7 @@ export const BOOKS: Book[] = [
     isbn13: null,
     title: "Financial Statement Analysis",
     author: "Martin S. Fridson & Fernando Alvarez",
-    why: "How to read what a filing is really saying — the forensic skill behind every ConvictionScore input.",
+    why: "How to read what a filing is really saying — the forensic skill behind any serious look at a company.",
     group: "Valuation",
   },
   {
