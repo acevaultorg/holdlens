@@ -27,6 +27,7 @@ import {
   booksForInvestor,
   resolveAmazonUrl,
   AUDIBLE_URL,
+  GROUP_META,
 } from "@/data/books";
 
 export default function InvestingBooks({
@@ -48,6 +49,9 @@ export default function InvestingBooks({
 }) {
   const set: Book[] = (books ?? (slug ? booksForInvestor(slug) : coreCanonBooks())).slice(0, limit);
   if (set.length === 0) return null;
+  // The topic shelves the shown books belong to — gives every page carrying this
+  // widget a crawlable path into the matching /reading/[slug] shelf.
+  const shelves = GROUP_META.filter((g) => set.some((b) => b.group === g.group));
 
   return (
     <section className="my-12 rounded-2xl border border-border bg-panel p-6 md:p-8">
@@ -86,7 +90,7 @@ export default function InvestingBooks({
                 {b.title}
               </div>
               <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-              <div className="text-[11px] text-dim mt-2">View on Amazon →</div>
+              <div className="text-[11px] text-dim mt-2">See price on Amazon →</div>
             </a>
           );
         })}
@@ -120,6 +124,20 @@ export default function InvestingBooks({
           >
             See the full investing reading list →
           </a>
+          {shelves.length > 0 && (
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 text-sm text-dim">
+              <span>More by topic:</span>
+              {shelves.map((g) => (
+                <a
+                  key={g.slug}
+                  href={`/reading/${g.slug}`}
+                  className="inline-flex min-h-[44px] items-center text-muted hover:text-brand hover:underline"
+                >
+                  {g.group}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
