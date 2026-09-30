@@ -25,14 +25,41 @@
 // PLACEMENT: after the hero section (search box + CTAs), not above or inside it — placing a
 // card this size ABOVE the hero risks pushing the hero's own search box below the fold at
 // 375px, which the operator explicitly ruled out.
-import { booksByTitles } from "@/data/books";
+import { amazonAsin, booksByTitles } from "@/data/books";
 import { renderAd, AD_CSS, AD_JS } from "@/lib/kit/amazon-ad";
 
 const PICKS = ["The Intelligent Investor", "Poor Charlie's Almanack"];
 
 // The kit's own product shape (lib/kit/amazon-ad.ts renderAd/pickProducts) — not exported as a
 // TS type from that vendored file (it's plain JS with JSDoc), so declared once here.
-type AmazonAdProduct = { asin: string; name: string; why: string };
+// `expect` = the title this card must show: live data for any other title is ignored in the
+// browser (the product matching guard; data/books.ts runs the build-time half).
+type AmazonAdProduct = { asin: string; name: string; why: string; expect: string; by: string };
+
+// Site-local layout for the two-book card. Every card is a complete title card on its own —
+// author, title, one line on why, and the button — so a missing or failed cover never leaves
+// an empty box: the image area only appears once a real cover has loaded (`has-img`, set by
+// AD_JS on the image's load event). Fixed heights for both states, so nothing shifts.
+// Colours follow the site's dark palette instead of the kit's white card.
+const TOPBAR_CSS = `
+.hl-books .ak-ad{--ak-ad-page:transparent;--ak-ad-bg:#141414;--ak-ad-fg:#e5e5e5;--ak-ad-muted:#9ca3af;--ak-ad-line:#262626;--ak-ad-cta-bg:#fbbf24;--ak-ad-cta-fg:#0a0a0a;--ak-ad-h1d:312px}
+.hl-books .ak-ad-v1.ak-duo{padding:0}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-in{max-width:none}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-track{gap:12px}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-link{height:268px;padding:14px;gap:10px;border-radius:14px}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-link:hover{border-color:rgba(251,191,36,.4)}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-card .ak-ad-img{display:none}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-card.has-img .ak-ad-img{display:flex;height:96px;background:transparent}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-body{flex:1;gap:4px}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-brand{display:block;height:auto;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-title{font-size:15px;line-height:1.25;height:auto;max-height:2.5em}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-why{display:-webkit-box;-webkit-line-clamp:3;font-size:12.5px;line-height:1.4}
+.hl-books .ak-ad-v1.ak-duo .has-img .ak-ad-why{display:none}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-price{height:auto;font-size:15px;margin-top:auto}
+.hl-books .ak-ad-v1.ak-duo .ak-ad-cta{display:flex;align-items:center;justify-content:center;gap:6px;align-self:stretch;min-height:44px;margin-top:auto;padding:0 10px;font-size:13px;text-align:center;white-space:normal;line-height:1.2}
+.hl-books .ak-ad-v1.ak-duo .has-price .ak-ad-cta{margin-top:6px}
+.hl-books .ak-ad-foot{justify-content:flex-start}
+`;
 
 export default function AmazonTopBar() {
   const books = booksByTitles(PICKS);
@@ -40,8 +67,8 @@ export default function AmazonTopBar() {
 
   const products: AmazonAdProduct[] = books
     .map((b) => {
-      const asin = isbn13to10(b.isbn13);
-      return asin ? { asin, name: b.title, why: b.why } : null;
+      const asin = amazonAsin(b);
+      return asin ? { asin, name: b.title, why: b.why, expect: b.title, by: b.author } : null;
     })
     .filter((p): p is AmazonAdProduct => p !== null);
   if (products.length === 0) return null;
@@ -59,29 +86,20 @@ export default function AmazonTopBar() {
     gate: "/go/dp", // holdlens's existing, affiliate-gate-probe.sh-verified gesture-gated route
     page: "/",
     lang: "en",
-    labels: { sponsored: "Sponsored · affiliate link" },
+    // No live price -> "See price on Amazon"; AD_JS swaps in "View on Amazon" only when a
+    // live, dated price from /amz/items is shown on that card.
+    labels: { sponsored: "Sponsored · affiliate link", cta: "See price on Amazon", ctaLive: "View on Amazon" },
   });
 
   return (
     <section
       aria-label="Sponsored: recommended investing books"
-      className="max-w-5xl mx-auto px-6 mt-0 mb-8"
+      className="hl-books max-w-5xl mx-auto px-6 mt-0 mb-8"
     >
-      <h2 className="text-[13px] font-semibold text-dim mb-2 px-1">
-        Books the investors on this page swear by
+      <h2 className="text-[13px] font-semibold text-dim mb-3 px-1">
+        Two classic books on investing
       </h2>
-      <style dangerouslySetInnerHTML={{ __html: AD_CSS }} />
-      {/* Override: the kit's own AD_CSS forces the image slot visible (grey #f3f3f3 box) for
-          `data-fixed` cards (renderAd's `fixed:true` below), because topCards on other sites are
-          derived from the page's own already-in-stock links and always resolve an image. Here the
-          image is genuinely optional (Creators API availability), so an unresolved image must stay
-          collapsed — never a blank grey rectangle (Paulo, live screenshot 2026-09-30). AD_JS still
-          adds `has-img` the moment a real image loads, which this override then shows normally. */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: ".ak-ad-v1[data-fixed] .ak-ad-card:not(.has-img) .ak-ad-img{display:none}",
-        }}
-      />
+      <style dangerouslySetInnerHTML={{ __html: AD_CSS + TOPBAR_CSS }} />
       <div
         data-akv="v1"
         dangerouslySetInnerHTML={{ __html: html }}
@@ -89,17 +107,4 @@ export default function AmazonTopBar() {
       <script dangerouslySetInnerHTML={{ __html: AD_JS }} />
     </section>
   );
-}
-
-/** ISBN-13 (978 prefix) -> ISBN-10 (== ASIN for print books). Mirrors data/books.ts's
- *  private helper — the kit's product shape takes an ASIN, data/books.ts's Book takes an
- *  ISBN-13, so this is the one place the two vocabularies meet. */
-function isbn13to10(isbn13: string | null): string | null {
-  if (!isbn13 || isbn13.length !== 13 || !isbn13.startsWith("978")) return null;
-  const core = isbn13.slice(3, 12);
-  let sum = 0;
-  for (let i = 0; i < 9; i++) sum += (10 - i) * Number(core[i]);
-  const check = (11 - (sum % 11)) % 11;
-  const checkChar = check === 10 ? "X" : String(check);
-  return core + checkChar;
 }
