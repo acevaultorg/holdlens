@@ -190,7 +190,7 @@ export const BOOKS: Book[] = [
     group: "Behavioral finance",
   },
 
-  // ── In their own words (managers tracked on this site) ──────────────────
+  // ── In their own words (great investors on their own methods) ──────────────────
   {
     isbn13: "9780743200400",
     title: "One Up On Wall Street",
@@ -441,13 +441,13 @@ export const GROUP_META: GroupMeta[] = [
     group: "In their own words",
     slug: "in-their-own-words",
     question: "Which book by a great investor should I read first?",
-    h1: "Books by the superinvestors we track",
+    h1: "Books by great investors, in their own words",
     title: "Books by the Best Investors — in their own words",
     description:
-      "Books written by (or definitively about) the superinvestors tracked on HoldLens: Buffett's letters, Lynch, Greenblatt, Einhorn and the modern value canon in the managers' own words.",
+      "Books great investors wrote about their own methods: Buffett's letters, Peter Lynch, Joel Greenblatt, David Einhorn and John Bogle. Buffett, Greenblatt and Einhorn are managers whose 13F holdings HoldLens tracks.",
     intro: [
       "The best way to understand a manager's 13F is to read the manager. Several of the investors whose live holdings you can follow on this site wrote the definitive book on their own method — and reading it turns a list of tickers into a coherent way of thinking.",
-      "Buffett's shareholder letters (collected in The Essays and the complete Letters) are the primary source; Lynch teaches you to spot great businesses early; Greenblatt hands you a systematic formula and the special-situations playbook; Einhorn walks you through a real short thesis. Each pairs directly with a live profile on HoldLens.",
+      "Buffett's shareholder letters (collected in The Essays and the complete Letters) are the primary source; Lynch teaches you to spot great businesses early; Greenblatt hands you a systematic formula and the special-situations playbook; Einhorn walks you through a real short thesis. Buffett, Greenblatt and Einhorn each have a profile on HoldLens with their latest 13F holdings.",
     ],
   },
   {
@@ -470,10 +470,10 @@ export const GROUP_META: GroupMeta[] = [
     h1: "The best books on valuing a stock",
     title: "The Best Valuation Books — how to value a stock",
     description:
-      "The best books on valuing a business: Damodaran's DCF references, Pat Dorsey on economic moats and reading financials, and the professional valuation texts behind any conviction score.",
+      "The best books on valuing a business: Damodaran's DCF references, Pat Dorsey on economic moats and reading financials, and the professional valuation texts for when you want to go deeper.",
     intro: [
       "At some point every thesis comes down to a number: what is this business worth, and is the market offering it for less? This shelf teaches the discipline of putting that number on paper — from the plain-language entry points to the professional's DCF bible.",
-      "Damodaran is the reference (start with The Little Book of Valuation, graduate to Investment Valuation); Pat Dorsey's Five Rules and moat book teach you to read a company's quality from its financials; and the McKinsey Valuation text is the deep end. This is the analytical machinery behind every ConvictionScore on the site.",
+      "Damodaran is the reference: Damodaran on Valuation covers the full method, and The Little Book of Valuation is the shorter way in. Pat Dorsey's Five Rules and moat book teach you to read a company's quality from its financials, and the McKinsey Valuation text is the deep end. Together they teach you to check whether a price makes sense before you pay it.",
     ],
   },
 ];
