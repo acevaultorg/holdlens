@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ShareStrip from "@/components/ShareStrip";
 import ReadingFaq, { type FaqItem } from "@/components/ReadingFaq";
-import { MANAGERS } from "@/lib/managers";
+import { BY_TRACKED_MANAGER } from "@/lib/book-authors";
+import ArrowIcon from "@/components/ArrowIcon";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import {
   BOOKS,
@@ -32,24 +33,6 @@ const NEXT = booksInGroup("Foundations").slice(1, 3);
 const VALUATION_FIRST = booksInGroup("Valuation")[0]!;
 const BUFFETT_BOOKS = booksForInvestor("warren-buffett");
 
-// Books on the list written by a manager whose 13F we track — matched on the
-// author field (first + last name as whole words), so it can't claim authorship
-// the data doesn't show. Whole words matter for short names: "Li Lu" must not
-// match an author whose name merely contains "Li" and "Lu".
-const words = (s: string) => new Set(s.split(/[^\p{L}]+/u).filter(Boolean));
-const BY_TRACKED_MANAGER: { slug: string; name: string; books: Book[] }[] = MANAGERS.map((m) => {
-  const parts = m.name.split(" ");
-  const first = parts[0]!;
-  const last = parts[parts.length - 1]!;
-  return {
-    slug: m.slug,
-    name: m.name,
-    books: BOOKS.filter((b) => {
-      const w = words(b.author);
-      return w.has(first) && w.has(last);
-    }),
-  };
-}).filter((x) => x.books.length > 0);
 
 const joinTitles = (bs: Book[]) => {
   const t = bs.map((b) => b.title);
@@ -331,10 +314,10 @@ export default function ReadingListPage() {
           target="_blank"
           rel="noopener sponsored nofollow"
           data-event-from="reading-hub-audible"
-          className="plausible-event-name=Audible+Click plausible-event-from=reading-hub inline-flex w-fit items-center gap-2 rounded-lg border border-amber-500/60 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/20 transition"
+          className="plausible-event-name=Audible+Click plausible-event-from=reading-hub inline-flex min-h-[44px] w-fit items-center gap-2 rounded-lg border border-amber-500/60 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/20 transition"
         >
           Start a free 30-day Audible trial
-          <span aria-hidden>→</span>
+          <ArrowIcon />
         </a>
         <p className="mt-2 text-[11px] text-dim">
           New Audible members only · cancel anytime · many assigned titles included with membership.
@@ -361,9 +344,9 @@ export default function ReadingListPage() {
               {shelf && (
                 <Link
                   href={`/reading/${shelf.slug}`}
-                  className="shrink-0 text-xs text-dim hover:text-brand transition"
+                  className="shrink-0 inline-flex min-h-[44px] items-center gap-1 text-xs text-dim hover:text-brand transition"
                 >
-                  See all →
+                  See all <ArrowIcon />
                 </Link>
               )}
             </div>
@@ -388,7 +371,9 @@ export default function ReadingListPage() {
                       {b.title}
                     </div>
                     <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-                    <div className="text-[11px] text-dim mt-2">See price on Amazon →</div>
+                    <div className="text-[11px] text-dim mt-2">
+                      See price on Amazon <ArrowIcon />
+                    </div>
                   </a>
                 );
               })}
@@ -414,7 +399,9 @@ export default function ReadingListPage() {
               <div className="font-semibold text-text group-hover:text-brand transition">
                 {inv.name}
               </div>
-              <div className="text-[12px] text-dim mt-0.5">{inv.book} →</div>
+              <div className="text-[12px] text-dim mt-0.5">
+                {inv.book} <ArrowIcon />
+              </div>
             </Link>
           ))}
         </div>

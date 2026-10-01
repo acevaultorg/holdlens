@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ShareStrip from "@/components/ShareStrip";
 import ReadingFaq from "@/components/ReadingFaq";
+import ArrowIcon from "@/components/ArrowIcon";
+import { trackedAuthorOf } from "@/lib/book-authors";
 import { AUTHOR_SCHEMA, PUBLISHER_REF } from "@/lib/author";
 import {
   GROUP_META,
@@ -173,9 +175,10 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
       </p>
 
       <section aria-labelledby="shelf-order" className="mb-8">
-        <h2 id="shelf-order" className="text-base font-semibold mb-3">
+        <h2 id="shelf-order" className="text-base font-semibold mb-1">
           The {books.length} books, in reading order
         </h2>
+        <p className="text-sm text-dim mb-3">Tap a title to jump to it below.</p>
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead className="bg-panel text-left text-dim">
@@ -189,7 +192,14 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
               {books.map((b, i) => (
                 <tr key={b.title} className="border-t border-border align-top">
                   <td className="px-3 py-2.5 tabular-nums text-dim">{i + 1}</td>
-                  <td className="px-3 py-2.5 text-text">{b.title}</td>
+                  <td className="p-0">
+                    <a
+                      href={`#book-${i + 1}`}
+                      className="block min-h-[44px] px-3 py-2.5 text-text hover:text-brand hover:underline"
+                    >
+                      {b.title}
+                    </a>
+                  </td>
                   <td className="px-3 py-2.5 text-muted">{b.author}</td>
                 </tr>
               ))}
@@ -223,10 +233,10 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
           target="_blank"
           rel="noopener sponsored nofollow"
           data-event-from={`shelf-${meta.slug}-audible`}
-          className={`plausible-event-name=Audible+Click plausible-event-from=shelf-${meta.slug} inline-flex w-fit items-center gap-2 rounded-lg border border-amber-500/60 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/20 transition`}
+          className={`plausible-event-name=Audible+Click plausible-event-from=shelf-${meta.slug} inline-flex min-h-[44px] w-fit items-center gap-2 rounded-lg border border-amber-500/60 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/20 transition`}
         >
           Start a free 30-day Audible trial
-          <span aria-hidden>→</span>
+          <ArrowIcon />
         </a>
         <p className="mt-2 text-[11px] text-dim">
           New Audible members only · cancel anytime · many titles included with membership.
@@ -236,28 +246,40 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
       {/* The shelf */}
       <section className="mb-10">
         <div className="grid gap-3 sm:grid-cols-2">
-          {books.map((b) => {
+          {books.map((b, i) => {
             const { url, resolution } = resolveAmazonUrl(b);
+            const tracked = trackedAuthorOf(b);
             return (
-              <a
-                key={b.title}
-                href={url}
-                target="_blank"
-                rel="noopener sponsored nofollow"
-                data-event-from={`shelf-${meta.slug}`}
-                className={`plausible-event-name=Book+Click plausible-event-title=${encodeURIComponent(
-                  b.title,
-                )} plausible-event-resolution=${resolution} plausible-event-from=shelf-${meta.slug} block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand/40 transition group`}
-              >
-                <div className="text-[10px] uppercase tracking-widest text-dim font-semibold mb-1">
-                  {b.author}
-                </div>
-                <div className="font-semibold text-text group-hover:text-brand transition mb-1.5">
-                  {b.title}
-                </div>
-                <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-                <div className="text-[11px] text-dim mt-2">See price on Amazon →</div>
-              </a>
+              <div key={b.title} id={`book-${i + 1}`} className="flex scroll-mt-24 flex-col">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener sponsored nofollow"
+                  data-event-from={`shelf-${meta.slug}`}
+                  className={`plausible-event-name=Book+Click plausible-event-title=${encodeURIComponent(
+                    b.title,
+                  )} plausible-event-resolution=${resolution} plausible-event-from=shelf-${meta.slug} block rounded-xl border border-border bg-bg/50 p-4 hover:border-brand/40 transition group`}
+                >
+                  <div className="text-[10px] uppercase tracking-widest text-dim font-semibold mb-1">
+                    {b.author}
+                  </div>
+                  <div className="font-semibold text-text group-hover:text-brand transition mb-1.5">
+                    {b.title}
+                  </div>
+                  <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
+                  <div className="text-[11px] text-dim mt-2">
+                    See price on Amazon <ArrowIcon />
+                  </div>
+                </a>
+                {tracked && (
+                  <Link
+                    href={`/investor/${tracked.slug}`}
+                    className="inline-flex min-h-[44px] w-fit items-center gap-1.5 px-1 text-[13px] text-muted hover:text-brand hover:underline"
+                  >
+                    See {tracked.name}&apos;s latest 13F holdings <ArrowIcon />
+                  </Link>
+                )}
+              </div>
             );
           })}
         </div>
@@ -283,7 +305,9 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
               <div className="font-semibold text-text group-hover:text-brand transition">
                 {g.group}
               </div>
-              <div className="text-[12px] text-dim mt-0.5">{g.h1} →</div>
+              <div className="text-[12px] text-dim mt-0.5">
+                {g.h1} <ArrowIcon />
+              </div>
             </Link>
           ))}
         </div>
