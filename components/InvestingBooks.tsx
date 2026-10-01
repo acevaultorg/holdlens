@@ -29,6 +29,7 @@ import {
   AUDIBLE_URL,
   GROUP_META,
 } from "@/data/books";
+import ArrowIcon from "@/components/ArrowIcon";
 
 export default function InvestingBooks({
   heading = "Recommended reading",
@@ -61,7 +62,7 @@ export default function InvestingBooks({
       <h2 className="text-xl md:text-2xl font-bold mb-2">{heading}</h2>
       <p className="text-sm text-muted mb-6">{sub}</p>
 
-      <p className="text-[11px] text-dim mt-5 leading-relaxed">
+      <p className="text-[11px] text-dim mt-5 mb-4 leading-relaxed">
         Amazon affiliate links — as an Amazon Associate, HoldLens earns from qualifying purchases and
         membership trials at no extra cost to you. These are books we genuinely recommend. Not investment
         advice; always do your own research.
@@ -90,7 +91,9 @@ export default function InvestingBooks({
                 {b.title}
               </div>
               <div className="text-[12px] text-muted leading-relaxed">{b.why}</div>
-              <div className="text-[11px] text-dim mt-2">See price on Amazon →</div>
+              <div className="text-[11px] text-dim mt-2">
+                See price on Amazon <ArrowIcon />
+              </div>
             </a>
           );
         })}
@@ -103,12 +106,10 @@ export default function InvestingBooks({
             target="_blank"
             rel="noopener sponsored nofollow"
             data-event-from="investing-books-audible"
-            className="plausible-event-name=Audible+Click plausible-event-from=investing-books inline-flex w-fit items-center gap-2 rounded-lg border border-amber-500/50 bg-amber-500/5 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/10 hover:border-amber-500/70 transition"
+            className="plausible-event-name=Audible+Click plausible-event-from=investing-books inline-flex min-h-[44px] w-fit items-center gap-2 rounded-lg border border-amber-500/50 bg-amber-500/5 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/10 hover:border-amber-500/70 transition"
           >
             Prefer to listen? Start a free Audible trial
-            <span aria-hidden className="text-dim group-hover:translate-x-0.5">
-              →
-            </span>
+            <ArrowIcon className="text-dim" />
           </a>
           <p className="text-[11px] text-dim">
             New Audible members only · 30-day trial · many of these titles are included with membership.
@@ -120,12 +121,12 @@ export default function InvestingBooks({
         <div className="mt-5">
           <a
             href={moreHref}
-            className="plausible-event-name=Reading+Hub+Link text-sm font-medium text-brand hover:underline"
+            className="plausible-event-name=Reading+Hub+Link inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-brand hover:underline"
           >
-            See the full investing reading list →
+            See the full investing reading list <ArrowIcon />
           </a>
           {shelves.length > 0 && (
-            <div className="mt-2 flex flex-wrap items-center gap-x-4 text-sm text-dim">
+            <div className="mt-1 flex flex-wrap items-center gap-x-4 text-sm text-dim">
               <span className="basis-full">More by topic:</span>
               {shelves.map((g) => (
                 <a
