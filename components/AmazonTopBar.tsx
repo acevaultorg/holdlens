@@ -45,6 +45,16 @@ export default function AmazonTopBar() {
     })
     .filter((p): p is AmazonAdProduct => p !== null);
   if (products.length === 0) return null;
+  // SPARE (2026-10-01): Amazon's API intermittently returns no offer for the 2006 Intelligent Investor
+  // (0060555661 — present in one /amz/items answer, absent from another the same morning), which left tile 1
+  // as an empty white box (Paulo munuzznqym32qo). The kit now fills a card whose own book is missing from a
+  // spare, so the current third edition (0063497476, HarperBusiness 2024, in the Worker allow-list) stands in
+  // for it. Same name on purpose: the kit never shows a spare whose name matches a book already showing, so
+  // it can never put two Intelligent Investors side by side. Spares beyond n are not rendered as cards.
+  const ii = products.find((p) => p.asin === "0060555661");
+  const spares: AmazonAdProduct[] = ii
+    ? [{ asin: "0063497476", name: ii.name, why: ii.why }]
+    : [];
 
   const html = renderAd({
     variant: "v1",
@@ -52,7 +62,7 @@ export default function AmazonTopBar() {
     fixed: true, // our own curated order, not the daily rotation
     duo: products.length === 2, // two books side by side, same layout comparison pages use
     n: products.length,
-    products,
+    products: [...products, ...spares],
     disclosure:
       "As an Amazon Associate, HoldLens earns from qualifying purchases at no extra cost to you.",
     api: "/amz/items",
@@ -79,7 +89,10 @@ export default function AmazonTopBar() {
           adds `has-img` the moment a real image loads, which this override then shows normally. */}
       <style
         dangerouslySetInnerHTML={{
-          __html: ".ak-ad-v1[data-fixed] .ak-ad-card:not(.has-img) .ak-ad-img{display:none}",
+          __html:
+            ".ak-ad-v1[data-fixed] .ak-ad-card:not(.has-img) .ak-ad-img{display:none}" +
+            // the kit hides the whole slot when no book is live; the heading goes with it (no orphan title)
+            "section:has(> div > .ak-ad[hidden]){display:none}",
         }}
       />
       <div

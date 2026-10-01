@@ -1,4 +1,6 @@
 // VENDORED from VAULT-Fleet/tooling/fleet-kit/amazon-ad/amazon-ad.mjs (sha256 4dcda9fa3849) — do not edit here; re-run enroll.mjs.
+// + 2026-10-01: the fill/hide change of kit commit b7aa3eb (branch kit-amazon-ad) ported by hand into this older copy
+//   (a full re-vendor would also pull in v6/billboard/price markup — left for the kit rollout, card mun5ft5laqox6r).
 // Amili Kit Amazon ad — @fleet/kit component (Paulo 2026-09-28, thoughts mulhnwfs777u4h / mulhp9n4orh4wp /
 // mulhpjvefhn5bn / mulhuj4lgb2vz1: "amili kit amazon affiliate template", 5 variants, carousel, Amazon's product API).
 // CANONICAL: VAULT-Fleet/tooling/fleet-kit/amazon-ad/amazon-ad.mjs. Sites carry a synced copy at kit/amazon-ad.mjs
@@ -214,6 +216,9 @@ export function renderAd(cfg) {
   const n = cfg.n || { v1: 5, v2: 5, v3: 1, v4: 3, v5: 1 }[v];
   const shown = cfg.products.slice(0, Math.max(n, 1));
   const spare = cfg.products.slice(shown.length).map((p) => p.asin);
+  // data-sp (kit b7aa3eb): each spare's own name + benefit line, so a spare that fills a card never keeps another
+  // product's blurb, and the browser can check the API title against the name we meant.
+  const sp = cfg.products.slice(shown.length).length ? JSON.stringify(Object.fromEntries(cfg.products.slice(shown.length).map((p) => [p.asin, [p.name, p.why]]))) : '';
   // cfg.duo: two products side by side (a comparison page's two items), never a carousel.
   const carousel = !cfg.duo && (v === 'v1' || v === 'v2' || v === 'v4') && shown.length > 1;
   const dots = carousel && v !== 'v4' ? `<div class="ak-ad-dots" aria-hidden="true">${shown.map((_, i) => `<span${i ? '' : ' class="on"'}></span>`).join('')}</div>` : '';
@@ -223,7 +228,7 @@ export function renderAd(cfg) {
   const w = cfg.products.filter((p) => p.w && p.w !== 1).map((p) => `${p.asin}:${Number(p.w)}`).join(',');
   // cfg.on: always shown, whatever variant the page's A/B assigned (a page's fixed top card beside its own slot).
   // cfg.fixed: show products in the given order (the page's own items, best first) instead of the daily rotation.
-  return `<aside class="ak-ad ak-ad-${v}${cfg.on ? ' ak-on' : ''}${cfg.duo ? ' ak-duo' : ''}" data-v="${v}"${cfg.fixed ? ' data-fixed="1"' : ''} data-api="${esc(cfg.api || '/amz/items')}" data-page="${esc(cfg.page || '')}"${w ? ` data-w="${w}"` : ''} data-spare="${spare.join(',')}"${carousel ? ' data-carousel="1"' : ''} aria-label="${esc(t.sponsored)}">`
+  return `<aside class="ak-ad ak-ad-${v}${cfg.on ? ' ak-on' : ''}${cfg.duo ? ' ak-duo' : ''}" data-v="${v}"${cfg.fixed ? ' data-fixed="1"' : ''} data-api="${esc(cfg.api || '/amz/items')}" data-page="${esc(cfg.page || '')}"${w ? ` data-w="${w}"` : ''} data-spare="${spare.join(',')}"${sp ? ` data-sp="${esc(sp)}"` : ''}${carousel ? ' data-carousel="1"' : ''} aria-label="${esc(t.sponsored)}">`
     + `<div class="ak-ad-in"><p class="ak-ad-promo" data-ak-promo hidden></p>${close}<ul class="ak-ad-track" role="list">${shown.map((p, i) => card(p, i, cfg, t)).join('')}</ul>`
     + `<div class="ak-ad-foot">${dots}${asOf}${info}</div></div></aside>`;
 }
@@ -263,19 +268,29 @@ function fmt(iso){var d=new Date(iso);return d.toLocaleString([],{day:'numeric',
 function fill(c,a,it){c.setAttribute('data-asin',a);var l=c.querySelector('a');l.setAttribute('data-asin',a);l.href=l.getAttribute('href').replace(/a=[A-Z0-9]{10}/,'a='+a);
 if(it.img){var im=new Image();im.alt='';im.width=it.img.w;im.height=it.img.h;im.decoding='async';im.referrerPolicy='no-referrer';im.src=it.img.url;var b=c.querySelector('[data-ak-img]');b.textContent='';b.appendChild(im);c.classList.add('has-img')}
 if(it.title)c.querySelector('[data-ak-title]').textContent=it.title;if(it.brand)c.querySelector('[data-ak-brand]').textContent=it.brand;
-if(it.price){c.querySelector('[data-ak-price]').textContent=it.price;c.classList.add('has-price')}}
+if(it.price){c.querySelector('[data-ak-price]').textContent=it.price;c.classList.add('has-price')}var wy=c.querySelector('.ak-ad-why');if(wy)wy.textContent=(M[a]&&M[a][1])||''}
+var SW=' the and for with from your you our this that book books edition new set pack ';function ak_tok(x){return String(x||'').toLowerCase().replace(/['\u2019]s(?![a-z])/g,'').split(/[^a-z0-9]+/).filter(function(w){return (w.length>2||/[0-9]/.test(w))&&SW.indexOf(' '+w+' ')<0})}
+function ak_same(n,t){var x=ak_tok(n),y=' '+ak_tok(t).join(' ')+' ';if(!x.length||!t)return 1;for(var i=0;i<x.length;i++)if(y.indexOf(' '+x[i]+' ')>=0)return 1;return 0}
+var M={};cards.forEach(function(c){var q=c.querySelector('[data-ak-title]'),wy=c.querySelector('.ak-ad-why');M[c.getAttribute('data-asin')]=[q?q.textContent:'',wy?wy.textContent:'']});try{var SP=JSON.parse(s.getAttribute('data-sp')||'{}');for(var k0 in SP)if(!M[k0])M[k0]=SP[k0]}catch(e){}
+function off(){s.classList.add('is-off');if(s.classList.contains('ak-duo'))cards.forEach(function(c){var i=c.querySelector('.ak-ad-img'),w=c.querySelector('.ak-ad-why');if(i)i.style.display='none';if(w)w.style.display='-webkit-box'})}
 fetch(s.getAttribute('data-api')+'?a='+want.slice().sort().join(','),{credentials:'omit'}).then(function(r){return r.json()}).then(function(j){
-if(!j||!j.ok||!j.asOf||Date.now()-Date.parse(j.asOf)>${MAX_AGE_MS})return;var items=j.items||{},pool=want.filter(function(a){return items[a]}),used=0,any=0;
-var fx=!!s.getAttribute('data-fixed');cards.forEach(function(c){var a=fx?c.getAttribute('data-asin'):pool[used++];if(!a||!items[a])return;fill(c,a,items[a]);if(items[a].price)any=1});
+if(!j||!j.ok||!j.asOf||Date.now()-Date.parse(j.asOf)>${MAX_AGE_MS}){off();return}var items=j.items||{},any=0;
+var pool=want.filter(function(a){return items[a]&&ak_same(M[a]&&M[a][0],items[a].title)});
+var fx=!!s.getAttribute('data-fixed'),own=cards.map(function(c,k){return fx?c.getAttribute('data-asin'):pool[k]}),got=[],used={};
+cards.forEach(function(c,k){var a=own[k];if(a&&pool.indexOf(a)>=0&&!used[a]){used[a]=1;got[k]=a}});
+function nm(a){return ak_tok(M[a]&&M[a][0]).join(' ')}
+cards.forEach(function(c,k){if(got[k])return;for(var i=0;i<pool.length;i++){var a=pool[i],dup=0;if(used[a]||own.indexOf(a)>=0&&own.indexOf(a)!==k)continue;got.forEach(function(g){if(g&&nm(g)&&nm(g)===nm(a))dup=1});if(dup)continue;used[a]=1;got[k]=a;return}});
+var shown=0;cards.forEach(function(c,k){var a=got[k];if(!a){c.hidden=true;c.classList.add('ak-gone');return}shown++;fill(c,a,items[a]);if(items[a].price)any=1});
+if(!shown){s.hidden=true;s.classList.add('ak-gone');return}var ds=s.querySelectorAll('.ak-ad-dots span');for(var d=0;d<ds.length;d++)ds[d].hidden=d>=shown;var dw=s.querySelector('.ak-ad-dots');if(dw&&shown<2)dw.hidden=true;if(shown===1&&s.classList.contains('ak-duo'))s.classList.add('ak-one');
 if(any){var p=s.querySelector('[data-ak-asof]');p.querySelector('time').setAttribute('datetime',j.asOf);p.querySelector('time').textContent=fmt(j.asOf);p.hidden=false;s.querySelector('[data-ak-disc]').hidden=false}
 var pm=j.promo,nw=Date.now();if(pm&&pm.text&&nw>=Date.parse(pm.from)&&nw<=Date.parse(pm.to)&&(!pm.paths||new RegExp(pm.paths).test(location.pathname))){var pe=s.querySelector('[data-ak-promo]');if(pe){pe.textContent=pm.text;pe.hidden=false}}
-s.classList.add('is-live')}).catch(function(){});
+s.classList.add('is-live')}).catch(off);
 var x=s.querySelector('[data-ak-close]');if(x)x.addEventListener('click',function(){try{sessionStorage.setItem('akx','1')}catch(e){}h.setAttribute('data-akv','v2x')});
 if(!s.getAttribute('data-carousel'))return;var tr=s.querySelector('.ak-ad-track'),dots=[].slice.call(s.querySelectorAll('.ak-ad-dots span')),i=0;
-function cur(){var w=cards[0].getBoundingClientRect().width||1;return Math.round(tr.scrollLeft/w)}
+function vc(){return cards.filter(function(c){return !c.hidden})}function cur(){var c0=vc()[0],w=(c0&&c0.getBoundingClientRect().width)||1;return Math.round(tr.scrollLeft/w)}
 tr.addEventListener('scroll',function(){var k=cur();if(k!==i){i=k;dots.forEach(function(d,n){d.className=n===k?'on':''})}},{passive:true});
 if(sv==='v4'||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var paused=0;['pointerdown','focusin','mouseenter','touchstart'].forEach(function(e){s.addEventListener(e,function(){paused=1},{passive:true})});
-var timer=setInterval(function(){if(paused||document.hidden)return;var k=(cur()+1)%cards.length;tr.scrollTo({left:k*cards[0].getBoundingClientRect().width,behavior:'smooth'})},6000);
+var timer=setInterval(function(){var v2=vc();if(paused||document.hidden||v2.length<2)return;var k=(cur()+1)%v2.length;tr.scrollTo({left:k*v2[0].getBoundingClientRect().width,behavior:'smooth'})},6000);
 if('IntersectionObserver'in window)new IntersectionObserver(function(e){paused=e[0].isIntersecting?paused:1}).observe(s)})})();`;
 
 // Scoped under .ak-ad. Fixed heights per variant (--ak-ad-h*) => zero layout shift whether or not the API answers.
@@ -337,6 +352,10 @@ html[data-akv=v1] .ak-ad-v1,html[data-akv=v2] .ak-ad-v2,html[data-akv=v3] .ak-ad
 .ak-ad-v1:not(.ak-duo) .ak-ad-why,.ak-ad-v1:not(.ak-duo) .ak-ad-price{height:22px;line-height:22px;-webkit-line-clamp:1}
 .ak-ad-v1.ak-duo .ak-ad-title{height:2.5em}
 .ak-ad-v1.ak-duo .ak-ad-price{height:20px}
+.ak-ad[hidden],.ak-ad [hidden]{display:none!important}
+.ak-duo.ak-one .ak-ad-link{flex-direction:row;align-items:center}
+.ak-duo.ak-one .ak-ad-img{width:96px;height:132px;flex:none}
+.ak-duo.ak-one .ak-ad-why{display:-webkit-box}
 .ak-ad-v1 .ak-ad-link,.ak-ad-v2 .ak-ad-link{height:106px}
 .ak-ad-v1 .ak-ad-img,.ak-ad-v2 .ak-ad-img{width:86px;height:86px}
 .ak-ad-v1 .ak-ad-why,.ak-ad-v2 .ak-ad-why{-webkit-line-clamp:1}
