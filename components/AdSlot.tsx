@@ -189,7 +189,11 @@ export default function AdSlot({
 
   const mh = minHeightClass(format);
 
-  // 1. Google AdSense
+  // 1. Google AdSense — only with a real slot ID. With no slot ID the <ins> never fills, and the
+  // reserved frame + "Advertisement / Remove with Pro" label showed as an EMPTY WHITE BOX on every page
+  // (Paulo, mur0es3nsk5w1a, 2026-10-02). No filled ad = no slot: render nothing. Auto Ads (the loader
+  // in app/layout.tsx) and the Amili Kit billboard (kit/amazon-ad-inject.mjs, postbuild) carry the page.
+  if (ADSENSE_CLIENT && !pickAdsenseSlot(format)) return null;
   if (ADSENSE_CLIENT) {
     const slot = pickAdsenseSlot(format);
     return (

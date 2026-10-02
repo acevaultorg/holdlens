@@ -8,7 +8,6 @@ import EngagementTracker from "@/components/EngagementTracker";
 import DesktopNav from "@/components/DesktopNav";
 import DataFreshness from "@/components/DataFreshness";
 import SupportBar from "@/components/SupportBar";
-import CookieConsent from "@/components/CookieConsent";
 import BackToTop from "@/components/BackToTop";
 import FilingWaveBanner from "@/components/FilingWaveBanner";
 import InstallPrompt from "@/components/InstallPrompt";
@@ -616,7 +615,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <FilingWaveBanner />
         <main id="main">{children}</main>
         <BackToTop />
-        <CookieConsent />
+        {/* One consent UI only (Paulo mur0ecj0zr43wi, 2026-10-02): Google's own AdSense consent message (Funding Choices, TCF-certified, served by the adsbygoogle loader in the EEA/UK) is the one AdSense requires, so the home-made banner is no longer rendered. components/CookieConsent.tsx is kept unused. */}
         {/* PWA install prompt — dismissible, 20s delay, 60d TTL. See
             components/InstallPrompt.tsx for the retention rationale. */}
         <InstallPrompt />
