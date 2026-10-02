@@ -9,7 +9,7 @@
     "generate-api": "npx tsx scripts/generate-api-json.ts",
     "prebuild": "node scripts/check-data-freshness.mjs && npx tsx scripts/generate-og-images.ts && npx tsx scripts/generate-api-json.ts",
     "build": "node scripts/check-quarters-cover-data.mjs && next build",
-    "postbuild": "npx tsx scripts/strip-broken-links.ts && node scripts/add-content-signals.mjs && node scripts/generate-sitemap-ai.mjs && node scripts/generate-learn-index.mjs && npx tsx scripts/prune-sitemap.ts && node scripts/sitemap-lastmod.mjs && node scripts/build-amili-index.mjs && npx tsx scripts/audit-homepage-dedupe.ts && node scripts/prune-insiders-rsc.mjs && node scripts/inline-script-parse-guard.mjs && node scripts/perf-budget-check.mjs && node kit/amazon-ad-inject.mjs out amazon-ad.config.mjs && node scripts/inline-script-parse-guard.mjs && node scripts/predeploy-guard.mjs",
+    "postbuild": "npx tsx scripts/strip-broken-links.ts && node scripts/add-content-signals.mjs && node scripts/generate-sitemap-ai.mjs && node scripts/generate-learn-index.mjs && npx tsx scripts/prune-sitemap.ts && node scripts/sitemap-lastmod.mjs && node scripts/build-amili-index.mjs && npx tsx scripts/audit-homepage-dedupe.ts && node scripts/prune-insiders-rsc.mjs && node scripts/inline-script-parse-guard.mjs && node kit/amazon-ad-inject.mjs out amazon-ad.config.mjs && node scripts/inline-script-parse-guard.mjs && node scripts/perf-budget-check.mjs && node scripts/predeploy-guard.mjs",
     "start": "next start",
     "lint": "next lint",
     "indexnow": "npx tsx scripts/ping-indexnow.ts",

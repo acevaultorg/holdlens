@@ -152,3 +152,24 @@ refresh:
 # canonical main checkout; do not add a bare Wrangler upload here because the
 # production script owns pruning, the file-cap gate, post-build validation, and
 # the chunked uploader.
+
+# Manual CI deploy (2026-10-03): build + upload on GitLab's runner (the Mac uplink is ~60 KB/s). Play it only after
+# running rg-freeze-guard --site holdlens.com locally (check-only); see scripts/deploy-ci.sh.
+deploy:
+  stage: build
+  image: node:24-bookworm-slim
+  allow_failure: true
+  timeout: 2h
+  before_script:
+    - apt-get update
+    - apt-get install -y --no-install-recommends git ca-certificates python3
+  script:
+    - npm ci --no-audit --no-fund --cache .npm --prefer-offline
+    - npm run build
+    - test -f out/investor/michael-burry/index.html
+    - bash scripts/deploy-ci.sh
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: manual
