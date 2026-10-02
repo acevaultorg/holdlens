@@ -40,7 +40,9 @@ export const dynamic = "force-static";
 // 3MB, tanked mobile LCP and blocked AdSense crawlers. Older events stay
 // reachable via /events/company/[ticker]/ and /events/type/[item]/, both
 // statically generated from the full ALL_EVENTS set, so SEO surface is intact.
-const FEED_CAP = 150;
+// 150 -> 140 (2026-10-03): the page measured 512 KB with the kit top + mid ad (budget 500 KB); ~3.3 KB per event, so
+// 10 fewer rows keep it under budget without allowlisting. The dropped 10 stay on their company and type pages.
+const FEED_CAP = 140;
 
 export default function EventsLivePage() {
   // 2026-09-23: was [...CURATED_EVENTS] — the eight hand-curated seed rows from
