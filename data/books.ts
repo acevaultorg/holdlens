@@ -125,7 +125,11 @@ export const BOOKS: Book[] = [
     group: "Mental models & temperament",
   },
   {
-    isbn13: "9780470181751",
+    // 2026-10-03: was 9780470181751, which is ISBN-10 0470181753 = "Aligning Training for Results" (Ron Drew Stone),
+    // a different book, sold used-only, linked from 76 pages incl. the homepage. Creators API getItems: 0231153686 =
+    // "The Most Important Thing: Uncommon Sense for the Thoughtful Investor", Howard Marks, Columbia UP hardcover,
+    // new offer in the Buy Box. (The "Illuminated" edition 0231162847 is what the kit ad uses.)
+    isbn13: "9780231153683",
     title: "The Most Important Thing",
     author: "Howard Marks",
     why: "Oaktree's Marks on risk, cycles, and second-level thinking — the framework behind reading any 13F.",
