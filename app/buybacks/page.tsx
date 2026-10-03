@@ -242,7 +242,7 @@ export default function BuybacksLanding() {
               return (
                 <div
                   key={sector}
-                  className="rounded-2xl border border-border bg-panel p-5"
+                  className="min-w-0 rounded-2xl border border-border bg-panel p-5"
                 >
                   <div className="text-sm font-bold text-text mb-2">{sector}</div>
                   <div className="text-[11px] uppercase tracking-wider text-dim mb-1">
