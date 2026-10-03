@@ -112,7 +112,7 @@ export default function InvestingBooks({
             <ArrowIcon className="text-dim" />
           </a>
           <p className="text-[11px] text-dim">
-            New Audible members only · 30-day trial · many of these titles are included with membership.
+            Eligible new members may be offered a free trial; current terms are on the Audible page · many of these titles are included with membership.
           </p>
         </div>
       )}

@@ -235,7 +235,7 @@ export default async function ShelfPage({ params }: { params: Promise<{ topic: s
           data-event-from={`shelf-${meta.slug}-audible`}
           className={`plausible-event-name=Audible+Click plausible-event-from=shelf-${meta.slug} inline-flex min-h-[44px] w-fit items-center gap-2 rounded-lg border border-amber-500/60 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-text hover:bg-amber-500/20 transition`}
         >
-          Start a free 30-day Audible trial
+          See if you can try Audible free
           <ArrowIcon />
         </a>
         <p className="mt-2 text-[11px] text-dim">
