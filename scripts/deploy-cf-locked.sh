@@ -54,6 +54,15 @@ restore() {
     mkdir -p out/api/v1/insiders && mv "$HOLD/__api_insiders_company/company" out/api/v1/insiders/company
   fi
   rmdir "$HOLD/__api_insiders_company" 2>/dev/null || true
+  if [ -d "$HOLD/__officer" ]; then
+    for d in "$HOLD/__officer"/*/; do
+      [ -d "$d" ] || continue
+      name="$(basename "$d")"
+      [ -e "out/insiders/officer/$name" ] || mv "$d" "out/insiders/officer/$name"
+    done
+    rmdir "$HOLD/__officer" 2>/dev/null || true
+    rm -f "$HOLD/officer-held.txt"
+  fi
   for d in "$HOLD"/*/; do
     [ -d "$d" ] || continue
     name="$(basename "$d")"
@@ -107,6 +116,12 @@ if [ -d out/api/v1/insiders/company ]; then
   mkdir -p "$HOLD/__api_insiders_company"
   mv out/api/v1/insiders/company "$HOLD/__api_insiders_company/company"
 fi
+# WIDENED A FOURTH TIME 2026-10-03: the 10-02 EDGAR ingest took the upload to 20,579 files. What is
+# left is HTML that shipped pages link to (10,179 of 10,255 officer pages), so instead of another fixed
+# class this holds only the overflow: single-filing officer pages with no GA4/GSC traffic whose company
+# page ships, smallest first, down to 19,500 files. functions/_middleware.ts 302s a held officer URL to
+# its company page. Fails closed (holds nothing) when the traffic data cannot be read. Restored on exit.
+node scripts/hold-officer-overflow.mjs "$HOLD" --target 19500
 # Analytics-tag guard (2026-09-10): refuse to ship an out/ built without GA4/Clarity
 # (a worktree or fresh clone drops the gitignored env file; the build then exits 0 untagged).
 node scripts/predeploy-guard.mjs

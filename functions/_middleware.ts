@@ -82,6 +82,18 @@ export const onRequest = async ({ request, next, env }: PagesContext): Promise<R
         } catch { /* fall through to the 404 */ }
       }
     }
+    // Officer pages held back to fit the CF Pages 20,000-file cap (2026-10-03,
+    // scripts/hold-officer-overflow.mjs): single-filing officers whose company page ships. The slug ends
+    // in the lowercase ticker, and that company page lists the same filing. 302, not 301: the page comes
+    // back when there is room. No company page → the 404 stands (same rule as above).
+    const off = path.match(/^\/insiders\/officer\/([a-z0-9-]+)-([a-z0-9]{1,10})$/);
+    if (off && env?.ASSETS) {
+      const target = new URL(`/insiders/company/${off[2]}/`, url.origin);
+      try {
+        const company = await env.ASSETS.fetch(new Request(target.toString(), { method: "GET" }));
+        if (company.ok) return Response.redirect(target.toString(), 302);
+      } catch { /* fall through to the 404 */ }
+    }
     const match = path.match(/^\/(signal|ticker)\/([^/]+)$/);
     if (match) {
       const type = match[1] as "signal" | "ticker";
