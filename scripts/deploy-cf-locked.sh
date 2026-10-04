@@ -39,6 +39,9 @@ fi
 node scripts/predeploy-git-guard.mjs
 npm run clean 2>/dev/null || true
 npm run build
+# A build killed with SIGKILL never runs the EXIT trap, so its HOLD dir (1-2 GB of rebuilt pages) stayed in
+# $TMPDIR forever (device 1 disk at 99%, card mus4x5h1o36j4v). Prune our own leftovers older than 6 h first.
+find "${TMPDIR:-/tmp}" -maxdepth 1 -type d -name 'holdlens-insiders-hold.*' -mmin +360 -exec rm -rf {} + 2>/dev/null || true
 HOLD="$(mktemp -d "${TMPDIR:-/tmp}/holdlens-insiders-hold.XXXXXX")"
 restore() {
   [ -d "$HOLD" ] || return 0
@@ -69,7 +72,9 @@ restore() {
     [ -e "out/insiders/$name" ] || mv "$d" "out/insiders/$name"
   done
 }
-cleanup() { restore; rmdir "$HOLD" 2>/dev/null || true; }
+# Whatever restore() could not put back (out/ gone, a newer copy already there) is rebuilt by the next build, so
+# delete HOLD outright; `rmdir` failed on a non-empty dir and leaked it (card mus4x5h1o36j4v).
+cleanup() { restore; rm -rf "$HOLD" 2>/dev/null || true; }
 trap cleanup EXIT
 trap 'exit 143' TERM
 trap 'exit 130' INT
