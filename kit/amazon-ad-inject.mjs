@@ -129,7 +129,8 @@ export function headingFor(urlPath, cfg) {
 // BILLBOARD (kit library, two placements; one line of site config): billboard: { top: true, mid: true }
 //   top  -> ak-billboard-top: full-width grey band above the site header
 //   mid  -> ak-billboard-mid: before the page's 2nd <h2> inside <main> (or billboard.midBefore: a regex), label above
-// Optional: billboard.match (regex on the URL path; default every injected page), billboard.headline / midHeadline
+// Optional: billboard.badge ({ src, alt, w, h }: Amazon's official badge file, self-hosted, beside the Sponsored label),
+// billboard.match (regex on the URL path; default every injected page), billboard.headline / midHeadline
 // templates with {name} and {why} (default: the product's own `headline`, else `why`). Product = the first product the
 // page itself links to (from products + catalog), else today's rotation of the site's products; mid never repeats top.
 // When the top billboard is placed, the page's V1 top card is not (the billboard is the richer version of it).
@@ -146,7 +147,7 @@ function billboardFor(html, urlPath, cfg) {
   const fill = (tpl, p) => String(tpl).replace(/\{name\}/g, p.name).replace(/\{why\}/g, p.why);
   // billboard.variant ('auto'|'a'|'b'|'c'): the box carries up to 6 products, most relevant first, for the A/B/C layouts.
   const V = !!b.variant;
-  const mk = (placement, p, tpl, rest) => decorate(renderBillboard({ placement, product: p, headline: tpl ? fill(tpl, p) : undefined, variants: V, products: V ? rest.map((x) => ({ ...x, bbHead: tpl ? fill(tpl, x) : x.why })) : undefined, disclosure: cfg.disclosure, api: API, gate: GATE, page: urlPath, lang: cfg.lang || 'en', labels: b.labels }), cfg);
+  const mk = (placement, p, tpl, rest) => decorate(renderBillboard({ placement, product: p, headline: tpl ? fill(tpl, p) : undefined, variants: V, products: V ? rest.map((x) => ({ ...x, bbHead: tpl ? fill(tpl, x) : x.why })) : undefined, disclosure: cfg.disclosure, api: API, gate: GATE, page: urlPath, lang: cfg.lang || 'en', labels: b.labels, badge: b.badge }), cfg);
   return { top: b.top ? mk('top', order[0], b.headline, order.slice(1, 6)) : null, mid: b.mid && order[1] ? mk('mid', order[1], b.midHeadline || b.headline, order.slice(2, 7)) : null };
 }
 
