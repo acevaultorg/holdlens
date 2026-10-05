@@ -12,7 +12,8 @@
 //     customerReviews for 48 of 48 creator-gear products (probe 2026-09-28) and exposes no Prime/delivery resource,
 //     and those figures may not come from anywhere else. There is no code path that prints them.
 //  3. With no API data (error, no tag, no JS, a bot) the card is typographic: our own short name + our own benefit
-//     line + "See it on Amazon". No image, no price. No brand logos, ever.
+//     line + "See it on Amazon". No image, no price. No brand logos, ever — the one exception is the billboard's
+//     opt-in cfg.badge: Amazon's own official badge file, unmodified, self-hosted (Paulo 2026-10-05).
 //  4. "Sponsored" + an info button with the affiliate disclosure on every variant. Links are the site's own
 //     /go/p gate (makeGateHandler) with rel="sponsored nofollow noopener"; the tag lives only in the Function.
 //  5. Every slot has a fixed height (no layout shift); the sticky one pads the page so it covers nothing and can be
@@ -217,6 +218,11 @@ export function renderBillboard(cfg) {
   const t = { ...(L[cfg.lang] || L.en), ...(cfg.labels || {}) };
   const at = cfg.placement === 'mid' ? 'mid' : 'top';
   const label = t.billboard || 'Sponsored · Amazon affiliate link';
+  // cfg.badge (opt-in, Paulo 2026-10-05): Amazon's OWN official badge file (Associates Central / Amazon brand
+  // guidelines, unmodified), self-hosted by the site: { src: '/…', alt, w, h }. Never a redrawn or recoloured logo.
+  const bg = cfg.badge;
+  if (bg && !(/^\/[\w./-]+\.(svg|png|webp)$/.test(bg.src || '') && bg.alt && +bg.w > 0 && +bg.h > 0)) throw new Error('Amili Kit billboard: badge needs a self-hosted src (/….svg|png|webp), alt, w and h');
+  const badge = bg ? `<img class="ak-bill-badge" src="${esc(bg.src)}" alt="${esc(bg.alt)}" width="${+bg.w}" height="${+bg.h}" decoding="async">` : '';
   const from = `ad-bb-${at}`;
   // cfg.variants (A/B/C test inside the same box, Paulo muns4xlwo86z4b): up to 6 products, most relevant first, each
   // with its own headline (cfg.products: [{...product, bbHead}]). A shows the first, B one at a time with arrows,
@@ -235,9 +241,9 @@ export function renderBillboard(cfg) {
     + `<span class="ak-bill-buy"><span class="ak-ad-price" data-ak-price></span><span class="ak-ad-cta" data-none="${esc(t.cta)}" data-live="${esc(t.ctaLive)}">${esc(t.cta)}</span></span>`
     + `</span></a></li>`;
   return `<aside class="ak-ad ak-on ak-bill ak-bill-${at}${nav ? ' ak-bb-var' : ''}" data-v="bb" data-fixed="1" data-api="${esc(cfg.api || '/amz/items')}" data-page="${esc(cfg.page || '')}" data-spare="" aria-label="${esc(label)}">`
-    + `<div class="ak-bill-in">${at === 'mid' ? `<p class="ak-bill-lab">${esc(label)}</p>` : ''}`
+    + `<div class="ak-bill-in">${at === 'mid' ? `<p class="ak-bill-lab">${esc(label)}${badge}</p>` : ''}`
     + `<div class="ak-bb-stage">${nav}<ul class="ak-ad-track" role="list">${list.map(card).join('')}</ul></div>`
-    + `<div class="ak-ad-foot">${at === 'top' ? `<span class="ak-bill-lab">${esc(label)}</span>` : ''}${nav ? '<span class="ak-bb-count" aria-live="polite"></span>' : ''}<p class="ak-ad-asof" data-ak-asof hidden>${esc(t.asOf)} <time></time></p>`
+    + `<div class="ak-ad-foot">${at === 'top' ? `<span class="ak-bill-lab">${esc(label)}${badge}</span>` : ''}${nav ? '<span class="ak-bb-count" aria-live="polite"></span>' : ''}<p class="ak-ad-asof" data-ak-asof hidden>${esc(t.asOf)} <time></time></p>`
     + `<details class="ak-ad-info"><summary aria-label="${esc(t.info)}">${INFO_SVG}</summary><div class="ak-ad-pop"><p>${esc(cfg.disclosure)}</p><p class="ak-ad-disc" data-ak-disc hidden>${esc(DISCLAIMER)}</p></div></details></div>`
     + `</div></aside>`;
 }
@@ -308,6 +314,9 @@ html[data-akbb=c] .ak-bb-var .ak-ad-price{font-size:19px;height:22px}
 .ak-bill-midwrap{padding:0 16px;clear:both}
 .ak-bill-mid{--ak-bill-band:transparent;margin:40px auto;padding:0;height:302px;max-width:970px}
 .ak-bill-mid .ak-bill-lab{display:block;text-align:center;margin:0 0 10px}
+.ak-bill-badge{display:inline-block;height:16px;width:auto;margin-left:8px;vertical-align:middle}
+@media (max-width:399px){.ak-bill-badge{height:14px;margin-left:6px}}
+@media (max-width:359px){.ak-bill-badge{display:none}}
 @media (max-width:47.99rem){
 .ak-bill .ak-ad-link{grid-template-columns:1fr;grid-template-rows:132px auto;gap:0;height:auto;padding:0 0 14px}
 .ak-bill .ak-ad-img{width:100%;height:132px;border-radius:3px 3px 0 0}
