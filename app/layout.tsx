@@ -202,13 +202,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Perf: preconnect to the origins we WILL hit, so the DNS + TLS
             handshake overlaps with critical rendering instead of blocking it. */}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://holdlens-yahoo-proxy.paulomdevries.workers.dev" crossOrigin="anonymous" />
         {/* parqet serves ~40 ticker logos per holdings table as plain <img>
             (no CORS) — preconnect WITHOUT crossOrigin so the warmed connection
             is reused by the image fetches instead of opening a second one. */}
         <link rel="preconnect" href="https://assets.parqet.com" />
-        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://holdlens-yahoo-proxy.paulomdevries.workers.dev" />
         <link rel="dns-prefetch" href="https://assets.parqet.com" />
         {/* Google Consent Mode v2 — denied by default ONLY in consent-required regions
@@ -543,19 +541,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy="afterInteractive"
         />
 
-        {/* AdSense site verification — loads the loader script on every page so Google
-            can verify ownership during onboarding and auto-ads can serve after approval.
-            lazyOnload defers until the page is idle, protecting LCP + INP. */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7449214764048186"
-          crossOrigin="anonymous"
-          strategy="lazyOnload"
-        />
-        {/* AdSense Auto Ads: the ?client= loader above enables Auto Ads on its own (current
-            AdSense snippet). The old explicit push({enable_page_level_ads:true}) was redundant
-            and threw "Only one 'enable_page_level_ads' allowed per page" on every load; removed
-            2026-09-25. Auto Ads stays controlled from the AdSense dashboard. */}
+        {/* AdSense loader REMOVED 2026-10-06 (Paulo delegated, thought mux2lwpv2ozt92 / card muww3hucqxp4te):
+            GA4 30d = ~3,616 of 3,715 sessions crawler-shaped, ~99 humans. Ads served mostly to bots are
+            invalid traffic and put the WHOLE AdSense account at risk for ~EUR 0. ads.txt and the
+            google-adsense-account meta stay, so the site stays verified. To restore: put back
+            <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7449214764048186"
+            crossOrigin="anonymous" strategy="lazyOnload" /> once humans outnumber bots.
+            Note: Google's Funding Choices consent message came with this loader; without ads, Consent Mode v2
+            default-denied in EEA/UK/CH/US-CA (above) keeps those regions cookieless with no banner needed. */}
         <meta name="google-adsense-account" content="ca-pub-7449214764048186" />
       </head>
       <body className="min-h-screen bg-bg text-text font-sans">
