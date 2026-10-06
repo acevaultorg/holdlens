@@ -114,6 +114,7 @@ export default function AffiliateLink({
       target="_blank"
       rel="sponsored nofollow noopener"
       aria-label={ariaLabel}
+      data-event-from={`${partner}-${surface}`}
       onClick={() => trackAffiliateClick(partner, surface)}
       className={`${plausibleTags} ${className}`.trim()}
     >

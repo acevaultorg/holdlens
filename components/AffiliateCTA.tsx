@@ -44,8 +44,10 @@ const AFF_SCHWAB = process.env.NEXT_PUBLIC_AFF_SCHWAB || "";
 const AFF_ETORO = process.env.NEXT_PUBLIC_AFF_ETORO || "";
 const AFF_MOOMOO = process.env.NEXT_PUBLIC_AFF_MOOMOO || "";
 
-const AFF_RESEARCH = process.env.NEXT_PUBLIC_AFF_RESEARCH || "";
-const AFF_RESEARCH_NAME = process.env.NEXT_PUBLIC_AFF_RESEARCH_NAME || "our research partner";
+// 2026-10-06 (Paulo: "holdlens moet geld verdienen asap", thought mux2lwpv2ozt92): the approved Simply Wall St
+// program is the tracked default, routed through the gesture-gated /go/sws route (functions/go). Env still overrides.
+const AFF_RESEARCH = process.env.NEXT_PUBLIC_AFF_RESEARCH || "/go/sws";
+const AFF_RESEARCH_NAME = process.env.NEXT_PUBLIC_AFF_RESEARCH_NAME || "Simply Wall St";
 
 function anyBrokerConfigured(): boolean {
   return Boolean(
@@ -82,7 +84,7 @@ export default function AffiliateCTA(_props: {
             surface="ticker-below-table"
             className="text-sm font-semibold text-brand hover:underline"
           >
-            Full financials and estimates on {AFF_RESEARCH_NAME} →
+            Fair value, financials and analyst estimates on {AFF_RESEARCH_NAME} →
           </AffiliateLink>
           <PartnerDisclosure />
         </div>
