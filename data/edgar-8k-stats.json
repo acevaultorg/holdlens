@@ -1,37 +1,7 @@
 {
-  "generatedAt": "2026-10-03T12:13:34.544Z",
-  "totalRows": 1090,
+  "generatedAt": "2026-10-06T04:39:42.094Z",
+  "totalRows": 511,
   "days": [
-    {
-      "date": "2026-09-29",
-      "formsListed": 5735,
-      "form8ksFound": 230,
-      "parsed": 261,
-      "skipped": 31,
-      "skipReasons": {
-        "no_tracked_items": 31
-      }
-    },
-    {
-      "date": "2026-09-30",
-      "formsListed": 3594,
-      "form8ksFound": 227,
-      "parsed": 294,
-      "skipped": 20,
-      "skipReasons": {
-        "no_tracked_items": 20
-      }
-    },
-    {
-      "date": "2026-10-01",
-      "formsListed": 5527,
-      "form8ksFound": 262,
-      "parsed": 307,
-      "skipped": 32,
-      "skipReasons": {
-        "no_tracked_items": 32
-      }
-    },
     {
       "date": "2026-10-02",
       "formsListed": 7159,
@@ -41,6 +11,24 @@
       "skipReasons": {
         "no_tracked_items": 16
       }
+    },
+    {
+      "date": "2026-10-05",
+      "formsListed": 4886,
+      "form8ksFound": 219,
+      "parsed": 283,
+      "skipped": 17,
+      "skipReasons": {
+        "no_tracked_items": 17
+      }
+    },
+    {
+      "date": "2026-10-06",
+      "formsListed": 0,
+      "form8ksFound": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "skipReasons": {}
     }
   ]
 }
