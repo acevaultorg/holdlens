@@ -171,3 +171,17 @@ This is the GOOD failure mode: zero bots blocked (no asset damage), small revenu
 - ✅ State files updated to supersede stale "459 blocked" narrative
 - ❌ No paywall config changes (operator-only domain; Path C-B = no action)
 
+
+## 2026-10-06 — Who the GA4 "Direct" sessions are (Amili, device 1, thought mux2lwpv2ozt92)
+
+Measured this run:
+- GA4 30d (ga4-probe prop=holdlens): Direct 3,515 sessions / 3,550 users / 1.02 pv/s, of 3,745 total. Human channels: Bing 94, DuckDuckGo 40, Wikipedia 10, yahoo 8, cn.bing 8, ChatGPT 5, Copilot 3, Google 2.
+- GA4 14d, Direct only: Singapore 2,185 of 2,371 (92%) · Chrome/Windows 2,043 · screen 1280x1200 1,940 · 1,539 distinct landing pages (one fetch each). Daily Direct jumped from ~60-140/day to 333 on 10-01 and has stayed at 100-380 since.
+- Cloudflare zone analytics, last 23h, eyeball requests: US 10,201 · SG 2,556 · NL 2,428 · CN 714. SG user agents are spoofed old desktop Chrome (103, 104, 116, 131, 133 on Windows) plus Sogou web spider/4.0. ASN fields are not available on this zone's plan.
+- Verdict: a Singapore-hosted headless-Chrome scraper fleet (runs JS, so GA4 counts it). Not a search engine that sends visitors. Googlebot/Bingbot/AI search crawlers are not in this population (they are US-hosted and verified bots).
+
+Action taken: AdSense loader removed from holdlens the same day (commit 18c1a28f9), so these bots no longer generate ad impressions on the account.
+NOT applied (token lacks WAF scope; dashboard is a reversible internal setting, brain-doable with a dash session):
+  Custom rule "SG headless scrapers" · expression `(ip.geoip.country eq "SG" and not cf.client.bot)` · action Managed Challenge.
+  `not cf.client.bot` exempts every Cloudflare-verified bot (Googlebot, Bingbot, Applebot, OAI-SearchBot, PerplexityBot, DuckDuckBot). Real Singapore humans pass the challenge invisibly in most browsers.
+  Value now: cleaner GA4 (measurement) and a precondition for ever re-enabling AdSense. Not urgent while ads are off.
