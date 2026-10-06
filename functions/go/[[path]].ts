@@ -7,9 +7,9 @@
 // cc_g gesture cookie, minted by the inline <head> script in app/layout.tsx.
 import { AMAZON_TAG, AMAZON_BOOKS_DEPT, AUDIBLE_DEST } from "../../lib/amazon-gate";
 import { hasFreshGesture } from "../../lib/gesture-gate";
+import { SWS_LINK, TRADINGVIEW_LINK } from "../../lib/partner-links";
 
 const ASIN = /^[A-Z0-9]{10}$/;
-const SWS_DEST = "https://goto.simplywall.st/c/7598036/3201528/40071";
 
 function go(location: string): Response {
   return new Response(null, {
@@ -34,7 +34,9 @@ export const onRequest = async ({ request }: { request: Request }): Promise<Resp
   if (path === "/go/audible") return go(AUDIBLE_DEST);
   // Simply Wall St (Impact campaign 40071, approved 2026-09-08 on Caslon 7598036, 55% of first paid
   // subscription, 90d). Behind the same gesture gate so crawlers never reach the Impact tracking link.
-  if (path === "/go/sws") return go(SWS_DEST);
+  if (path === "/go/sws") return go(SWS_LINK);
+  // TradingView (lib/partner-links.ts): until the link is pasted there, the route goes home like any unknown shape.
+  if (path === "/go/tv") return TRADINGVIEW_LINK ? go(TRADINGVIEW_LINK) : home;
   if (path === "/go/dp") {
     const a = url.searchParams.get("a");
     if (!a || !ASIN.test(a)) return home;

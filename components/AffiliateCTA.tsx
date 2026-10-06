@@ -34,6 +34,7 @@
 // null — no heading, no empty box, no whitespace, no layout shift.
 
 import AffiliateLink, { PartnersLink, PartnerDisclosure } from "@/components/AffiliateLink";
+import { TRADINGVIEW_LINK } from "@/lib/partner-links";
 
 // Enumerated explicitly (not process.env[dynamic]) so Next.js inlines
 // them at build time.
@@ -69,27 +70,44 @@ export default function AffiliateCTA(_props: {
   void _props;
 
   const hasResearch = Boolean(AFF_RESEARCH);
+  // TradingView renders only once lib/partner-links.ts holds Paulo's real link (gated via /go/tv).
+  const hasTradingView = Boolean(TRADINGVIEW_LINK);
   const hasBrokers = anyBrokerConfigured();
+  const isLearn = surface.startsWith("learn");
 
   // Nothing configured → render absolutely nothing.
-  if (!hasResearch && !hasBrokers) return null;
+  if (!hasResearch && !hasTradingView && !hasBrokers) return null;
 
   return (
     <>
-      {hasResearch && (
+      {(hasResearch || hasTradingView) && (
         <div className="my-6 rounded-xl border border-border bg-panel p-4">
           <div className="text-[11px] uppercase tracking-widest text-dim font-semibold mb-1.5">
             Go deeper on the numbers
           </div>
-          <AffiliateLink
-            href={AFF_RESEARCH}
-            partner="research"
-            surface={surface}
-            className="text-sm font-semibold text-brand hover:underline"
-          >
-            Fair value, financials and analyst estimates on {AFF_RESEARCH_NAME} →
-          </AffiliateLink>
-          <PartnerDisclosure />
+          <div className="flex flex-col gap-2">
+            {hasResearch && (
+              <AffiliateLink
+                href={AFF_RESEARCH}
+                partner="research"
+                surface={surface}
+                className="text-sm font-semibold text-brand hover:underline"
+              >
+                Fair value, financials and analyst estimates on {AFF_RESEARCH_NAME} →
+              </AffiliateLink>
+            )}
+            {hasTradingView && (
+              <AffiliateLink
+                href="/go/tv"
+                partner="tradingview"
+                surface={surface}
+                className="text-sm font-semibold text-brand hover:underline"
+              >
+                {isLearn ? "Chart any stock on TradingView →" : "Open the interactive chart on TradingView →"}
+              </AffiliateLink>
+            )}
+          </div>
+          <PartnerDisclosure what={hasResearch && hasTradingView ? "Affiliate links" : "Affiliate link"} />
         </div>
       )}
 
