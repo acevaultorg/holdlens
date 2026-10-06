@@ -58,7 +58,10 @@ function anyBrokerConfigured(): boolean {
 export default function AffiliateCTA(_props: {
   symbol: string;
   variant?: "card" | "inline";
+  /** analytics surface; /learn articles pass "learn-article-end" (2026-10-06) */
+  surface?: string;
 }) {
+  const surface = _props.surface || "ticker-below-table";
   // Suppress unused-prop warning — the symbol + variant inputs no
   // longer drive copy because per Pivot A the per-ticker inline
   // framing was the YMYL violation; the static /partners link is
@@ -81,7 +84,7 @@ export default function AffiliateCTA(_props: {
           <AffiliateLink
             href={AFF_RESEARCH}
             partner="research"
-            surface="ticker-below-table"
+            surface={surface}
             className="text-sm font-semibold text-brand hover:underline"
           >
             Fair value, financials and analyst estimates on {AFF_RESEARCH_NAME} →

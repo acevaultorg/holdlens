@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AffiliateCTA from "@/components/AffiliateCTA";
 import {
   deepDiveBySlug,
   deepDivesForPeriod,
@@ -110,6 +111,10 @@ export default function LearnReadNext({ currentSlug }: { currentSlug: string }) 
 
   return (
     <>
+      {/* 2026-10-06: /learn carries ~half of HoldLens's human search sessions (GA4 60d), the ticker/signal
+          research slot almost none, so the approved Simply Wall St research card also closes each article.
+          Same component, rel=sponsored, disclosure adjacent, no stock named. */}
+      <AffiliateCTA symbol="" surface="learn-article-end" />
       {dive && (
         <section
           aria-label={`Part of the ${periodLabel} superinvestor recap`}
