@@ -9,4 +9,4 @@ export const SWS_LINK = "https://goto.simplywall.st/c/7598036/3201528/40071";
 // TradingView partner program — Paulo joined 2026-10-06 (thought mux4x3co86f2iv); link not received yet.
 // Paste his personal referral link between the quotes, then `npm run deploy`. Empty = the TradingView line
 // renders nowhere and /go/tv sends visitors home. Never put a guessed or placeholder link here.
-export const TRADINGVIEW_LINK = "";
+export const TRADINGVIEW_LINK = "https://www.tradingview.com/?aff_id=1171933";
