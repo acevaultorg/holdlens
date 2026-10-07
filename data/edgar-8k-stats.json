@@ -1,17 +1,7 @@
 {
-  "generatedAt": "2026-10-06T04:39:42.094Z",
-  "totalRows": 511,
+  "generatedAt": "2026-10-07T04:40:15.522Z",
+  "totalRows": 572,
   "days": [
-    {
-      "date": "2026-10-02",
-      "formsListed": 7159,
-      "form8ksFound": 200,
-      "parsed": 228,
-      "skipped": 16,
-      "skipReasons": {
-        "no_tracked_items": 16
-      }
-    },
     {
       "date": "2026-10-05",
       "formsListed": 4886,
@@ -24,6 +14,16 @@
     },
     {
       "date": "2026-10-06",
+      "formsListed": 3501,
+      "form8ksFound": 245,
+      "parsed": 289,
+      "skipped": 34,
+      "skipReasons": {
+        "no_tracked_items": 34
+      }
+    },
+    {
+      "date": "2026-10-07",
       "formsListed": 0,
       "form8ksFound": 0,
       "parsed": 0,
