@@ -10,7 +10,7 @@ import {
 export const metadata: Metadata = {
   title: "Buyback yield leaderboard — highest share-repurchase yields in the S&P 500",
   description:
-    "Companies returning the highest percentage of market cap via share repurchases. Buyback yield = trailing-12-month repurchases ÷ current market cap. SEC-sourced, ranked.",
+    "Companies returning the highest percentage of market cap via share repurchases. Buyback yield = repurchases in the fiscal year shown ÷ market cap when compiled. SEC-sourced, ranked.",
   alternates: { canonical: "https://holdlens.com/buybacks/yield" },
   openGraph: {
     title: "HoldLens Buyback Yield Leaderboard",
@@ -73,8 +73,8 @@ export default function BuybackYieldPage() {
         Highest buyback yields.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-8">
-        Buyback yield = trailing-12-month share-repurchase dollars divided by
-        current market cap. Unlike headline dollar volume (which favors the
+        Buyback yield = share-repurchase dollars in the fiscal year shown
+        divided by market cap when the figures were compiled. Unlike headline dollar volume (which favors the
         biggest companies), yield normalizes — it tells you how aggressively a
         company is returning capital relative to its own size.
       </p>

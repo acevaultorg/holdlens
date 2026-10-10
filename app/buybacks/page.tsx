@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title:
     "Corporate Buyback Tracker — biggest share-repurchase programs in the S&P 500",
   description:
-    "Every major public-company buyback program tracked from SEC 10-K + 8-K filings: total dollar volume, buyback yield, authorization size, remaining capacity. Apple, Alphabet, Meta, NVIDIA, JPMorgan, and more. SEC-sourced, updated quarterly.",
+    "Every major public-company buyback program tracked from SEC 10-K + 8-K filings: total dollar volume, buyback yield, authorization size, remaining capacity. Apple, Alphabet, Meta, NVIDIA, JPMorgan, and more. SEC-sourced, each row labelled with its fiscal year.",
   alternates: { canonical: "https://holdlens.com/buybacks" },
   openGraph: {
     title: "HoldLens Buyback Tracker — biggest S&P buyback programs",
@@ -108,7 +108,8 @@ export default function BuybacksLanding() {
           <span className="font-bold tabular-nums">
             {formatBuybackAmount(totalFy24Dollars)}
           </span>{" "}
-          of their own stock in the latest fiscal year. Apple leads with{" "}
+          of their own stock in the fiscal year shown for each company (FY2024
+          for most). Apple leads with{" "}
           <span className="font-bold tabular-nums">
             {formatBuybackAmount(top10[0].latestFyRepurchased)}
           </span>
@@ -127,7 +128,9 @@ export default function BuybacksLanding() {
             <div className="text-[11px] uppercase tracking-widest font-bold text-brand mb-1">
               Biggest dollar volume
             </div>
-            <h2 className="text-2xl font-bold">Top repurchasers, latest fiscal year</h2>
+            {/* 2026-10-10 (card mv1xxbii3d6tsr): was "latest fiscal year", false for most rows (FY2024
+                shown while FY2025 10-Ks are filed). Each row states its own fiscal year. */}
+            <h2 className="text-2xl font-bold">Top repurchasers, by fiscal year shown</h2>
           </div>
           <a href="/buybacks/yield" className="text-sm text-brand hover:underline">
             See by yield →
