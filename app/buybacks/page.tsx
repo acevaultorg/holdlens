@@ -8,6 +8,7 @@ import {
   buybacksBySector,
   formatBuybackAmount,
   BUYBACK_PROGRAMS,
+  BUYBACK_DATA_AS_OF,
 } from "@/lib/buybacks";
 import InvestingBooks from "@/components/InvestingBooks";
 import { booksByTitles, BOOKS_FILINGS } from "@/data/books";
@@ -43,10 +44,11 @@ export default function BuybacksLanding() {
   const recent = recentAuthorizations(5);
   const bySector = buybacksBySector();
   const totalProgramsTracked = BUYBACK_PROGRAMS.length;
-  const totalFy24Dollars = BUYBACK_PROGRAMS.reduce(
+  const totalFyDollars = BUYBACK_PROGRAMS.reduce(
     (acc, p) => acc + p.latestFyRepurchased,
     0,
   );
+  const yieldPriceDate = topYield[0]?.yieldAsOf ?? null;
 
   const collectionLd = {
     "@context": "https://schema.org",
@@ -95,6 +97,10 @@ export default function BuybacksLanding() {
         announcements. Dollar volume, buyback yield, remaining authorization.
         No sales pitches, no CNBC hype cycles &mdash; just the SEC disclosure.
       </p>
+      <p className="text-xs text-dim -mt-5 mb-8">
+        Data as of {BUYBACK_DATA_AS_OF}: each company&rsquo;s latest 10-K on
+        file, read from SEC XBRL.
+      </p>
 
       <aside
         className="mt-2 mb-12 rounded-card border border-insight/30 bg-surface-insight p-4"
@@ -106,18 +112,18 @@ export default function BuybacksLanding() {
         <p className="text-sm text-text leading-relaxed">
           The {totalProgramsTracked} tracked companies repurchased{" "}
           <span className="font-bold tabular-nums">
-            {formatBuybackAmount(totalFy24Dollars)}
+            {formatBuybackAmount(totalFyDollars)}
           </span>{" "}
-          of their own stock in the fiscal year shown for each company (FY2024
-          for most). Apple leads with{" "}
+          of their own stock in their latest fiscal year on file.{" "}
+          {top10[0].companyName} leads with{" "}
           <span className="font-bold tabular-nums">
             {formatBuybackAmount(top10[0].latestFyRepurchased)}
           </span>
-          ; JPMorgan&rsquo;s buyback yield is highest at{" "}
+          ; {topYield[0].companyName} has the highest buyback yield at{" "}
           <span className="font-bold tabular-nums">
             {topYield[0].buybackYieldPct}%
           </span>{" "}
-          of market cap.
+          of market cap{yieldPriceDate ? ` (price on ${yieldPriceDate})` : ""}.
         </p>
       </aside>
 
@@ -128,9 +134,9 @@ export default function BuybacksLanding() {
             <div className="text-[11px] uppercase tracking-widest font-bold text-brand mb-1">
               Biggest dollar volume
             </div>
-            {/* 2026-10-10 (card mv1xxbii3d6tsr): was "latest fiscal year", false for most rows (FY2024
-                shown while FY2025 10-Ks are filed). Each row states its own fiscal year. */}
-            <h2 className="text-2xl font-bold">Top repurchasers, by fiscal year shown</h2>
+            {/* 2026-10-10: rows now come from SEC XBRL (scripts/fetch-buybacks-sec.mjs), so
+                "latest fiscal year on file" is true again; each row still states its year. */}
+            <h2 className="text-2xl font-bold">Top repurchasers, latest fiscal year on file</h2>
           </div>
           <a href="/buybacks/yield" className="text-sm text-brand hover:underline">
             See by yield →
@@ -196,7 +202,7 @@ export default function BuybacksLanding() {
             <div className="text-[11px] uppercase tracking-widest font-bold text-emerald-400 mb-1">
               Forward-looking supply
             </div>
-            <h2 className="text-2xl font-bold">Newly announced authorizations</h2>
+            <h2 className="text-2xl font-bold">Latest known authorizations</h2>
           </div>
           <a href="/buybacks/largest-authorizations" className="text-sm text-brand hover:underline">
             All authorizations →

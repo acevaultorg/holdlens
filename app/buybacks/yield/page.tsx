@@ -5,12 +5,13 @@ import TickerLogo from "@/components/TickerLogo";
 import {
   topBuybackYields,
   formatBuybackAmount,
+  BUYBACK_PROGRAMS,
 } from "@/lib/buybacks";
 
 export const metadata: Metadata = {
   title: "Buyback yield leaderboard — highest share-repurchase yields in the S&P 500",
   description:
-    "Companies returning the highest percentage of market cap via share repurchases. Buyback yield = repurchases in the fiscal year shown ÷ market cap when compiled. SEC-sourced, ranked.",
+    "Companies returning the highest percentage of market cap via share repurchases. Buyback yield = repurchases in the latest fiscal year on file ÷ current market cap. SEC-sourced, ranked.",
   alternates: { canonical: "https://holdlens.com/buybacks/yield" },
   openGraph: {
     title: "HoldLens Buyback Yield Leaderboard",
@@ -25,6 +26,9 @@ export const metadata: Metadata = {
 
 export default function BuybackYieldPage() {
   const ranked = topBuybackYields();
+  const priceDate = ranked[0]?.yieldAsOf ?? null;
+  const unranked = BUYBACK_PROGRAMS.filter((p) => p.buybackYieldPct == null).map((p) => p.ticker);
+  const banksInTop5 = ranked.slice(0, 5).filter((p) => p.sector === "Financials").length;
   const pageUrl = "https://holdlens.com/buybacks/yield";
   const articleLd = {
     "@context": "https://schema.org",
@@ -73,8 +77,9 @@ export default function BuybackYieldPage() {
         Highest buyback yields.
       </h1>
       <p className="text-muted text-lg max-w-2xl mb-8">
-        Buyback yield = share-repurchase dollars in the fiscal year shown
-        divided by market cap when the figures were compiled. Unlike headline dollar volume (which favors the
+        Buyback yield = share-repurchase dollars in the latest fiscal year on
+        file divided by market cap (shares outstanding from the 10-K or 10-Q
+        cover page times the closing price{priceDate ? ` on ${priceDate}` : ""}). Unlike headline dollar volume (which favors the
         biggest companies), yield normalizes — it tells you how aggressively a
         company is returning capital relative to its own size.
       </p>
@@ -87,12 +92,18 @@ export default function BuybackYieldPage() {
           HoldLens read
         </div>
         <p className="text-sm text-text leading-relaxed">
-          Financials dominate this list &mdash; post-Fed-CCAR capital-return
-          approvals drive multi-year highs in buyback yield for the largest US
-          banks. Energy majors follow (Chevron, ExxonMobil), reflecting
-          post-2022 cash-flow windfalls. Tech giants have large dollar volume
-          but middling yield because their market caps have scaled with the
-          programs.
+          {ranked[0]?.companyName} leads at {ranked[0]?.buybackYieldPct}%, then{" "}
+          {ranked[1]?.companyName} ({ranked[1]?.buybackYieldPct}%) and{" "}
+          {ranked[2]?.companyName} ({ranked[2]?.buybackYieldPct}%).{" "}
+          {banksInTop5} of the top five are financial companies. The biggest tech programs
+          have large dollar volume but low yield, because their market caps
+          are larger still.
+          {unranked.length > 0 && (
+            <>
+              {" "}Not ranked: {unranked.join(", ")} (more than one share
+              class, so the cover page does not give one market cap).
+            </>
+          )}
         </p>
       </aside>
 

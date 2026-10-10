@@ -5,12 +5,18 @@
 // equivalent) 10-K cash-flow-from-financing activities (line:
 // "repurchases of common stock"). Authorization figures from announcement 8-Ks.
 //
-// v0.3 will replace this with an automated 10-Q/10-K XBRL parser from
-// SEC EDGAR (same pipeline pattern as scripts/fetch-edgar-13f.ts).
+// v0.3 (2026-10-10): the per-year numbers now come from SEC XBRL via
+// scripts/fetch-buybacks-sec.mjs -> data/buybacks-sec.json, overlaid on the
+// seed below. The seed keeps what XBRL does not carry (names, sectors, 8-K
+// authorization sizes and dates); every number the overlay sets replaces the
+// seed's, and a stale seed value is never shown as current (remaining
+// authorization and yield become null when the SEC data has no current value).
 //
 // Every row carries a `source` field linking directly to the SEC filing
 // that produced the number. Per concept-finder-methodology AP-3: every
 // data point cites a published source. No fabricated values.
+
+import buybacksSec from "@/data/buybacks-sec.json";
 
 export type BuybackProgram = {
   ticker: string;
@@ -50,6 +56,11 @@ export type BuybackProgram = {
 
   // Methodology flags.
   needsVerification?: boolean;         // v2 backfill candidate
+
+  // Set by the SEC overlay (v0.3).
+  fyPeriodEnd?: string;                // ISO end date of the fiscal year shown
+  authRemainingAsOf?: string | null;   // date of the remaining-authorization figure
+  yieldAsOf?: string | null;           // date of the price used for the yield
 };
 
 // ---------- Seed data (v0.1) ----------
@@ -57,7 +68,7 @@ export type BuybackProgram = {
 // statement. Authorization figures from most recent 8-K. Yield figures are
 // approximate (current market cap snapshot at time of seeding).
 
-export const BUYBACK_PROGRAMS: BuybackProgram[] = [
+const SEED_PROGRAMS: BuybackProgram[] = [
   {
     ticker: "AAPL",
     companyName: "Apple Inc.",
@@ -513,6 +524,52 @@ export const BUYBACK_PROGRAMS: BuybackProgram[] = [
   },
 ];
 
+// ---------- SEC overlay (v0.3) ----------
+
+type SecRow = Pick<
+  BuybackProgram,
+  | "latestFyRepurchased"
+  | "latestFyLabel"
+  | "trailing5yAverage"
+  | "authRemainingEstimate"
+  | "buybackYieldPct"
+  | "source"
+> & {
+  fyPeriodEnd: string;
+  authRemainingAsOf: string | null;
+  yieldAsOf: string | null;
+};
+
+const SEC = buybacksSec as unknown as {
+  generatedAt: string;
+  dataAsOf: string;
+  rows: Record<string, SecRow>;
+};
+
+/** Newest 10-K filing date behind the figures shown. */
+export const BUYBACK_DATA_AS_OF: string = SEC.dataAsOf;
+
+export const BUYBACK_PROGRAMS: BuybackProgram[] = SEED_PROGRAMS.map((p) => {
+  const s = SEC.rows[p.ticker];
+  if (!s) return { ...p, needsVerification: true };
+  return {
+    ...p,
+    latestFyRepurchased: s.latestFyRepurchased,
+    latestFyLabel: s.latestFyLabel,
+    fyPeriodEnd: s.fyPeriodEnd,
+    trailing5yAverage: s.trailing5yAverage,
+    authRemainingEstimate: s.authRemainingEstimate,
+    authRemainingAsOf: s.authRemainingAsOf,
+    buybackYieldPct: s.buybackYieldPct,
+    yieldAsOf: s.yieldAsOf,
+    source: {
+      ...s.source,
+      note: s.source.note,
+    },
+    needsVerification: false,
+  };
+});
+
 // ---------- Derived views ----------
 
 export function getBuyback(ticker: string): BuybackProgram | undefined {
@@ -537,8 +594,8 @@ export function topBuybackYields(limit?: number): BuybackProgram[] {
 }
 
 /**
- * Programs with newly announced or recently-refreshed authorizations.
- * Sorted newest first by authDate.
+ * Programs by the date of their latest known board authorization (from the
+ * seed's 8-K reads), newest first. Not a "new announcements" feed.
  */
 export function recentAuthorizations(limit?: number): BuybackProgram[] {
   const sorted = BUYBACK_PROGRAMS
