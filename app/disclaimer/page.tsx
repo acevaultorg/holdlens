@@ -67,8 +67,8 @@ export default function DisclaimerPage() {
             is refreshed from EDGAR’s daily filing index, which the SEC publishes after each business day closes.
           </li>
           <li>
-            <strong className="text-text">13D/13G activist filings</strong> must be filed within 10 days of crossing
-            the 5% ownership threshold.
+            <strong className="text-text">13D/13G filings</strong>: a 13D within 5 business days of crossing the 5%
+            ownership threshold; a 13G within 5 business days or 45 days after the quarter ends, depending on the filer type.
           </li>
         </ul>
 

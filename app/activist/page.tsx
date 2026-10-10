@@ -70,7 +70,7 @@ export default function ActivistLanding() {
     name: "Schedule 13D",
     alternateName: ["Schedule 13G", "Form 13D", "Form 13G", "13D filing", "13G filing", "Beneficial Ownership Report"],
     description:
-      "Schedule 13D and 13G are SEC beneficial ownership reports required when an investor crosses 5% of a public company's outstanding shares. Schedule 13D signals intent to influence (10-day filing window); Schedule 13G is for passive long-term holders. Amendments (13D/A, 13G/A) follow 1%+ position changes or intent shifts.",
+      "Schedule 13D and 13G are SEC beneficial ownership reports required when an investor crosses 5% of a public company's outstanding shares. Schedule 13D signals intent to influence (due within 5 business days); Schedule 13G is for passive long-term holders. A 13D/A follows within 2 business days of a 1%+ position change or a shift in intent; a 13G/A within 45 days after the quarter of a material change.",
     inDefinedTermSet: "https://www.sec.gov/cgi-bin/browse-edgar",
     url: "https://holdlens.com/activist/",
   };
@@ -275,9 +275,12 @@ export default function ActivistLanding() {
         <p className="text-sm text-muted leading-relaxed mb-3">
           Any investor crossing 5% of a public company&rsquo;s outstanding
           shares must file <strong>13D</strong> (with intent to influence) or{" "}
-          <strong>13G</strong> (passive long-term hold) within 10 days.
-          Amendments (<strong>13D/A</strong>, <strong>13G/A</strong>) follow
-          when the position changes by 1%+ or intent shifts. Every row here
+          <strong>13G</strong> (passive). A 13D is due within 5 business days;
+          a 13G within 5 business days for passive investors, or 45 days after
+          the quarter ends for institutions. A <strong>13D/A</strong> follows
+          within 2 business days of a material change (1%+ counts, and so does
+          a change of intent); a <strong>13G/A</strong> within 45 days after
+          the quarter in which the change happened. Every row here
           links to the underlying EDGAR filing.
         </p>
         <p className="text-sm text-muted leading-relaxed mb-4">

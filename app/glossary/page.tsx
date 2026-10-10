@@ -44,7 +44,7 @@ const TERMS: TermEntry[] = [
     shortDef:
       "An SEC filing disclosing beneficial ownership of >5% of a public company's voting shares, with stated intent to influence control or management.",
     fullDef:
-      "Must be filed within 10 days of crossing the 5% threshold. Activist investors use 13D filings to publicly signal intent (board seats, strategic change, spin-offs). HoldLens's /activist/ surface tracks 13D filings and campaigns.",
+      "Must be filed within 5 business days of crossing the 5% threshold (10 days before the SEC's 2023 amendments), and amended within 2 business days of a material change. Activist investors use 13D filings to publicly signal intent (board seats, strategic change, spin-offs). HoldLens's /activist/ surface tracks 13D filings and campaigns.",
     url: "https://www.sec.gov/fast-answers/answerssched13htm.html",
     relatedSlugs: ["13g", "13f", "activist"],
   },

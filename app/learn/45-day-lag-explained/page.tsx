@@ -153,7 +153,7 @@ const LD = [
         name: "Is there a way to get real-time hedge fund holdings data?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No legal way. Sites that promise 'real-time hedge fund signals' are either reselling press-release coverage of voluntary disclosures or violating SEC rules. The SEC framework provides 13F (45-day quarterly), 13D/13G (10-day activist threshold), and Form 4 (2-day insider) — these are the only sanctioned disclosure channels. Anything faster requires private fund relationships, which retail investors don't have.",
+          text: "No legal way. Sites that promise 'real-time hedge fund signals' are either reselling press-release coverage of voluntary disclosures or violating SEC rules. The SEC framework provides 13F (45-day quarterly), 13D/13G (5-business-day window for 13D once a holder crosses 5%), and Form 4 (2-day insider) — these are the only sanctioned disclosure channels. Anything faster requires private fund relationships, which retail investors don't have.",
         },
       },
     ],

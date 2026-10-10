@@ -89,7 +89,7 @@ const LD = [
     publisher: PUBLISHER_REF,
     mainEntityOfPage: "https://holdlens.com/learn/13f-vs-13d-vs-13g",
     datePublished: "2026-04-17",
-    dateModified: "2026-04-17",
+    dateModified: "2026-10-10",
     inLanguage: "en-US",
     image: "https://holdlens.com/og/home.png",
     keywords: [
@@ -121,7 +121,7 @@ const LD = [
         "@type": "DefinedTerm",
         name: "Schedule 13G",
         description:
-          "A short-form SEC filing for passive beneficial owners of more than 5% of a company's voting shares. Reserved for qualified institutional investors, passive investors, and exempt filers with no intent to influence control.",
+          "A short-form SEC filing for passive beneficial owners of more than 5% of a company's voting shares. Reserved for qualified institutional investors, passive investors, and exempt filers with no intent to influence control. Since the SEC's 2023 amendments, passive investors file within 5 business days of crossing 5%, and qualified institutional investors and exempt investors within 45 days after the end of the calendar quarter in which they crossed it.",
       },
     ],
   },
@@ -134,7 +134,7 @@ const LD = [
         name: "What's the biggest difference between 13F and 13D?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "13F is a mandatory quarterly snapshot of a manager's long US equity positions if they manage over $100M. It's filed late (45 days after quarter end) and shows everything. 13D is an event-driven filing triggered when a single filer crosses 5% ownership of a specific company with intent to influence control. It's filed fast (10 days) and shows ONE position.",
+          text: "13F is a mandatory quarterly snapshot of a manager's long US equity positions if they manage over $100M. It's filed late (45 days after quarter end) and shows everything. 13D is an event-driven filing triggered when a single filer crosses 5% ownership of a specific company with intent to influence control. It's filed fast (within 5 business days) and shows ONE position.",
         },
       },
       {
@@ -198,7 +198,7 @@ export default function ThirteenFvsDvsGPage() {
           Three SEC filings tracked by institutional investors mean three different things.
           13F: quarterly long US-equity positions for managers over $100M — passive disclosure,
           45-day lag. 13D: an investor crossing 5% of a public company with intent to influence —
-          activist signal, 10-day window. 13G: same 5% threshold but explicitly passive (index
+          activist signal, 5-business-day window. 13G: same 5% threshold but explicitly passive (index
           funds, pension allocations) — no activist intent. The same 5% stake in Apple is a yawn
           on 13G and a takeover threat on 13D. Read the schedule, not just the size.
         </TldrCard>
@@ -231,8 +231,9 @@ export default function ThirteenFvsDvsGPage() {
               <div className="text-text font-semibold">Schedule 13G</div>
               <div className="text-muted">
                 Who: passive owners above 5% — qualified institutions, passive
-                investors, exempt filers. When: varies (annual or event-driven
-                by ownership size). What: a short-form passive version of
+                investors, exempt filers. When: 5 business days for passive
+                investors; 45 days after quarter end for qualified institutions
+                and exempt filers. What: a short-form passive version of
                 13D. Why you care: it&apos;s the index fund filing.
               </div>
             </div>
@@ -251,7 +252,7 @@ export default function ThirteenFvsDvsGPage() {
         <div
           className="rounded-2xl border border-border bg-panel p-6 my-6"
           role="figure"
-          aria-label="Filing speed comparison: 13D takes 10 days, 13G varies, 13F takes 45 days"
+          aria-label="Filing speed comparison: 13D within 5 business days, 13G from 5 business days to 45 days after quarter end, 13F 45 days after quarter end"
         >
           <div className="text-xs uppercase tracking-widest text-brand font-semibold mb-4">
             Filing speed · at a glance
@@ -288,7 +289,7 @@ export default function ThirteenFvsDvsGPage() {
                   13G
                 </span>
                 <span className="text-xs text-muted font-mono">
-                  varies (10–45 days)
+                  5 business days to 45 days
                 </span>
               </div>
               <div
@@ -301,7 +302,7 @@ export default function ThirteenFvsDvsGPage() {
                 />
               </div>
               <div className="text-xs text-dim mt-1">
-                Passive · depends on filer type + ownership size
+                Passive · depends on filer type (table below)
               </div>
             </div>
 
@@ -345,7 +346,7 @@ export default function ThirteenFvsDvsGPage() {
           </div>
         </div>
 
-        <AuthorByline date="2026-04-17" />
+        <AuthorByline date="2026-04-17" updated="2026-10-10" />
 
         {/* Section 1 */}
         <h2 className="text-2xl font-bold mt-10 mb-3">
@@ -376,7 +377,7 @@ export default function ThirteenFvsDvsGPage() {
         <p className="text-muted">
           On the other end you have <strong className="text-text">13D</strong> —
           &quot;I own more than 5%, and I&apos;m planning to do something
-          about it.&quot; This is the activist filing. It lands fast, in 10
+          about it.&quot; This is the activist filing. It lands fast, within 5 business
           days, and it requires the filer to state their intent. This is where
           you see language like &quot;the reporting person intends to engage
           with the board&quot; or &quot;pursue strategic alternatives&quot; —
@@ -496,6 +497,70 @@ export default function ThirteenFvsDvsGPage() {
             — explained in detail in its own article.
           </li>
         </ul>
+
+        <h3 id="13g-deadlines" className="text-xl font-bold mt-8 mb-3">
+          Schedule 13D and 13G deadlines by filer type
+        </h3>
+        <p className="text-muted">
+          A 13G filer is one of three kinds. A <strong className="text-text">qualified
+          institutional investor</strong> (bank, broker-dealer, registered
+          adviser, fund) bought in the normal course of business. An 
+          <strong className="text-text">exempt investor</strong> crossed 5%
+          without buying, for example a founder whose stake predates the IPO.
+          A <strong className="text-text">passive investor</strong> is anyone
+          else under 20% with no plan to influence control.
+        </p>
+        <div className="rounded-2xl border border-border bg-panel overflow-x-auto my-4">
+          <table className="w-full text-sm">
+            <caption className="sr-only">
+              Filing deadlines for Schedule 13D and Schedule 13G by filer type
+            </caption>
+            <thead className="bg-bg/40 border-b border-border">
+              <tr className="text-[10px] uppercase tracking-wider text-dim font-semibold">
+                <th scope="col" className="px-3 py-2.5 align-top text-left">Event</th>
+                <th scope="col" className="px-3 py-2.5 align-top text-left">13D</th>
+                <th scope="col" className="px-3 py-2.5 align-top text-left">13G passive investor</th>
+                <th scope="col" className="px-3 py-2.5 align-top text-left">13G institution or exempt</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm text-muted">
+                <tr className="border-b border-border last:border-0">
+                  <th scope="row" className="px-3 py-2.5 align-top text-left font-semibold text-text">Crossing 5% (first filing)</th>
+                  <td className="px-3 py-2.5 align-top">5 business days</td>
+                  <td className="px-3 py-2.5 align-top">5 business days</td>
+                  <td className="px-3 py-2.5 align-top">45 days after the quarter ends*</td>
+                </tr>
+                <tr className="border-b border-border last:border-0">
+                  <th scope="row" className="px-3 py-2.5 align-top text-left font-semibold text-text">Crossing 10%</th>
+                  <td className="px-3 py-2.5 align-top">2 business days</td>
+                  <td className="px-3 py-2.5 align-top">2 business days</td>
+                  <td className="px-3 py-2.5 align-top">5 business days after the month ends (institutions)</td>
+                </tr>
+                <tr className="border-b border-border last:border-0">
+                  <th scope="row" className="px-3 py-2.5 align-top text-left font-semibold text-text">Then each move of more than 5%</th>
+                  <td className="px-3 py-2.5 align-top">2 business days</td>
+                  <td className="px-3 py-2.5 align-top">2 business days</td>
+                  <td className="px-3 py-2.5 align-top">5 business days after the month ends (institutions)</td>
+                </tr>
+                <tr className="border-b border-border last:border-0">
+                  <th scope="row" className="px-3 py-2.5 align-top text-left font-semibold text-text">Any other material change</th>
+                  <td className="px-3 py-2.5 align-top">2 business days†</td>
+                  <td className="px-3 py-2.5 align-top">45 days after the quarter ends</td>
+                  <td className="px-3 py-2.5 align-top">45 days after the quarter ends</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-dim">
+          * An institution already above 10% before the quarter ends files
+          within 5 business days after that month ends. Exempt investors have
+          no 10% trigger. † Buying or selling 1% or more of the class always
+          counts as material for a 13D. Filings are accepted until 10 p.m.
+          Eastern (was 5:30 p.m.). Source: SEC Rules 13d-1 and 13d-2 (17 CFR
+          240.13d-1, 240.13d-2, as amended by Release 33-11253, October
+          2023; the 13G deadlines apply from September 30, 2024), read
+          2026-10-10.
+        </p>
         <p className="text-muted">
           This timing difference is what makes 13D filings useful as
           near-real-time signals — and 13F filings useful as longer-term

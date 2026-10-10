@@ -1,4 +1,4 @@
-// SEC 13D/13G activist tracker. Filed within 10 days when any investor
+// SEC 13D/13G activist tracker. 13D filed within 5 business days when any investor
 // crosses 5% ownership of a public company. 13D = activist (will engage
 // management); 13G = passive (won't engage). Tracks Icahn, Elliott,
 // Ackman-class activist campaigns.

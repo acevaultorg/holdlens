@@ -109,7 +109,7 @@ export default async function ActivistDetailPage({
         name: `What's the difference between 13D and 13G filings?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Both are filed when a fund crosses 5% ownership of a public company. SCHEDULE 13D = active intent (the fund plans to influence management, board, M&A, or capital allocation). SCHEDULE 13G = passive intent (long-term position, no active influence). 13D filings carry stricter disclosure (10-day window from purchase); 13G is for long-only managers + index funds. ${c.targetTicker} filing type: ${c.filingType}.`,
+          text: `Both are filed when a fund crosses 5% ownership of a public company. SCHEDULE 13D = active intent (the fund plans to influence management, board, M&A, or capital allocation). SCHEDULE 13G = passive intent (long-term position, no active influence). 13D filings carry stricter disclosure (due within 5 business days of crossing 5%); 13G is for long-only managers + index funds. ${c.targetTicker} filing type: ${c.filingType}.`,
         },
       },
       {
@@ -117,7 +117,7 @@ export default async function ActivistDetailPage({
         name: `Where does HoldLens get activist filing data?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `SEC EDGAR Schedule 13D and 13G filings (10-day disclosure window for 13D; 45-day initial window for 13G then amendments as positions change). HoldLens federates campaigns across tracked activist funds and computes stake-change deltas over time. See /methodology for the full source list.`,
+          text: `SEC EDGAR Schedule 13D and 13G filings (13D due within 5 business days of crossing 5%; 13G within 5 business days for passive investors or 45 days after the quarter ends for institutions, then amendments as positions change). HoldLens federates campaigns across tracked activist funds and computes stake-change deltas over time. See /methodology for the full source list.`,
         },
       },
     ],
@@ -184,7 +184,7 @@ export default async function ActivistDetailPage({
         </div>
         <p className="text-sm text-text leading-relaxed">
           {c.activistFund}&rsquo;s {c.filingType} on {c.targetTicker} crossed
-          the SEC 5% threshold, requiring disclosure within 10 days. The{" "}
+          the SEC 5% threshold, which requires a filing within 5 business days (13D) or by the 13G deadline for its filer type. The{" "}
           {c.intent === "active"
             ? "13D filing means they reserve the right to engage management — board nominations, breakup proposals, CEO replacement are all on the table."
             : c.intent === "event-driven"
