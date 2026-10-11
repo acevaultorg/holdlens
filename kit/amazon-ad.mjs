@@ -346,7 +346,11 @@ html[data-akbb=c] .ak-bill-mid.ak-bb-var .ak-ad-link{height:300px}
 html[data-akbb=c] .ak-bill-mid.ak-bb-var .ak-bb-nav{top:101px}
 html[data-akbb=c] .ak-bill-mid.ak-bb-var .ak-ad-img{height:170px}
 .ak-bb-prev{left:-6px}.ak-bb-next{right:-6px}
-.ak-ad.ak-on.ak-bill-nophone{display:none}}`;
+.ak-ad.ak-on.ak-bill-nophone{display:none}}
+/* Mid billboards sit on the host page rather than the white product cards: inherit the
+   page text colour so the sponsored row heading remains readable on dark pages. */
+.ak-bill-mid{color:inherit}
+html[data-akbb=c] .ak-bill-mid.ak-bb-var .ak-bb-rowh{color:inherit}`;
 
 export function validateAdConfig(cfg) {
   const errs = [];
