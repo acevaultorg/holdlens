@@ -250,15 +250,23 @@ export default async function FundOverlapPair({
         (45-day SEC lag applies; filings can be 1-3 months old).
       </p>
 
-      <div className="overflow-x-auto rounded-2xl border border-border bg-panel">
-        <table className="w-full text-sm">
+      <div
+        className="overflow-x-auto overscroll-x-contain rounded-2xl border border-border bg-panel"
+        role="region"
+        aria-label="Shared positions table; scroll horizontally to see every column"
+        tabIndex={0}
+      >
+        <div className="border-b border-border px-4 py-2 text-xs text-muted sm:hidden">
+          Swipe horizontally to see every column.
+        </div>
+        <table className="w-full min-w-[36rem] text-sm">
           <thead>
             <tr className="border-b border-border bg-bg/30">
-              <th className="text-left p-3 font-semibold">Ticker</th>
-              <th className="text-right p-3 font-semibold">{pair.a.name.split(" ").slice(-1)}</th>
-              <th className="text-right p-3 font-semibold">{pair.b.name.split(" ").slice(-1)}</th>
-              <th className="text-right p-3 font-semibold">Joint</th>
-              <th className="text-right p-3 font-semibold">ConvictionScore</th>
+              <th className="whitespace-nowrap text-left p-3 font-semibold">Ticker</th>
+              <th className="whitespace-nowrap text-right p-3 font-semibold">{pair.a.name.split(" ").slice(-1)}</th>
+              <th className="whitespace-nowrap text-right p-3 font-semibold">{pair.b.name.split(" ").slice(-1)}</th>
+              <th className="whitespace-nowrap text-right p-3 font-semibold">Joint</th>
+              <th className="whitespace-nowrap text-right p-3 font-semibold">ConvictionScore</th>
             </tr>
           </thead>
           <tbody>
@@ -270,10 +278,10 @@ export default async function FundOverlapPair({
                   </TickerLink>
                   <span className="text-xs text-muted ml-2 hidden sm:inline">{h.name}</span>
                 </td>
-                <td className="p-3 text-right tabular-nums">{h.pctA.toFixed(1)}%</td>
-                <td className="p-3 text-right tabular-nums">{h.pctB.toFixed(1)}%</td>
-                <td className="p-3 text-right tabular-nums font-semibold">{h.combinedPct.toFixed(1)}%</td>
-                <td className="p-3 text-right tabular-nums text-muted">
+                <td className="whitespace-nowrap p-3 text-right tabular-nums">{h.pctA.toFixed(1)}%</td>
+                <td className="whitespace-nowrap p-3 text-right tabular-nums">{h.pctB.toFixed(1)}%</td>
+                <td className="whitespace-nowrap p-3 text-right tabular-nums font-semibold">{h.combinedPct.toFixed(1)}%</td>
+                <td className="whitespace-nowrap p-3 text-right tabular-nums text-muted">
                   {h.score === null ? "—" : formatSignedScore(h.score)}
                 </td>
               </tr>
