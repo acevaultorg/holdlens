@@ -115,7 +115,7 @@ export default function FilingWaveBanner() {
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand align-middle mr-2" />
           <span className="text-text font-semibold">Next {state.quarterLabel} filings:</span>{" "}
           {state.windowLabel} <span className="text-dim">·</span>{" "}
-          <span className="text-brand font-semibold">{countdownLabel}</span>
+          <span className="text-brand font-semibold whitespace-nowrap">{countdownLabel}</span>
         </div>
         <div className="flex items-center gap-3">
           <a
