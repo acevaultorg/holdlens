@@ -26,7 +26,7 @@
 // card this size ABOVE the hero risks pushing the hero's own search box below the fold at
 // 375px, which the operator explicitly ruled out.
 import { booksByTitles } from "@/data/books";
-import { renderAd, AD_CSS, AD_JS } from "@/lib/kit/amazon-ad";
+import { renderAd, AD_CSS, AD_JS } from "@/lib/kit/amazon-ad.mjs";
 
 const PICKS = ["The Intelligent Investor", "Poor Charlie's Almanack"];
 
