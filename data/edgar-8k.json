@@ -2123,6 +2123,39 @@
     "issuerCik": "0001819516"
   },
   {
+    "ticker": "PEB-PH",
+    "companyName": "Pebblebrook Hotel Trust",
+    "itemCode": "7.01",
+    "eventDate": "2026-10-08",
+    "filedAt": "2026-10-09",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001474098-26-000066",
+    "issuerCik": "0001474098"
+  },
+  {
+    "ticker": "SSEAR",
+    "companyName": "STARRY SEA ACQUISITION CORP",
+    "itemCode": "8.01",
+    "eventDate": "2026-10-09",
+    "filedAt": "2026-10-09",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001829126-26-010950",
+    "issuerCik": "0002059165"
+  },
+  {
+    "ticker": "VELO",
+    "companyName": "Velo3D, Inc.",
+    "itemCode": "7.01",
+    "eventDate": "2026-10-08",
+    "filedAt": "2026-10-09",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001493152-26-046400",
+    "issuerCik": "0001825079"
+  },
+  {
     "ticker": "_CIK_0001347185",
     "companyName": "AFS SENSUB CORP.",
     "itemCode": "1.01",
@@ -4288,6 +4321,83 @@
     "source": "edgar",
     "form8kAccessionNumber": "0000355948-26-000021",
     "issuerCik": "0000355948"
+  },
+  {
+    "ticker": "CHARU",
+    "companyName": "Charlton Aria Acquisition Corp",
+    "itemCode": "7.01",
+    "eventDate": "2026-10-07",
+    "filedAt": "2026-10-08",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001213900-26-107744",
+    "issuerCik": "0002024459"
+  },
+  {
+    "ticker": "DTSQR",
+    "companyName": "DT Cloud Star Acquisition Corp",
+    "itemCode": "1.01",
+    "eventDate": "2026-10-01",
+    "filedAt": "2026-10-08",
+    "headline": "Material agreement entered",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001493152-26-046187",
+    "issuerCik": "0002017950"
+  },
+  {
+    "ticker": "DTSQR",
+    "companyName": "DT Cloud Star Acquisition Corp",
+    "itemCode": "8.01",
+    "eventDate": "2026-10-01",
+    "filedAt": "2026-10-08",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001493152-26-046187",
+    "issuerCik": "0002017950"
+  },
+  {
+    "ticker": "DTSQR",
+    "companyName": "DT Cloud Star Acquisition Corp",
+    "itemCode": "8.01",
+    "eventDate": "2026-10-08",
+    "filedAt": "2026-10-08",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001493152-26-046360",
+    "issuerCik": "0002017950"
+  },
+  {
+    "ticker": "LUCYW",
+    "companyName": "Innovative Eyewear Inc",
+    "itemCode": "2.02",
+    "eventDate": "2026-10-06",
+    "filedAt": "2026-10-08",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001829126-26-010910",
+    "issuerCik": "0001808377"
+  },
+  {
+    "ticker": "PORT-UN",
+    "companyName": "Southport Acquisition Corp. II",
+    "itemCode": "8.01",
+    "eventDate": "2026-09-30",
+    "filedAt": "2026-10-08",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001185185-26-004666",
+    "issuerCik": "0002148436"
+  },
+  {
+    "ticker": "FXACU",
+    "companyName": "FortuneX Acquisition Corp",
+    "itemCode": "1.01",
+    "eventDate": "2026-09-18",
+    "filedAt": "2026-10-08",
+    "headline": "Material agreement entered",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001829126-26-010873",
+    "issuerCik": "0002121703"
   },
   {
     "ticker": "AIB",
