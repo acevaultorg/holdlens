@@ -25,7 +25,12 @@ export const onRequest = async ({ request }: { request: Request }): Promise<Resp
 
   const mode = request.headers.get("sec-fetch-mode");
   const site = request.headers.get("sec-fetch-site");
-  const navOk = mode === "navigate" && (site === "same-origin" || site === "same-site");
+  const dest = request.headers.get("sec-fetch-dest");
+  // Safari/iOS (WebKit) opens a target=_blank buy link as Sec-Fetch-Site: none with no Sec-Fetch-User
+  // (measured 2026-10-12, real WebKit click). Accepted only as a top-level document load; the cc_g
+  // gesture cookie below is still required, so a scraper gains nothing from this branch.
+  const navOk = mode === "navigate" &&
+    (site === "same-origin" || site === "same-site" || (site === "none" && dest === "document"));
   if (!navOk) return home;
   // Kit 3 (2026-09-28): Sec-Fetch alone is forgeable by any HTTP client. Every affiliate route
   // below also requires the cc_g cookie that only page JS mints on a trusted click (lib/gesture-gate.ts).
