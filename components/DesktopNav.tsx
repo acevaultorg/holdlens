@@ -175,7 +175,7 @@ function colorClass(color?: "brand" | "emerald" | "rose" | "muted" | "sky"): str
 export default function DesktopNav() {
   return (
     <nav
-      className="hidden md:flex items-center gap-3 lg:gap-4 text-sm text-muted"
+      className="hidden lg:flex items-center gap-3 lg:gap-4 text-sm text-muted"
       aria-label="Main"
     >
       {GROUPS.map((grp) => (

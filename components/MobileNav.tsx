@@ -233,7 +233,7 @@ export default function MobileNav() {
   // header's backdrop-filter containing block. This is the root-cause fix.
   const dialog = open ? (
     <div
-      className="md:hidden fixed inset-0 z-[100] overflow-y-auto bg-bg"
+      className="lg:hidden fixed inset-0 z-[100] overflow-y-auto bg-bg"
       role="dialog"
       aria-modal="true"
       aria-label="Site menu"
@@ -531,7 +531,7 @@ export default function MobileNav() {
           Sized to match the 44×44 hamburger touch target on the y-axis. */}
       <a
         href="/composite"
-        className="md:hidden inline-flex items-center gap-1.5 h-11 px-3 rounded-lg border border-brand/40 bg-brand/10 text-brand font-semibold text-sm hover:bg-brand/15 hover:border-brand/60 transition"
+        className="lg:hidden inline-flex items-center gap-1.5 h-11 px-3 rounded-lg border border-brand/40 bg-brand/10 text-brand font-semibold text-sm hover:bg-brand/15 hover:border-brand/60 transition"
         aria-label="The Conviction — superinvestor accumulation basket, conviction-weighted"
       >
         <span
@@ -542,7 +542,7 @@ export default function MobileNav() {
       </a>
       <button
         onClick={() => setOpen(true)}
-        className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-border bg-panel text-text hover:border-brand/40 transition"
+        className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-border bg-panel text-text hover:border-brand/40 transition"
         aria-label="Open menu"
         aria-expanded={open}
       >
