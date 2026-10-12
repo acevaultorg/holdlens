@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { nextFilingDeadline } from "@/lib/filings-calendar";
+import { formatFilingWindow, nextFilingDeadline } from "@/lib/filings-calendar";
 
 // <FilingWaveBanner /> — thin site-wide band that surfaces the next 13F
 // filing wave as a live countdown + funnel into /alerts email capture.
@@ -28,23 +28,6 @@ function daysUntil(iso: string): number {
   const target = new Date(iso + "T00:00:00Z").getTime();
   const now = Date.now();
   return Math.ceil((target - now) / (1000 * 60 * 60 * 24));
-}
-
-function formatWindow(deadlineIso: string): string {
-  // 13F filings typically land in the 4-5 days before the deadline — show as
-  // a range like "May 11–15, 2026" instead of a single day.
-  const end = new Date(deadlineIso + "T00:00:00Z");
-  const start = new Date(end);
-  start.setUTCDate(start.getUTCDate() - 4);
-  const year = end.getUTCFullYear();
-  const endMonthShort = end.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
-  const startMonthShort = start.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
-  const startDay = start.getUTCDate();
-  const endDay = end.getUTCDate();
-  if (startMonthShort === endMonthShort) {
-    return `${endMonthShort} ${startDay}\u2013${endDay}, ${year}`;
-  }
-  return `${startMonthShort} ${startDay} \u2013 ${endMonthShort} ${endDay}, ${year}`;
 }
 
 function wasRecentlyDismissed(): boolean {
@@ -89,7 +72,7 @@ export default function FilingWaveBanner() {
     if (days < 0) return; // should never happen — nextFilingDeadline always returns future
     setState({
       days,
-      windowLabel: formatWindow(dl.date),
+      windowLabel: formatFilingWindow(dl.date),
       quarterLabel: dl.quarter,
     });
     setVisible(true);

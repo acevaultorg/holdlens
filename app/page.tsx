@@ -20,6 +20,12 @@ import { LATEST_FILINGS } from "@/lib/filings";
 import { COMPOSITE_TARGET_POSITIONS } from "@/lib/composite";
 import InvestingBooks from "@/components/InvestingBooks";
 import AmazonTopBar from "@/components/AmazonTopBar";
+import { latestFilingStatusLabel } from "@/lib/filings-calendar";
+
+const HOMEPAGE_FILING_STATUS = latestFilingStatusLabel(
+  QUARTER_LABELS[LATEST_QUARTER],
+  QUARTER_FILED[LATEST_QUARTER],
+);
 
 // v1.42 — explicit homepage metadata. Prior state: homepage inherited
 // layout.metadata.title.default ("30 superinvestors, one ConvictionScore —
@@ -32,7 +38,7 @@ import AmazonTopBar from "@/components/AmazonTopBar";
 export const metadata: Metadata = {
   title: { absolute: "30 superinvestors, one ConvictionScore — HoldLens" },
   description:
-    `Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers, scored on a signed −100..+100 ConvictionScore. ${QUARTER_LABELS[LATEST_QUARTER]} filings live. 456 stocks ranked. Free for everyone — no paywall, no sign-up.`,
+    `Every 13F move from Buffett, Ackman, Burry and 27 other top portfolio managers, scored on a signed −100..+100 ConvictionScore. ${HOMEPAGE_FILING_STATUS}. 456 stocks ranked. Free for everyone — no paywall, no sign-up.`,
   alternates: { canonical: "https://holdlens.com/" },
   openGraph: {
     title: "30 superinvestors, one ConvictionScore — HoldLens",
@@ -289,7 +295,7 @@ export default function HomePage() {
       <section className="pt-4 sm:pt-12 pb-10 text-center">
         <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-brand uppercase mb-3 sm:mb-6">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden />
-          <span>{QUARTER_LABELS[LATEST_QUARTER]} 13F filings live · deadline <time dateTime={QUARTER_FILED[LATEST_QUARTER]}>{new Date(QUARTER_FILED[LATEST_QUARTER] + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</time> · {MANAGERS.length} investors tracked</span>
+          <span>{HOMEPAGE_FILING_STATUS} · {MANAGERS.length} investors tracked</span>
         </div>
         {/* v1.48 — widow-orphan fix on hero. `text-balance` lets the browser
             optimize line breaks so "by the" no longer orphans + "world." no
