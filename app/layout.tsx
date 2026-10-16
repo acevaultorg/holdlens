@@ -541,14 +541,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy="afterInteractive"
         />
 
-        {/* AdSense loader REMOVED 2026-10-06 (Paulo delegated, thought mux2lwpv2ozt92 / card muww3hucqxp4te):
-            GA4 30d = ~3,616 of 3,715 sessions crawler-shaped, ~99 humans. Ads served mostly to bots are
-            invalid traffic and put the WHOLE AdSense account at risk for ~EUR 0. ads.txt and the
-            google-adsense-account meta stay, so the site stays verified. To restore: put back
-            <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7449214764048186"
-            crossOrigin="anonymous" strategy="lazyOnload" /> once humans outnumber bots.
-            Note: Google's Funding Choices consent message came with this loader; without ads, Consent Mode v2
-            default-denied in EEA/UK/CH/US-CA (above) keeps those regions cookieless with no banner needed. */}
+        {/* Google AdSense loader — restored 2026-10-16 (Paulo: ads on every site in the account; was removed
+            2026-10-06 over the crawler share, see git 18c1a28f9). Plain async script in <head> on every page;
+            it also serves Google's own consent message (the one consent UI, see below). */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7449214764048186"
+          crossOrigin="anonymous"
+        />
         <meta name="google-adsense-account" content="ca-pub-7449214764048186" />
       </head>
       <body className="min-h-screen bg-bg text-text font-sans">
