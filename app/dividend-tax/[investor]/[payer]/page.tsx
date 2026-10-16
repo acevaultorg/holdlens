@@ -1,5 +1,6 @@
 import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
+import { isPruned } from "@/lib/index-prune";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
@@ -82,7 +83,8 @@ export async function generateMetadata({
   return {
     title,
     description,
-    robots: { index: !isDomestic, follow: true },
+    // isPruned: veto-cleared zero-traffic pair, noindex for AdSense re-review (2026-10-16).
+    robots: { index: !isDomestic && !isPruned(`/dividend-tax/${inv.code.toLowerCase()}/${pay.code.toLowerCase()}`), follow: true },
     alternates: { canonical },
     openGraph: {
       title,

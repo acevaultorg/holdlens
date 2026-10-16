@@ -15,6 +15,7 @@ import { ETFS } from "@/lib/etfs";
 import { REPORTS } from "@/lib/reports";
 import { getAllOverlapPairs } from "@/lib/fund-overlap-pairs";
 import { GROUP_META } from "@/data/books";
+import { isPruned } from "@/lib/index-prune";
 
 const SECTORS = [
   "Technology", "Financials", "Energy", "Healthcare",
@@ -267,16 +268,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // v1.15 — /ticker/[sym]/feed.xml — per-ticker RSS feeds. Not typically
-  // indexed by Google (RSS is for feed readers) but including them helps
-  // Google discover the semantic relationship to the ticker page + lets us
-  // track feed-click attribution in Plausible if traffic lands directly.
-  const tickerFeedUrls: MetadataRoute.Sitemap = Object.keys(TICKER_INDEX).map((sym) => ({
-    url: `${base}/ticker/${sym}/feed.xml`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.4,
-  }));
+  // /ticker/[sym]/feed.xml RSS feeds: listed here from v1.15 until 2026-10-16, now out of the sitemap.
 
   // v1.45 — /dividend-tax/* cross-border withholding calculator +
   // per-investor-country programmatic pages. 1 hub + 20 country pages
@@ -543,7 +535,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...signalUrls,
     ...investorQuarterUrls,
     ...quarterUrls,
-    ...tickerFeedUrls,
+    // ...tickerFeedUrls — RSS feeds are not pages; out of the HTML sitemap 2026-10-16 (feeds stay live,
+    // and /feed.xml stays declared in robots.txt). Veto: all 94 OK.
     ...dividendTaxUrls,
     ...similarToUrls,
     ...managersByStyleUrls,
@@ -585,7 +578,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // were written without trailing slashes. Single-pass post-processor
   // appends `/` to any URL whose final path segment lacks an extension
   // (i.e. excludes .xml feeds, .json, .ico, etc).
-  return allUrls.map((entry) => {
+  // 2026-10-16 AdSense "Low value content" prep: veto-cleared template pages leave the sitemap
+  // (they serve noindex,follow — lib/index-prune.ts).
+  return allUrls.filter((entry) => !isPruned(new URL(entry.url).pathname)).map((entry) => {
     const u = entry.url;
     const lastSeg = u.split("/").pop() || "";
     // Skip if already ends with /, has a real file extension, or has a query string.

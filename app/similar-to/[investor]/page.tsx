@@ -1,5 +1,6 @@
 import InvestingBooks from "@/components/InvestingBooks";
 import type { Metadata } from "next";
+import { isPruned } from "@/lib/index-prune";
 import { notFound } from "next/navigation";
 import FundLogo from "@/components/FundLogo";
 import { MANAGERS, getManager } from "@/lib/managers";
@@ -33,6 +34,8 @@ export async function generateMetadata(
   return {
     title,
     description,
+    // isPruned: veto-cleared zero-traffic page, noindex for AdSense re-review (2026-10-16).
+    ...(isPruned(`/similar-to/${m.slug}`) ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: `https://holdlens.com/similar-to/${m.slug}`,
     },
