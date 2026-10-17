@@ -1,15 +1,7 @@
 {
-  "generatedAt": "2026-10-16T04:47:10.693Z",
-  "totalRows": 2533,
+  "generatedAt": "2026-10-17T04:49:16.927Z",
+  "totalRows": 3508,
   "days": [
-    {
-      "date": "2026-10-12",
-      "formsListed": 0,
-      "form4sFound": 0,
-      "parsed": 0,
-      "skipped": 0,
-      "skipReasons": {}
-    },
     {
       "date": "2026-10-13",
       "formsListed": 4534,
@@ -42,11 +34,13 @@
     },
     {
       "date": "2026-10-16",
-      "formsListed": 0,
-      "form4sFound": 0,
-      "parsed": 0,
-      "skipped": 0,
-      "skipReasons": {}
+      "formsListed": 3318,
+      "form4sFound": 455,
+      "parsed": 975,
+      "skipped": 4,
+      "skipReasons": {
+        "parse_failed": 4
+      }
     }
   ]
 }
