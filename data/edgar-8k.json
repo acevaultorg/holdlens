@@ -2200,6 +2200,105 @@
     "issuerCik": "0001999261"
   },
   {
+    "ticker": "MTB-PL",
+    "companyName": "M&T BANK CORP",
+    "itemCode": "2.02",
+    "eventDate": "2026-10-16",
+    "filedAt": "2026-10-16",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000036270-26-000057",
+    "issuerCik": "0000036270"
+  },
+  {
+    "ticker": "MTB-PL",
+    "companyName": "M&T BANK CORP",
+    "itemCode": "7.01",
+    "eventDate": "2026-10-16",
+    "filedAt": "2026-10-16",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000036270-26-000057",
+    "issuerCik": "0000036270"
+  },
+  {
+    "ticker": "OPNW",
+    "companyName": "OpenWorld, Inc.",
+    "itemCode": "5.02",
+    "eventDate": "2026-10-15",
+    "filedAt": "2026-10-16",
+    "headline": "Officer / director change",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001214659-26-013011",
+    "issuerCik": "0001104038"
+  },
+  {
+    "ticker": "RF-PE",
+    "companyName": "REGIONS FINANCIAL CORP",
+    "itemCode": "2.02",
+    "eventDate": "2026-10-16",
+    "filedAt": "2026-10-16",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001281761-26-000063",
+    "issuerCik": "0001281761"
+  },
+  {
+    "ticker": "RF-PE",
+    "companyName": "REGIONS FINANCIAL CORP",
+    "itemCode": "7.01",
+    "eventDate": "2026-10-16",
+    "filedAt": "2026-10-16",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001281761-26-000063",
+    "issuerCik": "0001281761"
+  },
+  {
+    "ticker": "TFC-PI",
+    "companyName": "TRUIST FINANCIAL CORP",
+    "itemCode": "2.02",
+    "eventDate": "2026-10-16",
+    "filedAt": "2026-10-16",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000092230-26-000108",
+    "issuerCik": "0000092230"
+  },
+  {
+    "ticker": "TFC-PI",
+    "companyName": "TRUIST FINANCIAL CORP",
+    "itemCode": "5.02",
+    "eventDate": "2026-10-14",
+    "filedAt": "2026-10-16",
+    "headline": "Officer / director change",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001193125-26-423384",
+    "issuerCik": "0000092230"
+  },
+  {
+    "ticker": "TFC-PI",
+    "companyName": "TRUIST FINANCIAL CORP",
+    "itemCode": "7.01",
+    "eventDate": "2026-10-14",
+    "filedAt": "2026-10-16",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001193125-26-423384",
+    "issuerCik": "0000092230"
+  },
+  {
+    "ticker": "ASGI",
+    "companyName": "abrdn Global Infrastructure Income Fund",
+    "itemCode": "8.01",
+    "eventDate": "2026-10-15",
+    "filedAt": "2026-10-16",
+    "headline": "Other material event",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001104659-26-116525",
+    "issuerCik": "0001793855"
+  },
+  {
     "ticker": "ASNS",
     "companyName": "ACTELIS NETWORKS INC",
     "itemCode": "7.01",
@@ -5289,6 +5388,39 @@
     "source": "edgar",
     "form8kAccessionNumber": "0001059556-26-000041",
     "issuerCik": "0001059556"
+  },
+  {
+    "ticker": "FHN-PF",
+    "companyName": "FIRST HORIZON CORP",
+    "itemCode": "2.02",
+    "eventDate": "2026-10-15",
+    "filedAt": "2026-10-15",
+    "headline": "Earnings results",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000036966-26-000178",
+    "issuerCik": "0000036966"
+  },
+  {
+    "ticker": "FHN-PF",
+    "companyName": "FIRST HORIZON CORP",
+    "itemCode": "7.01",
+    "eventDate": "2026-10-15",
+    "filedAt": "2026-10-15",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0000036966-26-000178",
+    "issuerCik": "0000036966"
+  },
+  {
+    "ticker": "OPNW",
+    "companyName": "OpenWorld, Inc.",
+    "itemCode": "7.01",
+    "eventDate": "2026-10-15",
+    "filedAt": "2026-10-15",
+    "headline": "Regulation FD disclosure",
+    "source": "edgar",
+    "form8kAccessionNumber": "0001214659-26-012934",
+    "issuerCik": "0001104038"
   },
   {
     "ticker": "_CIK_0001347185",
