@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-21T04:43:53.242Z",
-  "totalRows": 1661,
+  "generatedAt": "2026-10-22T04:46:03.019Z",
+  "totalRows": 2211,
   "days": [
     {
       "date": "2026-10-19",
@@ -24,6 +24,16 @@
     },
     {
       "date": "2026-10-21",
+      "formsListed": 3283,
+      "form4sFound": 210,
+      "parsed": 550,
+      "skipped": 2,
+      "skipReasons": {
+        "parse_failed": 2
+      }
+    },
+    {
+      "date": "2026-10-22",
       "formsListed": 0,
       "form4sFound": 0,
       "parsed": 0,
