@@ -20,7 +20,7 @@ import { MANAGERS } from "../lib/managers";
 // Config
 // ---------------------------------------------------------------------------
 
-const USER_AGENT = "HoldLens/0.2 (contact@acevault.org)";
+const USER_AGENT = "HoldLens/0.2 (contact@vondelmedia.com)";
 const RATE_LIMIT_MS = 220; // ~4.5 req/sec, well within SEC 10/sec limit
 const MAX_QUARTERS = 8; // How many quarters back to fetch
 const DATA_DIR = resolve(import.meta.dirname ?? __dirname, "../data");

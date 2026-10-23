@@ -20,7 +20,7 @@
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 
-const UA = "HoldLens/0.3 (contact@acevault.org)";
+const UA = "HoldLens/0.3 (contact@vondelmedia.com)";
 const OUT = resolve(process.cwd(), "data/buybacks-sec.json");
 const DRY = process.argv.includes("--dry");
 const DAY = 86_400_000;

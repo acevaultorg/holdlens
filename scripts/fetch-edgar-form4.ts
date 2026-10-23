@@ -37,7 +37,7 @@ import { resolve } from "path";
 // Config
 // ---------------------------------------------------------------------------
 
-const USER_AGENT = "HoldLens/0.2 (contact@acevault.org)";
+const USER_AGENT = "HoldLens/0.2 (contact@vondelmedia.com)";
 const RATE_LIMIT_MS = 220; // ~4.5 req/sec, well within SEC's 10/sec cap
 const DEFAULT_DAYS = 7;
 const DATA_DIR = resolve(import.meta.dirname ?? __dirname, "../data");
