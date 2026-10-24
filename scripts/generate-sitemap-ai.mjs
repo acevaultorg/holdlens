@@ -85,7 +85,7 @@ try {
     .map(([, loc, lastmod]) => ({ loc, lastmod: lastmod || new Date().toISOString() }))
     .filter(({ loc }) => AI_PRIORITY_PATTERNS.some((p) => p.test(loc)));
 
-  const header = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap-0.9">`;
+  const header = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
   const body = aiUrls
     .map(({ loc, lastmod }) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>`)
     .join("\n");
