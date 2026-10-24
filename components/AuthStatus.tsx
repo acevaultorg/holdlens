@@ -38,7 +38,7 @@ export default function AuthStatus({
         href={isAuthConfigured() ? "/login/" : "/signup/"}
         className={
           variant === "desktop"
-            ? "ml-1 inline-flex items-center gap-1 text-muted hover:text-text transition text-sm font-semibold"
+            ? "ml-1 inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-muted hover:text-text transition text-sm font-semibold"
             : "block text-text font-semibold py-2"
         }
       >
