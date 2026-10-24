@@ -92,7 +92,10 @@ export default function AmazonTopBar() {
           __html:
             ".ak-ad-v1[data-fixed] .ak-ad-card:not(.has-img) .ak-ad-img{display:none}" +
             // the kit hides the whole slot when no book is live; the heading goes with it (no orphan title)
-            "section:has(> div > .ak-ad[hidden]){display:none}",
+            "section:has(> div > .ak-ad[hidden]){display:none}" +
+            // eyes 2026-10-23 #6: on the dark page the kit's light box sat square-cornered and tight around the two
+            // book tiles, so it read as a broken white patch. A rounded, evenly padded panel reads as a shelf.
+            "section[aria-label='Sponsored: recommended investing books'] .ak-ad{border-radius:12px;padding:12px 12px 8px}",
         }}
       />
       <div
